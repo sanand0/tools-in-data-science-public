@@ -1,0 +1,812 @@
+- description: TDSGA4.1
+  randomized: 2
+  question: | # markdown
+    This [flights dataset (.parquet)](https://drive.google.com/file/d/1b6NmkCS4vTZBHbOlP9vPxIjmbitVDn4b/view?usp=drive_link) from [Kaggle](https://www.kaggle.com/datasets/usdot/flight-delays) has 4 columns:
+
+    - **DEPARTURE_DELAY**: The delay in minutes for the flight's departure
+    - **ARRIVAL_DELAY**: The delay in minutes for the flight's arrival
+    - **DISTANCE**: The distance in miles for the flight
+    - **SCHEDULED_DEPARTURE**: The time of departure (e.g. 10.5 means 10:30 am)
+
+    **Question**: What's the Pearson sample correlation between `DEPARTURE_DELAY` and `ARRIVAL_DELAY`
+    for flights traveling less than **${distance}** miles with
+    scheduled departure starting from **${startHour}:00** and before **${endHour}:00**?
+
+    **Note**:
+
+    - When filtering, you should get ${count} rows.
+    - Use a correlation formula consistent with Pandas, Excel or Google Sheets.
+  data: ga4.1.json
+
+- description: TDSGA4.2
+  randomized: 2
+  question: | # markdown
+    From the same [flights dataset (.parquet)](https://drive.google.com/file/d/1b6NmkCS4vTZBHbOlP9vPxIjmbitVDn4b/view?usp=drive_link),
+    how many arrival delays are outliers for
+    flights traveling less than **${distance}** miles with
+    scheduled departure starting from **${startHour}:00** and before **${endHour}:00**?
+
+    You need to:
+
+    1. Filter for flights traveling less than **${distance}** miles with scheduled departure starting from **${startHour}:00** and before **${endHour}:00**.
+    2. Find the IQR - the difference between Q1 (first quartile) and Q3 (third quartile) - of the arrival delays.
+    3. Calculate the lower and upper bounds. The lower bound is Q1 - 1.5 * IQR and the upper bound is Q3 + 1.5 * IQR.
+    4. Count the number of arrival delays that are outside the lower and upper bounds. (Arrival delays *exactly at* the bounds are not outliers.)
+
+    **Note**:
+
+    - When finding quartiles, interpolate between the two closest values if the quartile index is not an integer.
+    - For example, if Q1 (the 25th percentile) is 10.5, Q1 is the average of the 10th and 11th values.
+    - In Excel or Google Sheets, **=PERCENTILE.EXC()** does this automatically.
+    - In Pandas, **.quantile(...)** does this automatically.
+  data: ga4.2.json
+
+- description: TDSGA4.3
+  randomized: 2
+  question: | # markdown
+    This [house rent dataset (zipped CSV)](https://drive.google.com/file/d/1j2L1EKFDpdfCffIHxzBDJB_qj4QE0jR5/view?usp=drive_link) from [Kaggle](https://www.kaggle.com/datasets/iamsouravbanerjee/house-rent-prediction-dataset) has these columns:
+
+    - **Posted On**: Date the rental ad for the house was posted
+    - **BHK**: Number of Bedrooms (along with Hall and Kitchen)
+    - **Rent**: Monthly rental amount in Rs
+    - **Size**: Size of house in square feet (sft)
+    - **Floor**: Which floor the house is on (e.g. Ground out of 2, 3 out of 5, etc.)
+    - **Area Type**: How area is calculated (e.g. Super Area, Carpet Area, Built Area)
+    - **Area Locality**: Where within the city the house is
+    - **City**: Which city the house is in
+    - **Furnishing Status**: Unfurnished, Semi-Furnished, or Furnished
+    - **Tenant Preferred**: Bachelors, Family, or Bachelors/Family
+    - **Bathroom**: Number of bathrooms
+    - **Point of Contact**: Contact Agent, Builder, or Owner
+
+    **Question**: How much faster does the rent increase per square foot for **${furnishing}** houses in **${city1}** vs in **${city2}**?
+
+    You need to:
+
+    1. Calculate the regression slope of rent vs size (in Rs / sft) for **${furnishing}** houses in **${city1}**.
+    2. Calculate the same for **${furnishing}** houses in **${city2}**.
+    3. Find the absolute difference between these two slopes.
+  data: ga4.3.json
+
+- description: TDSGA4.4
+  randomized: 1
+  question: | # markdown
+    [This parquet file](https://drive.google.com/file/d/1xZB0kbkzkcXSmbKVgWzjIAAC3eZL8UWe/view) has
+    [hourly energy consumption data](https://www.kaggle.com/datasets/robikscube/hourly-energy-consumption) over 10 years
+    from different power companies serving different regions.
+
+    Each row has the power consumption for a specific hour.
+
+    For **${series}**, take all data for **${month}**. Use Excel's **FORECAST.ETS()** to forecast the
+    energy consumption at **${date}**.
+
+    **NOTES**:
+
+    - If you don't have an Excel version that supports FORECAST.ETS(), find a friend who does.
+    - Use the default seasonality detection mechanism of FORECAST.ETS().
+    - Do not perform any time zone conversions.
+    - There won't be any missing values. In any case, use the default interpolation behavior for missing values.
+    - Regions have changed over the years so data may only appear for certain dates per region.
+  data:
+    - {
+        month: "June 1998",
+        series: PJM_Load,
+        date: "01 Jul 1998, 11:00",
+        choices:
+          [{ text: "35951.03", score: 0 }, { text: "35952.03", score: 0 }, { text: "35953.03", score: 0 }, { text: "35954.03", score: 1 }],
+      }
+    - {
+        month: "April 2001",
+        series: PJM_Load,
+        date: "01 May 2001, 11:00",
+        choices:
+          [{ text: "31354.54", score: 0 }, { text: "31355.54", score: 0 }, { text: "31356.54", score: 1 }, { text: "31357.54", score: 0 }],
+      }
+    - {
+        month: "May 2002",
+        series: PJMW,
+        date: "01 Jun 2002, 11:00",
+        choices:
+          [{ text: "6234.12", score: 0 }, { text: "6235.12", score: 0 }, { text: "6236.12", score: 0 }, { text: "6237.12", score: 1 }],
+      }
+    - {
+        month: "June 2003",
+        series: PJME,
+        date: "01 Jul 2003, 11:00",
+        choices:
+          [{ text: "41193.87", score: 0 }, { text: "41194.87", score: 0 }, { text: "41195.87", score: 1 }, { text: "41196.87", score: 0 }],
+      }
+    - {
+        month: "April 2004",
+        series: PJME,
+        date: "01 May 2004, 11:00",
+        choices:
+          [{ text: "29293.54", score: 0 }, { text: "29294.54", score: 0 }, { text: "29295.54", score: 0 }, { text: "29296.54", score: 1 }],
+      }
+    - {
+        month: "June 2004",
+        series: NI,
+        date: "01 Jul 2004, 11:00",
+        choices:
+          [{ text: "14510.64", score: 0 }, { text: "14511.64", score: 0 }, { text: "14512.64", score: 0 }, { text: "14513.64", score: 1 }],
+      }
+    - {
+        month: "October 2004",
+        series: PJMW,
+        date: "01 Nov 2004, 11:00",
+        choices:
+          [{ text: "5144.72", score: 0 }, { text: "5145.72", score: 1 }, { text: "5146.72", score: 0 }, { text: "5147.72", score: 0 }],
+      }
+    - {
+        month: "November 2004",
+        series: AEP,
+        date: "01 Dec 2004, 11:00",
+        choices:
+          [{ text: "17661.06", score: 0 }, { text: "17662.06", score: 0 }, { text: "17663.06", score: 1 }, { text: "17664.06", score: 0 }],
+      }
+    - {
+        month: "April 2005",
+        series: DAYTON,
+        date: "01 May 2005, 11:00",
+        choices:
+          [{ text: "1862.56", score: 0 }, { text: "1863.56", score: 0 }, { text: "1864.56", score: 1 }, { text: "1865.56", score: 0 }],
+      }
+    - {
+        month: "June 2005",
+        series: DUQ,
+        date: "01 Jul 2005, 11:00",
+        choices:
+          [{ text: "2266.37", score: 0 }, { text: "2267.37", score: 1 }, { text: "2268.37", score: 0 }, { text: "2269.37", score: 0 }],
+      }
+    - {
+        month: "July 2005",
+        series: PJME,
+        date: "01 Aug 2005, 11:00",
+        choices:
+          [{ text: "37536.04", score: 0 }, { text: "37537.04", score: 0 }, { text: "37538.04", score: 1 }, { text: "37539.04", score: 0 }],
+      }
+    - {
+        month: "November 2005",
+        series: DAYTON,
+        date: "01 Dec 2005, 11:00",
+        choices:
+          [{ text: "2560.21", score: 1 }, { text: "2561.21", score: 0 }, { text: "2562.21", score: 0 }, { text: "2563.21", score: 0 }],
+      }
+    - {
+        month: "January 2006",
+        series: PJMW,
+        date: "01 Feb 2006, 11:00",
+        choices:
+          [{ text: "6437.13", score: 1 }, { text: "6438.13", score: 0 }, { text: "6439.13", score: 0 }, { text: "6440.13", score: 0 }],
+      }
+    - {
+        month: "May 2006",
+        series: AEP,
+        date: "01 Jun 2006, 11:00",
+        choices:
+          [{ text: "19109.55", score: 0 }, { text: "19110.55", score: 0 }, { text: "19111.55", score: 0 }, { text: "19112.55", score: 1 }],
+      }
+    - {
+        month: "July 2006",
+        series: AEP,
+        date: "01 Aug 2006, 11:00",
+        choices:
+          [{ text: "21330.49", score: 0 }, { text: "21331.49", score: 0 }, { text: "21332.49", score: 1 }, { text: "21333.49", score: 0 }],
+      }
+    - {
+        month: "August 2006",
+        series: NI,
+        date: "01 Sep 2006, 11:00",
+        choices:
+          [{ text: "11689.1", score: 0 }, { text: "11690.1", score: 1 }, { text: "11691.1", score: 0 }, { text: "11692.1", score: 0 }],
+      }
+    - {
+        month: "December 2006",
+        series: DUQ,
+        date: "01 Jan 2007, 11:00",
+        choices:
+          [{ text: "1611.98", score: 0 }, { text: "1612.98", score: 0 }, { text: "1613.98", score: 1 }, { text: "1614.98", score: 0 }],
+      }
+    - {
+        month: "January 2007",
+        series: AEP,
+        date: "01 Feb 2007, 11:00",
+        choices:
+          [{ text: "20464.05", score: 0 }, { text: "20465.05", score: 1 }, { text: "20466.05", score: 0 }, { text: "20467.05", score: 0 }],
+      }
+    - {
+        month: "March 2007",
+        series: PJMW,
+        date: "01 Apr 2007, 11:00",
+        choices:
+          [{ text: "5044.34", score: 1 }, { text: "5045.34", score: 0 }, { text: "5046.34", score: 0 }, { text: "5047.34", score: 0 }],
+      }
+    - {
+        month: "June 2007",
+        series: PJME,
+        date: "01 Jul 2007, 11:00",
+        choices:
+          [{ text: "35538.55", score: 0 }, { text: "35539.55", score: 0 }, { text: "35540.55", score: 0 }, { text: "35541.55", score: 1 }],
+      }
+    - {
+        month: "August 2007",
+        series: NI,
+        date: "01 Sep 2007, 11:00",
+        choices:
+          [{ text: "13528.25", score: 0 }, { text: "13529.25", score: 1 }, { text: "13530.25", score: 0 }, { text: "13531.25", score: 0 }],
+      }
+    - {
+        month: "October 2007",
+        series: PJMW,
+        date: "01 Nov 2007, 11:00",
+        choices:
+          [{ text: "5200.91", score: 1 }, { text: "5201.91", score: 0 }, { text: "5202.91", score: 0 }, { text: "5203.91", score: 0 }],
+      }
+    - {
+        month: "January 2008",
+        series: DOM,
+        date: "01 Feb 2008, 11:00",
+        choices:
+          [{ text: "11756.28", score: 0 }, { text: "11757.28", score: 0 }, { text: "11758.28", score: 1 }, { text: "11759.28", score: 0 }],
+      }
+    - {
+        month: "March 2008",
+        series: DAYTON,
+        date: "01 Apr 2008, 11:00",
+        choices:
+          [{ text: "2178.17", score: 0 }, { text: "2179.17", score: 0 }, { text: "2180.17", score: 0 }, { text: "2181.17", score: 1 }],
+      }
+    - {
+        month: "May 2008",
+        series: NI,
+        date: "01 Jun 2008, 11:00",
+        choices:
+          [{ text: "10863.93", score: 0 }, { text: "10864.93", score: 0 }, { text: "10865.93", score: 1 }, { text: "10866.93", score: 0 }],
+      }
+    - {
+        month: "August 2008",
+        series: AEP,
+        date: "01 Sep 2008, 11:00",
+        choices:
+          [{ text: "14526.33", score: 0 }, { text: "14527.33", score: 0 }, { text: "14528.33", score: 0 }, { text: "14529.33", score: 1 }],
+      }
+    - {
+        month: "October 2008",
+        series: AEP,
+        date: "01 Nov 2008, 11:00",
+        choices:
+          [{ text: "15874.58", score: 0 }, { text: "15875.58", score: 1 }, { text: "15876.58", score: 0 }, { text: "15877.58", score: 0 }],
+      }
+    - {
+        month: "December 2008",
+        series: NI,
+        date: "01 Jan 2009, 11:00",
+        choices:
+          [{ text: "12078.45", score: 0 }, { text: "12079.45", score: 0 }, { text: "12080.45", score: 1 }, { text: "12081.45", score: 0 }],
+      }
+    - {
+        month: "January 2009",
+        series: DOM,
+        date: "01 Feb 2009, 11:00",
+        choices:
+          [{ text: "12469.67", score: 1 }, { text: "12470.67", score: 0 }, { text: "12471.67", score: 0 }, { text: "12472.67", score: 0 }],
+      }
+    - {
+        month: "February 2009",
+        series: DAYTON,
+        date: "01 Mar 2009, 11:00",
+        choices:
+          [{ text: "2259.06", score: 1 }, { text: "2260.06", score: 0 }, { text: "2261.06", score: 0 }, { text: "2262.06", score: 0 }],
+      }
+    - {
+        month: "April 2009",
+        series: DOM,
+        date: "01 May 2009, 11:00",
+        choices:
+          [{ text: "9742.94", score: 0 }, { text: "9743.94", score: 0 }, { text: "9744.94", score: 0 }, { text: "9745.94", score: 1 }],
+      }
+    - {
+        month: "May 2009",
+        series: PJMW,
+        date: "01 Jun 2009, 11:00",
+        choices:
+          [{ text: "4432.78", score: 0 }, { text: "4433.78", score: 0 }, { text: "4434.78", score: 0 }, { text: "4435.78", score: 1 }],
+      }
+    - {
+        month: "June 2009",
+        series: DUQ,
+        date: "01 Jul 2009, 11:00",
+        choices:
+          [{ text: "2135.89", score: 0 }, { text: "2136.89", score: 0 }, { text: "2137.89", score: 0 }, { text: "2138.89", score: 1 }],
+      }
+    - {
+        month: "July 2009",
+        series: NI,
+        date: "01 Aug 2009, 11:00",
+        choices:
+          [{ text: "13540.06", score: 0 }, { text: "13541.06", score: 0 }, { text: "13542.06", score: 0 }, { text: "13543.06", score: 1 }],
+      }
+    - {
+        month: "September 2009",
+        series: PJME,
+        date: "01 Oct 2009, 11:00",
+        choices:
+          [{ text: "28416.81", score: 0 }, { text: "28417.81", score: 1 }, { text: "28418.81", score: 0 }, { text: "28419.81", score: 0 }],
+      }
+    - {
+        month: "November 2009",
+        series: DOM,
+        date: "01 Dec 2009, 11:00",
+        choices:
+          [{ text: "11246.17", score: 0 }, { text: "11247.17", score: 0 }, { text: "11248.17", score: 0 }, { text: "11249.17", score: 1 }],
+      }
+    - {
+        month: "December 2009",
+        series: PJME,
+        date: "01 Jan 2010, 11:00",
+        choices:
+          [{ text: "35906.34", score: 0 }, { text: "35907.34", score: 0 }, { text: "35908.34", score: 1 }, { text: "35909.34", score: 0 }],
+      }
+    - {
+        month: "January 2010",
+        series: PJMW,
+        date: "01 Feb 2010, 11:00",
+        choices:
+          [{ text: "6632.63", score: 0 }, { text: "6633.63", score: 0 }, { text: "6634.63", score: 1 }, { text: "6635.63", score: 0 }],
+      }
+    - {
+        month: "March 2010",
+        series: DUQ,
+        date: "01 Apr 2010, 11:00",
+        choices:
+          [{ text: "1630.99", score: 1 }, { text: "1631.99", score: 0 }, { text: "1632.99", score: 0 }, { text: "1633.99", score: 0 }],
+      }
+    - {
+        month: "June 2010",
+        series: DUQ,
+        date: "01 Jul 2010, 11:00",
+        choices:
+          [{ text: "1724.43", score: 0 }, { text: "1725.43", score: 0 }, { text: "1726.43", score: 1 }, { text: "1727.43", score: 0 }],
+      }
+    - {
+        month: "August 2010",
+        series: PJME,
+        date: "01 Sep 2010, 11:00",
+        choices:
+          [{ text: "44670.74", score: 0 }, { text: "44671.74", score: 0 }, { text: "44672.74", score: 0 }, { text: "44673.74", score: 1 }],
+      }
+    - {
+        month: "October 2010",
+        series: DAYTON,
+        date: "01 Nov 2010, 11:00",
+        choices: [{ text: "1812.3", score: 0 }, { text: "1813.3", score: 1 }, { text: "1814.3", score: 0 }, { text: "1815.3", score: 0 }],
+      }
+    - {
+        month: "November 2010",
+        series: PJMW,
+        date: "01 Dec 2010, 11:00",
+        choices:
+          [{ text: "5840.98", score: 1 }, { text: "5841.98", score: 0 }, { text: "5842.98", score: 0 }, { text: "5843.98", score: 0 }],
+      }
+    - {
+        month: "December 2010",
+        series: AEP,
+        date: "01 Jan 2011, 11:00",
+        choices:
+          [{ text: "14308.49", score: 1 }, { text: "14309.49", score: 0 }, { text: "14310.49", score: 0 }, { text: "14311.49", score: 0 }],
+      }
+    - {
+        month: "January 2011",
+        series: DUQ,
+        date: "01 Feb 2011, 11:00",
+        choices:
+          [{ text: "1829.87", score: 0 }, { text: "1830.87", score: 1 }, { text: "1831.87", score: 0 }, { text: "1832.87", score: 0 }],
+      }
+    - {
+        month: "February 2011",
+        series: AEP,
+        date: "01 Mar 2011, 11:00",
+        choices:
+          [{ text: "16622.74", score: 0 }, { text: "16623.74", score: 0 }, { text: "16624.74", score: 1 }, { text: "16625.74", score: 0 }],
+      }
+    - {
+        month: "March 2011",
+        series: DOM,
+        date: "01 Apr 2011, 11:00",
+        choices:
+          [{ text: "10615.33", score: 0 }, { text: "10616.33", score: 1 }, { text: "10617.33", score: 0 }, { text: "10618.33", score: 0 }],
+      }
+    - {
+        month: "April 2011",
+        series: DUQ,
+        date: "01 May 2011, 11:00",
+        choices:
+          [{ text: "1608.94", score: 1 }, { text: "1609.94", score: 0 }, { text: "1610.94", score: 0 }, { text: "1611.94", score: 0 }],
+      }
+    - {
+        month: "June 2011",
+        series: DUQ,
+        date: "01 Jul 2011, 11:00",
+        choices:
+          [{ text: "2063.58", score: 1 }, { text: "2064.58", score: 0 }, { text: "2065.58", score: 0 }, { text: "2066.58", score: 0 }],
+      }
+    - {
+        month: "September 2011",
+        series: DUQ,
+        date: "01 Oct 2011, 11:00",
+        choices:
+          [{ text: "1533.67", score: 0 }, { text: "1534.67", score: 0 }, { text: "1535.67", score: 1 }, { text: "1536.67", score: 0 }],
+      }
+    - {
+        month: "October 2011",
+        series: PJMW,
+        date: "01 Nov 2011, 11:00",
+        choices:
+          [{ text: "5634.98", score: 0 }, { text: "5635.98", score: 0 }, { text: "5636.98", score: 0 }, { text: "5637.98", score: 1 }],
+      }
+    - {
+        month: "November 2011",
+        series: DAYTON,
+        date: "01 Dec 2011, 11:00",
+        choices:
+          [{ text: "2407.53", score: 0 }, { text: "2408.53", score: 0 }, { text: "2409.53", score: 1 }, { text: "2410.53", score: 0 }],
+      }
+    - {
+        month: "January 2012",
+        series: PJME,
+        date: "01 Feb 2012, 11:00",
+        choices:
+          [{ text: "31696.95", score: 0 }, { text: "31697.95", score: 1 }, { text: "31698.95", score: 0 }, { text: "31699.95", score: 0 }],
+      }
+    - {
+        month: "February 2012",
+        series: AEP,
+        date: "01 Mar 2012, 11:00",
+        choices:
+          [{ text: "14216.89", score: 0 }, { text: "14217.89", score: 0 }, { text: "14218.89", score: 1 }, { text: "14219.89", score: 0 }],
+      }
+    - {
+        month: "April 2012",
+        series: PJMW,
+        date: "01 May 2012, 11:00",
+        choices:
+          [{ text: "4956.06", score: 0 }, { text: "4957.06", score: 1 }, { text: "4958.06", score: 0 }, { text: "4959.06", score: 0 }],
+      }
+    - {
+        month: "May 2012",
+        series: DUQ,
+        date: "01 Jun 2012, 11:00",
+        choices:
+          [{ text: "1863.77", score: 0 }, { text: "1864.77", score: 1 }, { text: "1865.77", score: 0 }, { text: "1866.77", score: 0 }],
+      }
+    - {
+        month: "October 2012",
+        series: DUQ,
+        date: "01 Nov 2012, 11:00",
+        choices:
+          [{ text: "1750.84", score: 0 }, { text: "1751.84", score: 0 }, { text: "1752.84", score: 1 }, { text: "1753.84", score: 0 }],
+      }
+    - {
+        month: "December 2012",
+        series: DOM,
+        date: "01 Jan 2013, 11:00",
+        choices:
+          [{ text: "10915.06", score: 0 }, { text: "10916.06", score: 1 }, { text: "10917.06", score: 0 }, { text: "10918.06", score: 0 }],
+      }
+    - {
+        month: "January 2013",
+        series: DEOK,
+        date: "01 Feb 2013, 11:00",
+        choices:
+          [{ text: "3938.47", score: 0 }, { text: "3939.47", score: 0 }, { text: "3940.47", score: 0 }, { text: "3941.47", score: 1 }],
+      }
+    - {
+        month: "February 2013",
+        series: COMED,
+        date: "01 Mar 2013, 11:00",
+        choices:
+          [{ text: "12091.17", score: 1 }, { text: "12092.17", score: 0 }, { text: "12093.17", score: 0 }, { text: "12094.17", score: 0 }],
+      }
+    - {
+        month: "July 2013",
+        series: EKPC,
+        date: "01 Aug 2013, 11:00",
+        choices:
+          [{ text: "1389.35", score: 0 }, { text: "1390.35", score: 0 }, { text: "1391.35", score: 0 }, { text: "1392.35", score: 1 }],
+      }
+    - {
+        month: "August 2013",
+        series: DAYTON,
+        date: "01 Sep 2013, 11:00",
+        choices:
+          [{ text: "2219.08", score: 1 }, { text: "2220.08", score: 0 }, { text: "2221.08", score: 0 }, { text: "2222.08", score: 0 }],
+      }
+    - {
+        month: "September 2013",
+        series: DUQ,
+        date: "01 Oct 2013, 11:00",
+        choices: [{ text: "1547.6", score: 0 }, { text: "1548.6", score: 0 }, { text: "1549.6", score: 0 }, { text: "1550.6", score: 1 }],
+      }
+    - {
+        month: "October 2013",
+        series: DAYTON,
+        date: "01 Nov 2013, 11:00",
+        choices:
+          [{ text: "2100.75", score: 0 }, { text: "2101.75", score: 0 }, { text: "2102.75", score: 0 }, { text: "2103.75", score: 1 }],
+      }
+    - {
+        month: "November 2013",
+        series: DAYTON,
+        date: "01 Dec 2013, 11:00",
+        choices:
+          [{ text: "2043.61", score: 0 }, { text: "2044.61", score: 1 }, { text: "2045.61", score: 0 }, { text: "2046.61", score: 0 }],
+      }
+    - {
+        month: "March 2014",
+        series: COMED,
+        date: "01 Apr 2014, 11:00",
+        choices:
+          [{ text: "10922.1", score: 0 }, { text: "10923.1", score: 1 }, { text: "10924.1", score: 0 }, { text: "10925.1", score: 0 }],
+      }
+    - {
+        month: "April 2014",
+        series: FE,
+        date: "01 May 2014, 11:00",
+        choices:
+          [{ text: "7775.02", score: 1 }, { text: "7776.02", score: 0 }, { text: "7777.02", score: 0 }, { text: "7778.02", score: 0 }],
+      }
+    - {
+        month: "May 2014",
+        series: DAYTON,
+        date: "01 Jun 2014, 11:00",
+        choices:
+          [{ text: "2049.41", score: 1 }, { text: "2050.41", score: 0 }, { text: "2051.41", score: 0 }, { text: "2052.41", score: 0 }],
+      }
+    - {
+        month: "June 2014",
+        series: DOM,
+        date: "01 Jul 2014, 11:00",
+        choices:
+          [{ text: "13273.45", score: 0 }, { text: "13274.45", score: 0 }, { text: "13275.45", score: 1 }, { text: "13276.45", score: 0 }],
+      }
+    - {
+        month: "October 2014",
+        series: PJME,
+        date: "01 Nov 2014, 11:00",
+        choices:
+          [{ text: "29833.27", score: 0 }, { text: "29834.27", score: 1 }, { text: "29835.27", score: 0 }, { text: "29836.27", score: 0 }],
+      }
+    - {
+        month: "November 2014",
+        series: AEP,
+        date: "01 Dec 2014, 11:00",
+        choices:
+          [{ text: "14346.66", score: 1 }, { text: "14347.66", score: 0 }, { text: "14348.66", score: 0 }, { text: "14349.66", score: 0 }],
+      }
+    - {
+        month: "December 2014",
+        series: PJMW,
+        date: "01 Jan 2015, 11:00",
+        choices:
+          [{ text: "6949.22", score: 1 }, { text: "6950.22", score: 0 }, { text: "6951.22", score: 0 }, { text: "6952.22", score: 0 }],
+      }
+    - {
+        month: "January 2015",
+        series: PJME,
+        date: "01 Feb 2015, 11:00",
+        choices:
+          [{ text: "37381.12", score: 0 }, { text: "37382.12", score: 1 }, { text: "37383.12", score: 0 }, { text: "37384.12", score: 0 }],
+      }
+    - {
+        month: "February 2015",
+        series: DUQ,
+        date: "01 Mar 2015, 11:00",
+        choices:
+          [{ text: "1978.19", score: 0 }, { text: "1979.19", score: 1 }, { text: "1980.19", score: 0 }, { text: "1981.19", score: 0 }],
+      }
+    - {
+        month: "March 2015",
+        series: FE,
+        date: "01 Apr 2015, 11:00",
+        choices:
+          [{ text: "8312.98", score: 0 }, { text: "8313.98", score: 0 }, { text: "8314.98", score: 0 }, { text: "8315.98", score: 1 }],
+      }
+    - {
+        month: "May 2015",
+        series: DUQ,
+        date: "01 Jun 2015, 11:00",
+        choices:
+          [{ text: "2020.16", score: 0 }, { text: "2021.16", score: 0 }, { text: "2022.16", score: 1 }, { text: "2023.16", score: 0 }],
+      }
+    - {
+        month: "July 2015",
+        series: AEP,
+        date: "01 Aug 2015, 11:00",
+        choices:
+          [{ text: "18950.07", score: 0 }, { text: "18951.07", score: 1 }, { text: "18952.07", score: 0 }, { text: "18953.07", score: 0 }],
+      }
+    - {
+        month: "August 2015",
+        series: DOM,
+        date: "01 Sep 2015, 11:00",
+        choices:
+          [{ text: "12060.23", score: 0 }, { text: "12061.23", score: 1 }, { text: "12062.23", score: 0 }, { text: "12063.23", score: 0 }],
+      }
+    - {
+        month: "September 2015",
+        series: FE,
+        date: "01 Oct 2015, 11:00",
+        choices:
+          [{ text: "7366.45", score: 0 }, { text: "7367.45", score: 0 }, { text: "7368.45", score: 0 }, { text: "7369.45", score: 1 }],
+      }
+    - {
+        month: "October 2015",
+        series: FE,
+        date: "01 Nov 2015, 10:00",
+        choices:
+          [{ text: "6891.79", score: 1 }, { text: "6892.79", score: 0 }, { text: "6893.79", score: 0 }, { text: "6894.79", score: 0 }],
+      }
+    - {
+        month: "November 2015",
+        series: PJMW,
+        date: "01 Dec 2015, 11:00",
+        choices:
+          [{ text: "6286.71", score: 0 }, { text: "6287.71", score: 1 }, { text: "6288.71", score: 0 }, { text: "6289.71", score: 0 }],
+      }
+    - {
+        month: "December 2015",
+        series: PJME,
+        date: "01 Jan 2016, 11:00",
+        choices:
+          [{ text: "28850.07", score: 0 }, { text: "28851.07", score: 0 }, { text: "28852.07", score: 1 }, { text: "28853.07", score: 0 }],
+      }
+    - {
+        month: "January 2016",
+        series: DOM,
+        date: "01 Feb 2016, 11:00",
+        choices:
+          [{ text: "9525.47", score: 0 }, { text: "9526.47", score: 0 }, { text: "9527.47", score: 1 }, { text: "9528.47", score: 0 }],
+      }
+    - {
+        month: "February 2016",
+        series: DOM,
+        date: "01 Mar 2016, 11:00",
+        choices:
+          [{ text: "9409.99", score: 0 }, { text: "9410.99", score: 0 }, { text: "9411.99", score: 1 }, { text: "9412.99", score: 0 }],
+      }
+    - {
+        month: "April 2016",
+        series: FE,
+        date: "01 May 2016, 11:00",
+        choices:
+          [{ text: "6645.07", score: 1 }, { text: "6646.07", score: 0 }, { text: "6647.07", score: 0 }, { text: "6648.07", score: 0 }],
+      }
+    - {
+        month: "May 2016",
+        series: DOM,
+        date: "01 Jun 2016, 11:00",
+        choices:
+          [{ text: "13416.46", score: 0 }, { text: "13417.46", score: 1 }, { text: "13418.46", score: 0 }, { text: "13419.46", score: 0 }],
+      }
+    - {
+        month: "July 2016",
+        series: PJMW,
+        date: "01 Aug 2016, 11:00",
+        choices:
+          [{ text: "6162.37", score: 0 }, { text: "6163.37", score: 0 }, { text: "6164.37", score: 0 }, { text: "6165.37", score: 1 }],
+      }
+    - {
+        month: "September 2016",
+        series: AEP,
+        date: "01 Oct 2016, 11:00",
+        choices:
+          [{ text: "12960.34", score: 1 }, { text: "12961.34", score: 0 }, { text: "12962.34", score: 0 }, { text: "12963.34", score: 0 }],
+      }
+    - {
+        month: "February 2017",
+        series: PJMW,
+        date: "01 Mar 2017, 11:00",
+        choices:
+          [{ text: "5100.24", score: 1 }, { text: "5101.24", score: 0 }, { text: "5102.24", score: 0 }, { text: "5103.24", score: 0 }],
+      }
+    - {
+        month: "March 2017",
+        series: PJME,
+        date: "01 Apr 2017, 11:00",
+        choices:
+          [{ text: "33422.09", score: 0 }, { text: "33423.09", score: 0 }, { text: "33424.09", score: 0 }, { text: "33425.09", score: 1 }],
+      }
+    - {
+        month: "April 2017",
+        series: DOM,
+        date: "01 May 2017, 11:00",
+        choices:
+          [{ text: "14239.76", score: 0 }, { text: "14240.76", score: 0 }, { text: "14241.76", score: 0 }, { text: "14242.76", score: 1 }],
+      }
+    - {
+        month: "May 2017",
+        series: DUQ,
+        date: "01 Jun 2017, 11:00",
+        choices:
+          [{ text: "1631.29", score: 0 }, { text: "1632.29", score: 1 }, { text: "1633.29", score: 0 }, { text: "1634.29", score: 0 }],
+      }
+    - {
+        month: "June 2017",
+        series: AEP,
+        date: "01 Jul 2017, 11:00",
+        choices:
+          [{ text: "15962.18", score: 1 }, { text: "15963.18", score: 0 }, { text: "15964.18", score: 0 }, { text: "15965.18", score: 0 }],
+      }
+    - {
+        month: "September 2017",
+        series: FE,
+        date: "01 Oct 2017, 11:00",
+        choices:
+          [{ text: "6669.13", score: 0 }, { text: "6670.13", score: 1 }, { text: "6671.13", score: 0 }, { text: "6672.13", score: 0 }],
+      }
+    - {
+        month: "November 2017",
+        series: AEP,
+        date: "01 Dec 2017, 11:00",
+        choices:
+          [{ text: "14759.8", score: 1 }, { text: "14760.8", score: 0 }, { text: "14761.8", score: 0 }, { text: "14762.8", score: 0 }],
+      }
+    - {
+        month: "December 2017",
+        series: DAYTON,
+        date: "01 Jan 2018, 11:00",
+        choices:
+          [{ text: "2479.19", score: 0 }, { text: "2480.19", score: 0 }, { text: "2481.19", score: 0 }, { text: "2482.19", score: 1 }],
+      }
+    - {
+        month: "January 2018",
+        series: PJMW,
+        date: "01 Feb 2018, 11:00",
+        choices:
+          [{ text: "6372.48", score: 0 }, { text: "6373.48", score: 0 }, { text: "6374.48", score: 1 }, { text: "6375.48", score: 0 }],
+      }
+    - {
+        month: "April 2018",
+        series: FE,
+        date: "01 May 2018, 11:00",
+        choices:
+          [{ text: "7534.27", score: 1 }, { text: "7535.27", score: 0 }, { text: "7536.27", score: 0 }, { text: "7537.27", score: 0 }],
+      }
+    - {
+        month: "May 2018",
+        series: PJMW,
+        date: "01 Jun 2018, 11:00",
+        choices:
+          [{ text: "6235.83", score: 0 }, { text: "6236.83", score: 0 }, { text: "6237.83", score: 0 }, { text: "6238.83", score: 1 }],
+      }
+    - {
+        month: "July 2018",
+        series: AEP,
+        date: "01 Aug 2018, 11:00",
+        choices:
+          [{ text: "14859.36", score: 0 }, { text: "14860.36", score: 1 }, { text: "14861.36", score: 0 }, { text: "14862.36", score: 0 }],
+      }
+
+- description: TDSGA4.5
+  randomized: 2
+  question: | # markdown
+    In the [San Francisco restaurant dataset (MySQL)](https://relational-data.org/dataset/Restbase),
+    ${city} has ${count} restaurants.
+
+    Count the percentage of restaurants that serve **${cuisine}** food_type in each city.
+
+    **Question**: How many cities have a higher percentage of **${cuisine}** food_type than **${city}** does?
+  data: ga4.5.json
+
+- description: TDSGA4.6
+  question: | # markdown
+    Reply to [this topic on Discourse](https://discourse.onlinedegree.iitm.ac.in/t/ga4-which-topic-was-hardest-so-far-and-why/135626).
+    Mention which topic you found toughest to understand so far and why.
+
+    Share the link to your reply.
+  graders:
+    - score: 1
+      matcher: regex
+      response: "https://discourse\\.onlinedegree\\.iitm\\.ac\\.in/t/ga4-which-topic-was-hardest-so-far-and-why/135626/"
+      feedback: "Your answer should be a link to your reply to the topic on Discourse"
+      ignore_whitespace: true

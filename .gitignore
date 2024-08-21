@@ -1,0 +1,13 @@
+node_modules/
+__pycache__/
+
+# Videos are stored on Anand's machine but not committed
+videos/
+
+# Ignore generated files
+html/*.html
+questions/*.json
+questions/*.pdf
+questions/temp*
+all-questions.md
+project_1/output/

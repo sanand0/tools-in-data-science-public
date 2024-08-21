@@ -1,0 +1,88 @@
+- description: TDSGA5.1
+  randomized: 2
+  question: | # markdown
+    Get a list of all OpenAI models that were created before 15 May 2024. Sort the models as most recent first.
+
+    Evaluate the following statements and calculate the total number of points.
+
+    - 4 points if ${model1} was created on ${model1date}
+    - 2 points if ${model2} is located at index ${model2index} (with 0 being the first index in the list of models)
+    - 1 point if there are ${model3diff} models created between ${model3} and ${model4}
+
+    What is the correct total of points?
+  data: ga5.1.json
+
+- description: TDSGA5.3
+  randomized: 2
+  question: | # markdown
+    Here is a list of 20 attendees to a conference. Convert them into a JSON array of objects with these fields (consistent with vCard):
+
+    - fn: Full name.
+    - bday: Birthday (YYYY-MM-DD format)
+    - email: Email address.
+    - tel: Telephone number (nnn-nnn-nnnn format)
+    - adr.country-name: Country. (Note that adr is an object and country-name is a key inside that)
+    - org: Organization name.
+    - title: Job title.
+    - photo: Photograph.
+    - url: URL.
+    - nickname: Nickname.
+
+    You need to:
+
+    1. Create the JSON schema for the above structure.
+    2. Use OpenAI's tools (a.k.a. function calling) to generate the JSON array (in the same order) of objects in this schema.
+    3. Paste the array at [<https://tools-in-data-science.pages.dev/jsonvalidate>](https://tools-in-data-science.pages.dev/jsonvalidate) and get the validation code. Retry with different prompts until you get one.
+
+    Here are the attendees:
+
+    ```
+    ${attendees}
+    ```
+
+    **Question**: What is the correct validation code?
+
+    Note: The validation will check the following:
+
+    - Are there 20 objects in the array?
+    - Are only the above fields present? (It's OK if some are missing)
+
+    Then it will:
+
+    - Sort the keys within each array (the array order is preserved, and is important to align with the original data)
+    - Remove all non-alphanumeric characters in the values (so it's OK if you get punctuation wrong)
+    - Convert all values to lowercase (so it's OK if you get case wrong)
+    - Convert to JSON and calculate the last 5 digits of the decimal value of the SHA256 hash. (Or whatever. Ignore this.)
+
+    **Hint**: This is a **HARD** exercise, since LLMs will likely make a mistake in just one or a few fields. Validate carefully.
+
+    You can use LLMs to validate the result, too. Remember: GPT-4o is much better than GPT 3.5 Turbo.
+    You can't access it through the API key given to you but you CAN access it at [chatgpt.com](https://chatgpt.com/)
+  data: ga5.3.json
+
+- description: TDSGA5.5
+  randomized: 1
+  # Most embedding vector values are somewhat normally distributed between -0.05 to +0.05
+  question: | # markdown
+    In the embedding vector of the word **${word}** using `text-embedding-3-small`, how many of the 1,536 values are greater than **${cutoff}**?
+  data: ga5.5.json
+
+- description: TDSGA5.6
+  randomized: 1
+  question: | # markdown
+    What is the cosine similarity between the `text-embedding-3-small` embeddings of **${word1}** and **${word2}**?
+  data: ga5.6.json
+
+- description: TDSGA5.7
+  randomized: 1
+  question: | # markdown
+    Which of the following word lists has the highest average cosine similarity with the word **${word}** using `text-embedding-3-small`?
+  data: ga5.7.json
+
+- description: TDSGA5.8
+  randomized: 1
+  question: | # markdown
+    If you passed the following text to the `gpt-3.5-turbo-0125` model, how many **cents** would the input (not output) cost, assuming that the cost per million input token is 50 cents?
+
+    **${text}**
+  data: ga5.8.json

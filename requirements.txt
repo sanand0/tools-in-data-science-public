@@ -1,0 +1,11 @@
+networkx
+numpy
+pandas
+pytest
+pyyaml
+requests
+scipy
+sqlalchemy
+statsmodels
+tabula
+tiktoken

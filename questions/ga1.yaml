@@ -1,0 +1,772 @@
+- description: TDSGA1.1
+  randomized: 2
+  question: | # markdown
+    Search for the "World Happiness Report" dataset on Kaggle.
+    Find the official one, by "Sustainable Development Solutions Network".
+    What was the ${field} of ${country} in ${year}?
+  data: ga1.1.json
+- description: TDSGA1.2
+  randomized: 3
+  question: | # markdown
+    What is the official data portal of **${field}**?
+  data:
+    - field: Estonia
+      choices:
+        - { text: avaandmed.eesti.ee/, score: 1 }
+        - { text: data.gov.ee/, score: 0 }
+        - { text: data.ee/, score: 0 }
+        - { text: avaandmed.gov.ee/, score: 0 }
+    - field: United Arab Emirates
+      choices:
+        - { text: bayanat.ae/, score: 1 }
+        - { text: bayanat.gov.ae/, score: 0 }
+        - { text: data.ae/, score: 0 }
+        - { text: data.gov.ae/, score: 0 }
+    - field: Uruguay
+      choices:
+        - { text: catalogodatos.gub.uy/, score: 1 }
+        - { text: catalogodatos.uy/, score: 0 }
+        - { text: data.uy/, score: 0 }
+        - { text: data.gub.uy/, score: 0 }
+    - field: Brazil
+      choices:
+        - { text: dados.gov.br/, score: 1 }
+        - { text: dados.br/, score: 0 }
+        - { text: data.br/, score: 0 }
+        - { text: data.gov.br/, score: 0 }
+    - field: ASEAN
+      choices:
+        - { text: data.aseanstats.org/, score: 1 }
+        - { text: data.asean.org/, score: 0 }
+        - { text: aseanstats.org/, score: 0 }
+        - { text: data.asean.org/, score: 0 }
+    - field: Bulgaria
+      choices:
+        - { text: data.egov.bg/, score: 1 }
+        - { text: data.bg/, score: 0 }
+        - { text: egov.bg/, score: 0 }
+        - { text: data.gov.bg/, score: 0 }
+    - field: Kazakhstan
+      choices:
+        - { text: data.egov.kz/, score: 1 }
+        - { text: data.kz/, score: 0 }
+        - { text: egov.kz/, score: 0 }
+        - { text: data.gov.kz/, score: 0 }
+    - field: Indonesia
+      choices:
+        - { text: data.go.id/, score: 1 }
+        - { text: data.id/, score: 0 }
+        - { text: go.id/, score: 0 }
+        - { text: data.gov.id/, score: 0 }
+    - field: Thailand
+      choices:
+        - { text: data.go.th/, score: 1 }
+        - { text: data.th/, score: 0 }
+        - { text: go.th/, score: 0 }
+        - { text: data.gov.th/, score: 0 }
+    - field: Australia
+      choices:
+        - { text: data.gov.au/, score: 1 }
+        - { text: data.au/, score: 0 }
+        - { text: egov.au/, score: 0 }
+        - { text: data.co.au/, score: 0 }
+    - field: Ghana
+      choices:
+        - { text: data.gov.gh/, score: 1 }
+        - { text: data.gh/, score: 0 }
+        - { text: egov.gh/, score: 0 }
+        - { text: data.co.gh/, score: 0 }
+    - field: Greece
+      choices:
+        - { text: data.gov.gr/, score: 1 }
+        - { text: data.gr/, score: 0 }
+        - { text: egov.gr/, score: 0 }
+        - { text: data.co.gr/, score: 0 }
+    - field: Ireland
+      choices:
+        - { text: data.gov.ie/, score: 1 }
+        - { text: data.ie/, score: 0 }
+        - { text: egov.ie/, score: 0 }
+        - { text: data.co.ie/, score: 0 }
+    - field: India
+      choices:
+        - { text: data.gov.in/, score: 1 }
+        - { text: data.in/, score: 0 }
+        - { text: egov.in/, score: 0 }
+        - { text: data.co.in/, score: 0 }
+    - field: Iran
+      choices:
+        - { text: data.gov.ir/, score: 1 }
+        - { text: data.ir/, score: 0 }
+        - { text: egov.ir/, score: 0 }
+        - { text: data.co.ir/, score: 0 }
+    - field: Jamaica
+      choices:
+        - { text: data.gov.jm/, score: 1 }
+        - { text: data.jm/, score: 0 }
+        - { text: egov.jm/, score: 0 }
+        - { text: data.co.jm/, score: 0 }
+    - field: Lithuania
+      choices:
+        - { text: data.gov.lt/, score: 1 }
+        - { text: data.lt/, score: 0 }
+        - { text: egov.lt/, score: 0 }
+        - { text: data.co.lt/, score: 0 }
+    - field: Moldova
+      choices:
+        - { text: data.gov.md/, score: 1 }
+        - { text: data.md/, score: 0 }
+        - { text: egov.md/, score: 0 }
+        - { text: data.co.md/, score: 0 }
+    - field: Malta
+      choices:
+        - { text: data.gov.mt/, score: 1 }
+        - { text: data.mt/, score: 0 }
+        - { text: egov.mt/, score: 0 }
+        - { text: data.co.mt/, score: 0 }
+    - field: Oman
+      choices:
+        - { text: data.gov.om/, score: 1 }
+        - { text: data.om/, score: 0 }
+        - { text: egov.om/, score: 0 }
+        - { text: data.co.om/, score: 0 }
+    - field: Philippines
+      choices:
+        - { text: data.gov.ph/, score: 1 }
+        - { text: data.ph/, score: 0 }
+        - { text: egov.ph/, score: 0 }
+        - { text: data.co.ph/, score: 0 }
+    - field: Romania
+      choices:
+        - { text: data.gov.ro/, score: 1 }
+        - { text: data.ro/, score: 0 }
+        - { text: egov.ro/, score: 0 }
+        - { text: data.co.ro/, score: 0 }
+    - field: Serbia
+      choices:
+        - { text: data.gov.rs/, score: 1 }
+        - { text: data.rs/, score: 0 }
+        - { text: egov.rs/, score: 0 }
+        - { text: data.co.rs/, score: 0 }
+    - field: Singapore
+      choices:
+        - { text: data.gov.sg/, score: 1 }
+        - { text: data.sg/, score: 0 }
+        - { text: egov.sg/, score: 0 }
+        - { text: data.co.sg/, score: 0 }
+    - field: Trinidad and Tobago
+      choices:
+        - { text: data.gov.tt/, score: 1 }
+        - { text: data.tt/, score: 0 }
+        - { text: egov.tt/, score: 0 }
+        - { text: data.co.tt/, score: 0 }
+    - field: Ukraine
+      choices:
+        - { text: data.gov.ua/, score: 1 }
+        - { text: data.ua/, score: 0 }
+        - { text: egov.ua/, score: 0 }
+        - { text: data.co.ua/, score: 0 }
+    - field: United Kingdom
+      choices:
+        - { text: data.gov.uk/, score: 1 }
+        - { text: data.uk/, score: 0 }
+        - { text: egov.uk/, score: 0 }
+        - { text: data.co.uk/, score: 0 }
+    - field: Vietnam
+      choices:
+        - { text: data.gov.vn/, score: 1 }
+        - { text: data.vn/, score: 0 }
+        - { text: egov.vn/, score: 0 }
+        - { text: data.co.vn/, score: 0 }
+    - field: United States
+      choices:
+        - { text: data.gov/, score: 1 }
+        - { text: data.us/, score: 0 }
+        - { text: egov.us/, score: 0 }
+        - { text: data.com/, score: 0 }
+    - field: International Monetary Fund
+      choices:
+        - { text: data.imf.org/, score: 1 }
+        - { text: data.org/, score: 0 }
+        - { text: data.imf.com/, score: 0 }
+        - { text: stats.imf.org/, score: 0 }
+    - field: Norway
+      choices:
+        - { text: data.norge.no/, score: 1 }
+        - { text: data.no/, score: 0 }
+        - { text: stats.norge.no/, score: 0 }
+        - { text: data.gov.no/, score: 0 }
+    - field: OECD
+      choices:
+        - { text: data.oecd.org/, score: 1 }
+        - { text: data.org/, score: 0 }
+        - { text: data.oecd.com/, score: 0 }
+        - { text: stats.oecd.org/, score: 0 }
+    - field: Netherlands
+      choices:
+        - { text: data.overheid.nl/, score: 1 }
+        - { text: data.nl/, score: 0 }
+        - { text: stats.overheid.nl/, score: 0 }
+        - { text: data.gov.nl/, score: 0 }
+    - field: United Nations
+      choices:
+        - { text: data.un.org/, score: 1 }
+        - { text: data.org/, score: 0 }
+        - { text: data.un.com/, score: 0 }
+        - { text: stats.un.org/, score: 0 }
+    - field: World Bank
+      choices:
+        - { text: data.worldbank.org/, score: 1 }
+        - { text: worldbank.data.org/, score: 0 }
+        - { text: data.worldbank.com/, score: 0 }
+        - { text: stats.worldbank.org/, score: 0 }
+    - field: World Trade Organization
+      choices:
+        - { text: data.wto.org/, score: 1 }
+        - { text: data.org/, score: 0 }
+        - { text: data.wto.com/, score: 0 }
+        - { text: stats.wto.org/, score: 0 }
+    - field: Argentina
+      choices:
+        - { text: datos.gob.ar/, score: 1 }
+        - { text: datos.ar/, score: 0 }
+        - { text: data.ar/, score: 0 }
+        - { text: data.gov.ar/, score: 0 }
+    - field: Chile
+      choices:
+        - { text: datos.gob.cl/, score: 1 }
+        - { text: datos.cl/, score: 0 }
+        - { text: data.cl/, score: 0 }
+        - { text: data.gov.cl/, score: 0 }
+    - field: Spain
+      choices:
+        - { text: datos.gob.es/en, score: 1 }
+        - { text: datos.es/, score: 0 }
+        - { text: data.es/, score: 0 }
+        - { text: data.gov.es/, score: 0 }
+    - field: Honduras
+      choices:
+        - { text: datos.gob.hn/, score: 1 }
+        - { text: datos.hn/, score: 0 }
+        - { text: data.hn/, score: 0 }
+        - { text: data.gov.hn/, score: 0 }
+    - field: Mexico
+      choices:
+        - { text: datos.gob.mx/, score: 1 }
+        - { text: datos.mx/, score: 0 }
+        - { text: data.mx/, score: 0 }
+        - { text: data.gov.mx/, score: 0 }
+    - field: Belarus
+      choices:
+        - { text: opendata.by/, score: 1 }
+        - { text: data.by/, score: 0 }
+        - { text: opendata.org.by/, score: 0 }
+        - { text: data.gov.by/, score: 0 }
+    - field: Slovenia
+      choices:
+        - { text: podatki.gov.si/, score: 1 }
+        - { text: podatki.si/, score: 0 }
+        - { text: data.si/, score: 0 }
+        - { text: data.gov.si/, score: 0 }
+    - field: Japan
+      choices:
+        - { text: www.data.go.jp/, score: 1 }
+        - { text: www.data.jp/, score: 0 }
+        - { text: data.jp/, score: 0 }
+        - { text: data.go.jp/, score: 0 }
+    - field: Bahrain
+      choices:
+        - { text: www.data.gov.bh/, score: 1 }
+        - { text: www.data.bh/, score: 0 }
+        - { text: data.bh/, score: 0 }
+        - { text: data.gov.bh/, score: 0 }
+    - field: Brunei
+      choices:
+        - { text: www.data.gov.bn/, score: 1 }
+        - { text: www.data.bn/, score: 0 }
+        - { text: data.bn/, score: 0 }
+        - { text: data.gov.bn/, score: 0 }
+    - field: Cyprus
+      choices:
+        - { text: www.data.gov.cy/, score: 1 }
+        - { text: www.data.cy/, score: 0 }
+        - { text: data.cy/, score: 0 }
+        - { text: opendata.gov.cy/, score: 0 }
+    - field: Georgia
+      choices:
+        - { text: www.data.gov.ge/, score: 1 }
+        - { text: www.data.ge/, score: 0 }
+        - { text: data.ge/, score: 0 }
+        - { text: data.gov.ge/, score: 0 }
+    - field: Malaysia
+      choices:
+        - { text: gov.data.my/, score: 0 }
+        - { text: www.data.my/, score: 0 }
+        - { text: data.my/, score: 0 }
+        - { text: data.gov.my/, score: 1 }
+    - field: Qatar
+      choices:
+        - { text: www.data.gov.qa/, score: 1 }
+        - { text: www.data.qa/, score: 0 }
+        - { text: data.qa/, score: 0 }
+        - { text: data.gov.qa/, score: 0 }
+    - field: New Zealand
+      choices:
+        - { text: www.data.govt.nz/, score: 1 }
+        - { text: www.data.nz/, score: 0 }
+        - { text: data.nz/, score: 0 }
+        - { text: data.gov.nz/, score: 0 }
+    - field: Austria
+      choices:
+        - { text: www.data.gv.at/, score: 1 }
+        - { text: www.data.at/, score: 0 }
+        - { text: data.at/, score: 0 }
+        - { text: data.gv.at/, score: 0 }
+    - field: Italy
+      choices:
+        - { text: www.dati.gov.it/, score: 1 }
+        - { text: www.dati.it/, score: 0 }
+        - { text: dati.it/, score: 0 }
+        - { text: dati.gov.it/, score: 0 }
+    - field: Colombia
+      choices:
+        - { text: www.datos.gov.co/, score: 1 }
+        - { text: www.datos.co/, score: 0 }
+        - { text: data.co/, score: 0 }
+        - { text: data.gov.co/, score: 0 }
+    - field: Panama
+      choices:
+        - { text: www.datosabiertos.gob.pa/, score: 1 }
+        - { text: www.datosabiertos.pa/, score: 0 }
+        - { text: data.pa/, score: 0 }
+        - { text: data.gov.pa/, score: 0 }
+    - field: Peru
+      choices:
+        - { text: www.datosabiertos.gob.pe/, score: 1 }
+        - { text: www.datosabiertos.pe/, score: 0 }
+        - { text: data.pe/, score: 0 }
+        - { text: data.gov.pe/, score: 0 }
+    - field: Germany
+      choices:
+        - { text: www.govdata.de/, score: 1 }
+        - { text: www.data.de/, score: 0 }
+        - { text: data.de/, score: 0 }
+        - { text: data.gov.de/, score: 0 }
+    - field: Azerbaijan
+      choices:
+        - { text: opendata.az/, score: 1 }
+        - { text: www.opendata.gov.az/, score: 0 }
+        - { text: data.az/, score: 0 }
+        - { text: data.gov.az/, score: 0 }
+    - field: Denmark
+      choices:
+        - { text: www.opendata.dk/, score: 1 }
+        - { text: www.opendata.dk/, score: 0 }
+        - { text: data.dk/, score: 0 }
+        - { text: data.gov.dk/, score: 0 }
+- description: TDSGA1.3
+  randomized: 2
+  question: | # markdown
+    Classify into structured, semi-structured or unstructured: **${field}**. Focus on the content, not the file/storage format.
+  data:
+    - field: Employee data Excel file
+      choices:
+        - { text: Structured, score: 1.0, reason: Employee records have well defined structure. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Unstructured, score: 0.0 }
+    - field: Call recording as a WAV file
+      choices:
+        - { text: Unstructured, score: 1.0, reason: WAV files record pure audio data without any inherent structure. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Structured, score: 0.0 }
+    - field: Bach's Italian Concerto MIDI file
+      choices:
+        - { text: Unstructured, score: 1.0, reason: The music has no inherent structure. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Structured, score: 0.0 }
+    - field: Sales data CSV file
+      choices:
+        - { text: Structured, score: 1.0, reason: Sales datasets have well-defined structures. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Unstructured, score: 0.0 }
+    - field: OpenAI's GPT API JSON response
+      choices:
+        - { text: Semi-structured, score: 1.0, reason: The API has a schema but the contents are free-form text. }
+        - { text: Structured, score: 0.0 }
+        - { text: Unstructured, score: 0.0 }
+    - field: Product catalog in a database
+      choices:
+        - { text: Structured, score: 1.0, reason: Product catalogs are typically well-structured. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Unstructured, score: 0.0 }
+    - field: Website HTML source
+      choices:
+        - { text: Semi-structured, score: 1.0, reason: HTML has a structure but content is free-form. }
+        - { text: Unstructured, score: 0.0 }
+        - { text: Structured, score: 0.0 }
+    - field: Body of a tweet
+      choices:
+        - { text: Unstructured, score: 1.0, reason: Tweets are free-form text. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Structured, score: 0.0 }
+    - field: Medical images (X-rays)
+      choices:
+        - { text: Unstructured, score: 1.0, reason: X-ray images are raw data without inherent structure. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Structured, score: 0.0 }
+    - field: Email inbox
+      choices:
+        - { text: Semi-structured, score: 1.0, reason: Emails have structure (sender, etc.) but content is free-form. }
+        - { text: Unstructured, score: 0.0 }
+        - { text: Structured, score: 0.0 }
+    - field: RAW video footage
+      choices:
+        - { text: Unstructured, score: 1.0, reason: RAW video is unprocessed data without inherent structure. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Structured, score: 0.0 }
+    - field: Financial transactions ledger
+      choices:
+        - { text: Structured, score: 1.0, reason: Financial transactions are typically well-structured. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Unstructured, score: 0.0 }
+    - field: Real estate property listings table
+      choices:
+        - { text: Structured, score: 1.0, reason: Property listings have well-defined structures. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Unstructured, score: 0.0 }
+    - field: Satellite imagery
+      choices:
+        - { text: Unstructured, score: 1.0, reason: Satellite images are raw data without inherent structure. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Structured, score: 0.0 }
+    - field: Podcast episode
+      choices:
+        - { text: Unstructured, score: 1.0, reason: Podcasts are free-form audio content. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Structured, score: 0.0 }
+    - field: Shapefiles for geographic data
+      choices:
+        - { text: Structured, score: 1.0, reason: Shapefiles have well-defined structures for geographic data. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Unstructured, score: 0.0 }
+    - field: Customer service emails
+      choices:
+        - {
+            text: Semi-structured,
+            score: 1.0,
+            reason: Emails have partial structure (sender,
+            recipient,
+            etc.) but the content is free-form.,
+          }
+        - { text: Unstructured, score: 0.0 }
+        - { text: Structured, score: 0.0 }
+    - field: Streaming service metadata
+      choices:
+        - { text: Semi-structured, score: 1.0, reason: Metadata has some structure but the content is free-form. }
+        - { text: Structured, score: 0.0 }
+        - { text: Unstructured, score: 0.0 }
+    - field: Handwritten notes scans
+      choices:
+        - { text: Unstructured, score: 1.0, reason: Handwritten notes are free-form text. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Structured, score: 0.0 }
+    - field: Audio book recordings
+      choices:
+        - { text: Unstructured, score: 1.0, reason: Audio books are free-form audio content. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Structured, score: 0.0 }
+    - field: Research survey responses
+      choices:
+        - { text: Structured, score: 1.0, reason: Surveys have well-defined structures for responses. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Unstructured, score: 0.0 }
+    - field: Scientific experiment data CSV
+      choices:
+        - { text: Structured, score: 1.0, reason: Scientific data is typically well-structured. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Unstructured, score: 0.0 }
+    - field: Genomic sequences
+      choices:
+        - { text: Structured, score: 1.0, reason: Genomic sequences have well-defined structures. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Unstructured, score: 0.0 }
+    - field: Source code repositories
+      choices:
+        - { text: Semi-structured, score: 1.0, reason: Source code has some structure but the content is free-form. }
+        - { text: Unstructured, score: 0.0 }
+        - { text: Structured, score: 0.0 }
+    - field: Legal documents
+      choices:
+        - { text: Unstructured, score: 1.0, reason: Legal documents are free-form text. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Structured, score: 0.0 }
+    - field: Sports statistics databases
+      choices:
+        - { text: Structured, score: 1.0, reason: Sports statistics are typically well-structured. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Unstructured, score: 0.0 }
+    - field: Medical records in HL7 format
+      choices:
+        - { text: Structured, score: 1.0, reason: HL7 is a structured format for medical records. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Unstructured, score: 0.0 }
+    - field: Audio interview transcripts
+      choices:
+        - { text: Unstructured, score: 1.0, reason: Transcripts are free-form text. }
+        - { text: Semi-structured, score: 0.0 }
+        - { text: Structured, score: 0.0 }
+    - field: Browser history export XML
+      choices:
+        - { text: Semi-structured, score: 1.0, reason: Browser history has some structure but the content is free-form. }
+        - { text: Structured, score: 0.0 }
+        - { text: Unstructured, score: 0.0 }
+    - field: ZIP file containing image annotations
+      choices:
+        - { text: Semi-structured, score: 1.0, reason: ZIP files have structure but annotations can be free-form. }
+        - { text: Unstructured, score: 0.0 }
+        - { text: Structured, score: 0.0 }
+- description: TDSGA1.4
+  randomized: 2
+  question: | # markdown
+    Which of these types of values best describes **${field}**?
+  data:
+    - field: Temperature (Celsius)
+      choices:
+        - { text: Numerical - Real, score: 1 }
+        - { text: Composite - Temporal, score: 0 }
+        - { text: Categorical - Unordered, score: 0 }
+        - { text: Composite - Structured, score: 0 }
+    - field: Traffic Light Color
+      choices:
+        - { text: Categorical - Ordered, score: 1 }
+        - { text: Numerical - Integer, score: 0 }
+        - { text: Composite - Spatial, score: 0 }
+        - { text: Numerical - Real, score: 0 }
+    - field: Month of the Year
+      choices:
+        - { text: Categorical - Cyclical, score: 1 }
+        - { text: Numerical - Real, score: 0 }
+        - { text: Composite - Structured, score: 0 }
+        - { text: Composite - Temporal, score: 0 }
+    - field: Day of the Week
+      choices:
+        - { text: Categorical - Cyclical, score: 1 }
+        - { text: Numerical - Real, score: 0 }
+        - { text: Composite - Structured, score: 0 }
+        - { text: Composite - Temporal, score: 0 }
+    - field: Number of Pets
+      choices:
+        - { text: Numerical - Integer, score: 1 }
+        - { text: Composite - Temporal, score: 0 }
+        - { text: Composite - Specialized, score: 0 }
+        - { text: Categorical - Boolean, score: 0 }
+    - field: Height (meters)
+      choices:
+        - { text: Numerical - Real, score: 1 }
+        - { text: Composite - Temporal, score: 0 }
+        - { text: Composite - Spatial, score: 0 }
+        - { text: Categorical - Ordered, score: 0 }
+    - field: ISBN Number
+      choices:
+        - { text: Composite - Specialized, score: 1 }
+        - { text: Numerical - Integer, score: 0 }
+        - { text: Categorical - Unordered, score: 0 }
+        - { text: Categorical - Boolean, score: 0 }
+    - field: Email Address
+      choices:
+        - { text: Composite - Specialized, score: 1 }
+        - { text: Categorical - Cyclical, score: 0 }
+        - { text: Numerical - Real, score: 0 }
+        - { text: Categorical - Ordered, score: 0 }
+    - field: ZIP Code
+      choices:
+        - { text: Composite - Specialized, score: 1 }
+        - { text: Numerical - Real, score: 0 }
+        - { text: Categorical - Unordered, score: 0 }
+        - { text: Categorical - Ordered, score: 0 }
+    - field: Rating (1 to 5 stars)
+      choices:
+        - { text: Categorical - Ordered, score: 1 }
+        - { text: Composite - Temporal, score: 0 }
+        - { text: Numerical - Integer, score: 0 }
+        - { text: Composite - Spatial, score: 0 }
+    - field: Country Name
+      choices:
+        - { text: Categorical - Unordered, score: 1 }
+        - { text: Numerical - Real, score: 0 }
+        - { text: Composite - Temporal, score: 0 }
+        - { text: Composite - Specialized, score: 0 }
+    - field: Birthdate
+      choices:
+        - { text: Composite - Temporal, score: 1 }
+        - { text: Categorical - Unordered, score: 0 }
+        - { text: Numerical - Integer, score: 0 }
+        - { text: Categorical - Ordered, score: 0 }
+    - field: Filename
+      choices:
+        - { text: Composite - Specialized, score: 1 }
+        - { text: Numerical - Real, score: 0 }
+        - { text: Categorical - Unordered, score: 0 }
+        - { text: Numerical - Integer, score: 0 }
+    - field: Temperature (Fahrenheit)
+      choices:
+        - { text: Numerical - Real, score: 1 }
+        - { text: Composite - Structured, score: 0 }
+        - { text: Categorical - Ordered, score: 0 }
+        - { text: Composite - Temporal, score: 0 }
+    - field: Phone Number
+      choices:
+        - { text: Composite - Specialized, score: 1 }
+        - { text: Categorical - Cyclical, score: 0 }
+        - { text: Numerical - Real, score: 0 }
+        - { text: Categorical - Ordered, score: 0 }
+    - field: Gender (Male / Female)
+      choices:
+        - { text: Categorical - Boolean, score: 1 }
+        - { text: Numerical - Real, score: 0 }
+        - { text: Composite - Specialized, score: 0 }
+        - { text: Composite - Spatial, score: 0 }
+    - field: City Name
+      choices:
+        - { text: Categorical - Unordered, score: 1 }
+        - { text: Numerical - Integer, score: 0 }
+        - { text: Composite - Temporal, score: 0 }
+        - { text: Numerical - Real, score: 0 }
+    - field: Credit Card Number
+      choices:
+        - { text: Composite - Specialized, score: 1 }
+        - { text: Numerical - Real, score: 0 }
+        - { text: Categorical - Unordered, score: 0 }
+        - { text: Composite - Spatial, score: 0 }
+    - field: Person's Age
+      choices:
+        - { text: Numerical - Integer, score: 1 }
+        - { text: Composite - Temporal, score: 0 }
+        - { text: Composite - Specialized, score: 0 }
+        - { text: Categorical - Boolean, score: 0 }
+    - field: Weather Condition (e.g. Rainy, Sunny, Cloudy)
+      choices:
+        - { text: Categorical - Unordered, score: 1 }
+        - { text: Numerical - Integer, score: 0 }
+        - { text: Composite - Temporal, score: 0 }
+        - { text: Numerical - Real, score: 0 }
+    - field: Distance (km)
+      choices:
+        - { text: Numerical - Real, score: 1 }
+        - { text: Composite - Temporal, score: 0 }
+        - { text: Categorical - Ordered, score: 0 }
+        - { text: Composite - Structured, score: 0 }
+    - field: Social Security Number
+      choices:
+        - { text: Composite - Specialized, score: 1 }
+        - { text: Numerical - Integer, score: 0 }
+        - { text: Categorical - Unordered, score: 0 }
+        - { text: Categorical - Cyclical, score: 0 }
+    - field: IP Address
+      choices:
+        - { text: Composite - Specialized, score: 1 }
+        - { text: Numerical - Real, score: 0 }
+        - { text: Categorical - Unordered, score: 0 }
+        - { text: Composite - Temporal, score: 0 }
+    - field: URL
+      choices:
+        - { text: Composite - Specialized, score: 1 }
+        - { text: Categorical - Cyclical, score: 0 }
+        - { text: Numerical - Real, score: 0 }
+        - { text: Categorical - Ordered, score: 0 }
+    - field: Temperature (Kelvin)
+      choices:
+        - { text: Numerical - Real, score: 1 }
+        - { text: Composite - Structured, score: 0 }
+        - { text: Categorical - Ordered, score: 0 }
+        - { text: Composite - Temporal, score: 0 }
+    - field: Birth Year
+      choices:
+        - { text: Numerical - Integer, score: 1 }
+        - { text: Composite - Temporal, score: 0 }
+        - { text: Composite - Specialized, score: 0 }
+        - { text: Categorical - Boolean, score: 0 }
+    - field: Favorite Color
+      choices:
+        - { text: Categorical - Unordered, score: 1 }
+        - { text: Numerical - Real, score: 0 }
+        - { text: Composite - Temporal, score: 0 }
+        - { text: Composite - Structured, score: 0 }
+    - field: UUID
+      choices:
+        - { text: Composite - Specialized, score: 1 }
+        - { text: Numerical - Real, score: 0 }
+        - { text: Categorical - Unordered, score: 0 }
+        - { text: Categorical - Ordered, score: 0 }
+    - field: Time (HH:MM:SS)
+      choices:
+        - { text: Composite - Temporal, score: 1 }
+        - { text: Categorical - Unordered, score: 0 }
+        - { text: Numerical - Integer, score: 0 }
+        - { text: Categorical - Boolean, score: 0 }
+    - field: MAC Address
+      choices:
+        - { text: Composite - Specialized, score: 1 }
+        - { text: Numerical - Real, score: 0 }
+        - { text: Categorical - Ordered, score: 0 }
+        - { text: Composite - Temporal, score: 0 }
+    - field: Coordinates (Latitude, Longitude)
+      choices:
+        - { text: Composite - Spatial, score: 1 }
+        - { text: Numerical - Integer, score: 0 }
+        - { text: Composite - Temporal, score: 0 }
+        - { text: Categorical - Ordered, score: 0 }
+    - field: XML Data
+      choices:
+        - { text: Composite - Structured, score: 1 }
+        - { text: Categorical - Unordered, score: 0 }
+        - { text: Numerical - Integer, score: 0 }
+        - { text: Composite - Temporal, score: 0 }
+    - field: Yes / No field
+      choices:
+        - { text: Categorical - Boolean, score: 1 }
+        - { text: Numerical - Real, score: 0 }
+        - { text: Composite - Specialized, score: 0 }
+        - { text: Composite - Spatial, score: 0 }
+    - field: Person's Name
+      choices:
+        - { text: Categorical - Unstructured, score: 1 }
+        - { text: Composite - Temporal, score: 0 }
+        - { text: Numerical - Real, score: 0 }
+        - { text: Composite - Spatial, score: 0 }
+    - field: Book Title
+      choices:
+        - { text: Categorical - Unstructured, score: 1 }
+        - { text: Numerical - Real, score: 0 }
+        - { text: Composite - Temporal, score: 0 }
+        - { text: Categorical - Cyclical, score: 0 }
+    - field: Job levels (e.g., Asst Director, Director, Sr Director)
+      choices:
+        - { text: Categorical - Ordered, score: 1 }
+        - { text: Composite - Temporal, score: 0 }
+        - { text: Numerical - Integer, score: 0 }
+        - { text: Composite - Spatial, score: 0 }
+    - field: Currency Amount
+      choices:
+        - { text: Numerical - Real, score: 1 }
+        - { text: Composite - Structured, score: 0 }
+        - { text: Categorical - Ordered, score: 0 }
+        - { text: Composite - Temporal, score: 0 }
+    - field: Percentage
+      choices:
+        - { text: Numerical - Real, score: 1 }
+        - { text: Composite - Temporal, score: 0 }
+        - { text: Categorical - Ordered, score: 0 }
+        - { text: Composite - Structured, score: 0 }
+    - field: Employee Serial Number (e.g. E-US-1234)
+      choices:
+        - { text: Composite - Specialized, score: 1 }
+        - { text: Numerical - Real, score: 0 }
+        - { text: Categorical - Unordered, score: 0 }
+        - { text: Composite - Spatial, score: 0 }
+    - field: File Size (bytes)
+      choices:
+        - { text: Numerical - Integer, score: 1 }
+        - { text: Composite - Temporal, score: 0 }
+        - { text: Composite - Specialized, score: 0 }
+        - { text: Categorical - Boolean, score: 0 }

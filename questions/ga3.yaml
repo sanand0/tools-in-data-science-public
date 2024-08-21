@@ -1,0 +1,101 @@
+- description: TDSGA3.1
+  randomized: 2
+  question: | # markdown
+    This [GZipped Apache log file](https://drive.google.com/file/d/1xLx-odohCtdPYbpOTui23upsCSzMBlpN/view) (61MB) has 258,074 rows.
+    Each row is an Apache web log entry for the site [s-anand.net](https://s-anand.net/) in May 2024.
+
+    Each row has these fields:
+
+    - **IP**: The IP address of the visitor
+    - **Remote logname**: The remote logname of the visitor. Typically "-"
+    - **Remote user**: The remote user of the visitor. Typically "-"
+    - **Time**: The time of the visit. E.g. **[01/May/2024:00:00:00 +0000]**. Not that **this is not quoted** and you need to handle this.
+    - **Request**: The request made by the visitor. E.g. **GET /blog/ HTTP/1.1**. It has 3 space-separated parts, namely
+      (a) **Method**: The HTTP method. E.g. **GET**
+      (b) **URL**: The URL visited. E.g. **/blog/**
+      (c) **Protocol**: The HTTP protocol. E.g. **HTTP/1.1**
+    - **Status**: The HTTP status code. If **200 <= Status < 300** it is a successful request
+    - **Size**: The size of the response in bytes. E.g. **1234**
+    - **Referer**: The referer URL. E.g. **https://s-anand.net/**
+    - **User agent**: The browser used. This will contain spaces and might have escaped quotes.
+    - **Vhost**: The virtual host. E.g. **s-anand.net**
+    - **Server**: The IP address of the server.
+
+    The fields are separated by spaces and quoted by double quotes (**"**).
+    Unlike CSV files, quoted fields are escaped via **\"** and not **""**. (This impacts 41 rows.)
+
+    All data is in the GMT-0500 timezone and the questions are based in this same timezone.
+
+    **Question**: How many **successful** (i.e. HTTP status codes between 200-299) GET requests were made
+    for pages under **/${folder}/** from **${startHour}:00** until before **${endHour}:00** on ${weekday}s?
+  data: ga3.1.json
+
+- description: TDSGA3.2
+  randomized: 2
+  question: | # markdown
+    In the [same log file](https://drive.google.com/file/d/1xLx-odohCtdPYbpOTui23upsCSzMBlpN/view),
+    how many unique IPs accessed pages under **/${folder}/** at its peak hour on ${weekday}s?
+
+    You need to:
+
+    - Filter all requests for pages under **/${folder}/** (include all methods: GET, HEAD, POST, ...)
+    - Filter requests that were made on ${weekday}s
+    - Could the number of unique IP addresses for each hour (including across multiple dates)
+    - Find which hour had the most unique IP addresses
+
+    **Question**: How many unique IP addresses were there in that hour?
+  data: ga3.2.json
+
+- description: TDSGA3.3
+  randomized: 2
+  question: | # markdown
+    In the [same log file](https://drive.google.com/file/d/1xLx-odohCtdPYbpOTui23upsCSzMBlpN/view),
+    Total the "Size" of responses for pages under **/${folder}/** on ${date} for each IP address.
+
+    How many bytes did the top IP address download?
+
+    You need to:
+
+    - Filter all requests for pages under **/${folder}/** (include all methods: GET, HEAD, POST, ...)
+    - Filter requests that were made on ${date}
+    - Add up the "Size" of responses for each IP address
+    - Find the IP address that downloaded the most bytes
+
+    **Question**: How many bytes did that IP address download?
+  data: ga3.3.json
+
+- description: TDSGA3.4
+  randomized: 2
+  question: | # markdown
+    Using the [same log file](https://drive.google.com/file/d/1xLx-odohCtdPYbpOTui23upsCSzMBlpN/view)
+    and a command line script, find the number of times the browser with most common major Chrome version accessed the site on **${date}**
+
+    You need to:
+
+    - Filter requests by date (ignore the time zone)
+    - Get the major version of Chrome from the "User agent" field. E.g. Chrome/99.0.1234.56 has a major version of 99
+    - Count the number of times each major version accessed the site
+    - Find the major version that accessed the site the most
+
+    **Question**: How many times did that major version access the site on **${date}**?
+  data: ga3.4.json
+
+- description: TDSGA3.5
+  randomized: 2
+  question: | # markdown
+    This [city-product-sales.json](https://drive.google.com/file/d/1VEnKChf4i04iKsQfw0MwoJlfkOBGQ65B/view)
+    is an array of 2,500 objects. Each object is a sales entry with 3 fields:
+
+    - **city**: The city where the sale was made. This could be mis-spelt phonetically (e.g. Tokio instead of Tokyo)
+    - **product**: The product sold. This is never mis-spelt.
+    - **sales**: The number of units sold.
+
+    You need to:
+
+    - Group mis-spelt city names. Phonetic clustering algorithms could help here.
+    - Select all entries where the product is **${product}** and sales is at least **${minSales}**.
+    - Group by city (after phonetically clustering).
+    - Find the city with the highest unit sales.
+
+    **Question**: What is the unit sales of the city you found?
+  data: ga3.5.json

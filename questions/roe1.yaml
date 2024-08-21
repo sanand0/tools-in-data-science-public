@@ -1,0 +1,139 @@
+- description: TDSROE1
+  randomized: 1
+  question: | # markdown
+    Download [roe.7z](https://drive.google.com/file/d/1CKBFzo-NXupLTkzKIvDoBtsL4WLGsNRk/view) and open using password: tdsroe202407. It has
+    a set of HTML files (e.g. score-los-angeles.html, etc.) that has the SAT performance of various schools.
+
+    Each HTML file mentions (among other things) **${label1}** and **${label2}** for each school.
+
+    What is the Pearson correlation coeffiecient between **${label1}** and **${label2}** across all the schools across all HTML files?
+
+    Follow these steps to answer the question:
+
+    1. Scrape the values of **${label1}** and **${label2}** from each HTML file.
+    2. If either **${label1}** or **${label2}** is null, drop the row (i.e. skip that school).
+    3. Calculate the Pearson correlation coefficient between the two columns.
+  data: roe1.1.json
+
+- description: TDSROE2
+  randomized: 1
+  question: | # markdown
+    Download [roe.7z](https://drive.google.com/file/d/1CKBFzo-NXupLTkzKIvDoBtsL4WLGsNRk/view) and open using password: tdsroe202407. It has a
+    **schools.parquet** with columns **Latitude** and **Longitude**.
+
+    Which of these cities have the highest average pairwise distance between schools in the city?
+
+    Follow these steps to answer the question:
+
+    1. In each of these cities, take every pair of schools
+    2. Find the **Pythagorean** distance between each pair, i.e. **SQRT((Lat1-Lat2)^2 + (Lon1-Lon2)^2)**
+    3. Calculate the average of these pairwise distances
+    4. Pick the city with the highest average pairwise distance
+  data: roe1.2.json
+
+- description: TDSROE3
+  randomized: 1
+  question: | # markdown
+    Download [roe.7z](https://drive.google.com/file/d/1CKBFzo-NXupLTkzKIvDoBtsL4WLGsNRk/view) and open using password: tdsroe202407. It has an
+    **frpm.db** SQLite database with a table called **frpm** that includes these columns:
+
+    1. County Code
+    2. School Type
+    3. Low Grade
+
+    How many distinct counties (as idenfied by the County Code) have an **School Type** of **${type}** and a **Low Grade** of **${grade} or above**?
+
+    Note: Grade ordering is as follows: P (Preschool), K (Kindergarten), 1, 2, ..., 12, followed by Adult.
+  data: roe1.3.json
+
+- description: TDSROE4
+  randomized: 1
+  question: | # markdown
+    Download [roe.7z](https://drive.google.com/file/d/1CKBFzo-NXupLTkzKIvDoBtsL4WLGsNRk/view) and open using password: tdsroe202407. It has a
+    **schools.parquet** with columns **Latitude** and **Longitude**.
+
+    Find the schools where:
+
+    - Latitude is between **${lat1}** and **${lat2}**
+    - Longitude is between **${lon1}** and **${lon2}**
+
+    Each school also has a school code in the column **CDSCode**.
+
+    Look up these schools in the HTML files in [roe.7z](https://drive.google.com/file/d/1CKBFzo-NXupLTkzKIvDoBtsL4WLGsNRk/view)
+    (e.g. score-los-angeles.html, etc.)
+    Match the **CDSCode** in schools.parquet with the **School Code** column in the HTML files.
+
+    Among these matched schools, how many have an **Average Score: ${subject}** greater than or equal to **${score}**?
+  data: roe1.4.json
+
+- description: TDSROE5
+  randomized: 1
+  question: | # markdown
+    Download [roe.7z](https://drive.google.com/file/d/1CKBFzo-NXupLTkzKIvDoBtsL4WLGsNRk/view) and open using password: tdsroe202407. It has a
+    **schools.parquet** with column **OpenDate** -- the date on which the school was opened.
+    (Sometimes it is NULL indicating that the open date is unknown.)
+
+    How many schools in the county **${county}** have an OpenDate that falls on a **${weekday}**?
+  data: roe1.5.json
+
+- description: TDSROE6
+  randomized: 1
+  question: | # markdown
+    Download [roe.7z](https://drive.google.com/file/d/1CKBFzo-NXupLTkzKIvDoBtsL4WLGsNRk/view) and open using password: tdsroe202407. It has a
+    a set of HTML files (e.g. score-los-angeles.html, etc.) that has the SAT performance of various schools.
+
+    Extract the Average SAT scores for each school for these 20 counties from their HTML files.
+    (Only consider positive scores.)
+
+    **${countyList}**
+
+    For a unit increase in **Average ${subject1} Score**, how much does **Average ${subject2} Score**
+    increase in these 20 counties?
+
+    To do this, you need to calculate the regression coefficient (i.e. the slope) of
+    **${subject2}** (dependent variable y) over **${subject1}** (independent variable x.) Ignore
+    schools where either of **Average ${subject1} Score** or **Average ${subject2} Score** is missing or null.
+  data: roe1.6.json
+
+- description: TDSROE7
+  randomized: 1
+  question: | # markdown
+    Download [roe.7z](https://drive.google.com/file/d/1CKBFzo-NXupLTkzKIvDoBtsL4WLGsNRk/view) and open using password: tdsroe202407. It has an
+    **frpm.db** SQLite database with a table called **frpm**. This contains columns:
+
+    - County Name
+    - Enrollment (K-12)
+    - Free Meal Count (K-12)
+
+    Find the counties that have a Free Meal Count % of at least **${percent}**%.
+    (These are the counties where SUM("Free Meal Count (K-12)") / SUM("Enrollment (K-12)") > **${percent}**% across all schools in the county.)
+
+    Take the HTML files (e.g. score-los-angeles.html, etc.) with the SAT performance of schools.
+
+    For each school in your counties:
+
+    - Extract **Average Score: ${subject}** and **Number of test takers**.
+    - Calculate PROD = **Average Score: ${subject}** x **Number of test takers**.
+
+    Then calculate the **Weighted average of ${subject}** = SUM(PROD) / SUM("Number of test takers").
+
+    What is the **Weighted average of ${subject}**?
+  data: roe1.7.json
+
+- description: TDSROE8
+  randomized: 1
+  question: | # markdown
+    Download [roe.7z](https://drive.google.com/file/d/1CKBFzo-NXupLTkzKIvDoBtsL4WLGsNRk/view) and open using password: tdsroe202407. It has a
+    **schools.parquet**, each row of which represents a school. Filter the schools where:
+
+    - **StatusType** is **${statusType}**
+    - **City** is **${city}**
+    - **OpenDate** is in the year **${year}**
+
+    Calculate the embeddings of all these school names (from the **School** column) using **text-embedding-3-small**.
+
+    Then calculate the cosine similarity between each pair of these schools.
+
+    Which pair of schools have the lowest cosine similarity?
+    (In other words, which are the the most dissimilar pair of schools?)
+  data: roe1.8.json

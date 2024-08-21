@@ -1,0 +1,11 @@
+ul,
+ol {
+  list-style: revert;
+  padding: revert;
+  margin: revert;
+}
+a:link,
+a:hover,
+a:visited {
+  color: revert;
+}

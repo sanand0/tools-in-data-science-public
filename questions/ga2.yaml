@@ -1,0 +1,115 @@
+- description: TDSGA2.1
+  question: Which of these Google Sheets functions can process CSV files?
+  # #FUTURE: Choices 1 and 4 are the same. Fix that. Avoid backticks to improve formatting.
+  choices:
+    - text: "`IMPORTDATA`, `IMPORTRANGE`"
+      score: 0.0
+    - text: "`IMPORTDATA`, `IMPORTXML`"
+      score: 1.0
+    - text: "`IMPORTXML`, `IMPORTFEED`"
+      score: 0.0
+    - text: "`IMPORTRANGE`, `IMPORTDATA`"
+      score: 0.0
+- description: TDSGA2.2
+  question: | # markdown
+    Your objective is to scrape share prices of a portfolio of companies using Excel.
+    You've been successful in loading the share prices along with other information available in the table from the webpage.
+    But as per client request you are required to add another column to the table that labels the stock as "buy" when the % change in the share price exceeds a certain value.
+    Choose the most appropriate option.
+  choices:
+    - text: An additional column cannot be added to the data loaded from the website using Excel.
+      score: 0.0
+    - text: We cannot insert a column inside an Excel connection range but can add a new column "% change" outside it in Excel.
+      score: 1.0
+    - text: An additional column can be added but the specific client request cannot be met using Excel. We need Python.
+      score: 0.0
+    - text: We can insert a column between the columns of the connection range in Excel to calculate the "% change".
+      score: 0.0
+- description: TDSGA2.3
+  randomized: 1
+  question: | # markdown
+    Using [PokeAPI](https://pokeapi.co/), find out how many moves `${char1}` has that `${char2}` does not in in the `${version}` version.
+  data: ga2.3.json
+- description: TDSGA2.4
+  randomized: 1
+  question: | # markdown
+    How many elements match the CSS selector `${selector}` on this [White House page snapshot](${url})? (Note the selector carefully. Ignore JavaScript-generated elements.)
+  data: ga2.4.json
+- description: TDSGA2.5
+  randomized: 2
+  question: | # markdown
+    What is the ${type} of the bounding box of the city `${city}` in the country `${country}` on the Nominatim API? ${note}
+  data: ga2.5.json
+- description: TDSGA2.6
+  question: | # markdown
+    Which of these responses from a `requests.get(url)` returns the raw response as bytes (not a string)?
+  choices:
+    - { text: response.summary, score: 0.0 }
+    - { text: response.text, score: 0.0 }
+    - { text: response.content, score: 1.0 }
+    - { text: response.json, score: 0.0 }
+- description: TDSGA2.7
+  # #FUTURE: Avoid backticks to improve formatting.
+  question: | # markdown
+    You have the following HTML structure representing a list of featured products on an e-commerce site. Which CSS selector would you use to extract the product names, i.e. text content of only the `<span>` elements that are direct children of `<div>` elements with the class `"highlighted-product"`?
+
+    ```html
+    <div class="highlighted-product">
+        <span>Product 1</span>
+        <p><span>Special Offer</span></p>
+    </div>
+    <div class="highlighted-product">
+        <span>Product 2</span>
+    </div>
+    <div>
+        <span>Product 3</span>
+    </div>
+    ```
+  choices:
+    - { text: "`div.highlighted-product > span`", score: 1.0 }
+    - { text: "`.highlighted-product span`", score: 0.0 }
+    - { text: "`.highlighted-product > span`", score: 0.0 }
+    - { text: "`div.highlighted-product span`", score: 0.0 }
+- description: TDSGA2.8
+  question: | # markdown
+    Given the following nested HTML structure representing a navigation menu, which CSS selector would extract only the `<li>` elements that are descendants of the `<ul>` with the class `"main-menu"` and are also the last child within their parent `<ul>`?
+
+    ```html
+    <ul class="main-menu">
+        <li>Home</li>
+        <li>About Us</li>
+        <ul>
+            <li>Our Team</li>
+            <li>Our History</li>
+            <li>Contact Us</li>
+        </ul>
+        <li>Services</li>
+    </ul>
+    <ul class="main-menu">
+        <li>Products</li>
+        <li>Support</li>
+        <ul>
+            <li>FAQ</li>
+            <li>Customer Service</li>
+        </ul>
+    </ul>
+    ```
+  choices:
+    - { text: "`ul.main-menu li:last-child`", score: 0.0 }
+    - { text: "`.main-menu li:last-child`", score: 0.0 }
+    - { text: "`.main-menu ul li:last-child`", score: 1.0 }
+    - { text: "`ul.main-menu > ul > li:last-child`", score: 0.0 }
+- description: TDSGA2.9
+  randomized: 1
+  question: | # markdown
+    [This PDF file](https://drive.google.com/file/d/1fNtM9wWUS8geSneKgdKZQMIwCF9kMOij/view?usp=drive_link) has the marks of students in 5 subjects. Each page has the marks of students in a group. Each row has the marks of a single student.
+
+    What is the total `${subject}` marks of students who scored `${cutoff}` or more marks in `${other}`
+    in groups `${start}-${end}` (including both groups)?
+
+    You need to:
+
+    - Parse the PDF file and extract the tables for groups **${start}-${end}** (inclusive).
+    - Filter the students who scored **${cutoff}** or more marks in **${other}**.
+    - Calculate the total **${subject}** marks of these students.
+  data: ga2.9.json

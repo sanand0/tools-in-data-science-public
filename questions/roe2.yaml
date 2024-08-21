@@ -1,0 +1,165 @@
+- description: TDSROE2.1
+  randomized: 1
+  question: | # markdown
+    Download [roe2.7z](https://drive.google.com/file/d/16SMZDFo9z1VCmHzCv27FR9tINoEOwF3R/view) and open using the password: **45minutesonly**. It has:
+
+    - A set of HTML files **biz-*.html** that has a list of restaurants in San Fransisco
+    - A violations table in **violations.db** SQLite DB with food violations found in restaurant inspections
+
+    Of the restaurants present in postal code **${postalCode}**, how many had a **${riskCategory}** violation on a **${weekday}**?
+
+    Follow these steps to answer the question:
+
+    1. From the violations table, count the violations grouped by **business_id** where the **risk_category** is **${riskCategory}** and **date** is on a **${weekday}**.
+    2. Scrape the **postal_code** and **business_id** from each HTML file.
+    3. Add the violations count for all the restaurants where the **postal_code** is **${postalCode}**.
+  data: roe2.1.json
+
+- description: TDSROE2.2
+  randomized: 1
+  question: | # markdown
+    Download [roe2.7z](https://drive.google.com/file/d/16SMZDFo9z1VCmHzCv27FR9tINoEOwF3R/view) and open using the password: **45minutesonly**. It has:
+
+    - A set of HTML files **biz-*.html** that has a list of restaurants in San Fransisco
+    - A set of PDF files **inspections-*.pdf** that lists the various inspections of the restaurants in San Fransisco
+
+    What is the highest average inspection score in the month **${month}** that any latitude-longitude grid (rounded off to 2 decimal places) has received for grids with over 5 businesses?
+
+    Follow these steps to answer the question:
+
+    1. Scrape the **business_id**, **latitude** and **longitude** from each HTML file. Drop missing values.
+    2. Scrape the **business_id** and **score** from the PDF file **inspections-${month}.pdf**. Drop missing values.
+    3. Join these two datasets on **business_id**
+    4. Round DOWN to 2 decimals the latitude and longitude (e.g. 35.1293 becomes 35.12, -122.1234 becomes -123.13)
+    5. Group by the rounded-off latitude-longitude combination (this is what we mean by the "latitude-longitude grid")
+    6. Pick all groups with more than 5 (i.e. 6 or more) businesses and calculate the average **score**
+    6. Find the the highest of these averages
+  data: roe2.2.json
+
+- description: TDSROE2.3
+  randomized: 1
+  question: | # markdown
+    Download [roe2.7z](https://drive.google.com/file/d/16SMZDFo9z1VCmHzCv27FR9tINoEOwF3R/view) and open using the password: **45minutesonly**. It has:
+
+    - A set of HTML files **biz-*.html** that has a list of restaurants in San Fransisco
+
+    Among these postal codes, which postal code has a restaurant furthest away from the centroid of the restaurants?
+
+    **${postalCodes}**
+
+    Follow these steps to answer the question:
+
+    1. Scrape the **postal_code**, **latitude** and **longitude** from each HTML file having your postal code. Drop missing values
+    2. For each postal code
+      - Calculate the average of the latitude and longitude values for all rows *in each* postal_code. This is (roughly) the centroid of that postal _code
+      - Calculate the **Pythagorean** distance between each restaurants and the centroid, i.e. **SQRT((Lat1-Lat2)^2 + (Lon1-Lon2)^2)**
+      - Calculate the average of these distances. Let's call this the "AVERAGE_DISTANCE_FROM_CENTROID" for each postal code
+    3. Pick the postal code with the restaurant having the highest AVERAGE_DISTANCE_FROM_CENTROID
+  data: roe2.3.json
+
+- description: TDSROE2.4
+  randomized: 1
+  question: | # markdown
+    Download [roe2.7z](https://drive.google.com/file/d/16SMZDFo9z1VCmHzCv27FR9tINoEOwF3R/view) and open using the password: **45minutesonly**. It has:
+
+    - A set of PDF files **inspections-*.pdf** that lists the various inspections of the restaurants in San Fransisco
+    - A violations table in **violations.db** SQLite DB with food violations found in restaurant inspections
+
+    Usually, a violation is reported when an inspection is carried out on a business. But not always.
+
+    Find the number of violations that were reported without an inspection (same business, same date) on or after **${date}** in the **${riskCategory}** risk category.
+
+    Follow these steps to answer the question:
+
+    1. Scrape the **business_id** and **date** from the **inspections-*.pdf** files. Drop missing values.
+    2. Extract the **business_id** and **date** from the **violations** table where the **risk_category** is **${riskCategory}** and **date** is on or after **${date}**.
+    3. Count the number of violations where the **business_id** and **date** is NOT in the **inspections-*.pdf** files.
+  data: roe2.4.json
+
+- description: TDSROE2.5
+  randomized: 1
+  question: | # markdown
+    Download [roe2.7z](https://drive.google.com/file/d/16SMZDFo9z1VCmHzCv27FR9tINoEOwF3R/view) and open using the password: **45minutesonly**. It has:
+
+    - A set of HTML files **biz-*.html** that has a list of restaurants in San Fransisco
+    - A set of PDF files **inspections-*.pdf** that lists the various inspections of the restaurants in San Fransisco
+    - A violations table in **violations.db** SQLite DB with food violations found in restaurant inspections
+
+    How many businesses in postal code **${postalCode}** had a violation that had one or more of the words **${words}** and an *associated* (i.e. same date, same business_id) inspection with a score of **${score}** or more?
+
+    Follow these steps to answer the question:
+
+    1. Scrape the **business_id** and **postal_code** from each HTML file. Drop missing values.
+    2. Scrape the **business_id**, **date** and **score** from the PDF file **inspections-*.pdf**. Drop missing values.
+    3. Extract the **business_id**, **date** and **description** from the **violations** table where the **description** has one or more of the words **${words}**.
+    4. Join the **biz-*.html**, the **inspections-*.pdf**, and the **violations** table data by matching the **business_id** across all three datasets and the **date** across **inspections-*.pdf** and the **violations** table.
+    5. Filter the joined data where the description has one or more of the words **${words}** (the entire word should match: "improper" should not match "improperly") and the score is **${score}** or more
+    6. Find the postal code of these businesses and filter those matching **${postalCode}**
+    7. Count the number of businesses
+  data: roe2.5.json
+
+- description: TDSROE2.6
+  randomized: 1
+  question: | # markdown
+    Download [roe2.7z](https://drive.google.com/file/d/16SMZDFo9z1VCmHzCv27FR9tINoEOwF3R/view) and open using the password: **45minutesonly**. It has:
+
+    - A set of HTML files **biz-*.html** that has a list of restaurants in San Fransisco
+    - A violations table in **violations.db** SQLite DB with food violations found in restaurant inspections
+
+    Within the latitude-longitude bounds of **${latMin}**, **${latMax}**, **${lonMin}**, and **${lonMax}**, count the businesses with the most dissimilar description.
+
+    Follow these steps to answer the question:
+
+    1. Scrape the **business_id**, **latitude**, **longitude** from each HTML file. Drop missing values. Also drop zero values for latitude or longitude.
+    2. Extract the **business_id** and **description** from the **violations** table. Drop missing values.
+    3. Add the **latitude** and **longitude** columns to the **violations** table joined by **business_id**
+    4. Filter the joined data where the latitude is >= **${latMin}** and <= **${latMax}** and the longitude is >= **${lonMin}** and <= **${lonMax}**.
+    5. Calculate the vectors embeddings of all the **description**s using **text-embedding-3-small**.
+    6. Find the centroid of the embeddings by taking the average of all the UNIQUE vector embeddings. You will get a 1-dimensional vector.
+    7. Find the most dissimilar embedding. This is the description embeddding with the highest Pythagorean distance from the centroid.
+    8. Count the number of UNIQUE **business_id**s that have this most dissimilar embedding.
+  data: roe2.6.json
+
+- description: TDSROE2.7
+  randomized: 1
+  question: | # markdown
+    Download [roe2.7z](https://drive.google.com/file/d/16SMZDFo9z1VCmHzCv27FR9tINoEOwF3R/view) and open using the password: **45minutesonly**. It has:
+
+    - A set of HTML files **biz-*.html** that has a list of restaurants in San Fransisco
+    - A set of PDF files **inspections-*.pdf** that lists the various inspections of the restaurants in San Fransisco
+
+    Using linear regression, predict the inspection score of a restaurant in these 5 postal codes: **${postalCodes}** on **${date}**.
+
+    Follow these steps to answer the question:
+
+    1. Scrape the **business_id**, **date** and **score** from the PDF files **inspections-*.pdf**. Drop missing values.
+    2. Scrape the **business_id** and **postal_code** from the HTML files **biz-*.html** for the postal codes **${postalCodes}**. Drop missing values.
+    3. Join the **inspections** data with the **HTML** data on **business_id**, combining data across all the above postal codes.
+    4. Calculate the regression slope of the inspection scores (Y) against the date (X).
+    5. Predict the inspection score for the date **${date}**.
+
+    **Note**: The statistical significance (as measured by the R2 or p-value) of these regressions will be very low,
+    indicating that the date is not a good predictor of the inspection score. Proceed anyway.
+  data: roe2.7.json
+
+- description: TDSROE2.8
+  randomized: 1
+  question: | # markdown
+    Download [roe2.7z](https://drive.google.com/file/d/16SMZDFo9z1VCmHzCv27FR9tINoEOwF3R/view) and open using the password: **45minutesonly**. It has:
+
+    - A set of HTML files **biz-*.html** that has a list of restaurants in San Fransisco
+    - A set of PDF files **inspections-*.pdf** that lists the various inspections of the restaurants in San Fransisco
+    - A violations table in **violations.db** SQLite DB with food violations found in restaurant inspections
+
+    What is the JSON schema that describes this entire dataset, ignoring the **${field}** field in **${table}**?
+
+    Follow these steps to answer the question:
+
+    1. Get the 5 field names and types from the **violations** table in **violations.db**.
+    2. Get the 4 field names and types from any one of the **inspections-*.pdf** files.
+    3. Get the 16 field names and types from any one of the **biz-*.html** files. Don't forget the **name** field which is the table's title.
+    4. Create a JSON schema that describes an object with 3 arrays, **violations**, **inspections**, and **businesses**. Each array should have objects with the field names and types from the above steps.
+    5. Make sure you have a "format": "date" for all date fields in line with the [JSON Schema date-time specification](https://json-schema.org/understanding-json-schema/reference/string#dates-and-times).
+    5. Remove the **${field}** field from the **${table}** in your schema.
+    6. Paste your result at [<https://tools-in-data-science.pages.dev/schemavalidate>](https://tools-in-data-science.pages.dev/schemavalidate) and get the validation code.
+  data: roe2.8.json

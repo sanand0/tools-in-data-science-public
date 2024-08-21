@@ -1,0 +1,227 @@
+- description: 24T2_TDSentrance-1
+  question: | # markdown
+    In this HTML, which of these CSS selectors would only match this tag: `<li>Matcha</li>`
+
+    ```html
+    <ul class="nested">
+      <li>Water</li>
+      <li>Coffee</li>
+      <li>
+        <ul class="nested">
+          <li>Black Tea</li>
+          <li>White Tea</li>
+          <li><span class="caret">Green Tea</span>
+            <ul class="nested">
+              <li>Sencha</li>
+              <li>Gyokuro</li>
+              <li>Matcha</li>
+              <li>Pi Lo Chun</li>
+            </ul>
+          </li>
+      </li>
+    </ul>
+    ```
+  choices:
+    - text: >
+        `ul.nested li:nth-of-type(3)`
+      score: 0.0
+      reason: This incorrectly targets the third li in every ul.nested, not specifically the nested ones where "Matcha" is
+    - text: >
+        `li="Matcha"`
+      score: 0.0
+      reason: This is invalid CSS
+    - text: >
+        `li:nth-of-type(3) > ul > li:nth-of-type(3)`"
+      score: 0.0
+      reason: This incorrectly targets Green Tea apart from "Matcha"
+    - text: >
+        `ul ul ul li:nth-of-type(3)`
+      score: 1.0
+      reason: This is correct
+
+- description: 24T2_TDSentrance-2
+  question: | # markdown
+    Is the alt= attribute mandatory for images? What is it used for?
+  choices:
+    - text: Yes, the alt attribute is mandatory for all images as it's used for SEO optimization.
+      score: 0.0
+    - text: No, the alt attribute is not mandatory for all images, but it is highly recommended for accessibility reasons.
+      score: 1.0
+    - text: Yes, it's mandatory for all images because it provides a description that is displayed when the image cannot be downloaded.
+      score: 0.0
+    - text: Yes, the alt attribute is mandatory as it serves as a caption for every image.
+      score: 0.0
+
+- description: 24T2_TDSentrance-3
+  question: | # markdown
+    How do I extract this string from this Python dictionary: `"Django"`
+
+    ```python
+    result = {
+      "company": "Tech Solutions",
+      "headquarters": "New York",
+      "departments": {
+        "development": {
+          "employees": [
+            {
+              "name": "John Doe",
+              "position": "Senior Developer",
+              "skills": [
+                "Java",
+                "React",
+                "SQL"
+              ]
+            },
+            {
+              "name": "Jane Smith",
+              "position": "Junior Developer",
+              "skills": [
+                "Python",
+                "Django"
+              ]
+            }
+          ],
+          "budget": 500000
+        },
+        "marketing": {
+          "employees": [
+            {
+              "name": "Alice Johnson",
+              "position": "Marketing Director",
+              "skills": [
+                "SEO",
+                "Content Marketing"
+              ]
+            },
+            {
+              "name": "Bob Brown",
+              "position": "Social Media Manager",
+              "skills": [
+                "Facebook Ads",
+                "Twitter"
+              ]
+            }
+          ],
+          "budget": 300000
+        }
+      }
+    }
+    ```
+  choices:
+    - text: "`result['departments']['development']['employees'][1]['skills'][1]`"
+      score: 1.0
+    - text: "`result['departments']['development']['employees'][1]['skills'][0]`"
+      score: 0.0
+    - text: "`result['departments']['development']['employees']['skills'][1]`"
+      score: 0.0
+    - text: "`result['departments']['development'][1]['employees']['skills'][1]`"
+      score: 0.0
+    - text: "`result['departments'][1]['employees'][1]['skills'][1]`"
+      score: 0.0
+
+- description: 24T2_TDSentrance-4
+  question: | # markdown
+    What does the following code Python print: `",".join(str(x) for x in range(10,15))`?
+  choices:
+    - text: "`10, 11, 12, 13, 14, 15`"
+      score: 0.0
+    - text: "`10,11,12,13,14`"
+      score: 1.0
+    - text: "`xxxxxxxxxxxxxxx`"
+      score: 0.0
+    - text: "`11,12,13,14,15`"
+      score: 0.0
+
+- description: 24T2_TDSentrance-5
+  question: | # markdown
+    What does this code print:
+
+    ```python
+    def func(a, b=5, c=10):
+        return a + b * 2 + c * 3
+
+    func(3, c=7)
+    ```
+  choices:
+    - text: 52
+      score: 0.0
+      reason: Students might mistakenly calculate the expression as 3 + 5 * 2 + 7 * 3 instead of using the default value for b.
+    - text: 34
+      score: 1.0
+      reason: Correct
+    - text: 70
+      score: 0.0
+      reason: This could happen if a student misunderstands the order of operations, calculating it as (3 + 5) * 2 + (7 + 10) * 3.
+    - text: 28
+      score: 0.0
+      reason: Resulting from the 0.0 application of the function parameters, like interpreting c=7 as an additional parameter to be added, calculating 3 + 5 * 2 + 10 * 3 + 7.
+
+- description: 24T2_TDSentrance-6
+  question: Which HTML5 element is used for playing video files?
+  choices:
+    - text: "`<media>`"
+      score: 0.0
+    - text: "`<video>`"
+      score: 1.0
+    - text: "`<stream>`"
+      score: 0.0
+    - text: "`<film>`"
+      score: 0.0
+
+- description: 24T2_TDSentrance-7
+  question: What is the formula of Upper limit in box plot
+  choices:
+    - text: Q3+1.5*|Q1 - Q3|
+      score: 0.0
+    - text: Q1-1.5*(Q3 + Q1)
+      score: 0.0
+    - text: Q1-1.5*(Q3 - Q1)
+      score: 0.0
+    - text: Q3+1.5*(Q3 - Q1)
+      score: 1.0
+
+- description: 24T2_TDSentrance-8
+  question: You are analyzing sales data for a retail store using a spreadsheet. The data includes columns for Date, Product Category, Region, Salesperson, and Sales Amount. You want to find out which Product Category had the highest total sales in each Region for the last quarter. Which of the following steps would you use?
+  choices:
+    - text: Create a pivot table with Product Category as rows and Sales Amount as values, then filter by Region and sort by Date.
+      score: 0.0
+    - text: Create a pivot table with Region as rows, Product Category as columns, and Sales Amount as values, then filter for the last quarter.
+      score: 1.0
+    - text: Create a pivot table with Salesperson as rows, Date as columns, and Sales Amount as values, then filter by Product Category.
+      score: 0.0
+    - text: Create a pivot table with Date as rows, Region as columns, and Sales Amount as values, then filter by Product Category and sort by Sales Amount.
+      score: 0.0
+
+- description: 24T2_TDSentrance-9
+  question: You are developing a web application that allows users to update their profiles. The application interacts with a server using a REST API. If a user is updating their existing profile information, such as changing their email address, which of the following HTTP methods should your application use to send this data to the server?
+  choices:
+    - text: POST
+      score: 0.0
+    - text: GET
+      score: 0.0
+    - text: PUT
+      score: 1.0
+    - text: UPDATE
+      score: 0.0
+
+- description: 24T2_TDSentrance-10
+  question: | # markdown
+    You are working with a large spreadsheet in Excel that contains employee data. Each row represents an employee and the columns include Employee ID, Name, Department, and Salary. You need to find the Salary of employee ID 102. Which Excel function would be most efficient for this task?
+
+    |     | A   | B     | C       | D      |
+    | --- | --- | ----- | ------- | ------ |
+    | 1   | ID  | Name  | Dept    | Salary |
+    | 2   | 100 | Alpha | HR      | 120    |
+    | 3   | 101 | Beta  | HR      | 140    |
+    | 4   | 102 | Gamma | Finance | 130    |
+    | 5   | 103 | Delta | Finance | 140    |
+
+  choices:
+    - text: LOOKUP(102, A2:A5, D2:D5)
+      score: 0.0
+    - text: VLOOKUP(102, A2:D5, 4, FALSE)
+      score: 1.0
+    - text: HLOOKUP(102, A2:D5, 4, FALSE)
+      score: 0.0
+    - text: SUMIF(A2:A5, 102, D2:D5)
+      score: 0.0
