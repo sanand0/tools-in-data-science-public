@@ -1,6 +1,8 @@
 # Data Sourcing
 
-[![Data sourcing](https://i.ytimg.com/vi_webp/1LyblMkJzOo/sddefault.webp)](https://youtu.be/1LyblMkJzOo)
+[<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-broadcast-pin" viewBox="0 0 16 16">
+<path d="M3.05 3.05a7 7 0 0 0 0 9.9.5.5 0 0 1-.707.707 8 8 0 0 1 0-11.314.5.5 0 0 1 .707.707m2.122 2.122a4 4 0 0 0 0 5.656.5.5 0 1 1-.708.708 5 5 0 0 1 0-7.072.5.5 0 0 1 .708.708m5.656-.708a.5.5 0 0 1 .708 0 5 5 0 0 1 0 7.072.5.5 0 1 1-.708-.708 4 4 0 0 0 0-5.656.5.5 0 0 1 0-.708m2.122-2.12a.5.5 0 0 1 .707 0 8 8 0 0 1 0 11.313.5.5 0 0 1-.707-.707 7 7 0 0 0 0-9.9.5.5 0 0 1 0-.707zM6 8a2 2 0 1 1 2.5 1.937V15.5a.5.5 0 0 1-1 0V9.937A2 2 0 0 1 6 8"/>
+</svg> <span style="font-size: 24px; margin: 0 6px; vertical-align: bottom">Data Sourcing: Introduction Podcast</span>](https://drive.google.com/file/d/1_mtDu_iXBHo_3uiDSrpdmVbWWbp_09hH/view) by [NotebookLM](https://notebooklm.google.com/)
 
 Before you do any kind of data science, you obviously have to get the data to be able to analyze it, visualize it, narrate it, and deploy it.
 And what we are going to cover in this module is how you get the data.
@@ -12,6 +14,8 @@ There are three ways you can get the data.
 3. The third way is you have to **scrape it**. It's not directly available in a convenient form that you can query or download. But it is, in fact, on a web page. It's available on a PDF file. It's available in a Word document. It's available on an Excel file. It's kind of structured, but you will have to figure out that structure and extract it from there.
 
 In this module, we will be looking at the tools that will help you either download from a data source or query from an API or from a database or from a library. And finally, how you can scrape from different sources.
+
+[![Data sourcing](https://i.ytimg.com/vi_webp/1LyblMkJzOo/sddefault.webp)](https://youtu.be/1LyblMkJzOo)
 
 Here are links used in the video:
 
@@ -210,6 +214,12 @@ Here are links and references:
 - [PDF Scraping - Notebook](https://colab.research.google.com/drive/102Fv2Ji0J4mvao3mCse52E7Th8bZiuyf)
 - Learn about the [`tabula` package](https://tabula-py.readthedocs.io/en/latest/tabula.html)
 - Learn about the [`pandas` package](https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html). [Video](https://youtu.be/vmEHCJofslg)
+
+## Optional: Emerging tools
+
+- [PyMuPDF](https://pymupdf.readthedocs.io/) is emerging as a strong default for PDF text extraction.
+- [PyMuPDF4LLM](https://pymupdf.readthedocs.io/en/latest/pymupdf4llm/index.html) is apart of PyMuPDF that generates Markdown from PDFs that's suitable for LLMs.
+- [unstructured](https://unstructured.io/) is radidly becoming the de facto library for parsing over 40 different file types and extracting text and tables. It's particularly useful for generating content to pass to LLMs.
 
 ## Optional: Real-life scraping
 

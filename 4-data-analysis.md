@@ -84,7 +84,7 @@ Here are the links used in the video:
 
 ## Data analysis with Python
 
-The video is not available yet. Please review the notebook, which is self-explanatory. #TODO
+[![Data Analysis with Python](https://i.ytimg.com/vi_webp/ZPfZH14FK90/sddefault.webp)](https://youtu.be/ZPfZH14FK90)
 
 You'll learn practical data analysis techniques in Python using Pandas, covering:
 
@@ -129,6 +129,11 @@ Here are the links used in the video:
 - [Stats database](https://relational-data.org/dataset/Stats) that has an anonymized dump of [stats.stackexchange.com](https://stats.stackexchange.com/)
 - [Pandas `read_sql`](https://pandas.pydata.org/docs/reference/api/pandas.read_sql.html)
 - [SQLAlchemy docs](https://docs.sqlalchemy.org/)
+
+## Emerging data analysis tools
+
+
+
 
 ## Optional: Visualizing Machine Learning
 
