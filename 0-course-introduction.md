@@ -83,7 +83,7 @@ Use [Graded assignment 0](https://tools-in-data-science.pages.dev/ga0) to check 
    - Outlier detection with Excel
    - Data analysis with Python
    - Data analysis with databases
-   - Optional: Data analysis with DuckDB
+   - Data analysis with DuckDB
    - Optional: Visualizing Machine Learning
 5. **Large language models**
    - LLM Sentiment analysis
