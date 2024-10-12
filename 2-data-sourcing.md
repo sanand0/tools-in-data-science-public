@@ -15,7 +15,7 @@ There are three ways you can get the data.
 
 In this module, we will be looking at the tools that will help you either download from a data source or query from an API or from a database or from a library. And finally, how you can scrape from different sources.
 
-[![Data sourcing](https://i.ytimg.com/vi_webp/1LyblMkJzOo/sddefault.webp)](https://youtu.be/1LyblMkJzOo)
+[![Data Sourcing - Introduction](https://i.ytimg.com/vi_webp/1LyblMkJzOo/sddefault.webp)](https://youtu.be/1LyblMkJzOo)
 
 Here are links used in the video:
 

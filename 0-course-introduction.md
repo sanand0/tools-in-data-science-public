@@ -83,6 +83,7 @@ Use [Graded assignment 0](https://tools-in-data-science.pages.dev/ga0) to check 
    - Outlier detection with Excel
    - Data analysis with Python
    - Data analysis with databases
+   - Optional: Data analysis with DuckDB
    - Optional: Visualizing Machine Learning
 5. **Large language models**
    - LLM Sentiment analysis
@@ -166,9 +167,10 @@ Here is the evaluation plan:
 | ROE: Remote Online Exam | Online open-Internet MCQ          |    20% | 17-Nov-2024 13:00 | 17-Nov-2024 13:45 |                  |
 | F: Final end-term       | In-person, no internet, mandatory |    30% |       22-Dec-2024 |                   |                  |
 
-- **Most exams are open and hard**
-  - **Exams except the final are open**. You can use the Internet, WhatsApp, ChatGPT, your notes, your friends, your pets...
-  - **Online exams are hard**. They test your implicit learning, not what you can look up. Read: [What is the purpose of an impossible RoE exam?](https://discourse.onlinedegree.iitm.ac.in/t/whats-the-actual-purpose-of-impossible-roe-exam/99838/2)
+- **Remote exams are open and hard**
+  - You can use the Internet, WhatsApp, ChatGPT, your notes, your friends, your pets...
+  - The RoE is especially hard. Read: [What is the purpose of an impossible RoE exam?](https://discourse.onlinedegree.iitm.ac.in/t/whats-the-actual-purpose-of-impossible-roe-exam/99838/2)
+- **Final exam is in-person and closed book**. It tests your memory. It's easy.
 - **Graded Assignment 0 checks course pre-requisites**. Please drop this course if you score low. It'll be too tough for you. You have been warned 🙂!
 - **Graded Assignments check basic learning**. The graded assignment after each module has ~10 multiple-choice questions. You have a week to submit.
 
@@ -178,12 +180,5 @@ TDS has 2 projects that test how well you _apply_ what you learnt.
 
 These will be peer-evaluated, to teach you how to evaluate others' work and to learn from it.
 
-- Each project is scored by 3 peers on well-defined criteria, for a total of 100.
-- 20% of your score will be the average of the 3 peer evaluations (dropping outliers).
-
-A peer evaluation is ignored as an outlier if:
-
-- The score is over ±30 vs the average of the other 2 reviewers' scores.
-- A reviewer gives everyone the same score.
-
-Peer reviewers without outliers get 1 bonus mark (out of 100).
+- Each project is scored by 5 peers on well-defined criteria, for a total of 100.
+- 20% of your score will be the average of the 5 peer evaluations.

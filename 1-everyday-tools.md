@@ -118,6 +118,13 @@ Watch these introductory videos to learn the basics of Git and GitHub (98 min):
 
 [![Git and GitHub for Beginners - Crash Course (68 min)](https://i.ytimg.com/vi_webp/RGOj5yH7evk/sddefault.webp)](https://youtu.be/RGOj5yH7evk)
 
+## Optional Material
+
+Learn how Unicode, UTF-8 and character encoding works.
+
+[![Code Pages, Character Encoding, Unicode, UTF-8 and the BOM - Computer Stuff They Didn't Teach You #2](https://i.ytimg.com/vi_webp/jeIBNn5Y5fI/sddefault.webp)](https://youtu.be/jeIBNn5Y5fI)
+
+
 ## Optional: Tools used in the industry
 
 Kathir Mani from QueLit and Anand S from Gramener discuss the tools and technologies used in the industry. (9 min)
