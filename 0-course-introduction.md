@@ -162,8 +162,8 @@ Here is the evaluation plan:
 | ----------------------- | --------------------------------- | -----: | ----------------: | ----------------: | ---------------: | -----------: |
 | GA0: Self assessment    | Online open-Internet MCQ          |     0% |       23-Sep-2024 |       01-Oct-2024 |                  |
 | GA: Graded assignments  | Online open-Internet MCQ          |    10% |          Periodic |     10 days later |                  |
-| P1: Project 1           | Take-home open-Internet           |    20% |       18-Oct-2024 |       28-Oct-2024 |       1-Nov-2024 |  10-Nov-2024 |
-| P2: Project 2           | Take-home open-Internet           |    20% |        8-Nov-2024 |       17-Nov-2024 |      20-Nov-2024 |  27-Nov-2024 |
+| P1: Project 1           | Take-home open-Internet           |    20% |       21-Oct-2024 |       31-Oct-2024 |       4-Nov-2024 |  13-Nov-2024 |
+| P2: Project 2           | Take-home open-Internet           |    20% |        2-Dec-2024 |       12-Dec-2024 |      17-Dec-2024 |  22-Dec-2024 |
 | ROE: Remote Online Exam | Online open-Internet MCQ          |    20% | 17-Nov-2024 13:00 | 17-Nov-2024 13:45 |                  |
 | F: Final end-term       | In-person, no internet, mandatory |    30% |       22-Dec-2024 |                   |                  |
 
