@@ -1,5 +1,7 @@
 # Project 2 - Automated Analysis
 
+This project is done on 12 Dec 2024 EoD AoE. Results will be announced by 22 Dec 2024.
+
 Your task is to:
 
 1. Write a Python script that uses an LLM to analyze, visualize, and narrate a story from a dataset.
