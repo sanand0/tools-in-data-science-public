@@ -32,6 +32,7 @@ Notes:
 
 - **Create a single Python script**: Don't load other local scripts (e.g. `utils.py`) or files (e.g. `system-prompt.txt`). Keep the entire code in `autolysis.py`. This eases LLM evaluation.
 - **Use your AI Proxy token**. Your [AI Proxy token](https://aiproxy.sanand.workers.dev/) now has a $2 limit. You may use it. If you run out of tokens, ask the TDS team for more. (But try and avoid that.)
+- **Use the `AIPROXY_TOKEN` environment variable**. DON'T commit your AI Proxy token to your repository. Instead, set the `AIPROXY_TOKEN` environment variable before running your script. Use `os.environ["AIPROXY_TOKEN"]` as the token in your script.
 - **Stick to GPT-4o-Mini**. This is the only generation model that AI Proxy currently supports. When this page says "LLM", it means GPT-4o-Mini.
 
 ## Analyze the data
@@ -117,7 +118,7 @@ Here is how your script will be evaluated. Try this yourself to guess your score
   - 0.1: `happiness/*.png`
   - 0.1: `media/README.md`
   - 0.1: `media/*.png`
-- 2 marks: If `uv run autolysis.py dataset.csv` runs without errors
+- 2 marks: If `uv run autolysis.py dataset.csv` runs without errors using the instructor's `AIPROXY_TOKEN` environment variable
   - 0.5: If `uv run autolysis.py goodreads.csv` runs without errors and creates `README.md` and `*.png`
   - 0.5: If `uv run autolysis.py happiness.csv` runs without errors and creates `README.md` and `*.png`
   - 0.5: If `uv run autolysis.py media.csv` runs without errors and creates `README.md` and `*.png`
@@ -172,9 +173,11 @@ We'll evaluate the commit at the time of the deadline. You can commit after that
 
 [`uv`](https://docs.astral.sh/uv/) is a fast Python package manager that's becoming the standard for running Python scripts.
 
-[Install uv](https://docs.astral.sh/uv/getting-started/installation/). Then run `uv run autolysis.py dataset.csv` instead of `python autolysis.py dataset.csv`. This automatically installs Python and your dependencies.
+[Install uv](https://docs.astral.sh/uv/getting-started/installation/). Set the `AIPROXY_TOKEN` environment variable.
+Then run `uv run autolysis.py dataset.csv` instead of `python autolysis.py dataset.csv`. This automatically installs Python and your dependencies and runs the script.
 
-It automatically installs dependencies mentioned as [inline script metadata](https://packaging.python.org/en/latest/specifications/inline-script-metadata/#inline-script-metadata). Make sure all dependencies are mentioned at the top of your script. For example:
+Dependencies are declared using [inline script metadata](https://packaging.python.org/en/latest/specifications/inline-script-metadata/#inline-script-metadata).
+Make sure all dependencies are mentioned at the top of your script. For example:
 
 ```python
 # /// script
