@@ -16,3 +16,4 @@ Course material:
 - [7. Data visualization](7-data-visualization.md)
 - [8. Data storytelling](8-data-storytelling.md)
 - [9. Deployment](9-deployment.md)
+- [Project 2 - Automated Analysis](project-2-automated-analysis.yaml)
