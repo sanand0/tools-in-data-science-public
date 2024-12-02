@@ -1,7 +1,5 @@
 # Project 2 - Automated Analysis
 
-**THIS IS A DRAFT. ANYTHING CAN CHANGE.**
-
 Your task is to:
 
 1. Write a Python script that uses an LLM to analyze, visualize, and narrate a story from a dataset.
@@ -157,7 +155,7 @@ The LLM will review your `README.md` and `*.png` files on these criteria:
 
 ### Bonus marks (12 marks)
 
-- 8 marks: **Code diversity**. You're welcome to copy code and learn from each other. But we encourage diversity too. We will use code embedding similarity (via `text-embedding-3-small`, dropping comments and docstrings) and give up to 5 bonus marks for most unique responses. (That is, if your response is similar to a lot of others, you lose these marks.)
+- 8 marks: **Code diversity**. You're welcome to copy code and learn from each other. But we encourage diversity too. We will use code embedding similarity (via `text-embedding-3-small`, dropping comments and docstrings) and give bonus marks for most unique responses. (That is, if your response is similar to a lot of others, you lose these marks.)
 - 4 marks: **Engaging and interesting**. We'll read your output. If it tugs at our hearts or blows our minds, we'll give bonus marks to a few lucky students.
 
 **Prompt injection is fine**. LLMs can be coerced via prompt injection. You're welcome to try it. We'll try hard with our prompts to reduce this possibility. But if you succeed, you deserve your marks.
