@@ -9,7 +9,7 @@ To evaluate your own submission on the Windows Command Prompt:
 ```bat
 set AIPROXY_TOKEN=...
 set SUBMISSION=https://raw.githubusercontent.com/[YOUR-ID]/[YOUR-PROJECT]/main/autolysis.py
-set EVALUATOR=https://raw.githubusercontent.com/sanand0/tools-in-data-science-public/tds-2024-t3-project2-wip/project2/evaluate.py
+set EVALUATOR=https://raw.githubusercontent.com/sanand0/tools-in-data-science-public/tds-2024-t3/project2/evaluate.py
 uv run "%EVALUATOR%" "%SUBMISSION%"
 ```
 
@@ -18,7 +18,7 @@ To evaluate your own submission on Linux/MacOS:
 ```bash
 export AIPROXY_TOKEN="..."
 export SUBMISSION="https://raw.githubusercontent.com/[YOUR-ID]/[YOUR-PROJECT]/main/autolysis.py"
-export EVALUATOR="https://raw.githubusercontent.com/sanand0/tools-in-data-science-public/tds-2024-t3-project2-wip/project2/evaluate.py"
+export EVALUATOR="https://raw.githubusercontent.com/sanand0/tools-in-data-science-public/tds-2024-t3/project2/evaluate.py"
 uv run "$EVALUATOR" "$SUBMISSION"
 ```
 
@@ -42,6 +42,7 @@ docker run --name tds-sep-2024-project-2 -v .:/project2 -it ubuntu:24.04
 
 ```bash
 docker start tds-sep-2024-project-2 && docker attach tds-sep-2024-project-2
+# OR docker exec -it tds-sep-2024-project-2 /bin/bash
 ```
 
 In the container, run:

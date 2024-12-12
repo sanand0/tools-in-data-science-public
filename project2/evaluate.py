@@ -1,16 +1,18 @@
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [
-#     "python-dotenv",
+#     "chardet",
 #     "httpx",
 #     "pandas",
 #     "platformdirs",
+#     "python-dotenv",
 #     "rich",
 # ]
 # ///
 
 import argparse
 import base64
+import chardet
 import dotenv
 import glob
 import httpx
@@ -95,8 +97,7 @@ def clone_latest_branch(id: str, head: HEAD, deadline: datetime, evals: list[Eva
 
     # Clean up the repo if it exists to avoid problems with forced pushes.
     if os.path.exists(repo_path):
-        # If RUN_CLONE is not set, skip cloning
-        if os.getenv("RUN_CLONE") != "Y":
+        if os.getenv("SKIP_CLONE") == "Y":
             return evals.append(Eval(0.5, 0.5, "public_repo", "exists"))
         shutil.rmtree(repo_path)
 
@@ -131,7 +132,7 @@ def has_mit_license(id: str, evals: list[Eval]) -> bool:
     if not os.path.exists(license_file):
         return evals.append(Eval(0.0, 0.5, "mit_license", "missing"))
     with open(license_file) as f:
-        marks = 1.0 if "permission is hereby granted, free of charge" in f.read().lower() else 0.0
+        marks = 0.5 if "permission is hereby granted, free of charge" in f.read().lower() else 0.0
         return evals.append(Eval(marks, 0.5, "mit_license", "present" if marks else "incorrect"))
 
 
@@ -152,13 +153,16 @@ def has_required_files(id: str, evals: list[Eval]):
 
 
 def run_on_dataset(id: str, dataset: str, evals: list[Eval]):
-    if os.getenv("RUN_ON_DATASET") != "Y":
+    if os.getenv("SKIP_RUN") == "Y":
         return
 
     msg = f"[blue]{id}[/blue] [yellow]uv run autolysis[/yellow] {dataset}"
     cwd = os.path.join(root, id, "eval", dataset)
     os.makedirs(cwd, exist_ok=True)
     script = os.path.join(root, id, "autolysis.py")
+    if not os.path.exists(script):
+        evals.append(Eval(0.0, 0.5, f"uv run autolysis {dataset}", "missing"))
+        return False
     cmd = ["uv", "run", script, os.path.join(root, "datasets", dataset)]
     log(msg)
     result = run(cmd, check=False, capture_output=True, text=True, cwd=cwd)
@@ -236,12 +240,17 @@ code_quality_schema = {"name": "quality", "strict": True, "schema": get_schema(c
 
 
 def evaluate_code_quality(id: str, evals: list[Eval]):
-    if os.getenv("RUN_CODE_QUALITY") != "Y":
+    if os.getenv("SKIP_CODE_QUALITY") == "Y":
         return
 
     # Read the code
-    with open(os.path.join(root, id, "autolysis.py")) as f:
-        code = f.read()
+    script = os.path.join(root, id, "autolysis.py")
+    if not os.path.exists(script):
+        return
+    with open(script, "rb") as f:
+        raw = f.read()
+        encoding = chardet.detect(raw)["encoding"]
+        code = raw.decode(encoding)
 
     # Evaluate the code quality
     log(f"[blue]{id}[/blue] [yellow]CODE QUALITY[/yellow]")
@@ -292,7 +301,7 @@ output_quality_schema = {"name": "quality", "strict": True, "schema": get_schema
 
 
 def evaluate_output_quality(id: str, path: str, evals: list[Eval]):
-    if os.getenv("RUN_OUTPUT_QUALITY") != "Y":
+    if os.getenv("SKIP_OUTPUT_QUALITY") == "Y":
         return
 
     # Take the first README.md in the submission
@@ -405,7 +414,9 @@ if __name__ == "__main__":
             continue
 
     if len(results):
-        results = pd.concat(results)
-        results["correct"] = results.apply(lambda row: row.marks == row.total, axis=1).astype(int)
-        results.to_csv(os.path.join(root, "results.csv"), index=False)
-        print(results)
+        df = pd.concat(results)
+        print(df)
+
+        df["correct"] = df.apply(lambda row: row.marks == row.total, axis=1).astype(int)
+        df["reason"] = df.apply(lambda row: row.reason.replace("\n", " "), axis=1)
+        df.to_csv(os.path.join(root, "results.csv"), index=False)
