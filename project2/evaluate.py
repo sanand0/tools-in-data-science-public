@@ -1,7 +1,6 @@
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [
-#     "chardet",
 #     "httpx",
 #     "pandas",
 #     "platformdirs",
@@ -12,7 +11,6 @@
 
 import argparse
 import base64
-import chardet
 import dotenv
 import glob
 import httpx
@@ -63,6 +61,16 @@ def log(msg: str, last=False):
     """Log a message to the console."""
     console.print(" " * 200, end="\r")
     console.print(msg, **({} if last else {"end": "\r"}))
+
+
+def open_encoded(path: str):
+    """Open a file with fallback encodings."""
+    for encoding in ("utf-8", "utf-16", "utf-32", "Windows-1252"):
+        try:
+            with open(path, "r", encoding=encoding) as f:
+                return f.read()
+        except UnicodeDecodeError:
+            continue
 
 
 def download_datasets():
@@ -131,9 +139,9 @@ def has_mit_license(id: str, evals: list[Eval]) -> bool:
     license_file = os.path.join(root, id, "LICENSE")
     if not os.path.exists(license_file):
         return evals.append(Eval(0.0, 0.5, "mit_license", "missing"))
-    with open(license_file) as f:
-        marks = 0.5 if "permission is hereby granted, free of charge" in f.read().lower() else 0.0
-        return evals.append(Eval(marks, 0.5, "mit_license", "present" if marks else "incorrect"))
+    license = open_encoded(license_file)
+    marks = 0.5 if "permission is hereby granted, free of charge" in license.lower() else 0.0
+    return evals.append(Eval(marks, 0.5, "mit_license", "present" if marks else "incorrect"))
 
 
 def has_required_files(id: str, evals: list[Eval]):
@@ -243,18 +251,15 @@ def evaluate_code_quality(id: str, evals: list[Eval]):
     if os.getenv("SKIP_CODE_QUALITY") == "Y":
         return
 
-    # Read the code
+    # Read the code with fallback encodings
     script = os.path.join(root, id, "autolysis.py")
     if not os.path.exists(script):
         return
-    with open(script, "rb") as f:
-        raw = f.read()
-        encoding = chardet.detect(raw)["encoding"]
-        code = raw.decode(encoding)
+    code = open_encoded(script)
 
     # Evaluate the code quality
     log(f"[blue]{id}[/blue] [yellow]CODE QUALITY[/yellow]")
-    result = httpx.post(
+    response = httpx.post(
         f"{openai_api_base}/chat/completions",
         headers=headers,
         json={
@@ -265,9 +270,14 @@ def evaluate_code_quality(id: str, evals: list[Eval]):
             ],
             "response_format": {"type": "json_schema", "json_schema": code_quality_schema},
         },
-        timeout=60,
+        timeout=180,
     )
-    answers = json.loads(result.json()["choices"][0]["message"]["content"])
+    result = response.json()
+    content = result.get("choices", [{}])[0].get("message", {}).get("content", "")
+    if not content:
+        log(f"[blue]{id}[/blue] [red]FAIL[/red] {result}", last=True)
+        return
+    answers = json.loads(content)
     for attribute in code_quality:
         total = 1.0 / code_quality_group_counts[attribute.group]
         ans = answers[attribute.name]
@@ -280,8 +290,8 @@ output_system = """
 You are an expert data analyst. You are analyzing a student analysis of a dataset.
 Evaluate the quality of this analysis. Respond as JSON.
 For each output quality attribute:
-- FIRST explain your reasoning, citing the analysis to provide evidence for and against the attribute.
-- THEN answer as a boolean. Use your judgement critically using your reasoning. Prefer false if unsure.
+- FIRST, reason for and against the attribute, with verbatim citations as evidence.
+- THEN answer as a boolean. Use your judgement critically using the listed reasons. Prefer false if unsure.
 """
 
 # The criteria are mentioned in the project description
@@ -309,8 +319,7 @@ def evaluate_output_quality(id: str, path: str, evals: list[Eval]):
     if len(readme_file) == 0:
         evals.append(Eval(0.0, 1.0, f"{path}/README.md", "missing"))
         return
-    with open(readme_file[0]) as f:
-        readme = f.read()
+    readme = open_encoded(readme_file[0])
 
     # Take the first 5 images in the submission
     image_files = glob.glob(os.path.join(root, id, path, "**", "*.png"), recursive=True)[:5]
@@ -327,7 +336,7 @@ def evaluate_output_quality(id: str, path: str, evals: list[Eval]):
 
     # Evaluate the output quality
     log(f"[blue]{id}[/blue] [yellow]OUTPUT QUALITY[/yellow] {path}")
-    result = httpx.post(
+    response = httpx.post(
         f"{openai_api_base}/chat/completions",
         headers=headers,
         json={
@@ -338,9 +347,14 @@ def evaluate_output_quality(id: str, path: str, evals: list[Eval]):
             ],
             "response_format": {"type": "json_schema", "json_schema": output_quality_schema},
         },
-        timeout=60,
+        timeout=180,
     )
-    answers = json.loads(result.json()["choices"][0]["message"]["content"])
+    result = response.json()
+    content = result.get("choices", [{}])[0].get("message", {}).get("content", "")
+    if not content:
+        log(f"[blue]{id}[/blue] [red]FAIL[/red] {result}", last=True)
+        return
+    answers = json.loads(content)
     for attribute in output_quality:
         total = 1.0 / output_quality_group_counts[attribute.group]
         ans = answers[attribute.name]
@@ -397,12 +411,16 @@ if __name__ == "__main__":
             all_ran = 0.5 if len([x for x in success if x]) == len(sample_datasets) else 0.0
             evals.append(Eval(all_ran, 0.5, "uv run autolysis *", "ran" if all_ran else "failed"))
 
-            # Evaluate a random submission.
+            # Evaluate a random submission
             random.seed(row.id + os.getenv("AIPROXY_TOKEN", ""), version=2)
-            dirs = sample_datasets.keys()
-            dirs = [d for d in dirs if os.path.isdir(os.path.join(root, row.id, "eval", d))]
+            dirs = [os.path.join("eval", d) for d in sample_datasets.keys()]
+            dirs = [d for d in dirs if os.path.isdir(os.path.join(root, row.id, d))]
+            # If we're skipping runs, it's OK to evaluate the committed output
+            if len(dirs) == 0 and os.getenv("SKIP_RUN") == "Y":
+                dirs = [os.path.splitext(d)[0] for d in sample_datasets.keys()]
+                dirs = [d for d in dirs if os.path.isdir(os.path.join(root, row.id, d))]
             if len(dirs):
-                evaluate_output_quality(row.id, os.path.join("eval", random.choice(dirs)), evals)
+                evaluate_output_quality(row.id, random.choice(dirs), evals)
 
             result = pd.DataFrame(evals)
             result["id"] = row.id
@@ -413,10 +431,14 @@ if __name__ == "__main__":
             log(f"[blue]{row.id}[/blue] [red]FAIL[/red] {e}", last=True)
             continue
 
-    if len(results):
-        df = pd.concat(results)
-        print(df)
+        if len(results):
+            df = pd.concat(results)
 
-        df["correct"] = df.apply(lambda row: row.marks == row.total, axis=1).astype(int)
-        df["reason"] = df.apply(lambda row: row.reason.replace("\n", " "), axis=1)
-        df.to_csv(os.path.join(root, "results.csv"), index=False)
+            # Print the results if there's only one submission
+            if len(submissions) == 1:
+                print(df)
+
+            # Save the results to a CSV file on each iteration
+            df["correct"] = df.apply(lambda row: row.marks == row.total, axis=1).astype(int)
+            df["reason"] = df.apply(lambda row: row.reason.replace("\n", " "), axis=1)
+            df.to_csv(os.path.join(root, "results.csv"), index=False)
