@@ -65,12 +65,13 @@ def log(msg: str, last=False):
 
 def open_encoded(path: str):
     """Open a file with fallback encodings."""
-    for encoding in ("utf-8", "utf-16", "utf-32", "Windows-1252"):
+    for encoding in ("utf-8", "utf-16", "utf-32", "cp1252"):
         try:
             with open(path, "r", encoding=encoding) as f:
                 return f.read()
         except UnicodeDecodeError:
             continue
+    raise ValueError(f"{path}: Unknown encoding")
 
 
 def download_datasets():
@@ -173,7 +174,7 @@ def run_on_dataset(id: str, dataset: str, evals: list[Eval]):
         return False
     cmd = ["uv", "run", script, os.path.join(root, "datasets", dataset)]
     log(msg)
-    result = run(cmd, check=False, capture_output=True, text=True, cwd=cwd)
+    result = run(cmd, check=False, capture_output=True, text=True, cwd=cwd, timeout=120)
     if result.returncode != 0:
         evals.append(Eval(0.0, 0.5, f"uv run autolysis {dataset}", result.stderr))
         log(f"{msg} [red]FAIL[/red]: {result.stderr}", last=True)
@@ -290,7 +291,7 @@ output_system = """
 You are an expert data analyst. You are analyzing a student analysis of a dataset.
 Evaluate the quality of this analysis. Respond as JSON.
 For each output quality attribute:
-- FIRST, reason for and against the attribute, with verbatim citations as evidence.
+- FIRST, list reasons for and against the attribute, with verbatim citations as evidence.
 - THEN answer as a boolean. Use your judgement critically using the listed reasons. Prefer false if unsure.
 """
 
@@ -387,6 +388,10 @@ if __name__ == "__main__":
 
     submissions["id"] = submissions[submissions.columns[1]].str.split("@").str[0]
     submissions["head"] = submissions[submissions.columns[2]].apply(parse_github_url)
+
+    # Pick a random sample of submissions to evaluate
+    if os.getenv("SAMPLE_SUBMISSIONS"):
+        submissions = submissions.sample(int(os.getenv("SAMPLE_SUBMISSIONS")))
 
     # Now, evalute each submission
     results = []
