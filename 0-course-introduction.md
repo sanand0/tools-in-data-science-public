@@ -8,9 +8,6 @@
 
 ## Instructors
 
-- [Dibu John Philip](https://www.linkedin.com/in/dibujphilip/) (PhD - IIT Madras).
-  [dibujohn@study.iitm.ac.in](mailto:dibujohn@study.iitm.ac.in) |
-  [@dibujohn](https://discourse.onlinedegree.iitm.ac.in/u/dibujohn)
 - [Prasanna S](https://www.linkedin.com/in/prasanna-sugumaran-ab980222/) (B.Tech - Anna University).
   [prasanna@study.iitm.ac.in](mailto:prasanna@study.iitm.ac.in) |
   [@iamprasna](https://discourse.onlinedegree.iitm.ac.in/u/iamprasna)
@@ -127,8 +124,8 @@ Use [Graded assignment 0](https://tools-in-data-science.pages.dev/ga0) to check 
 - [TDS: Course page - Sep 2024](https://seek.onlinedegree.iitm.ac.in/courses/ns_24t3_se2002) -- for students to access course content.
 - [TDS: Course calendar - Sep 2024](https://calendar.google.com/calendar/u/0/r?cid=Y19ib2Y3bnMxbDduNm84azA1dHA4YTlxNWIwZ0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t)
 - [TDS: Announcement group - Sep 2024](https://groups.google.com/a/study.iitm.ac.in/g/24t3_se2002-announce)
-- [TDS: Discourse](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34)
 - [TDS: Course material](https://drive.google.com/drive/folders/1FE0YPAxcxMzZdjnp3FopuJCI3A2Vq6fC?usp=drive_link) -- Jupyter notebooks, datasets, etc.
+- [TDS: TA Sessions - Sep 2024](https://www.youtube.com/playlist?list=PL_h5u1jMeBCk44hqKaJ7g_8D9mJQmTyC3) -- YouTube playlist
 
 <!--
 
