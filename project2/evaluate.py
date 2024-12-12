@@ -55,6 +55,8 @@ sample_datasets = {
     "happiness.csv": "15nasMs0VKVB4Tm7-2EKYNpDzPdkiRW1q",
     "media.csv": "10LcR2p6SjD3pWASVp5M4k94zjMZD6x5W",
 }
+# Test datasets from a secret environment variable
+test_datasets = json.loads(os.getenv("DATASETS", "{}"))
 
 
 def log(msg: str, last=False):
@@ -69,7 +71,7 @@ def open_encoded(path: str):
         try:
             with open(path, "r", encoding=encoding) as f:
                 return f.read()
-        except UnicodeDecodeError:
+        except Exception:
             continue
     raise ValueError(f"{path}: Unknown encoding")
 
@@ -78,7 +80,7 @@ def download_datasets():
     """Download the datasets from Google Drive."""
     datasets_dir = os.path.join(root, "datasets")
     os.makedirs(datasets_dir, exist_ok=True)
-    for name, id in sample_datasets.items():
+    for name, id in (*sample_datasets.items(), *test_datasets.items()):
         target = os.path.join(datasets_dir, name)
         if not os.path.exists(target) or os.path.getsize(target) == 0:
             url = f"https://drive.usercontent.google.com/download?id={id}"
@@ -162,9 +164,6 @@ def has_required_files(id: str, evals: list[Eval]):
 
 
 def run_on_dataset(id: str, dataset: str, evals: list[Eval]):
-    if os.getenv("SKIP_RUN") == "Y":
-        return
-
     msg = f"[blue]{id}[/blue] [yellow]uv run autolysis[/yellow] {dataset}"
     cwd = os.path.join(root, id, "eval", dataset)
     os.makedirs(cwd, exist_ok=True)
@@ -179,9 +178,13 @@ def run_on_dataset(id: str, dataset: str, evals: list[Eval]):
         evals.append(Eval(0.0, 0.5, f"uv run autolysis {dataset}", result.stderr))
         log(f"{msg} [red]FAIL[/red]: {result.stderr}", last=True)
         return False
-    else:
-        evals.append(Eval(0.5, 0.5, f"uv run autolysis {dataset}", "ran"))
-        return True
+    for pattern in ["README.md", "*.png"]:
+        target = os.path.join(cwd, pattern)
+        if not os.path.isfile(target):
+            evals.append(Eval(0.0, 0.5, f"uv run autolysis {dataset}", f"missing {target}"))
+            return False
+    evals.append(Eval(0.5, 0.5, f"uv run autolysis {dataset}", "ran"))
+    return True
 
 
 def convert_to_qual(text: str) -> list[Qual]:
@@ -391,7 +394,9 @@ if __name__ == "__main__":
 
     # Pick a random sample of submissions to evaluate
     if os.getenv("SAMPLE_SUBMISSIONS"):
-        submissions = submissions.sample(int(os.getenv("SAMPLE_SUBMISSIONS")))
+        size = int(os.getenv("SAMPLE_SUBMISSIONS"))
+        if size < len(submissions):
+            submissions = submissions.sample(size)
 
     # Now, evalute each submission
     results = []
@@ -407,21 +412,33 @@ if __name__ == "__main__":
 
             # Submission: Run evaluation for each sample dataset
             success = []
-            for dataset in sample_datasets:
-                try:
-                    success.append(run_on_dataset(row.id, dataset, evals))
-                except Exception as e:
-                    log(f"[blue]{row.id}[/blue] [red]FAIL[/red] {e}", last=True)
-                    continue
-            all_ran = 0.5 if len([x for x in success if x]) == len(sample_datasets) else 0.0
-            evals.append(Eval(all_ran, 0.5, "uv run autolysis *", "ran" if all_ran else "failed"))
+            if os.getenv("SKIP_SAMPLE_DATASETS") != "Y":
+                for dataset in sample_datasets:
+                    try:
+                        success.append(run_on_dataset(row.id, dataset, evals))
+                    except Exception as e:
+                        log(f"[blue]{row.id}[/blue] [red]FAIL[/red] {e}", last=True)
+                        continue
+                all_ran = 0.5 if len([x for x in success if x]) == len(sample_datasets) else 0.0
+                msg = "ran" if all_ran else "did not run all"
+                evals.append(Eval(all_ran, 0.5, "uv run autolysis *", msg))
+
+            # Evaluate test datasets
+            if os.getenv("SKIP_TEST_DATASETS") != "Y":
+                for name, id in test_datasets.items():
+                    try:
+                        run_on_dataset(row.id, name, evals)
+                    except Exception as e:
+                        log(f"[blue]{row.id}[/blue] [red]FAIL[/red] {e}", last=True)
+                        continue
+                    evaluate_output_quality(row.id, name, evals)
 
             # Evaluate a random submission
             random.seed(row.id + os.getenv("AIPROXY_TOKEN", ""), version=2)
             dirs = [os.path.join("eval", d) for d in sample_datasets.keys()]
             dirs = [d for d in dirs if os.path.isdir(os.path.join(root, row.id, d))]
-            # If we're skipping runs, it's OK to evaluate the committed output
-            if len(dirs) == 0 and os.getenv("SKIP_RUN") == "Y":
+            # If we're skipping sample datasets, evaluate the output committed in the repo
+            if len(dirs) == 0 and os.getenv("SKIP_SAMPLE_DATASETS") == "Y":
                 dirs = [os.path.splitext(d)[0] for d in sample_datasets.keys()]
                 dirs = [d for d in dirs if os.path.isdir(os.path.join(root, row.id, d))]
             if len(dirs):
