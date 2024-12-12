@@ -1,6 +1,6 @@
 # Project 2 - Automated Analysis
 
-This project is due on **12 Dec 2024 EoD AoE**. Results will be announced by **22 Dec 2024**.
+This project is due on **<del>12</del> <ins>15</ins> Dec 2024 EoD AoE**. Results will be announced by **22 Dec 2024**.
 
 Your task is to:
 
