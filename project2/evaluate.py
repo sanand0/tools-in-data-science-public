@@ -89,40 +89,50 @@ def parse_github_url(raw_url: str) -> HEAD:
         return HEAD(parts[3], parts[4], parts[5])
 
 
-def clone_latest_branch(id: str, head: HEAD, deadline: datetime):
+def clone_latest_branch(id: str, head: HEAD, deadline: datetime, evals: list[Eval]):
     """Ensure the latest commit on the branch is before the deadline."""
     repo_path = os.path.join(root, id)
 
     # Clean up the repo if it exists to avoid problems with forced pushes.
     if os.path.exists(repo_path):
+        # If RUN_CLONE is not set, skip cloning
+        if os.getenv("RUN_CLONE") != "Y":
+            return evals.append(Eval(0.5, 0.5, "public_repo", "exists"))
         shutil.rmtree(repo_path)
 
     # Clone the repo
-    repo_url = f"https://github.com/{head.owner}/{head.repo}.git"
-    cmd = ["git", "clone", "-q", "--single-branch", "-b", head.branch, repo_url, repo_path]
-    log(f"[blue]{id}[/blue] [yellow]CLONE[/yellow] {repo_url}")
-    env = {**os.environ, "GIT_TERMINAL_PROMPT": "0"}
-    run(cmd, check=True, capture_output=True, text=True, env=env)
+    try:
+        repo_url = f"https://github.com/{head.owner}/{head.repo}.git"
+        cmd = ["git", "clone", "-q", "--single-branch", "-b", head.branch, repo_url, repo_path]
+        log(f"[blue]{id}[/blue] [yellow]CLONE[/yellow] {repo_url}")
+        env = {**os.environ, "GIT_TERMINAL_PROMPT": "0"}
+        run(cmd, check=True, capture_output=True, text=True, env=env)
 
-    # Get the latest commit before the deadline
-    log_cmd = ["git", "-C", repo_path, "log", "-q", head.branch]
-    log_cmd.extend(["--before", deadline.isoformat(), "--format=%H", "-n", "1", "--"])
-    log(f"[blue]{id}[/blue] [yellow]LOG[/yellow] {repo_url}")
-    commit = run(log_cmd, stdout=PIPE, text=True, check=True).stdout.strip()
+        # Get the latest commit before the deadline
+        log_cmd = ["git", "-C", repo_path, "log", "-q", head.branch]
+        log_cmd.extend(["--before", deadline.isoformat(), "--format=%H", "-n", "1", "--"])
+        log(f"[blue]{id}[/blue] [yellow]LOG[/yellow] {repo_url}")
+        commit = run(log_cmd, stdout=PIPE, text=True, check=True).stdout.strip()
 
-    # Checkout the commit
-    if commit:
-        log(f"[blue]{id}[/blue] [yellow]CHECKOUT[/yellow] {commit}")
-        run(["git", "-C", repo_path, "checkout", "--quiet", commit], check=True)
-    else:
-        raise ValueError(f"No commits on branch {head.branch} before {deadline}")
+        # Checkout the commit
+        if commit:
+            log(f"[blue]{id}[/blue] [yellow]CHECKOUT[/yellow] {commit}")
+            run(["git", "-C", repo_path, "checkout", "--quiet", commit], check=True)
+        else:
+            raise ValueError(f"No commits on branch {head.branch} before {deadline}")
+        evals.append(Eval(0.5, 0.5, "public_repo", "exists"))
+    except Exception as e:
+        evals.append(Eval(0.0, 0.5, "public_repo", str(e)))
 
 
 def has_mit_license(id: str, evals: list[Eval]) -> bool:
     """Check if root/{id}/LICENSE is an MIT license."""
-    with open(os.path.join(root, id, "LICENSE")) as f:
+    license_file = os.path.join(root, id, "LICENSE")
+    if not os.path.exists(license_file):
+        return evals.append(Eval(0.0, 0.5, "mit_license", "missing"))
+    with open(license_file) as f:
         marks = 1.0 if "permission is hereby granted, free of charge" in f.read().lower() else 0.0
-        evals.append(Eval(marks, 1.0, "mit_license", "present" if marks else "missing"))
+        return evals.append(Eval(marks, 0.5, "mit_license", "present" if marks else "incorrect"))
 
 
 def has_required_files(id: str, evals: list[Eval]):
@@ -142,6 +152,9 @@ def has_required_files(id: str, evals: list[Eval]):
 
 
 def run_on_dataset(id: str, dataset: str, evals: list[Eval]):
+    if os.getenv("RUN_ON_DATASET") != "Y":
+        return
+
     msg = f"[blue]{id}[/blue] [yellow]uv run autolysis[/yellow] {dataset}"
     cwd = os.path.join(root, id, "eval", dataset)
     os.makedirs(cwd, exist_ok=True)
@@ -223,6 +236,9 @@ code_quality_schema = {"name": "quality", "strict": True, "schema": get_schema(c
 
 
 def evaluate_code_quality(id: str, evals: list[Eval]):
+    if os.getenv("RUN_CODE_QUALITY") != "Y":
+        return
+
     # Read the code
     with open(os.path.join(root, id, "autolysis.py")) as f:
         code = f.read()
@@ -276,6 +292,9 @@ output_quality_schema = {"name": "quality", "strict": True, "schema": get_schema
 
 
 def evaluate_output_quality(id: str, path: str, evals: list[Eval]):
+    if os.getenv("RUN_OUTPUT_QUALITY") != "Y":
+        return
+
     # Take the first README.md in the submission
     readme_file = glob.glob(os.path.join(root, id, path, "**", "README.md"), recursive=True)
     if len(readme_file) == 0:
@@ -351,7 +370,7 @@ if __name__ == "__main__":
     for _, row in submissions.iterrows():
         evals = []
         try:
-            clone_latest_branch(row.id, row["head"], deadline)
+            clone_latest_branch(row.id, row["head"], deadline, evals)
             has_mit_license(row.id, evals)
             has_required_files(row.id, evals)
 
@@ -366,7 +385,7 @@ if __name__ == "__main__":
                 except Exception as e:
                     log(f"[blue]{row.id}[/blue] [red]FAIL[/red] {e}", last=True)
                     continue
-            all_ran = 0.5 if len(success) == len(sample_datasets) else 0.0
+            all_ran = 0.5 if len([x for x in success if x]) == len(sample_datasets) else 0.0
             evals.append(Eval(all_ran, 0.5, "uv run autolysis *", "ran" if all_ran else "failed"))
 
             # Evaluate a random submission.
@@ -387,5 +406,6 @@ if __name__ == "__main__":
 
     if len(results):
         results = pd.concat(results)
+        results["correct"] = results.apply(lambda row: row.marks == row.total, axis=1).astype(int)
         results.to_csv(os.path.join(root, "results.csv"), index=False)
         print(results)
