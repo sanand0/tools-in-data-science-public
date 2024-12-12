@@ -1,5 +1,6 @@
 #Apologies in advance, but I think this is the quickest way to reach the team. I need more tokens.
 Im in a pinch pls do help 
+email : 23f3003601@ds.study.iitm.ac.in
 
 # Project 2 - Automated Analysis
 
