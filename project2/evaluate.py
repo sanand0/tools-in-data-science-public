@@ -20,6 +20,7 @@ import pandas as pd
 import random
 import shutil
 import sys
+import time
 from datetime import datetime, timedelta, timezone
 from collections import namedtuple, Counter
 from platformdirs import user_data_dir
@@ -163,31 +164,28 @@ def has_required_files(id: str, evals: list[Eval]):
         evals.append(Eval(marks, total, pattern, "present" if marks else "missing"))
 
 
-def run_on_dataset(id: str, dataset: str, evals: list[Eval]):
+def run_on_dataset(id: str, dataset: str, evals: list[Eval], total: float):
     msg = f"[blue]{id}[/blue] [yellow]uv run autolysis[/yellow] {dataset}"
     cwd = os.path.join(root, id, "eval", dataset)
     os.makedirs(cwd, exist_ok=True)
     script = os.path.join(root, id, "autolysis.py")
     if not os.path.exists(script):
-        evals.append(Eval(0.0, 0.5, f"uv run autolysis {dataset}", "missing"))
+        evals.append(Eval(0.0, total, f"uv run autolysis {dataset}", "missing"))
         return False
     cmd = ["uv", "run", script, os.path.join(root, "datasets", dataset)]
-    readme_file, image_files = get_output_files(id, os.path.join("eval", dataset))
-    if not readme_file or os.getenv("SKIP_RERUN") != "Y":
+    readme_file, image_files, error = get_output_files(id, os.path.join("eval", dataset))
+    if not error or os.getenv("SKIP_RERUN") != "Y":
         log(msg)
         result = run(cmd, check=False, capture_output=True, text=True, cwd=cwd, timeout=120)
         if result.returncode != 0:
-            evals.append(Eval(0.0, 0.5, f"uv run autolysis {dataset}", result.stderr))
+            evals.append(Eval(0.0, total, f"uv run autolysis {dataset}", result.stderr))
             log(f"{msg} [red]FAIL[/red]: {result.stderr}", last=True)
             return False
-    readme_file, image_files = get_output_files(id, os.path.join("eval", dataset))
-    if not readme_file:
-        evals.append(Eval(0.0, 0.5, f"uv run autolysis {dataset}", f"no README.md in {cwd}"))
+    readme_file, image_files, error = get_output_files(id, os.path.join("eval", dataset))
+    if error:
+        evals.append(Eval(0.0, total, f"uv run autolysis {dataset}", error))
         return False
-    if not len(image_files):
-        evals.append(Eval(0.0, 0.5, f"uv run autolysis {dataset}", f"no images in {cwd}"))
-        return False
-    evals.append(Eval(0.5, 0.5, f"uv run autolysis {dataset}", "ran"))
+    evals.append(Eval(total, total, f"uv run autolysis {dataset}", "ran"))
     return True
 
 
@@ -318,23 +316,25 @@ output_quality_group_counts = Counter(attribute.group for attribute in output_qu
 output_quality_schema = {"name": "quality", "strict": True, "schema": get_schema(output_quality)}
 
 
-def get_output_files(id: str, path: str) -> tuple[str, list[str]]:
+def get_output_files(id: str, path: str) -> tuple[str, list[str], str]:
     """Get the output files from the submission."""
-    readme_pattern = os.path.join(root, id, path, "**", "README.md")
-    readme_files = glob.glob(readme_pattern, recursive=True)
-    image_pattern = os.path.join(root, id, path, "**", "*.png")
+    target = os.path.join(root, id, path)
+    readme_pattern = os.path.join(target, "**", "README.md")
+    readme_files = glob.glob(readme_pattern, recursive=True) or [""]
+    image_pattern = os.path.join(target, "**", "*.png")
     image_files = glob.glob(image_pattern, recursive=True)[:5]
-    return "" if len(readme_files) == 0 else readme_files[0], image_files
+    error = ""
+    if not readme_files[0]:
+        error = f"no README.md in {target}"
+    elif not image_files:
+        error = f"no *.png in {target}"
+    return readme_files[0], image_files, error
 
 
 def evaluate_output_quality(id: str, path: str, evals: list[Eval]):
-    if os.getenv("SKIP_OUTPUT_QUALITY") == "Y":
-        return
-
-    readme_file, image_files = get_output_files(id, os.path.join("eval", path))
-
-    if not readme_file:
-        evals.append(Eval(0.0, 1.0, f"{path}/README.md", f"missing README.md in {id}/eval/{path}"))
+    readme_file, image_files, error = get_output_files(id, os.path.join("eval", path))
+    if error:
+        evals.append(Eval(0.0, 1.0, f"{path}/README.md", error))
         return
     readme = open_encoded(readme_file)
 
@@ -410,11 +410,20 @@ if __name__ == "__main__":
         if size < len(submissions):
             submissions = submissions.sample(size)
 
-    # Now, evalute each submission
+    # If we're continuing from where we left off, read the results
     results = []
+    if os.getenv("CONTINUE") == "Y":
+        results = [pd.read_csv(os.path.join(root, "results.csv"))]
+        ids = results[0].id.unique()
+        # Skip submissions that we've already evaluated
+        submissions = submissions[~submissions.id.isin(ids)]
+        log(f"[green]Skipped[/green] {len(ids)} submissions", last=True)
+
+    # Now, evalute each submission
     for _, row in submissions.iterrows():
         evals = []
         try:
+            start = time.time()
             clone_latest_branch(row.id, row["head"], deadline, evals)
             has_mit_license(row.id, evals)
             has_required_files(row.id, evals)
@@ -423,56 +432,59 @@ if __name__ == "__main__":
             evaluate_code_quality(row.id, evals)
 
             # Submission: Run evaluation for each sample dataset
-            success = []
-            if os.getenv("SKIP_SAMPLE_DATASETS") != "Y":
+            success = {}
+            if os.getenv("SKIP_SAMPLE_DATASETS_RUN") != "Y":
                 for dataset in sample_datasets:
                     try:
-                        success.append(run_on_dataset(row.id, dataset, evals))
+                        success[dataset] = run_on_dataset(row.id, dataset, evals, 0.5)
                     except Exception as e:
+                        success[dataset] = False
                         log(f"[blue]{row.id}[/blue] [red]FAIL[/red] {e}", last=True)
                         continue
-                all_ran = 0.5 if len([x for x in success if x]) == len(sample_datasets) else 0.0
+                all_ran = 0.5 if all(success.values()) else 0.0
                 msg = "ran" if all_ran else "did not run all"
                 evals.append(Eval(all_ran, 0.5, "uv run autolysis *", msg))
 
+            # Evaluate one random output from successful runs of sample datasets
+            samples_ran = []
+            for dataset in sample_datasets:
+                if not get_output_files(row.id, os.path.join("eval", dataset))[2]:
+                    samples_ran.append(dataset)
+            if len(samples_ran) and os.getenv("SKIP_SAMPLE_DATASETS_EVAL") != "Y":
+                random.seed(row.id + os.getenv("AIPROXY_TOKEN", ""), version=2)
+                evaluate_output_quality(row.id, random.choice(samples_ran), evals)
+
             # Evaluate test datasets
             if os.getenv("SKIP_TEST_DATASETS") != "Y":
-                for name, id in test_datasets.items():
+                for dataset, id in test_datasets.items():
                     try:
-                        run_on_dataset(row.id, name, evals)
+                        run_on_dataset(row.id, dataset, evals, 0.0)
                     except Exception as e:
                         log(f"[blue]{row.id}[/blue] [red]FAIL[/red] {e}", last=True)
                         continue
-                    evaluate_output_quality(row.id, name, evals)
-
-            # Evaluate a random submission
-            random.seed(row.id + os.getenv("AIPROXY_TOKEN", ""), version=2)
-            dirs = [os.path.join("eval", d) for d in sample_datasets.keys()]
-            dirs = [d for d in dirs if os.path.isdir(os.path.join(root, row.id, d))]
-            # If we're skipping sample datasets, evaluate the output committed in the repo
-            if len(dirs) == 0 and os.getenv("SKIP_SAMPLE_DATASETS") == "Y":
-                dirs = [os.path.splitext(d)[0] for d in sample_datasets.keys()]
-                dirs = [d for d in dirs if os.path.isdir(os.path.join(root, row.id, d))]
-            if len(dirs):
-                evaluate_output_quality(row.id, random.choice(dirs), evals)
+                    evaluate_output_quality(row.id, dataset, evals)
 
             result = pd.DataFrame(evals)
             result["id"] = row.id
             results.append(result)
             score, total = round(result.marks.sum(), 2), round(result.total.sum(), 2)
-            log(f"[blue]{row.id}[/blue] [green]SCORE[/green] {score} / {total}", last=True)
+            duration = time.time() - start
+            msg = f"[blue]{row.id}[/blue] [yellow]{duration:.0f}s[/yellow]"
+            log(f"{msg} [green]SCORE[/green] {score} / {total}", last=True)
         except Exception as e:
-            log(f"[blue]{row.id}[/blue] [red]FAIL[/red] {e}", last=True)
+            log(f"{msg} [red]FAIL[/red] {e}", last=True)
             continue
 
         if len(results):
-            df = pd.concat(results)
+            result = pd.concat(results)
 
             # Print the results if there's only one submission
             if len(submissions) == 1:
-                print(df)
+                print(result)
 
             # Save the results to a CSV file on each iteration
-            df["correct"] = df.apply(lambda row: row.marks == row.total, axis=1).astype(int)
-            df["reason"] = df.apply(lambda row: row.reason.replace("\n", " "), axis=1)
-            df.to_csv(os.path.join(root, "results.csv"), index=False)
+            result["correct"] = result.apply(lambda row: row.marks == row.total, axis=1).astype(
+                int
+            )
+            result["reason"] = result.apply(lambda row: row.reason.replace("\n", " "), axis=1)
+            result.to_csv(os.path.join(root, "results.csv"), index=False)
