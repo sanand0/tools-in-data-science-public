@@ -37,6 +37,7 @@ root = user_data_dir("tds-sep-24-project-2", "tds")
 HEAD = namedtuple("HEAD", ["owner", "repo", "branch"])
 Eval = namedtuple("Eval", ["marks", "total", "test", "reason"])
 Qual = namedtuple("Qual", ["group", "name", "description"])
+OutputFiles = namedtuple("OutputFiles", ["readme", "images", "error"])
 
 # Faculty evaluation of code and output will use LLM Foundry. Student evaluation will use AIProxy.
 dotenv.load_dotenv()
@@ -173,15 +174,15 @@ def run_on_dataset(id: str, dataset: str, evals: list[Eval], total: float):
         evals.append(Eval(0.0, total, f"uv run autolysis {dataset}", "missing"))
         return False
     cmd = ["uv", "run", script, os.path.join(root, "datasets", dataset)]
-    readme_file, image_files, error = get_output_files(id, os.path.join("eval", dataset))
-    if not error or os.getenv("SKIP_RERUN") != "Y":
+    error = get_output_files(id, os.path.join("eval", dataset)).error
+    if error or os.getenv("SKIP_RERUN") != "Y":
         log(msg)
         result = run(cmd, check=False, capture_output=True, text=True, cwd=cwd, timeout=120)
         if result.returncode != 0:
             evals.append(Eval(0.0, total, f"uv run autolysis {dataset}", result.stderr))
             log(f"{msg} [red]FAIL[/red]: {result.stderr}", last=True)
             return False
-    readme_file, image_files, error = get_output_files(id, os.path.join("eval", dataset))
+    error = get_output_files(id, os.path.join("eval", dataset)).error
     if error:
         evals.append(Eval(0.0, total, f"uv run autolysis {dataset}", error))
         return False
@@ -316,7 +317,7 @@ output_quality_group_counts = Counter(attribute.group for attribute in output_qu
 output_quality_schema = {"name": "quality", "strict": True, "schema": get_schema(output_quality)}
 
 
-def get_output_files(id: str, path: str) -> tuple[str, list[str], str]:
+def get_output_files(id: str, path: str) -> OutputFiles:
     """Get the output files from the submission."""
     target = os.path.join(root, id, path)
     readme_pattern = os.path.join(target, "**", "README.md")
@@ -328,7 +329,7 @@ def get_output_files(id: str, path: str) -> tuple[str, list[str], str]:
         error = f"no README.md in {target}"
     elif not image_files:
         error = f"no *.png in {target}"
-    return readme_files[0], image_files, error
+    return OutputFiles(readme_files[0], image_files, error)
 
 
 def evaluate_output_quality(id: str, path: str, evals: list[Eval]):
@@ -383,16 +384,24 @@ if __name__ == "__main__":
     parser.add_argument("url", nargs="*", help="GitHub raw URL for submission(s)")
     args = parser.parse_args()
 
-    # If a URL is passed, get submission from that
+    if os.getenv("SUBMISSION_URL"):
+        submissions_form = pd.read_csv(os.environ["SUBMISSION_URL"])
+
+    # If URLs or student IDs are passed, get submissions from that
     if len(args.url):
         submissions = []
         for url in args.url:
-            head = parse_github_url(url)
-            submissions.append([None, f"{head.owner}-{head.repo}", url])
+            if url.startswith("https://"):
+                head = parse_github_url(url)
+                submissions.append([None, f"{head.owner}-{head.repo}", url])
+            else:
+                email_col = submissions_form.columns[1]
+                match = submissions_form[submissions_form[email_col].str.contains(url)].iloc[0]
+                submissions.append(match.to_list()[:3])
         submissions = pd.DataFrame(submissions)
     # Else, the faculty will get all submissions from the Google Sheet and evaluate
     elif os.getenv("SUBMISSION_URL"):
-        submissions = pd.read_csv(os.environ["SUBMISSION_URL"])
+        submissions = submissions_form
     # Else, raise an error
     else:
         error = "[red]Missing URL[/red]: Usage `uv run project2.py https://raw.githubusercontent.com/...`"
@@ -416,8 +425,9 @@ if __name__ == "__main__":
         results = [pd.read_csv(os.path.join(root, "results.csv"))]
         ids = results[0].id.unique()
         # Skip submissions that we've already evaluated
-        submissions = submissions[~submissions.id.isin(ids)]
-        log(f"[green]Skipped[/green] {len(ids)} submissions", last=True)
+        matches = submissions.id.isin(ids)
+        submissions = submissions[~matches]
+        log(f"[green]Skipped[/green] {sum(matches)} submissions", last=True)
 
     # Now, evalute each submission
     for _, row in submissions.iterrows():
@@ -448,7 +458,7 @@ if __name__ == "__main__":
             # Evaluate one random output from successful runs of sample datasets
             samples_ran = []
             for dataset in sample_datasets:
-                if not get_output_files(row.id, os.path.join("eval", dataset))[2]:
+                if not get_output_files(row.id, os.path.join("eval", dataset)).error:
                     samples_ran.append(dataset)
             if len(samples_ran) and os.getenv("SKIP_SAMPLE_DATASETS_EVAL") != "Y":
                 random.seed(row.id + os.getenv("AIPROXY_TOKEN", ""), version=2)
