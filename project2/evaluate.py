@@ -172,17 +172,21 @@ def run_on_dataset(id: str, dataset: str, evals: list[Eval]):
         evals.append(Eval(0.0, 0.5, f"uv run autolysis {dataset}", "missing"))
         return False
     cmd = ["uv", "run", script, os.path.join(root, "datasets", dataset)]
-    log(msg)
-    result = run(cmd, check=False, capture_output=True, text=True, cwd=cwd, timeout=120)
-    if result.returncode != 0:
-        evals.append(Eval(0.0, 0.5, f"uv run autolysis {dataset}", result.stderr))
-        log(f"{msg} [red]FAIL[/red]: {result.stderr}", last=True)
-        return False
-    for pattern in ["README.md", "*.png"]:
-        target = os.path.join(cwd, pattern)
-        if not os.path.isfile(target):
-            evals.append(Eval(0.0, 0.5, f"uv run autolysis {dataset}", f"missing {target}"))
+    readme_file, image_files = get_output_files(id, os.path.join("eval", dataset))
+    if not readme_file or os.getenv("SKIP_RERUN") != "Y":
+        log(msg)
+        result = run(cmd, check=False, capture_output=True, text=True, cwd=cwd, timeout=120)
+        if result.returncode != 0:
+            evals.append(Eval(0.0, 0.5, f"uv run autolysis {dataset}", result.stderr))
+            log(f"{msg} [red]FAIL[/red]: {result.stderr}", last=True)
             return False
+    readme_file, image_files = get_output_files(id, os.path.join("eval", dataset))
+    if not readme_file:
+        evals.append(Eval(0.0, 0.5, f"uv run autolysis {dataset}", f"no README.md in {cwd}"))
+        return False
+    if not len(image_files):
+        evals.append(Eval(0.0, 0.5, f"uv run autolysis {dataset}", f"no images in {cwd}"))
+        return False
     evals.append(Eval(0.5, 0.5, f"uv run autolysis {dataset}", "ran"))
     return True
 
@@ -314,19 +318,27 @@ output_quality_group_counts = Counter(attribute.group for attribute in output_qu
 output_quality_schema = {"name": "quality", "strict": True, "schema": get_schema(output_quality)}
 
 
+def get_output_files(id: str, path: str) -> tuple[str, list[str]]:
+    """Get the output files from the submission."""
+    readme_pattern = os.path.join(root, id, path, "**", "README.md")
+    readme_files = glob.glob(readme_pattern, recursive=True)
+    image_pattern = os.path.join(root, id, path, "**", "*.png")
+    image_files = glob.glob(image_pattern, recursive=True)[:5]
+    return "" if len(readme_files) == 0 else readme_files[0], image_files
+
+
 def evaluate_output_quality(id: str, path: str, evals: list[Eval]):
     if os.getenv("SKIP_OUTPUT_QUALITY") == "Y":
         return
 
-    # Take the first README.md in the submission
-    readme_file = glob.glob(os.path.join(root, id, path, "**", "README.md"), recursive=True)
-    if len(readme_file) == 0:
-        evals.append(Eval(0.0, 1.0, f"{path}/README.md", "missing"))
+    readme_file, image_files = get_output_files(id, os.path.join("eval", path))
+
+    if not readme_file:
+        evals.append(Eval(0.0, 1.0, f"{path}/README.md", f"missing README.md in {id}/eval/{path}"))
         return
-    readme = open_encoded(readme_file[0])
+    readme = open_encoded(readme_file)
 
     # Take the first 5 images in the submission
-    image_files = glob.glob(os.path.join(root, id, path, "**", "*.png"), recursive=True)[:5]
     images = []
     for image_file in image_files:
         with open(image_file, "rb") as f:

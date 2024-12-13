@@ -22,6 +22,11 @@ export EVALUATOR="https://raw.githubusercontent.com/sanand0/tools-in-data-scienc
 uv run "$EVALUATOR" "$SUBMISSION"
 ```
 
+The results will be stored in:
+
+- Linux/Mac: `~/.local/share/tds-sep-24-project-2/results.csv`
+- Windows: `%LOCALAPPDATA%\tds\tds-sep-24-project-2\results.csv`
+
 ## Faculty usage
 
 Create a `.env` in this folder with:
