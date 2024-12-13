@@ -58,3 +58,9 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 source $HOME/.local/bin/env
 uv run /project2/evaluate.py
 ```
+
+Time taken to run without caching:
+
+- It takes ~20s to analyze a failed submission, where `uv run autolysis.py` fails immediately.
+- It takes ~150 - 300s for a successful submission
+- Partially successful submissions take something in-between

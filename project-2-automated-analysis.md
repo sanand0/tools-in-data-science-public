@@ -169,6 +169,39 @@ The LLM will review your `README.md` and `*.png` files on these criteria:
 
 We'll evaluate the commit at the time of the deadline. You can commit after that, but we'll only grade the last commit before the deadline.
 
+## FAQ
+
+- **When is Project 2 due?** Before 15 Dec 2024, EOD, AOE = Mon 16 Dec 2024,3:30 pm IST
+- **Where do I submit?** [https://forms.gle/r2sNJvGicxrhE9mYA](https://forms.gle/r2sNJvGicxrhE9mYA)
+- **Can I use my own OpenAI API key?** Yes
+- **Where should I store the AI Proxy token?** In the `AI_PROXY` environment variable. Don't commit it.
+- **What if I ran out of the $2 credit on my token?** We've increased it to $5 for everyone. You will not get more. Borrow from friends if required.
+- **How do I check how much credit I have used so far?** Every AI Proxy response has a `monthlyCost` field. Keep that below 5.0.
+- **Won't passing images to OpenAI cost too much?** Use [`"detail": "low"`](https://platform.openai.com/docs/guides/vision?lang=curl) to reduce it.
+- **What files should I commit to my GitHub repo?**
+  - `autolysis.py`
+  - `goodreads/README.md`
+  - `goodreads/*.png`
+  - `happiness/README.md`
+  - `happiness/*.png`
+  - `media/README.md`
+  - `media/*.png`
+- **How should I run my autolysis.py?** `uv run autolysis.py /path/to/input.csv`
+- **Where should I save the README.md and PNG files?** In the current working directory.
+- **How can I check my submission?** Use the [Project 2 Evaluation Script](https://github.com/sanand0/tools-in-data-science-public/tree/tds-2024-t3/project2).
+- **Where are the evaluation results stored**?
+  - Linux: `~/.local/share/tds-sep-24-project-2/results.csv`
+  - Mac: `~/Library/Application Support/tds-sep-24-project-2/results.csv`
+  - Windows: `%LOCALAPPDATA%\tds\tds-sep-24-project-2\results.csv`
+- **LLMs are error prone. Should my code retry on failure?** Yes. E.g. use a library like [tenacity](https://pypi.org/project/tenacity/).
+- **Will you evaluate the code multiple times and take an average?** No. Just once.
+- **How long can my code run?** Max 120 seconds.
+- **Which datasets will you evaluate?** The project mentions "_one_ of the datasets you submitted". We'll run `uv run autolysis.py` on either goodreads.csv, happiness.csv, or media.csv, randomly, and evaluate it. We will also evaluate it on 2 secret datasets.
+- **I get a `CLONE FAILED ... returned non-zero exit status 128.`?** Your GitHub repo URL is wrong or your repo is private.
+- **I get a `No module named ...`**. Read the [uv reading material](https://github.com/sanand0/tools-in-data-science-public/blob/tds-2024-t3-project2-wip/project-2-automated-analysis.md#uv)
+- **I get a HTTP 429 error.** OpenAI is tired. Retry.
+- **I get a different score each evaluation**. LLMs give different results each time. Make your code and prompts more robust.
+
 ## Reading material
 
 ### uv
