@@ -177,10 +177,15 @@ def run_on_dataset(id: str, dataset: str, evals: list[Eval], total: float):
     error = get_output_files(id, os.path.join("eval", dataset)).error
     if error or os.getenv("SKIP_RERUN") != "Y":
         log(msg)
-        result = run(cmd, check=False, capture_output=True, text=True, cwd=cwd, timeout=120)
-        if result.returncode != 0:
-            evals.append(Eval(0.0, total, f"uv run autolysis {dataset}", result.stderr))
-            log(f"{msg} [red]FAIL[/red]: {result.stderr}", last=True)
+        stderr = ""
+        try:
+            result = run(cmd, check=False, capture_output=True, text=True, cwd=cwd, timeout=180)
+        except Exception as e:
+            stderr = str(e)
+        if stderr or result.returncode != 0:
+            err_msg = stderr or result.stderr
+            evals.append(Eval(0.0, total, f"uv run autolysis {dataset}", err_msg))
+            log(f"{msg} [red]FAIL[/red]: {err_msg}", last=True)
             return False
     error = get_output_files(id, os.path.join("eval", dataset)).error
     if error:
@@ -282,7 +287,7 @@ def evaluate_code_quality(id: str, evals: list[Eval]):
     result = response.json()
     content = result.get("choices", [{}])[0].get("message", {}).get("content", "")
     if not content:
-        log(f"[blue]{id}[/blue] [red]FAIL[/red] {result}", last=True)
+        log(f"[blue]{id}[/blue] [red]OpenAI error[/red] {result}", last=True)
         return
     answers = json.loads(content)
     for attribute in code_quality:
@@ -335,7 +340,7 @@ def get_output_files(id: str, path: str) -> OutputFiles:
 def evaluate_output_quality(id: str, path: str, evals: list[Eval]):
     readme_file, image_files, error = get_output_files(id, os.path.join("eval", path))
     if error:
-        evals.append(Eval(0.0, 1.0, f"{path}/README.md", error))
+        evals.append(Eval(0.0, 0.0, f"output: {path}", error))
         return
     readme = open_encoded(readme_file)
 
@@ -369,7 +374,7 @@ def evaluate_output_quality(id: str, path: str, evals: list[Eval]):
     result = response.json()
     content = result.get("choices", [{}])[0].get("message", {}).get("content", "")
     if not content:
-        log(f"[blue]{id}[/blue] [red]FAIL[/red] {result}", last=True)
+        log(f"[blue]{id}[/blue] [red]OpenAI error[/red] {result}", last=True)
         return
     answers = json.loads(content)
     for attribute in output_quality:
@@ -388,6 +393,7 @@ if __name__ == "__main__":
         submissions_form = pd.read_csv(os.environ["SUBMISSION_URL"])
 
     # If URLs or student IDs are passed, get submissions from that
+    requested_ids = set()
     if len(args.url):
         submissions = []
         for url in args.url:
@@ -399,6 +405,7 @@ if __name__ == "__main__":
                 match = submissions_form[submissions_form[email_col].str.contains(url)].iloc[0]
                 submissions.append(match.to_list()[:3])
         submissions = pd.DataFrame(submissions)
+        requested_ids = set(submissions[submissions.columns[1]].str.split("@").str[0])
     # Else, the faculty will get all submissions from the Google Sheet and evaluate
     elif os.getenv("SUBMISSION_URL"):
         submissions = submissions_form
@@ -407,8 +414,6 @@ if __name__ == "__main__":
         error = "[red]Missing URL[/red]: Usage `uv run project2.py https://raw.githubusercontent.com/...`"
         log(error, last=True)
         sys.exit(1)
-
-    download_datasets()
 
     submissions["id"] = submissions[submissions.columns[1]].str.split("@").str[0]
     submissions["head"] = submissions[submissions.columns[2]].apply(parse_github_url)
@@ -422,18 +427,25 @@ if __name__ == "__main__":
     # If we're continuing from where we left off, read the results
     results = []
     if os.getenv("CONTINUE") == "Y":
-        results = [pd.read_csv(os.path.join(root, "results.csv"))]
+        result = pd.read_csv(os.path.join(root, "results.csv"))
+        # Remove results for explicitly requested submissions
+        results = [result[~result.id.isin(requested_ids)]]
         ids = results[0].id.unique()
         # Skip submissions that we've already evaluated
-        matches = submissions.id.isin(ids)
-        submissions = submissions[~matches]
-        log(f"[green]Skipped[/green] {sum(matches)} submissions", last=True)
+        skip = submissions.id.isin(ids)
+        submissions = submissions[~skip]
+        log(f"[green]Skipped[/green] {sum(skip)} submissions", last=True)
 
     # Now, evalute each submission
     for _, row in submissions.iterrows():
         evals = []
         try:
             start = time.time()
+
+            # Make sure other submmissions haven't overwritten the dataset
+            download_datasets()
+
+            # Clone the repo and check for the MIT license and required files
             clone_latest_branch(row.id, row["head"], deadline, evals)
             has_mit_license(row.id, evals)
             has_required_files(row.id, evals)
@@ -443,14 +455,11 @@ if __name__ == "__main__":
 
             # Submission: Run evaluation for each sample dataset
             success = {}
-            if os.getenv("SKIP_SAMPLE_DATASETS_RUN") != "Y":
-                for dataset in sample_datasets:
-                    try:
-                        success[dataset] = run_on_dataset(row.id, dataset, evals, 0.5)
-                    except Exception as e:
-                        success[dataset] = False
-                        log(f"[blue]{row.id}[/blue] [red]FAIL[/red] {e}", last=True)
-                        continue
+            datasets = list(sample_datasets.keys())
+            datasets = datasets[:int(os.getenv("LIMIT_SAMPLE_DATASETS_RUN", len(sample_datasets)))]
+            if len(datasets):
+                for dataset in datasets:
+                    success[dataset] = run_on_dataset(row.id, dataset, evals, 0.5)
                 all_ran = 0.5 if all(success.values()) else 0.0
                 msg = "ran" if all_ran else "did not run all"
                 evals.append(Eval(all_ran, 0.5, "uv run autolysis *", msg))
@@ -467,11 +476,7 @@ if __name__ == "__main__":
             # Evaluate test datasets
             if os.getenv("SKIP_TEST_DATASETS") != "Y":
                 for dataset, id in test_datasets.items():
-                    try:
-                        run_on_dataset(row.id, dataset, evals, 0.0)
-                    except Exception as e:
-                        log(f"[blue]{row.id}[/blue] [red]FAIL[/red] {e}", last=True)
-                        continue
+                    run_on_dataset(row.id, dataset, evals, 0.0)
                     evaluate_output_quality(row.id, dataset, evals)
 
             result = pd.DataFrame(evals)
@@ -482,19 +487,18 @@ if __name__ == "__main__":
             msg = f"[blue]{row.id}[/blue] [yellow]{duration:.0f}s[/yellow]"
             log(f"{msg} [green]SCORE[/green] {score} / {total}", last=True)
         except Exception as e:
-            log(f"{msg} [red]FAIL[/red] {e}", last=True)
+            log(f"{msg} [red]UNEXPECTED FAILURE[/red] {e}", last=True)
             continue
 
         if len(results):
-            result = pd.concat(results)
-
-            # Print the results if there's only one submission
-            if len(submissions) == 1:
-                print(result)
+            # Print only the last result if there's only one submission (plus history)
+            if len(results) <= 2:
+                print(pd.DataFrame(results[-1]))
 
             # Save the results to a CSV file on each iteration
-            result["correct"] = result.apply(lambda row: row.marks == row.total, axis=1).astype(
-                int
-            )
-            result["reason"] = result.apply(lambda row: row.reason.replace("\n", " "), axis=1)
-            result.to_csv(os.path.join(root, "results.csv"), index=False)
+            out = pd.concat(results)
+            out["correct"] = out.apply(lambda row: row.marks == row.total, axis=1).astype(int)
+            out["reason"] = out.apply(lambda row: row.reason.replace("\n", " "), axis=1)
+            out.to_csv(os.path.join(root, "results.csv"), index=False)
+
+    log(f"[green]Results[/green]: {os.path.join(root, 'results.csv')}", last=True)
