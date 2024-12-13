@@ -27,10 +27,10 @@ from platformdirs import user_data_dir
 from rich.console import Console
 from subprocess import run, PIPE
 
-# Deadline for repo is 12 Dec 2024 EOD AOE. If you're hacking dates, remember:
+# Deadline for repo is 15 Dec 2024 EOD AOE. If you're hacking dates, remember:
 # 1. Change your commit time to before the deadline
 # 2. We'll clone at some unknown time after this deadline. Time it before that.
-deadline = datetime(2024, 12, 12, 23, 59, 59, tzinfo=timezone(timedelta(hours=-12)))
+deadline = datetime(2024, 12, 15, 23, 59, 59, tzinfo=timezone(timedelta(hours=-12)))
 
 console = Console()
 root = user_data_dir("tds-sep-24-project-2", "tds")
