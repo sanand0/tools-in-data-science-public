@@ -25,7 +25,7 @@ from datetime import datetime, timedelta, timezone
 from collections import namedtuple, Counter
 from platformdirs import user_data_dir
 from rich.console import Console
-from subprocess import run, PIPE
+from subprocess import run, PIPE, CompletedProcess
 
 # Deadline for repo is 15 Dec 2024 EOD AOE. If you're hacking dates, remember:
 # 1. Change your commit time to before the deadline
@@ -34,6 +34,9 @@ deadline = datetime(2024, 12, 15, 23, 59, 59, tzinfo=timezone(timedelta(hours=-1
 
 console = Console()
 root = user_data_dir("tds-sep-24-project-2", "tds")
+os.makedirs(os.path.join(root, "logs"), exist_ok=True)
+os.makedirs(os.path.join(root, "eval"), exist_ok=True)
+
 HEAD = namedtuple("HEAD", ["owner", "repo", "branch"])
 Eval = namedtuple("Eval", ["marks", "total", "test", "reason"])
 Qual = namedtuple("Qual", ["group", "name", "description"])
@@ -65,6 +68,14 @@ def log(msg: str, last=False):
     """Log a message to the console."""
     console.print(" " * 200, end="\r")
     console.print(msg, **({} if last else {"end": "\r"}))
+
+
+def log_result(id: str, cmd: str, result: CompletedProcess):
+    """Log the result of a command."""
+    with open(os.path.join(root, "logs", f"{id}.log"), "a") as f:
+        f.write(f"{cmd}\n\n")
+        f.write(result.stdout + "\n\n" + result.stderr + "\n\n")
+        f.write("-" * 72 + "\n\n")
 
 
 def open_encoded(path: str):
@@ -115,28 +126,30 @@ def clone_latest_branch(id: str, head: HEAD, deadline: datetime, evals: list[Eva
         shutil.rmtree(repo_path)
 
     # Clone the repo
-    try:
-        repo_url = f"https://github.com/{head.owner}/{head.repo}.git"
-        cmd = ["git", "clone", "-q", "--single-branch", "-b", head.branch, repo_url, repo_path]
-        log(f"[blue]{id}[/blue] [yellow]CLONE[/yellow] {repo_url}")
-        env = {**os.environ, "GIT_TERMINAL_PROMPT": "0"}
-        run(cmd, check=True, capture_output=True, text=True, env=env)
+    repo_url = f"https://github.com/{head.owner}/{head.repo}.git"
+    cmd = ["git", "clone", "-q", "--single-branch", "-b", head.branch, repo_url, repo_path]
+    log(f"[blue]{id}[/blue] [yellow]CLONE[/yellow] {repo_url}")
+    env = {**os.environ, "GIT_TERMINAL_PROMPT": "0"}
+    result = run(cmd, capture_output=True, text=True, env=env)
+    log_result(id, cmd, result)
+    if result.returncode != 0:
+        evals.append(Eval(0.0, 0.5, "public_repo", str(result.stderr)))
+        return
 
-        # Get the latest commit before the deadline
-        log_cmd = ["git", "-C", repo_path, "log", "-q", head.branch]
-        log_cmd.extend(["--before", deadline.isoformat(), "--format=%H", "-n", "1", "--"])
-        log(f"[blue]{id}[/blue] [yellow]LOG[/yellow] {repo_url}")
-        commit = run(log_cmd, stdout=PIPE, text=True, check=True).stdout.strip()
+    # Get the latest commit before the deadline
+    log_cmd = ["git", "-C", repo_path, "log", "-q", head.branch]
+    log_cmd.extend(["--before", deadline.isoformat(), "--format=%H", "-n", "1", "--"])
+    log(f"[blue]{id}[/blue] [yellow]LOG[/yellow] {repo_url}")
+    commit = run(log_cmd, stdout=PIPE, text=True, check=True).stdout.strip()
 
-        # Checkout the commit
-        if commit:
-            log(f"[blue]{id}[/blue] [yellow]CHECKOUT[/yellow] {commit}")
-            run(["git", "-C", repo_path, "checkout", "--quiet", commit], check=True)
-        else:
-            raise ValueError(f"No commits on branch {head.branch} before {deadline}")
-        evals.append(Eval(0.5, 0.5, "public_repo", "exists"))
-    except Exception as e:
-        evals.append(Eval(0.0, 0.5, "public_repo", str(e)))
+    # Checkout the commit
+    if commit:
+        log(f"[blue]{id}[/blue] [yellow]CHECKOUT[/yellow] {commit}")
+        run(["git", "-C", repo_path, "checkout", "--quiet", commit], check=True)
+    else:
+        evals.append(Eval(0.0, 0.5, "public_repo", f"No commit on{head.branch} before {deadline}"))
+        return
+    evals.append(Eval(0.5, 0.5, "public_repo", "exists"))
 
 
 def has_mit_license(id: str, evals: list[Eval]) -> bool:
@@ -167,19 +180,20 @@ def has_required_files(id: str, evals: list[Eval]):
 
 def run_on_dataset(id: str, dataset: str, evals: list[Eval], total: float):
     msg = f"[blue]{id}[/blue] [yellow]uv run autolysis[/yellow] {dataset}"
-    cwd = os.path.join(root, id, "eval", dataset)
+    cwd = os.path.join(root, "eval", id, dataset)
     os.makedirs(cwd, exist_ok=True)
     script = os.path.join(root, id, "autolysis.py")
     if not os.path.exists(script):
-        evals.append(Eval(0.0, total, f"uv run autolysis {dataset}", "missing"))
+        evals.append(Eval(0.0, total, f"uv run autolysis {dataset}", "missing autolysis.py"))
         return False
     cmd = ["uv", "run", script, os.path.join(root, "datasets", dataset)]
-    error = get_output_files(id, os.path.join("eval", dataset)).error
+    error = get_output_files(id, dataset).error
     if error or os.getenv("SKIP_RERUN") != "Y":
         log(msg)
         stderr = ""
         try:
-            result = run(cmd, check=False, capture_output=True, text=True, cwd=cwd, timeout=180)
+            result = run(cmd, check=False, capture_output=True, text=True, cwd=cwd, timeout=120)
+            log_result(id, cmd, result)
         except Exception as e:
             stderr = str(e)
         if stderr or result.returncode != 0:
@@ -187,7 +201,7 @@ def run_on_dataset(id: str, dataset: str, evals: list[Eval], total: float):
             evals.append(Eval(0.0, total, f"uv run autolysis {dataset}", err_msg))
             log(f"{msg} [red]FAIL[/red]: {err_msg}", last=True)
             return False
-    error = get_output_files(id, os.path.join("eval", dataset)).error
+    error = get_output_files(id, dataset).error
     if error:
         evals.append(Eval(0.0, total, f"uv run autolysis {dataset}", error))
         return False
@@ -322,9 +336,9 @@ output_quality_group_counts = Counter(attribute.group for attribute in output_qu
 output_quality_schema = {"name": "quality", "strict": True, "schema": get_schema(output_quality)}
 
 
-def get_output_files(id: str, path: str) -> OutputFiles:
+def get_output_files(id: str, dataset: str) -> OutputFiles:
     """Get the output files from the submission."""
-    target = os.path.join(root, id, path)
+    target = os.path.join(root, "eval", id, dataset)
     readme_pattern = os.path.join(target, "**", "README.md")
     readme_files = glob.glob(readme_pattern, recursive=True) or [""]
     image_pattern = os.path.join(target, "**", "*.png")
@@ -337,10 +351,10 @@ def get_output_files(id: str, path: str) -> OutputFiles:
     return OutputFiles(readme_files[0], image_files, error)
 
 
-def evaluate_output_quality(id: str, path: str, evals: list[Eval]):
-    readme_file, image_files, error = get_output_files(id, os.path.join("eval", path))
+def evaluate_output_quality(id: str, dataset: str, evals: list[Eval]):
+    readme_file, image_files, error = get_output_files(id, dataset)
     if error:
-        evals.append(Eval(0.0, 0.0, f"output: {path}", error))
+        evals.append(Eval(0.0, 0.0, f"output: {dataset}", error))
         return
     readme = open_encoded(readme_file)
 
@@ -357,7 +371,7 @@ def evaluate_output_quality(id: str, path: str, evals: list[Eval]):
             )
 
     # Evaluate the output quality
-    log(f"[blue]{id}[/blue] [yellow]OUTPUT QUALITY[/yellow] {path}")
+    log(f"[blue]{id}[/blue] [yellow]OUTPUT QUALITY[/yellow] {dataset}")
     response = httpx.post(
         f"{openai_api_base}/chat/completions",
         headers=headers,
@@ -380,7 +394,7 @@ def evaluate_output_quality(id: str, path: str, evals: list[Eval]):
     for attribute in output_quality:
         total = 1.0 / output_quality_group_counts[attribute.group]
         ans = answers[attribute.name]
-        attr = f"{path}: {attribute.name}"
+        attr = f"{dataset}: {attribute.name}"
         evals.append(Eval(total if ans["answer"] else 0, total, attr, ans["reasoning"]))
 
 
@@ -389,6 +403,7 @@ if __name__ == "__main__":
     parser.add_argument("url", nargs="*", help="GitHub raw URL for submission(s)")
     args = parser.parse_args()
 
+    submissions_form = None
     if os.getenv("SUBMISSION_URL"):
         submissions_form = pd.read_csv(os.environ["SUBMISSION_URL"])
 
@@ -397,10 +412,12 @@ if __name__ == "__main__":
     if len(args.url):
         submissions = []
         for url in args.url:
+            # Parse the CLI as a GitHub URL
             if url.startswith("https://"):
                 head = parse_github_url(url)
                 submissions.append([None, f"{head.owner}-{head.repo}", url])
-            else:
+            # For faculty, parse the CLI as emails / IDs
+            elif submissions_form is not None:
                 email_col = submissions_form.columns[1]
                 match = submissions_form[submissions_form[email_col].str.contains(url)].iloc[0]
                 submissions.append(match.to_list()[:3])
@@ -409,6 +426,10 @@ if __name__ == "__main__":
     # Else, the faculty will get all submissions from the Google Sheet and evaluate
     elif os.getenv("SUBMISSION_URL"):
         submissions = submissions_form
+        iitm_ids = submissions[submissions.columns[1]].str.endswith(".iitm.ac.in")
+        if iitm_ids.sum() < len(submissions):
+            print("Skipping non-IITM IDs", submissions[~iitm_ids][submissions.columns[1]].tolist())
+        submissions = submissions[iitm_ids].copy()
     # Else, raise an error
     else:
         error = "[red]Missing URL[/red]: Usage `uv run project2.py https://raw.githubusercontent.com/...`"
@@ -424,10 +445,11 @@ if __name__ == "__main__":
         if size < len(submissions):
             submissions = submissions.sample(size)
 
-    # If we're continuing from where we left off, read the results
+    # Continue from where we left off. Read the results
     results = []
-    if os.getenv("CONTINUE") == "Y":
-        result = pd.read_csv(os.path.join(root, "results.csv"))
+    results_file = os.path.join(root, "results.csv")
+    if os.path.exists(results_file):
+        result = pd.read_csv(results_file)
         # Remove results for explicitly requested submissions
         results = [result[~result.id.isin(requested_ids)]]
         ids = results[0].id.unique()
@@ -456,7 +478,9 @@ if __name__ == "__main__":
             # Submission: Run evaluation for each sample dataset
             success = {}
             datasets = list(sample_datasets.keys())
-            datasets = datasets[:int(os.getenv("LIMIT_SAMPLE_DATASETS_RUN", len(sample_datasets)))]
+            datasets = datasets[
+                : int(os.getenv("LIMIT_SAMPLE_DATASETS_RUN", len(sample_datasets)))
+            ]
             if len(datasets):
                 for dataset in datasets:
                     success[dataset] = run_on_dataset(row.id, dataset, evals, 0.5)
@@ -467,7 +491,7 @@ if __name__ == "__main__":
             # Evaluate one random output from successful runs of sample datasets
             samples_ran = []
             for dataset in sample_datasets:
-                if not get_output_files(row.id, os.path.join("eval", dataset)).error:
+                if not get_output_files(row.id, dataset).error:
                     samples_ran.append(dataset)
             if len(samples_ran) and os.getenv("SKIP_SAMPLE_DATASETS_EVAL") != "Y":
                 random.seed(row.id + os.getenv("AIPROXY_TOKEN", ""), version=2)
@@ -491,14 +515,14 @@ if __name__ == "__main__":
             continue
 
         if len(results):
-            # Print only the last result if there's only one submission (plus history)
-            if len(results) <= 2:
+            # Print only the last result if there's only one submission
+            if len(submissions) == 1:
                 print(pd.DataFrame(results[-1]))
 
             # Save the results to a CSV file on each iteration
-            out = pd.concat(results)
+            out = pd.concat(results).fillna({"reason": ""})
             out["correct"] = out.apply(lambda row: row.marks == row.total, axis=1).astype(int)
             out["reason"] = out.apply(lambda row: row.reason.replace("\n", " "), axis=1)
-            out.to_csv(os.path.join(root, "results.csv"), index=False)
+            out.to_csv(results_file, index=False)
 
     log(f"[green]Results[/green]: {os.path.join(root, 'results.csv')}", last=True)
