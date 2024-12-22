@@ -2,6 +2,8 @@
 
 This is the evaluation code for [Project 2](../project-2-automated-analysis.md).
 
+Results are available at <https://github.com/sanand0/tds-2024-sep-project-2-results>.
+
 ## Usage
 
 To evaluate your own submission on the Windows Command Prompt:
