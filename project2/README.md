@@ -1,6 +1,6 @@
 # Project 2
 
-**WARNING**: This is **work-in-progress** evaluation code for [Project 2](../project-2-automated-analysis.md).
+This is the evaluation code for [Project 2](../project-2-automated-analysis.md).
 
 ## Usage
 
