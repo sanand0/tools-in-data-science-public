@@ -59,6 +59,7 @@ apt update && apt install -y curl git
 curl -LsSf https://astral.sh/uv/install.sh | sh
 source $HOME/.local/bin/env
 uv run /project2/evaluate.py
+uv run /project2/similarity.py
 ```
 
 Time taken to run without caching:
