@@ -102,11 +102,11 @@ def get_similarity(root, time, shingle_size):
             if dir_id == dir_other or time[dir_id] < time[dir_other]:
                 continue
             jaccard.append((dir_id, dir_other, minhashes[dir_id].jaccard(minhashes[dir_other])))
-    similarity = pd.DataFrame(jaccard, columns=["id", "other", "jaccard"])
-    top_similarity = (
-        similarity.groupby("id").apply(get_top_matches, include_groups=False).unstack()
+    pairwise = pd.DataFrame(jaccard, columns=["id", "other", "jaccard"])
+    similarity = (
+        pairwise.groupby("id").apply(get_top_matches, include_groups=False).unstack()
     )
-    return top_similarity
+    return pairwise, similarity
 
 
 if __name__ == "__main__":
@@ -115,5 +115,6 @@ if __name__ == "__main__":
     submissions["time"] = pd.to_datetime(submissions[submissions.columns[0]])
     time = submissions[["id", "time"]].set_index("id")["time"].to_dict()
 
-    similarity = get_similarity(root, time, shingle_size=5)
+    pairwise, similarity = get_similarity(root, time, shingle_size=5)
+    pairwise.to_csv(os.path.join(root, "pairwise.csv"), index=False)
     similarity.to_csv(os.path.join(root, "similarity.csv"))
