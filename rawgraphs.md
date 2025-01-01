@@ -1,6 +1,6 @@
 ## RAWgraphs
 
-[![RAWGraphs 1.0 - Introduction](https://i.ytimg.com/vi_webp/2TtYlty-M5g/sddefault.webp)](https://youtu.be/2TtYlty-M5g)
+[![RAWGraphs 1.0 - Introduction (1 min)](https://i.ytimg.com/vi_webp/2TtYlty-M5g/sddefault.webp)](https://youtu.be/2TtYlty-M5g)
 
 - [RAWgraphs](https://www.rawgraphs.io/)
 - [How to make Alluvial Diagram](https://youtu.be/6BYac2Pmnno)

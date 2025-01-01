@@ -32,10 +32,10 @@ Track the [commit history](https://github.com/sanand0/tools-in-data-science-publ
 Released content:
 
 1. **[Development Tools](development-tools.md)** and concepts to **build** models and apps.
+2. **[Deployment Tools](deployment-tools.md)** and concepts to **publish** what you built.
 
 Work in progress:
 
-2. **[Deployment Tools](deployment-tools.md)** and concepts to **publish** what you built.
 3. **[Large Language Models](large-language-models.md)** that make your work easier and your apps smarter.
 4. **[Data Sourcing](data-sourcing.md)** to get data from the web, files, and databases.
 5. **[Data Preparation](data-preparation.md)** to clean up and convert the inputs to the right format.

@@ -1,4 +1,4 @@
-## Notebooks: Marimo
+## Interactive Notebooks: Marimo
 
 [Marimo](https://marimo.app/) is a new take on notebooks that solves some headaches of Jupyter. It runs cells reactively - when you change one cell, all dependent cells update automatically, just like a spreadsheet.
 
