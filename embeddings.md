@@ -1,17 +1,87 @@
-## Embeddings
+## Embeddings: OpenAI and Local Models
 
-[MTEB](https://huggingface.co/spaces/mteb/leaderboard)
+Embedding models convert text into an array of numbers. If 2 arrays are close to each other, the text they represent mean something similar.
 
-```bash
-uv run --python 3.12 --with sentence_transformers python
-```
+This is useful because text similarity is important in many common problems:
+
+1. **Search**. Find similar documents to a query.
+2. **Classification**. Classify text into categories.
+3. **Clustering**. Group similar items into clusters.
+4. **Anomaly Detection**. Find an unusual piece of text.
+
+You can run embedding models locally or using an API. Local models are better for privacy and cost. APIs are better for scale and quality.
+
+The [Massive Text Embedding Benchmark (MTEB)](https://huggingface.co/spaces/mteb/leaderboard) provides comprehensive comparisons of embedding models. These models are compared on several parameters, but here are some key ones to look at:
+
+1. **Rank**. Higher ranked models have higher quality.
+2. **Memory Usage**. Lower is better. It costs less and is faster to run.
+3. **Embedding Dimensions**. Lower is better. This is the number of numbers in the array. Smaller dimensions are cheaper to store.
+4. **Max Tokens**. Higher is better. This is the number of tokens (words) the model take in a _single_ input.
+5. Task specific quality: Look for higher scores in Classification, CLustering, Summarization, etc. based on your needs.
+
+### Local Embeddings
+
+[![Guide to Local Embeddings with Sentence Transformers](https://i.ytimg.com/vi/OATCgQtNX2o/maxresdefault.jpg)](https://youtu.be/OATCgQtNX2o)
+
+Here's a minimal example using a local embedding model:
 
 ```python
-from sentence_transformers import SentenceTransformer
-from sentence_transformers.util import cos_sim
+# /// script
+# requires-python = "==3.12"
+# dependencies = [
+#   "sentence-transformers",
+#   "httpx",
+#   "numpy",
+# ]
+# ///
 
-model = SentenceTransformer('BAAI/bge-base-en-v1.5')
-sentences = ['This is a test sentence', 'This is another test sentence']
-embeddings = model.encode(sentences)
-print(cos_sim(embeddings[0], embeddings[1]))
+from sentence_transformers import SentenceTransformer
+import numpy as np
+
+model = SentenceTransformer('BAAI/bge-base-en-v1.5')  # A small, high quality model
+
+async def embed(text: str) -> list[float]:
+    """Get embedding vector for text using local model."""
+    return model.encode(text).tolist()
+
+async def get_similarity(text1: str, text2: str) -> float:
+    """Calculate cosine similarity between two texts."""
+    emb1 = np.array(await embed(text1))
+    emb2 = np.array(await embed(text2))
+    return float(np.dot(emb1, emb2) / (np.linalg.norm(emb1) * np.linalg.norm(emb2)))
+
+async def main():
+    print(await get_similarity("Apple", "Orange"))
+    print(await get_similarity("Apple", "Lightning"))
+
+
+if __name__ == "__main__":
+    import asyncio
+    asyncio.run(main())
 ```
+
+Note the `get_similarity` function. It uses a [Cosine Similarity](https://en.wikipedia.org/wiki/Cosine_similarity) to calculate the similarity between two embeddings.
+
+### OpenAI Embeddings
+
+For comparison, here's how to use OpenAI's API with direct HTTP calls. Replace the `embed` function in the earlier script:
+
+```python
+import os
+import httpx
+
+async def embed(text: str) -> list[float]:
+    """Get embedding vector for text using OpenAI's API."""
+    async with httpx.AsyncClient() as client:
+        response = await client.post(
+            "https://api.openai.com/v1/embeddings",
+            headers={"Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}"},
+            json={
+                "model": "text-embedding-3-small",
+                "input": text
+            }
+        )
+        return response.json()["data"][0]["embedding"]
+```
+
+**NOTE**: You need to set the `OPENAI_API_KEY` environment variable. See [Large Language Models](large-language-models.md) for API keys.
