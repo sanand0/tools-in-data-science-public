@@ -4,23 +4,76 @@
 popular tools for sourcing data, transforming it, analyzing it, communicating these as visual stories, and deploying them in production.
 
 <details>
-<summary><strong>What is the purpose of this course?</strong></summary>
+<summary><strong>This course exposes you to real-life tools</strong></summary>
 
 Courses teach you programming and data science. From statistics to algorithms to writing Python code to building models.
 
 But one critical subject that's rarely covered is: what tools should I pick and how do I become proficient in them?
 
-These tools won't sit on your CV. Instead, they make things easier in real life.
+These tools might not help your CV much. But they will make things easier in real life. For example, at school:
 
-- You'll learn from pristine datasets. But in the industry, you'll have to scrape them yourself.
+- You learn from pristine datasets. But in the industry, you'll have to scrape them yourself.
 - You learn how to train models. But soon, you'll just pick something from HuggingFace.
-- You write a log parser in a single day. Your boss will assemble something with `sed` and `grep` in minutes.
+- You learn to write a log parser over weeks. Instead, your boss writes a `sed` + `grep` script in minutes.
 
 [![](https://imgs.xkcd.com/comics/lisp.jpg) "We lost the documentation on quantum mechanics. You'll have to decode the regexes yourself."](https://explainxkcd.com/224/)
 
 In this course, we've curated the most important tools people use in data science.
 
 Learn them well. You'll be a **_lot_ more productive** than your peers.
+
+</details>
+
+<details>
+<summary><strong>This course is quite hard</strong></summary>
+
+Here's students' feedback:
+
+- It _used_ to be an easy course until 2024.
+  [#](https://discourse.onlinedegree.iitm.ac.in/t/difficulty-rating-for-diploma-subjects-based-on-students-opinion/61194)
+  [#](https://discourse.onlinedegree.iitm.ac.in/t/difficulty-rating-for-diploma-subjects-2-0-based-on-student-ratings-and-my-experience/85681)
+  [#](https://discourse.onlinedegree.iitm.ac.in/t/what-should-i-take-next/44291/6)
+- Now it's hard and covers more. Take it in your last semester if possible.
+  [#](https://discourse.onlinedegree.iitm.ac.in/t/diploma-course-feedback-t32024-and-course-selection-t12025-thread/160032/45)
+  [#](https://discourse.onlinedegree.iitm.ac.in/t/2024-t1-diploma-level-feedback-and-course-selection-for-may-2024-term/127856/60)
+  [#](https://discourse.onlinedegree.iitm.ac.in/t/2024-t2-diploma-level-feedback-and-course-selection-for-september-2024-term/144976/62?u=s.anand)
+- Plan extra time. It takes more time than typical 3-credit courses.
+  [#](https://discourse.onlinedegree.iitm.ac.in/t/concerns-regarding-unfair-grading-practices-for-tds-project-2/160611/11)
+  [#](https://discourse.onlinedegree.iitm.ac.in/t/diploma-level-course-combo-suggestion/158460/4)
+  [#](https://discourse.onlinedegree.iitm.ac.in/t/diploma-level-course-combo-suggestion/158460/7)
+- LLMs grade you -- unpredictably.
+  [#](https://discourse.onlinedegree.iitm.ac.in/t/concerns-regarding-unfair-grading-practices-for-tds-project-2/160611/10)
+  [#](https://discourse.onlinedegree.iitm.ac.in/t/wrong-marks-in-project-2/160355/9)
+- The ROE is hard.
+  [#](https://discourse.onlinedegree.iitm.ac.in/t/is-it-fair-to-consider-20-weightage-of-such-exam-which-is-impossible-to-solve-in-given-time-i-e-roe/141413/10)
+
+You need a _good_ understanding of Python, JavaScript, HTML, HTTP, Excel, and data science concepts.
+
+**[Take Graded assignment 1](https://exam.sanand.workers.dev/tds-2025-01-ga1) to check if you're ready for this course.** Please drop this course in a later term if you score low. It'll be too tough for you now.
+
+</details>
+
+<details>
+<summary><strong>Programming skills are a pre-requisite</strong></summary>
+
+**But isn't this a data science course?** Yes. Good data scientists are good programmers. Data scientists don't just analyze data or train models. They source data, clean it, transform it, visualize it, deploy it, and automate the whole process.
+
+In some organizations, some of this work is done by others (e.g. data engineers, IT teams, etc.). But wherever you are, _some_ of the time, you need to write code for all of this yourself.
+
+This course teaches you tools that will make you more productive. But you _do_ need programming to learn many of them.
+
+</details>
+
+<details>
+<summary><strong>We encourage learning by sharing</strong></summary>
+
+You _CAN_ copy from friends. You can work in groups. You can share code. Even in projects, assignments, and exams (except the final end-term exam).
+
+**Why should you copy?** Because in real life, there's no time to re-invent the wheel. You'll be working in teams on the shoulders of giants. It's important to learn how to do that well.
+
+**To learn well, understand** what you're copying. If you're short of time, prioritize.
+
+**To learn better, teach** what you've learnt.
 
 </details>
 
@@ -69,7 +122,7 @@ End term exam: Sunday, April 13, 2025, 9am-12pm, 2pm-5pm
 
 -->
 
-- **Graded Assignment 1 checks course pre-requisites**. Please drop this course if you score low. It'll be too tough for you. You have been warned 🙂!
+- **[Graded Assignment 1](https://exam.sanand.workers.dev/tds-2025-01-ga1) checks course pre-requisites**. Please drop this course in a later term if you score low. It'll be too tough for you now.
 - ‡ **Graded Assignments: Best 4 out 7**. We'll take the best 4 out of your graded assignments submissions. These, combined, will have a 15% weightage.
 - **Remote exams are open and hard**
   - You can use the Internet, WhatsApp, ChatGPT, your notes, your friends, your pets...
@@ -79,32 +132,6 @@ End term exam: Sunday, April 13, 2025, 9am-12pm, 2pm-5pm
 - **Bonus activities may be posted on Discourse**. See [previous bonus activities](https://discourse.onlinedegree.iitm.ac.in/tags/c/courses/tds-kb/34/bonus-marks)
 - **Evaluations are mostly automated**. This course uses pre-computed (for objective) or LLMs (for subjective) evaluations.
   - LLMs will evaluate you differently each time. Learn to prompt them _robustly_ to get higher marks.
-
-## This course is hard
-
-Here's students' feedback:
-
-- It _used_ to be an easy course until 2024.
-  [#](https://discourse.onlinedegree.iitm.ac.in/t/difficulty-rating-for-diploma-subjects-based-on-students-opinion/61194)
-  [#](https://discourse.onlinedegree.iitm.ac.in/t/difficulty-rating-for-diploma-subjects-2-0-based-on-student-ratings-and-my-experience/85681)
-  [#](https://discourse.onlinedegree.iitm.ac.in/t/what-should-i-take-next/44291/6)
-- Now it's hard and covers more. Take it in your last semester if possible.
-  [#](https://discourse.onlinedegree.iitm.ac.in/t/diploma-course-feedback-t32024-and-course-selection-t12025-thread/160032/45)
-  [#](https://discourse.onlinedegree.iitm.ac.in/t/2024-t1-diploma-level-feedback-and-course-selection-for-may-2024-term/127856/60)
-  [#](https://discourse.onlinedegree.iitm.ac.in/t/2024-t2-diploma-level-feedback-and-course-selection-for-september-2024-term/144976/62?u=s.anand)
-- Plan extra time. It takes more time than typical 3-credit courses.
-  [#](https://discourse.onlinedegree.iitm.ac.in/t/concerns-regarding-unfair-grading-practices-for-tds-project-2/160611/11)
-  [#](https://discourse.onlinedegree.iitm.ac.in/t/diploma-level-course-combo-suggestion/158460/4)
-  [#](https://discourse.onlinedegree.iitm.ac.in/t/diploma-level-course-combo-suggestion/158460/7)
-- LLMs grade you -- unpredictably.
-  [#](https://discourse.onlinedegree.iitm.ac.in/t/concerns-regarding-unfair-grading-practices-for-tds-project-2/160611/10)
-  [#](https://discourse.onlinedegree.iitm.ac.in/t/wrong-marks-in-project-2/160355/9)
-- The ROE is hard.
-  [#](https://discourse.onlinedegree.iitm.ac.in/t/is-it-fair-to-consider-20-weightage-of-such-exam-which-is-impossible-to-solve-in-given-time-i-e-roe/141413/10)
-
-You need a _good_ understanding of Python, JavaScript, HTML, HTTP, Excel, and data science concepts.
-
-[Take Graded assignment 1](https://exam.sanand.workers.dev/tds-2025-01-ga1) to check if you're ready for this course.
 
 ## Constantly check communications
 
@@ -118,18 +145,18 @@ Check these three links regularly to keep up with the course.
 ## People who help you
 
 - **Faculty** (who design the course)
-  - [Anand S](https://www.linkedin.com/in/sanand0/), Co-founder & CEO, Gramener.
+  - [Anand S](https://www.linkedin.com/in/sanand0/),
     [s.anand@gramener.com](mailto:s.anand@gramener.com) |
     [@s.anand](https://discourse.onlinedegree.iitm.ac.in/u/s.anand)
 - **Instructors** (who teach the course)
   - Carlton D'Silva.
     [22f3001919@ds.study.iitm.ac.in](mailto:22f3001919@ds.study.iitm.ac.in) |
     [@carlton](https://discourse.onlinedegree.iitm.ac.in/u/carlton)
-  - [Prasanna S](https://www.linkedin.com/in/prasanna-sugumaran-ab980222/) (B.Tech - Anna University).
+  - [Prasanna S](https://www.linkedin.com/in/prasanna-sugumaran-ab980222/),
     [prasanna@study.iitm.ac.in](mailto:prasanna@study.iitm.ac.in) |
     [@iamprasna](https://discourse.onlinedegree.iitm.ac.in/u/iamprasna)
 - **Teaching assistants** (who help you with your doubts)
-  - Jivraj Singh
+  - Jivraj Singh,
     [22f3002542@ds.study.iitm.ac.in](mailto:22f3002542@ds.study.iitm.ac.in) |
     [@Jivraj](https://discourse.onlinedegree.iitm.ac.in/u/jivraj)
   - [Virtual TA](https://chatgpt.com/g/g-mZqKVxKDx-iitm-tds-teaching-assistant): trained with the course content
