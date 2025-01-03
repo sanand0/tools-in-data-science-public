@@ -85,7 +85,7 @@ Track the [commit history](https://github.com/sanand0/tools-in-data-science-publ
 Released content:
 
 1. **[Development Tools](development-tools.md)** and concepts to **build** models and apps. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-jan-2025/161083)
-2. **[Deployment Tools](deployment-tools.md)** and concepts to **publish** what you built.
+2. **[Deployment Tools](deployment-tools.md)** and concepts to **publish** what you built. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-jan-2025/161083)
 
 Work in progress:
 

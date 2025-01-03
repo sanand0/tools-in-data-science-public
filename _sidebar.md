@@ -30,6 +30,7 @@
   - [TDS GPT Reviewer](tds-gpt-reviewer.md)
   - [LLM Sentiment Analysis](llm-sentiment-analysis.md)
   - [LLM Text Extraction](llm-text-extraction.md)
+  - [Base 64 Encoding](base64-encoding.md)
   - [Vision Models](vision-models.md)
   - [Embeddings](embeddings.md)
   - [Topic modeling](topic-modeling.md)
