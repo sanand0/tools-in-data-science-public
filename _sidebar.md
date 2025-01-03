@@ -21,6 +21,7 @@
   - [Containers: Docker, Podman](docker.md)
   - [Tunneling: ngrok](ngrok.md)
   - [CORS](cors.md)
+  - [REST APIs](rest-apis.md)
   - [Web Framework: FastAPI](fastapi.md)
   - [Local LLMs: Llamafile](llamafile.md)
 - [Large Language Models](large-language-models.md)
