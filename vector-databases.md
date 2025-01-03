@@ -2,25 +2,24 @@
 
 Vector databases are specialized databases that store and search vector embeddings efficiently.
 
-They're useful if you want to search, classify, or cluster text embeddings that won't fit in memory. (This is important. If it fits comfortably in memory, you can use `numpy` for these tasks.)
+Use vector databases when your embeddings exceed available memory or when you want it run fast at scale. (This is important. If your code runs fast and fits in memory, you **DON'T** need a vector database. You can can use `numpy` for these tasks.)
 
 Vector databases are an evolving space.
 
-The first generation of vector databases were written in C and typically used an algorithm called HNSW. Some popular ones are:
+The first generation of vector databases were written in C and typically used an algorithm called [HNSW](https://en.wikipedia.org/wiki/Hierarchical_navigable_small_world) (a way to approximately find the nearest neighbor). Some popular ones are:
 
-- **[Chroma](https://docs.trychroma.com/)**: Combines a vector index with a SQLite database (easiest to install, most popular).
+- **[Chroma](https://docs.trychroma.com/)**: Combines a vector index with a SQLite database. Easy to install, most popular.
+- **[LanceDB](https://lancedb.github.io/lancedb/)**: Written in Rust. Faster, easy to install, growing popular.
 - **[FAISS](https://github.com/facebookresearch/faiss)**: Meta's lightweight library
 - **[Milvus](https://milvus.io/)**: Distributed, cloud-native
 
-These are gently giving way to the second generation of vector databases. A good example is:
-
-- [LanceDB](https://lancedb.github.io/lancedb/): written in Rust. These are easier to install and use.
-
 In addition, most relational databases now support vector search. For example:
 
-- **[PostgreSQL](https://www.postgresql.org/)**: Supports vector search with [`pgvector`](https://github.com/pgvector/pgvector).
-- **[SQLite](https://www.sqlite.org/)**: Supports vector search with [`sqlite-vec`](https://github.com/asg017/sqlite-vec).
 - **[DuckDB](https://duckdb.org/)**: Supports vector search with [`vss`](https://duckdb.org/docs/extensions/vss.html).
+- **[SQLite](https://www.sqlite.org/)**: Supports vector search with [`sqlite-vec`](https://github.com/asg017/sqlite-vec).
+- **[PostgreSQL](https://www.postgresql.org/)**: Supports vector search with [`pgvector`](https://github.com/pgvector/pgvector).
+
+Take a look at this [Vector DB Comparison](https://superlinked.com/vector-db-comparison).
 
 Watch this Vector Database Tutorial (3 min):
 

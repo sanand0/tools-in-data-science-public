@@ -159,7 +159,8 @@ Check these three links regularly to keep up with the course.
   - Jivraj Singh,
     [22f3002542@ds.study.iitm.ac.in](mailto:22f3002542@ds.study.iitm.ac.in) |
     [@Jivraj](https://discourse.onlinedegree.iitm.ac.in/u/jivraj)
-  - [Virtual TA](https://chatgpt.com/g/g-mZqKVxKDx-iitm-tds-teaching-assistant): trained with the course content
+  - [Virtual TA](https://chatgpt.com/g/g-mZqKVxKDx-iitm-tds-teaching-assistant)
+    ([GPT Instructions](tds-ta-instructions.md))
 
 <!--
 - Mahesh Balan U (MS, PhD - IIT Madras)

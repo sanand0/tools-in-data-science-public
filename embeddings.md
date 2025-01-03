@@ -1,6 +1,6 @@
 ## Embeddings: OpenAI and Local Models
 
-Embedding models convert text into an array of numbers. If 2 arrays are close to each other, the text they represent mean something similar.
+Embedding models convert text into a list of numbers. These are like a map of text in numerical form. Each number represents a feature, and similar texts will have numbers close to each other. So, if the numbers are similar, the text they represent mean something similar.
 
 This is useful because text similarity is important in many common problems:
 
@@ -11,13 +11,20 @@ This is useful because text similarity is important in many common problems:
 
 You can run embedding models locally or using an API. Local models are better for privacy and cost. APIs are better for scale and quality.
 
+| Feature     | Local Models               | API                       |
+| ----------- | -------------------------- | ------------------------- |
+| **Privacy** | High                       | Dependent on provider     |
+| **Cost**    | High setup, low after that | Pay-as-you-go             |
+| **Scale**   | Limited by local resources | Easily scales with demand |
+| **Quality** | Varies by model            | Typically high            |
+
 The [Massive Text Embedding Benchmark (MTEB)](https://huggingface.co/spaces/mteb/leaderboard) provides comprehensive comparisons of embedding models. These models are compared on several parameters, but here are some key ones to look at:
 
 1. **Rank**. Higher ranked models have higher quality.
-2. **Memory Usage**. Lower is better. It costs less and is faster to run.
+2. **Memory Usage**. Lower is better (for similar ranks). It costs less and is faster to run.
 3. **Embedding Dimensions**. Lower is better. This is the number of numbers in the array. Smaller dimensions are cheaper to store.
-4. **Max Tokens**. Higher is better. This is the number of tokens (words) the model take in a _single_ input.
-5. Task specific quality: Look for higher scores in Classification, CLustering, Summarization, etc. based on your needs.
+4. **Max Tokens**. Higher is better. This is the number of input tokens (words) the model can take in a _single_ input.
+5. Look for higher scores in the columns for Classification, Clustering, Summarization, etc. based on your needs.
 
 ### Local Embeddings
 
@@ -76,10 +83,7 @@ async def embed(text: str) -> list[float]:
         response = await client.post(
             "https://api.openai.com/v1/embeddings",
             headers={"Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}"},
-            json={
-                "model": "text-embedding-3-small",
-                "input": text
-            }
+            json={"model": "text-embedding-3-small", "input": text}
         )
         return response.json()["data"][0]["embedding"]
 ```
