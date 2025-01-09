@@ -10,10 +10,9 @@ Watch this Llamafile Tutorial (6 min):
 
 Here's how to get started
 
-1. [Download the latest `llamafile`](https://github.com/Mozilla-Ocho/llamafile/releases) and rename it to `llamafile` (or `llamafile.exe` on Windows)
-2. [Download `Llama-3.2-1B-Instruct.Q6_K.llamafile` (1.11 GB)](https://huggingface.co/Mozilla/Llama-3.2-1B-Instruct-llamafile/blob/main/Llama-3.2-1B-Instruct.Q6_K.llamafile?download=true)
-3. From the command line, run `llamafile -m Llama-3.2-1B-Instruct-Q8_0.gguf`.
-4. Optional: For GPU acceleration, use `llamafile --n-gpu-layers 35 Llama-3.2-1B-Instruct-Q8_0.gguf`. (Increase or decrease the number of layers based on your GPU VRAM.)
+1. [Download `Llama-3.2-1B-Instruct.Q6_K.llamafile` (1.11 GB)](https://huggingface.co/Mozilla/Llama-3.2-1B-Instruct-llamafile/blob/main/Llama-3.2-1B-Instruct.Q6_K.llamafile?download=true).
+2. From the command prompt or terminal, run `Llama-3.2-1B-Instruct.Q6_K.llamafile`.
+3. Optional: For GPU acceleration, use `Llama-3.2-1B-Instruct.Q6_K.llamafile --n-gpu-layers 35`. (Increase or decrease the number of layers based on your GPU VRAM.)
 
 You might see a message like this:
 
