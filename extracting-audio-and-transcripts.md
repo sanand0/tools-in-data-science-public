@@ -196,4 +196,41 @@ Note: Always respect copyright and terms of service when downloading content.
 
 ## Whisper transcription
 
+[Faster Whisper](https://github.com/SYSTRAN/faster-whisper) is a highly optimized implementation of OpenAI's [Whisper model](https://github.com/openai/whisper), offering up to 4x faster transcription while using less memory.
+
+You can install it via:
+
+- `pip install faster-whisper`
+- [Download Windows Standalone](https://github.com/Purfview/whisper-standalone-win/releases)
+
+Here's a basic usage example:
+
+```bash
+faster-whisper-xxl "video.mp4" --model medium --language en
+```
+
+Here's my recommendation for transcribing videos. This saves the output in JSON as well as SRT format in the source directory.
+
+```bash
+faster-whisper-xxl --print_progress --output_dir source --batch_recursive \
+                   --check_files --standard --output_format json srt \
+                   --model medium --language en $FILE
+```
+
+- `--model`: The OpenAI Whisper model to use. You can choose from:
+  - `tiny`: Fastest but least accurate
+  - `base`: Good for simple audio
+  - `small`: Balanced speed/accuracy
+  - `medium`: Recommended default
+  - `large-v3`: Most accurate but slowest
+- `--output_format`: The output format to use. You can pick multiple formats from:
+  - `json`: Has the most detailed information including timing, text, quality, etc.
+  - `srt`: A popular subtitle format. You can use this in YouTube, for example.
+  - `vtt`: A modern subtitle format.
+  - `txt`: Just the text transcript
+- `--output_dir`: The directory to save the output files. `source` indicates the source directory, i.e. where the input `$FILE` is
+- `--language`: The language of the input file. If you don't specify it, it analyzes the first 30 seconds to auto-detect. You can speed it up by specifying it.
+
+Run `faster-whisper-xxl --help` for more options.
+
 ## Gemini transcription

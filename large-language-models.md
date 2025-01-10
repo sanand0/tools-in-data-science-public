@@ -2,7 +2,7 @@
 
 This module covers the practical usage of large language models (LLMs) -- a relatively a new area.
 
-**LLMs incur a cost.** We have created API keys for everyone with an `@iitm.ac.in` email to use `gpt-4o-mini` and `text-embedding-3-small`. Your usage is limited to **$1 per calendar month** for this course. Don't exceed that.
+**LLMs incur a cost.** We have created API keys for everyone with an `iitm.ac.in` email to use `gpt-4o-mini` and `text-embedding-3-small`. Your usage is limited to **$1 per calendar month** for this course. Don't exceed that.
 
 **Use [AI Proxy](https://github.com/sanand0/aiproxy)** instead of OpenAI. Specifically:
 
