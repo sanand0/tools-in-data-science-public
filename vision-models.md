@@ -17,3 +17,71 @@ Here are the links used in the video:
 - [OpenAI Chat API Reference](https://platform.openai.com/docs/api-reference/chat/create)
 - [OpenAI Vision Guide](https://platform.openai.com/docs/guides/vision)
 - [Sample images used](https://drive.google.com/drive/folders/14MFc7XmGIUDU4-vbmF9305c1SSQrM-gR)
+
+Here is an example of how to analyze an image using the OpenAI API.
+
+```bash
+curl https://api.openai.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -d '{
+    "model": "gpt-4o-mini",
+    "messages": [
+      {
+        "role": "user",
+        "content": [
+          {"type": "text", "text": "What is in this image?"},
+          {
+            "type": "image_url",
+            "detail": "low",
+            "image_url": {"url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Correlation_coefficient.png"}
+          }
+        ]
+      }
+    ]
+  }'
+```
+
+Let's break down the request:
+
+- `curl https://api.openai.com/v1/chat/completions`: The API endpoint for text generation.
+- `-H "Content-Type: application/json"`: The content type of the request.
+- `-H "Authorization: Bearer $OPENAI_API_KEY"`: The API key for authentication.
+- `-d`: The request body.
+  - `"model": "gpt-4o-mini"`: The model to use for text generation.
+  - `"messages":`: The messages to send to the model.
+    - `"role": "user"`: The role of the message.
+    - `"content":`: The content of the message.
+      - `{"type": "text", "text": "What is in this image?"}`: The text message.
+      - `{"type": "image_url"}`: The image message.
+        - `"detail": "low"`: The detail level of the image. `low` uses fewer tokens at lower detail. `high` uses more tokens for higher detail.
+        - `"image_url": {"url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Correlation_coefficient.png"}`: The URL of the image.
+
+You can send images in a [base64 encoded format](base64-image.md), too. For example:
+
+```bash
+# Download image and convert to base64 in one step
+IMAGE_BASE64=$(curl -s "https://upload.wikimedia.org/wikipedia/commons/3/34/Correlation_coefficient.png" | base64 -w 0)
+
+# Send to OpenAI API
+curl https://api.openai.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -d @- << EOF
+{
+  "model": "gpt-4o-mini",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        {"type": "text", "text": "What is in this image?"},
+        {
+          "type": "image_url",
+          "image_url": { "url": "data:image/png;base64,$IMAGE_BASE64" }
+        }
+      ]
+    }
+  ]
+}
+EOF
+```

@@ -1,8 +1,43 @@
 ## LLM Sentiment Analysis
 
+[OpenAI's API](https://platform.openai.com/) provides access to language models like GPT 4o, GPT 4o mini, etc.
+
+For more details, read OpenAI's guide for:
+
+- [Text Generation](https://platform.openai.com/docs/guides/text-generation)
+- [Vision](https://platform.openai.com/docs/guides/vision)
+- [Structured Outputs](https://platform.openai.com/docs/guides/structured-outputs)
+
+Start with this quick tutorial:
+
+[![OpenAI API Quickstart: Send your First API Request](https://i.ytimg.com/vi_webp/Xz4ORA0cOwQ/maxresdefault.webp)](https://youtu.be/Xz4ORA0cOwQ)
+
+Here's a minimal example using `curl` to generate text:
+
+```bash
+curl https://api.openai.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -d '{
+    "model": "gpt-4o-mini",
+    "messages": [{ "role": "user", "content": "Write a haiku about programming." }]
+  }'
+```
+
+Let's break down the request:
+
+- `curl https://api.openai.com/v1/chat/completions`: The API endpoint for text generation.
+- `-H "Content-Type: application/json"`: The content type of the request.
+- `-H "Authorization: Bearer $OPENAI_API_KEY"`: The API key for authentication.
+- `-d`: The request body.
+  - `"model": "gpt-4o-mini"`: The model to use for text generation.
+  - `"messages":`: The messages to send to the model.
+    - `"role": "user"`: The role of the message.
+    - `"content": "Write a haiku about programming."`: The content of the message.
+
 [![LLM Sentiment Analysis](https://i.ytimg.com/vi_webp/_D46QrX-2iU/sddefault.webp)](https://youtu.be/_D46QrX-2iU)
 
-You'll learn how to use large language models (LLMs) for sentiment analysis and classification, covering:
+This video explains how to use large language models (LLMs) for sentiment analysis and classification, covering:
 
 - **Sentiment Analysis**: Use OpenAI API to identify the sentiment of movie reviews as positive or negative.
 - **Prompt Engineering**: Learn how to craft effective prompts to get desired results from LLMs.
