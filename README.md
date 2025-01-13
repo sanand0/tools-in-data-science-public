@@ -102,7 +102,7 @@ Work in progress:
 | GA: Graded assignments                                                 | Best 4 out of 7 ‡                 |    15% |                   |                   |
 | [Graded Assignment 1](https://exam.sanand.workers.dev/tds-2025-01-ga1) | Online open MCQ                   |        |       30 Dec 2024 |       26 Jan 2025 |
 | [Graded Assignment 2](https://exam.sanand.workers.dev/tds-2025-01-ga2) | Online open MCQ                   |        |        3 Jan 2025 |       26 Jan 2025 |
-| Graded Assignment 3                                                    | Online open MCQ                   |        |       10 Jan 2025 |        2 Feb 2025 |
+| Graded Assignment 3                                                    | Online open MCQ                   |        |       15 Jan 2025 |        2 Feb 2025 |
 | Graded Assignment 4                                                    | Online open MCQ                   |        |       24 Jan 2025 |        9 Feb 2025 |
 | P1: Project 1                                                          | Take-home open-Internet           |    20% |       17 Jan 2025 |       15 Feb 2025 |
 | Graded Assignment 5                                                    | Online open MCQ                   |        |        7 Feb 2025 |       16 Feb 2025 |
@@ -111,6 +111,10 @@ Work in progress:
 | Graded Assignment 7                                                    | Online open MCQ                   |        |       28 Feb 2025 |       16 Mar 2025 |
 | ROE: Remote Online Exam                                                | Online open-Internet MCQ          |    20% | 02 Mar 2025 13:00 | 02 Mar 2025 13:45 |
 | F: Final end-term                                                      | In-person, no internet, mandatory |    25% |       13 Apr 2025 |                   |
+
+### Updates
+
+- 13 Jan 2025: GA3 release date moved from 10 Jan 2025 to 15 Jan 2025 due to faculty delay. Students have till 2 Feb 2025 - more than the 10 days expected for a GA.
 
 <!--
 
