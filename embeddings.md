@@ -28,7 +28,7 @@ The [Massive Text Embedding Benchmark (MTEB)](https://huggingface.co/spaces/mteb
 
 ### Local Embeddings
 
-[![Guide to Local Embeddings with Sentence Transformers](https://i.ytimg.com/vi/OATCgQtNX2o/maxresdefault.jpg)](https://youtu.be/OATCgQtNX2o)
+[![Guide to Local Embeddings with Sentence Transformers](https://i.ytimg.com/vi/OATCgQtNX2o/sddefault.jpg)](https://youtu.be/OATCgQtNX2o)
 
 Here's a minimal example using a local embedding model:
 

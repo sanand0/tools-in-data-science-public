@@ -10,7 +10,7 @@ For more details, read OpenAI's guide for:
 
 Start with this quick tutorial:
 
-[![OpenAI API Quickstart: Send your First API Request](https://i.ytimg.com/vi_webp/Xz4ORA0cOwQ/maxresdefault.webp)](https://youtu.be/Xz4ORA0cOwQ)
+[![OpenAI API Quickstart: Send your First API Request](https://i.ytimg.com/vi_webp/Xz4ORA0cOwQ/sddefault.webp)](https://youtu.be/Xz4ORA0cOwQ)
 
 Here's a minimal example using `curl` to generate text:
 

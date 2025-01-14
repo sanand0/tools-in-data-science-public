@@ -23,7 +23,7 @@ Take a look at this [Vector DB Comparison](https://superlinked.com/vector-db-com
 
 Watch this Vector Database Tutorial (3 min):
 
-[![Vector databases are so hot right now. WTF are they? (3 min)](https://i.ytimg.com/vi/klTvEwg3oJ4/maxresdefault.jpg)](https://youtu.be/klTvEwg3oJ4)
+[![Vector databases are so hot right now. WTF are they? (3 min)](https://i.ytimg.com/vi/klTvEwg3oJ4/sddefault.jpg)](https://youtu.be/klTvEwg3oJ4)
 
 ### ChromaDB
 
