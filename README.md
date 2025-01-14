@@ -86,10 +86,10 @@ Released content:
 
 1. **[Development Tools](development-tools.md)** and concepts to **build** models and apps. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-jan-2025/161083)
 2. **[Deployment Tools](deployment-tools.md)** and concepts to **publish** what you built. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-jan-2025/161083)
+3. **[Large Language Models](large-language-models.md)** that make your work easier and your apps smarter. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/ga3-large-language-models-discussion-thread-tds-jan-2025/163247)
 
 Work in progress:
 
-3. **[Large Language Models](large-language-models.md)** that make your work easier and your apps smarter.
 4. **[Data Sourcing](data-sourcing.md)** to get data from the web, files, and databases.
 5. **[Data Preparation](data-preparation.md)** to clean up and convert the inputs to the right format.
 6. **[Data Analysis](data-analysis.md)** to find surprising insights in the data.
@@ -102,7 +102,7 @@ Work in progress:
 | GA: Graded assignments                                                 | Best 4 out of 7 ‡                 |    15% |                   |                   |
 | [Graded Assignment 1](https://exam.sanand.workers.dev/tds-2025-01-ga1) | Online open MCQ                   |        |       30 Dec 2024 |       26 Jan 2025 |
 | [Graded Assignment 2](https://exam.sanand.workers.dev/tds-2025-01-ga2) | Online open MCQ                   |        |        3 Jan 2025 |       26 Jan 2025 |
-| Graded Assignment 3                                                    | Online open MCQ                   |        |       15 Jan 2025 |        2 Feb 2025 |
+| [Graded Assignment 3](https://exam.sanand.workers.dev/tds-2025-01-ga3) | Online open MCQ                   |        |       15 Jan 2025 |        2 Feb 2025 |
 | Graded Assignment 4                                                    | Online open MCQ                   |        |       24 Jan 2025 |        9 Feb 2025 |
 | P1: Project 1                                                          | Take-home open-Internet           |    20% |       17 Jan 2025 |       15 Feb 2025 |
 | Graded Assignment 5                                                    | Online open MCQ                   |        |        7 Feb 2025 |       16 Feb 2025 |
@@ -125,6 +125,8 @@ Quiz 2: Sunday, March 16, 2025, 2pm-6pm
 End term exam: Sunday, April 13, 2025, 9am-12pm, 2pm-5pm
 
 -->
+
+### Notes
 
 - **[Graded Assignment 1](https://exam.sanand.workers.dev/tds-2025-01-ga1) checks course pre-requisites**. Please drop this course in a later term if you score low. It'll be too tough for you now.
 - ‡ **Graded Assignments: Best 4 out 7**. We'll take the best 4 out of your graded assignments submissions. These, combined, will have a 15% weightage.
