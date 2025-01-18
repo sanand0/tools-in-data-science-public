@@ -2,138 +2,146 @@
 
 [![2025-01-16 Week 1 - Session 1 - TDS Jan 25](https://i.ytimg.com/vi_webp/1H5Aq7HjqwQ/sddefault.webp)](https://youtu.be/1H5Aq7HjqwQ)
 
-**Q1: About the Week 1 Graded Assignment and the use of VS Code**
+**Q1: What will be covered in this session?**
 
-**Student:** The first question in the Week 1 graded assignment involves installing VS Code. There's information on installing it and adding code, but it's not very technical. Will the exact solution be discussed?
+**A1:** This session will cover concepts from Week 1 of the graded assignment in Tools in Data Science (TDS). The focus is on guiding students toward solutions, not providing exact answers. Week 2 will be covered in the next session.
 
-**Instructor:** No, the exact solution won't be provided, but guidance on how to reach the solution will be given. The focus is on installing VS Code and running a specific command in the terminal, then pasting the output into the input box.
+**Q2: Is it possible to reschedule the TDS session?**
 
-**Q2: About Shifting the TDS Session**
+**A2:** The instructor will check if rescheduling is possible. If not, recordings will be available on YouTube.
 
-**Student:** Is there a possibility to shift this week's session to a different time? Both sessions are technically heavy, and I'm not good with technical things.
+**Q3: The first question in the graded assignment is about VS Code. What's involved?**
 
-**Instructor:** I will check if a shift is possible. If not, the recording will be uploaded to YouTube.
+**A3:** The question focuses on installing VS Code and running a specific command in the terminal, then pasting the output into an input box. There's no significant technical component to this question.
 
-**Q3: About the UV Command-Line Tool**
+**Q4: What are the benefits of using the UV command-line tool?**
 
-**Student:** The tutorial mentions a command-line tool called UV. How does UV get integrated back into VS Code? Do they work in compliance?
+**A4:** UV eliminates the need to create virtual environments. You include small portions of code and run the application with minimal setup.
 
-**Instructor:** UV doesn't integrate with VS Code in the way that, say, pip does with Python. You can use UV in your command prompt, much like pip for Python or npm for JavaScript/Node.js. UV is a replacement for those tools.
+**Q5: How does UV integrate with VS Code?**
 
-**Q4: About UV Use Cases and Examples**
+**A5:** There's no integration; UV is used in the command prompt, similar to pip (Python), npm (JavaScript), or Node.js.
 
-**Student:** Are there examples demonstrating how to use UV and integrate it with VS Code?
+**Q6: Are there examples demonstrating UV usage and integration with VS Code?**
 
-**Instructor:** There's no integration with VS Code. UV is useful for deployability. Last term, in Project 2, UV was used to automate running 687 student Python submissions, each with unique requirements and dependencies. Students only needed to add a small block of code at the top specifying the Python version and required libraries. UV dynamically generated the runtime environment for each submission, then disposed of it. This avoided recreating setups for each script.
+**A6:** No specific VS Code integration is needed. UV is used in the command line, like pip or npm. A previous project (Project 2) used UV to automate running 687 student Python submissions, each with unique requirements. Students added metadata to their Python files specifying the Python version and required libraries. UV dynamically handled these requirements for each submission.
 
-**Q5: About the Week 1 Graded Assignment Scoring**
+**Q7: In the RWE exam, what will the format be like?**
 
-**Student:** The first assignment mentions two conditions for an A or S grade: completing it within two hours and getting a score above 8. What does this mean?
+**A7:** The format will be similar to the graded assignments: questions and answer boxes. You can use any tools you want. It's a non-proctored exam. It will cover concepts taught in the course, including new material.
 
-**Instructor:** The two-hour time limit is not strictly enforced. The deadline for the assignment is the 26th. A good grade is possible even if it takes longer than two hours.
+**Q8: In Week 1, do we need to build advanced-level concepts, or will we learn them week by week?**
 
-**Q6: About the R\&OE Exam Format**
+**A8:** Each week will have different content, including graded assignments. Content links are provided.
 
-**Student:** The R\&OE exam is 45 minutes. Will the question paper pattern be similar to the assignment format?
+**Q9: The UV part of the project was only a 7-minute video. Do we need to learn UV fully in Week 1, or will we learn it in upcoming weeks?**
 
-**Instructor:** The format will be similar: questions and answer boxes. You can use any tools you want; it's a non-proctored exam. It will cover concepts taught in the course, including new material.
+**A9:** UV is introduced in Week 1. The most useful aspect is embedding everything in inline metadata within the script, eliminating the need for virtual environments.
 
-**Q7: About the UV Learning Curve**
+**Q10: How do we start the project?**
 
-**Student:** The UV portion of the tutorial is only a 7-minute video. Do we need to learn UV fully in Week 1, or will it be covered in later weeks?
+**A10:** There will be separate guidance sessions for the project.
 
-**Instructor:** UV is introduced in Week 1, but the most useful aspect is using inline metadata in your script to avoid creating virtual environments.
+**Q11: Will we get a screen recording of this session?**
 
-**Q8: About Starting the Project**
+**A11:** Yes, the session will be uploaded to YouTube.
 
-**Student:** How do we start the project?
+**Q12: While putting in the directory for a specific file (e.g., question 2), do you need to provide the full address (drive, etc.)?**
 
-**Instructor:** There will be separate guidance sessions for the project.
+**A12:** It works because the script is executed from the same directory. You need to provide the correct path (relative or absolute).
 
-**Q9: About DevTools (Elements Tab)**
+**Q13: Can you explain the use of DevTools?**
 
-**Student:** Can you explain the Elements tab in DevTools?
+**A13:** Right-click on the browser and select "Inspect." This opens a world of code and information about the website. You can see HTML, JavaScript, CSS, etc. You can use the arrow tool to select an element, then modify the code. These changes are only local to your browser.
 
-**Instructor:** Right-clicking on a webpage and selecting "Inspect" opens DevTools. The Elements tab shows the HTML, JavaScript, and CSS of the webpage. You can use the arrow tool to select an element and see its code. You can even change the code, but these changes are only local to your browser.
+**Q14: Can you explain the use of the Console tab in DevTools?**
 
-**Q10: About DevTools (Console Tab)**
+**A14:** The Console tab lets you run JavaScript. This will be covered later in the session, in the context of CSS selectors.
 
-**Instructor:** The Console tab allows you to run JavaScript code. This will be discussed later in the tutorial, in the context of CSS selectors.
+**Q15: Can you explain the Network tab in DevTools?**
 
-**Q11: About DevTools (Network Tab)**
+**A15:** The Network tab shows all external information the browser is fetching. For TDS, the "Fetch" tab is most useful, showing APIs, JSON code, and CSS files. It shows what the website is pulling from the server.
 
-**Instructor:** The Network tab shows all external information the browser is fetching. For TDS, the Fetch tab is most useful, showing the APIs and JSON objects, CSS files, etc., that the webpage is using. You cannot modify the content in the Network tab.
+**Q16: Can we modify the content in the Network tab?**
 
-**Q12: About CSS Selectors and Classes**
+**A16:** No, you can only modify the website's structure in the Elements tab.
 
-**Student:** Can you explain CSS selectors and classes? Are classes just a type of formatting?
+**Q17: Can you explain the Network tab again, briefly?**
 
-**Instructor:** Classes allow you to add CSS to your code. They are represented with a dot (.). IDs are unique to a specific element and are represented with a hash (#). Classes can be applied to multiple elements. You can use classes to apply formatting to multiple elements at once.
+**A17:** The Network tab shows external information the browser is fetching from where the website is deployed. The "Fetch" tab is particularly useful for TDS, showing APIs, JSON, and CSS files.
 
-**Q13: About JavaScript and CSS Selector Usage**
+**Q18: In a later Week 1 question, we need to find values within a specific div class. Will the JavaScript code work on the entire site, or just the specified area?**
 
-**Student:** How are HTML and CSS connected? Do we need to write JavaScript to extract anything?
+**A18:** The JavaScript will work on the entire site because the DOM structure is a tree. However, you can use selectors to target specific elements within that structure.
 
-**Instructor:** JavaScript is used to extract information from HTML code using CSS selectors. CSS selectors target elements using classes or IDs.
+**Q19: How are HTML and CSS connected? Do we need JavaScript to extract information?**
 
-**Q14: About Limiting JavaScript Code to a Specific Area**
+**A19:** HTML is the skeleton, JavaScript the muscles, and CSS the skin. JavaScript is used to extract information from the HTML code using CSS selectors (classes or IDs).
 
-**Student:** If we write a JavaScript program to filter data, can we limit it to a specific chunk of HTML data, or will it work on everything in the Elements section?
+**Q20: Can you explain the later part of the code used to extract data?**
 
-**Instructor:** The JavaScript will work on everything on the screen because of the DOM structure. The DOM is a tree structure, and each element can be uniquely identified using selectors.
+**A20:** The code uses a map function to iterate through a list of elements. `innerText` gives the text content of an element, while `innerHTML` gives the entire HTML code. `innerText` is generally preferred for data extraction.
 
-**Q15: About the InnerText and InnerHTML Attributes**
+**Q21: Are there other commands or attributes besides `innerText`?**
 
-**Student:** What is the difference between `innerText` and `innerHTML`?
+**A21:** Yes, there are other attributes. `text` is similar to `innerText`, but `innerText` is more reliable. Always use `innerText` if `text` doesn't work.
 
-**Instructor:** `innerText` gives you the text content of an element. `innerHTML` gives you the entire HTML code of an element. Use `innerText` when you only need the text.
+**Q22: How do classes and IDs work in CSS selectors?**
 
-**Q16: About a Practical Exercise**
+**A22:** Classes are generic and can be applied to multiple elements. IDs are unique to a single element. In CSS selectors, classes are prefixed with a dot (.), and IDs with a hash (#).
 
-**Instructor:** As a practical exercise, extract the names of all the people in this meeting using DevTools (Elements and Console tabs).
+**Q23: While showing `innerText`, you used a command that neatly organized the movie list. Why?**
 
-**Q17: About DevTools Compatibility**
+**A23:** The console organizes the output for readability, packing items into groups of 100. Otherwise, it would be a single, long array.
 
-**Student:** Do DevTools only work on Chrome?
+**Q24: How can I copy the entire list from the console?**
 
-**Instructor:** DevTools work on Chrome, Edge, and other browsers. In Safari or Mozilla, right-click anywhere on the webpage and look for the "Inspect" option.
+**A24:** Enclose the code in a `copy()` function. This copies the output to your clipboard.
 
-**Q18: About the Network Tab and Lazy Loading**
+**Q25: Does the developer tool only work on Chrome?**
 
-**Student:** Why are videos often chunked in the Network tab?
+**A25:** It works on Edge and other browsers. In Safari or Mozilla, right-click anywhere on the webpage and look for the "Inspect" option.
 
-**Instructor:** This is due to lazy loading. The video is broken into parts, so you can't download the entire video from the Network tab.
+**Q26: Can we modify the content in the Network tab?**
 
-**Q19: About Class Names in a Specific Example**
+**A26:** No, you can only modify the website's structure in the Elements tab. The Network tab shows what the browser is fetching, not what you can change.
 
-**Student:** The classes in the example are in brackets, like `span class="zwgib"`. Is this a class?
+**Q27: Can you explain the use of classes in more detail?**
 
-**Instructor:** If it's a class, it should be marked with a dot (.). In this case, the `<span>` is the element, and the class is specified with `class="zwgib"`.
+**A27:** Classes allow you to apply CSS to your code. If you remove a class, the associated CSS styling is removed. Classes can be applied to multiple elements, while IDs are unique to a single element.
 
-**Q20: About Using IDs in CSS Selectors**
+**Q28: Can we limit JavaScript selection to a specific chunk of HTML data?**
 
-**Student:** If it's a class, we use a dot. What if it's an ID?
+**A28:** No, JavaScript will work on the entire site unless you use selectors to target specific elements.
 
-**Instructor:** If it's an ID, use a hash (#). IDs are unique to a specific element, while classes can be applied to multiple elements. Think of classes like department names and IDs like employee IDs.
+**Q29: What is the origin of the exercise to extract names from the meeting participants?**
 
-**Q21: About a Specific Exercise and Random Name Selection**
+**A29:** The instructor created this exercise to encourage participation. A random participant is selected to answer a question.
 
-**Instructor:** Another exercise: extract the names of the people in this meeting using DevTools and a Python script to randomize the list and select a person to answer a question. This simulates a classroom scenario where students are less likely to respond.
+**Q30: Can we go back to the syntax we typed?**
 
-**Q22: About the Syntax of the JavaScript Code**
+**A30:** The syntax was `$$(".className").map(...)`. The `$$` selects elements with the specified class, and `map` iterates through them. The instructor demonstrates how to extract the movie names using this. The instructor also explains the difference between `innerText` and `innerHTML`. `innerText` returns only the text, while `innerHTML` returns the entire HTML code. `innerText` is generally preferred for data extraction. If `text` doesn't work, use `innerText`.
 
-**Student:** Can you go back to the syntax used to extract the names?
+**Q31: Should the `innerText` be written exactly as it appears, or can we modify the case (e.g., make "T" lowercase)?**
 
-**Instructor:** The syntax is `$$(".ipc-title-text")`. `$$` selects all elements with the class "ipc-title-text". The `map` function iterates through the list and extracts the `innerText` of each element. If `innerText` doesn't work, use `innerHTML`.
+**A31:** Use the text exactly as it appears.
 
-**Q23: About the Use of the Same Class for Different Elements**
+**Q32: What is the role of npx in this context?**
 
-**Student:** Why are the same classes used for movie names and links?
+**A32:** npx creates a separate environment for a project, installing dependencies locally without affecting other projects. It's an alternative to npm, which installs globally.
 
-**Instructor:** It's not ideal to use the same class for different elements. In this case, the movie names are links, so the same class is used. However, it's better practice to use different classes for different elements.
+**Q33: Does npx run primarily on Linux?**
 
-**Q24: About Further Study**
+**A33:** npx works on both PowerShell and Bash, but sha256sum might not work on Windows. You can run the npx command separately and use sha256sum on the resulting file.
 
-**Student:** What should we study before the next meeting?
+**Q34: While showing `innerText`, you made the movie list extremely neat. Why?**
 
-**Instructor:** Review the Elements and Console tabs in DevTools. Explore the Network tab if you're curious. Experiment with changing elements on websites. This will help you understand how CSS selectors work.
+**A34:** That's how the console presents the data, organizing it into groups of 100 for readability.
+
+**Q35: How can I copy the entire list from the console?**
+
+**A35:** Use the `copy()` function in the console to copy the output to your clipboard.
+
+**Q36: What should we focus on when using the Elements, Console, and Network tabs?**
+
+**A36:** For the Elements tab, focus on extracting data using CSS selectors (classes and IDs). The Console tab is used for running JavaScript, particularly for data scraping with CSS selectors. The Network tab shows what the browser is fetching. The instructor recommends exploring these tabs and having fun with them.
