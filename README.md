@@ -49,7 +49,7 @@ Here's students' feedback:
 
 You need a _good_ understanding of Python, JavaScript, HTML, HTTP, Excel, and data science concepts.
 
-**[Take Graded assignment 1](https://exam.sanand.workers.dev/tds-2025-01-ga1) to check if you're ready for this course.** Please drop this course in a later term if you score low. It'll be too tough for you now.
+**[Take Graded assignment 1](https://exam.sanand.workers.dev/tds-2025-01-ga1) to check if you're ready for this course.** Please drop this course (do it in a later term) if you score low. It'll be too tough for you now.
 
 </details>
 
@@ -128,7 +128,7 @@ End term exam: Sunday, April 13, 2025, 9am-12pm, 2pm-5pm
 
 ### Notes
 
-- **[Graded Assignment 1](https://exam.sanand.workers.dev/tds-2025-01-ga1) checks course pre-requisites**. Please drop this course in a later term if you score low. It'll be too tough for you now.
+- **[Graded Assignment 1](https://exam.sanand.workers.dev/tds-2025-01-ga1) checks course pre-requisites**. Please drop this course (do it in a later term) if you score low. It'll be too tough for you now.
 - ‡ **Graded Assignments: Best 4 out 7**. We'll take the best 4 out of your graded assignments submissions. These, combined, will have a 15% weightage.
 - **Remote exams are open and hard**
   - You can use the Internet, WhatsApp, ChatGPT, your notes, your friends, your pets...

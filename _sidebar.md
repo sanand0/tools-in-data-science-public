@@ -96,3 +96,7 @@
   - [Narratives with Excel](narratives-with-excel.md)
   - [Narratives with Comics](narratives-with-comics.md)
   - [Narratives with LLMs](narratives-with-llms.md)
+- [Live Sessions](live-sessions.md)
+  - [15 Jan 2025](live-session-2025-01-15.md)
+  - [16 Jan 2025](live-session-2025-01-16.md)
+  - [17 Jan 2025](live-session-2025-01-17.md)
