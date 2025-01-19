@@ -37,6 +37,7 @@
   - [Vector databases](vector-databases.md)
   - [Retrieval Augmented Generation](retrieval-augmented-generation.md)
   - [Function Calling](function-calling.md)
+- [Project 1](project-1.md)
 - [Data Sourcing](data-sourcing.md)
   - [Scraping with Excel](scraping-with-excel.md)
   - [Scraping with Google Sheets](scraping-with-google-sheets.md)

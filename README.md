@@ -88,6 +88,8 @@ Released content:
 2. **[Deployment Tools](deployment-tools.md)** and concepts to **publish** what you built. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-jan-2025/161083)
 3. **[Large Language Models](large-language-models.md)** that make your work easier and your apps smarter. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/ga3-large-language-models-discussion-thread-tds-jan-2025/163247)
 
+**[Project 1](project-1.md)** to build an LLM-based automation agent. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/project-1-llm-based-automation-agent-discussion-thread-tds-jan-2025/164277)
+
 Work in progress:
 
 4. **[Data Sourcing](data-sourcing.md)** to get data from the web, files, and databases.
@@ -104,7 +106,7 @@ Work in progress:
 | [Graded Assignment 2](https://exam.sanand.workers.dev/tds-2025-01-ga2) | Online open MCQ                   |        |        3 Jan 2025 |       26 Jan 2025 |
 | [Graded Assignment 3](https://exam.sanand.workers.dev/tds-2025-01-ga3) | Online open MCQ                   |        |       15 Jan 2025 |        2 Feb 2025 |
 | Graded Assignment 4                                                    | Online open MCQ                   |        |       24 Jan 2025 |        9 Feb 2025 |
-| P1: Project 1                                                          | Take-home open-Internet           |    20% |       17 Jan 2025 |       15 Feb 2025 |
+| [P1: Project 1](project-1.md)                                          | Take-home open-Internet           |    20% |       19 Jan 2025 |       15 Feb 2025 |
 | Graded Assignment 5                                                    | Online open MCQ                   |        |        7 Feb 2025 |       16 Feb 2025 |
 | Graded Assignment 6                                                    | Online open MCQ                   |        |       14 Feb 2025 |        9 Mar 2025 |
 | P2: Project 2                                                          | Take-home open-Internet           |    20% |       21 Feb 2025 |       17 Mar 2025 |
