@@ -47,14 +47,14 @@ Here's students' feedback:
 - The ROE is hard.
   [#](https://discourse.onlinedegree.iitm.ac.in/t/is-it-fair-to-consider-20-weightage-of-such-exam-which-is-impossible-to-solve-in-given-time-i-e-roe/141413/10)
 
-You need a _good_ understanding of Python, JavaScript, HTML, HTTP, Excel, and data science concepts.
-
 **[Take Graded assignment 1](https://exam.sanand.workers.dev/tds-2025-01-ga1) to check if you're ready for this course.** Please drop this course (do it in a later term) if you score low. It'll be too tough for you now.
 
 </details>
 
 <details>
 <summary><strong>Programming skills are a pre-requisite</strong></summary>
+
+You need a _good_ understanding of Python, JavaScript, HTML, HTTP, Excel, and data science concepts.
 
 **But isn't this a data science course?** Yes. Good data scientists are good programmers. Data scientists don't just analyze data or train models. They source data, clean it, transform it, visualize it, deploy it, and automate the whole process.
 

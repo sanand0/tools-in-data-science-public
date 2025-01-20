@@ -116,4 +116,7 @@ Here's how we will score the results.
   - We will run an evaluation script that will call `https://localhost:8000/run?task=...` on the task and call `https://localhost:8000/read?path=...` to verify the output
 - **Phase B: 10 marks**. 1 mark for each Phase B task that the agent handles correctly.
   - The evaluation script will call `https://localhost:8000/run?task=...` on the task and call `https://localhost:8000/read?path=...` to verify the output
-- **Bonus**. We _may_ pass additional tasks beyond the list above. If your code handles them correctly, you get 1 bonus mark per task.
+- **Bonus: Additional tasks**. We _may_ pass additional tasks beyond the list above. If your code handles them correctly, you get 1 bonus mark per task.
+- **Bonus: Code diversity**. You're encouraged to copy code and learn from each other. We encourage diversity too. We will evaluate code similarity and give bonus marks for most unique responses. (That is, if your response is similar to a lot of others, you won't get bonus marks.)
+
+Your score will be the sum of the marks above. No normalization, i.e. whether it's 0/20 or 22/20, what you get is what you get.
