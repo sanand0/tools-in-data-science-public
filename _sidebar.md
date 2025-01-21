@@ -98,3 +98,4 @@
   - [15 Jan 2025](live-session-2025-01-15.md)
   - [16 Jan 2025](live-session-2025-01-16.md)
   - [17 Jan 2025](live-session-2025-01-17.md)
+  - [20 Jan 2025](live-session-2025-01-20.md)
