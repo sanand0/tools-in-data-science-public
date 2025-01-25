@@ -27,6 +27,7 @@ Transcribe this audio tutorial about Tools in Data Science (TDS) as an FAQ.
 Summarize the student questions faithfully.
 Summarize the answers succinctly, without missing information, in a conversational style.
 Avoid repeating questions, consolidating similar ones.
+Prefer "You" and "I" instead of "student" and "instructor".
 For example:
 
 **Q1: [Concisely framed question]**

@@ -99,3 +99,6 @@
   - [16 Jan 2025](live-session-2025-01-16.md)
   - [17 Jan 2025](live-session-2025-01-17.md)
   - [20 Jan 2025](live-session-2025-01-20.md)
+  - [21 Jan 2025](live-session-2025-01-21.md)
+  - [22 Jan 2025](live-session-2025-01-22.md)
+  - [23 Jan 2025](live-session-2025-01-23.md)
