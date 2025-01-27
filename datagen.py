@@ -17,7 +17,7 @@ import os
 import random
 import sqlite3
 import time
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 from faker import Faker
 
 config = {"root": "/data"}
@@ -213,10 +213,15 @@ def a8_credit_card_image():
     WIDTH, HEIGHT = 1012, 638
     image = Image.new("RGB", (WIDTH, HEIGHT), (25, 68, 141))  # Deep blue background
     draw = ImageDraw.Draw(image)
+
+    # Use a larger font for credit card number, simplifying OCR
+    large_font = ImageFont.load_default()
+    large_font.size = 60
+
     # Format credit card number with spaces
     cc_number = " ".join([data["number"][i : i + 4] for i in range(0, 16, 4)])
     # Position elements
-    draw.text((50, 250), cc_number, fill=(255, 255, 255))
+    draw.text((50, 250), cc_number, fill=(255, 255, 255), font=large_font)
     draw.text((50, 400), "VALID\nTHRU", fill=(255, 255, 255))
     draw.text((50, 480), data["expiry"], fill=(255, 255, 255))
     draw.text((250, 480), data["security_code"], fill=(255, 255, 255))
@@ -247,7 +252,10 @@ def get_tickets(email):
 
 def a10_ticket_sales():
     """Generate ticket-sales.db with a tickets(type, units, price) table. 1 row per ticket"""
-    conn = sqlite3.connect(os.path.join(config["root"], "ticket-sales.db"))
+    target = os.path.join(config["root"], "ticket-sales.db")
+    if os.path.exists(target):
+        os.remove(target)
+    conn = sqlite3.connect(target)
     cursor = conn.cursor()
     cursor.execute(
         """
