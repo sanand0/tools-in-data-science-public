@@ -11,6 +11,7 @@
 # ///
 
 import datetime
+import hashlib
 import json
 import os
 import random
@@ -22,16 +23,17 @@ from faker import Faker
 config = {"root": "/data"}
 
 
+def num(str):
+    return int(hashlib.sha256(str.encode()).hexdigest(), 16) % (2**32)
+
+
 def write_file(path, content):
     with open(os.path.join(config["root"], path), "w", encoding="utf-8") as f:
         f.write(content)
 
 
-def a2_format_markdown():
-    """Generate a poorly formatted markdown file at format.md"""
-    write_file(
-        "format.md",
-        f"""#Unformatted Markdown
+def get_markdown(email):
+    return f"""#Unformatted Markdown
 
 This  is a sample paragraph with extra  spaces and trailing whitespace.
 -   First item
@@ -40,11 +42,34 @@ This  is a sample paragraph with extra  spaces and trailing whitespace.
     *    Fourth item
 
 ```py
-print("{config["email"]}")
+print("{email}")
 
 ```
-""",
-    )
+"""
+
+
+def a2_format_markdown():
+    """Generate a poorly formatted markdown file at format.md.
+
+    This is a tricky file because formatting it _twice_ changes the format!
+    """
+    write_file("format.md", get_markdown(config["email"]))
+
+
+def get_dates(email):
+    random.seed(f"{email}:a3", version=2)
+    start_date = datetime.datetime(2000, 1, 1)
+    end_date = datetime.datetime(2024, 12, 31)
+    formats = [
+        "%Y-%m-%d",  # 2024-03-14
+        "%d-%b-%Y",  # 14-Mar-2024
+        "%b %d, %Y",  # Mar 14, 2024
+        "%Y/%m/%d %H:%M:%S",  # 2024/03/14 15:30:45
+    ]
+    timestamps = random.sample(range(int(start_date.timestamp()), int(end_date.timestamp())), 1000)
+    return [
+        datetime.datetime.fromtimestamp(ts).strftime(random.choice(formats)) for ts in timestamps
+    ]
 
 
 def a3_dates():
@@ -56,141 +81,184 @@ def a3_dates():
     - MMM dd, yyyy
     - yyyy/mm/dd HH:MM:SS
     """
-    random.seed(f"{config['email']}:a3", version=2)
-    start_date = datetime.datetime(2000, 1, 1)
-    end_date = datetime.datetime(2024, 12, 31)
-    formats = [
-        "%Y-%m-%d",  # 2024-03-14
-        "%d-%b-%Y",  # 14-Mar-2024
-        "%b %d, %Y",  # Mar 14, 2024
-        "%Y/%m/%d %H:%M:%S",  # 2024/03/14 15:30:45
-    ]
-    timestamps = random.sample(range(int(start_date.timestamp()), int(end_date.timestamp())), 1000)
-    dates = [
-        datetime.datetime.fromtimestamp(ts).strftime(random.choice(formats)) for ts in timestamps
-    ]
+    dates = get_dates(config["email"])
     write_file("dates.txt", "\n".join(dates))
+
+
+def get_contacts(email):
+    fake = Faker()
+    fake.seed_instance(num(f"{email}:a4"))
+    return [
+        {"first_name": fake.first_name(), "last_name": fake.last_name(), "email": fake.email()}
+        for _ in range(100)
+    ]
 
 
 def a4_contacts():
     """Generate a JSON with 100 contacts with random first_name, last_name, and email"""
-    fake = Faker()
-    fake.seed_instance(hash(f"{config['email']}:a4"))
-    contacts = [
-        {"first_name": fake.first_name(), "last_name": fake.last_name(), "email": fake.email()}
-        for _ in range(100)
-    ]
+    contacts = get_contacts(config["email"])
     write_file("contacts.json", json.dumps(contacts))
+
+
+def get_logs(email):
+    files = []
+    random.seed(f"{email}:a5", version=2)
+    fake = Faker()
+    fake.seed_instance(num(f"{email}:a5"))
+    for i in range(50):
+        text = "\n".join([fake.text() for _ in range(10)])
+        age = random.randint(1, 24 * 60 * 60 * 365)
+        files.append((age, text))
+    return files
 
 
 def a5_logs():
     """Generate 50 log files with 10 lines each of random content at logs/"""
-    random.seed(f"{config['email']}:a5", version=2)
-    fake = Faker()
-    fake.seed_instance(hash(f"{config['email']}:a5"))
+    email = config["email"]
     os.makedirs(os.path.join(config["root"], "logs"), exist_ok=True)
-    for i in range(50):
-        write_file(f"logs/log-{i}.log", "\n".join([fake.text() for _ in range(10)]))
-        path = os.path.join(config["root"], f"logs/log-{i}.log")
-        # Pick random timestamps over the last year
-        timestamp = random.randint(1, 24 * 60 * 60 * 365)
-        os.utime(path, (time.time() - timestamp, time.time() - timestamp))
+    now = time.time()
+    for i, (age, text) in enumerate(get_logs(email)):
+        write_file(f"logs/log-{i}.log", text)
+        os.utime(os.path.join(config["root"], f"logs/log-{i}.log"), (now - age, now - age))
+
+
+def get_docs(email):
+    files = []
+    random.seed(f"{email}:a6", version=2)
+    fake = Faker()
+    fake.seed_instance(num(f"{email}:a6"))
+    for dir in fake.words(10):
+        for file in fake.words(10):
+            prefix = "\n".join([fake.text() for _ in range(random.randint(0, 10))])
+            heading = f"# {fake.sentence()}"
+            suffix = "\n".join([fake.text() for _ in range(random.randint(0, 10))])
+            text = "\n".join([prefix, heading, suffix])
+            files.append((dir, file, text))
+    return files
 
 
 def a6_docs():
     """Generate 10 Markdown files each under 10 random subdirectories with random content."""
-    random.seed(f"{config['email']}:a6", version=2)
-    fake = Faker()
-    fake.seed_instance(hash(f"{config['email']}:a6"))
+    email = config["email"]
+    docs = get_docs(email)
     os.makedirs(os.path.join(config["root"], "docs"), exist_ok=True)
-    for dir in fake.words(10):
+    for dir, file, text in docs:
         dirname = os.path.join(config["root"], "docs", dir)
         os.makedirs(dirname, exist_ok=True)
-        for file in fake.words(10):
-            prefix, suffix = random.randint(0, 10), random.randint(0, 10)
-            path = os.path.join(dirname, f"{file}.md")
-            write_file(path, "\n".join([fake.text() for _ in range(prefix)]))
-            write_file(path, f"# {fake.sentence()}")
-            write_file(path, "\n".join([fake.text() for _ in range(suffix)]))
+        write_file(os.path.join(dirname, f"{file}.md"), text)
+
+
+def get_email(email):
+    fake = Faker()
+    fake.seed_instance(num(f"{email}:a7"))
+    email = {
+        "recipient": fake.email(),
+        "from_name": fake.name(),
+        "from_email": fake.email(),
+        "date": fake.date_time().strftime("%a, %d %b %Y %H:%M:%S +0000"),
+        "subject": fake.sentence(),
+        "recipient_name": fake.name(),
+        "cc_1_name": fake.name(),
+        "cc_1_email": fake.email(),
+        "cc_2_name": fake.name(),
+        "cc_2_email": fake.email(),
+        "cc_3_name": fake.name(),
+        "cc_3_email": fake.email(),
+        "body": fake.text(),
+    }
+    return email
 
 
 def a7_email():
     """Generate an email file at email.txt"""
-    fake = Faker()
-    fake.seed_instance(hash(f"{config['email']}:a7"))
-    recipient = fake.email()
+    data = get_email(config["email"])
     write_file(
         "email.txt",
-        f"""Delivered-To: {recipient}
+        f"""Delivered-To: {data["recipient"]}
 MIME-Version: 1.0
-From: "{fake.name()}" <{fake.email()}>
-Date: {fake.date_time().strftime("%a, %d %b %Y %H:%M:%S +0000")}
-Subject: {fake.sentence()}
-To: "{fake.name()}" <{recipient}>
-Cc: "{fake.name()}" <{fake.email()}>, "{fake.name()}" <{fake.email()}>, "{fake.name()}" <{fake.email()}>
+From: "{data["from_name"]}" <{data["from_email"]}>
+Date: {data["date"]}
+Subject: {data["subject"]}
+To: "{data["recipient_name"]}" <{data["recipient"]}>
+Cc: "{data["cc_1_name"]}" <{data["cc_1_email"]}>, "{data["cc_2_name"]}" <{data["cc_2_email"]}>, "{data["cc_3_name"]}" <{data["cc_3_email"]}>
 Content-Type: multipart/alternative; boundary="00000000000091a0ba062bcdefca"
 
 --00000000000091a0ba062bcdefca
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-{fake.text()}
+{data["body"]}
 
 --00000000000091a0ba062bcdefca--
 """,
     )
 
 
+def get_credit_card(email):
+    fake = Faker()
+    fake.seed_instance(num(f"{email}:a8"))
+    return {
+        "number": fake.credit_card_number(),
+        "expiry": fake.credit_card_expire(),
+        "security_code": fake.credit_card_security_code(),
+        "name": fake.name().upper(),
+    }
+
+
 def a8_credit_card_image():
     """Generate a credit card image at credit_card.png that mimics a real credit card layout"""
-    fake = Faker()
-    fake.seed_instance(hash(f"{config['email']}:a8"))
+    data = get_credit_card(config["email"])
 
     # Create image with credit card proportions (3.375" x 2.125" at 300 DPI)
     WIDTH, HEIGHT = 1012, 638
     image = Image.new("RGB", (WIDTH, HEIGHT), (25, 68, 141))  # Deep blue background
     draw = ImageDraw.Draw(image)
     # Format credit card number with spaces
-    cc_number = " ".join([fake.credit_card_number()[i : i + 4] for i in range(0, 16, 4)])
+    cc_number = " ".join([data["number"][i : i + 4] for i in range(0, 16, 4)])
     # Position elements
     draw.text((50, 250), cc_number, fill=(255, 255, 255))
     draw.text((50, 400), "VALID\nTHRU", fill=(255, 255, 255))
-    draw.text((50, 480), fake.credit_card_expire(), fill=(255, 255, 255))
-    draw.text((250, 480), fake.credit_card_security_code(), fill=(255, 255, 255))
-    draw.text((50, 550), fake.name().upper(), fill=(255, 255, 255))
+    draw.text((50, 480), data["expiry"], fill=(255, 255, 255))
+    draw.text((250, 480), data["security_code"], fill=(255, 255, 255))
+    draw.text((50, 550), data["name"], fill=(255, 255, 255))
 
     image.save(os.path.join(config["root"], "credit_card.png"))
 
 
+def get_comments(email):
+    fake = Faker()
+    fake.seed_instance(num(f"{email}:a9"))
+    return [fake.paragraph() for _ in range(100)]
+
+
 def a9_comments():
     """Generate a comments.txt file with 100 random comments"""
-    fake = Faker()
-    fake.seed_instance(hash(f"{config['email']}:a9"))
-    write_file("comments.txt", "\n".join([fake.paragraph() for _ in range(100)]))
+    write_file("comments.txt", "\n".join(get_comments(config["email"])))
+
+
+def get_tickets(email):
+    random.seed(f"{email}:a10", version=2)
+    ticket_types = ["Gold", "Silver", "Bronze"]
+    return [
+        (random.choice(ticket_types), random.randint(1, 10), round(random.uniform(50, 150), 2))
+        for _ in range(1000)
+    ]
 
 
 def a10_ticket_sales():
     """Generate ticket-sales.db with a tickets(type, units, price) table. 1 row per ticket"""
-    random.seed(f"{config['email']}:a10", version=2)
     conn = sqlite3.connect(os.path.join(config["root"], "ticket-sales.db"))
     cursor = conn.cursor()
-    cursor.execute("""
+    cursor.execute(
+        """
         CREATE TABLE IF NOT EXISTS tickets (
             type TEXT NOT NULL,
             units INTEGER NOT NULL,
             price DECIMAL(10,2) NOT NULL
         )
-    """)
-    ticket_types = ["Gold", "Silver", "Bronze"]
-    tickets = [
-        (
-            random.choice(ticket_types),
-            random.randint(1, 10),
-            round(random.uniform(50, 150), 2)
-        )
-        for _ in range(1000)
-    ]
-    cursor.executemany("INSERT INTO tickets VALUES (?, ?, ?)", tickets)
+    """
+    )
+    cursor.executemany("INSERT INTO tickets VALUES (?, ?, ?)", get_tickets(config["email"]))
     conn.commit()
     conn.close()
 
