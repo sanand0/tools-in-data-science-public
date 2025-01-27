@@ -32,7 +32,7 @@ Write an application that exposes an API with the following endpoints:
 The DataWorks operations team has identified these tasks that need to be automated:
 
 - **A1**. Install `uv` (if required) and run `https://raw.githubusercontent.com/sanand0/tools-in-data-science-public/tds-2025-01/datagen.py` with `${user.email}` as the only argument. (**NOTE**: This will generate data files required for the next tasks.)
-- **A2**. Format the contents of `/data/format.md` using `prettier`, updating the file in-place
+- **A2**. Format the contents of `/data/format.md` using `prettier@3.4.2`, updating the file in-place
 - **A3**. The file `/data/dates.txt` contains a list of dates, one per line. Count the number of Wednesdays in the list, and write just the number to `/data/dates-wednesdays.txt`
 - **A4**. Sort the array of contacts in `/data/contacts.json` by `last_name`, then `first_name`, and write the result to `/data/contacts-sorted.json`
 - **A5**. Write the first line of the 10 most recent `.log` file in `/data/logs/` to `/data/logs-recent.txt`, most recent first
@@ -77,15 +77,15 @@ The business team has _not_ promised to limit themselves to these tasks. But the
 
 ## Deliverables
 
-- [Create a new GitHub repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository)
+- [Create a new _public_ GitHub repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository)
 - [Add an MIT `LICENSE` file](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository)
 - Write and test your code. Call `POST /run?task=...` with a few tasks and check if `GET /read?path=...` creates the correct files.
 - Commit and push your code
 - Create a [Dockerfile](https://docs.docker.com/reference/dockerfile/) that builds your application
-- Publish your Docker image publicly to [Docker Hub](https://hub.docker.com/)
+- Publish your Docker image _publicly_ to [Docker Hub](https://hub.docker.com/)
 - Ensure that running your image via `podman run $IMAGE_NAME -e AIPROXY_TOKEN=$AIPROXY_TOKEN -p 8000:8000` automatically serves the API at `http://localhost:8000/run?task=...` and `http://localhost:8000/read?path=...`
 - [Submit in this Google Form](https://docs.google.com/forms/d/e/1FAIpQLSdOaljgV-INdbKrPotV9OMUKV01QVaFEfcnr5dAxBZqM4x37g/viewform?usp=dialog)
-  the URL of your GitHub repository (`https://github.com/user-name/repo-name`) and the URL of your Docker image (`user-name/repo-name`)
+  the URL of your GitHub repository (`https://github.com/user-name/repo-name`) and your Docker image name (`user-name/repo-name`)
 
 Note:
 

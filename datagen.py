@@ -16,7 +16,7 @@ import os
 import random
 import sqlite3
 import time
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw
 from faker import Faker
 
 config = {"root": "/data"}
@@ -40,7 +40,7 @@ This  is a sample paragraph with extra  spaces and trailing whitespace.
     *    Fourth item
 
 ```py
-print("${config["email"]}")
+print("{config["email"]}")
 
 ```
 """,
