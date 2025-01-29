@@ -33,18 +33,32 @@ Rather than writing a full program, serverless platforms let you write functions
 
 Here's a [quickstart](https://vercel.com/docs/functions/runtimes/python). [Sign-up with Vercel](https://vercel.com/signup). Create an empty `git` repo with this `api/index.py` file.
 
-```python
-# api/index.py
-import json
-from http.server import BaseHTTPRequestHandler
+To deploy a FastAPI app, add a `requirements.txt` file with `fastapi` as a dependency.
 
-class handler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header('Content-type','application/json')
-        self.end_headers()
-        self.wfile.write(json.dumps({"message": "Hello!"}).encode('utf-8'))
-        return
+```text
+fastapi
+```
+
+Add your FastAPI code to a file, e.g. `main.py`.
+
+```python
+# main.py
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"message": "Hello, World!"}
+```
+
+Add a `vercel.json` file to the root of your repository.
+
+```json
+{
+  "builds": [{ "src": "main.py", "use": "@vercel/python" }],
+  "routes": [{ "src": "/(.*)", "dest": "main.py" }]
+}
 ```
 
 On the command line, run:
@@ -52,18 +66,10 @@ On the command line, run:
 - `npx vercel` to deploy a test version
 - `npx vercel --prod` to deploy to production
 
-Best Practices:
+**Environment Variables**. Use `npx vercel env add` to add environment variables. In your code, use `os.environ.get('SECRET_KEY')` to access them.
 
-1. **Project Structure**
-
-   ```text
-   my-app/
-   ├── api/index.py   # Serverless functions
-   ├── .env           # OPTIONAL: Environment variables
-   ├── public/        # OPTIONAL: Static assets
-   └── vercel.json    # OPTIONAL: Configuration
-   ```
-
-2. **Environment Variables**. Use `npx vercel env add` to add environment variables. In your code, use `os.environ.get('SECRET_KEY')` to access them.
+### Videos
 
 [![Vercel Product Walkthrough](https://i.ytimg.com/vi_webp/sPmat30SE4k/sddefault.webp)](https://youtu.be/sPmat30SE4k)
+
+[![Deploy FastAPI on Vercel | Quick and Easy Tutorial](https://i.ytimg.com/vi_webp/8R-cetf_sZ4/sddefault.webp)](https://youtu.be/8R-cetf_sZ4)
