@@ -20,6 +20,7 @@ import time
 from PIL import Image, ImageDraw, ImageFont
 from faker import Faker
 
+os.makedirs(config["root"], exist_ok=True)
 config = {"root": os.path.expanduser("~/data")}
 
 
