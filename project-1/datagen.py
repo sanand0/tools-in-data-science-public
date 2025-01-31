@@ -21,10 +21,7 @@ from PIL import Image, ImageDraw, ImageFont
 from faker import Faker
 from pathlib import Path
 
-config = {"root": str(Path.cwd() / "data")} #config = {"root": os.path.join(os.getcwd(), "data")}
 
-Path(config["root"]).mkdir(parents=True, exist_ok=True)
-config = {"root": os.path.expanduser("~/data")}
 os.makedirs(config["root"], exist_ok=True)
 
 
@@ -285,7 +282,8 @@ if __name__ == "__main__":
     parser.add_argument("--root", default="/data")
     args = parser.parse_args()
     config["email"] = args.email
-    config["root"] = os.path.abspath(args.root)
+    #config["root"] = os.path.abspath(args.root)
+    config = {"root": str(Path.cwd() / "data")} #config = {"root": os.path.join(os.getcwd(), "data")}
 
     os.makedirs(config["root"], exist_ok=True)
 
