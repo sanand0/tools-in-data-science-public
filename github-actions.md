@@ -62,4 +62,3 @@ Tools:
 [![Github Actions CI/CD - Everything you need to know to get started](https://i.ytimg.com/vi_webp/mFFXuXjVgkU/sddefault.webp)](https://youtu.be/mFFXuXjVgkU)
 
 - [How to handle secrets in GitHub Actions](https://youtu.be/1tD7km5jK70)
-- [How to run Github Actions on a Schedule](https://youtu.be/eJG86J200nM)
