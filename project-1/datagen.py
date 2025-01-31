@@ -22,7 +22,6 @@ from faker import Faker
 from pathlib import Path
 
 
-os.makedirs(config["root"], exist_ok=True)
 
 
 
