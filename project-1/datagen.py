@@ -280,9 +280,9 @@ if __name__ == "__main__":
     parser.add_argument("email")
     parser.add_argument("--root", default="/data")
     args = parser.parse_args()
-    config["email"] = args.email
     #config["root"] = os.path.abspath(args.root)
     config = {"root": str(Path.cwd() / "data")} #config = {"root": os.path.join(os.getcwd(), "data")}
+    config["email"] = args.email
 
     os.makedirs(config["root"], exist_ok=True)
 
