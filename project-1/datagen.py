@@ -20,7 +20,8 @@ import time
 from PIL import Image, ImageDraw, ImageFont
 from faker import Faker
 
-config["root"] = os.path.expanduser("~/data")
+config = {"root": os.path.expanduser("~/data")}
+
 
 
 def num(str):
