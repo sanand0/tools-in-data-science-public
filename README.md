@@ -87,12 +87,12 @@ Released content:
 1. **[Development Tools](development-tools.md)** and concepts to **build** models and apps. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-jan-2025/161083)
 2. **[Deployment Tools](deployment-tools.md)** and concepts to **publish** what you built. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-jan-2025/161083)
 3. **[Large Language Models](large-language-models.md)** that make your work easier and your apps smarter. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/ga3-large-language-models-discussion-thread-tds-jan-2025/163247)
+4. **[Data Sourcing](data-sourcing.md)** to get data from the web, files, and databases. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/ga4-data-sourcing-discussion-thread-tds-jan-2025/165959)
 
 **[Project 1](project-1.md)** to build an LLM-based automation agent. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/project-1-llm-based-automation-agent-discussion-thread-tds-jan-2025/164277)
 
 Work in progress:
 
-4. **[Data Sourcing](data-sourcing.md)** to get data from the web, files, and databases.
 5. **[Data Preparation](data-preparation.md)** to clean up and convert the inputs to the right format.
 6. **[Data Analysis](data-analysis.md)** to find surprising insights in the data.
 7. **[Data Visualization](data-visualization.md)** to communicate those insights as visual stories.
@@ -105,7 +105,7 @@ Work in progress:
 | [Graded Assignment 1](https://exam.sanand.workers.dev/tds-2025-01-ga1) | Online open MCQ                   |        |       30 Dec 2024 |       26 Jan 2025 |
 | [Graded Assignment 2](https://exam.sanand.workers.dev/tds-2025-01-ga2) | Online open MCQ                   |        |        3 Jan 2025 |        2 Feb 2025 |
 | [Graded Assignment 3](https://exam.sanand.workers.dev/tds-2025-01-ga3) | Online open MCQ                   |        |       15 Jan 2025 |        5 Feb 2025 |
-| Graded Assignment 4                                                    | Online open MCQ                   |        |       31 Jan 2025 |        9 Feb 2025 |
+| [Graded Assignment 4](https://exam.sanand.workers.dev/tds-2025-01-ga4) | Online open MCQ                   |        |       31 Jan 2025 |        9 Feb 2025 |
 | [P1: Project 1](project-1.md)                                          | Take-home open-Internet           |    20% |       19 Jan 2025 |       15 Feb 2025 |
 | Graded Assignment 5                                                    | Online open MCQ                   |        |        7 Feb 2025 |       16 Feb 2025 |
 | Graded Assignment 6                                                    | Online open MCQ                   |        |       14 Feb 2025 |        9 Mar 2025 |
