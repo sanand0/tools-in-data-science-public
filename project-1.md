@@ -31,7 +31,7 @@ Write an application that exposes an API with the following endpoints:
 
 The DataWorks operations team has identified these tasks that need to be automated:
 
-- **A1**. Install `uv` (if required) and run `https://raw.githubusercontent.com/sanand0/tools-in-data-science-public/tds-2025-01/datagen.py` with `${user.email}` as the only argument. (**NOTE**: This will generate data files required for the next tasks.)
+- **A1**. Install `uv` (if required) and run `https://raw.githubusercontent.com/sanand0/tools-in-data-science-public/tds-2025-01/project-1/datagen.py` with `${user.email}` as the only argument. (**NOTE**: This will generate data files required for the next tasks.)
 - **A2**. Format the contents of `/data/format.md` using `prettier@3.4.2`, updating the file in-place
 - **A3**. The file `/data/dates.txt` contains a list of dates, one per line. Count the number of Wednesdays in the list, and write just the number to `/data/dates-wednesdays.txt`
 - **A4**. Sort the array of contacts in `/data/contacts.json` by `last_name`, then `first_name`, and write the result to `/data/contacts-sorted.json`
