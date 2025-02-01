@@ -102,3 +102,7 @@
   - [21 Jan 2025](live-session-2025-01-21.md)
   - [22 Jan 2025](live-session-2025-01-22.md)
   - [23 Jan 2025](live-session-2025-01-23.md)
+  - [28 Jan 2025](live-session-2025-01-28.md)
+  - [29 Jan 2025](live-session-2025-01-29.md)
+  - [30 Jan 2025](live-session-2025-01-30.md)
+  - [31 Jan 2025](live-session-2025-01-31.md)
