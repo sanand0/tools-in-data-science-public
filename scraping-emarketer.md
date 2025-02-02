@@ -2,7 +2,7 @@
 
 In this live scraping session, we explore a real-life scenario where Straive had to scrape data from emarketer.com for a demo. This is a fairly realistic and representative way of how one might go about scraping a website.
 
-[![Live scraping session](https://i.ytimg.com/vi_webp/ZzUsDE1XjhE/sddefault.webp?)](https://youtu.be/ZzUsDE1XjhE)
+[![Live scraping session](https://i.ytimg.com/vi_webp/ZzUsDE1XjhE/sddefault.webp)](https://youtu.be/ZzUsDE1XjhE)
 
 You'll learn:
 

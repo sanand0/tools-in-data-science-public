@@ -1,6 +1,6 @@
 ## Correlation with Excel
 
-[![Correlation with Excel](https://i.ytimg.com/vi_webp/lXHCyhO7DmY/sddefault.webp?)](https://youtu.be/lXHCyhO7DmY)
+[![Correlation with Excel](https://i.ytimg.com/vi_webp/lXHCyhO7DmY/sddefault.webp)](https://youtu.be/lXHCyhO7DmY)
 
 You'll learn to calculate and interpret correlations using Excel, covering:
 

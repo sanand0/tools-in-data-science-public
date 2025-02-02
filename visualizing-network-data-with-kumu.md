@@ -1,6 +1,6 @@
 ## Visualizing Network Data with Kumu
 
-[![Visualizing network data with Kumu](https://i.ytimg.com/vi_webp/OndB17bigkc/sddefault.webp?)](https://youtu.be/OndB17bigkc)
+[![Visualizing network data with Kumu](https://i.ytimg.com/vi_webp/OndB17bigkc/sddefault.webp)](https://youtu.be/OndB17bigkc)
 
 - [Kumu](https://kumu.io)
 - [IMDB data](https://developer.imdb.com/non-commercial-datasets/)

@@ -36,7 +36,7 @@
 
 ## Image labelling with chess pieces
 
-[![Image labelling with chess pieces](https://i.ytimg.com/vi_webp/OTRamjRb7P4/sddefault.webp?)](https://youtu.be/OTRamjRb7P4)
+[![Image labelling with chess pieces](https://i.ytimg.com/vi_webp/OTRamjRb7P4/sddefault.webp)](https://youtu.be/OTRamjRb7P4)
 
 - [Image dataset](https://www.kaggle.com/datasets/niteshfre/chessman-image-dataset)
 - [Chess Pawns Excel file](https://docs.google.com/spreadsheets/d/156zEzw4al4Onx5IGPvhF8GbEj1TQ6Bqz/edit#gid=1998348575)
@@ -47,7 +47,7 @@
 
 ## Forecasting time series with Python
 
-[![Forecasting time series with Python](https://i.ytimg.com/vi_webp/aedA2javxvE/sddefault.webp?)](https://youtu.be/aedA2javxvE)
+[![Forecasting time series with Python](https://i.ytimg.com/vi_webp/aedA2javxvE/sddefault.webp)](https://youtu.be/aedA2javxvE)
 
 - [Jupyter Notebook](https://colab.research.google.com/drive/1J62K0GG56ZNzq981AOTGwH_oA9w4RAYA?usp=sharing)
 - [Understand time series modeling, moving averages and ARIMA](https://www.youtube.com/playlist?list=PLjwX9KFWtvNnOc4HtsvaDf1XYG3O5bv5s)
@@ -91,7 +91,7 @@ R is a language and environment for statistical computing and graphics. It is op
 
 ## Sentiment analysis with Python and SpaCy
 
-[![Sentiment analysis with Python and SpaCy](https://i.ytimg.com/vi_webp/A9WX7HaS1eU/sddefault.webp?)](https://youtu.be/A9WX7HaS1eU)
+[![Sentiment analysis with Python and SpaCy](https://i.ytimg.com/vi_webp/A9WX7HaS1eU/sddefault.webp)](https://youtu.be/A9WX7HaS1eU)
 
 - [Jupyter Notebook](https://colab.research.google.com/drive/12SfxjYim6uijklYiByZCZDagTwPCF-MD?usp=sharing)
 - Learn about the [pandas module](https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html) and [video](https://youtu.be/vmEHCJofslg)
@@ -106,14 +106,14 @@ R is a language and environment for statistical computing and graphics. It is op
 
 ## Image auto classification with Google Cloud Vision
 
-[![Image auto classification with Google Cloud Vision](https://i.ytimg.com/vi_webp/z4MUpn4FRTw/sddefault.webp?)](https://youtu.be/z4MUpn4FRTw)
+[![Image auto classification with Google Cloud Vision](https://i.ytimg.com/vi_webp/z4MUpn4FRTw/sddefault.webp)](https://youtu.be/z4MUpn4FRTw)
 
 - [Chessman image dataset](https://www.kaggle.com/datasets/niteshfre/chessman-image-dataset)
 - [Google Cloud AutoML](https://cloud.google.com/automl/)
 
 ## Image classification with Python (Keras)
 
-[![Image classification with Python](https://i.ytimg.com/vi_webp/59u3XMiSyro/sddefault.webp?)](https://youtu.be/59u3XMiSyro)
+[![Image classification with Python](https://i.ytimg.com/vi_webp/59u3XMiSyro/sddefault.webp)](https://youtu.be/59u3XMiSyro)
 
 - [Jupyter Notebook](https://colab.research.google.com/drive/1aU3eFkwRO-Ldu_QwmJ_JduRW7TOUVDlQ?usp=sharing)
 - [Chessman image dataset](https://www.kaggle.com/datasets/niteshfre/chessman-image-dataset)
@@ -275,3 +275,8 @@ Kathir Mani from QueLit and Anand S from Gramener discuss the tools and technolo
 ## Smart Narratives with Power BI
 
 [![Smart narratives with Power BI](https://i.ytimg.com/vi_webp/eHmvCNhZiWg/sddefault.webp)](https://youtu.be/eHmvCNhZiWg)
+
+## Apache Airflow
+
+1. [Overview of Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/)
+2. [Airflow Playlist](https://www.youtube.com/playlist?list=PL5_c35Deekdm6N1OBHdQm7JZECTdm7zl-)
