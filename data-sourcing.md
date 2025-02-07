@@ -20,5 +20,5 @@ Here are links used in the video:
 - [Download the IMDb Datasets](https://datasets.imdbws.com/)
 - [Explore the Internet Movie Database](https://gramener.com/imdb/)
 - [What does the world search for?](https://gramener.com/search/)
-- [HowStat - Cricket statistics](http://howstat.com/cricket/home.asp)
+- [HowStat - Cricket statistics](https://howstat.com/cricket/home.asp)
 - [Cricket Strike Rates](https://gramener.com/cricket/)
