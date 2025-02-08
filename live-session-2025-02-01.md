@@ -1,5 +1,7 @@
 # Live Session: 01 Feb 2025
 
+[![2025-02-01 Week 3 - Session 5 - TDS Jan 25](https://i.ytimg.com/vi_webp/tsn7B7mDzw8/sddefault.webp)](https://youtu.be/tsn7B7mDzw8)
+
 **Q1: Can I use Python notebooks instead of VS Code for this project?**
 
 **A1:** You can use Python notebooks for interactive development and debugging, but for a production environment, a script file (.py) is better because it allows for a defined order of execution, unlike notebooks where code cells may not necessarily branch from one section to another. Notebooks are great for sharing with others who may not understand the code, as you can add Markdown to explain each step.

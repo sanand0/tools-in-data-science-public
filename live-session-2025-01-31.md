@@ -1,5 +1,7 @@
 # Live Session: 31 Jan 2025
 
+[![2025-01-31 Week 3 - Session 4 - TDS Jan 25](https://i.ytimg.com/vi_webp/sdg4N-H4BR0/sddefault.webp)](https://youtu.be/sdg4N-H4BR0)
+
 **Q1: In today's session, what will be covered?**
 
 **A1:** We will be discussing the function calling part of OpenAI. We will create a program that takes user prompts in English, identifies which function to call based on the prompt, and then calls that function.
