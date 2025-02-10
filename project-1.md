@@ -98,7 +98,7 @@ Note:
 
 Here's an example of how the evaluation script will work on **Task A2**.
 
-1. Run `podman run $IMAGE_NAME -e AIPROXY_TOKEN=$AIPROXY_TOKEN -p 8000:8000`
+1. Run `podman run -e AIPROXY_TOKEN=$AIPROXY_TOKEN -p 8000:8000 $IMAGE_NAME`
 2. Call `POST https://localhost:8000/run?task=Format+/data/format.md+with+prettier+3.4.2`. Ensure that the respose is a HTTP 200.
    - Note: The task may be worded differently. It may use a different prettier version. But the broad task is the same.
 3. Call `GET https://localhost:8000/read?path=/data/format.md` and get the revised file contents.
