@@ -107,7 +107,7 @@ Work in progress:
 | [Graded Assignment 3](https://exam.sanand.workers.dev/tds-2025-01-ga3) | Online open MCQ                   |        |       15 Jan 2025 |        5 Feb 2025 |
 | [Graded Assignment 4](https://exam.sanand.workers.dev/tds-2025-01-ga4) | Online open MCQ                   |        |       31 Jan 2025 |        9 Feb 2025 |
 | [P1: Project 1](project-1.md)                                          | Take-home open-Internet           |    20% |       19 Jan 2025 |       15 Feb 2025 |
-| [Graded Assignment 5](https://exam.sanand.workers.dev/tds-2025-01-ga5) | Online open MCQ                   |        |        7 Feb 2025 |       16 Feb 2025 |
+| [Graded Assignment 5](https://exam.sanand.workers.dev/tds-2025-01-ga5) | Online open MCQ                   |        |        7 Feb 2025 |       21 Feb 2025 |
 | Graded Assignment 6                                                    | Online open MCQ                   |        |       14 Feb 2025 |        9 Mar 2025 |
 | P2: Project 2                                                          | Take-home open-Internet           |    20% |       21 Feb 2025 |       17 Mar 2025 |
 | Graded Assignment 7                                                    | Online open MCQ                   |        |       28 Feb 2025 |       16 Mar 2025 |
