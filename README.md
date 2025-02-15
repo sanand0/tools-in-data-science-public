@@ -106,7 +106,7 @@ Work in progress:
 | [Graded Assignment 2](https://exam.sanand.workers.dev/tds-2025-01-ga2) | Online open MCQ                   |        |        3 Jan 2025 |        2 Feb 2025 |
 | [Graded Assignment 3](https://exam.sanand.workers.dev/tds-2025-01-ga3) | Online open MCQ                   |        |       15 Jan 2025 |        5 Feb 2025 |
 | [Graded Assignment 4](https://exam.sanand.workers.dev/tds-2025-01-ga4) | Online open MCQ                   |        |       31 Jan 2025 |        9 Feb 2025 |
-| [P1: Project 1](project-1.md)                                          | Take-home open-Internet           |    20% |       19 Jan 2025 |       15 Feb 2025 |
+| [P1: Project 1](project-1.md)                                          | Take-home open-Internet           |    20% |       19 Jan 2025 |       16 Feb 2025 |
 | [Graded Assignment 5](https://exam.sanand.workers.dev/tds-2025-01-ga5) | Online open MCQ                   |        |        7 Feb 2025 |       21 Feb 2025 |
 | Graded Assignment 6                                                    | Online open MCQ                   |        |       14 Feb 2025 |        9 Mar 2025 |
 | P2: Project 2                                                          | Take-home open-Internet           |    20% |       21 Feb 2025 |       17 Mar 2025 |
@@ -120,6 +120,7 @@ Work in progress:
 - 22 Jan 2025: GA2 submission date moved from 26 Jan 2025 to 2 Feb 2025. GA4 release date is moved from 24 Jan 2025 to 31 Jan 2025. This is to reduce the amount students have to learn in a short period.
 - 29 Jan 2025: GA3 submission date moved from 2 Feb 2025 to 5 Feb 2025.
 - 13 Feb 2025: GA5 submission date moved from 16 Feb 2025 to 21 Feb 2025.
+- 15 Feb 2025: Project 1 deadline moved from 15 Jan 2025 to 16 Feb 2025.
 
 <!--
 
