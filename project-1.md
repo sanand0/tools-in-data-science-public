@@ -83,7 +83,7 @@ The business team has _not_ promised to limit themselves to these tasks. But the
 - Commit and push your code
 - Create a [Dockerfile](https://docs.docker.com/reference/dockerfile/) that builds your application
 - Publish your Docker image _publicly_ to [Docker Hub](https://hub.docker.com/)
-- Ensure that running your image via `podman run $IMAGE_NAME -e AIPROXY_TOKEN=$AIPROXY_TOKEN -p 8000:8000` automatically serves the API at `http://localhost:8000/run?task=...` and `http://localhost:8000/read?path=...`
+- Ensure that running your image via `podman run --rm -e AIPROXY_TOKEN=$AIPROXY_TOKEN -p 8000:8000 $IMAGE_NAME` automatically serves the API at `http://localhost:8000/run?task=...` and `http://localhost:8000/read?path=...`
 - [Submit in this Google Form](https://docs.google.com/forms/d/e/1FAIpQLSdOaljgV-INdbKrPotV9OMUKV01QVaFEfcnr5dAxBZqM4x37g/viewform?usp=dialog)
   the URL of your GitHub repository (`https://github.com/user-name/repo-name`) and your Docker image name (`user-name/repo-name`)
 
