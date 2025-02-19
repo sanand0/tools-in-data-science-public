@@ -6,6 +6,10 @@ Watch this introduction to Markdown (19 min):
 
 [![Markdown Crash Course (19 min)](https://i.ytimg.com/vi_webp/HUBNt18RFbo/sddefault.webp)](https://youtu.be/HUBNt18RFbo)
 
+
+If you prefer an learn by doing, complete all the lessons on this website: https://www.markdowntutorial.com/lesson/1/
+
+
 Common Markdown syntax:
 
 ````
