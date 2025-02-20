@@ -171,6 +171,11 @@ Check these three links regularly to keep up with the course.
   - Jivraj Singh,
     [22f3002542@ds.study.iitm.ac.in](mailto:22f3002542@ds.study.iitm.ac.in) |
     [@Jivraj](https://discourse.onlinedegree.iitm.ac.in/u/jivraj)
+    [LinkedIn Profile](https://www.linkedin.com/in/jivraj-singh-shekhawat-92a547269/)
+  - Saransh Saini,
+    [22f1001123@ds.study.iitm.ac.in](mailto:22f1001123@ds.study.iitm.ac.in) |
+    [@Saransh_Saini](https://discourse.onlinedegree.iitm.ac.in/u/Saransh_Saini)
+    [LinkedIn Profile](https://www.linkedin.com/in/saranshsaini48/)
   - [Virtual TA](https://chatgpt.com/g/g-mZqKVxKDx-iitm-tds-teaching-assistant)
     ([GPT Instructions](tds-ta-instructions.md))
 
