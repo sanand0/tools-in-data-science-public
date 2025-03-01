@@ -108,9 +108,9 @@ Work in progress:
 | [Graded Assignment 4](https://exam.sanand.workers.dev/tds-2025-01-ga4) | Online open MCQ                   |        |       31 Jan 2025 |        9 Feb 2025 |
 | [P1: Project 1](project-1.md)                                          | Take-home open-Internet           |    20% |       19 Jan 2025 |       16 Feb 2025 |
 | [Graded Assignment 5](https://exam.sanand.workers.dev/tds-2025-01-ga5) | Online open MCQ                   |        |        7 Feb 2025 |       21 Feb 2025 |
-| Graded Assignment 6                                                    | Online open MCQ                   |        |       14 Feb 2025 |        9 Mar 2025 |
-| P2: Project 2                                                          | Take-home open-Internet           |    20% |       21 Feb 2025 |       17 Mar 2025 |
-| Graded Assignment 7                                                    | Online open MCQ                   |        |       28 Feb 2025 |       16 Mar 2025 |
+| Graded Assignment 6                                                    | Online open MCQ                   |        |       28 Feb 2025 |       16 Mar 2025 |
+| P2: Project 2                                                          | Take-home open-Internet           |    20% |        3 Mar 2025 |       31 Mar 2025 |
+| Graded Assignment 7                                                    | Online open MCQ                   |        |        7 Mar 2025 |       26 Mar 2025 |
 | ROE: Remote Online Exam                                                | Online open-Internet MCQ          |    20% | 02 Mar 2025 13:00 | 02 Mar 2025 13:45 |
 | F: Final end-term                                                      | In-person, no internet, mandatory |    25% |       13 Apr 2025 |                   |
 
@@ -121,16 +121,11 @@ Work in progress:
 - 29 Jan 2025: GA3 submission date moved from 2 Feb 2025 to 5 Feb 2025.
 - 13 Feb 2025: GA5 submission date moved from 16 Feb 2025 to 21 Feb 2025.
 - 15 Feb 2025: Project 1 deadline moved from 15 Jan 2025 to 16 Feb 2025.
-
-<!--
-
-Note:
-
-Quiz 1: Sunday, February 23, 2025, 2pm-6pm
-Quiz 2: Sunday, March 16, 2025, 2pm-6pm
-End term exam: Sunday, April 13, 2025, 9am-12pm, 2pm-5pm
-
--->
+- 26 Feb 2025:
+  - Project 1 results will be released by 16 Mar 2025.
+  - Graded Assignment 6 moved from 14 Feb to 28 Feb 2025. Submission date moved from 9 Mar to 16 Mar 2025.
+  - Project 2 moved from 21 Feb to 3 Mar 2025. Submission date moved from 17 Mar to 31 Mar 2025.
+  - Graded Assignment 7 moved from 28 Feb to 7 Mar 2025. Submission date moved from 16 Mar to 26 Mar 2025.
 
 ### Notes
 

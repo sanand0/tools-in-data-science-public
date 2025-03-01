@@ -96,13 +96,12 @@ Note:
 
 ## Evaluation
 
-Here's an example of how the evaluation script will work on **Task A2**.
+This [evaluation script](project-1/evaluate.py) evaluates the scripts.Here's how will evaluate a task, e.g. **Task A2**.
 
-1. Run `podman run -e AIPROXY_TOKEN=$AIPROXY_TOKEN -p 8000:8000 $IMAGE_NAME`
-2. Call `POST https://localhost:8000/run?task=Format+/data/format.md+with+prettier+3.4.2`. Ensure that the respose is a HTTP 200.
+1. Call `POST http://localhost:8000/run?task=Format+/data/format.md+with+prettier+3.4.2`. Ensure that the respose is a HTTP 200.
    - Note: The task may be worded differently. It may use a different prettier version. But the broad task is the same.
-3. Call `GET https://localhost:8000/read?path=/data/format.md` and get the revised file contents.
-4. Verify that the response was formatted using `prettier@3.4.2`.
+2. Call `GET http://localhost:8000/read?path=/data/format.md` and get the revised file contents.
+3. Verify that the response was formatted using `prettier@3.4.2`.
 
 Here's how we will score the results.
 
@@ -110,7 +109,7 @@ Here's how we will score the results.
   - Your GitHub repository exists and is publicly accessible
   - Your GitHub repository has a `LICENSE` file with the MIT license
   - Your GitHub repository has a valid `Dockerfile`
-  - Your Docker image is publicly accessible and runs via `podman run $IMAGE_NAME -e AIPROXY_TOKEN=$AIPROXY_TOKEN -p 8000:8000`
+  - Your Docker image is publicly accessible and runs via `podman run -e AIPROXY_TOKEN=$AIPROXY_TOKEN -p 8000:8000 $IMAGE_NAME`
   - Your Docker image uses the same Dockerfile as in your GitHub repository
 - **Phase A: 10 marks**. 1 mark for each Phase A task that the agent handles correctly.
   - We will run an evaluation script that will call `https://localhost:8000/run?task=...` on the task and call `https://localhost:8000/read?path=...` to verify the output
@@ -120,3 +119,9 @@ Here's how we will score the results.
 - **Bonus: Code diversity**. You're encouraged to copy code and learn from each other. We encourage diversity too. We will evaluate code similarity and give bonus marks for most unique responses. (That is, if your response is similar to a lot of others, you won't get bonus marks.)
 
 Your score will be the sum of the marks above. No normalization, i.e. whether it's 0/20 or 22/20, what you get is what you get.
+
+This execution will be automated via:
+
+- [`validate.py`](project-1/validate.py) to check the pre-requisites and generate the eligible `images.txt`
+- `export AIPROXY_TOKEN=...` to set the AI Proxy token
+- [`run.sh`](project-1/run.sh) to evaluate all submissions.

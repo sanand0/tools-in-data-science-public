@@ -33,13 +33,14 @@ def write_file(path, content):
 
 
 def get_markdown(email):
-    return f"""#Unformatted Markdown
+    return f"""Header
+=====
 
-This  is a sample paragraph with extra  spaces and trailing whitespace.
--   First item
--    Second item
-+Third item
-    *    Fourth item
+| Start | Mid | End |
+|:--|---|--:|
+| 1 | 2 | 3 |
+
+  Paragraph has extra   spaces and trailing whitespace.\u0020\u0020
 
 ```py
 print("{email}")
@@ -57,14 +58,14 @@ def a2_format_markdown():
 
 
 def get_dates(email):
-    random.seed(f"{email}:a3", version=2)
-    start_date = datetime.datetime(2000, 1, 1)
-    end_date = datetime.datetime(2024, 12, 31)
+    random.seed(f"{email}:A3", version=2)
+    start_date = datetime.datetime(2000, 1, 1, tzinfo=datetime.timezone.utc)
+    end_date = datetime.datetime(2024, 12, 31, tzinfo=datetime.timezone.utc)
     formats = [
         "%Y-%m-%d",  # 2024-03-14
         "%d-%b-%Y",  # 14-Mar-2024
         "%b %d, %Y",  # Mar 14, 2024
-        "%Y/%m/%d %H:%M:%S",  # 2024/03/14 15:30:45
+        "%Y/%m/%d",  # 2024/03/14
     ]
     timestamps = random.sample(range(int(start_date.timestamp()), int(end_date.timestamp())), 1000)
     return [
@@ -73,7 +74,7 @@ def get_dates(email):
 
 
 def a3_dates():
-    """Save 1,000 random non-unique dates between 2000-01-01 and 2024-12-31 at dates.txt
+    """Save 1,000 random non-unique dates between 2000-01-01 and 2024-12-31 at datefile.txt
 
     Generates dates in various unambiguous formats:
     - ISO 8601: yyyy-mm-dd
@@ -82,12 +83,12 @@ def a3_dates():
     - yyyy/mm/dd HH:MM:SS
     """
     dates = get_dates(config["email"])
-    write_file("dates.txt", "\n".join(dates))
+    write_file("datefile.txt", "\n".join(dates))
 
 
 def get_contacts(email):
     fake = Faker()
-    fake.seed_instance(num(f"{email}:a4"))
+    fake.seed_instance(num(f"{email}:A4"))
     return [
         {"first_name": fake.first_name(), "last_name": fake.last_name(), "email": fake.email()}
         for _ in range(100)
@@ -97,14 +98,14 @@ def get_contacts(email):
 def a4_contacts():
     """Generate a JSON with 100 contacts with random first_name, last_name, and email"""
     contacts = get_contacts(config["email"])
-    write_file("contacts.json", json.dumps(contacts))
+    write_file("people.json", json.dumps(contacts))
 
 
 def get_logs(email):
     files = []
-    random.seed(f"{email}:a5", version=2)
+    random.seed(f"{email}:A5", version=2)
     fake = Faker()
-    fake.seed_instance(num(f"{email}:a5"))
+    fake.seed_instance(num(f"{email}:A5"))
     for i in range(50):
         text = "\n".join([fake.text() for _ in range(10)])
         age = random.randint(1, 24 * 60 * 60 * 365)
@@ -124,9 +125,9 @@ def a5_logs():
 
 def get_docs(email):
     files = []
-    random.seed(f"{email}:a6", version=2)
+    random.seed(f"{email}:A6", version=2)
     fake = Faker()
-    fake.seed_instance(num(f"{email}:a6"))
+    fake.seed_instance(num(f"{email}:A6"))
     for dir in fake.words(10):
         for file in fake.words(10):
             prefix = "\n".join([fake.text() for _ in range(random.randint(0, 10))])
@@ -150,7 +151,7 @@ def a6_docs():
 
 def get_email(email):
     fake = Faker()
-    fake.seed_instance(num(f"{email}:a7"))
+    fake.seed_instance(num(f"{email}:A7"))
     email = {
         "recipient": fake.email(),
         "from_name": fake.name(),
@@ -170,10 +171,10 @@ def get_email(email):
 
 
 def a7_email():
-    """Generate an email file at email.txt"""
+    """Generate an email file at mail.txt"""
     data = get_email(config["email"])
     write_file(
-        "email.txt",
+        "mail.txt",
         f"""Delivered-To: {data["recipient"]}
 MIME-Version: 1.0
 From: "{data["from_name"]}" <{data["from_email"]}>
@@ -196,7 +197,7 @@ Content-Transfer-Encoding: quoted-printable
 
 def get_credit_card(email):
     fake = Faker()
-    fake.seed_instance(num(f"{email}:a8"))
+    fake.seed_instance(num(f"{email}:A8"))
     return {
         "number": fake.credit_card_number(),
         "expiry": fake.credit_card_expire(),
@@ -206,7 +207,7 @@ def get_credit_card(email):
 
 
 def a8_credit_card_image():
-    """Generate a credit card image at credit_card.png that mimics a real credit card layout"""
+    """Generate a credit card image at card.jpg that mimics a real credit card layout"""
     data = get_credit_card(config["email"])
 
     # Create image with credit card proportions (3.375" x 2.125" at 300 DPI)
@@ -214,25 +215,32 @@ def a8_credit_card_image():
     image = Image.new("RGB", (WIDTH, HEIGHT), (25, 68, 141))  # Deep blue background
     draw = ImageDraw.Draw(image)
 
-    # Use a larger font for credit card number, simplifying OCR
-    large_font = ImageFont.load_default()
-    large_font.size = 60
+    try:
+        # Try to use Arial
+        large_font = ImageFont.truetype("arial.ttf", size=60)
+        small_font = ImageFont.truetype("arial.ttf", size=30)
+    except OSError:
+        # Fall back to built-in Pillow font
+        large_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", size=60)
+        small_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", size=30)
 
     # Format credit card number with spaces
     cc_number = " ".join([data["number"][i : i + 4] for i in range(0, 16, 4)])
-    # Position elements
-    draw.text((50, 250), cc_number, fill=(255, 255, 255), font=large_font)
-    draw.text((50, 400), "VALID\nTHRU", fill=(255, 255, 255))
-    draw.text((50, 480), data["expiry"], fill=(255, 255, 255))
-    draw.text((250, 480), data["security_code"], fill=(255, 255, 255))
-    draw.text((50, 550), data["name"], fill=(255, 255, 255))
 
-    image.save(os.path.join(config["root"], "credit_card.png"))
+    # Position elements
+    draw.text((50, 10), "Dummy sample card (safe to extract card number)", fill=(255, 255, 255), font=small_font)
+    draw.text((50, 250), cc_number, fill=(255, 255, 255), font=large_font)
+    draw.text((50, 400), "VALID\nTHRU", fill=(255, 255, 255), font=small_font)
+    draw.text((50, 480), data["expiry"], fill=(255, 255, 255), font=small_font)
+    draw.text((250, 480), data["security_code"], fill=(255, 255, 255), font=small_font)
+    draw.text((50, 550), data["name"], fill=(255, 255, 255), font=small_font)
+
+    image.save(os.path.join(config["root"], "card.jpg"))
 
 
 def get_comments(email):
     fake = Faker()
-    fake.seed_instance(num(f"{email}:a9"))
+    fake.seed_instance(num(f"{email}:A9"))
     return [fake.paragraph() for _ in range(100)]
 
 
@@ -242,7 +250,7 @@ def a9_comments():
 
 
 def get_tickets(email):
-    random.seed(f"{email}:a10", version=2)
+    random.seed(f"{email}:A10", version=2)
     ticket_types = ["Gold", "Silver", "Bronze"]
     return [
         (random.choice(ticket_types), random.randint(1, 10), round(random.uniform(50, 150), 2))

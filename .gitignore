@@ -2,6 +2,9 @@
 node_modules/
 __pycache__/
 
+project-1/repos/
+project-1/logs/
+
 # Videos are stored on Anand's machine but not committed
 videos/
 
