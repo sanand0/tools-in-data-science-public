@@ -26,7 +26,7 @@ Your application exposes an API endpoint. Let's assume that it is at `https://yo
 
 The endpoint must accept a POST request, e.g. `POST https://your-app.vercel.app/api/` with the question as well as optional file attachments as multipart/form-data.
 
-For example, here's how are can make a request:
+For example, here's how anyone can make a request:
 
 ```bash
 curl -X POST "https://your-app.vercel.app/api/" \
