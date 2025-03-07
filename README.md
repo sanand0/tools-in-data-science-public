@@ -108,11 +108,13 @@ Work in progress:
 | [Graded Assignment 4](https://exam.sanand.workers.dev/tds-2025-01-ga4)     | Online open MCQ                   |        |       31 Jan 2025 |        9 Feb 2025 |
 | [P1: Project 1](project-1.md)                                              | Take-home open-Internet           |    20% |       19 Jan 2025 |       16 Feb 2025 |
 | [Graded Assignment 5](https://exam.sanand.workers.dev/tds-2025-01-ga5)     | Online open MCQ                   |        |        7 Feb 2025 |       21 Feb 2025 |
-| Graded Assignment 6                                                        | Online open MCQ                   |        |       28 Feb 2025 |       16 Mar 2025 |
+| [Graded Assignment 6][GA6]                                                 | Online open MCQ                   |        |       28 Feb 2025 |       16 Mar 2025 |
 | [P2: Project 2](project-2.md)                                              | Take-home open-Internet           |    20% |        3 Mar 2025 |       31 Mar 2025 |
-| Graded Assignment 7                                                        | Online open MCQ                   |        |        7 Mar 2025 |       26 Mar 2025 |
+| Graded Assignment 7                                                        | Online open MCQ                   |        |       14 Mar 2025 |       26 Mar 2025 |
 | [ROE: Remote Online Exam](https://exam.sanand.workers.dev/tds-2025-01-roe) | Online open-Internet MCQ          |    20% | 02 Mar 2025 13:00 | 02 Mar 2025 13:45 |
 | F: Final end-term                                                          | In-person, no internet, mandatory |    25% |       13 Apr 2025 |                   |
+
+[GA6]: https://seek.onlinedegree.iitm.ac.in/courses/ns_25t1_se2002?id=25&type=assignment&tab=courses&unitId=23
 
 ### Updates
 
@@ -126,6 +128,7 @@ Work in progress:
   - Graded Assignment 6 moved from 14 Feb to 28 Feb 2025. Submission date moved from 9 Mar to 16 Mar 2025.
   - Project 2 moved from 21 Feb to 3 Mar 2025. Submission date moved from 17 Mar to 31 Mar 2025.
   - Graded Assignment 7 moved from 28 Feb to 7 Mar 2025. Submission date moved from 16 Mar to 26 Mar 2025.
+- 7 Mar 2025: GA7 release date moved from 7 Mar to 14 Mar 2025.
 
 ### Notes
 
