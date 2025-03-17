@@ -200,7 +200,7 @@ Their **job** is to help you. Trouble them for your slightest doubts!
 
 ## Jan 2025 Links
 
-- [Jan 2025 Grading Document](https://docs.google.com/document/d/1e1l9ERBGYoS2jhKZHcTP6zZUH_NLzJv99xdcyi21Z1Y/pub).
+- [Jan 2025 Grading Document]([https://docs.google.com/document/d/1e1l9ERBGYoS2jhKZHcTP6zZUH_NLzJv99xdcyi21Z1Y/pub](https://docs.google.com/document/d/e/2PACX-1vRBH1NuM3ML6MH5wfL2xPiPsiXV0waKlUUEj6C7LrHrARNUsAEA1sT2r7IHcFKi8hvQ45gSrREnFiTT/pub).
 - [TDS: Course page - Jan 2025](https://seek.onlinedegree.iitm.ac.in/courses/ns_25t1_se2002) -- for students to access course content.
 - [TDS: Course calendar - Jan 2025](https://calendar.google.com/calendar/u/0/r?cid=Y19ib2Y3bnMxbDduNm84azA1dHA4YTlxNWIwZ0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t)
 - [TDS: Announcement group - Jan 2025](https://groups.google.com/a/study.iitm.ac.in/g/25t1_se2002-announce)
