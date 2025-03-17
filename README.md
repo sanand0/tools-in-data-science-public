@@ -110,12 +110,12 @@ Work in progress:
 | [Graded Assignment 5](https://exam.sanand.workers.dev/tds-2025-01-ga5)     | Online open MCQ                   |        |        7 Feb 2025 |       21 Feb 2025 |
 | [Graded Assignment 6][GA6]                                                 | Online open MCQ                   |        |       28 Feb 2025 |       16 Mar 2025 |
 | [P2: Project 2](project-2.md)                                              | Take-home open-Internet           |    20% |        3 Mar 2025 |       31 Mar 2025 |
-| Graded Assignment 7                                                        | Online open MCQ                   |        |       14 Mar 2025 |       26 Mar 2025 |
+| [Graded Assignment 7][GA7]                                                 | Online open MCQ                   |        |       14 Mar 2025 |       26 Mar 2025 |
 | [ROE: Remote Online Exam](https://exam.sanand.workers.dev/tds-2025-01-roe) | Online open-Internet MCQ          |    20% | 02 Mar 2025 13:00 | 02 Mar 2025 13:45 |
 | F: Final end-term                                                          | In-person, no internet, mandatory |    25% |       13 Apr 2025 |                   |
 
 [GA6]: https://seek.onlinedegree.iitm.ac.in/courses/ns_25t1_se2002?id=25&type=assignment&tab=courses&unitId=23
-
+[GA7]: https://seek.onlinedegree.iitm.ac.in/courses/ns_25t1_se2002?id=15&type=assignment&tab=courses&unitId=26
 ### Updates
 
 - 13 Jan 2025: GA3 release date moved from 10 Jan 2025 to 15 Jan 2025 due to faculty delay. Students have till 2 Feb 2025 - more than the 10 days expected for a GA.
