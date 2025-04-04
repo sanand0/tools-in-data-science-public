@@ -20,3 +20,5 @@ OPENAI_API_KEY=$AIPROXY_TOKEN uv run https://raw.githubusercontent.com/sanand0/t
 This [`evaluate.py`](evaluate.py) script currently work-in-progress and will be updated based on teacher & student feedback.
 
 You're welcome to try it and share feedback on this [Project 1 Discourse Thread](https://discourse.onlinedegree.iitm.ac.in/t/project-1-llm-based-automation-agent-discussion-thread-tds-jan-2025/164277/17).
+
+Additionally, [`similarity.py`](similarity.py) evaluates the similarity of Python code between 2 repos. This is used to award bonus marks for code diversity.
