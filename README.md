@@ -182,17 +182,17 @@ Their **job** is to help you. Trouble them for your slightest doubts!
 
 ## Course Links
 
-- [TDS Discourse](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34) - Ask questions, get help, and discuss with your peers.
+- [TDS: Discourse](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34) - Ask questions, get help, and discuss with your peers.
 - [IITM BS Degree Programme - Student Handbook](https://docs.google.com/document/u/1/d/e/2PACX-1vQB7SYIXQPJr0-WcfekVVSt488MdlkNzRUPacbRh2QgOALXcinPybopWIFlY83tdr_mH1QtrhCIsFUq/pub)
-- [Tools in Data Science Public course home page](https://study.iitm.ac.in/ds/course_pages/BSSE2002.html)
-- [TDS: Course material](https://drive.google.com/drive/folders/1FE0YPAxcxMzZdjnp3FopuJCI3A2Vq6fC?usp=drive_link) -- Jupyter notebooks, datasets, etc.
+- [TDS: Public course page](https://study.iitm.ac.in/ds/course_pages/BSSE2002.html)
+- [TDS: Course files](https://drive.google.com/drive/folders/1FE0YPAxcxMzZdjnp3FopuJCI3A2Vq6fC?usp=drive_link) -- Jupyter notebooks, datasets, etc.
 
 ## May 2025 Links
 
-- [May 2025 Grading Document](https://docs.google.com/document/u/3/d/e/2PACX-1vRKOWaLjxsts3qAM4h00EDvlB-GYRSPqqVXTfq3nGWFQBx91roxcU1qGv2ksS7jT4EQPNo8Rmr2zaE9/pub)
+- [Grading Document - May 2025](https://docs.google.com/document/u/3/d/e/2PACX-1vRKOWaLjxsts3qAM4h00EDvlB-GYRSPqqVXTfq3nGWFQBx91roxcU1qGv2ksS7jT4EQPNo8Rmr2zaE9/pub)
 - [TDS: Course page - May 2025](https://seek.onlinedegree.iitm.ac.in/courses/ns_25t2_se2002) -- for students to access course content.
 - [TDS: Announcement group - May 2025](https://groups.google.com/a/study.iitm.ac.in/g/25t2_se2002-announce)
-- [TDS Live Sessions](https://www.youtube.com/@se-lr5ff/streams)
+- [TDS: Live Sessions](https://www.youtube.com/@se-lr5ff/streams)
 
 <!--
 
@@ -202,7 +202,7 @@ Their **job** is to help you. Trouble them for your slightest doubts!
 
 ## Past Course Content
 
-- [TDS: Jan 2025 Course Content](2025-01.html)
-- [Jan 2025 Grading Document](https://docs.google.com/document/d/e/2PACX-1vRBH1NuM3ML6MH5wfL2xPiPsiXV0waKlUUEj6C7LrHrARNUsAEA1sT2r7IHcFKi8hvQ45gSrREnFiTT/pub).
+- [TDS: Course Content - Jan 2025](2025-01.html)
 - [TDS: Live Sessions - Jan 2025](https://www.youtube.com/playlist?list=PL_h5u1jMeBCl1BquBhgunA4t08XAxsA-C) -- YouTube playlist
 - [TDS: Course calendar - Jan 2025](https://calendar.google.com/calendar/u/0/r?cid=Y19ib2Y3bnMxbDduNm84azA1dHA4YTlxNWIwZ0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t)
+- [Grading Document - Jan 2025](https://docs.google.com/document/d/e/2PACX-1vRBH1NuM3ML6MH5wfL2xPiPsiXV0waKlUUEj6C7LrHrARNUsAEA1sT2r7IHcFKi8hvQ45gSrREnFiTT/pub).

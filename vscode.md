@@ -14,9 +14,3 @@ Watch these introductory videos (35 min) from the [Visual Studio Docs](https://c
 - [Debugging](https://code.visualstudio.com/docs/introvideos/debugging): Get started with debugging in VS Code. (6 min)
 - [Version Control](https://code.visualstudio.com/docs/introvideos/versioncontrol): Learn how to use Git version control in VS Code. (3 min)
 - [Customize](https://code.visualstudio.com/docs/introvideos/customize): Learn how to customize your settings and keyboard shortcuts in VS Code. (6 min)
-
-## AI Editors: Copilot, Cursor
-
-Note: AI Editors like [Cursor](https://www.cursor.com/), [Cody](https://sourcegraph.com/cody), and [GitHub Copilot](https://github.com/features/copilot) use LLMs to help you write code faster.
-
-These are built on top of VS Code. These are now a standard tool in every developer's toolkit. Please use them.
