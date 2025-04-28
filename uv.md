@@ -34,6 +34,20 @@ uv venv
 uv pip install httpx
 ```
 
+Here are some useful tools you can run with `uvx` without installation:
+
+```bash
+uvx --from jupyterlab jupyter-lab   # Jupyter notebook
+uvx marimo      # Interactive notebook
+uvx llm         # Chat with LLMs from the command line
+uvx openwebui   # Chat with LLMs via the browser
+uvx httpie      # Make HTTP requests
+uvx datasette   # Browse SQLite databases
+uvx markitdown  # Convert PDF to Markdown
+uvx yt-dlp      # Download YouTube videos
+uvx asciinema   # Record your terminal and play it
+```
+
 uv uses [inline script metadata](https://packaging.python.org/en/latest/specifications/inline-script-metadata/#inline-script-metadata) for dependencies.
 The eliminates the need for `requirements.txt` or virtual environments. For example:
 
