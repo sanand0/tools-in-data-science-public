@@ -100,27 +100,28 @@ Track the [commit history](https://github.com/sanand0/tools-in-data-science-publ
 
 ## Evaluations are mostly open Internet
 
-| Exam                       | Type                              | Weight | Release Date | Submission Date |
-| -------------------------- | --------------------------------- | -----: | -----------: | --------------: |
-| GA: Graded assignments     | Best 4 out of 7 ‡                 |    15% |              |                 |
-| [Graded Assignment 1][GA1] | Online open MCQ                   |        |              |                 |
-| Graded Assignment 2        | Online open MCQ                   |        |              |                 |
-| Graded Assignment 3        | Online open MCQ                   |        |              |                 |
-| Graded Assignment 4        | Online open MCQ                   |        |              |                 |
-| P1: Project 1              | Take-home open-Internet           |    20% |              |                 |
-| Graded Assignment 5        | Online open MCQ                   |        |              |                 |
-| Graded Assignment 6        | Online open MCQ                   |        |              |                 |
-| P2: Project 2              | Take-home open-Internet           |    20% |              |                 |
-| Graded Assignment 7        | Online open MCQ                   |        |              |                 |
-| ROE: Remote Online Exam    | Online open-Internet MCQ          |    20% |              |                 |
-| F: Final end-term          | In-person, no internet, mandatory |    25% |              |                 |
+Tentative dates:
+
+| Exam                       | Type                     | Weight |          Release Date |       Submission Date |
+| -------------------------- | ------------------------ | -----: | --------------------: | --------------------: |
+| GA: Graded assignments     | Best 4 out of 7          |    15% |                       |                       |
+| [Graded Assignment 1][GA1] | Online open-Internet MCQ |        |       Wed 30 Apr 2025 |       Sun 11 May 2025 |
+| Graded Assignment 2        | Online open-Internet MCQ |        |       Wed 07 May 2025 |       Sun 18 May 2025 |
+| Graded Assignment 3        | Online open-Internet MCQ |        |       Wed 21 May 2025 |       Sun 01 Jun 2025 |
+| P1: Project 1              | Online open-Internet     |    20% |       Fri 16 Mar 2025 |       Sat 14 Jun 2025 |
+| Graded Assignment 4        | Online open-Internet MCQ |        |       Wed 11 Jun 2025 |       Sun 22 Jun 2025 |
+| Graded Assignment 5        | Online open-Internet MCQ |        |       Wed 18 Jun 2025 |       Sun 29 Jun 2025 |
+| Graded Assignment 6        | Online open-Internet MCQ |        |       Wed 02 Jul 2025 |       Sun 13 Jul 2025 |
+| ROE: Remote Online Exam    | Online open-Internet MCQ |    20% | Sun 20 Jul 2025 13:00 | Sun 20 Jul 2025 13:45 |
+| Graded Assignment 7        | Online open-Internet MCQ |        |       Wed 16 Jul 2025 |       Sun 27 Jul 2025 |
+| P2: Project 2              | Online open-Internet     |    20% |       Fri 11 Jul 2025 |        Fri 8 Aug 2025 |
+| F: Final end-term          | In-person, no internet   |    25% |       Sun 31 Aug 2025 |       Sun 31 Aug 2025 |
 
 [GA1]: https://exam.sanand.workers.dev/tds-2025-05-ga1
 
 ### Notes
 
 - **[Graded Assignment 1][GA1] checks course pre-requisites**. Please drop this course (do it in a later term) if you score low. It'll be too tough for you now.
-- ‡ **Graded Assignments: Best 4 out 7**. We'll take the best 4 out of your graded assignments submissions. These, combined, will have a 15% weightage.
 - **Remote exams are open and hard**
   - You can use the Internet, WhatsApp, ChatGPT, your notes, your friends, your pets...
   - The RoE is especially hard. Read: [What is the purpose of an impossible RoE exam?](https://discourse.onlinedegree.iitm.ac.in/t/whats-the-actual-purpose-of-impossible-roe-exam/99838/2)
@@ -188,11 +189,10 @@ Their **job** is to help you. Trouble them for your slightest doubts!
 
 ## May 2025 Links
 
-- [Jan 2025 Grading Document](https://docs.google.com/document/d/e/2PACX-1vRBH1NuM3ML6MH5wfL2xPiPsiXV0waKlUUEj6C7LrHrARNUsAEA1sT2r7IHcFKi8hvQ45gSrREnFiTT/pub).
+- [May 2025 Grading Document](https://docs.google.com/document/u/3/d/e/2PACX-1vRKOWaLjxsts3qAM4h00EDvlB-GYRSPqqVXTfq3nGWFQBx91roxcU1qGv2ksS7jT4EQPNo8Rmr2zaE9/pub)
 - [TDS: Course page - May 2025](https://seek.onlinedegree.iitm.ac.in/courses/ns_25t2_se2002) -- for students to access course content.
-- [TDS: Course calendar - Jan 2025](https://calendar.google.com/calendar/u/0/r?cid=Y19ib2Y3bnMxbDduNm84azA1dHA4YTlxNWIwZ0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t)
 - [TDS: Announcement group - May 2025](https://groups.google.com/a/study.iitm.ac.in/g/25t2_se2002-announce)
-- [TDS: TA Sessions - Jan 2025](https://www.youtube.com/playlist?list=PL_h5u1jMeBCl1BquBhgunA4t08XAxsA-C) -- YouTube playlist
+- [TDS Live Sessions](https://www.youtube.com/@se-lr5ff/streams)
 
 <!--
 
@@ -202,4 +202,7 @@ Their **job** is to help you. Trouble them for your slightest doubts!
 
 ## Past Course Content
 
-- [Jan 2025](2025-01.html)
+- [TDS: Jan 2025 Course Content](2025-01.html)
+- [Jan 2025 Grading Document](https://docs.google.com/document/d/e/2PACX-1vRBH1NuM3ML6MH5wfL2xPiPsiXV0waKlUUEj6C7LrHrARNUsAEA1sT2r7IHcFKi8hvQ45gSrREnFiTT/pub).
+- [TDS: Live Sessions - Jan 2025](https://www.youtube.com/playlist?list=PL_h5u1jMeBCl1BquBhgunA4t08XAxsA-C) -- YouTube playlist
+- [TDS: Course calendar - Jan 2025](https://calendar.google.com/calendar/u/0/r?cid=Y19ib2Y3bnMxbDduNm84azA1dHA4YTlxNWIwZ0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t)
