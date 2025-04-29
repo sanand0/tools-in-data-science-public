@@ -189,7 +189,7 @@ Their **job** is to help you. Trouble them for your slightest doubts!
 
 ## May 2025 Links
 
-- [Grading Document - May 2025](https://docs.google.com/document/u/3/d/e/2PACX-1vRKOWaLjxsts3qAM4h00EDvlB-GYRSPqqVXTfq3nGWFQBx91roxcU1qGv2ksS7jT4EQPNo8Rmr2zaE9/pub)
+- [Grading Document - May 2025]( https://docs.google.com/document/u/3/d/e/2PACX-1vRKOWaLjxsts3qAM4h00EDvlB-GYRSPqqVXTfq3nGWFQBx91roxcU1qGv2ksS7jT4EQPNo8Rmr2zaE9/pub#h.2bn6wsx)
 - [TDS: Course page - May 2025](https://seek.onlinedegree.iitm.ac.in/courses/ns_25t2_se2002) -- for students to access course content.
 - [TDS: Announcement group - May 2025](https://groups.google.com/a/study.iitm.ac.in/g/25t2_se2002-announce)
 - [TDS: Live Sessions](https://www.youtube.com/@se-lr5ff/streams)

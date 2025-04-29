@@ -3,7 +3,6 @@
 [`llm`](https://pypi.org/project/llm) is a command-line utility for interacting with large language models—simplifying prompts, managing models and plugins, logging every conversation, and extracting structured data for pipelines.
 
 [![Language models on the command-line w/ Simon Willison](https://i.ytimg.com/vi_webp/QUXQNi6jQ30/sddefault.webp)](https://youtu.be/QUXQNi6jQ30?t=100)
-_Watch how to install and use `llm` from 1:40 onwards (57 min)._ ([Language models on the command-line w/ Simon Willison - YouTube](https://www.youtube.com/watch?v=QUXQNi6jQ30&utm_source=chatgpt.com))
 
 ### Basic Usage
 
