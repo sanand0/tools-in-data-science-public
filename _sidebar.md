@@ -49,7 +49,7 @@
   - [LLM Evals](llm-evals.md)
   - [Hosting LLMs: Runpod](hosting-llms-runpod.md)
   - [Fine-tuning: Gemini](fine-tuning-gemini.md)
-- Project 1
+- [Project 1](project-tds-virtual-ta.md)
 - [Data Sourcing](data-sourcing.md)
   - [Scraping with Excel](scraping-with-excel.md)
   - [Scraping with Google Sheets](scraping-with-google-sheets.md)

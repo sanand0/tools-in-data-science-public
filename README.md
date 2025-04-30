@@ -59,6 +59,8 @@ Here's students' feedback:
 
 - [Course experience and farewell post](https://discourse.onlinedegree.iitm.ac.in/t/course-experience-and-farewell-post/173247)
 
+</details>
+
 <details>
 <summary><strong>Programming skills are a pre-requisite</strong></summary>
 

@@ -3,7 +3,7 @@ description: "TDS Virtual TA Project Sample (but not the actual evaluation) Ques
 providers:
   - id: https
     config:
-      url: https://httpbin.org/post   # Replace this with your API endpoint
+      url: https://app.example.com/api/ # Replace this with your API endpoint
       method: POST
       headers:
         Content-Type: application/json
@@ -22,15 +22,15 @@ defaultTest:
         type: object
         required: [answer, links]
         properties:
-          answer: {type: string}
+          answer: { type: string }
           links:
             type: array
             items:
               type: object
               required: [url, text]
               properties:
-                url: {type: string}
-                text: {type: string}
+                url: { type: string }
+                text: { type: string }
 
 tests:
   - vars:
@@ -39,26 +39,40 @@ tests:
       link: https://discourse.onlinedegree.iitm.ac.in/t/ga5-question-8-clarification/155939
     assert:
       - type: llm-rubric
+        transform: output.answer
         value: Clarifies use of gpt-3.5-turbo-0125 not gpt-4o-mini
       - type: contains
+        transform: JSON.stringify(output.links)
         value: https://discourse.onlinedegree.iitm.ac.in/t/ga5-question-8-clarification/155939
+
   - vars:
       question: If a student scores 10/10 on GA4 as well as a bonus, how would it appear on the dashboard?
       link: https://discourse.onlinedegree.iitm.ac.in/t/ga4-data-sourcing-discussion-thread-tds-jan-2025/165959/388
     assert:
       - type: llm-rubric
+        transform: output.answer
         value: Mentions the dashboard showing "110"
       - type: contains
+        transform: JSON.stringify(output.links)
         value: https://discourse.onlinedegree.iitm.ac.in/t/ga4-data-sourcing-discussion-thread-tds-jan-2025/165959
   - vars:
       question: I know Docker but have not used Podman before. Should I use Docker for this course?
     assert:
       - type: llm-rubric
+        transform: output.answer
         value: Recommends Podman for the course
       - type: llm-rubric
+        transform: output.answer
         value: Mentions that Docker is acceptable
       - type: contains
+        transform: JSON.stringify(output.links)
         value: https://tds.s-anand.net/#/docker
+  - vars:
+      question: When is the TDS Sep 2025 end-term exam?
+    assert:
+      - type: llm-rubric
+        transform: output.answer
+        value: Says it doesn't know (since this information is not available yet)
 
 writeLatestResults: true
 

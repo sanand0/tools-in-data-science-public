@@ -9,7 +9,7 @@ You are a clever student who has joined IIT Madras' Online Degree in Data Scienc
 Out of kindness for your teaching assistants, you have decided to build an API that can automatically answer student questions on their behalf based on:
 
 - [Course content](https://tds.s-anand.net/) with content for TDS Jan 2025 as on 15 Apr 2025.
-- [TDS Discourse posts](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34) with content from 1 Jan 2025 - 16 May 2025.
+- [TDS Discourse posts](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34) with content from 1 Jan 2025 - 14 Apr 2025.
 
 ## Scrape the data
 
@@ -53,11 +53,11 @@ The response must be a JSON object like this:
 
 ## Evaluate your application
 
-Here are a few [sample questions and evaluation parameters](project-tds-virtual-ta-promptfoo.yaml). These are **indicative**. The actual evaluation could ask _any_ realistic student question.
+Here are a few [sample questions and evaluation parameters](project-tds-virtual-ta-promptfoo.yaml ':ignore'). These are **indicative**. The actual evaluation could ask _any_ realistic student question.
 
 To run this:
 
-1. Edit [`project-tds-virtual-ta-promptfoo.yaml`](project-tds-virtual-ta-promptfoo.yaml) to replace `providers[0].config.url` with your API URL.
+1. Edit [`project-tds-virtual-ta-promptfoo.yaml`](project-tds-virtual-ta-promptfoo.yaml ':ignore')  to replace `providers[0].config.url` with your API URL.
 2. Run this script:
 
    ```bash
@@ -78,12 +78,12 @@ Deploy your application to a public URL that can be accessed by anyone. You may 
 
 ## Submit your URL
 
-Submit your GitHub repository URL and your API endpoint URL in this Google Form: <https://forms.gle/TODO>.
+Submit your GitHub repository URL and your API endpoint URL at https://exam.sanand.workers.dev/tds-project-virtual-ta #TODO
 
 ## Evaluation
 
 - **Pre-requisites**: Your repository **MUST** meet the following criteria to be eligible for evaluation
   - Your GitHub repository exists and is publicly accessible
-  - Your GitHub repository has a `LICENSE` file with the MIT license
-- We will use a modified version of [`project-tds-virtual-ta-promptfoo.yaml`](project-tds-virtual-ta-promptfoo.yaml) with 10 realistic questions. Correct answers will be awarded up to 2 marks each.
+  - Your GitHub repository has a `LICENSE` file with the MIT license in the root folder
+- We will use a modified version of [`project-tds-virtual-ta-promptfoo.yaml`](project-tds-virtual-ta-promptfoo.yaml ':ignore') with 10 realistic questions. Correct answers will be awarded up to 2 marks each.
 - Your score will be the sum of the marks above. No normalization. What you get is what you get.
