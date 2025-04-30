@@ -2,7 +2,7 @@
 
 Secure your API endpoints using Google ID tokens to restrict access to specific email addresses.
 
-[![FastAPI Google Sign‑In Like a Pro (35 min)](https://i.ytimg.com/vi_webp/5h63AfcVerM/sddefault.webp)](https://youtu.be/5h63AfcVerM)
+[![🔥 Python FastAPI Google Login Tutorial | OAuth2 Authentication (19 min)](https://i.ytimg.com/vi_webp/4ExQYRCwbzw/sddefault.webp)](https://youtu.be/4ExQYRCwbzw)
 
 Google Auth is the most commonly implemented single sign-on mechanism because:
 

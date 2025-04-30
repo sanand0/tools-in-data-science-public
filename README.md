@@ -108,7 +108,7 @@ Tentative dates:
 | [Graded Assignment 1][GA1] | Online open-Internet MCQ |        |       Wed 30 Apr 2025 |       Sun 11 May 2025 |
 | Graded Assignment 2        | Online open-Internet MCQ |        |       Wed 07 May 2025 |       Sun 18 May 2025 |
 | Graded Assignment 3        | Online open-Internet MCQ |        |       Wed 21 May 2025 |       Sun 01 Jun 2025 |
-| P1: Project 1              | Online open-Internet     |    20% |       Fri 16 Mar 2025 |       Sat 14 Jun 2025 |
+| P1: Project 1              | Online open-Internet     |    20% |       Fri 16 May 2025 |       Sat 14 Jun 2025 |
 | Graded Assignment 4        | Online open-Internet MCQ |        |       Wed 11 Jun 2025 |       Sun 22 Jun 2025 |
 | Graded Assignment 5        | Online open-Internet MCQ |        |       Wed 18 Jun 2025 |       Sun 29 Jun 2025 |
 | Graded Assignment 6        | Online open-Internet MCQ |        |       Wed 02 Jul 2025 |       Sun 13 Jul 2025 |
