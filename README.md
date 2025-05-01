@@ -100,6 +100,12 @@ Track the [commit history](https://github.com/sanand0/tools-in-data-science-publ
 6. **[Data Analysis](data-analysis.md)** to find surprising insights in the data.
 7. **[Data Visualization](data-visualization.md)** to communicate those insights as visual stories.
 
+## It's open to all
+
+The course content and the [evaluations](#evaluations-are-mostly-open-internet) are public.
+
+You can't participate in [Discourse](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34), get project evaluations, take the final end-term, or get a certificate.
+
 ## Evaluations are mostly open Internet
 
 Tentative dates:
