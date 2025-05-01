@@ -24,10 +24,6 @@ Common Markdown syntax:
 [Link text](https://url.com)
 ![Image alt](image.jpg)
 
-| Column 1 | Column 2 |
-|----------|----------|
-| Cell 1   | Cell 2   |
-
 ```python
 # Code block
 def hello():
@@ -36,6 +32,22 @@ def hello():
 
 > Blockquote
 ````
+
+There is also a [GitHub Flavored Markdown](https://github.github.com/gfm/) standard which is popular. This includes extensions like:
+
+```
+- [ ] Incomplete task
+- [x] Completed task
+
+~~Strikethrough~~
+
+Tables:
+
+| Column 1 | Column 2 |
+|----------|----------|
+| Cell 1   | Cell 2   |
+
+```
 
 Tools for working with Markdown:
 

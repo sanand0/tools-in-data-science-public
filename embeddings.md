@@ -88,4 +88,4 @@ async def embed(text: str) -> list[float]:
         return response.json()["data"][0]["embedding"]
 ```
 
-**NOTE**: You need to set the `OPENAI_API_KEY` environment variable for this to work.
+**NOTE**: You need to set the [`OPENAI_API_KEY`](https://platform.openai.com/api-keys) environment variable for this to work.

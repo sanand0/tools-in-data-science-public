@@ -22,11 +22,13 @@
    - Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac), choose **Codespaces: Create New Codespace**, and follow the prompts.
 
 3. [**Via GitHub CLI**](https://docs.github.com/en/codespaces/developing-in-a-codespace/using-github-codespaces-with-github-cli)
+
    ```bash
    gh auth login
-   gh codespace create --repo OWNER/REPO --branch main
-   gh codespace list
-   gh codespace code   # opens in your local VS Code
+   gh codespace create --repo OWNER/REPO
+   gh codespace list    # List all codespaces
+   gh codespace code    # opens in your local VS Code
+   gh codespace ssh     # SSH into the codepsace
    ```
 
 ### Features To Explore
