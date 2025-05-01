@@ -104,22 +104,25 @@ Track the [commit history](https://github.com/sanand0/tools-in-data-science-publ
 
 Tentative dates:
 
-| Exam                       | Type                     | Weight |          Release Date |       Submission Date |
-| -------------------------- | ------------------------ | -----: | --------------------: | --------------------: |
-| GA: Graded assignments     | Best 4 out of 7          |    15% |                       |                       |
-| [Graded Assignment 1][GA1] | Online open-Internet MCQ |        |       Wed 30 Apr 2025 |       Sun 11 May 2025 |
-| Graded Assignment 2        | Online open-Internet MCQ |        |       Wed 07 May 2025 |       Sun 18 May 2025 |
-| Graded Assignment 3        | Online open-Internet MCQ |        |       Wed 21 May 2025 |       Sun 01 Jun 2025 |
-| P1: Project 1              | Online open-Internet     |    20% |       Fri 16 May 2025 |       Sat 14 Jun 2025 |
-| Graded Assignment 4        | Online open-Internet MCQ |        |       Wed 11 Jun 2025 |       Sun 22 Jun 2025 |
-| Graded Assignment 5        | Online open-Internet MCQ |        |       Wed 18 Jun 2025 |       Sun 29 Jun 2025 |
-| Graded Assignment 6        | Online open-Internet MCQ |        |       Wed 02 Jul 2025 |       Sun 13 Jul 2025 |
-| ROE: Remote Online Exam    | Online open-Internet MCQ |    20% | Sun 20 Jul 2025 13:00 | Sun 20 Jul 2025 13:45 |
-| Graded Assignment 7        | Online open-Internet MCQ |        |       Wed 16 Jul 2025 |       Sun 27 Jul 2025 |
-| P2: Project 2              | Online open-Internet     |    20% |       Fri 11 Jul 2025 |        Fri 8 Aug 2025 |
-| F: Final end-term          | In-person, no internet   |    25% |       Sun 31 Aug 2025 |       Sun 31 Aug 2025 |
+| Exam                                       | Type                     | Weight |          Release Date |       Submission Date |
+| ------------------------------------------ | ------------------------ | -----: | --------------------: | --------------------: |
+| GA: Graded assignments                     | Best 4 out of 7          |    15% |                       |                       |
+| [Graded Assignment 1][GA1] [Discuss][GA1D] | Online open-Internet MCQ |        |       Wed 30 Apr 2025 |       Sun 11 May 2025 |
+| [Graded Assignment 2][GA2] [Discuss][GA2D] | Online open-Internet MCQ |        |       Wed 07 May 2025 |       Sun 18 May 2025 |
+| Graded Assignment 3                        | Online open-Internet MCQ |        |       Wed 21 May 2025 |       Sun 01 Jun 2025 |
+| P1: Project 1                              | Online open-Internet     |    20% |       Fri 16 May 2025 |       Sat 14 Jun 2025 |
+| Graded Assignment 4                        | Online open-Internet MCQ |        |       Wed 11 Jun 2025 |       Sun 22 Jun 2025 |
+| Graded Assignment 5                        | Online open-Internet MCQ |        |       Wed 18 Jun 2025 |       Sun 29 Jun 2025 |
+| Graded Assignment 6                        | Online open-Internet MCQ |        |       Wed 02 Jul 2025 |       Sun 13 Jul 2025 |
+| ROE: Remote Online Exam                    | Online open-Internet MCQ |    20% | Sun 20 Jul 2025 13:00 | Sun 20 Jul 2025 13:45 |
+| Graded Assignment 7                        | Online open-Internet MCQ |        |       Wed 16 Jul 2025 |       Sun 27 Jul 2025 |
+| P2: Project 2                              | Online open-Internet     |    20% |       Fri 11 Jul 2025 |        Fri 8 Aug 2025 |
+| F: Final end-term                          | In-person, no internet   |    25% |       Sun 31 Aug 2025 |       Sun 31 Aug 2025 |
 
 [GA1]: https://exam.sanand.workers.dev/tds-2025-05-ga1
+[GA2]: https://exam.sanand.workers.dev/tds-2025-05-ga2
+[GA1D]: https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-may-2025/173524
+[GA2D]: https://discourse.onlinedegree.iitm.ac.in/t/ga2-deployment-tools-discussion-thread-tds-may-2025/173525
 
 ### Notes
 
@@ -191,7 +194,7 @@ Their **job** is to help you. Trouble them for your slightest doubts!
 
 ## May 2025 Links
 
-- [Grading Document - May 2025]( https://docs.google.com/document/u/3/d/e/2PACX-1vRKOWaLjxsts3qAM4h00EDvlB-GYRSPqqVXTfq3nGWFQBx91roxcU1qGv2ksS7jT4EQPNo8Rmr2zaE9/pub#h.2bn6wsx)
+- [Grading Document - May 2025](https://docs.google.com/document/u/3/d/e/2PACX-1vRKOWaLjxsts3qAM4h00EDvlB-GYRSPqqVXTfq3nGWFQBx91roxcU1qGv2ksS7jT4EQPNo8Rmr2zaE9/pub#h.2bn6wsx)
 - [TDS: Course page - May 2025](https://seek.onlinedegree.iitm.ac.in/courses/ns_25t2_se2002) -- for students to access course content.
 - [TDS: Announcement group - May 2025](https://groups.google.com/a/study.iitm.ac.in/g/25t2_se2002-announce)
 - [TDS: Live Sessions](https://www.youtube.com/@se-lr5ff/streams)
