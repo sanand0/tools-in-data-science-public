@@ -13,7 +13,7 @@ Here are things you should know when you're compressing images:
 Here's a rule of thumb you can use as of 2025.
 
 - Use SVG if you can (i.e. if it's vector graphics or you can convert it to one)
-- Else, reduce the image to as small as you can, and save as lossy WebP
+- Else, reduce the image to as small as you can, and save as (lossy or lossless) WebP
 
 Common operations with Python:
 
