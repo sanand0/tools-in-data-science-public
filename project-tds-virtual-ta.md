@@ -87,3 +87,8 @@ Submit your GitHub repository URL and your API endpoint URL at https://exam.sana
   - Your GitHub repository has a `LICENSE` file with the MIT license in the root folder
 - We will use a modified version of [`project-tds-virtual-ta-promptfoo.yaml`](project-tds-virtual-ta-promptfoo.yaml ':ignore') with 10 realistic questions. Correct answers will be awarded up to 2 marks each.
 - Your score will be the sum of the marks above. No normalization. What you get is what you get.
+
+Bonus:
+
+- 1 mark if your GitHub repo includes a script that scrapes the Discourse posts across a date range from a Discourse course page like [TDS](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34)
+- 2 marks if we deploy your solution (with minimal modifications) as an official solution for students to use.

@@ -11,6 +11,8 @@ Read the [AI Pipe documentation](https://github.com/sanand0/aipipe) to learn how
 2. Replace the `OPENAI_API_KEY` with the [`AIPIPE_TOKEN`](https://aipipe.org/login)
 3. Replace OpenAI models (e.g. `gpt-4.1-nano`) with `openai/gpt-4.1-nano`
 
+**For a 50% discount** (but slower speed), use [Flex processing](https://platform.openai.com/docs/guides/flex-processing) by adding `service_tier: "flex"` to your JSON request.
+
 ## AI Proxy - Jan 2025
 
 For the Jan 2025 batch, we had created API keys for everyone with an `iitm.ac.in` email to use `gpt-4o-mini` and `text-embedding-3-small`. Your usage is limited to **$1 per calendar month** for this course. Don't exceed that.
