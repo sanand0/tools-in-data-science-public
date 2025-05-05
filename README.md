@@ -100,13 +100,18 @@ Track the [commit history](https://github.com/sanand0/tools-in-data-science-publ
 6. **[Data Analysis](data-analysis.md)** to find surprising insights in the data.
 7. **[Data Visualization](data-visualization.md)** to communicate those insights as visual stories.
 
-## It's open to all
+## Anyone can audit this course
 
-The course content and the [evaluations](#evaluations-are-mostly-open-internet) are public. You may audit this course.
+Everyone has access to:
 
-You can't participate in [Discourse](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34), get project evaluations, take the final end-term, or get a certificate.
+- Course content at <https://tds.s-anand.net/>
+- [Evaluations](#evaluations-are-mostly-open-internet)
 
-But the content and online evaluations are below. You can solve these questions any time before the submission dates.
+You can solve these questions any time and check your answers before the submission dates.
+
+Only [enrolled students](https://study.iitm.ac.in/ds/) can participate in [Discourse](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34), get project evaluations, take the final end-term, or get a certificate.
+
+Those auditing can join the [TDS 2025 May Google Group](https://groups.google.com/g/tds-2025-05) for announcements.
 
 ## Evaluations are mostly open Internet
 
@@ -116,8 +121,8 @@ Tentative dates:
 | ------------------------------------------ | ------------------------ | -----: | --------------------: | --------------------: |
 | GA: Graded assignments                     | Best 4 out of 7          |    15% |                       |                       |
 | [Graded Assignment 1][GA1] [Discuss][GA1D] | Online open-Internet MCQ |        |       Thu 01 May 2025 |       Sun 18 May 2025 |
-| [Graded Assignment 2][GA2] [Discuss][GA2D] | Online open-Internet MCQ |        |       Thu 01 May 2025 |       Sun 25 May 2025 |
-| Graded Assignment 3                        | Online open-Internet MCQ |        |       Fri 16 May 2025 |       Sun 25 May 2025 |
+| [Graded Assignment 2][GA2] [Discuss][GA2D] | Online open-Internet MCQ |        |       Thu 05 May 2025 |       Sun 25 May 2025 |
+| Graded Assignment 3                        | Online open-Internet MCQ |        |       Fri 16 May 2025 |       Sun 25 Jun 2025 |
 | P1: Project 1                              | Online open-Internet     |    20% |       Fri 16 May 2025 |       Sat 14 Jun 2025 |
 | Graded Assignment 4                        | Online open-Internet MCQ |        |       Wed 11 Jun 2025 |       Sun 22 Jun 2025 |
 | Graded Assignment 5                        | Online open-Internet MCQ |        |       Wed 18 Jun 2025 |       Sun 29 Jun 2025 |
@@ -131,6 +136,13 @@ Tentative dates:
 [GA2]: https://exam.sanand.workers.dev/tds-2025-05-ga2
 [GA1D]: https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-may-2025/173524
 [GA2D]: https://discourse.onlinedegree.iitm.ac.in/t/ga2-deployment-tools-discussion-thread-tds-may-2025/173525
+
+Updates:
+
+- 5 May 2025:
+  - GA1 submission date postponed from 11 May to 18 May 2025
+  - GA2 submission date postponed from 18 May to 25 May 2025
+  - GA3 submission date **preponed** from 01 Jun to 25 May 2025 since there's a break the week after
 
 ### Notes
 
