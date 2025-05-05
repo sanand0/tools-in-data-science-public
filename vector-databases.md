@@ -8,10 +8,12 @@ Vector databases are an evolving space.
 
 The first generation of vector databases were written in C and typically used an algorithm called [HNSW](https://en.wikipedia.org/wiki/Hierarchical_navigable_small_world) (a way to approximately find the nearest neighbor). Some popular ones are:
 
-- **[Chroma](https://docs.trychroma.com/)**: Combines a vector index with a SQLite database. Easy to install, most popular.
-- **[LanceDB](https://lancedb.github.io/lancedb/)**: Written in Rust. Faster, easy to install, growing popular.
-- **[FAISS](https://github.com/facebookresearch/faiss)**: Meta's lightweight library
-- **[Milvus](https://milvus.io/)**: Distributed, cloud-native
+- **[chroma 19,637 ⭐ May 2025](https://github.com/chroma-core/chroma)**
+- **[qdrant 23,341 ⭐ May 2025](https://github.com/qdrant/qdrant)**
+- **[lancedb 6,327 ⭐ May 2025](https://github.com/lancedb/lancedb)**
+- **[faiss 34,684 ⭐ May 2025](https://github.com/facebookresearch/faiss)**
+- **[milvus 34,476 ⭐ May 2025](https://github.com/milvus-io/milvus)**
+- **[weaviate 13,222 ⭐ May 2025](https://github.com/weaviate/weaviate)**
 
 In addition, most relational databases now support vector search. For example:
 

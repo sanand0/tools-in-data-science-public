@@ -102,9 +102,11 @@ Track the [commit history](https://github.com/sanand0/tools-in-data-science-publ
 
 ## It's open to all
 
-The course content and the [evaluations](#evaluations-are-mostly-open-internet) are public.
+The course content and the [evaluations](#evaluations-are-mostly-open-internet) are public. You may audit this course.
 
 You can't participate in [Discourse](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34), get project evaluations, take the final end-term, or get a certificate.
+
+But the content and online evaluations are below. You can solve these questions any time before the submission dates.
 
 ## Evaluations are mostly open Internet
 
