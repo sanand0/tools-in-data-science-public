@@ -115,9 +115,9 @@ Tentative dates:
 | Exam                                       | Type                     | Weight |          Release Date |       Submission Date |
 | ------------------------------------------ | ------------------------ | -----: | --------------------: | --------------------: |
 | GA: Graded assignments                     | Best 4 out of 7          |    15% |                       |                       |
-| [Graded Assignment 1][GA1] [Discuss][GA1D] | Online open-Internet MCQ |        |       Wed 30 Apr 2025 |       Sun 11 May 2025 |
-| [Graded Assignment 2][GA2] [Discuss][GA2D] | Online open-Internet MCQ |        |       Wed 07 May 2025 |       Sun 18 May 2025 |
-| Graded Assignment 3                        | Online open-Internet MCQ |        |       Wed 21 May 2025 |       Sun 01 Jun 2025 |
+| [Graded Assignment 1][GA1] [Discuss][GA1D] | Online open-Internet MCQ |        |       Thu 01 May 2025 |       Sun 18 May 2025 |
+| [Graded Assignment 2][GA2] [Discuss][GA2D] | Online open-Internet MCQ |        |       Thu 01 May 2025 |       Sun 25 May 2025 |
+| Graded Assignment 3                        | Online open-Internet MCQ |        |       Fri 16 May 2025 |       Sun 25 May 2025 |
 | P1: Project 1                              | Online open-Internet     |    20% |       Fri 16 May 2025 |       Sat 14 Jun 2025 |
 | Graded Assignment 4                        | Online open-Internet MCQ |        |       Wed 11 Jun 2025 |       Sun 22 Jun 2025 |
 | Graded Assignment 5                        | Online open-Internet MCQ |        |       Wed 18 Jun 2025 |       Sun 29 Jun 2025 |
