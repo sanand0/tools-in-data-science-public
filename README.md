@@ -148,8 +148,8 @@ Tentative dates:
 
 Check these three links regularly to keep up with the course.
 
-1. **[Seek Inbox](https://seek.onlinedegree.iitm.ac.in/)** for Course Announcements. Log into [seek.onlinedegree.iitm.ac.in](https://seek.onlinedegree.iitm.ac.in/) and click on "Inbox" on the left. Check notifications daily.
-   ![Portal Inbox](images/portal-inbox.webp)
+1. **[Seek Notifications](https://seek.onlinedegree.iitm.ac.in/)** for Course Notifications. Log into [seek.onlinedegree.iitm.ac.in](https://seek.onlinedegree.iitm.ac.in/) and click on the bell icon :bell: on the top right corner :arrow_upper_right:. Check notifications daily.
+   ![Portal Inbox](images/portal_notifications.webp)
 2. **[Your email](https://mail.google.com/)** for Course Announcements. [Seek](https:/seek.onlinedegree.iitm.ac.in/) Inbox are forwarded to your email. Check daily. Check spam folders too.
 3. **[TDS Discourse](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34)**: Faculty, instructors, and TAs will share updates and address queries here. Email [support@study.iitm.ac.in](mailto:support@study.iitm.ac.in) cc: [discourse-staff1@study.iitm.ac.in](mailto:discourse-staff1@study.iitm.ac.in) if you can't access Discourse.
 
