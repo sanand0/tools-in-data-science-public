@@ -69,8 +69,6 @@ You'll now have a `chunks.json` that has one `{id, content}` JSON object per lin
 
 ### 3. Generate embeddings
 
-<!-- Embeddings do not currently work with AIPipe -->
-
 ```bash
 llm embed-multi typescript-book --model 3-small --store --format nl chunks.json
 ```
