@@ -75,6 +75,14 @@ This course teaches you tools that will make you more productive. But you _do_ n
 </details>
 
 <details>
+<summary><strong>If you passed, don't enroll again</strong></summary>
+
+The course is public, so you can always audit it.
+
+Also, registering again for the course [does not improve marks much](https://discourse.onlinedegree.iitm.ac.in/t/why-you-should-almost-never-register-for-tds-improvement-if-you-have-passed-it/173625).
+
+<details>
+
 <summary><strong>We encourage learning by sharing</strong></summary>
 
 You _CAN_ copy from friends. You can work in groups. You can share code. Even in projects, assignments, and exams (except the final end-term exam).
