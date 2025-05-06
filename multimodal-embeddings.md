@@ -100,10 +100,10 @@ curl -X POST "https://api.jina.ai/v1/embeddings" \
   -d "{
         \"model\": \"jina-clip-v2\",
         \"input\": [
-          \"A cute cat\",
-          \"A cardboard box\",
-          {\"bytes\":\"$(base64 -w 0 cat.jpg)\"},
-          {\"bytes\":\"$(base64 -w 0 box.png)\"}
+          {\"text\":\"A cute cat\"},
+          {\"text\":\"A cardboard box\"},,
+          {\"image\":\"$(base64 -w 0 cat.jpg)\"},
+          {\"image\":\"$(base64 -w 0 box.png)\"}
         ]
       }"
 ```
