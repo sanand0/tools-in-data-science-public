@@ -81,7 +81,7 @@ The course is public, so you can always audit it.
 
 Also, registering again for the course [does not improve marks much](https://discourse.onlinedegree.iitm.ac.in/t/why-you-should-almost-never-register-for-tds-improvement-if-you-have-passed-it/173625).
 
-<details>
+</details>
 
 <summary><strong>We encourage learning by sharing</strong></summary>
 
