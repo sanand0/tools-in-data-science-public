@@ -208,7 +208,7 @@ Their **job** is to help you. Trouble them for your slightest doubts!
 ## Course Links
 
 - [TDS: Discourse](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34) - Ask questions, get help, and discuss with your peers.
-- [IITM BS Degree Programme - Student Handbook](https://docs.google.com/document/u/1/d/e/2PACX-1vQB7SYIXQPJr0-WcfekVVSt488MdlkNzRUPacbRh2QgOALXcinPybopWIFlY83tdr_mH1QtrhCIsFUq/pub)
+- [IITM BS Degree Programme - Student Handbook](https://docs.google.com/document/u/2/d/e/2PACX-1vRxGnnDCVAO3KX2CGtMIcJQuDrAasVk2JHbDxkjsGrTP5ShhZK8N6ZSPX89lexKx86QPAUswSzGLsOA/pub)
 - [TDS: Public course page](https://study.iitm.ac.in/ds/course_pages/BSSE2002.html)
 - [TDS: Course files](https://drive.google.com/drive/folders/1FE0YPAxcxMzZdjnp3FopuJCI3A2Vq6fC?usp=drive_link) -- Jupyter notebooks, datasets, etc.
 
