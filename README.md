@@ -48,7 +48,7 @@ Here's students' feedback:
 - The ROE is hard.
   [#](https://discourse.onlinedegree.iitm.ac.in/t/is-it-fair-to-consider-20-weightage-of-such-exam-which-is-impossible-to-solve-in-given-time-i-e-roe/141413/10)
 
-**[Take Graded assignment 1](https://exam.sanand.workers.dev/tds-2025-01-ga1) to check if you're ready for this course.** Please drop this course (do it in a later term) if you score low. It'll be too tough for you now.
+**[Take Graded assignment 1](https://exam.sanand.workers.dev/tds-2025-05-ga1) to check if you're ready for this course.** Please drop this course (do it in a later term) if you score low. It'll be too tough for you now.
 
 </details>
 
