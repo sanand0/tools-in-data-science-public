@@ -8,6 +8,8 @@
 
 [Install llm](https://github.com/simonw/llm#installation). Then set up your [`OPENAI_API_KEY`](https://platform.openai.com/api-keys) environment variable. See [Getting started](https://github.com/simonw/llm?tab=readme-ov-file#getting-started).
 
+**TDS Students**: See [Large Language Models](large-language-models.md) for instructions on how to get and use `OPENAI_API_KEY`.
+
 ```bash
 # Run a simple prompt
 llm 'five great names for a pet pelican'
