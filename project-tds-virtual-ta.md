@@ -53,11 +53,11 @@ The response must be a JSON object like this:
 
 ## Evaluate your application
 
-Here are a few [sample questions and evaluation parameters](project-tds-virtual-ta-promptfoo.yaml ':ignore'). These are **indicative**. The actual evaluation could ask _any_ realistic student question.
+Here are a few [sample questions and evaluation parameters](project-tds-virtual-ta-promptfoo.yaml ":ignore"). These are **indicative**. The actual evaluation could ask _any_ realistic student question.
 
 To run this:
 
-1. Edit [`project-tds-virtual-ta-promptfoo.yaml`](project-tds-virtual-ta-promptfoo.yaml ':ignore')  to replace `providers[0].config.url` with your API URL.
+1. Edit [`project-tds-virtual-ta-promptfoo.yaml`](project-tds-virtual-ta-promptfoo.yaml ":ignore") to replace `providers[0].config.url` with your API URL.
 2. Run this script:
 
    ```bash
@@ -85,7 +85,7 @@ Submit your GitHub repository URL and your API endpoint URL at https://exam.sana
 - **Pre-requisites**: Your repository **MUST** meet the following criteria to be eligible for evaluation
   - Your GitHub repository exists and is publicly accessible
   - Your GitHub repository has a `LICENSE` file with the MIT license in the root folder
-- We will use a modified version of [`project-tds-virtual-ta-promptfoo.yaml`](project-tds-virtual-ta-promptfoo.yaml ':ignore') with 10 realistic questions. Correct answers will be awarded up to 2 marks each.
+- We will use a modified version of [`project-tds-virtual-ta-promptfoo.yaml`](project-tds-virtual-ta-promptfoo.yaml ":ignore") with 10 realistic questions. Correct answers will be awarded up to 2 marks each.
 - Your score will be the sum of the marks above. No normalization. What you get is what you get.
 
 Bonus:
