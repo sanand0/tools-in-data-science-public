@@ -24,7 +24,8 @@ llm chat
 llm -m gpt-4.1-nano 'Summarize tomorrow’s meeting agenda'
 
 # Extract JSON output
-llm json 'List the top 5 Python viz libraries with descriptions'
+llm 'List the top 5 Python viz libraries with descriptions' \
+  --schema-multi 'name,description'
 ```
 
 Or use llm without installation using [`uvx`](uv.md):
@@ -37,7 +38,8 @@ uvx llm 'Translate "Hello, world" into Japanese'
 uvx llm -m gpt-4.1-nano 'Draft a 200-word blog post on data ethics'
 
 # Use structured JSON output
-uvx llm json 'List the top 5 programming languages in 2025 with their release years'
+uvx llm 'List the top 5 programming languages in 2025 with their release years' \
+  --schema-multi 'rank,language,release_year'
 ```
 
 ### Key Features
