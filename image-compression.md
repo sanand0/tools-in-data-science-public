@@ -20,7 +20,7 @@ Common operations with Python:
 ```python
 from pathlib import Path
 from PIL import Image
-import io
+import asyncio
 
 async def compress_image(input_path: Path, output_path: Path, quality: int = 85) -> None:
     """Compress an image while maintaining reasonable quality."""
@@ -31,10 +31,14 @@ async def compress_image(input_path: Path, output_path: Path, quality: int = 85)
         # Optimize for web
         img.save(output_path, 'WEBP', quality=quality, optimize=True)
 
+
 # Batch process images
-paths = Path('images').glob('*.jpg')
-for p in paths:
-    await compress_image(p, p.with_suffix('.webp'))
+async def main():
+    paths = Path('images').glob('*.jpg')
+    for p in paths:
+        await compress_image(p, p.with_suffix('.webp'))
+
+asyncio.run(main())
 ```
 
 Command line tools include [cwebp](https://developers.google.com/speed/webp/docs/cwebp), [pngquant](https://pngquant.org/), [jpegoptim](https://github.com/tjko/jpegoptim), and [ImageMagick](https://imagemagick.org/).
