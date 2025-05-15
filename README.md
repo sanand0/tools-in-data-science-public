@@ -191,6 +191,12 @@ Check these three links regularly to keep up with the course.
     [22f3002542@ds.study.iitm.ac.in](mailto:22f3002542@ds.study.iitm.ac.in) |
     [@Jivraj](https://discourse.onlinedegree.iitm.ac.in/u/jivraj) |
     [LinkedIn Profile](https://www.linkedin.com/in/jivraj-singh-shekhawat-92a547269/)
+  - Suchintika Sarkar,
+    [21f3002441@ds.study.iitm.ac.in](mailto:21f3002441@ds.study.iitm.ac.in) |
+    [@21f3002441]([https](https://discourse.onlinedegree.iitm.ac.in/u/21f3002441)
+  - Hritik Roshan Maurya,
+    [22f3002460@ds.study.iitm.ac.in](mailto:22f3002460@ds.study.iitm.ac.in) |
+    [@HritikRoshan_HRM](https://discourse.onlinedegree.iitm.ac.in/u/hritikroshan_hrm)
   - Saransh Saini,
     [22f1001123@ds.study.iitm.ac.in](mailto:22f1001123@ds.study.iitm.ac.in) |
     [@Saransh_Saini](https://discourse.onlinedegree.iitm.ac.in/u/Saransh_Saini) |
