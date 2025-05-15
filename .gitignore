@@ -1,6 +1,7 @@
 .env
 node_modules/
 __pycache__/
+.vscode/
 
 project-1/repos/
 project-1/logs/
