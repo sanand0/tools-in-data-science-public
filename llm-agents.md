@@ -13,6 +13,7 @@ An LLM agent consists of three core components:
 3. **Memory**: Retains context across multiple steps
 
 Agents operate through a loop:
+
 - Observe the environment
 - Think about what to do
 - Take action using tools
@@ -22,6 +23,7 @@ Agents operate through a loop:
 ### Command-Line Agent Example
 
 We've created a minimal command-line agent called [`llm-cmd-agent.py`](llm-cmd-agent.py ":ignore") that:
+
 1. Takes a task description from the command line
 2. Generates code to accomplish the task
 3. Automatically extracts and executes the code
@@ -36,6 +38,7 @@ uv run llm-cmd-agent.py "convert the largest Markdown file to HTML"
 ```
 
 The agent will:
+
 1. Generate a shell script to list files with their sizes
 2. Execute the script in a subprocess
 3. Capture the output (stdout and stderr)
@@ -43,6 +46,7 @@ The agent will:
 5. Present a final answer to the user
 
 Under the hood, the agent follows this workflow:
+
 1. Initial prompt to generate a shell script
 2. Code extraction from the LLM response
 3. Code execution in a subprocess
@@ -50,6 +54,7 @@ Under the hood, the agent follows this workflow:
 5. Error handling and retry logic if needed
 
 This demonstrates the core agent loop of:
+
 - Planning (generating code)
 - Execution (running the code)
 - Reflection (interpreting results)
