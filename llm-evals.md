@@ -2,7 +2,7 @@
 
 Test-drive your prompts and models with automated, reliable evaluations.
 
-[![🚀 Test Driven Prompt Engineering with PromptFoo (12 min)](https://i.ytimg.com/vi_webp/KhINc5XwhKs/sddefault.webp)](https://youtu.be/KhINc5XwhKs) ([youtube.com](https://www.youtube.com/watch?v=KhINc5XwhKs&utm_source=chatgpt.com))
+[![🚀 Test Driven Prompt Engineering with PromptFoo (12 min)](https://i.ytimg.com/vi_webp/KhINc5XwhKs/sddefault.webp)](https://youtu.be/KhINc5XwhKs)
 
 PromptFoo is a test-driven development framework for LLMs:
 

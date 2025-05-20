@@ -35,7 +35,7 @@ curl https://api.openai.com/v1/audio/speech \
   -H "Content-Type: application/json" \
   -d '{
     "model": "tts-1-hd",
-    "input": "Welcome to our podcast! Today we\'ll be discussing artificial intelligence.",
+    "input": "Welcome to our podcast! Today we will be discussing artificial intelligence.",
     "voice": "nova",
     "response_format": "mp3",
     "speed": 1.2
