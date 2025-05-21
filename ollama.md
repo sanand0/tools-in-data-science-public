@@ -39,8 +39,7 @@ curl -X POST http://localhost:11434/api/chat \
 
 - **Quick prototyping**. Brainstorm slide decks or blog outlines offline, without worrying about API quotas: `ollama run gemma-3 'Outline a slide deck on Agile best practices'`
 - **Data privacy**. Summarize sensitive documents on-device, retaining full control of your data: `cat financial_report.pdf | ollama run phi-4 'Summarize the key findings'`
-- **Offline demos**. Showcase LLM capabilities at meetups or customer sites—even without internet: `ollama serve --port 8000`
 - **CI/CD integration**. Validate PR descriptions or test YAML configurations in your pipeline without incurring API costs: `git diff origin/main | ollama run llama2 'Check for style and clarity issues'`
 - **Local app embedding**. Power a desktop or web app via the local REST API for instant LLM features: `curl -X POST http://localhost:11434/api/chat -d '{"model":"mistral","prompt":"Translate to German"}'`
 
-Read the full [Ollama docs ↗](https://ollama.com/docs) for advanced topics like custom model hosting, GPU tuning, and integrating with your development workflows.
+Read the full [Ollama docs ↗](https://github.com/ollama/ollama/tree/main/docs) for advanced topics like custom model hosting, GPU tuning, and integrating with your development workflows.
