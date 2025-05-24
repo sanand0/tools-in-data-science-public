@@ -152,7 +152,7 @@ Updates:
 - 5 May 2025:
   - GA1 submission date postponed from 11 May to 18 May 2025
   - GA2 submission date postponed from 18 May to 25 May 2025
-  - GA3 submission date **preponed** from 01 Jun to 25 May 2025 since there's a break the week after
+  - ~~GA3 submission date **preponed** from 01 Jun to 25 May 2025 since there's a break the week after~~
 
 ### Notes
 
