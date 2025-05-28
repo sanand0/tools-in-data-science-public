@@ -78,7 +78,7 @@ Deploy your application to a public URL that can be accessed by anyone. You may 
 
 ## Submit your URL
 
-Submit your GitHub repository URL and your API endpoint URL at https://exam.sanand.workers.dev/tds-project-virtual-ta #TODO
+Submit your GitHub repository URL and your API endpoint URL at [https://exam.sanand.workers.dev/tds-project-virtual-ta](https://exam.sanand.workers.dev/tds-project-virtual-ta)
 
 ## Evaluation
 
