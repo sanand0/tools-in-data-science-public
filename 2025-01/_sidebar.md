@@ -1,4 +1,6 @@
-- [Tools in Data Science](README.md)
+<style>.sidebar { background:#300 }</style>
+
+- [Jan 2025: Tools in Data Science](README.md)
 - [Development Tools](development-tools.md)
   - [Editor: VS Code](vscode.md)
   - [Python tools: uv](uv.md)
