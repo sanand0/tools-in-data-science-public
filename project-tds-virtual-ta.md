@@ -29,9 +29,9 @@ curl "https://app.example.com/api/" \
   -d "{\"question\": \"Should I use gpt-4o-mini which AI proxy supports, or gpt3.5 turbo?\", \"image\": \"$(base64 -w0 project-tds-virtual-ta-q1.webp)\"}"
 ```
 
-This is a [real question](https://discourse.onlinedegree.iitm.ac.in/t/ga5-question-8-clarification/155939) and uses this [screenshot](project-tds-virtual-ta-q1.webp):
+This is a [real question](https://discourse.onlinedegree.iitm.ac.in/t/ga5-question-8-clarification/155939) and uses this [screenshot](images/project-tds-virtual-ta-q1.webp):
 
-![Screenshot](project-tds-virtual-ta-q1.webp)
+![Screenshot](images/project-tds-virtual-ta-q1.webp)
 
 The response must be a JSON object like this:
 
