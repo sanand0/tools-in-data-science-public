@@ -131,7 +131,7 @@ Tentative dates:
 | [Graded Assignment 1][GA1] [Discuss][GA1D] | Online open-Internet MCQ |        |       Thu 01 May 2025 |       Sun 18 May 2025 |
 | [Graded Assignment 2][GA2] [Discuss][GA2D] | Online open-Internet MCQ |        |       Thu 05 May 2025 |       Sun 25 May 2025 |
 | [Graded Assignment 3][GA3] [Discuss][GA3D] | Online open-Internet MCQ |        |       Fri 20 May 2025 |       Sun 01 Jun 2025 |
-| P1: Project 1                              | Online open-Internet     |    20% |       Fri 16 May 2025 |       Sat 14 Jun 2025 |
+| [P1: Project 1][P1] [Discuss][P1D]         | Online open-Internet     |    20% |       Fri 16 May 2025 |       Sat 14 Jun 2025 |
 | Graded Assignment 4                        | Online open-Internet MCQ |        |       Wed 11 Jun 2025 |       Sun 22 Jun 2025 |
 | Graded Assignment 5                        | Online open-Internet MCQ |        |       Wed 18 Jun 2025 |       Sun 29 Jun 2025 |
 | Graded Assignment 6                        | Online open-Internet MCQ |        |       Wed 02 Jul 2025 |       Sun 13 Jul 2025 |
@@ -143,9 +143,11 @@ Tentative dates:
 [GA1]: https://exam.sanand.workers.dev/tds-2025-05-ga1
 [GA2]: https://exam.sanand.workers.dev/tds-2025-05-ga2
 [GA3]: https://exam.sanand.workers.dev/tds-2025-05-ga3
+[P1]: https://tds.s-anand.net/#/project-tds-virtual-ta
 [GA1D]: https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-may-2025/173524
 [GA2D]: https://discourse.onlinedegree.iitm.ac.in/t/ga2-deployment-tools-discussion-thread-tds-may-2025/173525
 [GA3D]: https://discourse.onlinedegree.iitm.ac.in/t/ga3-large-language-models-discussion-thread-tds-may-2025/175592
+[P1D]: https://discourse.onlinedegree.iitm.ac.in/t/project1-virtual-ta-discussion-thread-tds-may-2025/176077
 
 Updates:
 
