@@ -4,11 +4,11 @@ Create a virtual Teaching Assistant Discourse responder.
 
 ## Background
 
-You are a clever student who has joined IIT Madras' Online Degree in Data Science. You have just enrolled in the [Tools in Data Science](https://tds.s-anand.net/) course.
+You are a clever student who has joined IIT Madras' Online Degree in Data Science. You have just enrolled in the [Tools in Data Science](https://tds.s-anand.net/#/2025-01/) course.
 
 Out of kindness for your teaching assistants, you have decided to build an API that can automatically answer student questions on their behalf based on:
 
-- [Course content](https://tds.s-anand.net/#/2025-01) with content for TDS Jan 2025 as on 15 Apr 2025.
+- [Course content](https://tds.s-anand.net/#/2025-01/) with content for TDS Jan 2025 as on 15 Apr 2025.
 - [TDS Discourse posts](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34) with content from 1 Jan 2025 - 14 Apr 2025.
 
 ## Scrape the data
@@ -78,7 +78,7 @@ Deploy your application to a public URL that can be accessed by anyone. You may 
 
 ## Submit your URL
 
-Submit your GitHub repository URL and your API endpoint URL at https://exam.sanand.workers.dev/tds-project-virtual-ta #TODO
+Submit your GitHub repository URL and your API endpoint URL at https://exam.sanand.workers.dev/tds-project-virtual-ta
 
 ## Evaluation
 

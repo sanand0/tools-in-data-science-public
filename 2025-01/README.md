@@ -84,18 +84,18 @@ Track the [commit history](https://github.com/sanand0/tools-in-data-science-publ
 
 Released content:
 
-1. **[Development Tools](development-tools.md)** and concepts to **build** models and apps. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-jan-2025/161083)
-2. **[Deployment Tools](deployment-tools.md)** and concepts to **publish** what you built. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-jan-2025/161083)
-3. **[Large Language Models](large-language-models.md)** that make your work easier and your apps smarter. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/ga3-large-language-models-discussion-thread-tds-jan-2025/163247)
-4. **[Data Sourcing](data-sourcing.md)** to get data from the web, files, and databases. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/ga4-data-sourcing-discussion-thread-tds-jan-2025/165959)
-5. **[Data Preparation](data-preparation.md)** to clean up and convert the inputs to the right format. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/ga5-data-preparation-discussion-thread-tds-jan-2025/166576)
+1. **[Development Tools](../development-tools.md)** and concepts to **build** models and apps. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-jan-2025/161083)
+2. **[Deployment Tools](../deployment-tools.md)** and concepts to **publish** what you built. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-jan-2025/161083)
+3. **[Large Language Models](../large-language-models.md)** that make your work easier and your apps smarter. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/ga3-large-language-models-discussion-thread-tds-jan-2025/163247)
+4. **[Data Sourcing](../data-sourcing.md)** to get data from the web, files, and databases. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/ga4-data-sourcing-discussion-thread-tds-jan-2025/165959)
+5. **[Data Preparation](../data-preparation.md)** to clean up and convert the inputs to the right format. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/ga5-data-preparation-discussion-thread-tds-jan-2025/166576)
 
-**[Project 1](project-1.md)** to build an LLM-based automation agent. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/project-1-llm-based-automation-agent-discussion-thread-tds-jan-2025/164277)
+**[Project 1](../project-1.md)** to build an LLM-based automation agent. [Discussion Thread](https://discourse.onlinedegree.iitm.ac.in/t/project-1-llm-based-automation-agent-discussion-thread-tds-jan-2025/164277)
 
 Work in progress:
 
-6. **[Data Analysis](data-analysis.md)** to find surprising insights in the data.
-7. **[Data Visualization](data-visualization.md)** to communicate those insights as visual stories.
+6. **[Data Analysis](../data-analysis.md)** to find surprising insights in the data.
+7. **[Data Visualization](../data-visualization.md)** to communicate those insights as visual stories.
 
 ## Evaluations are mostly open Internet
 
@@ -106,10 +106,10 @@ Work in progress:
 | [Graded Assignment 2](https://exam.sanand.workers.dev/tds-2025-01-ga2)     | Online open MCQ                   |        |        3 Jan 2025 |        2 Feb 2025 |
 | [Graded Assignment 3](https://exam.sanand.workers.dev/tds-2025-01-ga3)     | Online open MCQ                   |        |       15 Jan 2025 |        5 Feb 2025 |
 | [Graded Assignment 4](https://exam.sanand.workers.dev/tds-2025-01-ga4)     | Online open MCQ                   |        |       31 Jan 2025 |        9 Feb 2025 |
-| [P1: Project 1](project-1.md)                                              | Take-home open-Internet           |    20% |       19 Jan 2025 |       16 Feb 2025 |
+| [P1: Project 1](../project-1.md)                                           | Take-home open-Internet           |    20% |       19 Jan 2025 |       16 Feb 2025 |
 | [Graded Assignment 5](https://exam.sanand.workers.dev/tds-2025-01-ga5)     | Online open MCQ                   |        |        7 Feb 2025 |       21 Feb 2025 |
 | [Graded Assignment 6][GA6]                                                 | Online open MCQ                   |        |       28 Feb 2025 |       16 Mar 2025 |
-| [P2: Project 2](project-2.md)                                              | Take-home open-Internet           |    20% |        3 Mar 2025 |       31 Mar 2025 |
+| [P2: Project 2](../project-2.md)                                           | Take-home open-Internet           |    20% |        3 Mar 2025 |       31 Mar 2025 |
 | [Graded Assignment 7][GA7]                                                 | Online open MCQ                   |        |       14 Mar 2025 |       26 Mar 2025 |
 | [ROE: Remote Online Exam](https://exam.sanand.workers.dev/tds-2025-01-roe) | Online open-Internet MCQ          |    20% | 02 Mar 2025 13:00 | 02 Mar 2025 13:45 |
 | F: Final end-term                                                          | In-person, no internet, mandatory |    25% |       13 Apr 2025 |                   |
@@ -149,7 +149,7 @@ Work in progress:
 Check these three links regularly to keep up with the course.
 
 1. **[Seek Inbox](https://seek.onlinedegree.iitm.ac.in/)** for Course Announcements. Log into [seek.onlinedegree.iitm.ac.in](https://seek.onlinedegree.iitm.ac.in/) and click on "Inbox" on the left. Check notifications daily.
-   ![Portal Inbox](images/portal-inbox.webp)
+   ![Portal Inbox](../images/portal-inbox.webp)
 2. **[Your email](https://mail.google.com/)** for Course Announcements. [Seek](https:/seek.onlinedegree.iitm.ac.in/) Inbox are forwarded to your email. Check daily. Check spam folders too.
 3. **[TDS Discourse](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34)**: Faculty, instructors, and TAs will share updates and address queries here. Email [support@study.iitm.ac.in](mailto:support@study.iitm.ac.in) cc: [discourse-staff1@study.iitm.ac.in](mailto:discourse-staff1@study.iitm.ac.in) if you can't access Discourse.
 
@@ -176,7 +176,7 @@ Check these three links regularly to keep up with the course.
     [@Saransh_Saini](https://discourse.onlinedegree.iitm.ac.in/u/Saransh_Saini) |
     [LinkedIn Profile](https://www.linkedin.com/in/saranshsaini48/)
   - [Virtual TA](https://chatgpt.com/g/g-mZqKVxKDx-iitm-tds-teaching-assistant)
-    ([GPT Instructions](tds-ta-instructions.md))
+    ([GPT Instructions](../tds-ta-instructions.md))
 
 <!--
 - Mahesh Balan U (MS, PhD - IIT Madras)
