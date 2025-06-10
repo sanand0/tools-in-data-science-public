@@ -51,6 +51,8 @@ The response must be a JSON object like this:
 }
 ```
 
+The response must be sent within 30 seconds.
+
 ## Evaluate your application
 
 Here are a few [sample questions and evaluation parameters](project-tds-virtual-ta-promptfoo.yaml ":ignore"). These are **indicative**. The actual evaluation could ask _any_ realistic student question.
