@@ -75,6 +75,7 @@
   - [Cleaning Data with OpenRefine](cleaning-data-with-openrefine.md)
   - [Profiling Data with Python](profiling-data-with-python.md)
   - [Parsing JSON](parsing-json.md)
+  - [Data Preparation in DuckDB](data-preparation-in-duckdb.md)
   - [Data Transformation with dbt](dbt.md)
   - [Transforming Images](transforming-images.md)
   - [Extracting Audio and Transcripts](extracting-audio-and-transcripts.md)
