@@ -62,7 +62,6 @@
   - [Data Preparation in the Shell](../data-preparation-in-the-shell.md)
   - [Data Preparation in the Editor](../data-preparation-in-the-editor.md)
   - [Cleaning Data with OpenRefine](../cleaning-data-with-openrefine.md)
-    <!-- #TODO Data Preparation in DuckDB -->
   - [Profiling Data with Python](../profiling-data-with-python.md)
   - [Parsing JSON](../parsing-json.md)
   - [Transforming Images](../transforming-images.md)
