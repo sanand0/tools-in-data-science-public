@@ -131,8 +131,8 @@ Tentative dates:
 | [Graded Assignment 1][GA1] [Discuss][GA1D] | Online open-Internet MCQ |        |       Thu 01 May 2025 |       Sun 18 May 2025 |
 | [Graded Assignment 2][GA2] [Discuss][GA2D] | Online open-Internet MCQ |        |       Thu 05 May 2025 |       Sun 25 May 2025 |
 | [Graded Assignment 3][GA3] [Discuss][GA3D] | Online open-Internet MCQ |        |       Fri 20 May 2025 |       Sun 01 Jun 2025 |
-| P1: Project 1                              | Online open-Internet     |    20% |       Fri 16 May 2025 |       Sat 14 Jun 2025 |
-| Graded Assignment 4                        | Online open-Internet MCQ |        |       Wed 11 Jun 2025 |       Sun 22 Jun 2025 |
+| [P1: Project 1][PR1] [Discuss][PR1D]       | Online open-Internet     |    20% |       Fri 16 May 2025 |       Sat 14 Jun 2025 |
+| [Graded Assignment 4][GA4] [Discuss][GA4D] | Online open-Internet MCQ |        |       Wed 14 Jun 2025 |       Sun 22 Jun 2025 |
 | Graded Assignment 5                        | Online open-Internet MCQ |        |       Wed 18 Jun 2025 |       Sun 29 Jun 2025 |
 | Graded Assignment 6                        | Online open-Internet MCQ |        |       Wed 02 Jul 2025 |       Sun 13 Jul 2025 |
 | ROE: Remote Online Exam                    | Online open-Internet MCQ |    20% | Sun 20 Jul 2025 13:00 | Sun 20 Jul 2025 13:45 |
@@ -143,9 +143,13 @@ Tentative dates:
 [GA1]: https://exam.sanand.workers.dev/tds-2025-05-ga1
 [GA2]: https://exam.sanand.workers.dev/tds-2025-05-ga2
 [GA3]: https://exam.sanand.workers.dev/tds-2025-05-ga3
+[PR1]: https://tds.s-anand.net/#/project-tds-virtual-ta
+[GA4]: https://exam.sanand.workers.dev/tds-2025-05-ga4
 [GA1D]: https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-may-2025/173524
 [GA2D]: https://discourse.onlinedegree.iitm.ac.in/t/ga2-deployment-tools-discussion-thread-tds-may-2025/173525
 [GA3D]: https://discourse.onlinedegree.iitm.ac.in/t/ga3-large-language-models-discussion-thread-tds-may-2025/175592
+[PR1D]: https://discourse.onlinedegree.iitm.ac.in/t/project1-virtual-ta-discussion-thread-tds-may-2025/176077
+[GA4D]: https://discourse.onlinedegree.iitm.ac.in/t/ga4-data-sourcing-discussion-thread-tds-may-2025/178881
 
 Updates:
 
@@ -153,6 +157,8 @@ Updates:
   - GA1 submission date postponed from 11 May to 18 May 2025
   - GA2 submission date postponed from 18 May to 25 May 2025
   - ~~GA3 submission date **preponed** from 01 Jun to 25 May 2025 since there's a break the week after~~
+  - P1 submission date postponed from 14 Jun to 18 Jun 2025
+  - GA4 release date delayed to 14 Jun 2025
 
 ### Notes
 
