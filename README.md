@@ -131,7 +131,7 @@ Tentative dates:
 | [Graded Assignment 1][GA1] [Discuss][GA1D] | Online open-Internet MCQ |        |       Thu 01 May 2025 |       Sun 18 May 2025 |
 | [Graded Assignment 2][GA2] [Discuss][GA2D] | Online open-Internet MCQ |        |       Thu 05 May 2025 |       Sun 25 May 2025 |
 | [Graded Assignment 3][GA3] [Discuss][GA3D] | Online open-Internet MCQ |        |       Fri 20 May 2025 |       Sun 01 Jun 2025 |
-| [P1: Project 1][PR1] [Discuss][PR1D]       | Online open-Internet     |    20% |       Fri 16 May 2025 |       Sat 14 Jun 2025 |
+| [P1: Project 1][PR1] [Discuss][PR1D]       | Online open-Internet     |    20% |       Fri 16 May 2025 |       Sat 18 Jun 2025 |
 | [Graded Assignment 4][GA4] [Discuss][GA4D] | Online open-Internet MCQ |        |       Wed 14 Jun 2025 |       Sun 22 Jun 2025 |
 | Graded Assignment 5                        | Online open-Internet MCQ |        |       Wed 18 Jun 2025 |       Sun 29 Jun 2025 |
 | Graded Assignment 6                        | Online open-Internet MCQ |        |       Wed 02 Jul 2025 |       Sun 13 Jul 2025 |
