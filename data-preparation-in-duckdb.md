@@ -1,6 +1,6 @@
 ## Data Preparation in DuckDB
 
-[![DuckDB](https://i.ytimg.com/vi_webp/fZj6kTwXN1U/sddefault.webp)](https://www.youtube.com/playlist?list=PLw2SS5iImhEThtiGNPiNenOr2tVvLj6H7)
+[![DuckDB](https://i.ytimg.com/vi_webp/fZj6kTwXN1U/sddefault.webp)](https://www.youtube.com/watch?v=Fg8n-O0dhrI&list=PLw2SS5iImhEThtiGNPiNenOr2tVvLj6H7&index=2)
 
 DuckDB's SQL engine can handle large files quickly. Below are common cleaning tasks using the DuckDB CLI.
 
