@@ -125,20 +125,20 @@ Those auditing can join the [TDS 2025 May Google Group](https://groups.google.co
 
 Tentative dates:
 
-| Exam                                       | Type                     | Weight |          Release Date |       Submission Date |
-| ------------------------------------------ | ------------------------ | -----: | --------------------: | --------------------: |
-| GA: Graded assignments                     | Best 4 out of 7          |    15% |                       |                       |
-| [Graded Assignment 1][GA1] [Discuss][GA1D] | Online open-Internet MCQ |        |       Thu 01 May 2025 |       Sun 18 May 2025 |
-| [Graded Assignment 2][GA2] [Discuss][GA2D] | Online open-Internet MCQ |        |       Thu 05 May 2025 |       Sun 25 May 2025 |
-| [Graded Assignment 3][GA3] [Discuss][GA3D] | Online open-Internet MCQ |        |       Fri 20 May 2025 |       Sun 01 Jun 2025 |
-| [P1: Project 1][PR1] [Discuss][PR1D]       | Online open-Internet     |    20% |       Fri 16 May 2025 |       Sat 18 Jun 2025 |
-| [Graded Assignment 4][GA4] [Discuss][GA4D] | Online open-Internet MCQ |        |       Wed 14 Jun 2025 |       Sun 22 Jun 2025 |
-| [Graded Assignment 5][GA5] [Discuss][GA5D] | Online open-Internet MCQ |        |       Wed 21 Jun 2025 |       Sun 29 Jun 2025 |
-| Graded Assignment 6                        | Online open-Internet MCQ |        |       Wed 02 Jul 2025 |       Sun 13 Jul 2025 |
-| ROE: Remote Online Exam                    | Online open-Internet MCQ |    20% | Sun 20 Jul 2025 13:00 | Sun 20 Jul 2025 13:45 |
-| Graded Assignment 7                        | Online open-Internet MCQ |        |       Wed 16 Jul 2025 |       Sun 27 Jul 2025 |
-| P2: Project 2                              | Online open-Internet     |    20% |       Fri 11 Jul 2025 |        Fri 8 Aug 2025 |
-| F: Final end-term                          | In-person, no internet   |    25% |       Sun 31 Aug 2025 |       Sun 31 Aug 2025 |
+| Exam                                           | Type                     | Weight |          Release Date |       Submission Date |
+| ---------------------------------------------- | ------------------------ | -----: | --------------------: | --------------------: |
+| GA: Graded assignments                         | Best 4 out of 7          |    15% |                       |                       |
+| [Graded Assignment 1][GA1] - [Discuss][GA1D]   | Online open-Internet MCQ |        |       Thu 01 May 2025 |       Sun 18 May 2025 |
+| [Graded Assignment 2][GA2] - [Discuss][GA2D]   | Online open-Internet MCQ |        |       Thu 05 May 2025 |       Sun 25 May 2025 |
+| [Graded Assignment 3][GA3] - [Discuss][GA3D]   | Online open-Internet MCQ |        |       Fri 20 May 2025 |       Sun 01 Jun 2025 |
+| [P1: Project 1][PR1] - [Discuss][PR1D]         | Online open-Internet     |    20% |       Fri 16 May 2025 |       Sat 18 Jun 2025 |
+| [Graded Assignment 4][GA4] - [Discuss][GA4D]   | Online open-Internet MCQ |        |       Wed 14 Jun 2025 |       Sun 22 Jun 2025 |
+| [Graded Assignment 5][GA5] - [Discuss][GA5D]   | Online open-Internet MCQ |        |       Wed 21 Jun 2025 |       Sun 29 Jun 2025 |
+| Graded Assignment 6                            | Online open-Internet MCQ |        |       Wed 02 Jul 2025 |       Sun 13 Jul 2025 |
+| ROE: Remote Online Exam                        | Online open-Internet MCQ |    20% | Sun 20 Jul 2025 13:00 | Sun 20 Jul 2025 13:45 |
+| Graded Assignment 7                            | Online open-Internet MCQ |        |       Wed 16 Jul 2025 |       Sun 27 Jul 2025 |
+| [P2: Project 2](project-data-analyst-agent.md) | Online open-Internet     |    20% |       Fri 11 Jul 2025 |        Fri 8 Aug 2025 |
+| F: Final end-term                              | In-person, no internet   |    25% |       Sun 31 Aug 2025 |       Sun 31 Aug 2025 |
 
 [GA1]: https://exam.sanand.workers.dev/tds-2025-05-ga1
 [GA2]: https://exam.sanand.workers.dev/tds-2025-05-ga2
@@ -146,7 +146,6 @@ Tentative dates:
 [PR1]: https://tds.s-anand.net/#/project-tds-virtual-ta
 [GA4]: https://exam.sanand.workers.dev/tds-2025-05-ga4
 [GA5]: https://exam.sanand.workers.dev/tds-2025-05-ga5
-
 [GA1D]: https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-may-2025/173524
 [GA2D]: https://discourse.onlinedegree.iitm.ac.in/t/ga2-deployment-tools-discussion-thread-tds-may-2025/173525
 [GA3D]: https://discourse.onlinedegree.iitm.ac.in/t/ga3-large-language-models-discussion-thread-tds-may-2025/175592

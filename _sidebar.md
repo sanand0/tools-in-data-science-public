@@ -93,7 +93,7 @@
   - [Geospatial Analysis with Python](geospatial-analysis-with-python.md)
   - [Geospatial Analysis with QGIS](geospatial-analysis-with-qgis.md)
   - [Network Analysis in Python](network-analysis-in-python.md)
-- Project 2
+- [Project 2](project-data-analyst-agent.md)
 - [7. Data Visualization](data-visualization.md)
   - [Visualizing Forecasts with Excel](visualizing-forecasts-with-excel.md)
   - [Visualizing Animated Data with PowerPoint](visualizing-animated-data-with-powerpoint.md)
