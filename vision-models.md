@@ -33,8 +33,10 @@ curl https://api.openai.com/v1/chat/completions \
           {"type": "text", "text": "What is in this image?"},
           {
             "type": "image_url",
-            "detail": "low",
-            "image_url": {"url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Correlation_coefficient.png"}
+            "image_url": {
+              "url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Correlation_coefficient.png",
+              "detail": "low"
+            }
           }
         ]
       }
