@@ -136,7 +136,7 @@ Tentative dates:
 | [Graded Assignment 5][GA5] - [Discuss][GA5D]   | Online open-Internet MCQ |        |       Wed 21 Jun 2025 |       Sun 29 Jun 2025 |
 | Graded Assignment 6                            | Online open-Internet MCQ |        |       Wed 02 Jul 2025 |       Sun 13 Jul 2025 |
 | ROE: Remote Online Exam                        | Online open-Internet MCQ |    20% | Sun 20 Jul 2025 13:00 | Sun 20 Jul 2025 13:45 |
-| Graded Assignment 7                            | Online open-Internet MCQ |        |       Wed 16 Jul 2025 |       Sun 27 Jul 2025 |
+| Graded Assignment 7                            | Online open-Internet MCQ |        |       Mon 04 Aug 2025 |       Sun 17 Aug 2025 |
 | [P2: Project 2](project-data-analyst-agent.md) | Online open-Internet     |    20% |       Fri 11 Jul 2025 |        Fri 8 Aug 2025 |
 | F: Final end-term                              | In-person, no internet   |    25% |       Sun 31 Aug 2025 |       Sun 31 Aug 2025 |
 
@@ -161,6 +161,8 @@ Updates:
 - P1 submission date postponed from 14 Jun to 18 Jun 2025
 - GA4 release date delayed to 14 Jun 2025
 - GA5 release date delayed to 21 Jun 2025
+- GA7 release date delayed to 04 Aug 2025
+- GA7 submission date postponed to 17 Aug 2025
 
 ### Notes
 
