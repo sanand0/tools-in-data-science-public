@@ -24,7 +24,7 @@ https://en.wikipedia.org/wiki/List_of_highest-grossing_films
 
 Answer the following questions and respond with a JSON array of strings containing the answer.
 
-1. How many $2 bn movies were released before 2020?
+1. How many $2 bn movies were released before 2000?
 2. Which is the earliest film that grossed over $1.5 bn?
 3. What's the correlation between the Rank and Peak?
 4. Draw a scatterplot of Rank and Peak along with a dotted red regression line through it.
