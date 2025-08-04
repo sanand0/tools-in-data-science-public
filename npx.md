@@ -21,7 +21,7 @@ npx esbuild app.js               # Bundle JavaScript
 npx jsdoc .                      # Generate JavaScript docs
 
 # Run specific versions
-npx prettier@3.2 --write .        # Use prettier 3.2
+npx prettier@3.6 --write .        # Use prettier 3.6
 
 # Execute remote scripts (use with caution!)
 npx github:user/repo            # Run from GitHub

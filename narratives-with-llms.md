@@ -1,3 +1,0 @@
-## Narratives with LLMs
-
-#TODO

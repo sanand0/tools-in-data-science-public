@@ -4,12 +4,12 @@
 
 You'll learn how to create an animated bar chart race in PowerPoint, covering:
 
-*   **Using the Morph Transition**: How to leverage PowerPoint's Morph feature to animate the resizing and reordering of bars between slides, which is the core technique for the race effect.
-*   **Manual Bar Creation**: The process of using individual shapes (rectangles) instead of a standard chart and how to size them accurately to represent your data values.
-*   **Adding and Syncing Audio**: How to record a voiceover for each slide, add background music that plays across the entire presentation, and sync them with the animations.
-*   **Automating Playback**: Setting up automatic slide transitions to create a self-playing, video-like presentation that advances after the narration for each slide is complete.
-*   **Exporting as a Video**: The steps to save your final animation as an MPEG-4 video file directly from PowerPoint and the suggestion of alternative methods like OBS for higher quality.
-*   **Prototyping Data Stories**: Understanding the manual effort required for this method and how it allows for careful control when prototyping and crafting a specific visual narrative.
+- **Using the Morph Transition**: How to leverage PowerPoint's Morph feature to animate the resizing and reordering of bars between slides, which is the core technique for the race effect.
+- **Manual Bar Creation**: The process of using individual shapes (rectangles) instead of a standard chart and how to size them accurately to represent your data values.
+- **Adding and Syncing Audio**: How to record a voiceover for each slide, add background music that plays across the entire presentation, and sync them with the animations.
+- **Automating Playback**: Setting up automatic slide transitions to create a self-playing, video-like presentation that advances after the narration for each slide is complete.
+- **Exporting as a Video**: The steps to save your final animation as an MPEG-4 video file directly from PowerPoint and the suggestion of alternative methods like OBS for higher quality.
+- **Prototyping Data Stories**: Understanding the manual effort required for this method and how it allows for careful control when prototyping and crafting a specific visual narrative.
 
 ## How to make bar chart race in PowerPoint
 

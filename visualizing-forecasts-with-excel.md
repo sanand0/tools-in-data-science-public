@@ -15,6 +15,10 @@ You'll learn to perform exploratory data visualization on time-series financial 
 - **Interpreting a Correlation Matrix with Conditional Formatting**: Apply color scales to the matrix to instantly identify strong positive correlations, negative correlations, and outliers.
 - **Discovering Insights and Forming Hypotheses**: Learn how to use these visualizations to spot patterns and form data-driven hypotheses, such as the high correlation between the currencies of neighboring countries.
 
+Here's another version of this analysis, delivered as part of a talk:
+
+[![Visualizing charts with Excel](https://i.ytimg.com/vi_webp/sORnCj52COw/sddefault.webp)](https://youtu.be/sORnCj52COw?t=1813s)
+
 ## Transcript
 
 **Data visualization can be a great way of exploring data, and Excel is actually a pretty fantastic tool to be able to do that.** What I'll be showing you in this session is how you can create simple visualizations in Excel to explore time series data and use that to find meaningful insights about the data itself.
