@@ -106,7 +106,7 @@ Answer the following questions and respond with a JSON object containing the ans
 ```
 ````
 
-Here's a third example.
+Here's a third example. This is representative but simpler than typical tasks; a single Python script with Pandas and Matplotlib can solve it.
 
 ```markdown
 The file [`sample-sales.csv`](./project-data-analyst-agent-sample-sales/sample-sales.csv) lists eight orders with their date, region, and sales.
@@ -122,7 +122,7 @@ Answer the following and respond with a JSON object containing the answer.
 7. Plot cumulative sales over time as a line chart with a red line. Encode as a base64 PNG under 100,000 bytes.
 ```
 
-Here's a fourth example.
+Here's a fourth example. This is representative but simpler than we might use. Real datasets may be larger, require transformation, structured analysis, and data cleansing.
 
 ```markdown
 The undirected network in [`edges.csv`](./project-data-analyst-agent-sample-network/edges.csv) lists edges between five people.
@@ -138,7 +138,7 @@ Answer the following and respond with a JSON object containing the answer.
 7. Plot the degree distribution as a bar chart with green bars. Encode as a base64 PNG under 100,000 bytes.
 ```
 
-Here's a fifth example.
+Here's a fifth example. This is representative but simpler than we might use; real tasks may involve scraping a weather API, LLM-based parsing, and geospatial analysis.
 
 ```markdown
 The file [`sample-weather.csv`](./project-data-analyst-agent-sample-weather/sample-weather.csv) lists ten days of temperature and precipitation.
