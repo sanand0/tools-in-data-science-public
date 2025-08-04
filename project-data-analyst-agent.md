@@ -6,10 +6,10 @@ Deploy a data analyst agent. This is an API that uses LLMs to source, prepare, a
 
 Your application exposes an API endpoint. You may host it anywhere. Let's assume it's at `https://app.example.com/api/`.
 
-The endpoint must accept a POST request, e.g. `POST https://app.example.com/api/` with a data analysis task description in the body. For example:
+The endpoint must accept a POST request, e.g. `POST https://app.example.com/api/` with a data analysis task description and optional attachments in the body. For example:
 
 ```bash
-curl "https://app.example.com/api/" -F "@question.txt"
+curl "https://app.example.com/api/" -F "@question.txt" -F "@image.png" -F "@data.csv"
 ```
 
 The answers must be sent within 3 minutes in the format requested.
