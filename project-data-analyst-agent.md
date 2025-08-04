@@ -9,7 +9,7 @@ Your application exposes an API endpoint. You may host it anywhere. Let's assume
 The endpoint must accept a POST request, e.g. `POST https://app.example.com/api/` with a data analysis task description and optional attachments in the body. For example:
 
 ```bash
-curl "https://app.example.com/api/" -F "@question.txt" -F "@image.png" -F "@data.csv"
+curl "https://app.example.com/api/" -F "questions.txt=@question.txt" -F "image.png=@image.png" -F "data.csv=@data.csv"
 ```
 
 The answers must be sent within 3 minutes in the format requested.
