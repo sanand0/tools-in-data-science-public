@@ -1,7 +1,5 @@
 # Project: Data Analyst Agent
 
-> [!WARNING] > **THIS IS A DRAFT**
-
 Deploy a data analyst agent. This is an API that uses LLMs to source, prepare, analyze, and visualize any data.
 
 Your application exposes an API endpoint. You may host it anywhere. Let's assume it's at `https://app.example.com/api/`.
@@ -12,7 +10,11 @@ The endpoint must accept a POST request, e.g. `POST https://app.example.com/api/
 curl "https://app.example.com/api/" -F "questions.txt=@question.txt" -F "image.png=@image.png" -F "data.csv=@data.csv"
 ```
 
+`questions.txt` will ALWAYS be sent and contain the questions. There may be zero or more additional files passed.
+
 The answers must be sent within 3 minutes in the format requested.
+
+> [!WARNING] > \*\*These are not the final questions you'll be evaluated on. These examples are indicative.
 
 ## Sample questions
 
