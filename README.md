@@ -134,7 +134,7 @@ Tentative dates:
 | [P1: Project 1][PR1] - [Discuss][PR1D]         | Online open-Internet     |    20% |       Fri 16 May 2025 |       Sat 18 Jun 2025 |
 | [Graded Assignment 4][GA4] - [Discuss][GA4D]   | Online open-Internet MCQ |        |       Wed 14 Jun 2025 |       Sun 22 Jun 2025 |
 | [Graded Assignment 5][GA5] - [Discuss][GA5D]   | Online open-Internet MCQ |        |       Wed 21 Jun 2025 |       Sun 29 Jun 2025 |
-| Graded Assignment 6                            | Online open-Internet MCQ |        |       Wed 02 Jul 2025 |       Sun 13 Jul 2025 |
+| [Graded Assignment 6][GA6] - [Discuss][GA6D]   | Online open-Internet MCQ |        |       Wed 02 Jul 2025 |       Sun 06 Aug 2025 |
 | ROE: Remote Online Exam                        | Online open-Internet MCQ |    20% | Sun 20 Jul 2025 13:00 | Sun 20 Jul 2025 13:45 |
 | Graded Assignment 7                            | Online open-Internet MCQ |        |       Mon 04 Aug 2025 |       Sun 17 Aug 2025 |
 | [P2: Project 2](project-data-analyst-agent.md) | Online open-Internet     |    20% |       Fri 11 Jul 2025 |        Fri 8 Aug 2025 |
@@ -146,12 +146,14 @@ Tentative dates:
 [PR1]: https://tds.s-anand.net/#/project-tds-virtual-ta
 [GA4]: https://exam.sanand.workers.dev/tds-2025-05-ga4
 [GA5]: https://exam.sanand.workers.dev/tds-2025-05-ga5
+[GA6]: https://exam.sanand.workers.dev/tds-2025-05-ga6
 [GA1D]: https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-may-2025/173524
 [GA2D]: https://discourse.onlinedegree.iitm.ac.in/t/ga2-deployment-tools-discussion-thread-tds-may-2025/173525
 [GA3D]: https://discourse.onlinedegree.iitm.ac.in/t/ga3-large-language-models-discussion-thread-tds-may-2025/175592
 [PR1D]: https://discourse.onlinedegree.iitm.ac.in/t/project1-virtual-ta-discussion-thread-tds-may-2025/176077
 [GA4D]: https://discourse.onlinedegree.iitm.ac.in/t/ga4-data-sourcing-discussion-thread-tds-may-2025/178881
 [GA5D]: https://discourse.onlinedegree.iitm.ac.in/t/ga5-data-preparation-discusion-thread-tds-may-2025/179741
+[GA6D]: https://discourse.onlinedegree.iitm.ac.in/t/ga6-data-preparation-discusion-thread-tds-may-2025/181228/93
 
 Updates:
 
@@ -163,6 +165,7 @@ Updates:
 - GA5 release date delayed to 21 Jun 2025
 - GA7 release date delayed to 04 Aug 2025
 - GA7 submission date postponed to 17 Aug 2025
+- GA6 submission date extended to 6 Aug 2025
 
 ### Notes
 
