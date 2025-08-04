@@ -106,6 +106,54 @@ Answer the following questions and respond with a JSON object containing the ans
 ```
 ````
 
+Here's a third example.
+
+```markdown
+The file [`sample-sales.csv`](./project-data-analyst-agent-sample-sales/sample-sales.csv) lists eight orders with their date, region, and sales.
+
+Answer the following and respond with a JSON object containing the answer.
+
+1. What is the total sales across all regions?
+2. Which region has the highest total sales?
+3. What is the correlation between day of month and sales? (Use the date column.)
+4. Plot total sales by region as a bar chart with blue bars. Encode as a base64 PNG under 100,000 bytes.
+5. What is the median sales amount across all orders?
+6. What is the total sales tax if the tax rate is 10%?
+7. Plot cumulative sales over time as a line chart with a red line. Encode as a base64 PNG under 100,000 bytes.
+```
+
+Here's a fourth example.
+
+```markdown
+The undirected network in [`edges.csv`](./project-data-analyst-agent-sample-network/edges.csv) lists edges between five people.
+
+Answer the following and respond with a JSON object containing the answer.
+
+1. How many edges are in the network?
+2. Which node has the highest degree?
+3. What is the average degree of the network?
+4. What is the network density?
+5. What is the length of the shortest path between Alice and Eve?
+6. Draw the network with nodes labelled and edges shown. Encode as a base64 PNG under 100,000 bytes.
+7. Plot the degree distribution as a bar chart with green bars. Encode as a base64 PNG under 100,000 bytes.
+```
+
+Here's a fifth example.
+
+```markdown
+The file [`sample-weather.csv`](./project-data-analyst-agent-sample-weather/sample-weather.csv) lists ten days of temperature and precipitation.
+
+Answer the following and respond with a JSON object containing the answer.
+
+1. What is the average temperature in Celsius?
+2. On which date was precipitation highest?
+3. What is the minimum temperature recorded?
+4. What is the correlation between temperature and precipitation?
+5. What is the average precipitation in millimeters?
+6. Plot temperature over time as a line chart with a red line. Encode as a base64 PNG under 100,000 bytes.
+7. Plot precipitation as a histogram with orange bars. Encode as a base64 PNG under 100,000 bytes.
+```
+
 ## Sample responses
 
 Here is a sample response to the first question:
