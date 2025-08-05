@@ -1,8 +1,6 @@
 ## RevealJS: Web-Based Presentations
 
-[![Create Beautiful HTML Presentations with RevealJS (25 min)](https://i.ytimg.com/vi/pB5pTjeUcKk/sddefault.jpg)](https://youtu.be/pB5pTjeUcKk)
-
-https://www.youtube.com/watch?v=a6ioNtv2H-E&list=PLoqZcxvpWzzf_C8QgHC9XbA-bn18qJ-QV
+[![Create Beautiful HTML Presentations with RevealJS (25 min)](https://i.ytimg.com/vi/a6ioNtv2H-E/sddefault.jpg)](https://www.youtube.com/watch?v=a6ioNtv2H-E&list=PLoqZcxvpWzzf_C8QgHC9XbA-bn18qJ-QV)
 
 [RevealJS](https://revealjs.com/) is a powerful HTML presentation framework that turns web pages into interactive slideshows. It's particularly useful for:
 
