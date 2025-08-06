@@ -137,7 +137,7 @@ Tentative dates:
 | [Graded Assignment 6][GA6] - [Discuss][GA6D]   | Online open-Internet MCQ |        |       Wed 02 Jul 2025 |       Sun 06 Aug 2025 |
 | ROE: Remote Online Exam                        | Online open-Internet MCQ |    20% | Sun 20 Jul 2025 13:00 | Sun 20 Jul 2025 13:45 |
 | Graded Assignment 7                            | Online open-Internet MCQ |        |       Mon 04 Aug 2025 |       Sun 17 Aug 2025 |
-| [P2: Project 2](project-data-analyst-agent.md) | Online open-Internet     |    20% |       Fri 11 Jul 2025 |        Fri 8 Aug 2025 |
+| [P2: Project 2](project-data-analyst-agent.md) | Online open-Internet     |    20% |       Fri 11 Jul 2025 |       Sun 10 Aug 2025 |
 | F: Final end-term                              | In-person, no internet   |    25% |       Sun 31 Aug 2025 |       Sun 31 Aug 2025 |
 
 [GA1]: https://exam.sanand.workers.dev/tds-2025-05-ga1
@@ -166,6 +166,7 @@ Updates:
 - GA7 release date delayed to 04 Aug 2025
 - GA7 submission date postponed to 17 Aug 2025
 - GA6 submission date extended to 6 Aug 2025
+- P2 submission date extended to 10 Aug 2025
 
 ### Notes
 
