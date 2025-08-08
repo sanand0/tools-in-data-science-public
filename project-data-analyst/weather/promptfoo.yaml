@@ -1,0 +1,99 @@
+description: "Sample evaluation – network dataset"
+providers:
+  - id: http
+    config:
+      url: "{{ env.PROVIDER_URL }}"
+      method: POST
+      body: 
+        questions.txt: file://questions.txt
+        sample-weather.csv: file://sample-weather.csv
+      transformResponse: json
+defaultTest:
+  options:
+    provider:
+      id: openai:gpt-4.1-nano
+      config:
+        apiHost: aipipe.org/openai
+        timeout: 60
+
+tests:
+  - vars:
+      question: file://questions.txt
+    assert:
+    - type: is-json
+      value:
+        type: object
+        required:
+          [
+            average_temp_c,
+            max_precip_date,
+            min_temp_c,
+            temp_precip_correlation,
+            average_precip_mm,
+            temp_line_chart,
+            precip_histogram,
+          ]
+        properties:
+          average_temp_c: { type: number }
+          max_precip_date: { type: string }
+          min_temp_c: { type: number }
+          temp_precip_correlation: { type: number }
+          average_precip_mm: { type: number }
+          temp_line_chart: { type: string }
+          precip_histogram: { type: string }
+    - type: python
+      weight: 3
+      value: |
+        val = float(output["average_temp_c"])
+        if abs(val - 5.1) <= 0.001:
+          return True
+        return False
+    - type: python
+      weight: 3
+      value: |
+        if output["max_precip_date"] == "2024-01-06":
+          return True
+        return False
+    - type: python
+      weight: 3
+      value: |
+        import json
+        if output["min_temp_c"] == 2:
+          return True
+        return False
+    - type: python
+      weight: 3
+      value: |
+        val = float(output["temp_precip_correlation"])
+        if abs(val - 0.0413519224) <= 0.001:
+          return True
+        return False
+    - type: python
+      weight: 3
+      value: |
+        val = float(output["average_precip_mm"])
+        if abs(val - 0.9) <= 0.001:
+          return True
+        return False
+    - type: llm-rubric
+      weight: 8
+      rubricPrompt: |
+        [
+          {"role":"system","content":"Grade the temperature line chart. Score 1 only if (a) line chart of temperature over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}"},
+          {"role":"user","content":[
+            {"type":"image_url","image_url":{"url":"data:image/png;base64,{{output["temp_line_chart"]}}"}},
+            {"type":"text","text":"{{vars.question}}"}
+          ]}
+        ]
+      threshold: 0.99
+    - type: llm-rubric
+      weight: 8
+      rubricPrompt: |
+        [
+          {"role":"system","content":"Grade the precipitation histogram. Score 1 only if (a) histogram of precipitation amounts; (b) bars are orange; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {histogram:bool,color:bool,axes:bool,size:bool,score:number}"},
+          {"role":"user","content":[
+            {"type":"image_url","image_url":{"url":"data:image/png;base64,{{output["precip_histogram"]}}"}},
+            {"type":"text","text":"{{vars.question}}"}
+          ]}
+        ]
+      threshold: 0.99

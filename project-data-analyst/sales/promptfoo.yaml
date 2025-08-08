@@ -1,0 +1,95 @@
+description: "Sample evaluation – network dataset"
+providers:
+  - id: http
+    config:
+      url: "{{ env.PROVIDER_URL }}"
+      method: POST
+      body: 
+        questions.txt: file://questions.txt
+        sales-data.csv: file://sample-sales.csv
+      transformResponse: json
+defaultTest:
+  options:
+    provider:
+      id: openai:gpt-4.1-nano
+      config:
+        apiHost: aipipe.org/openai
+        timeout: 60
+tests:
+  - vars:
+      question: file://questions.txt
+    assert:
+    - type: is-json
+      value:
+        type: object
+        required:
+          [
+            total_sales,
+            top_region,
+            day_sales_correlation,
+            bar_chart,
+            median_sales,
+            total_sales_tax,
+            cumulative_sales_chart,
+          ]
+        properties:
+          total_sales: { type: number }
+          top_region: { type: string }
+          day_sales_correlation: { type: number }
+          bar_chart: { type: string }
+          median_sales: { type: number }
+          total_sales_tax: { type: number }
+          cumulative_sales_chart: { type: string }
+    - type: python
+      weight: 3
+      value: |
+        if output["total_sales"] == 1140:
+          return True
+        return False
+    - type: python
+      weight: 3
+      value: |
+        if output["top_region"].lower() == "west":
+          return True
+        return False    
+    - type: python
+      weight: 3
+      value: |
+        val = float(output["day_sales_correlation"])
+        if abs(val - 0.2228124549277306) <= 0.001:
+          return True
+        return False
+    - type: python
+      weight: 3
+      value: |
+        if output["median_sales"] == 140:
+          return True
+        return False
+    - type: python
+      weight: 3
+      value: |
+        if output["total_sales_tax"] == 114:
+          return True
+        return False
+    - type: llm-rubric
+      weight: 8
+      rubricPrompt: |
+        [
+          {"role":"system","content":"Grade the bar chart. Score 1 only if (a) bar chart of total sales by region; (b) bars are blue; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {bars:bool,color:bool,axes:bool,size:bool,score:number}"},
+          {"role":"user","content":[
+            {"type":"image_url","image_url":{"url":"data:image/png;base64,{{output["bar_chart"]}}"}},
+            {"type":"text","text":"{{vars.question}}"}
+          ]}
+        ]
+      threshold: 0.99
+    - type: llm-rubric
+      weight: 8
+      rubricPrompt: |
+        [
+          {"role":"system","content":"Grade the line chart. Score 1 only if (a) line chart of cumulative sales over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}"},
+          {"role":"user","content":[
+            {"type":"image_url","image_url":{"url":"data:image/png;base64,{{output["cumulative_sales_chart"]}}"}},
+            {"type":"text","text":"{{vars.question}}"}
+          ]}
+        ]
+      threshold: 0.99
