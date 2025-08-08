@@ -1,0 +1,19 @@
+Analyze `sample-weather.csv`.
+
+Return a JSON object with keys:
+- `average_temp_c`: number
+- `max_precip_date`: string
+- `min_temp_c`: number
+- `temp_precip_correlation`: number
+- `average_precip_mm`: number
+- `temp_line_chart`: base64 PNG string under 100kB
+- `precip_histogram`: base64 PNG string under 100kB
+
+Answer:
+1. What is the average temperature in Celsius?
+2. On which date was precipitation highest?
+3. What is the minimum temperature recorded?
+4. What is the correlation between temperature and precipitation?
+5. What is the average precipitation in millimeters?
+6. Plot temperature over time as a line chart with a red line. Encode as base64 PNG.
+7. Plot precipitation as a histogram with orange bars. Encode as base64 PNG.

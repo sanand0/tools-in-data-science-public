@@ -108,6 +108,12 @@ Answer the following questions and respond with a JSON object containing the ans
 ```
 ````
 
+### More examples
+
+- [Sales](https://github.com/sanand0/tools-in-data-science-public/tree/main/project-data-analyst/sales/)
+- [Network](https://github.com/sanand0/tools-in-data-science-public/tree/main/project-data-analyst/network/)
+- [Weather](https://github.com/sanand0/tools-in-data-science-public/tree/main/project-data-analyst/weather/)
+
 ## Sample responses
 
 Here is a sample response to the first question:

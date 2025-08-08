@@ -1,0 +1,19 @@
+Analyze `sample-sales.csv`.
+
+Return a JSON object with keys:
+- `total_sales`: number
+- `top_region`: string
+- `day_sales_correlation`: number
+- `bar_chart`: base64 PNG string under 100kB
+- `median_sales`: number
+- `total_sales_tax`: number
+- `cumulative_sales_chart`: base64 PNG string under 100kB
+
+Answer:
+1. What is the total sales across all regions?
+2. Which region has the highest total sales?
+3. What is the correlation between day of month and sales? (Use the date column.)
+4. Plot total sales by region as a bar chart with blue bars. Encode as base64 PNG.
+5. What is the median sales amount across all orders?
+6. What is the total sales tax if the tax rate is 10%?
+7. Plot cumulative sales over time as a line chart with a red line. Encode as base64 PNG.

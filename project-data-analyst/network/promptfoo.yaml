@@ -1,0 +1,98 @@
+description: "Sample evaluation – network dataset"
+providers:
+  - id: http
+    config:
+      url: "{{ env.PROVIDER_URL }}"
+      method: POST
+      body:
+        questions.txt: file://questions.txt
+        edges.csv: file://edges.csv
+      transformResponse: json
+defaultTest:
+  options:
+    provider:
+      id: openai:gpt-4.1-nano
+      config:
+        apiHost: aipipe.org/openai
+        timeout: 60
+
+tests:
+  - vars:
+      question: file://questions.txt
+    assert:
+    - type: is-json
+      value:
+        type: object
+        required:
+          [
+            edge_count,
+            highest_degree_node,
+            average_degree,
+            density,
+            shortest_path_alice_eve,
+            network_graph,
+            degree_histogram,
+          ]
+        properties:
+          edge_count: { type: number }
+          highest_degree_node: { type: string }
+          average_degree: { type: number }
+          density: { type: number }
+          shortest_path_alice_eve: { type: number }
+          network_graph: { type: string }
+          degree_histogram: { type: string }
+    - type: python
+      weight: 3
+      value: |
+        if output["edge_count"] == 7 :
+          return True
+        return False
+    - type: python 
+      weight: 3
+      value: |
+        if output["highest_degree_node"].lower() == "bob" :
+          return True
+        return False
+    - type: python
+      weight: 3
+      value: |
+        val = float(output["average_degree"])
+        if abs(val - 2.8) <= 0.001:
+          return True
+        return False
+    - type: python
+      weight: 3
+      value: |
+        val = float(output["density"])
+        if abs(val - 0.7) <= 0.001:
+          return True
+        return False
+    - type: python
+      weight: 3
+      value: |
+        if output["shortest_path_alice_eve"] == 2:
+          return True
+        return False
+    - type: llm-rubric
+      weight: 8
+      rubricPrompt: |
+        [
+          {"role":"system","content":"Grade the network graph. Score 1 only if (a) nodes Alice, Bob, Carol, David, Eve are labelled; (b) edges match edges.csv; (c) layout is clear; (d) file size < 100 kB. Respond JSON {nodes:bool,edges:bool,layout:bool,size:bool,score:number}"},
+          {"role":"user","content":[
+            {"type":"image_url","image_url":{"url":"data:image/png;base64,{{output["network_graph"]}}"}},
+            {"type":"text","text":"{{vars.question}}"}
+          ]}
+        ]
+      threshold: 0.99
+    - type: llm-rubric
+      weight: 8
+      rubricPrompt: |
+        [
+          {"role":"system","content":"Grade the degree histogram. Score 1 only if (a) bar chart of node degree counts; (b) bars are green; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {bars:bool,color:bool,axes:bool,size:bool,score:number}"},
+          {"role":"user","content":[
+            {"type":"image_url","image_url":{"url":"data:image/png;base64,{{output["degree_histogram"]}}"}},
+            {"type":"text","text":"{{vars.question}}"}
+          ]}
+        ]
+      threshold: 0.99
+
