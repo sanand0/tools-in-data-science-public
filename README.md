@@ -136,8 +136,8 @@ Tentative dates:
 | [Graded Assignment 5][GA5] - [Discuss][GA5D]   | Online open-Internet MCQ |        |       Wed 21 Jun 2025 |       Sun 29 Jun 2025 |
 | [Graded Assignment 6][GA6] - [Discuss][GA6D]   | Online open-Internet MCQ |        |       Wed 02 Jul 2025 |       Sun 06 Aug 2025 |
 | ROE: Remote Online Exam                        | Online open-Internet MCQ |    20% | Sun 20 Jul 2025 13:00 | Sun 20 Jul 2025 13:45 |
-| Graded Assignment 7                            | Online open-Internet MCQ |        |       Mon 04 Aug 2025 |       Sun 17 Aug 2025 |
-| [P2: Project 2](project-data-analyst-agent.md) | Online open-Internet     |    20% |       Fri 11 Jul 2025 |       Sun 10 Aug 2025 |
+| [Graded Assignment 7][GA7] - [Discuss][GA7D]   | Online open-Internet MCQ |        |       Mon 11 Aug 2025 |       Sun 20 Aug 2025 |
+| [P2: Project 2][PR2] - [Discuss][PR2D]         | Online open-Internet     |    20% |       Fri 11 Jul 2025 |       Wed 13 Aug 2025 |
 | F: Final end-term                              | In-person, no internet   |    25% |       Sun 31 Aug 2025 |       Sun 31 Aug 2025 |
 
 [GA1]: https://exam.sanand.workers.dev/tds-2025-05-ga1
@@ -147,6 +147,8 @@ Tentative dates:
 [GA4]: https://exam.sanand.workers.dev/tds-2025-05-ga4
 [GA5]: https://exam.sanand.workers.dev/tds-2025-05-ga5
 [GA6]: https://exam.sanand.workers.dev/tds-2025-05-ga6
+[GA7]: https://exam.sanand.workers.dev/tds-2025-05-ga7
+[PR2]: https://tds.s-anand.net/#/project-data-analyst-agent
 [GA1D]: https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-may-2025/173524
 [GA2D]: https://discourse.onlinedegree.iitm.ac.in/t/ga2-deployment-tools-discussion-thread-tds-may-2025/173525
 [GA3D]: https://discourse.onlinedegree.iitm.ac.in/t/ga3-large-language-models-discussion-thread-tds-may-2025/175592
@@ -154,6 +156,8 @@ Tentative dates:
 [GA4D]: https://discourse.onlinedegree.iitm.ac.in/t/ga4-data-sourcing-discussion-thread-tds-may-2025/178881
 [GA5D]: https://discourse.onlinedegree.iitm.ac.in/t/ga5-data-preparation-discusion-thread-tds-may-2025/179741
 [GA6D]: https://discourse.onlinedegree.iitm.ac.in/t/ga6-data-preparation-discusion-thread-tds-may-2025/181228/93
+[GA7D]: https://discourse.onlinedegree.iitm.ac.in/t/ga7-data-visualisation-tds-may-2025/184692
+[PR2D]: https://discourse.onlinedegree.iitm.ac.in/t/project-2-data-analyst-agent-discussion-thread-tds-may-2025/181309
 
 Updates:
 
