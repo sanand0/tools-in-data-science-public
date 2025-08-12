@@ -216,12 +216,44 @@ Deploy your application to a public URL that can be accessed by anyone. You may 
 ## Submit your URL
 
 ### Sumbission workflow:
-When you submit your endpoint and your github repo, 
-1. A request will first be sent to your github to see if its publically accessible. This must be unique.
-2. The next check is to see if an MIT `LICENSE` file is present.
-3. Then a request is sent to your API endpoint with the test cases. There are 3 public test cases (as mentioned above) and they are sent simultaneously to your endpoint. There are 4 retries with generous timeouts.
-4. During this phase of testing, the submission portal will prevent you from submitting another request. *Once the API tests are complete,* you will be able to download the output of the tests.
-5. At this point, if you choose to do so you can submit another test. Note that each test will use up your AI credits.
+
+# Submission and Testing Process
+
+1. **GitHub Accessibility Check**  
+   - When you submit your endpoint and GitHub repository, the system first checks if your GitHub repo is **publicly accessible**.  
+   - The repository must be **unique**.
+
+2. **MIT License Check**  
+   - The system verifies that your repository contains an **MIT LICENSE** file.
+
+3. **API Testing Setup**  
+   - Three simultaneous requests are sent to your API endpoint.  
+   - Each request corresponds to a **separate public test case**, each with its own `questions.txt` file.
+
+4. **Retries and Timeout Rules**  
+   - Each request can retry up to **4 times**.  
+   - Each attempt has a **5-minute timeout**.  
+   - Your API must respond **within 5 minutes** per request.  
+   - If your API does not respond in time, you **will not be scored** for all the questions in that test case.  
+   - **Tip:** Always return something in the correct JSON structure within the time limit, even if the answers are wrong — you can still get partial marks.
+
+5. **Multiple Questions per Request**  
+   - A single `curl` request may contain **multiple questions** from the attached `questions.txt`.  
+   - The **5-minute timeout applies to the entire request**, not each question.
+
+6. **Scoring for Public Test Cases**  
+   - You are graded on how many questions are correct.  
+   - If a request fails after 4 retries, you lose **all marks for that test case**.  
+   - You can still earn marks if the **other requests succeed**.
+
+7. **Resubmission Rules**  
+   - During testing, you cannot submit another request (the form will be disabled).  
+   - After tests complete, you can download the test output.
+   - You may then submit another test if desired (note: each test uses up your AI credits).
+
+8. **Final Scoring**  
+   - Marks come from **private test cases** evaluated **after the deadline**.  
+   - Public test cases are for **debugging purposes only** — no marks are awarded for them.
 
 Submit your GitHub repository URL and your API endpoint URL at our custom [Project 2 submission portal](http://34.100.231.127:8000/).
 
