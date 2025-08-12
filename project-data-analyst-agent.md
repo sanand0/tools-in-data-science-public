@@ -215,4 +215,13 @@ Deploy your application to a public URL that can be accessed by anyone. You may 
 
 ## Submit your URL
 
-Submit your GitHub repository URL and your API endpoint URL at https://exam.sanand.workers.dev/tds-data-analyst-agent (once it is available).
+### Sumbission workflow:
+When you submit your endpoint and your github repo, 
+1. A request will first be sent to your github to see if its publically accessible. This must be unique.
+2. The next check is to see if an MIT `LICENSE` file is present.
+3. Then a request is sent to your API endpoint with the test cases. There are 3 public test cases (as mentioned above) and they are sent simultaneously to your endpoint. There are 4 retries with generous timeouts.
+4. During this phase of testing, the submission portal will prevent you from submitting another request. *Once the API tests are complete,* you will be able to download the output of the tests.
+5. At this point, if you choose to do so you can submit another test. Note that each test will use up your AI credits.
+
+Submit your GitHub repository URL and your API endpoint URL at our custom Project 2 submission portal (will be available soon.)
+
