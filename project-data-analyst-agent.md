@@ -18,7 +18,7 @@ The answers must be sent within 3 minutes in the format requested.
 
 ## Sample questions
 
-These are _examples_ of `quesions.txt` that will be sent. **NOT** the actual question, which will be a secret.
+These are _examples_ of `questions.txt` that will be sent. **NOT** the actual question, which will be a secret.
 
 ```markdown
 Scrape the list of highest grossing films from Wikipedia. It is at the URL:
