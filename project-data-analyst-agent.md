@@ -223,5 +223,5 @@ When you submit your endpoint and your github repo,
 4. During this phase of testing, the submission portal will prevent you from submitting another request. *Once the API tests are complete,* you will be able to download the output of the tests.
 5. At this point, if you choose to do so you can submit another test. Note that each test will use up your AI credits.
 
-Submit your GitHub repository URL and your API endpoint URL at our custom Project 2 submission portal (will be available soon.)
+Submit your GitHub repository URL and your API endpoint URL at our custom [Project 2 submission portal](http://34.100.231.127:8000/).
 
