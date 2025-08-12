@@ -215,9 +215,7 @@ Deploy your application to a public URL that can be accessed by anyone. You may 
 
 ## Submit your URL
 
-### Sumbission workflow:
-
-# Submission and Testing Process
+### Submission and Testing Process
 
 1. **GitHub Accessibility Check**  
    - When you submit your endpoint and GitHub repository, the system first checks if your GitHub repo is **publicly accessible**.  
