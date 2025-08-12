@@ -1,20 +1,11 @@
 description: "Sample evaluation – network dataset"
 providers:
-  - id: http
-    config:
-      url: "{{ env.PROVIDER_URL }}"
-      method: POST
-      body: 
-        questions.txt: file://questions.txt
-        sample-weather.csv: file://sample-weather.csv
-      transformResponse: json
+  - 'exec: uv run run.py "{{ env.PROVIDER_URL }}"'
 defaultTest:
   options:
     provider:
       id: openai:gpt-4.1-nano
-      config:
-        apiHost: aipipe.org/openai
-        timeout: 60
+    transform: JSON.parse(output)
 
 tests:
   - vars:
@@ -57,7 +48,6 @@ tests:
     - type: python
       weight: 3
       value: |
-        import json
         if output["min_temp_c"] == 2:
           return True
         return False
