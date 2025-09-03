@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "lint": "npx -y prettier@3.5 --print-width 120 --write '**/*.md'"
+  }
+}

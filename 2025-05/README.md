@@ -1,4 +1,4 @@
-# Tools in Data Science - Sep 2025
+# Tools in Data Science - May 2025
 
 [Tools in Data Science](https://study.iitm.ac.in/ds/course_pages/BSSE2002.html) is a practical diploma level data science course at IIT Madras that teaches
 popular tools for sourcing data, transforming it, analyzing it, communicating these as visual stories, and deploying them in production.
@@ -48,14 +48,7 @@ Here's students' feedback:
 - The ROE is hard.
   [#](https://discourse.onlinedegree.iitm.ac.in/t/is-it-fair-to-consider-20-weightage-of-such-exam-which-is-impossible-to-solve-in-given-time-i-e-roe/141413/10)
 
-**[Take Graded assignment 1](https://exam.sanand.workers.dev/tds-2025-09-ga1) to check if you're ready for this course.** Please drop this course (do it in a later term) if you score low. It'll be too tough for you now.
-
-</details>
-
-<details>
-<summary><strong>You should probably take it in your last term</strong></summary>
-
-- [Should you take Tools in Data Science this term?](https://discourse.onlinedegree.iitm.ac.in/t/tools-in-data-science-should-you-take-tools-in-data-science-this-term/186454)
+**[Take Graded assignment 1](https://exam.sanand.workers.dev/tds-2025-05-ga1) to check if you're ready for this course.** Please drop this course (do it in a later term) if you score low. It'll be too tough for you now.
 
 </details>
 
@@ -92,11 +85,13 @@ Also, registering again for the course [does not improve marks much](https://dis
 
 <summary><strong>We encourage learning by sharing</strong></summary>
 
-You _CAN_ copy from friends and LLMs. You can work in groups. You can share code. Even in projects, assignments, and exams (except the final end-term exam).
+You _CAN_ copy from friends. You can work in groups. You can share code. Even in projects, assignments, and exams (except the final end-term exam).
 
-- **Why copy?** Because in real life, there's no time to re-invent the wheel. You'll be working in teams on the shoulders of giants. It's important to learn how to do that well.
-- **To learn well, understand** what you're copying. If you're short of time, prioritize.
-- **To learn better, teach** what you've learnt.
+**Why should you copy?** Because in real life, there's no time to re-invent the wheel. You'll be working in teams on the shoulders of giants. It's important to learn how to do that well.
+
+**To learn well, understand** what you're copying. If you're short of time, prioritize.
+
+**To learn better, teach** what you've learnt.
 
 </details>
 
@@ -124,30 +119,58 @@ You can solve these questions any time and check your answers before the submiss
 
 Only [enrolled students](https://study.iitm.ac.in/ds/) can participate in [Discourse](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34), get project evaluations, take the final end-term, or get a certificate.
 
-Those auditing can [use GitHub notifications](https://docs.github.com/en/subscriptions-and-notifications/get-started/configuring-notifications) and watch activity on the [course repository](https://github.com/sanand0/tools-in-data-science-public/).
+Those auditing can join the [TDS 2025 May Google Group](https://groups.google.com/g/tds-2025-05) for announcements.
 
 ## Evaluations are mostly open Internet
 
 Tentative dates:
 
-| Exam                                         | Type                     | Weight |           Release Date |           Submission Date |
-| -------------------------------------------- | ------------------------ | -----: | ---------------------: | ------------------------: |
-| GA: Graded assignments                       | Best 5 out of 8          |    20% |                        |                           |
-| [Graded Assignment 1][GA1] - [Discuss][GA1D] | Online open-Internet MCQ |        |        Wed 03 Sep 2025 |           Sun 05 Oct 2025 |
-| Graded Assignment 2                          | Online open-Internet MCQ |        |        Thu 18 Sep 2025 |           Sun 05 Oct 2025 |
-| Graded Assignment 3                          | Online open-Internet MCQ |        |        Thu 25 Sep 2025 |           Sun 12 Oct 2025 |
-| P1: Project 1                                | Online open-Internet     |    20% |        Fri 26 Sep 2025 |           Fri 17 Oct 2025 |
-| Graded Assignment 4                          | Online open-Internet MCQ |        |        Thu 02 Oct 2025 |           Sun 19 Oct 2025 |
-| Graded Assignment 5                          | Online open-Internet MCQ |        |        Thu 09 Oct 2025 |           Mon 27 Oct 2025 |
-| Graded Assignment 6                          | Online open-Internet MCQ |        |        Thu 16 Oct 2025 |           Mon 10 Nov 2025 |
-| Graded Assignment 7                          | Online open-Internet MCQ |        |        Thu 23 Oct 2025 |           Sun 16 Nov 2025 |
-| P2: Project 2                                | Online open-Internet     |    20% |        Thu 30 Oct 2025 |           Fri 21 Nov 2025 |
-| Graded Assignment 8                          | Online open-Internet MCQ |        |        Thu 30 Oct 2025 |           Mon 24 Nov 2025 |
-| ROE: Remote Online Exam                      | Online open-Internet MCQ |    20% | 11 am, Sat 08 Nov 2025 | 11:45 am, Sat 08 Nov 2025 |
-| F: Final end-term                            | In-person, no internet   |    20% |        Sun 21 Dec 2025 |           Sun 21 Dec 2025 |
+| Exam                                         | Type                     | Weight |          Release Date |       Submission Date |
+| -------------------------------------------- | ------------------------ | -----: | --------------------: | --------------------: |
+| GA: Graded assignments                       | Best 4 out of 7          |    15% |                       |                       |
+| [Graded Assignment 1][GA1] - [Discuss][GA1D] | Online open-Internet MCQ |        |       Thu 01 May 2025 |       Sun 18 May 2025 |
+| [Graded Assignment 2][GA2] - [Discuss][GA2D] | Online open-Internet MCQ |        |       Thu 05 May 2025 |       Sun 25 May 2025 |
+| [Graded Assignment 3][GA3] - [Discuss][GA3D] | Online open-Internet MCQ |        |       Fri 20 May 2025 |       Sun 01 Jun 2025 |
+| [P1: Project 1][PR1] - [Discuss][PR1D]       | Online open-Internet     |    20% |       Fri 16 May 2025 |       Sat 18 Jun 2025 |
+| [Graded Assignment 4][GA4] - [Discuss][GA4D] | Online open-Internet MCQ |        |       Wed 14 Jun 2025 |       Sun 22 Jun 2025 |
+| [Graded Assignment 5][GA5] - [Discuss][GA5D] | Online open-Internet MCQ |        |       Wed 21 Jun 2025 |       Sun 29 Jun 2025 |
+| [Graded Assignment 6][GA6] - [Discuss][GA6D] | Online open-Internet MCQ |        |       Wed 02 Jul 2025 |       Sun 06 Aug 2025 |
+| ROE: Remote Online Exam                      | Online open-Internet MCQ |    20% | Sun 20 Jul 2025 13:00 | Sun 20 Jul 2025 13:45 |
+| [Graded Assignment 7][GA7] - [Discuss][GA7D] | Online open-Internet MCQ |        |       Mon 11 Aug 2025 |       Sun 20 Aug 2025 |
+| [P2: Project 2][PR2] - [Discuss][PR2D]       | Online open-Internet     |    20% |       Fri 11 Jul 2025 |       Wed 13 Aug 2025 |
+| F: Final end-term                            | In-person, no internet   |    25% |       Sun 31 Aug 2025 |       Sun 31 Aug 2025 |
 
-[GA1]: https://exam.sanand.workers.dev/tds-2025-09-ga1
-[GA1D]: https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-sep-2025/186452
+[GA1]: https://exam.sanand.workers.dev/tds-2025-05-ga1
+[GA2]: https://exam.sanand.workers.dev/tds-2025-05-ga2
+[GA3]: https://exam.sanand.workers.dev/tds-2025-05-ga3
+[PR1]: https://tds.s-anand.net/#/project-tds-virtual-ta
+[GA4]: https://exam.sanand.workers.dev/tds-2025-05-ga4
+[GA5]: https://exam.sanand.workers.dev/tds-2025-05-ga5
+[GA6]: https://exam.sanand.workers.dev/tds-2025-05-ga6
+[GA7]: https://exam.sanand.workers.dev/tds-2025-05-ga7
+[PR2]: https://tds.s-anand.net/#/project-data-analyst-agent
+[GA1D]: https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-may-2025/173524
+[GA2D]: https://discourse.onlinedegree.iitm.ac.in/t/ga2-deployment-tools-discussion-thread-tds-may-2025/173525
+[GA3D]: https://discourse.onlinedegree.iitm.ac.in/t/ga3-large-language-models-discussion-thread-tds-may-2025/175592
+[PR1D]: https://discourse.onlinedegree.iitm.ac.in/t/project1-virtual-ta-discussion-thread-tds-may-2025/176077
+[GA4D]: https://discourse.onlinedegree.iitm.ac.in/t/ga4-data-sourcing-discussion-thread-tds-may-2025/178881
+[GA5D]: https://discourse.onlinedegree.iitm.ac.in/t/ga5-data-preparation-discusion-thread-tds-may-2025/179741
+[GA6D]: https://discourse.onlinedegree.iitm.ac.in/t/ga6-data-preparation-discusion-thread-tds-may-2025/181228/93
+[GA7D]: https://discourse.onlinedegree.iitm.ac.in/t/ga7-data-visualisation-tds-may-2025/184692
+[PR2D]: https://discourse.onlinedegree.iitm.ac.in/t/project-2-data-analyst-agent-discussion-thread-tds-may-2025/181309
+
+Updates:
+
+- GA1 submission date postponed from 11 May to 18 May 2025
+- GA2 submission date postponed from 18 May to 25 May 2025
+- ~~GA3 submission date **preponed** from 01 Jun to 25 May 2025 since there's a break the week after~~
+- P1 submission date postponed from 14 Jun to 18 Jun 2025
+- GA4 release date delayed to 14 Jun 2025
+- GA5 release date delayed to 21 Jun 2025
+- GA7 release date delayed to 04 Aug 2025
+- GA7 submission date postponed to 17 Aug 2025
+- GA6 submission date extended to 6 Aug 2025
+- P2 submission date extended to 10 Aug 2025
 
 ### Notes
 
@@ -157,8 +180,9 @@ Tentative dates:
   - The RoE is especially hard. Read: [What is the purpose of an impossible RoE exam?](https://discourse.onlinedegree.iitm.ac.in/t/whats-the-actual-purpose-of-impossible-roe-exam/99838/2)
 - **Final exam is in-person and closed book**. It tests your memory. It's easy.
 - **Projects test application**. The projects test how well you apply what you learnt in a real-world context.
-- **We may post bonus activities on Discourse**. See [previous bonus activities](https://discourse.onlinedegree.iitm.ac.in/tags/c/courses/tds-kb/34/bonus-marks)
-- **Evaluations are mostly automated**. This course uses pre-computed (for objective) or LLM-as-a-judge (for subjective) evaluations. LLMs may evaluate you differently each time. Learn to prompt them _robustly_. LLM decisions are **final**.
+- **Bonus activities may be posted on Discourse**. See [previous bonus activities](https://discourse.onlinedegree.iitm.ac.in/tags/c/courses/tds-kb/34/bonus-marks)
+- **Evaluations are mostly automated**. This course uses pre-computed (for objective) or LLMs (for subjective) evaluations.
+  - LLMs will evaluate you differently each time. Learn to prompt them _robustly_ to get higher marks.
 
 ## Constantly check communications
 
@@ -183,15 +207,35 @@ Check these three links regularly to keep up with the course.
     [prasanna@study.iitm.ac.in](mailto:prasanna@study.iitm.ac.in) |
     [@iamprasna](https://discourse.onlinedegree.iitm.ac.in/u/iamprasna)
 - **Teaching assistants** (who help you with your doubts)
-  - Hritik Roshan Maurya,
-    [22f3002460@ds.study.iitm.ac.in](mailto:22f3002460@ds.study.iitm.ac.in) |
-    [@HritikRoshan_HRM](https://discourse.onlinedegree.iitm.ac.in/u/hritikroshan_hrm)
-  - [Virtual TA](https://chatgpt.com/g/g-mZqKVxKDx-iitm-tds-teaching-assistant)
-    ([GPT Instructions](tds-ta-instructions.md))
   - Jivraj Singh,
     [22f3002542@ds.study.iitm.ac.in](mailto:22f3002542@ds.study.iitm.ac.in) |
     [@Jivraj](https://discourse.onlinedegree.iitm.ac.in/u/jivraj) |
     [LinkedIn Profile](https://www.linkedin.com/in/jivraj-singh-shekhawat-92a547269/)
+  - Suchintika Sarkar,
+    [21f3002441@ds.study.iitm.ac.in](mailto:21f3002441@ds.study.iitm.ac.in) |
+    [@21f3002441](https://discourse.onlinedegree.iitm.ac.in/u/21f3002441)
+  - Hritik Roshan Maurya,
+    [22f3002460@ds.study.iitm.ac.in](mailto:22f3002460@ds.study.iitm.ac.in) |
+    [@HritikRoshan_HRM](https://discourse.onlinedegree.iitm.ac.in/u/hritikroshan_hrm)
+  - Saransh Saini,
+    [22f1001123@ds.study.iitm.ac.in](mailto:22f1001123@ds.study.iitm.ac.in) |
+    [@Saransh_Saini](https://discourse.onlinedegree.iitm.ac.in/u/Saransh_Saini) |
+    [LinkedIn Profile](https://www.linkedin.com/in/saranshsaini48/)
+  - [Virtual TA](https://chatgpt.com/g/g-mZqKVxKDx-iitm-tds-teaching-assistant)
+    ([GPT Instructions](tds-ta-instructions.md))
+
+<!--
+- Mahesh Balan U (MS, PhD - IIT Madras)
+- Dixon Prem Daniel (PhD - IIT Madras)
+- Ravi Teja (MS - IIT Madras)
+- Sathiesh (MS - IIT Madras)
+- Rohith Srinivaas M (B.Tech, M.Tech - IIT Madras)
+
+- [Amit Kumar Gupta](https://www.linkedin.com/in/amit-gupta-321994252/) (B.Sc. Delhi University).
+  [21f1005763@ds.study.iitm.ac.in](mailto:21f1005763@ds.study.iitm.ac.in) |
+  [@Amit1](https://discourse.onlinedegree.iitm.ac.in/u/Amit1)
+
+-->
 
 Their **job** is to help you. Trouble them for your slightest doubts!
 
@@ -202,11 +246,11 @@ Their **job** is to help you. Trouble them for your slightest doubts!
 - [TDS: Public course page](https://study.iitm.ac.in/ds/course_pages/BSSE2002.html)
 - [TDS: Course files](https://drive.google.com/drive/folders/1FE0YPAxcxMzZdjnp3FopuJCI3A2Vq6fC?usp=drive_link) -- Jupyter notebooks, datasets, etc.
 
-## Sep 2025 Links
+## May 2025 Links
 
-- [Grading Document - Sep 2025](#) - #TODO
-- [TDS: Course page - Sep 2025](https://seek.onlinedegree.iitm.ac.in/courses/ns_25t3_se2002)
-- [TDS: Announcement group - Sep 2025](https://groups.google.com/a/study.iitm.ac.in/g/25t3_se2002-announce)
+- [Grading Document - May 2025](https://docs.google.com/document/u/3/d/e/2PACX-1vRKOWaLjxsts3qAM4h00EDvlB-GYRSPqqVXTfq3nGWFQBx91roxcU1qGv2ksS7jT4EQPNo8Rmr2zaE9/pub#h.2bn6wsx)
+- [TDS: Course page - May 2025](https://seek.onlinedegree.iitm.ac.in/courses/ns_25t2_se2002) -- for students to access course content.
+- [TDS: Announcement group - May 2025](https://groups.google.com/a/study.iitm.ac.in/g/25t2_se2002-announce)
 - [TDS: Live Sessions](https://www.youtube.com/@se-lr5ff/streams)
 
 <!--
@@ -217,8 +261,15 @@ Their **job** is to help you. Trouble them for your slightest doubts!
 
 ## Past Course Content
 
-- [TDS: Course Content - May 2025](2025-05/)
 - [TDS: Course Content - Jan 2025](2025-01/)
 - [TDS: Live Sessions - Jan 2025](https://www.youtube.com/playlist?list=PL_h5u1jMeBCl1BquBhgunA4t08XAxsA-C) -- YouTube playlist
 - [TDS: Course calendar - Jan 2025](https://calendar.google.com/calendar/u/0/r?cid=Y19ib2Y3bnMxbDduNm84azA1dHA4YTlxNWIwZ0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t)
 - [Grading Document - Jan 2025](https://docs.google.com/document/d/e/2PACX-1vRBH1NuM3ML6MH5wfL2xPiPsiXV0waKlUUEj6C7LrHrARNUsAEA1sT2r7IHcFKi8hvQ45gSrREnFiTT/pub).
+
+<!--
+
+Linting:
+
+npx prettier@3.5 --print-width 120 --write '**/*.md'
+
+-->

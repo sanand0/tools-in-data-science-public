@@ -42,11 +42,11 @@ llm embed -c 'What is 2 + 2' -m 3-small
 
 **For a 50% discount** (but slower speed), use [Flex processing](https://platform.openai.com/docs/guides/flex-processing) by adding `service_tier: "flex"` to your JSON request.
 
-## AI Proxy - Jan 2025
+## AI Pipe
 
-For the Jan 2025 batch, we had created API keys for everyone with an `iitm.ac.in` email to use `gpt-4o-mini` and `text-embedding-3-small`. Your usage is limited to **$1 per calendar month** for this course. Don't exceed that.
+Anyone with a `study.iitm.ac.in` email can get a free API key from [aipipe.org](https://aipipe.org/) and use up to **$2 per calendar month** for this course. Don't exceed that.
 
-**Use [AI Proxy](https://github.com/sanand0/aiproxy)** instead of OpenAI. Specifically:
+To use it, [read the documentation](https://github.com/sanand0/aipipe). Specifically:
 
-1. Replace your API to `https://api.openai.com/...` with `https://aiproxy.sanand.workers.dev/openai/...`
-2. Replace the `OPENAI_API_KEY` with the `AIPROXY_TOKEN` that someone will give you.
+1. Use `https://aipipe.org/openai/v1/...` instead of `https://api.openai.com/v1/...` as the `OPENAI_BASE_URL`
+2. Use the token from <https://aipipe.org/login> as the `OPENAI_API_KEY`
