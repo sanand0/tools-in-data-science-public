@@ -130,21 +130,21 @@ Those auditing can [use GitHub notifications](https://docs.github.com/en/subscri
 
 Tentative dates:
 
-| Exam                                         | Type                     | Weight |           Release Date |           Submission Date |
-| -------------------------------------------- | ------------------------ | -----: | ---------------------: | ------------------------: |
-| GA: Graded assignments                       | Best 5 out of 8          |    20% |                        |                           |
-| [Graded Assignment 1][GA1] - [Discuss][GA1D] | Online open-Internet MCQ |        |        Wed 03 Sep 2025 |           Sun 05 Oct 2025 |
-| Graded Assignment 2                          | Online open-Internet MCQ |        |        Thu 18 Sep 2025 |           Sun 05 Oct 2025 |
-| Graded Assignment 3                          | Online open-Internet MCQ |        |        Thu 25 Sep 2025 |           Sun 12 Oct 2025 |
-| P1: Project 1                                | Online open-Internet     |    20% |        Fri 26 Sep 2025 |           Fri 17 Oct 2025 |
-| Graded Assignment 4                          | Online open-Internet MCQ |        |        Thu 02 Oct 2025 |           Sun 19 Oct 2025 |
-| Graded Assignment 5                          | Online open-Internet MCQ |        |        Thu 09 Oct 2025 |           Mon 27 Oct 2025 |
-| Graded Assignment 6                          | Online open-Internet MCQ |        |        Thu 16 Oct 2025 |           Mon 10 Nov 2025 |
-| Graded Assignment 7                          | Online open-Internet MCQ |        |        Thu 23 Oct 2025 |           Sun 16 Nov 2025 |
-| P2: Project 2                                | Online open-Internet     |    20% |        Thu 30 Oct 2025 |           Fri 21 Nov 2025 |
-| Graded Assignment 8                          | Online open-Internet MCQ |        |        Thu 30 Oct 2025 |           Mon 24 Nov 2025 |
-| ROE: Remote Online Exam                      | Online open-Internet MCQ |    20% | 11 am, Sat 08 Nov 2025 | 11:45 am, Sat 08 Nov 2025 |
-| F: Final end-term                            | In-person, no internet   |    20% |        Sun 21 Dec 2025 |           Sun 21 Dec 2025 |
+| Exam                                         | Type                     | Weight |          Release Date |          Submission Date |
+| -------------------------------------------- | ------------------------ | -----: | --------------------: | -----------------------: |
+| GA: Graded assignments                       | Best 5 out of 8          |    20% |                       |                          |
+| [Graded Assignment 1][GA1] - [Discuss][GA1D] | Online open-Internet MCQ |        |       Wed 03 Sep 2025 |          Sun 05 Oct 2025 |
+| Graded Assignment 2                          | Online open-Internet MCQ |        |       Thu 18 Sep 2025 |          Sun 05 Oct 2025 |
+| Graded Assignment 3                          | Online open-Internet MCQ |        |       Thu 25 Sep 2025 |          Sun 12 Oct 2025 |
+| P1: Project 1                                | Online open-Internet     |    20% |       Fri 26 Sep 2025 |          Fri 17 Oct 2025 |
+| Graded Assignment 4                          | Online open-Internet MCQ |        |       Thu 02 Oct 2025 |          Sun 19 Oct 2025 |
+| Graded Assignment 5                          | Online open-Internet MCQ |        |       Thu 09 Oct 2025 |          Mon 27 Oct 2025 |
+| Graded Assignment 6                          | Online open-Internet MCQ |        |       Thu 16 Oct 2025 |          Mon 10 Nov 2025 |
+| Graded Assignment 7                          | Online open-Internet MCQ |        |       Thu 23 Oct 2025 |          Sun 16 Nov 2025 |
+| P2: Project 2                                | Online open-Internet     |    20% |       Thu 30 Oct 2025 |          Fri 21 Nov 2025 |
+| Graded Assignment 8                          | Online open-Internet MCQ |        |       Thu 30 Oct 2025 |          Mon 24 Nov 2025 |
+| ROE: Remote Online Exam                      | Online open-Internet MCQ |    20% | 1 pm, Sun 09 Nov 2025 | 1:45 pm, Sun 09 Nov 2025 |
+| F: Final end-term                            | In-person, no internet   |    20% |       Sun 21 Dec 2025 |          Sun 21 Dec 2025 |
 
 [GA1]: https://exam.sanand.workers.dev/tds-2025-09-ga1
 [GA1D]: https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-sep-2025/186452
