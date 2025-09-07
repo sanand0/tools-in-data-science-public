@@ -49,7 +49,7 @@
   - [Multimodal Embeddings](multimodal-embeddings.md)
   - [Topic modeling](topic-modeling.md)
   - [Vector databases](vector-databases.md)
-  - [RAG with the CLI)](rag-cli.md)
+  - [RAG with the CLI](rag-cli.md)
   - [Hybrid RAG with TypeSense](hybrid-rag-typesense.md)
   - [Function Calling](function-calling.md)
   - [LLM Agents](llm-agents.md)
