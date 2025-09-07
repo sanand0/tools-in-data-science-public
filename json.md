@@ -17,7 +17,7 @@ Key concepts to understand in JSON:
 
 - JSON only supports 6 data types: strings, numbers, booleans, null, arrays, and objects
 - You can nest data. Arrays and objects can contain other data types, including other arrays and objects
-- Always validate. Ensure JSON is well-formed. Comm errors: Trailing commas, missing quotes, and escape characters
+- Always validate. Ensure JSON is well-formed. Common errors: trailing commas, missing quotes, and incorrect escaping
 
 [JSON Lines](https://jsonlines.org/) is a format that allows you to store multiple JSON objects in a single line.
 It's useful for logging and streaming data.
@@ -49,7 +49,7 @@ with open('data.json') as f:
 with open('output.json', 'w') as f:
     json.dump(data, f, indent=2)
 
-# Read JSON data a Pandas DataFrame. JSON data is typically stored as an array of objects.
+# Read JSON data into a Pandas DataFrame. JSON data is typically stored as an array of objects.
 import pandas as pd
 df = pd.read_json('data.json')
 

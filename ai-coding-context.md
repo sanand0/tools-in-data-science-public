@@ -29,6 +29,14 @@ This concatenates the files into an XML structure (recommended by Claude, suppor
 
 For small files, this works well. If your code is large, you may want to pass files and chunks selectively.
 
+For git repositories, you can use [gitingest](https://gitingest.com/). For example https://gitingest.com/sanand0/tools-in-data-science-public extracts the full contents of this course repo.
+
+You may use it in the command line like this:
+
+```
+uvx gitingest https://github.com/sanand0/tools-in-data-science-public
+```
+
 ## Spec-first development
 
 Spec-first development places a detailed specification document at the center of your AI coding workflow. Instead of giving ad-hoc instructions to AI tools, you maintain a living spec that serves as the authoritative source for project requirements, constraints, and acceptance criteria.

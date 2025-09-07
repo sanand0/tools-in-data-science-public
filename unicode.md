@@ -4,7 +4,7 @@ Ever noticed when you copy-paste some text and get garbage symbols? Or see garba
 
 Learn about ASCII (the original 7-bit encoding system that could only handle 128 characters), why that wasn't enough for global languages, and how modern solutions like Unicode save the day by letting us use any character from any language.
 
-Some programs try to guess encodings (sometimes badly!). A signature called BOM (Byte Order Mark)helps computers know exactly how to read text files correctly.
+Some programs try to guess encodings (sometimes badly!). A signature called BOM (Byte Order Mark) helps computers know exactly how to read text files correctly.
 
 Learn how Unicode, UTF-8 and character encoding works. This is a common gotcha when building apps that handle international text - something bootcamps often skip but developers and data scientists regularly face in the real world.
 
@@ -13,7 +13,7 @@ Unicode is fundamental for data scientists working with international data. Here
 - **Character Encodings**: Different ways to represent text in computers
   - ASCII (7-bit): Limited to 128 characters, English-only
   - UTF-8: Variable-width encoding, backwards compatible with ASCII
-  - UTF-16: Fixed-width encoding, used in Windows and Java
+  - UTF-16: Variable-width (2 or 4 bytes with surrogate pairs), used in Windows and Java
   - UTF-32: Fixed-width encoding, memory inefficient but simple
 
 Common encoding issues you'll encounter:

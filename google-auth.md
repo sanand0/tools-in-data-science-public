@@ -11,7 +11,7 @@ Google Auth is the most commonly implemented single sign-on mechanism because:
 
 Here's how you build a FastAPI app that identifies the user.
 
-1. Go to the [Google Cloud Console – Credentials](https://console.developers.google.com/apis/credentials) and click **Create Credentials > OAuth client ID**.
+1. Go to the [Google Cloud Console – Credentials](https://console.cloud.google.com/apis/credentials) and click **Create Credentials > OAuth client ID**.
 2. Choose **Web application**, set your authorized redirect URIs (e.g., `http://localhost:8000/`).
 3. Copy the **Client ID** and **Client Secret** into a `.env` file:
 
@@ -74,6 +74,6 @@ Now, run `uv run app.py`.
 
 Instead of displaying the email, you can show different content based on the user. For example:
 
-- Allow access to specfic users and not others
+- Allow access to specific users and not others
 - Fetch the user's personalized information
 - Display different content based on the user

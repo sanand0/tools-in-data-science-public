@@ -46,16 +46,12 @@ app.add_middleware(
 Testing CORS with JavaScript:
 
 ```javascript
-// Simple request
-const response = await fetch("https://api.example.com/data", {
-  method: "GET",
-  headers: { "Content-Type": "application/json" },
-});
+// Simple GET request (no custom headers)
+const response = await fetch("https://api.example.com/data");
 
-// Request with credentials
+// Request with credentials (requires explicit origin on server)
 const response = await fetch("https://api.example.com/data", {
   credentials: "include",
-  headers: { "Content-Type": "application/json" },
 });
 ```
 

@@ -48,25 +48,14 @@ import sqlite3
 from pathlib import Path
 import pandas as pd
 
-async def query_database(db_path: Path, query: str) -> pd.DataFrame:
-    """Execute SQL query and return results as DataFrame.
-
-    Args:
-        db_path: Path to SQLite database
-        query: SQL query to execute
-
-    Returns:
-        DataFrame with query results
-    """
-    try:
-        conn = sqlite3.connect(db_path)
+def query_database(db_path: Path, query: str) -> pd.DataFrame:
+    """Execute SQL query and return results as DataFrame."""
+    with sqlite3.connect(db_path) as conn:
         return pd.read_sql_query(query, conn)
-    finally:
-        conn.close()
 
 # Example usage
 db = Path('data.db')
-df = await query_database(db, '''
+df = query_database(db, '''
     SELECT date, COUNT(*) as count
     FROM events
     GROUP BY date

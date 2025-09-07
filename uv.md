@@ -49,7 +49,7 @@ uvx asciinema   # Record your terminal and play it
 ```
 
 uv uses [inline script metadata](https://packaging.python.org/en/latest/specifications/inline-script-metadata/#inline-script-metadata) for dependencies.
-The eliminates the need for `requirements.txt` or virtual environments. For example:
+This eliminates the need for `requirements.txt` or virtual environments. For example:
 
 ```python
 # /// script

@@ -9,7 +9,7 @@ Run the command `uvx ngrok http 8000` to create a tunnel to your local server on
 To get started, log into `ngrok.com` and [get an authtoken from the dashboard](https://dashboard.ngrok.com/get-started/your-authtoken). Copy it. Then run:
 
 ```bash
-ngrok config add-authtoken $YOUR_AUTHTOKEN
+uvx ngrok config add-authtoken $YOUR_AUTHTOKEN
 ```
 
 Now you can forward any local port to the internet. For example:

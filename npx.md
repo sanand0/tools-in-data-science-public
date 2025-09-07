@@ -16,7 +16,7 @@ Here are common npx commands:
 npx http-server .                # Start a local web server
 npx prettier --write .           # Format code or docs
 npx eslint .                     # Lint JavaScript
-npx typescript-node script.ts    # Run TypeScript directly
+npx ts-node script.ts            # Run TypeScript directly
 npx esbuild app.js               # Bundle JavaScript
 npx jsdoc .                      # Generate JavaScript docs
 

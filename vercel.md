@@ -31,7 +31,7 @@ Rather than writing a full program, serverless platforms let you write functions
 
 [Vercel](https://vercel.com/) is a cloud platform optimized for frontend frameworks and serverless functions. Vercel is tightly integrated with GitHub. Pushing to your repository automatically triggers new deployments.
 
-Here's a [quickstart](https://vercel.com/docs/functions/runtimes/python). [Sign-up with Vercel](https://vercel.com/signup). Create an empty `git` repo with this `api/index.py` file.
+Here's a [quickstart](https://vercel.com/docs/functions/runtimes/python). [Sign up for Vercel](https://vercel.com/signup). Create an empty `git` repo with this `api/index.py` file.
 
 To deploy a FastAPI app, add a `requirements.txt` file with `fastapi` as a dependency.
 
@@ -39,10 +39,10 @@ To deploy a FastAPI app, add a `requirements.txt` file with `fastapi` as a depen
 fastapi
 ```
 
-Add your FastAPI code to a file, e.g. `main.py`.
+Add your FastAPI code to `api/index.py`.
 
 ```python
-# main.py
+# api/index.py
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -56,8 +56,8 @@ Add a `vercel.json` file to the root of your repository.
 
 ```json
 {
-  "builds": [{ "src": "main.py", "use": "@vercel/python" }],
-  "routes": [{ "src": "/(.*)", "dest": "main.py" }]
+  "builds": [{ "src": "api/index.py", "use": "@vercel/python" }],
+  "routes": [{ "src": "/(.*)", "dest": "api/index.py" }]
 }
 ```
 

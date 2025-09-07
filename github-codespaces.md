@@ -27,8 +27,8 @@
    gh auth login
    gh codespace create --repo OWNER/REPO
    gh codespace list    # List all codespaces
-   gh codespace code    # opens in your local VS Code
-   gh codespace ssh     # SSH into the codepsace
+   gh codespace code    # Open in your local VS Code
+   gh codespace ssh     # SSH into the codespace
    ```
 
 ### Features To Explore

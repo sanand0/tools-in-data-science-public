@@ -16,7 +16,7 @@ These tools might not help your CV much. But they will make things easier in rea
 - You learn how to train models. But soon, you'll just pick something from HuggingFace.
 - You learn to write a log parser over weeks. Instead, your boss writes a `sed` + `grep` script in minutes.
 
-[![](https://imgs.xkcd.com/comics/lisp.jpg) "We lost the documentation on quantum mechanics. You'll have to decode the regexes yourself."](https://explainxkcd.com/224/)
+[![](https://imgs.xkcd.com/comics/lisp.jpg "We lost the documentation on quantum mechanics. You'll have to decode the regexes yourself.")](https://explainxkcd.com/224/)
 
 In this course, we've curated the most important tools people use in data science.
 
@@ -100,18 +100,19 @@ You _CAN_ copy from friends and LLMs. You can work in groups. You can share code
 
 </details>
 
-## We cover 7 modules in 12 weeks
+## We cover 8 modules in 12 weeks
 
 The content evolves with technology and feedback.
 Track the [commit history](https://github.com/sanand0/tools-in-data-science-public/commits/tds-2025-01/) for changes.
 
 1. **[Development Tools](development-tools.md)** and concepts to **build** models and apps.
-2. **[Deployment Tools](deployment-tools.md)** and concepts to **publish** what you built.
-3. **[Large Language Models](large-language-models.md)** that make your work easier and your apps smarter.
-4. **[Data Sourcing](data-sourcing.md)** to get data from the web, files, and databases.
-5. **[Data Preparation](data-preparation.md)** to clean up and convert the inputs to the right format.
-6. **[Data Analysis](data-analysis.md)** to find surprising insights in the data.
-7. **[Data Visualization](data-visualization.md)** to communicate those insights as visual stories.
+2. **[AI Coding](ai-coding.md)** to code **faster** with AI assistance.
+3. **[Deployment Tools](deployment-tools.md)** and concepts to **publish** what you built.
+4. **[Large Language Models](large-language-models.md)** that make your work easier and your apps smarter.
+5. **[Data Sourcing](data-sourcing.md)** to get data from the web, files, and databases.
+6. **[Data Preparation](data-preparation.md)** to clean up and convert the inputs to the right format.
+7. **[Data Analysis](data-analysis.md)** to find surprising insights in the data.
+8. **[Data Visualization](data-visualization.md)** to communicate those insights as visual stories.
 
 ## Anyone can audit this course
 
@@ -166,7 +167,7 @@ Check these three links regularly to keep up with the course.
 
 1. **[Seek Notifications](https://seek.onlinedegree.iitm.ac.in/)** for Course Notifications. Log into [seek.onlinedegree.iitm.ac.in](https://seek.onlinedegree.iitm.ac.in/) and click on the bell icon :bell: on the top right corner :arrow_upper_right:. Check notifications daily.
    ![Portal Inbox](images/portal_notifications.webp)
-2. **[Your email](https://mail.google.com/)** for Course Announcements. [Seek](https:/seek.onlinedegree.iitm.ac.in/) Inbox are forwarded to your email. Check daily. Check spam folders too.
+2. **[Your email](https://mail.google.com/)** for Course Announcements. [Seek](https://seek.onlinedegree.iitm.ac.in/) Inbox are forwarded to your email. Check daily. Check spam folders too.
 3. **[TDS Discourse](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34)**: Faculty, instructors, and TAs will share updates and address queries here. Email [support@study.iitm.ac.in](mailto:support@study.iitm.ac.in) cc: [discourse-staff1@study.iitm.ac.in](mailto:discourse-staff1@study.iitm.ac.in) if you can't access Discourse.
 
 ## People who help you
