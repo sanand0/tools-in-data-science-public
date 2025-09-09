@@ -100,6 +100,13 @@ You _CAN_ copy from friends and LLMs. You can work in groups. You can share code
 
 </details>
 
+<details>
+<summary><strong>Check system requirements</strong></summary>
+
+Check [system-requirements.md](system-requirements.md) for permissions you need, software to install, and websites to access. You may need to speak with your system administrator for access.
+
+</details>
+
 ## We cover 8 modules in 12 weeks
 
 The content evolves with technology and feedback.

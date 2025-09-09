@@ -1,4 +1,5 @@
 - [Tools in Data Science](README.md)
+- [System Requirements](system-requirements.md)
 - [1. Development Tools](development-tools.md)
   - [Editor: VS Code](vscode.md)
   - [AI Code Editors: GitHub Copilot](github-copilot.md)
@@ -19,7 +20,6 @@
   - [AI coding in the CLI](ai-coding-cli.md)
   - [Code context engineering](ai-coding-context.md)
   - [AI coding strategies](ai-coding-strategies.md)
-  - [Documentation in AI coding](ai-coding-docs.md)
   - [Tests in AI coding](ai-coding-tests.md)
   - [Tools for AI coding](ai-coding-tools.md)
 - [3. Deployment Tools](deployment-tools.md)
