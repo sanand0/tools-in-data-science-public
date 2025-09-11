@@ -90,6 +90,7 @@ Also, registering again for the course [does not improve marks much](https://dis
 
 </details>
 
+<details>
 <summary><strong>We encourage learning by sharing</strong></summary>
 
 You _CAN_ copy from friends and LLMs. You can work in groups. You can share code. Even in projects, assignments, and exams (except the final end-term exam).
@@ -110,7 +111,7 @@ Check [system-requirements.md](system-requirements.md) for permissions you need,
 ## We cover 8 modules in 12 weeks
 
 The content evolves with technology and feedback.
-Track the [commit history](https://github.com/sanand0/tools-in-data-science-public/commits/tds-2025-01/) for changes.
+Track the [commit history](https://github.com/sanand0/tools-in-data-science-public/commits) for changes.
 
 1. **[Development Tools](development-tools.md)** and concepts to **build** models and apps.
 2. **[AI Coding](ai-coding.md)** to code **faster** with AI assistance.
@@ -205,17 +206,17 @@ Their **job** is to help you. Trouble them for your slightest doubts!
 
 ## Course Links
 
-- [TDS: Discourse](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34) - Ask questions, get help, and discuss with your peers.
+- [TDS: YouTube Live Sessions](https://www.youtube.com/@se-lr5ff)
+- [TDS: Discourse (for IITM students)](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34) - Ask questions, get help, and discuss with your peers.
 - [IITM BS Degree Programme - Student Handbook](https://docs.google.com/document/u/2/d/e/2PACX-1vRxGnnDCVAO3KX2CGtMIcJQuDrAasVk2JHbDxkjsGrTP5ShhZK8N6ZSPX89lexKx86QPAUswSzGLsOA/pub)
 - [TDS: Public course page](https://study.iitm.ac.in/ds/course_pages/BSSE2002.html)
 - [TDS: Course files](https://drive.google.com/drive/folders/1FE0YPAxcxMzZdjnp3FopuJCI3A2Vq6fC?usp=drive_link) -- Jupyter notebooks, datasets, etc.
 
 ## Sep 2025 Links
 
-- [Grading Document - Sep 2025](#) - #TODO
+- [Grading Document - Sep 2025](https://docs.google.com/document/u/2/d/e/2PACX-1vSBP6TJyZDklGPMyRtTwQc1cWZKOrozsOy5qmBwB8awTFvBbPN33-IxUV2WYupNdlXQOCgKwV9fDQKq/pub)
 - [TDS: Course page - Sep 2025](https://seek.onlinedegree.iitm.ac.in/courses/ns_25t3_se2002)
 - [TDS: Announcement group - Sep 2025](https://groups.google.com/a/study.iitm.ac.in/g/25t3_se2002-announce)
-- [TDS: Live Sessions](https://www.youtube.com/@se-lr5ff/streams)
 
 <!--
 

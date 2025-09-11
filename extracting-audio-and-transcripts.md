@@ -93,8 +93,8 @@ Error Handling:
 # Validate file before processing
 ffprobe input.mp4 2>&1 | grep "Invalid"
 
-# Continue on errors in batch processing
-ffmpeg -i input.mp4 output.mp4 -xerror
+# Fail fast on errors during batch processing
+ffmpeg -xerror -i input.mp4 output.mp4
 
 # Get detailed error information
 ffmpeg -v error -i input.mp4 2>&1 | grep -A2 "Error"
@@ -201,10 +201,10 @@ You can install it via:
 - `pip install faster-whisper`
 - [Download Windows Standalone](https://github.com/Purfview/whisper-standalone-win/releases)
 
-Here's a basic usage example:
+Here's a basic CLI example:
 
 ```bash
-faster-whisper-xxl "video.mp4" --model medium --language en
+faster-whisper "video.mp4" --model medium --language en
 ```
 
 Here's my recommendation for transcribing videos. This saves the output in JSON as well as SRT format in the source directory.

@@ -3,7 +3,7 @@
 [![Visualizing network data with Kumu](https://i.ytimg.com/vi_webp/OndB17bigkc/sddefault.webp)](https://youtu.be/OndB17bigkc)
 
 - [Kumu](https://kumu.io)
-- [IMDB data](https://developer.imdb.com/non-commercial-datasets/)
+- [IMDb data](https://developer.imdb.com/non-commercial-datasets/)
 - [Jupyter Notebook](https://colab.research.google.com/drive/1CHR68fw7lZC9H2JtVW4LXpUvNwfM_VE-?usp=sharing)
 
 [![Network analysis – filtering by year](https://i.ytimg.com/vi_webp/oi4fDzqsCes/sddefault.webp)](https://youtu.be/oi4fDzqsCes)
@@ -12,7 +12,7 @@ You'll learn about visualizing and analyzing relationships and networks using Ku
 
 - **Understanding Kumu**: What Kumu is and its primary function as a tool to **visualize complex relationships within data**. You'll learn that it's applicable beyond social analysis to **any scenario involving relationships between entities**.
 - **Social Network Analysis**: How Kumu facilitates **social network analysis**, helping to understand how different people and communities are connected, and identifying common interests.
-- **Data Preparation for Kumu**: The process of preparing raw data, specifically **IMDB actor data for Indian movies**, to be uploaded to Kumu. This includes filtering for only movies and Indian movies.
+- **Data Preparation for Kumu**: The process of preparing raw data, specifically **IMDb actor data for Indian movies**, to be uploaded to Kumu. This includes filtering for only movies and Indian movies.
 - **Creating Actor Networks**: How to construct an **actor collaboration matrix** where each element denotes the number of movies two actors have acted in together. This involves a method using **matrix multiplication** of a movie-actor matrix with its transpose.
 - **Optimizing Sparse Matrices**: Understanding that actor collaboration matrices are often **sparse (contain many zero entries)** and how to make computations fast and memory-efficient using the **compressed sparse row (CSR) format** from the `scipy` library in Python.
 - **Preparing Data for Kumu Upload**: How to convert the processed matrix data into the "from node to node" format, along with the **strength of the connection** (number of shared movies), which is required for Kumu.

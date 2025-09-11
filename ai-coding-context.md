@@ -79,9 +79,23 @@ Each project has its own style and preferences. Most often, these files include 
 
 [![Claude Code best practices | Code w/ Claude](https://i.ytimg.com/vi_webp/gv0WHhKelSE/sddefault.webp)](https://youtu.be/gv0WHhKelSE)
 
-Some developers also version their prompts in a `PROMPTS.md` file.
+## Versioning prompts
 
-- [Examples of PROMPTS.md on GitHub](https://github.com/search?q=path:**/PROMPTS.md&type=code)
+Some developers also version their prompts by adding them to:
+
+1. **Commits**. When coding with a CLI, you can manually add the prompt(s) used as part of the commit.
+2. **Pull requests**. Online coding agents include a link to the task (which includes the prompt) as part of the PR. [Example](https://github.com/simonw/llm/pull/1157)
+3. **`PROMPTS.md`**. Developers are increasingly storing prompts in a `PROMPTS.md`. [Examples](https://github.com/search?q=path:**/PROMPTS.md&type=code)
+
+## Commit messages
+
+Commit messages provide useful context about code changes, helping AI tools scan through history and understand the intent behind modifications.
+
+Most AI coding agents generate commit messages automatically. Here's a quick way to do it manually:
+
+```bash
+git diff --cached | llm "Generate a concise, descriptive commit message for these changes"
+```
 
 ## Library context
 

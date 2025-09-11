@@ -7,7 +7,7 @@ Find the shortest path between Govinda & Angelina Jolie using IMDb data using Py
 - [Notebook: How this video was created](https://github.com/sanand0/jolie-no-1/blob/master/jolie-no-1.ipynb)
 - [The data used to visualize the network](https://github.com/sanand0/jolie-no-1/blob/master/imdb-actor-pairing.ipynb)
 - [The shortest path between actors](https://github.com/sanand0/jolie-no-1/blob/master/shortest-path.ipynb)
-- [IMDB data](https://developer.imdb.com/non-commercial-datasets/)
+- [IMDb data](https://developer.imdb.com/non-commercial-datasets/)
 - [Codebase](https://github.com/sanand0/jolie-no-1)
 
 You'll learn how to analyze and visualize the social network of actors using IMDb data, covering:

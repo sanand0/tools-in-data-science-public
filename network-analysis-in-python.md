@@ -4,8 +4,8 @@
 
 You'll learn how to use network analysis to identify clusters and connections between nodes in a dataset, covering:
 
-- **Network Construction**: Build a network from the IMDB database, where nodes represent actors and edges represent shared movie appearances.
-- **Clustering**: Apply clustering techniques to detect communities within the network, using scikit-learn's network library.
+- **Network Construction**: Build a network from the IMDb database, where nodes represent actors and edges represent shared movie appearances.
+- **Clustering**: Apply clustering techniques to detect communities within the network, using the scikit-network library.
 - **Matrix Operations**: Utilize matrix operations to efficiently analyze actor relationships and interactions.
 - **Community Detection**: Implement algorithms to identify and interpret clusters, examining how different actor clusters are connected.
 - **Application of Findings**: Explore practical applications of network analysis, such as social network analysis and its potential uses in various domains.

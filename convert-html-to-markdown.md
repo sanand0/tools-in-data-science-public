@@ -30,7 +30,7 @@ find . -name '*.html' -exec npx --package defuddle-cli -y defuddle parse {} --md
 
 [Pandoc](https://pandoc.org/) is a bit slow and highly customizable, preserving almost all formatting elements, leading to verbose markdown. Best for academic or documentation conversion where precision matters.
 
-Pandoc can convert from many other formats (such as Word, PDF, LaTeX, etc.) to Markdown and vice versa, making it one of most popular and versatele document convertors.
+Pandoc can convert from many other formats (such as Word, PDF, LaTeX, etc.) to Markdown and vice versa, making it one of most popular and versatile document converters.
 
 [![How to Convert a Word Document to Markdown for Free using Pandoc (12 min)](https://i.ytimg.com/vi/HPSK7q13-40/sddefault.jpg)](https://youtu.be/HPSK7q13-40)
 

@@ -17,7 +17,7 @@ You'll learn how to create an animated bar chart race in PowerPoint, covering:
 
 Flourish made [bar chart races](https://app.flourish.studio/@flourish/bar-chart-race) easy to create. That sparked a data visualization meme with hundreds of bar chart races like these going viral.
 
-[A Flourish data visualization](https://flourish.studio/?utm_source=showcase&utm_campaign=visualisation/496212)
+[A Flourish data visualization](https://flourish.studio/)
 
 With PowerPoint’s [morph transition](https://support.office.com/en-us/article/Use-the-Morph-transition-in-PowerPoint-8DD1C7B2-B935-44F5-A74C-741D8D9244EA), it’s now possible to make a bar chart race in PowerPoint, too. Here’s an example.
 
@@ -45,7 +45,7 @@ PowerPoint moves objects based on the text in the bar chart. You can add images.
 
 [![Sample bar chart race in PowerPoint](https://i.ytimg.com/vi/uGQ0_opjmQE/0.jpg)](https://youtu.be/uGQ0_opjmQE)
 
-[Download this Bar Chart Race PPTX to try it out](https://blog.gramener.com/wp-content/uploads/2019/07/tutorial-2.pptx)[Download](https://blog.gramener.com/wp-content/uploads/2019/07/tutorial-2.pptx)
+[Download this Bar Chart Race PPTX to try it out](https://blog.gramener.com/wp-content/uploads/2019/07/tutorial-2.pptx)
 
 ### Step 2: Size the bars accurately
 

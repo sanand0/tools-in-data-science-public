@@ -8,7 +8,7 @@ It also runs Python directly in the browser and is quite interactive. [Browse th
 
 Common Operations:
 
-```python
+```bash
 # Create new notebook
 uvx marimo new
 
@@ -28,14 +28,16 @@ Best Practices:
 2. **Interactive Elements**
 
    ```python
-   # Add interactive widgets
+   import marimo as mo
+
+   # Add interactive widget
    slider = mo.ui.slider(1, 100)
    # Create dynamic Markdown
-   mo.md(f"{slider} {"🟢" * slider.value}")
+   mo.md(f"{slider} {'🟢' * slider.value}")
    ```
 
 3. **Version Control**
-   - Keep notebooks are Python files
+   - Keep notebooks as Python files
    - Use Git to track changes
    - Publish on [marimo.app](https://marimo.app/) for collaboration
 

@@ -2,7 +2,7 @@
 
 Scrape JavaScript‑heavy sites effortlessly with Playwright.
 
-[![🤖 Playwright: Advanced Web Scraping in Python (14 min)](https://i.ytimg.com/vi_webp/biFzRHk4xpY/sddefault.webp)](https://youtu.be/biFzRHk4xpY) ([youtube.com](https://www.youtube.com/watch?v=biFzRHk4xpY&utm_source=chatgpt.com))
+[![🤖 Playwright: Advanced Web Scraping in Python (14 min)](https://i.ytimg.com/vi_webp/biFzRHk4xpY/sddefault.webp)](https://youtu.be/biFzRHk4xpY) ([youtube.com](https://www.youtube.com/watch?v=biFzRHk4xpY))
 
 Playwright offers:
 
@@ -24,7 +24,7 @@ from playwright.sync_api import sync_playwright
 
 def scrape_quotes():
     with sync_playwright() as p:
-        # Channel can be "chrome", "msedge", "chrome-beta", "msedge-beta" or "msedge-dev".
+        # Channel is optional. Use "chrome", "msedge", "chrome-beta", "msedge-beta", "msedge-dev"
         browser = p.chromium.launch(headless=True, channel="chrome")
         page = browser.new_page()
         page.goto("https://quotes.toscrape.com/js/")
@@ -46,3 +46,9 @@ uv run scraper.py
 ```
 
 You’ll see each quote plus author printed—fetched only after the JS executes.
+
+First-time setup: install browsers once via:
+
+```bash
+uv run python -m playwright install
+```

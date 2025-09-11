@@ -29,7 +29,7 @@ PYTHONUTF8=1 uv run --with pymupdf4llm python -c 'import pymupdf4llm; h = open("
 - `h = open("pymupdf4llm.md", "w")`: Creates a file to write the markdown output
 - `h.write(pymupdf4llm.to_markdown("$FILE.pdf"))`: Converts the PDF to markdown and writes to file
 
-## Markitdown
+### Markitdown
 
 [![Microsoft MarkItDown - Convert Files and Office Documents to Markdown - Install Locally (9 min)](https://i.ytimg.com/vi/v65Oyddfxeg/sddefault.jpg)](https://youtu.be/v65Oyddfxeg)
 
@@ -48,7 +48,7 @@ PYTHONUTF8=1 uvx markitdown $FILE.pdf > markitdown.md
 
 [Unstructured](https://unstructured.io/) is rapidly becoming the de facto library for parsing over 40 different file types. It is excellent for extracting text and tables from diverse document formats. Particularly useful for generating clean content to pass to LLMs. Strong community support and actively maintained.
 
-## GROBID
+### GROBID
 
 If you specifically need to parse references from text-native PDFs or reliably OCR'ed ones, [GROBID](https://github.com/kermitt2/grobid) remains the de facto choice. It excels at extracting structured bibliographic information with high accuracy.
 
@@ -64,7 +64,7 @@ curl -X POST -F "input=@paper.pdf" localhost:8070/api/processFulltextDocument > 
 
 [Mistral OCR](https://mistral.ai/products/ocr/) offers an end-to-end cloud API that preserves both text and layout, making it easier to isolate specific sections like References. It shows the most promise currently, though it requires post-processing.
 
-## Azure Document Intelligence API
+### Azure Document Intelligence API
 
 For enterprise users already in the Microsoft ecosystem, [Azure Document Intelligence](https://azure.microsoft.com/en-us/products/ai-services/document-intelligence) provides excellent raw OCR with enterprise SLAs. May require custom model training or post-processing to match GROBID's reference extraction capabilities.
 
