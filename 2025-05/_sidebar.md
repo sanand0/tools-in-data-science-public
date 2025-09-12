@@ -1,4 +1,6 @@
-- [Tools in Data Science](README.md)
+<style>.sidebar { background:#300 }</style>
+
+- [May 2025: Tools in Data Science](README.md)
 - [1. Development Tools](development-tools.md)
   - [Editor: VS Code](vscode.md)
   - [AI Code Editors: GitHub Copilot](github-copilot.md)
