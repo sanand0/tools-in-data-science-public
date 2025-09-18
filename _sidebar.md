@@ -21,7 +21,7 @@
   - [Code context engineering](ai-coding-context.md)
   - [AI coding strategies](ai-coding-strategies.md)
   - [Tests in AI coding](ai-coding-tests.md)
-  - [Tools for AI coding](ai-coding-tools.md)
+  - [Tool use for AI coding](ai-coding-tools.md)
 - [3. Deployment Tools](deployment-tools.md)
   - [Markdown](markdown.md)
   - [Images: Compression](image-compression.md)
@@ -56,7 +56,7 @@
   - [LLM Image Generation](llm-image-generation.md)
   - [LLM Speech](llm-speech.md)
   - [LLM Evals](llm-evals.md)
-- Project 1
+- [Project 1](project-llm-code-deployment.md)
 - [5. Data Sourcing](data-sourcing.md)
   - [Scraping with Excel](scraping-with-excel.md)
   - [Scraping with Google Sheets](scraping-with-google-sheets.md)
