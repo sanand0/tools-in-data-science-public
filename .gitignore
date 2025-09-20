@@ -6,6 +6,10 @@ __pycache__/
 project-1/repos/
 project-1/logs/
 
+# Skip transcript intermediate files
+live-sessions/*.opus
+.cookies.txt
+
 # Videos are stored on Anand's machine but not committed
 videos/
 

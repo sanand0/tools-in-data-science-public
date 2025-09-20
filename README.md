@@ -180,7 +180,7 @@ Check [system-requirements.md](system-requirements.md) for permissions you need,
 
 ## Links
 
-- [TDS: YouTube Live Video Sessions](https://www.youtube.com/@se-lr5ff)
+- [TDS: Live Video Sessions](live-sessions.md) + [YouTube Channel](https://www.youtube.com/@se-lr5ff)
 - [TDS: Course files](https://drive.google.com/drive/folders/1FE0YPAxcxMzZdjnp3FopuJCI3A2Vq6fC?usp=drive_link) -- Jupyter notebooks, datasets, etc.
 
 IITM student links:
