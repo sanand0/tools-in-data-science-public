@@ -34,7 +34,7 @@ It covers **real-life** scenarios like:
 
 [40% of the Jan 2025 batch failed](https://discourse.onlinedegree.iitm.ac.in/t/when-should-i-take-tools-in-data-science/173268).
 
-Here's students' feedback:
+Here's students' feedback from past terms:
 
 - It _used_ to be an easy course until 2024.
   [#](https://discourse.onlinedegree.iitm.ac.in/t/difficulty-rating-for-diploma-subjects-based-on-students-opinion/61194)
@@ -57,9 +57,10 @@ Here's students' feedback:
 
 **[Take Graded assignment 1](https://exam.sanand.workers.dev/tds-2025-09-ga1) to check if you're ready for this course.** Please drop this course (do it in a later term) if you score low. It'll be too tough for you now.
 
-But the learnings may be worth the effort. Here's students' feedback:
+But the learnings may be worth the effort.
 
-- [Course experience and farewell post](https://discourse.onlinedegree.iitm.ac.in/t/course-experience-and-farewell-post/173247)
+- [May 2025 feedback](feedback-2025-05.md) indicates that students know it's hard -- and still rate the learning high.
+- [Jan 2025 course experience](https://discourse.onlinedegree.iitm.ac.in/t/course-experience-and-farewell-post/173247) and farewell post.
 
 </details>
 
