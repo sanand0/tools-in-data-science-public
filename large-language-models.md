@@ -42,6 +42,41 @@ llm embed -c 'What is 2 + 2' -m 3-small
 
 **For a 50% discount** (but slower speed), use [Flex processing](https://platform.openai.com/docs/guides/flex-processing) by adding `service_tier: "flex"` to your JSON request.
 
+
+## Gemini API (OpenAI-Compatible)
+
+Gemini models are accessible using the OpenAI Python library along with the REST API. You can switch from OpenAI to Gemini by updating **three lines of code**, including your **Gemini API key**.
+
+Python Example
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="GEMINI_API_KEY",
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+
+response = client.chat.completions.create(
+    model="gemini-2.5-flash",
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "Explain to me how AI works"}
+    ])
+
+print(response.choices[0].message)
+```
+What changed? Just three lines!
+
+1. api_key="GEMINI_API_KEY" Replace with your actual Gemini API key from .[Google AI Studio](https://aistudio.google.com)..
+
+2. base_url="https://generativelanguage.googleapis.com/v1beta/openai/": Directs the OpenAI library to the Gemini API endpoint instead of the default OpenAI URL.
+
+3. model="gemini-2.5-flash": Choose a compatible Gemini model.
+
+Full documentation: [Gemini API OpenAI Docs](https://ai.google.dev/gemini-api/docs/openai#python).
+
+
+
 ## AI Pipe
 
 Anyone with a `study.iitm.ac.in` email can get a free API key from [aipipe.org](https://aipipe.org/) and use up to **$2 per calendar month** for this course. Don't exceed that.
