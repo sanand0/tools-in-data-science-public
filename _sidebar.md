@@ -117,3 +117,4 @@
   - [Actor Network Visualization](actor-network-visualization.md)
   - [Data Visualization with ChatGPT](data-visualization-with-chatgpt.md)
   - [Data Storytelling with LLMs](data-storytelling-with-llms.md)
+- [Live sessions](live-sessions.md)
