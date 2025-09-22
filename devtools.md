@@ -48,7 +48,3 @@ Videos from Chrome Developers (37 min total):
 - [How to speed up your workflow with Console shortcuts](https://youtu.be/hdRDTj6ObiE) (6 min)
 - [HTML vs DOM? Let’s debug them](https://youtu.be/J-02VNxE7lE) (5 min)
 - [Caching demystified: Inspect, clear, and disable caches](https://youtu.be/mSMb-aH6sUw) (7 min)
-- [Console message logging](https://youtu.be/76U0gtuV9AY) (6 min)
-- [Console workflow shortcuts](https://youtu.be/hdRDTj6ObiE) (6 min)
-- [HTML vs DOM debugging](https://youtu.be/J-02VNxE7lE) (5 min)
-- [Cache inspection and management](https://youtu.be/mSMb-aH6sUw) (7 min)
