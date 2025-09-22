@@ -1,6 +1,8 @@
 ## Retrieval Augmented Generation
 
-The video is not available yet. Please review the notebook, which is self-explanatory. #TODO
+[![What is Retrieval-Augmented Generation (RAG)? (6 min)](https://i.ytimg.com/vi_webp/T-D1OfcDW1M/sddefault.webp)](https://youtu.be/T-D1OfcDW1M)
+
+Watch the walkthrough above, then dive into the notebook for step-by-step practice.
 
 You will learn to implement Retrieval Augmented Generation (RAG) to enhance language models' responses by incorporating relevant context, covering:
 

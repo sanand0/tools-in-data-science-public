@@ -115,7 +115,7 @@ Check [system-requirements.md](system-requirements.md) for permissions you need,
 
 </details>
 
-## We cover 8 modules in 12 weeks
+## 8 modules in 12 weeks
 
 **Skip the contents** unless you're stuck. Just take the assessments.
 

@@ -15,6 +15,7 @@
   - [Database: SQLite](sqlite.md)
   - [Version Control: Git, GitHub](git.md)
 - [2. AI Coding](ai-coding.md)
+  - [Vibe coding](vibe-coding.md)
   - [AI coding online](ai-coding-online.md)
   - [AI coding in IDEs](ai-coding-ide.md)
   - [AI coding in the CLI](ai-coding-cli.md)
@@ -87,7 +88,6 @@
   - [Data Transformation with dbt](dbt.md)
   - [Transforming Images](transforming-images.md)
   - [Extracting Audio and Transcripts](extracting-audio-and-transcripts.md)
-    <!-- #TODO Stitching together podcasts from snippets using SoX? -->
 - [7. Data Analysis](data-analysis.md)
   - [Correlation with Excel](correlation-with-excel.md)
   - [Regression with Excel](regression-with-excel.md)
