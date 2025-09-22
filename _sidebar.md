@@ -32,6 +32,7 @@
   - [CI/CD: GitHub Actions](github-actions.md)
   - [Containers: Docker, Podman](docker.md)
   - [DevContainers: GitHub Codespaces](github-codespaces.md)
+  - [HuggingFace Spaces](huggingface-spaces.md)
   - [Tunneling: ngrok](ngrok.md)
   - [CORS](cors.md)
   - [REST APIs](rest-apis.md)

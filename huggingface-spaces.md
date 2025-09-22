@@ -1,18 +1,18 @@
 ## Container hosting: Hugging Face Spaces with Docker
 
-Container platforms let you deploy applications in isolated, portable environments that include all dependencies. They're perfect for ML applications that need *custom environments, specific packages, or persistent state*. Here are some common real-life uses:
+Container platforms let you deploy applications in isolated, portable environments that include all dependencies. They're perfect for ML applications that need _custom environments, specific packages, or persistent state_. Here are some common real-life uses:
 
 - A text summarization API that processes documents using custom NLP models (runs for 10-30 seconds per request)
 - An image classification tool that requires specific computer vision libraries (runs for 5-15 seconds per upload)
 - A chatbot with custom fine-tuned models that need GPU acceleration (runs for 2-5 seconds per message)
-- A data processing pipeline that transforms CSV files into insights (runs for 30-120 seconds per file)
-- A multi-model ensemble that combines different AI models for better predictions (runs for 15-45 seconds per inference)
 
 Unlike serverless functions, containers can maintain state, install any packages, write to the filesystem, and run background processes. They provide more control over the environment but require more configuration.
 
-[Hugging Face Spaces](https://huggingface.co/spaces) is a platform that makes it easy to deploy ML applications using Docker containers. It's integrated with the Hugging Face ecosystem, supports GPU acceleration, and provides free hosting for public applications.
+[![Best Platform for Python Apps Deployment - Hugging Face Spaces with Docker](https://i.ytimg.com/vi_webp/DQjze1SlYd4/sddefault.webp)](https://www.youtube.com/watch?v=DQjze1SlYd4)
 
-Spaces supports three deployment options: Gradio (for quick ML demos), Streamlit (for data apps), and Docker (for custom applications). [Docker Spaces](https://huggingface.co/docs/hub/spaces-sdks-docker) give you complete control over your environment and dependencies.
+[Hugging Face Spaces](https://huggingface.co/spaces) hosts ML apps with free CPU runtime for public repos and paid upgrades for persistent runs or stronger hardware. It plugs into the wider Hub—models, datasets, and tokens—so you can ship demos quickly.
+
+Spaces offer four SDKs when you create a project: **Gradio** (default ML demos), **Streamlit** (dashboards), **Static HTML**, and **Docker** for any custom stack. This guide focuses on [Docker Spaces](https://huggingface.co/docs/hub/spaces-sdks-docker), which provide full control over runtimes and dependencies.
 
 ### Setting up a Docker Space
 
@@ -21,6 +21,7 @@ Spaces supports three deployment options: Gradio (for quick ML demos), Streamlit
 Your Space repository needs these essential files:
 
 **README.md** - Configure your Space with [YAML frontmatter](https://huggingface.co/docs/hub/spaces-config-reference):
+
 ```yaml
 ---
 title: My FastAPI App
@@ -30,47 +31,37 @@ colorTo: green
 sdk: docker
 app_port: 7860
 ---
-
 # My FastAPI Application
 Description of your app goes here.
 ```
 
 **Dockerfile** - Define your container environment (see [Dockerfile documentation](https://huggingface.co/docs/hub/spaces-docker-custom-image)):
-```dockerfile
-# Use Python 3.9 as base image
-FROM python:3.9
 
-# Set up a new user named "user" with user ID 1000 (required by Hugging Face). [3]
+```dockerfile
+FROM python:3.11-slim
+
+# Create the same UID (1000) that Spaces uses when running your container
 RUN useradd -m -u 1000 user
 
-# Switch to the "user" user
-USER user
-
-# Set home to the user's home directory
-ENV HOME=/home/user \
-    PATH=/home/user/.local/bin:$PATH
-
-# Set the working directory to the user's home directory
-WORKDIR $HOME/app
-
-# Copy requirements first for better caching
+# Install Python dependencies before copying the entire source tree
+WORKDIR /home/user/app
 COPY --chown=user requirements.txt .
-
-# Install Python dependencies
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# Copy the application code
+# Copy the rest of the app and switch to the non-root user
 COPY --chown=user . .
+USER user
+ENV HOME=/home/user PATH=/home/user/.local/bin:$PATH
 
-# Expose the port your app runs on. [4]
 EXPOSE 7860
-
-# Command to run your application. [15]
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "7860"]
 ```
 
+Spaces execute your container as UID 1000. Creating that user in the image avoids permission problems when the platform switches users at runtime.
+
 **requirements.txt** - List your Python dependencies:
+
 ```text
 fastapi
 uvicorn[standard]
@@ -79,6 +70,7 @@ torch
 ```
 
 **main.py** - Your [FastAPI](https://fastapi.tiangolo.com/) application:
+
 ```python
 from fastapi import FastAPI
 from transformers import pipeline
@@ -104,19 +96,21 @@ def analyze_sentiment(text: str):
 2.  **Clone Repository**: `git clone https://huggingface.co/spaces/your-username/your-space-name`
 3.  **Add Files**: Create the files above in your local repository.
 4.  **Deploy**:
-   ```bash
-   git add .
-   git commit -m "Initial deployment"
-   git push
-   ```
 
-Your Space will automatically build and deploy. The build process can take 5-15 minutes depending on your dependencies.
+```bash
+git add .
+git commit -m "Initial deployment"
+git push
+```
+
+Your Space will automatically build and deploy. Build time depends on your base image and dependency downloads—refresh the **Logs** tab if the build appears stuck.
 
 ### Writing Files and Data Persistence
 
-Docker Spaces support both temporary and persistent storage. All Spaces come with free ephemeral storage that is deleted when the Space restarts.
+Docker Spaces support both temporary and persistent storage. Every Space gets 50 GB of free ephemeral disk that resets whenever the Space restarts or is paused.
 
 **Temporary Files** (reset on restart):
+
 ```python
 import tempfile
 import os
@@ -131,9 +125,10 @@ with open(temp_path, 'r') as f:
     content = f.read()
 ```
 
-**Persistent Files** (with paid persistent storage):
+**Persistent Files** (paid upgrade):
 
-To save files that persist across restarts, you must upgrade to a [paid persistent storage plan](https://huggingface.co/docs/hub/spaces-storage). Once upgraded, a `/data` directory is mounted as a persistent volume.
+Upgrade to a [persistent storage plan](https://huggingface.co/docs/hub/spaces-storage) from the Space **Settings** tab to mount `/data` as durable disk. Tiers start at 20 GB for $5/month and scale up to 1 TB for $100/month. The `/data` volume exists only at runtime (not during Docker build).
+
 ```python
 import os
 
@@ -147,10 +142,11 @@ if os.path.exists(data_dir):
 **Using Hugging Face Hub for Data Storage** (Free Alternative):
 
 As a free alternative to persistent storage, you can programmatically upload files to a [Hugging Face Dataset repository](https://huggingface.co/docs/hub/datasets-overview) using the [`huggingface_hub` library](https://huggingface.co/docs/huggingface_hub/guides/upload).
+
 ```python
 from huggingface_hub import HfApi, upload_file
 
-# Upload files to a dataset repository for persistence. [21]
+# Upload files to a dataset repository for persistence
 api = HfApi()
 upload_file(
     path_or_fileobj="local_file.json",
@@ -165,6 +161,7 @@ upload_file(
 **Adding Variables**: Go to your Space settings → **Variables & secrets** tab. Add environment variables and secrets that will be available in your container.
 
 **Using Variables in Code**:
+
 ```python
 import os
 
@@ -175,6 +172,7 @@ api_key = os.environ.get("SECRET_API_KEY") # For secrets
 
 **Using Variables in Dockerfile**:
 You can expose variables at build time using the `ARG` directive.
+
 ```dockerfile
 # Declare build-time variables
 ARG MODEL_REPO_NAME
@@ -186,24 +184,29 @@ RUN echo "Using model: $MODEL_NAME"
 
 ### Advanced Features
 
-**GPU Support**: Upgrade to [GPU hardware](https://huggingface.co/docs/hub/spaces-gpus) in your Space settings. Use NVIDIA CUDA base images in your Dockerfile for GPU compatibility.
+**Hardware upgrades**: By default Spaces run on the free CPU basic tier (2 vCPU, 16 GB RAM, 50 GB disk). You can switch to CPU Upgrade ($0.03/hour) or attach GPUs/TPUs such as T4, A10G, L40S, H100, and TPU v5e in the **Settings → Hardware** panel. See the [hardware spec table](https://huggingface.co/docs/hub/spaces-gpus#hardware-specs) for prices and memory footprints.
+
+**GPU Support**: When you select GPU hardware, base your image on an NVIDIA CUDA runtime and install CUDA-ready wheels. GPU devices are injected only at runtime—skip commands like `nvidia-smi` during the Docker build phase.
+
 ```dockerfile
-FROM nvidia/cuda:11.8-runtime-ubuntu20.04
+FROM nvidia/cuda:12.1.1-runtime-ubuntu22.04
 ```
 
-**Multiple Ports**: While you can only expose one port directly, you can run a reverse proxy like Nginx inside your container to route traffic from the main exposed port to multiple internal applications.
-```dockerfile
-# Install nginx
-RUN apt-get update && apt-get install -y nginx
+**Multiple Ports**: Spaces expose a single public port. To serve multiple internal services, run a reverse proxy (for example Nginx or Caddy) and route everything through the exposed port defined by `app_port`.
 
-# Copy nginx configuration
+```dockerfile
+RUN apt-get update && apt-get install -y nginx && rm -rf /var/lib/apt/lists/*
 COPY nginx.conf /etc/nginx/nginx.conf
 ```
 
-**Custom Dependencies**: Install system packages using `apt-get` within your Dockerfile:```dockerfile
-# Install system dependencies
+**Custom Dependencies**: Install system packages before switching away from `root` to avoid permission issues.
+
+```dockerfile
 RUN apt-get update && apt-get install -y \
     build-essential \
     curl \
     software-properties-common \
-    && rm -rf /var/lib/apt/lists/*
+ && rm -rf /var/lib/apt/lists/*
+```
+
+Keep persistent caches (like Hugging Face model downloads) under `/data/.huggingface` after enabling persistent storage and setting `HF_HOME=/data/.huggingface` so restarts skip re-downloading assets.
