@@ -150,7 +150,7 @@ Check [system-requirements.md](system-requirements.md) for permissions you need,
 ### Notes
 
 - **[Graded Assignment 1][GA1] checks course pre-requisites**. Please drop this course (do it in a later term) if you score low. It'll be too tough for you now.
-- **Remote Online Exam is _hard_**. Tests implicit learning. [What is the purpose of an impossible RoE exam?](https://discourse.onlinedegree.iitm.ac.in/t/whats-the-actual-purpose-of-impossible-roe-exam/99838/2)
+- **Remote Online Exam is _hard_**. Tests implicit learning. [RoE posts on Discourse](https://discourse.onlinedegree.iitm.ac.in/tags/c/courses/tds-kb/34/tds-roe)
 - **Final exam is in-person and closed book**. Tests your memory. It's easy.
 - **Projects test application**. Tests how well you apply what you learnt in a real-world context.
 - **We may post bonus activities on Discourse**. See [previous bonus activities](https://discourse.onlinedegree.iitm.ac.in/tags/c/courses/tds-kb/34/bonus-marks)
