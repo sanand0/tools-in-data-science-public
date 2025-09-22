@@ -22,7 +22,7 @@
   - [Code context engineering](ai-coding-context.md)
   - [AI coding strategies](ai-coding-strategies.md)
   - [Tests in AI coding](ai-coding-tests.md)
-  - [Tool use for AI coding](ai-coding-tools.md)
+  - [AI coding Tools](ai-coding-tools.md)
 - [3. Deployment Tools](deployment-tools.md)
   - [Markdown](markdown.md)
   - [Images: Compression](image-compression.md)

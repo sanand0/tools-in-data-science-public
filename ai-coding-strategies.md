@@ -63,7 +63,7 @@ Claude Code has native [Subagents](https://docs.anthropic.com/en/docs/claude-cod
 
 ## Parallel agents
 
-Running multiple AI models in parallel can have several benefits.
+Running multiple AI models in parallel (in the background) can have several benefits.
 
 On approach is to perform different tasks in parallel. For example:
 

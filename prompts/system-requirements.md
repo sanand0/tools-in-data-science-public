@@ -1,6 +1,7 @@
 ---
 agent: Codex CLI
 model: gpt-5
+description: 2025-09-09. Generated system-requirements.md by reviewing course contents.
 ---
 
 Ensure `system-requirements.md` documents all software and system permissions required for this course.
