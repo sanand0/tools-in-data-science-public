@@ -18,7 +18,7 @@ Next when creating the actual exam file, we asked it reuse an existing exam file
 Can you replace the existing questions in `exam-tds-2025-roe2.js` with the newly created questions
 </prompt>
 
-A cross check is always necssary to ensure that questions are being rexamined. This check is not too dissimilar to humans rechecking their own work, and since both humans and AI can make mistakes, and there is a degree of uncertainty in the quality of the work in each iteration, cross checks dramatically reduce the incidence of errors. The important part here is to give abililty for the AI to be able to run its own tests in the terminal so that it can verify its own work.
+A cross check is always necssary to ensure that questions are being rexamined. This check is not too dissimilar to humans rechecking their own work, and since both humans and AI can make mistakes, and there is a degree of uncertainty in the quality of the work in each iteration, cross checks dramatically reduce the incidence of errors. The important part here is to give abililty for the AI to be able to run its own tests in the terminal so that it can verify its own work. This step uncovered 3 mistakes in the 8 questions it created.
 <prompt>
 Also cross check and verify carefully that the new questions are logically correct and there are no errors in the script. Run local tests in the terminal to ensure that these are performing with expected results
 </prompt>
@@ -34,10 +34,6 @@ Do not install pip packages. Always use uv instead to run python scripts. Exampl
 </prompt>
 
 Finally, we had to make some corrections to the questions after reviewing them manually by attempting to answer them ourselves. These were mostly minor clarifications or adding tolerance ranges to account for rounding errors.
-<prompt>
-Can you rename all the new questions prefixed `q-test` to `q-` and make the same corrections refactored to the exam files as well
-</prompt>
-
 <prompt>
 Can you make a change to the q-calculate-variance to clarify if sample or population variance is expected. Also allow for a some reasonable tolerance range for the answer to account for rounding errors.
 </prompt>
