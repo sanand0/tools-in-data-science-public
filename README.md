@@ -122,8 +122,8 @@ Check [system-requirements.md](system-requirements.md) for permissions you need,
 | [Content][Source]           | Assessment                    | Weight |          Release Date |          Submission Date |
 | --------------------------- | ----------------------------- | -----: | --------------------: | -----------------------: |
 | [Development Tools][M1]     | [**GA1**][GA1] - [Chat][GA1C] |        |       Wed 03 Sep 2025 |          Sun 05 Oct 2025 |
-| [AI Coding][M2]             | GA2                           |        |       Thu 18 Sep 2025 |          Sun 05 Oct 2025 |
-| [Deployment Tools][M3]      | GA3                           |        |       Thu 25 Sep 2025 |          Sun 12 Oct 2025 |
+| [Deployment Tools][M2]      | GA2                           |        |       Wed 24 Sep 2025 |          Sun 05 Oct 2025 |
+| [AI Coding][M3]             | GA3                           |        |       Wed 01 Oct 2025 |          Sun 12 Oct 2025 |
 | Project 1                   | P1                            |    20% |       Fri 26 Sep 2025 |          Fri 17 Oct 2025 |
 | [Large Language Models][M4] | GA4                           |        |       Thu 02 Oct 2025 |          Sun 19 Oct 2025 |
 | [Data Sourcing][M5]         | GA5                           |        |       Thu 09 Oct 2025 |          Mon 27 Oct 2025 |
@@ -137,8 +137,8 @@ Check [system-requirements.md](system-requirements.md) for permissions you need,
 
 [Source]: https://github.com/sanand0/tools-in-data-science-public/commits
 [M1]: development-tools.md
-[M2]: ai-coding.md
-[M3]: deployment-tools.md
+[M2]: deployment-tools.md
+[M3]: ai-coding.md
 [M4]: large-language-models.md
 [M5]: data-sourcing.md
 [M6]: data-preparation.md
@@ -146,6 +146,12 @@ Check [system-requirements.md](system-requirements.md) for permissions you need,
 [M8]: data-visualization.md
 [GA1]: https://exam.sanand.workers.dev/tds-2025-09-ga1
 [GA1C]: https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-sep-2025/186452
+
+Updates:
+
+- **23 Sep 2025**: We swapped modules 2 & 3. Deployment Tools is now _before_ AI coding - because the AI coding graded assignment needs deployment. Dates revised:
+  - GA2 release is on 24 Sep (was 18 Sep).
+  - GA3 release is on 31 Sep (was 25 Sep)
 
 ### Notes
 
