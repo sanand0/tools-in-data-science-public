@@ -122,9 +122,9 @@ Check [system-requirements.md](system-requirements.md) for permissions you need,
 | [Content][Source]           | Assessment                    | Weight |          Release Date |          Submission Date |
 | --------------------------- | ----------------------------- | -----: | --------------------: | -----------------------: |
 | [Development Tools][M1]     | [**GA1**][GA1] - [Chat][GA1C] |        |       Wed 03 Sep 2025 |          Sun 05 Oct 2025 |
-| [Deployment Tools][M2]      | GA2                           |        |       Wed 24 Sep 2025 |          Sun 05 Oct 2025 |
+| [Deployment Tools][M2]      | [**GA2**][GA2] - [Chat][GA2C] |        |       Wed 24 Sep 2025 |          Sun 05 Oct 2025 |
 | [AI Coding][M3]             | GA3                           |        |       Wed 01 Oct 2025 |          Sun 12 Oct 2025 |
-| Project 1                   | P1                            |    20% |       Fri 26 Sep 2025 |          Fri 17 Oct 2025 |
+| [Project 1][P1]             | [P1][P1]                      |    20% |       Fri 26 Sep 2025 |          Fri 17 Oct 2025 |
 | [Large Language Models][M4] | GA4                           |        |       Thu 02 Oct 2025 |          Sun 19 Oct 2025 |
 | [Data Sourcing][M5]         | GA5                           |        |       Thu 09 Oct 2025 |          Mon 27 Oct 2025 |
 | [Data Preparation][M6]      | GA6                           |        |       Thu 16 Oct 2025 |          Mon 10 Nov 2025 |
@@ -146,6 +146,9 @@ Check [system-requirements.md](system-requirements.md) for permissions you need,
 [M8]: data-visualization.md
 [GA1]: https://exam.sanand.workers.dev/tds-2025-09-ga1
 [GA1C]: https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-sep-2025/186452
+[GA2]: https://exam.sanand.workers.dev/tds-2025-09-ga2
+[GA2C]: https://discourse.onlinedegree.iitm.ac.in/t/ga2-deployment-tools-discussion-thread-tds-sep-2025/187719
+[P1]: project-llm-code-deployment.md
 
 Updates:
 
