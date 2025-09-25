@@ -137,7 +137,7 @@ Sometimes you need to both crawl a website and convert its content to markdown o
 
 ### Crawl4AI
 
-[Crawl4AI](https://github.com/crawl4ai/crawl4ai) is designed for single-page extraction with high-quality content processing. Crawl4AI is optimized for AI training data extraction, focusing on clean, structured content rather than complete site preservation. It excels at removing boilerplate content and preserving the main article text.
+[Crawl4AI](https://github.com/unclecode/crawl4ai) is designed for single-page extraction with high-quality content processing. Crawl4AI is optimized for AI training data extraction, focusing on clean, structured content rather than complete site preservation. It excels at removing boilerplate content and preserving the main article text.
 
 ```bash
 uv venv

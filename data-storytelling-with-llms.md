@@ -176,6 +176,6 @@ Please:
 
 ## References
 
-- [OpenAI Cookbook: Working with Embeddings](https://cookbook.openai.com/examples/embeddings)
+- [Vector Embeddings: OpenAI API](https://platform.openai.com/docs/guides/embeddings)
 - [Anthropic's Claude Code Documentation](https://docs.anthropic.com/claude/docs)
 - [Data Storytelling Best Practices](https://www.storytellingwithdata.com/)

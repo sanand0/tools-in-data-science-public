@@ -105,9 +105,7 @@ grep -ohrE 'https?://[^/ )":]+' *.md | sed 's#https\?://##' | sed 's/^www\.//' |
 - console.cloud.google.com
 - context7.com
 - continue.dev
-- cookbook.openai.com
-- cors-test.codehappy.dev
-- coursera.org
+- cors-test.codehappy.devs
 - cran.r-project.org
 - cursor.com
 - cyberscoop.com
@@ -117,7 +115,6 @@ grep -ohrE 'https?://[^/ )":]+' *.md | sed 's#https\?://##' | sed 's/^www\.//' |
 - data.gov.in
 - data.gov.ru
 - datameet.org
-- datarevenue.com
 - datasetsearch.research.google.com
 - datasets.imdbws.com
 - datasette.io
@@ -166,7 +163,6 @@ grep -ohrE 'https?://[^/ )":]+' *.md | sed 's#https\?://##' | sed 's/^www\.//' |
 - explainxkcd.com
 - fastapi.tiangolo.com
 - fastapi-users.github.io
-- ffmpeg.guide
 - ffmpeg.lav.io
 - ffmpeg.org
 - flourish.studio
@@ -199,7 +195,6 @@ grep -ohrE 'https?://[^/ )":]+' *.md | sed 's#https\?://##' | sed 's/^www\.//' |
 - hub.docker.com
 - hub.getdbt.com
 - huggingface.co
-- ijson.readthedocs.io
 - imagemagick.org
 - imageoptim.com
 - imdb.com
@@ -288,7 +283,6 @@ grep -ohrE 'https?://[^/ )":]+' *.md | sed 's#https\?://##' | sed 's/^www\.//' |
 - pymupdf.readthedocs.io
 - pypi.org
 - python-httpx.org
-- python-pillow.org
 - python-visualization.github.io
 - qgis.org
 - quotes.toscrape.com
@@ -315,7 +309,6 @@ grep -ohrE 'https?://[^/ )":]+' *.md | sed 's#https\?://##' | sed 's/^www\.//' |
 - simonwillison.net
 - soundcloud.com
 - sourceforge.net
-- source.opennews.org
 - sqlite.org
 - sqlitestudio.pl
 - sqlite-utils.datasette.io

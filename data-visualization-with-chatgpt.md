@@ -153,6 +153,6 @@ Here are some examples of data visualizations created using this approach:
 
 ## References
 
-- [New York Times Data Visualization Style Guide](https://source.opennews.org/articles/introducing-nyt-style-guide/)
+- [New York Times Data Visualization Style Guide](https://en.wikipedia.org/wiki/The_New_York_Times_Manual_of_Style_and_Usage)
 - [Observable Visualization Gallery](https://observablehq.com/@d3/gallery)
 - [Data Visualization Best Practices](https://www.tableau.com/learn/articles/data-visualization-tips)

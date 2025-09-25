@@ -4,7 +4,7 @@
 
 [![Python Tutorial: Image Manipulation with Pillow (16 min)](https://i.ytimg.com/vi_webp/6Qs3wObeWwc/sddefault.webp)](https://youtu.be/6Qs3wObeWwc)
 
-[Pillow](https://python-pillow.org/) is Python's leading library for image processing, offering powerful tools for editing, analyzing, and generating images. It handles various formats (PNG, JPEG, GIF, etc.) and provides operations from basic resizing to complex filters.
+[Pillow](https://pypi.org/project/pillow/) is Python's leading library for image processing, offering powerful tools for editing, analyzing, and generating images. It handles various formats (PNG, JPEG, GIF, etc.) and provides operations from basic resizing to complex filters.
 
 Here's a minimal example showing common operations:
 
@@ -186,7 +186,7 @@ Practice with these resources:
 
 - [Pillow Documentation](https://pillow.readthedocs.io/): Complete API reference
 - [Python Image Processing Tutorial](https://realpython.com/image-processing-with-the-python-pillow-library/): In-depth guide
-- [Sample Images Dataset](https://www.kaggle.com/datasets/lamsimon/celebs): Test images for practice
+- [Sample Images Dataset](https://www.kaggle.com/datasets/jessicali9530/celeba-dataset): Test images for practice
 
 Watch these tutorials for hands-on demonstrations:
 

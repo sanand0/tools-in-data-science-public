@@ -81,7 +81,7 @@ To advance the slides automatically, select the Transition > Timing > Advance Sl
 
 ### Step 5: Add background music
 
-You can find background music at [YouTube’s Audio Library](https://www.youtube.com/audiolibrary/music), [SoundCloud](https://soundcloud.com/), [Jamendo](https://www.jamendo.com/), etc. Download the audio, insert it in your first slide. Check Playback > Audio Options > Play across Slides. That will play the music in the background. (Reduce the volume, so that it’s not intrusive.)
+You can find background music at [YouTube’s Audio Library](https://www.youtube.com/audiolibrary), [SoundCloud](https://soundcloud.com/), [Jamendo](https://www.jamendo.com/), etc. Download the audio, insert it in your first slide. Check Playback > Audio Options > Play across Slides. That will play the music in the background. (Reduce the volume, so that it’s not intrusive.)
 
 ### Step 6: Export as MPEG-4
 

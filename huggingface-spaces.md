@@ -35,7 +35,7 @@ app_port: 7860
 Description of your app goes here.
 ```
 
-**Dockerfile** - Define your container environment (see [Dockerfile documentation](https://huggingface.co/docs/hub/spaces-docker-custom-image)):
+**Dockerfile** - Define your container environment (see [Dockerfile documentation](https://huggingface.co/docs/hub/spaces-sdks-docker)):
 
 ```dockerfile
 FROM python:3.11-slim

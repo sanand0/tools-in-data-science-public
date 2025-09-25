@@ -63,7 +63,7 @@
 - [Understand machine learning](https://youtu.be/5q87K1WaoFI)
 - [Understand decision trees](https://youtu.be/tNa99PG8hR8)
 - Learn about the [pandas module](https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html) and [video](https://youtu.be/vmEHCJofslg)
-- Learn about the [scikit-learn module](https://scikit-learn.org/stable/tutorial/basic/tutorial.html) and [video](https://youtu.be/pqNCD_5r0IU)
+- Learn about the [scikit-learn module](https://scikit-learn.org/stable/getting_started.html) and [video](https://youtu.be/pqNCD_5r0IU)
 - Learn about the [matplotlib module](https://matplotlib.org/stable/users/explain/quick_start.html) and [video](https://youtu.be/3Xc3CA655Y4)
 
 ## Optional: R, RStudio and Rattle
@@ -157,7 +157,7 @@ R is a language and environment for statistical computing and graphics. It is op
 
 [![Libraries to build web applications](https://i.ytimg.com/vi_webp/iT5sS1dWMcc/sddefault.webp)](https://youtu.be/iT5sS1dWMcc)
 
-- [List of frameworks](https://www.datarevenue.com/en-blog/data-dashboarding-streamlit-vs-dash-vs-shiny-vs-voila)
+- [List of frameworks](https://web.archive.org/web/20240521101117/https://www.datarevenue.com/en-blog/data-dashboarding-streamlit-vs-dash-vs-shiny-vs-voila)
 - [Code - Streamlit](https://github.com/rohithsrinivaas/streamlit-heroku)
 - [Notebook - Streamlit](https://colab.research.google.com/drive/1Qd2xRdyd6SA8xaimUmlBDyu2FYnTpUar?usp=sharing)
 

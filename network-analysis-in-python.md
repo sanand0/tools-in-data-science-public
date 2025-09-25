@@ -18,7 +18,6 @@ Here are links used in the video:
 - [Jupyter Notebook - Actor network](https://colab.research.google.com/drive/1Lps2fkRlyPAnR63hDOihzCaMvo_RU6Ds)
 - [IMDb Datasets](https://developer.imdb.com/non-commercial-datasets/)
 - Learn about the [`sknetwork` package](https://scikit-network.readthedocs.io/en/latest/use_cases/votes.html)
-- Learn about the [scipy.sparse matrices](https://cmdlinetips.com/2018/03/sparse-matrices-in-python-with-scipy/) and [video](https://youtu.be/v_S7cOL5ZWU)
+- Learn about the [scipy.sparse matrices](https://cmdlinetips.com/sparse-matrices-in-python-with-scipy/) and [video](https://youtu.be/v_S7cOL5ZWU)
 - [Introduction to Kumu](https://youtu.be/fwiz7PnipgQ)
 - [Network analysis with Kumu](https://docs.kumu.io/guides/disciplines/sna-network-mapping)
-- [Introduction to Systems and Network Mapping with Kumu](https://www.coursera.org/projects/systems-network-kumu)

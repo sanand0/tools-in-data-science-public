@@ -75,8 +75,8 @@ Watch this introduction to FFmpeg (12 min):
 
 Tools:
 
-- [ffmpeg.lav.io](https://ffmpeg.lav.io/): Interactive command builder
-- [FFmpeg Explorer](https://ffmpeg.guide/): Visual FFmpeg command generator
+- [FFmpeg Explorer](https://ffmpeg.lav.io/): Interactive command builder
+- [FFmpeg Commander](https://github.com/alfg/ffmpeg-commander): Visual FFmpeg command generator
 - [FFmpeg Buddy](https://evanhahn.github.io/ffmpeg-buddy/): Simple command generator
 
 Tips:
