@@ -61,4 +61,4 @@ Tools for image optimization:
 - [squoosh.app](https://squoosh.app/): Browser-based compression
 - [ImageOptim](https://imageoptim.com/): GUI tool for Mac
 - [sharp](https://sharp.pixelplumbing.com/): Node.js image processing
-- [Pillow](https://python-pillow.org/): Python imaging library
+- [Pillow](https://pypi.org/project/pillow/): Python imaging library
