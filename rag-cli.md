@@ -77,7 +77,7 @@ llm embed-multi typescript-book --model 3-small --store --format nl chunks.json
 - `typescript-book`: a namespace or collection name for storage.
 - `--model 3-small`: selects the embedding model.
 - `--store`: save embeddings in the default backend.
-- `--format nl`: input is newline‑delimited JSON. [llm CLI embed-multi](https://github.com/kerenter/llm#embed-multi)
+- `--format nl`: input is newline‑delimited JSON. [llm CLI embed-multi](https://llm.datasette.io/en/stable/embeddings/cli.html#llm-embed-multi)
 
 This stores the embeddings in a collection called `typescript-book`.
 

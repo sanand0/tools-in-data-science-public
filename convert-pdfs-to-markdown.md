@@ -62,11 +62,11 @@ curl -X POST -F "input=@paper.pdf" localhost:8070/api/processFulltextDocument > 
 
 ### Mistral OCR API
 
-[Mistral OCR](https://mistral.ai/products/ocr/) offers an end-to-end cloud API that preserves both text and layout, making it easier to isolate specific sections like References. It shows the most promise currently, though it requires post-processing.
+[Mistral OCR](https://mistral.ai/news/mistral-ocr) offers an end-to-end cloud API that preserves both text and layout, making it easier to isolate specific sections like References. It shows the most promise currently, though it requires post-processing.
 
-### Azure Document Intelligence API
+### Azure AI Document Intelligence API
 
-For enterprise users already in the Microsoft ecosystem, [Azure Document Intelligence](https://azure.microsoft.com/en-us/products/ai-services/document-intelligence) provides excellent raw OCR with enterprise SLAs. May require custom model training or post-processing to match GROBID's reference extraction capabilities.
+For enterprise users already in the Microsoft ecosystem, [Azure AI Document Intelligence](https://azure.microsoft.com/en-us/products/ai-services/ai-document-intelligence) provides excellent raw OCR with enterprise SLAs. May require custom model training or post-processing to match GROBID's reference extraction capabilities.
 
 ### Other libraries
 

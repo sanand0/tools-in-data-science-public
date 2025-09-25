@@ -14,7 +14,7 @@ This tutorial covers both converting existing HTML files and combining web crawl
 
 ### defuddle-cli
 
-[defuddle-cli](https://github.com/defuddle/defuddle) specializes in HTML - Markdown conversion. It's a bit slow and not very customizable but produces clean Markdown that preserves structure, links, and basic formatting. Best for content where preserving the document structure is important.
+[defuddle-cli](https://github.com/kepano/defuddle-cli) specializes in HTML - Markdown conversion. It's a bit slow and not very customizable but produces clean Markdown that preserves structure, links, and basic formatting. Best for content where preserving the document structure is important.
 
 ```bash
 find . -name '*.html' -exec npx --package defuddle-cli -y defuddle parse {} --md -o {}.md \;
@@ -137,7 +137,7 @@ Sometimes you need to both crawl a website and convert its content to markdown o
 
 ### Crawl4AI
 
-[Crawl4AI](https://github.com/crawl4ai/crawl4ai) is designed for single-page extraction with high-quality content processing. Crawl4AI is optimized for AI training data extraction, focusing on clean, structured content rather than complete site preservation. It excels at removing boilerplate content and preserving the main article text.
+[Crawl4AI](https://github.com/unclecode/crawl4ai) is designed for single-page extraction with high-quality content processing. Crawl4AI is optimized for AI training data extraction, focusing on clean, structured content rather than complete site preservation. It excels at removing boilerplate content and preserving the main article text.
 
 ```bash
 uv venv

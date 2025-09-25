@@ -14,4 +14,4 @@ You'll learn how to use QGIS for geographic data processing, covering:
 Here are links used in the video:
 
 - [QGIS Project](https://www.qgis.org/en/site/)
-- [Shapefile Data](https://www.diva-gis.org/gdata)
+- [Shapefile Data](https://diva-gis.org/data.html)

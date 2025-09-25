@@ -69,7 +69,7 @@ cities = jmespath.search("locations[?info.population > `700000`].name", data)
 
 ### Streaming with ijson
 
-Loading huge JSON files all at once can quickly exhaust system memory. [ijson](https://ijson.readthedocs.io/en/latest/) lets you stream and process JSON incrementally. This method is ideal when your JSON file is too large or when you only need to work with part of the data.
+Loading huge JSON files all at once can quickly exhaust system memory. [ijson](https://pypi.org/project/ijson/) lets you stream and process JSON incrementally. This method is ideal when your JSON file is too large or when you only need to work with part of the data.
 
 **Example:** Processing a continuous feed from an API that returns a large JSON array, such as sensor data or event logs, while filtering on the fly.
 

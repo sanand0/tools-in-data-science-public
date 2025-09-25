@@ -154,7 +154,7 @@ Updates:
 
 - **23 Sep 2025**: We swapped modules 2 & 3. Deployment Tools is now _before_ AI coding - because the AI coding graded assignment needs deployment. Dates revised:
   - GA2 release is on 24 Sep (was 18 Sep).
-  - GA3 release is on 31 Sep (was 25 Sep)
+  - GA3 release is on 1 Oct (was 25 Sep)
 
 ### Notes
 
