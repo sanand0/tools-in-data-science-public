@@ -14,7 +14,7 @@ This tutorial covers both converting existing HTML files and combining web crawl
 
 ### defuddle-cli
 
-[defuddle-cli](https://github.com/defuddle/defuddle) specializes in HTML - Markdown conversion. It's a bit slow and not very customizable but produces clean Markdown that preserves structure, links, and basic formatting. Best for content where preserving the document structure is important.
+[defuddle-cli](https://github.com/kepano/defuddle-cli) specializes in HTML - Markdown conversion. It's a bit slow and not very customizable but produces clean Markdown that preserves structure, links, and basic formatting. Best for content where preserving the document structure is important.
 
 ```bash
 find . -name '*.html' -exec npx --package defuddle-cli -y defuddle parse {} --md -o {}.md \;
