@@ -1,10 +1,11 @@
 # Tools in Data Science - Sep 2025
 
-[Tools in Data Science](https://study.iitm.ac.in/ds/course_pages/BSSE2002.html) is a practical diploma level data science course at IIT Madras that teaches
-popular tools for sourcing data, transforming it, analyzing it, communicating these as visual stories, and deploying them in production.
+[Tools in Data Science](https://study.iitm.ac.in/ds/course_pages/BSSE2002.html) is a diploma level data science course at IIT Madras.
+
+It teaches the tools used to build & deploy data science applications.
 
 <details>
-<summary><strong>Anyone can audit this course. It's public</strong></summary>
+<summary><strong>Anyone can audit this course. It's public.</strong></summary>
 
 Anyone can access this course content for free and submit assessments.
 
@@ -15,24 +16,30 @@ Enrolled [IITM students](https://study.iitm.ac.in/ds/) can additionally particip
 </details>
 
 <details>
-<summary><strong>This is a practical course. Doing. No theory</strong></summary>
+<summary><strong>You MUST know Python, JavaScript, APIs, etc.</strong></summary>
 
-The focus is: What **tools** should I use for what? How do I use them?
+You need a _good_ understanding of Python, JavaScript, HTML, APIs, Excel, ChatGPT, and data science concepts.
 
-It covers **real-life** scenarios like:
-
-- Scraping _messy_ data, instead of being given clean data.
-- Using _existing_ models, instead of training your own.
-- Writing a `sed` + `grep` _script_ in minutes, instead of a log parser over weeks.
-
-[![](https://imgs.xkcd.com/comics/lisp.jpg "We lost the documentation on quantum mechanics. You'll have to decode the regexes yourself.")](https://explainxkcd.com/224/)
+Try [Graded Assignment 1][GA1]. Drop it if you score low.
 
 </details>
 
 <details>
-<summary><strong>This course is hard. Take it in your last term</strong></summary>
+<summary><strong>It's a practical course. Just get it done. "How" matter less.</strong></summary>
 
-[40% of the Jan 2025 batch failed](https://discourse.onlinedegree.iitm.ac.in/t/when-should-i-take-tools-in-data-science/173268).
+The course models **real-life**. Unclear problems, messy data, ridiculous deadlines, limited support.
+
+Find your own unique ways of solving the problems. There's no one right approach.
+
+</details>
+
+<details>
+<summary><strong>It's a hard course. Take it in your last IITM BS Diploma term.</strong></summary>
+
+It's good for learning, maybe not for grades.
+
+- In Jan 2025, [40% of the batch failed](https://discourse.onlinedegree.iitm.ac.in/t/when-should-i-take-tools-in-data-science/173268).
+- [The ROE is intentionally impossible][hard]
 
 Here's students' feedback from past terms:
 
@@ -64,39 +71,10 @@ But the learnings may be worth the effort.
 
 </details>
 
-<details>
-<summary><strong>Programming skills are a pre-requisite</strong></summary>
-
-You need a _good_ understanding of Python, JavaScript, HTML, REST, HTTP, Excel, and data science concepts.
-
-**But isn't this a data science course?** Yes. Good data scientists are good programmers, too. Data scientists source, clean, transform, visualize, and deploy programmatically.
-
-Sometimes, specialists do this work (e.g. data engineers, IT teams, etc.). But often, you need to write your own code.
-
-</details>
-
-<details>
-<summary><strong>Don't re-enroll if you passed. Your marks won't improve</strong></summary>
-
-Re-taking this course [does not improve marks much](https://discourse.onlinedegree.iitm.ac.in/t/why-you-should-almost-never-register-for-tds-improvement-if-you-have-passed-it/173625).
-
-The course is public, so you can always audit it for learning.
-
-</details>
-
 ---
 
 <details>
-<summary><strong>Skip the content. Just take assessments</strong></summary>
-
-Few people read the content, at least based on this course's stats.
-
-Just take the assessment. If a question is unclear, and you can't solve it in any faster way, read the content which is just above each question.
-
-</details>
-
-<details>
-<summary><strong>Copying & ChatGPT are allowed and encouraged</strong></summary>
+<summary><strong>Copying & ChatGPT are encouraged.</strong></summary>
 
 You _CAN_ copy from friends and LLMs. You can work in groups. You can use the Internet, WhatsApp, ChatGPT, your notes, your friends, your pets...
 
@@ -109,7 +87,7 @@ You can share code. Even in projects, assignments, and exams (except the final i
 </details>
 
 <details>
-<summary><strong>Check system requirements</strong></summary>
+<summary><strong>Check system requirements.</strong></summary>
 
 Check [system-requirements.md](system-requirements.md) for permissions you need, software to install, and websites to access. You may need to speak with your system administrator for access.
 
@@ -117,7 +95,20 @@ Check [system-requirements.md](system-requirements.md) for permissions you need,
 
 ## 8 modules in 12 weeks
 
-**Skip the contents** unless you're stuck. Just take the assessments.
+This course covers:
+
+1. **Programming tools** from building to deploying (with & for AI).
+   1. [Development Tools][M1] used to build apps.
+   2. [Deployment Tools][M2] to publish for others to use.
+   3. [AI Coding][M3] to write better code faster.
+   4. [Large Language Models][M4] for apps that use AI.
+2. **Data science tools** from sourcing to narrating.
+   1. [Data Sourcing][M5] to get the data: download, query, scrape.
+   2. [Data Preparation][M6] to clean and transform.
+   3. [Data Analysis][M7] with statistics, geospatial & network analysis.
+   4. [Data Visualization][M8] using charts, slides, and narratives.
+
+Don't bother with the content. **Start with assessments**. Ask ChatGPT for help. If stuck, read content.
 
 | [Content][Source]           | Assessment                    | Weight |          Release Date |          Submission Date |
 | --------------------------- | ----------------------------- | -----: | --------------------: | -----------------------: |
@@ -149,6 +140,7 @@ Check [system-requirements.md](system-requirements.md) for permissions you need,
 [GA2]: https://exam.sanand.workers.dev/tds-2025-09-ga2
 [GA2C]: https://discourse.onlinedegree.iitm.ac.in/t/ga2-deployment-tools-discussion-thread-tds-sep-2025/187719
 [P1]: project-llm-code-deployment.md
+[hard]: https://discourse.onlinedegree.iitm.ac.in/t/roe-prep-discussion-thread-tds-may-2025/181581/25
 
 Updates:
 
@@ -159,25 +151,22 @@ Updates:
 ### Notes
 
 - **[Graded Assignment 1][GA1] checks course pre-requisites**. Please drop this course (do it in a later term) if you score low. It'll be too tough for you now.
-- **Remote Online Exam is _hard_**. Tests implicit learning. [What is the purpose of an impossible RoE exam?](https://discourse.onlinedegree.iitm.ac.in/t/roe-prep-discussion-thread-tds-may-2025/181581/25)
-- **Final exam is in-person and closed book**. Tests your memory. It's easy.
-- **Projects test application**. Tests how well you apply what you learnt in a real-world context.
 - **We may post bonus activities on Discourse**. See [previous bonus activities](https://discourse.onlinedegree.iitm.ac.in/tags/c/courses/tds-kb/34/bonus-marks)
-- **Subjective evaluations use LLMs**. LLMs may evaluate you differently each time. Learn to answer them _robustly_. LLM decisions are **final**.
+- **LLMs will evaluate you**. Results vary each run. Learn to answer them _robustly_. LLM decisions are **final**.
 
 ## Contacts
 
-- **Faculty** (creates content): [Anand S](https://www.linkedin.com/in/sanand0/),
+- **Faculty** creates content: [Anand S](https://www.linkedin.com/in/sanand0/),
   [root.node@gmail.com](mailto:root.node@gmail.com) |
   [@s.anand](https://discourse.onlinedegree.iitm.ac.in/u/s.anand)
-- **Instructors** (teach the course):
+- **Instructors** teach the course:
   - Carlton D'Silva.
     [22f3001919@ds.study.iitm.ac.in](mailto:22f3001919@ds.study.iitm.ac.in) |
     [@carlton](https://discourse.onlinedegree.iitm.ac.in/u/carlton)
   - [Prasanna S](https://www.linkedin.com/in/prasanna-sugumaran-ab980222/),
     [prasanna@study.iitm.ac.in](mailto:prasanna@study.iitm.ac.in) |
     [@iamprasna](https://discourse.onlinedegree.iitm.ac.in/u/iamprasna)
-- **Teaching assistants** (answer your doubts):
+- **Teaching assistants** answer your doubts:
   - Hritik Roshan Maurya,
     [22f3002460@ds.study.iitm.ac.in](mailto:22f3002460@ds.study.iitm.ac.in) |
     [@HritikRoshan_HRM](https://discourse.onlinedegree.iitm.ac.in/u/hritikroshan_hrm)
@@ -190,14 +179,14 @@ Updates:
 
 ## Links
 
-- [TDS: Live Video Sessions](live-sessions.md) + [YouTube Channel](https://www.youtube.com/@se-lr5ff)
-- [TDS: Course files](https://drive.google.com/drive/folders/1FE0YPAxcxMzZdjnp3FopuJCI3A2Vq6fC?usp=drive_link) -- Jupyter notebooks, datasets, etc.
+- [TDS: **Live Video Sessions**](live-sessions.md) + [YouTube Channel](https://www.youtube.com/@se-lr5ff)
+- [TDS: **Course files**](https://drive.google.com/drive/folders/1FE0YPAxcxMzZdjnp3FopuJCI3A2Vq6fC?usp=drive_link) -- Jupyter notebooks, datasets, etc.
 
 IITM student links:
 
-- [TDS: Discourse (for IITM students)](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34) - Ask questions, get help, and discuss with your peers.
-- [TDS: Course page - Sep 2025](https://seek.onlinedegree.iitm.ac.in/courses/ns_25t3_se2002)
-- [TDS: Announcement group - Sep 2025](https://groups.google.com/a/study.iitm.ac.in/g/25t3_se2002-announce)
+- [TDS: **Discourse** (for IITM students)](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34) - Ask questions, get help, and discuss with your peers.
+- [TDS: **Course page** - Sep 2025](https://seek.onlinedegree.iitm.ac.in/courses/ns_25t3_se2002)
+- [TDS: **Announcement group** - Sep 2025](https://groups.google.com/a/study.iitm.ac.in/g/25t3_se2002-announce)
 
 BS in Data Science Program links:
 
