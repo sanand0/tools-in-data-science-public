@@ -2,437 +2,213 @@
 
 <!-- https://chatgpt.com/c/68cb90cb-7a64-8331-bfbf-aa222df475de -->
 
-> [!WARNING]
-> This project is **work in progress**. _Anything_ may change.
+In this project, students will build an application that can build, deploy, update an application!
 
-**Goal**: A student receives a **signed request** from faculty, verifies it, uses an **LLM-assisted scaffold** to build an app, creates and pushes a **GitHub repo**, auto‑enables **GitHub Pages**, then **pings an evaluation API**. Faculty run automated **static, dynamic (Playwright), and LLM** checks; results are stored and published **after the deadline**. Faculty then send a **second signed request** tailored to the student’s codebase; student updates the app and triggers the second evaluation.
+1. **Build**. The student:
+   - receives & verifies a **signed request** containing an app brief
+   - uses an **LLM-assisted generator** to build the app,
+   - deployes to **GitHub Pages**,
+   - then **pings an evaluation API** with repo details
+2. **Evaluate**. The instructors:
+   - run automated **static, dynamic (Playwright), and and LLM** checks
+   - store and publish the results **after the deadline**
+   - send a **second signed request** tailored to the student’s codebase
+3. **Revise**. The student
+   - verifies signature
+   - **updates** the app based on the request
+   - **re‑deploys** Pages
+   - then **pings a second evaluation API** with repo metadata.
 
-This spec consolidates best practices from earlier projects (clear pre‑req gates, deterministic APIs, env‑var secrets, public repos with MIT license, promptfoo/Playwright‑friendly evaluations, public tests vs private scoring) while keeping tooling **minimal, CLI‑first, declarative**.
+## Request
 
-## 0. Timeline & Support
+The request is a JSON file like this:
 
-- **Deadline**: _TBD (EoD IST)_ · Results announced by _TBD_
-- **Discussion**: _TBD Discourse thread_
-
-## 1. Actors & End‑to‑End Flow
-
-**Actors**: Student Agent (you), Faculty Issuer, Faculty Evaluator, Evaluation Store.
-
-**Round 1 (Bootstrap)**
-
-1. Faculty issues a **Signed Request Envelope (SRE)** containing:
-   - task brief (natural language), data payloads (e.g., CSV), rubric hints, **evaluation endpoint URL**, and **round=1**
-   - JOSE‑style **signature** over the envelope
-2. Student **verifies signature** using the published faculty public key; reject if invalid/expired.
-3. Student uses an **LLM‑assisted generator** to:
-   - scaffold the app
-   - **create a GitHub repo** (via API) and push
-   - **enable GitHub Pages** (via Actions or API)
-4. Student **pings** the evaluation endpoint with repo metadata (repo URL, commit SHA, Pages URL, round=1, nonce).
-5. Faculty pipeline runs automated checks; **stores scores** per criterion.
-
-**Round 2 (Adaptive change request)**
-
-6. Faculty sends a **second SRE (round=2)** tailored to this student’s existing repo and the targeted learning concepts.
-7. Student verifies signature, **modifies code**, re‑deploys Pages, and **pings** evaluation again with updated metadata.
-8. Faculty re‑runs checks; scores are **stored** and **published after the deadline**.
-
-## 2. Signed Request Envelope (SRE)
-
-A compact, language‑agnostic, signed JSON bundle.
-
-### 2.1 Transport
-
-- Sent as **JSON** over HTTPS (or downloadable JSON file).
-- Attachments are included as entries in `attachments[]` where each entry is either:
-  - `{ "name": "data.csv", "mediaType": "text/csv", "encoding": "base64", "content": "..." }`
-  - or `{ "name": "assets.zip", "mediaType": "application/zip", "encoding": "base64", "content": "..." }`
-
-### 2.2 Canonical JSON (before signing)
-
-```json
+```jsonc
 {
-  "issuer": "tds-faculty",
-  "kid": "tds-ed25519-2025q1",
-  "issued_at": "2025-02-01T09:00:00Z",
-  "expires_at": "2025-03-31T18:30:00Z",
+  // Student email ID
+  "email": "student@example.com",
+  // A unique task ID.
+  "task": "captcha-solver-...",
+  // There will be multiple rounds per task. This is the round index
   "round": 1,
-  "assignment_id": "srba-2025q1",
-  "student": { "email": "student@example.com" },
-  "task": {
-    "title": "Build & deploy an app from signed brief",
-    "brief": "Create an interactive single-page app from the attached CSV that …",
-    "hints": ["Use DuckDB WASM or SQLite WASM for client-side queries", "Keep bundle < 2MB"],
-    "expected_outputs": ["GitHub Pages site", "/api/status endpoint returning JSON", "README with usage"],
-    "constraints": { "language": ["py", "js"], "runtime": ["browser", "serverless"], "time_limit_s": 300 }
-  },
-  "rubric": {
-    "static": ["license_mit", "readme_quality", "no_secrets", "tests_present"],
-    "dynamic": ["page_load_ok", "core_feature_ok", "a11y_checks"],
-    "llm": ["doc_quality", "code_clarity"],
-    "weights": { "static": 0.3, "dynamic": 0.5, "llm": 0.2 }
-  },
-  "evaluation": {
-    "notify_url": "https://eval.example.edu/notify",
-    "callback_fields": ["repo_url", "commit_sha", "pages_url", "round", "nonce"],
-    "public_tests": true
-  },
-  "attachments": [{ "name": "seed.csv", "mediaType": "text/csv", "encoding": "base64", "content": "..." }],
-  "nonce": "c6b3a7a7-...",
-  "signature": {
-    "alg": "Ed25519",
-    "sig_base64": "<filled by signer>",
-    "payload_hash": "SHA256:<hex>",
-    "canonical": true
-  }
+  // Pass this nonce back to the evaluation URL below
+  "nonce": "ab12-...",
+  // brief: mentions what the app needs to do
+  "brief": "Create a captcha solver that handles ?url=https://.../image.png. Default to attached sample.",
+  // checks: mention how it will be evaluated
+  "checks": [
+    "Repo has MIT license"
+    "README.md is professional",
+    "Page displays captcha URL passed at ?url=...",
+    "Page displays solved captcha text within 15 seconds",
+  ],
+  // Send repo & commit details to the URL below
+  "evaluation_url": "https://example.com/notify",
+  // Attachments will be encoded as data URIs
+  "attachments": [{ "name": "sample.png", "url": "data:image/png;base64,iVBORw..." }],
+  // Signature to ensure this is an official request
+  "signature": "..."
 }
 ```
 
-### 2.3 Algorithm & Keys
+## Build
 
-- **Alg**: `Ed25519` (libsodium/NaCl), minimal and fast. Public key is published at a **Well‑Known URL** and embedded in the course page. Key rotation is via new `kid`.
-- Faculty signs the SHA‑256 of the **canonical JSON without the `signature` object**.
-- Students must:
-  1. fetch the correct public key for `kid`
-  2. recompute `payload_hash`
-  3. verify `sig_base64`
-  4. check `issued_at/expires_at`, `round` and `assignment_id`
-  5. validate `nonce` is unseen (prevents replay)
+Students will:
 
-### 2.4 Minimal Verification Snippets
-
-**Python (pynacl)**
-
-```python
-import json, base64, hashlib
-from nacl.signing import VerifyKey
-
-pubkey_b64 = "<faculty_ed25519_pubkey_base64>"
-verify_key = VerifyKey(base64.b64decode(pubkey_b64))
-
-def verify(sre):
-    sig = base64.b64decode(sre["signature"]["sig_base64"])
-    payload = dict(sre); payload.pop("signature", None)
-    canon = json.dumps(payload, separators=(",",":"), ensure_ascii=False).encode()
-    verify_key.verify(canon, sig)  # raises if invalid
-    assert sre["signature"]["payload_hash"].startswith("SHA256:")
-    assert hashlib.sha256(canon).hexdigest() == sre["signature"]["payload_hash"][7:]
-```
-
-**Node (tweetnacl)**
-
-```js
-import nacl from "tweetnacl";
-function verify(sre, pubkeyBase64) {
-  const sig = Buffer.from(sre.signature.sig_base64, "base64");
-  const payload = { ...sre };
-  delete payload.signature;
-  const canon = Buffer.from(JSON.stringify(payload));
-  const pk = Buffer.from(pubkeyBase64, "base64");
-  if (!nacl.sign.detached.verify(new Uint8Array(canon), new Uint8Array(sig), new Uint8Array(pk)))
-    throw new Error("bad sig");
-}
-```
-
-### 2.5 Dev‑mode SRE Generator (for local testing)
-
-Provide a tiny CLI (Python) to **sign** any JSON and emit a full SRE with a **dev private key** (for students to simulate faculty inputs). Include:
-
-- `dev-keys/dev.ed25519.pub` and `dev-keys/dev.ed25519.secret` (obviously **not used** by real faculty)
-- `scripts/sre-sign.py` (reads `payload.json`, adds `signature`) and `scripts/sre-verify.py`
-
-## 3. Student Agent: Responsibilities
-
-Students build a small, deterministic **CLI** (with optional web UI) that:
-
-1. **Accepts SRE** (JSON file path or URL)
-   - `agent accept --sre path/to/sre.json`
-   - Verifies signature, stashes attachments under `./input/`, logs a green **Faculty Verified ✓** banner.
-2. **LLM‑Assisted Scaffolding**
-   - Parse `task.brief` and attachments; generate minimal app.
-   - Prefer **small OSS** libs; keep prompts concise; honor `constraints`.
-   - Pluggable LLM provider via env: `OPENAI_API_KEY` **or** `AIPROXY_TOKEN`. Allow `--provider openai|proxy|none`.
-3. **Create Repo & Push**
-   - Use `GITHUB_TOKEN` (fine‑grained PAT). Never commit secrets.
-   - Repo name suggestion: `srba-<assignment_id>-<rollno>`.
-   - Initialize with `README.md`, `LICENSE` (MIT), `.gitignore`, minimal tests.
-4. **Enable GitHub Pages** (pick **one**):
-   - **GitHub Actions**: `pages` workflow building `/` to Pages
-   - **Direct Settings API**: set `pages` source to `gh-pages` (if using static export)
-5. **Notify Evaluation**
-
-   - POST `evaluation.notify_url` with JSON:
-
-   ```json
+1. Host an API endpoint that accepts a JSON POST sent via:
+   ```bash
+   curl https://example.com/api-endpoint \
+     -H "Content-Type: application/json" \
+     -d '{"brief": "...", ...}'
+   ```
+2. [Verify the `signature`](#verify-signature). Reject request if invalid
+3. Send a HTTP 200 JSON response with `{"usercode": "..."}` containing student's unique code (see [Evaluation](#evaluation) below)
+4. Parse the request and attachments.
+   Use LLMs to generate minimal app.
+5. Create a repo & push.
+   - Use the GitHub API / CLI app with a personal access token.
+   - Use a unique repo name based on `.task`.
+   - Make your repo public
+   - Add an MIT `LICENSE` at repo root
+   - Enable GitHub Pages and make it reachable (200 OK)
+   - Avoid secrets in git history (trufflehog, gitleaks)
+   - Write a complete `README.md` (summary, setup, usage, code explanation, license)
+6. Enable GitHub Pages
+7. POST to `evaluation.url` (header: `Content-Type: application/json`) this JSON structure:
+   ```jsonc
    {
-     "repo_url": "https://github.com/user/srba-...",
-     "commit_sha": "abc123",
-     "pages_url": "https://user.github.io/srba-.../",
+     // Copy these from the request
+     "email": "...",
+     "task": "captcha-solver-...",
      "round": 1,
-     "nonce": "<echo from SRE>",
-     "student": { "email": "..." }
+     "nonce": "ab12-...",
+     // Send these based on your GitHub repo and commit
+     "repo_url": "https://github.com/user/repo",
+     "commit_sha": "abc123",
+     "pages_url": "https://user.github.io/repo/"
    }
    ```
+8. Ensure a HTTP 200 response. On error, re-submit with a 1, 2, 4, 8, ... second delay.
 
-   - Receive `{ "ok": true, "test_id": "..." }`.
+## Revise
 
-6. **Round 2**
-   - Accept second SRE (round=2) that references the student’s repo/files (e.g., “refactor data layer to use Web Worker; add filter UI; keep URL hash state”).
-   - Modify code accordingly; redeploy Pages; **notify** again with `round=2`.
-7. **Operational Constraints**
-   - **Never** leak tokens in the repo/Pages.
-   - Avoid network calls outside allowed domains if specified.
-   - All CLI commands **must complete within 5 minutes** per round.
-   - Keep reproducible scripts: `Makefile` targets: `accept`, `scaffold`, `push`, `pages`, `notify`.
+Students will:
 
-## 4. Faculty Evaluation Pipeline (Reference)
+1. Accept a second POST request (`{"round": 2}`) to add/modify features, refactor the code, etc.
+2. [Verify the `signature`](#verify-signature)
+3. Send a HTTP 200 JSON response with the `usercode`
+4. Modify the repo based on the `brief` (e.g. "handle SVG images")
+   - Update `README.md` accordingly
+5. Modify code accordingly & push to redeploy GitHub pages
+6. POST to the same `evaluation.url` with `{"round": 2}`
+7. Ensure a HTTP 200 response.
 
-The faculty system (for transparency) will:
+> [!WARNING]
+> Stuff below this is **work in progress**. Some stuff may change.
 
-### 4.1 Pre‑requisite Gates (hard fail)
+## Evaluate
 
-- Repo is public & unique
-- `LICENSE` = MIT at repo root
-- Pages is enabled and reachable (200 OK)
+Instructors will:
 
-### 4.2 Static Checks (examples)
+- Publish a Google Form where students can submit their API URLs and their `usercode` #TODO
+- For each submission, create a unique task request.
+- POST the request to their latest API URL.
+  - If the `usercode` doesn't match, try up to 3 times over 3-24 hours. Then fail.
+- Accept POST requests on the `evaluation_url`. Add it to queue to evaluate and return a HTTP 200 response.
+- Evaluate the repo based on the task-specific as well as common checks and log these.
+  - Repo-level rule-based checks (e.g. `LICENSE` is MIT)
+  - LLM-based static checks (e.g. code quality, `README.md` quality)
+  - Dynamic checks (e.g. use Playwright to load your page, run and test your app)
+- Save the results in a `results` table.
+- For all `{"round": 1}` requests, generate and POST a unique round 2 task request (even if checks failed).
+- Publish the database after the deadline.
 
-- No secrets in git history (trufflehog, gitleaks)
-- `README.md` completeness (install/run/scope screenshots)
-- Source tree sanity (src/, tests/, data/, ci/)
+Students must:
 
-### 4.3 Dynamic Checks (Playwright)
+- Call `evaluation.url` within 10 minutes of receivng the request.
 
-- Load Pages URL, assert core UI features (selectors/text)
-- Lighthouse basic performance/a11y caps (budgeted)
-- Optional API endpoint probes if present
+## Evaluation Script
 
-### 4.4 LLM Checks
+Setup:
 
-- Rubric‑scored doc clarity, code comments, UX microcopy (promptfoo `llm-rubric`)
+- Download the submissions as a `submissions.csv` with `timestamp,email,endpoint,usercode` columns.
+- Set up a remote database with tables:
+  - `tasks` for tasks sent. Updated by `round1.py`, `round2.py`. Fields: `timestamp,email,task,round,nonce,brief,attachments,checks,evaluation_url,endpoint,statuscode,usercode`
+  - `repos` submitted. Updated by `evaluation_url` API. Fields: `timestamp,email,task,round,nonce,repo_url,commit_sha,pages_url`
+  - `results` evaluated. Updated by `evaluate.py`. Fields: `timestamp,email,email,task,round,repo_url,commit_sha,pages_url,check,score,reason,logs`
+- Create a series of parametrizable task templates
 
-### 4.5 Scoring (illustrative)
+Evaluation scripts:
 
-- **Static** 30% (pass/fail sub‑items, partials)
-- **Dynamic** 50% (Playwright tasks, 0/1/partial)
-- **LLM** 20% (rubric booleans)
-- Bonus: unique approach, extra tests, dataset storytelling
+- Create a `round1.py` script. For each `submissions.csv` row, it will:
+  - Skip if `tasks` table has a matching `email`, `usercode`, `round=1` - indicating a succesful round 1
+  - Generate the task with fields:
+    - email
+    - task: `{template.id}-{hash({ brief, attachments })[:5]}`
+    - round: 1
+    - nonce: UUID7
+    - signature: `{nonce}` signed with private key
+    - brief + attachments + checks: randomly picked from task templates and parametrized with seed (email, YYYY-MM-DD-HH), expiring hourly
+    - evaluation_url: #TODO
+  - POST it to the `endpoint` and receive the HTTP status code and `{usercode}`
+  - Log into the `tasks` table
+- Create an `evaluation_url` API endpoint. This will:
+  - Accept a JSON payload
+  - If the `tasks` table has a matching `email`, `task`, `round`, `nonce`, insert these fields along with `repo_url`, `commit_sha`, `pages_url`, into the `repos` table and return a HTTP 200.
+  - Else return a HTTP 400 with reason.
+- Create an `evaluate.py` script. It will go through each row in `repos` and:
+  - Check if `repo_url@commit_sha` has an MIT `LICENSE` in the root folder
+  - Send the `README.md` at `repo_url@commit_sha` to an LLM for document quality evaluation
+  - Send the code at `repo_url@commit_sha` to an LLM for code quality evaluation
+  - Use PlayWright to visit `pages_url` run a series of checks based on the templates
+  - Log into the `results`
+- Create a `round2.py` script. For each row in the `repos` table, it will:
+  - Skip if `results` table has a matching `email`, `task`, `round=2` - indicating a succesful round 2
+  - Generate a task with the same fields as `round1.py`, except:
+    - brief + attachments + checks: randomly picked from the same task template but for round 2
+  - POST it to the `endpoint` and receive the HTTP status code and `{usercode}`
+  - Log into the `tasks` table
 
-Results are stored in a DB keyed by `assignment_id, student.email`. **Published post‑deadline** only.
-
-## 5. Student Local Testing: Scaffolds
-
-To help students **simulate inputs and end‑to‑end**:
-
-### 5.1 Dev SRE Bundle
-
-- `dev-keys/` (Ed25519 keypair) — for local only
-- `samples/round1.sre.json` (signed with dev key; includes a small CSV)
-- `samples/round2.sre.json` (signed with dev key; mutation brief referencing a file path from round1)
-- `scripts/sre-sign.py`, `scripts/sre-verify.py` (tiny, dependency‑light)
-
-### 5.2 Mock Evaluation Server
-
-A minimal HTTP server students can run locally to see what payloads look like.
-
-- `eval-mock/server.py`:
-  - `POST /notify` echoes `{ok:true, test_id:"local-<ts>"}` and logs body
-  - Provides `/public-tests.json` containing Playwright selectors & steps for self‑checks
-
-### 5.3 Public Test Artifacts
-
-- `public-tests/playwright.spec.ts` (opens `pages_url`, checks 2‑3 selectors)
-- `public-tests/promptfoo.yaml` (LLM rubric on README clarity, time‑boxed)
-- `public-tests/static.yaml` (no‑secrets, license present)
-
-### 5.4 Convenience Makefile (student repo)
-
-```make
-accept:   python scripts/agent.py accept --sre input/round1.sre.json
-scaffold: python scripts/agent.py scaffold
-push:     python scripts/agent.py push
-pages:    python scripts/agent.py pages
-notify:   python scripts/agent.py notify --round 1 --url https://localhost:8000/notify
-```
-
-## 6. Deliverables
-
-- Public **GitHub repository** with:
-  - `LICENSE` (MIT)
-  - `README.md` (what it does, how to run, link to Pages, screenshots/gif)
-  - `Makefile` (or simple shell scripts)
-  - Minimal tests (`public-tests/` prepared for Playwright)
-  - (Optional) `Dockerfile` if you prefer containerized build
-- **GitHub Pages** URL
-- **Submission form** fields (TBD): repo URL, Pages URL, primary commit SHA
-
-## 7. Evaluation & Scoring (Student‑visible)
-
-- **Eligibility** (hard gate): repo public, MIT license, Pages reachable
-- **Round 1**: 50 points
-  - Repo+Pages automation: 10
-  - Static checks: 10
-  - Dynamic checks: 20
-  - LLM rubric: 10
-- **Round 2**: 50 points
-  - Correctness of change: 25
-  - Regression safety (core flow still passes): 15
-  - Documentation update/commit hygiene: 10
-- **Bonus**: up to +10 (creative features, perf, a11y)
-- **No normalization**. What you get is what you get.
-
-**Retries & Timeouts**
-
-- Evaluation attempts per round: up to 3 on faculty side
-- Student operations per command should finish within **5 minutes**
-
-**Results publication**
-
-- Scores released **after** deadline; no intermediate leaderboard
-
-## 8. Security & Ethics
-
-- Do **not** commit tokens; use env vars (`GITHUB_TOKEN`, `OPENAI_API_KEY`/`AIPROXY_TOKEN`).
-- Respect attachment licenses; do not exfiltrate beyond assignment scope.
-- If the brief includes scraping, honor robots.txt and rate limits.
-
-## 9. Reference Snippets
-
-### 9.1 GitHub: Create Repo (REST)
-
-- Endpoint: `POST /user/repos` with `{ name, private:false, has_issues:true }`
-- Headers: `Authorization: token <GITHUB_TOKEN>`
-
-### 9.2 Enable Pages via Actions (static site)
-
-Minimal `/.github/workflows/pages.yml`:
+Sample task templates:
 
 ```yaml
-name: Pages
-on: { push: { branches: [main] } }
-permissions: { contents: write, pages: write, id-token: write }
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: mkdir -p dist && cp -r public/* dist/
-      - uses: actions/upload-pages-artifact@v3
-        with: { path: dist }
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions: { pages: write, id-token: write }
-    steps:
-      - uses: actions/deploy-pages@v4
+brief: Publish a web page that contains the sum of the sales column in data.csv.
+attachments: [{ "name": "data.csv", "url": "data:text/csv;base64,${seed}" }],
+checks:
+  - #TODO
+round2: #TODO
 ```
-
-### 9.3 Playwright Sample (public test)
-
-```ts
-import { test, expect } from "@playwright/test";
-test("pages loads", async ({ page }) => {
-  await page.goto(process.env.PAGES_URL!);
-  await expect(page.getByRole("heading", { name: /Dashboard/i })).toBeVisible();
-});
-```
-
-### 9.4 promptfoo LLM Rubric (README clarity)
 
 ```yaml
-providers:
-  - id: openai:gpt-4.1-mini
-    config: { apiKeyEnvVar: OPENAI_API_KEY }
-assert:
-  - type: llm-rubric
-    weight: 10
-    rubricPrompt: |
-      Grade README clarity (install steps, usage, link to Pages, screenshot). Return {score:0..10}.
-    threshold: 0.6
+brief: Publish a web page that includes this Markdown converted to HTML.
+attachments: [{ "name": "input.md", "url": "data:text/markdown;base64,${seed}" }],
+checks:
+  - #TODO
+round2: #TODO
 ```
 
-## 10. Round 2 — Adaptive Change Requests (Examples)
-
-- **Refactor**: Move heavy compute to a Web Worker; keep UI responsive; maintain feature parity
-- **Data model**: Parameterize CSV schema; add schema validation and error reporting
-- **UX**: Add filter + permalink via URL hash; update README screenshots
-- **Perf**: Reduce bundlesize < 300KB; lazy‑load charting lib
-
-Each adaptive brief will reference **your repo structure** (e.g., `src/worker.ts`, `public/index.html`), ensuring the agent must reason about **your** code.
-
-## 11. Student Checklist (Quick)
-
-- [ ] Verify SRE (sig, expiry, nonce)
-- [ ] Scaffold app via LLM (minimal, deterministic)
-- [ ] Create repo (public), push, MIT license
-- [ ] Enable Pages and confirm 200 OK
-- [ ] Notify eval (round=1)
-- [ ] Accept round 2; update app; Pages OK
-- [ ] Notify eval (round=2)
-- [ ] Keep logs and makefile targets tidy
-
-## 12. Submission (TBD)
-
-- Form fields: Repo URL, Pages URL, Primary email, Commit SHA
-- Optional: link to demo video/gif (<60s)
-
-## 13. Appendix: JSON Schemas (abridged)
-
-### SRE Envelope
-
-```json
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "type": "object",
-  "required": [
-    "issuer",
-    "kid",
-    "issued_at",
-    "expires_at",
-    "round",
-    "assignment_id",
-    "task",
-    "evaluation",
-    "nonce",
-    "signature"
-  ],
-  "properties": {
-    "issuer": { "type": "string" },
-    "kid": { "type": "string" },
-    "issued_at": { "type": "string", "format": "date-time" },
-    "expires_at": { "type": "string", "format": "date-time" },
-    "round": { "type": "integer", "enum": [1, 2] },
-    "assignment_id": { "type": "string" },
-    "student": { "type": "object", "properties": { "email": { "type": "string", "format": "email" } } },
-    "task": { "type": "object" },
-    "rubric": { "type": "object" },
-    "evaluation": {
-      "type": "object",
-      "properties": {
-        "notify_url": { "type": "string", "format": "uri" },
-        "callback_fields": { "type": "array", "items": { "type": "string" } },
-        "public_tests": { "type": "boolean" }
-      }
-    },
-    "attachments": { "type": "array", "items": { "type": "object" } },
-    "nonce": { "type": "string" },
-    "signature": {
-      "type": "object",
-      "required": ["alg", "sig_base64", "payload_hash"],
-      "properties": {
-        "alg": { "type": "string" },
-        "sig_base64": { "type": "string" },
-        "payload_hash": { "type": "string" },
-        "canonical": { "type": "boolean" }
-      }
-    }
-  }
-}
+```yaml
+brief: >
+  Create a web page that has a form with an input id="github-user-${seed}".
+  On submit, show that GitHub user's account creation date (YYYY-MM-DD in UTC) within 5 seconds.
+  If the request contains a ?token=... then use that as the GitHub API token.
+checks:
+  -  #TODO
+round2: #TODO
 ```
 
-### Notes & Rationale
+```yaml
+brief: >
+  Create a web page that has a form with a textarea id="code-${seed}".
+  When the user types something (e.g. 'What is the 50th prime number') and submits,
+  use AIPipe to have an LLM write JS code to solve the problem, run it, and show the result
+  within 10 seconds.
+  If the request contains a ?token=.... then use that as the AIPipe token.
+checks:
+  -  #TODO
+round2: #TODO
+```
 
-- **Ed25519** keeps verification trivial across Python/Node, matches minimalism.
-- **Pages‑first** reduces infra; dynamic bits can be emulated client‑side.
-- **Public tests** empower students to self‑validate; **private cases** preserve evaluation integrity.
-- **Two‑round** structure tests _adaptive reasoning on their own codebase_, not just greenfield scaffolding.
+## Verify signature
+
+#TODO
