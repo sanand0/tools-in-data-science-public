@@ -70,6 +70,14 @@
   - [Function Calling](function-calling.md)
   - [LLM Agents](llm-agents.md)
   - [LLM Evals](llm-evals.md)
+  - **Pydantic AI**
+  - [Intro To Pydantic AI](PydanticAI/1_basic.md)
+  - [Role To AI](PydanticAI/2_sys_ins.md)
+  - [Structured Output](PydanticAI/3_output.md)
+  - [Tool Calling](PydanticAI/4_tool_calling.md)
+  - [Web Search](PydanticAI/5_websearch.md)
+  - [Media](PydanticAI/6_media.md)
+  - [Dependency](PydanticAI/7_dep.md)
 - [Project 1](project-llm-code-deployment.md)
 - [5. Data Sourcing](data-sourcing.md)
   - **Spreadsheet Scraping**
