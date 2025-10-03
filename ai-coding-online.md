@@ -105,3 +105,45 @@ Lovable excels at creating business applications, landing pages, and functional 
 
 - [Lovable Templates: Browse pre-built applications](https://lovable.dev/templates)
 - [Lovable Use Cases: Video tutorials and examples](https://docs.lovable.dev/use-case)
+
+### Jules (Google)
+
+[Jules](https://cloud.google.com/blog/products/ai-machine-learning/google-jules-ai-assistant) is Google's multi-agent coding environment announced at Google Cloud Next '25 with team-based tiers. It combines a shared workspace, orchestration primitives, and a live execution runtime so agents can collaborate on data and application tasks.
+
+Jules now offers a CLI and API for scripting agent workflows, plus deep integrations with Vertex AI, BigQuery, and Workspace. Builders can define guardrails, share reusable playbooks, and hand off tasks between agents who stay in sync through a shared memory layer.
+
+**Key features:**
+
+- Multi-agent workspace with live whiteboard, task queue, and reviewer roles ([Google Cloud blog](https://cloud.google.com/blog/products/ai-machine-learning/google-jules-ai-assistant), [Google Cloud Next '25 recap](https://cloud.google.com/blog/products/ai-machine-learning/next-25-build-with-jules))
+- Jules CLI and API for automating agent runs, webhooks, and CI/CD pipelines ([Google Cloud Next '25 recap](https://cloud.google.com/blog/products/ai-machine-learning/next-25-build-with-jules))
+- Workspace and Vertex AI integrations for Sheets, Docs, Gemini, and BigQuery ([Google Cloud blog](https://cloud.google.com/blog/products/ai-machine-learning/google-jules-ai-assistant))
+- Built-in guardrails with DLP, audit trails, and policy enforcement for regulated teams ([Google Cloud blog](https://cloud.google.com/blog/products/ai-machine-learning/google-jules-ai-assistant))
+- Library of reusable playbooks and shared context for handoffs between agents ([Google Cloud Next '25 recap](https://cloud.google.com/blog/products/ai-machine-learning/next-25-build-with-jules))
+
+**Best for:** Product and data teams that need coordinated agents to ship prototypes inside Google Cloud environments.
+
+[![Jules launch overview](https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Jules_Thumbnail.width-1300.png)](https://storage.googleapis.com/gweb-uniblog-publish-prod/original_videos/Jules_Hero.mp4)
+
+- [Jules launch post (August 29, 2025)](https://blog.google/technology/google-labs/jules/)
+- [Google Cloud Next '25 demo: Build with Jules](https://cloud.google.com/blog/products/ai-machine-learning/next-25-build-with-jules)
+
+### Codex (OpenAI)
+
+[OpenAI Codex Workspace](https://openai.com/index/codex-platform-update/) is a web IDE that pairs Codex's planning agent with shared project context. The September 24, 2025 release expanded it for teams so everyone can co-edit, review, and ship code directly in the browser.
+
+Codex Workspace keeps a live execution plan next to Git history, lets reviewers stage or block changes, and enforces policies before autop-run edits merge. Canvas sessions and CLI runs stay linked, keeping web edits and scripted workflows in sync.
+
+**Key features:**
+
+- Team feed and shared repositories with inline reviewer assignments and policy controls ([Codex Workspace update](https://openai.com/index/codex-platform-update/))
+- Workspace sync that merges Codex plans with Git history and CI checks ([Codex Workspace update](https://openai.com/index/codex-platform-update/))
+- Canvas-to-workspace linking for conversational edits that land in the web IDE ([Codex Workspace update](https://openai.com/index/codex-platform-update/))
+- Guardrails with audit trails, reviewer gates, and environment-scoped permissions ([Codex Workspace update](https://openai.com/index/codex-platform-update/))
+- Live telemetry and test status surfaced before commits land in shared branches ([Codex Workspace update](https://openai.com/index/codex-platform-update/))
+
+**Best for:** Engineering orgs using Codex in the browser who need collaborative reviews and policy-aware automation without leaving the web app.
+
+[![OpenAI Build Hour: Codex](https://i.ytimg.com/vi/WvMqA4Xwx_k/sddefault.jpg)](https://www.youtube.com/watch?v=WvMqA4Xwx_k)
+
+- [Codex Workspace update (September 24, 2025)](https://openai.com/index/codex-platform-update/)
+- [OpenAI Build Hour: Codex (September 8, 2025)](https://www.youtube.com/watch?v=WvMqA4Xwx_k)
