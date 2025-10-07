@@ -70,6 +70,10 @@
   - [Function Calling](function-calling.md)
   - [LLM Agents](llm-agents.md)
   - [LLM Evals](llm-evals.md)
+  - **Pydantic**
+  - [Pydantic](Pydantic/1_pydantic.md)
+  - [BaseModel](Pydantic/2_base_model.md)
+  - [DataValidation](Pydantic/3_advance_data_validation.md)
   - **Pydantic AI**
   - [Intro To Pydantic AI](PydanticAI/1_basic.md)
   - [Role To AI](PydanticAI/2_sys_ins.md)
