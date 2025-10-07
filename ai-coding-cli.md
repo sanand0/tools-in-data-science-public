@@ -6,6 +6,7 @@ In this module, you'll learn:
 
 - **Claude Code CLI**: Terminal-first coding agent for interactive development and review
 - **Codex CLI (OpenAI)**: Local coding agent with sandbox, approvals, CI-friendly exec
+- **GitHub Copilot CLI**: GitHub-native terminal agent with policy-aware approvals and MCP extensions
 - **Gemini CLI**: Large-context, multimodal agent with non-interactive mode
 - **Simon Willison's `llm`**: Shell-native AI with UNIX pipeline integration and extensive tooling
 
@@ -107,6 +108,44 @@ codex -c model_reasoning_effort=high
 
 - [New OpenAI Release: Is Codex Better Than Claude Code?](https://youtu.be/VTXEgGIL010)
 - [How to Use OpenAI Codex CLI in VS Code with GPT-5 Model](https://youtu.be/RaFxPRG98Lg)
+
+## GitHub Copilot CLI
+
+[GitHub Copilot CLI](https://github.com/features/copilot/cli) is GitHub’s terminal-native coding agent (npm: `@github/copilot`) that runs locally with GitHub-aware context, policy inheritance, and explicit approvals. GitHub opened the public preview on September 25, 2025 for Copilot Pro, Pro+, Business, and Enterprise subscribers.
+
+### Basic usage
+
+Requires Node.js 22+, npm 10+, and runs on macOS, Linux, and Windows via WSL. Launch it from a trusted repository so it can inspect local context before acting.
+
+```bash
+# Install or update the CLI
+npm install -g @github/copilot
+
+# Start an interactive session (asks to trust the folder on first run)
+copilot
+
+# Switch models for a run (e.g., GPT-5) via an environment variable
+COPILOT_MODEL=gpt-5 copilot
+```
+
+### Key features
+
+**GitHub context + MCP**: Reads repository files, issues, and pull requests, and can call GitHub’s built-in MCP server or your custom MCP servers for richer automation.
+
+**Policy-aligned approvals**: Inherits organization policies, prompts before executing potentially destructive tools, and keeps every action reviewable.
+
+**Terminal agent for build/debug/refactor**: Plans and runs multi-step coding tasks, including editing files and running commands, without leaving the shell.
+
+**Custom instructions**: Honors `.github/copilot-instructions.md`, nested instruction files, and per-task `AGENTS.md` guides to steer behavior.
+
+**Model flexibility**: Defaults to Claude Sonnet 4 but can target GPT-5 or other approved models by setting `COPILOT_MODEL` or using CLI config.
+
+### Slash commands (popular)
+
+- **/login**: Authenticate with GitHub when the session isn’t already linked.
+- **/add-dir**: Trust and add additional directories for the running session.
+- **/cwd**: Switch the working directory without restarting.
+- **/mcp add**: Register extra MCP servers so Copilot can call domain-specific tools.
 
 ## Gemini CLI
 
