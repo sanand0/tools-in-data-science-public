@@ -16,6 +16,16 @@ These are transcribed by [faq.sh](https://github.com/sanand0/tools-in-data-scien
 
 ## Sessions
 
+- [Video](https://youtu.be/UlUf6roSG3c) | [FAQ](live-sessions/20251004-UlUf6roSG3c.md) | 2025 10 04 Project 1 - Session 1 TDS Sep 2025 (2h 24m)
+- [Video](https://youtu.be/0x5WK-Haz7Y) | [FAQ](live-sessions/20251004-0x5WK-Haz7Y.md) | 2025 10 03 week 2 - Session 4 TDS Sep 2025 (2h 16m)
+- [Video](https://youtu.be/dZtLGbQ_EW8) | [FAQ](live-sessions/20251004-dZtLGbQ_EW8.md) | 2025 09 30 week 2 - Session 3 TDS Sep 2025 (1h 45m)
+- [Video](https://youtu.be/4ojO3e2PmP8) | [FAQ](live-sessions/20250929-4ojO3e2PmP8.md) | 2025 09 28 week 2 - Session 2 TDS Sep 2025 (2h 36m)
+- [Video](https://youtu.be/ytGxUwBkcXU) | [FAQ](live-sessions/20250929-ytGxUwBkcXU.md) | 2025 09 27 week 2 - Session 1 TDS Sep 2025 (2h 53m)
+- [Video](https://youtu.be/vBqJUhbZU3c) | [FAQ](live-sessions/20250929-vBqJUhbZU3c.md) | 2025 09 24 week 1 - Session 5 TDS Sep 2025 (1h 41m)
+- [Video](https://youtu.be/thACpPPTR1I) | [FAQ](live-sessions/20250929-thACpPPTR1I.md) | 2025 09 29 Week 1 - Session 4 TDS Sep 2025 (1h 38m)
+- [Video](https://youtu.be/RoRy1jKewhA) | [FAQ](live-sessions/20250921-RoRy1jKewhA.md) | 2025 09 21 Week 1 - Session 2 TDS Sep 2025 (2h 37m)
+- [Video](https://youtu.be/sXlsRhw5X94) | [FAQ](live-sessions/20250922-sXlsRhw5X94.md) | 2025 09 22 Week 1 - Session 3 TDS Sep 2025 (1h 58m)
+- [Video](https://youtu.be/B7iHBHCruCc) | [FAQ](live-sessions/20250921-B7iHBHCruCc.md) | 2025 09 20 Week 1 - Session 1 TDS Sep 2025 (2h 52m)
 - [Video](https://youtu.be/FXZzXm2_3KI) | [FAQ](live-sessions/20250806-FXZzXm2_3KI.md) | 2025 08 04 project 2 - Q&A 2 TDS May 2025 (1h 59m)
 - [Video](https://youtu.be/PZMAApzlJCo) | [FAQ](live-sessions/20250729-PZMAApzlJCo.md) | 2025 07 26 project 2 - Session 2 TDS May 2025 (1h 42m)
 - [Video](https://youtu.be/p_OgYP-6IdU) | [FAQ](live-sessions/20250725-p_OgYP-6IdU.md) | 2025 07 24 project 2 - Session 1 TDS May 2025 (1h 50m)

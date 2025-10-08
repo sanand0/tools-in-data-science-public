@@ -85,7 +85,7 @@ Students will:
      // Send these based on your GitHub repo and commit
      "repo_url": "https://github.com/user/repo",
      "commit_sha": "abc123",
-     "pages_url": "https://user.github.io/repo/"
+     "pages_url": "https://user.github.io/repo/",
    }
    ```
 8. Ensure a HTTP 200 response. On error, re-submit with a 1, 2, 4, 8, ... second delay.
