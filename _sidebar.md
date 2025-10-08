@@ -12,6 +12,7 @@
   - [Browser: DevTools](devtools.md)
   - [AI Terminal Tools: llm](llm.md)
   - [Version Control: Git, GitHub](git.md)
+  - [HTTP Requests: Curl, Postman](http-requests)
   - **Supporting formats**
   - [Unicode](unicode.md)
   - [CSS Selectors](css-selectors.md)

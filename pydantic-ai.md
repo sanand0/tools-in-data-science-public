@@ -93,7 +93,7 @@ Here's a minimal example:
 from pydantic_ai import Agent
 
 # Create an agent with any supported model
-agent = Agent('openai:gpt-4o-mini')
+agent = Agent('openai:gpt-5-nano')
 
 # Run synchronously
 result = agent.run_sync('What is the capital of France?')
@@ -121,7 +121,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from pydantic_ai import Agent
-agent = Agent('openai:gpt-4o-mini')
+agent = Agent('openai:gpt-5-nano')
 ```
 
 ### Structured Outputs
@@ -142,7 +142,7 @@ class CityInfo(BaseModel):
     country: str
     population: int
 
-agent = Agent('openai:gpt-4o-mini', output_type=CityInfo)
+agent = Agent('openai:gpt-5-nano', output_type=CityInfo)
 
 result = agent.run_sync('Tell me about Tokyo')
 print(result.output)
@@ -172,7 +172,7 @@ class WeatherData(BaseModel):
     conditions: str
 
 agent = Agent(
-    'openai:gpt-4o-mini',
+    'openai:gpt-5-nano',
     output_type=[WeatherData, str],  # Either structured data or error message
     system_prompt='Provide weather data when available, or explain why you cannot.'
 )
@@ -201,7 +201,7 @@ Give agents access to functions for dynamic data:
 from pydantic_ai import Agent
 
 agent = Agent(
-    'openai:gpt-4o-mini',
+    'openai:gpt-5-nano',
     system_prompt='You help with weather queries using available tools.'
 )
 
@@ -269,7 +269,7 @@ class UserContext:
     name: str
 
 agent = Agent(
-    'openai:gpt-4o-mini',
+    'openai:gpt-5-nano',
     deps_type=UserContext
 )
 
@@ -303,7 +303,7 @@ Maintain conversation context:
 
 from pydantic_ai import Agent
 
-agent = Agent('openai:gpt-4o-mini')
+agent = Agent('openai:gpt-5-nano')
 
 result1 = agent.run_sync('My name is Alice')
 print(result1.output)
@@ -325,7 +325,7 @@ Use `new_messages()` to get only the latest exchange, or `all_messages()` for th
 
 ```python
 agent = Agent(
-    'openai:gpt-4o-mini',
+    'openai:gpt-5-nano',
     system_prompt='You are a helpful assistant. Be concise.'
 )
 ```
@@ -357,7 +357,7 @@ class Age(BaseModel):
     age: int
     name: str
 
-agent = Agent('openai:gpt-4o-mini', output_type=Age)
+agent = Agent('openai:gpt-5-nano', output_type=Age)
 
 @agent.output_validator
 async def validate_age(ctx: RunContext, output: Age) -> Age:
@@ -385,7 +385,7 @@ Process images, audio, video, and documents:
 from pydantic_ai import Agent, ImageUrl
 from pathlib import Path
 
-agent = Agent('openai:gpt-4o-mini')
+agent = Agent('openai:gpt-5-nano')
 
 # From URL
 result = agent.run_sync([
