@@ -69,6 +69,7 @@
   - **LLM Applications**
   - [Function Calling](function-calling.md)
   - [LLM Agents](llm-agents.md)
+  - [Pydantic AI](pydantic-ai.md)
   - [LLM Evals](llm-evals.md)
 - [Project 1](project-llm-code-deployment.md)
 - [5. Data Sourcing](data-sourcing.md)
