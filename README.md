@@ -115,7 +115,7 @@ Don't bother with the content. **Start with assessments**. Ask ChatGPT for help.
 | [Development Tools][M1]     | [**GA1**][GA1] - [Chat][GA1C] |        |       Wed 03 Sep 2025 |          Sun 05 Oct 2025 |
 | [Deployment Tools][M2]      | [**GA2**][GA2] - [Chat][GA2C] |        |       Wed 24 Sep 2025 |          Sun 05 Oct 2025 |
 | [AI Coding][M3]             | [**GA3**][GA3] - [Chat][GA3C] |        |       Fri 03 Oct 2025 |          Sun 12 Oct 2025 |
-| [Project 1][P1]             | [P1][P1] - [Chat[P1D]]        |    20% |       Fri 26 Sep 2025 |          Fri 17 Oct 2025 |
+| [Project 1][P1]             | [P1][P1] - [Chat][P1D]        |    20% |       Fri 26 Sep 2025 |          Fri 17 Oct 2025 |
 | [Large Language Models][M4] | [**GA4**][GA4] - [Chat][GA4C] |        |       Sat 11 Oct 2025 |          Sun 19 Oct 2025 |
 | [Data Sourcing][M5]         | GA5                           |        |       Wed 15 Oct 2025 |          Mon 27 Oct 2025 |
 | [Data Preparation][M6]      | GA6                           |        |       Wed 22 Oct 2025 |          Mon 10 Nov 2025 |
