@@ -116,12 +116,12 @@ Don't bother with the content. **Start with assessments**. Ask ChatGPT for help.
 | [Deployment Tools][M2]      | [**GA2**][GA2] - [Chat][GA2C] |        |       Wed 24 Sep 2025 |          Sun 05 Oct 2025 |
 | [AI Coding][M3]             | [**GA3**][GA3] - [Chat][GA3C] |        |       Fri 03 Oct 2025 |          Sun 12 Oct 2025 |
 | [Project 1][P1]             | [P1][P1] - [Chat[P1D]]        |    20% |       Fri 26 Sep 2025 |          Fri 17 Oct 2025 |
-| [Large Language Models][M4] | [**GA4**][GA4] - [Chat][GA4C] |        |       Mon 06 Oct 2025 |          Sun 19 Oct 2025 |
-| [Data Sourcing][M5]         | GA5                           |        |       Thu 09 Oct 2025 |          Mon 27 Oct 2025 |
-| [Data Preparation][M6]      | GA6                           |        |       Thu 16 Oct 2025 |          Mon 10 Nov 2025 |
-| [Data Analysis][M7]         | GA7                           |        |       Thu 23 Oct 2025 |          Sun 16 Nov 2025 |
+| [Large Language Models][M4] | [**GA4**][GA4] - [Chat][GA4C] |        |       Mon 11 Oct 2025 |          Sun 19 Oct 2025 |
+| [Data Sourcing][M5]         | GA5                           |        |       Wed 15 Oct 2025 |          Mon 27 Oct 2025 |
+| [Data Preparation][M6]      | GA6                           |        |       Wed 22 Oct 2025 |          Mon 10 Nov 2025 |
+| [Data Analysis][M7]         | GA7                           |        |       Wed 29 Oct 2025 |          Sun 16 Nov 2025 |
 | Project 2                   | P2                            |    20% |       Thu 30 Oct 2025 |          Fri 21 Nov 2025 |
-| [Data Visualization][M8]    | GA8                           |        |       Thu 30 Oct 2025 |          Mon 24 Nov 2025 |
+| [Data Visualization][M8]    | GA8                           |        |       Wed 05 Nov 2025 |          Mon 24 Nov 2025 |
 | Remote Online Exam ([hard]) | ROE                           |    20% | 1 pm, Sun 09 Nov 2025 | 1:45 pm, Sun 09 Nov 2025 |
 | Final end-term              | F                             |    20% |       Sun 21 Dec 2025 |          Sun 21 Dec 2025 |
 | _GA = Graded Assignment_    | Best 5 of 8                   |    20% |                       |
