@@ -15,7 +15,7 @@ The final score for the course is calculated as follows:
 
 T = 0.2 GA + 0.2 P1 + 0.2 P2 + 0.2 ROE + 0.2 ET
 
-> Note: The scores are only updated one to two days after the deadline for the GAs and ROEs. Score updates for Projects can take more than a week or two due to large evaluation time frames.
+> Note: The scores are updated one to two days after the deadline for the GAs and ROEs. Score updates for Projects can take more than a week or two due to large evaluation time frames.
 
 The scores for your various components are available at this link. You must login with your student id to view them.
 
