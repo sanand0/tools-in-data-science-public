@@ -3,6 +3,7 @@
 ## T - Score Calculation
 
 The final score for the course is calculated as follows:
+
 | Components (All out of 100)              | Weight  |
 |------------------------------------------|---------|
 | Grade Assessments **(GA)** <br> Best 5/8 | 20%     |
