@@ -1,6 +1,6 @@
 - [Sep 2025: Tools in Data Science](README.md)
 - [System Requirements](system-requirements.md)
-- [Marks Dashboard](https://lookerstudio.google.com/reporting/75056e60-3e3b-4d0c-ac1e-5f4bd74b835b)
+- [Marks Dashboard](marks-dashboard.md)
 - [1. Development Tools](development-tools.md)
   - **Coding environments**
   - [Editor: VS Code](vscode.md)
