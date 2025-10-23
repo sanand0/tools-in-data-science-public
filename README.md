@@ -118,7 +118,7 @@ Don't bother with the content. **Start with assessments**. Ask ChatGPT for help.
 | [Project 1][P1]             | [P1][P1] - [Chat][P1D]        |    20% |       Fri 26 Sep 2025 |          Fri 17 Oct 2025 |
 | [Large Language Models][M4] | [**GA4**][GA4] - [Chat][GA4C] |        |       Sat 11 Oct 2025 |          Sun 19 Oct 2025 |
 | [Data Sourcing][M5]         | [**GA5**][GA5] - [Chat][GA5C] |        |       Wed 15 Oct 2025 |          Mon 27 Oct 2025 |
-| [Data Preparation][M6]      | GA6                           |        |       Wed 22 Oct 2025 |          Mon 10 Nov 2025 |
+| [Data Preparation][M6]      | [**GA6**][GA6] - [Chat][GA6C] |        |       Wed 23 Oct 2025 |          Mon 10 Nov 2025 |
 | [Data Analysis][M7]         | GA7                           |        |       Wed 29 Oct 2025 |          Sun 16 Nov 2025 |
 | Project 2                   | P2                            |    20% |       Thu 30 Oct 2025 |          Fri 21 Nov 2025 |
 | [Data Visualization][M8]    | GA8                           |        |       Wed 05 Nov 2025 |          Mon 24 Nov 2025 |
@@ -145,6 +145,8 @@ Don't bother with the content. **Start with assessments**. Ask ChatGPT for help.
 [GA4C]: https://discourse.onlinedegree.iitm.ac.in/t/ga4-large-language-models-discussion-thread-tds-sep-2025/188822
 [GA5]: https://exam.sanand.workers.dev/tds-2025-09-ga5
 [GA5C]: https://discourse.onlinedegree.iitm.ac.in/t/ga5-data-sourcing-discussion-thread-tds-sep-2025/189387
+[GA6]: https://exam.sanand.workers.dev/tds-2025-09-ga6
+[GA6C]: https://discourse.onlinedegree.iitm.ac.in/t/ga6-data-preparation-discussion-thread-tds-sep-2025
 [P1]: project-llm-code-deployment.md
 [P1D]: https://discourse.onlinedegree.iitm.ac.in/t/project-1-llm-code-deployement-discussion-thread-tds-sep-2025/188262
 [hard]: https://discourse.onlinedegree.iitm.ac.in/t/roe-prep-discussion-thread-tds-may-2025/181581/25
