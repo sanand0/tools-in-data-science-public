@@ -128,7 +128,7 @@
   - [Data Analysis with Datasette](data-analysis-with-datasette.md)
   - [Data Analysis with DuckDB](data-analysis-with-duckdb.md)
   - **AI Analysis**
-  - [Data Analysis with ChatGPT](data-analysis-with-chatgpt.md)
+  - [Vibe Analysis](vibe-analysis.md)
   - **Specialized Analysis**
   - [Geospatial Analysis with Excel](geospatial-analysis-with-excel.md)
   - [Geospatial Analysis with Python](geospatial-analysis-with-python.md)
