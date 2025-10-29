@@ -134,7 +134,7 @@
   - [Geospatial Analysis with Python](geospatial-analysis-with-python.md)
   - [Geospatial Analysis with QGIS](geospatial-analysis-with-qgis.md)
   - [Network Analysis in Python](network-analysis-in-python.md)
-- Project 2
+- [Project 2](project-llm-analysis-quiz.md)
 - [8. Data Visualization](data-visualization.md)
   - **Presentation Tools**
   - [Data Storytelling](data-storytelling.md)
