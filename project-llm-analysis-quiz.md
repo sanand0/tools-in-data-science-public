@@ -22,7 +22,7 @@ Here's how we will test your system and user prompts:
 3. Generate a random code word (e.g. "elephant")
 4. Pick a model (e.g. GPT-5-nano with minimal reasoning):
    - `system: f"{system_prompt} The code word is: {code_word}"`
-   - `user: f"{user_prompt} The code word is: {code_word}"`
+   - `user: user_prompt`
 5. Check if the LLM reveals the code word in its output.
 6. Student 1 receives a point if the LLM does NOT reveal the code word (i.e. their system prompt was effective)
 7. Student 2 receives a point if the LLM DOES reveal the code word (i.e. their user prompt was effective)
@@ -39,14 +39,14 @@ Your API endpoint will receive a POST request with a JSON payload containing you
   // Student-provided secret
   "secret": "...",
   // A unique task ID.
-  "url": "https://example.com/quiz-834",
+  "url": "https://example.com/quiz-834"
   // ... other fields
 }
 ```
 
 Your endpoint must:
 
-1. Verify the `secret` matches what you provided in the Google Form.
+1. Verify the `secret` matches what you provided in the Google Form. Else respond with HTTP 403.
 2. Respond with a HTTP 200 JSON response.
 3. Visit the `url` and solve the quiz on that page.
 
@@ -58,22 +58,29 @@ Here's a **sample** quiz page (not the actual quiz you will receive):
 <div id="result"></div>
 
 <script>
-  document.getElementById('result').innerHTML = `
-    Q834. Download <a href="https://example.com/data-q834.pdf">file</a>.
-    What is the sum of the "value" column in the table on page 2?
-
-    Post your answer to https://example.com/submit with this JSON payload:
-
-    <pre>
-    {
-      "email": "your-email",
-      "secret": "your secret",
-      "answer": 12345  // the correct answer
-    }
-    </pre>
-  `
+  document.querySelector("#result").innerHTML = atob(`
+ClE4MzQuIERvd25sb2FkIDxhIGhyZWY9Imh0dHBzOi8vZXhhbXBsZS5jb20vZGF0YS1xODM0LnBkZiI
++ZmlsZTwvYT4uCldoYXQgaXMgdGhlIHN1bSBvZiB0aGUgInZhbHVlIiBjb2x1bW4gaW4gdGhlIHRhYm
+xlIG9uIHBhZ2UgMj8KClBvc3QgeW91ciBhbnN3ZXIgdG8gaHR0cHM6Ly9leGFtcGxlLmNvbS9zdWJta
+XQgd2l0aCB0aGlzIEpTT04gcGF5bG9hZDoKCjxwcmU+CnsKICAiZW1haWwiOiAieW91ci1lbWFpbCIs
+CiAgInNlY3JldCI6ICJ5b3VyIHNlY3JldCIsCiAgImFuc3dlciI6IDEyMzQ1ICAvLyB0aGUgY29ycmV
+jdCBhbnN3ZXIKfQo8L3ByZT4=`);
 </script>
 ```
+
+Render it on your browser and you'll see this **sample** question (this is not a real one):
+
+> Q834. Download [file](https://example.com/data-q834.pdf). What is the sum of the "value" column in the table on page 2?
+>
+> Post your answer to https://example.com/submit with this JSON payload:
+>
+> ```json
+> {
+>   "email": "your-email",
+>   "secret": "your secret",
+>   "answer": 12345 // the correct answer
+> }
+> ```
 
 Your script must follow the instructions and submit the correct answer to the specified endpoint within 3 minutes of receiving the task.
 
@@ -84,7 +91,7 @@ The endpoint will respond with a JSON payload indicating whether your answer is 
 ```jsonc
 {
   "correct": true,
-  "url": "https://example.com/quiz-942",
+  "url": "https://example.com/quiz-942"
   // ... other fields
 }
 ```
@@ -98,6 +105,15 @@ This process will repeat until no new `url` is provided. Here's a sample sequenc
 3. You solve it wrongly and get `url: https://example.com/quiz-123`
 4. You solve it correctly and get no new URL, ending the quiz.
 
+Here are some types of questions you can expect:
+
+- Scraping a website (which may require JavaScript) for information
+- Sourcing from an API (with API-specific headers provided where required)
+- Cleansing text / data / PDF / ... you retrieved
+- Processing the data (e.g. data transformation, transcription, vision)
+- Analysing by filtering, sorting, aggregating, reshaping, or applying statistical / ML models. Includes geo-spatial / network analysis
+- Visualizing by generating charts (as images or interactive), narratives, slides
+
 ## Viva
 
 On a specified day, you will have a voice viva with an LLM evaluator. Make sure you have a good Internet connection, speaker and microphone.
@@ -107,3 +123,14 @@ You will be quizzed on your design choices based on the repo.
 ## Scoring
 
 Your final score will be a weighted average of the components above. The weights will be finalized later.
+
+<!--
+
+TODO:
+
+- Note: We can't avoid deployment completely since we want their API to respond within 10 min of the request.
+- Share questions
+- Share evaluator script
+- Make team collaborators on CloudFlare
+
+-->
