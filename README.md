@@ -151,7 +151,7 @@ Don't bother with the content. **Start with assessments**. Ask ChatGPT for help.
 [GA7C]: https://discourse.onlinedegree.iitm.ac.in/t/ga7-data-analysis-discussion-thread-tds-sep-2025
 [P1]: project-llm-code-deployment.md
 [P1D]: https://discourse.onlinedegree.iitm.ac.in/t/project-1-llm-code-deployement-discussion-thread-tds-sep-2025/188262
-[P2]: https://tds.s-anand.net/project-llm-analysis-quiz
+[P2]: project-llm-analysis-quiz.md
 [P2D]: https://discourse.onlinedegree.iitm.ac.in/t/project-2-llm-analysis-quiz-tds-sep-2025
 [hard]: https://discourse.onlinedegree.iitm.ac.in/t/roe-prep-discussion-thread-tds-may-2025/181581/25
 
