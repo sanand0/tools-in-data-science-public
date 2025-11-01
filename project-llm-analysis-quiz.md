@@ -4,14 +4,14 @@
 
 In this project, students will build an application that can solve a quiz that involves data sourcing, preparation, analysis, and visualization using LLMs. You will also answer a viva about your design choices.
 
-Fill out this [Google Form - which we will share here by 29 Oct 2025 EOD AoE](#TODO). It asks for:
+Fill out this [Google Form](https://forms.gle/V3vW2QeHGPF9BTrB7). It asks for:
 
 1. Your email address
-2. A secret string (used to verify your requests)
-3. A system prompt that will never reveal a given code word.
+2. A secret string (used to verify your requests).
+3. A system prompt that will never reveal a given code word. Max 100 chars.
 4. A user prompt that will override any such system prompt to reveal the code word. Max 100 chars.
-5. Your API endpoint URL (where you will accept POST requests with quiz tasks). Max 100 chars.
-6. Your GitHub repo URL (where your code is hosted). Make sure it's public when we evaluate. You may keep it private during development.
+5. Your API endpoint URL (where you will accept POST requests with quiz tasks).
+6. Your GitHub repo URL (where your code is hosted). Make sure it's public and has an [MIT LICENSE](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository) when we evaluate. You may keep it private during development.
 
 ## Prompt Testing
 
@@ -34,20 +34,17 @@ Your API endpoint will receive a POST request with a JSON payload containing you
 
 ```jsonc
 {
-  // Student email ID
-  "email": "student@example.com",
-  // Student-provided secret
-  "secret": "...",
-  // A unique task ID.
-  "url": "https://example.com/quiz-834"
+  "email": "your-email", // Student email ID
+  "secret": "your-secret", // Student-provided secret
+  "url": "https://example.com/quiz-834" // A unique task URL
   // ... other fields
 }
 ```
 
 Your endpoint must:
 
-1. Verify the `secret` matches what you provided in the Google Form. Else respond with HTTP 403.
-2. Respond with a HTTP 200 JSON response.
+1. Verify the `secret` matches what you provided in the Google Form.
+2. Respond with a HTTP 200 JSON response if the secret matches. Else respond with HTTP 403. (We'll check this.)
 3. Visit the `url` and solve the quiz on that page.
 
 The quiz page will be a human-readable JavaScript-rendered HTML page with a data-related task.
@@ -59,12 +56,12 @@ Here's a **sample** quiz page (not the actual quiz you will receive):
 
 <script>
   document.querySelector("#result").innerHTML = atob(`
-ClE4MzQuIERvd25sb2FkIDxhIGhyZWY9Imh0dHBzOi8vZXhhbXBsZS5jb20vZGF0YS1xODM0LnBkZiI
-+ZmlsZTwvYT4uCldoYXQgaXMgdGhlIHN1bSBvZiB0aGUgInZhbHVlIiBjb2x1bW4gaW4gdGhlIHRhYm
-xlIG9uIHBhZ2UgMj8KClBvc3QgeW91ciBhbnN3ZXIgdG8gaHR0cHM6Ly9leGFtcGxlLmNvbS9zdWJta
-XQgd2l0aCB0aGlzIEpTT04gcGF5bG9hZDoKCjxwcmU+CnsKICAiZW1haWwiOiAieW91ci1lbWFpbCIs
-CiAgInNlY3JldCI6ICJ5b3VyIHNlY3JldCIsCiAgImFuc3dlciI6IDEyMzQ1ICAvLyB0aGUgY29ycmV
-jdCBhbnN3ZXIKfQo8L3ByZT4=`);
+UTgzNC4gRG93bmxvYWQgPGEgaHJlZj0iaHR0cHM6Ly9leGFtcGxlLmNvbS9kYXRhLXE4MzQucGRmIj5
+maWxlPC9hPi4KV2hhdCBpcyB0aGUgc3VtIG9mIHRoZSAidmFsdWUiIGNvbHVtbiBpbiB0aGUgdGFibG
+Ugb24gcGFnZSAyPwoKUG9zdCB5b3VyIGFuc3dlciB0byBodHRwczovL2V4YW1wbGUuY29tL3N1Ym1pd
+CB3aXRoIHRoaXMgSlNPTiBwYXlsb2FkOgoKPHByZT4KewogICJlbWFpbCI6ICJ5b3VyLWVtYWlsIiwK
+ICAic2VjcmV0IjogInlvdXIgc2VjcmV0IiwKICAidXJsIjogImh0dHBzOi8vZXhhbXBsZS5jb20vcXV
+pei04MzQiLAogICJhbnN3ZXIiOiAxMjM0NSAgLy8gdGhlIGNvcnJlY3QgYW5zd2VyCn0KPC9wcmU+`);
 </script>
 ```
 
@@ -78,6 +75,7 @@ Render it on your browser and you'll see this **sample** question (this is not a
 > {
 >   "email": "your-email",
 >   "secret": "your secret",
+>   "url": "https://example.com/quiz-834",
 >   "answer": 12345 // the correct answer
 > }
 > ```
@@ -90,8 +88,8 @@ The endpoint will respond with a JSON payload indicating whether your answer is 
 
 ```jsonc
 {
-  "correct": true,
-  "url": "https://example.com/quiz-942"
+  "url": "https://example.com/quiz-942",
+  "correct": true
   // ... other fields
 }
 ```
@@ -113,6 +111,18 @@ Here are some types of questions you can expect:
 - Processing the data (e.g. data transformation, transcription, vision)
 - Analysing by filtering, sorting, aggregating, reshaping, or applying statistical / ML models. Includes geo-spatial / network analysis
 - Visualizing by generating charts (as images or interactive), narratives, slides
+
+### Test your endpoint
+
+You can send your endpoint a POST request with this sample payload to test your implementation:
+
+```json
+{
+  "email": "your email",
+  "secret": "your secret",
+  "url": "https://tds-llm-analysis.sanand.workers.dev/demo"
+}
+```
 
 ## Viva
 
