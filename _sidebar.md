@@ -97,6 +97,7 @@
   - [Scheduled Scraping with GitHub Actions](scheduled-scraping-with-github-actions.md)
   - [Scraping emarketer.com](scraping-emarketer.md)
   - [Scraping: Live Sessions](scraping-live-sessions.md)
+  - [Making Open Data Useful](making-open-data-useful)
 - [6. Data Preparation](data-preparation.md)
   - **Excel Preparation**
   - [Data Cleansing in Excel](data-cleansing-in-excel.md)
