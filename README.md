@@ -224,4 +224,5 @@ Check these three links regularly to keep up with the course.
 ## Previous terms
 
 - [TDS: Course Content - May 2025](2025-05/)
+  - [Community solutions](https://tdsfu.pages.dev/)
 - [TDS: Course Content - Jan 2025](2025-01/)
