@@ -95,25 +95,26 @@ The endpoint will respond with a HTTP 200 and a JSON payload indicating whether 
 }
 ```
 
-If your answer is correct, you will receive a new `url` to solve unless the quiz is over. If your answer is wrong, you _may_ receive the next `url` to proceed to, or no `url` at all. For example:
-
 ```jsonc
 {
   "correct": false,
   "reason": "The sum you provided is incorrect."
-  // no new url
+  // maybe with no new url provided
 }
 ```
 
-If you receive a `"correct": false` response, you may re-submit within 3 minutes of the _original_ POST reaching our server. Only the last submission within 3 minutes will be considered for evaluation.
+If your answer is wrong:
 
-Your script must visit the `url` and solve the quiz on that page. (Do _not_ solve any captchas on the `url`. They are to detect humans solving the quiz.)
+- you are allowed to re-submit, as long as it is _still_ within 3 minutes of the _original_ POST reaching our server. Only the last submission within 3 minutes will be considered for evaluation.
+- you _may_ receive the next `url` to proceed to. If so, you can choose to skip to that URL instead of re-submitting to the current one.
 
-This process will repeat until no new `url` is provided. Here's a sample sequence:
+If your answer is correct, you will receive a new `url` to solve unless the quiz is over.
+
+When you receive a new `url`, your script must visit the `url` and solve the quiz on that page. Here's a sample sequence:
 
 1. We send you to `url: https://example.com/quiz-834`
-2. You solve it correctly and get `url: https://example.com/quiz-942`
-3. You solve it wrongly and get `url: https://example.com/quiz-123`
+2. You solve it wrongly. You get `url: https://example.com/quiz-942` and solve it.
+3. You solve it wrongly. You re-submit. Now it's correct and you get `url: https://example.com/quiz-123` and solve it.
 4. You solve it correctly and get no new URL, ending the quiz.
 
 Here are some types of questions you can expect:
