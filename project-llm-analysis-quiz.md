@@ -30,6 +30,8 @@ Here's how we will test your system and user prompts:
 
 ## API Endpoint Quiz Tasks
 
+> ![WARNING] This evaluation will start at Sat 29 Nov 2025 at 3:00 pm IST and end at 4:00 pm IST.
+
 Your API endpoint will receive a POST request with a JSON payload containing your email, secret and a quiz URL, like this:
 
 ```jsonc

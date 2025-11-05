@@ -120,7 +120,7 @@ Don't bother with the content. **Start with assessments**. Ask ChatGPT for help.
 | [Data Sourcing][M5]         | [**GA5**][GA5] - [Chat][GA5C] |        |       Wed 15 Oct 2025 |          Mon 27 Oct 2025 |
 | [Data Preparation][M6]      | [**GA6**][GA6] - [Chat][GA6C] |        |       Wed 23 Oct 2025 |          Mon 10 Nov 2025 |
 | [Data Analysis][M7]         | [**GA7**][GA7] - [Chat][GA7C] |        |       Thu 30 Oct 2025 |          Sun 16 Nov 2025 |
-| [Project 2][P2]             | [**P2**][P2] - [Chat][P2D]    |    20% |       Thu 30 Oct 2025 |          Fri 21 Nov 2025 |
+| [Project 2][P2]             | [**P2**][P2] - [Chat][P2D]    |    20% |       Thu 30 Oct 2025 | 3:00 pm, Sat 29 Nov 2025 |
 | [Data Visualization][M8]    | GA8                           |        |       Wed 05 Nov 2025 |          Mon 24 Nov 2025 |
 | Remote Online Exam ([hard]) | ROE                           |    20% | 1 pm, Sun 09 Nov 2025 | 1:45 pm, Sun 09 Nov 2025 |
 | Final end-term              | F                             |    20% |       Sun 21 Dec 2025 |          Sun 21 Dec 2025 |
@@ -160,6 +160,7 @@ Updates:
 - **23 Sep 2025**: We swapped modules 2 & 3. Deployment Tools is now _before_ AI coding - because the AI coding graded assignment needs deployment. Dates revised:
   - GA2 release is on 24 Sep (was 18 Sep).
   - GA3 release is on 1 Oct (was 25 Sep)
+- **05 Nov 2025**: Project 2 will be **live** evaluated between 3:00 pm - 4:00 pm IST on Sat 29 Nov 2025.
 
 ### Notes
 
