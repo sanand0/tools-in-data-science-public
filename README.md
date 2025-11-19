@@ -121,7 +121,7 @@ Don't bother with the content. **Start with assessments**. Ask ChatGPT for help.
 | [Data Preparation][M6]      | [**GA6**][GA6] - [Chat][GA6C] |        |       Wed 23 Oct 2025 |          Mon 10 Nov 2025 |
 | [Data Analysis][M7]         | [**GA7**][GA7] - [Chat][GA7C] |        |       Thu 30 Oct 2025 |          Sun 16 Nov 2025 |
 | [Project 2][P2]             | [**P2**][P2] - [Chat][P2D]    |    20% |       Thu 30 Oct 2025 | 3:00 pm, Sat 29 Nov 2025 |
-| [Data Visualization][M8]    | GA8                           |        |       Wed 05 Nov 2025 |          Mon 24 Nov 2025 |
+| [Data Visualization][M8]    | [**GA8**][GA8] - [Chat][GA8C] |        |       Wed 19 Nov 2025 |          Mon 08 Dec 2025 |
 | Remote Online Exam ([hard]) | [**ROE**][ROE] - [Chat][ROEC] |    20% | 1 pm, Sun 09 Nov 2025 | 1:45 pm, Sun 09 Nov 2025 |
 | Final end-term              | F                             |    20% |       Sun 21 Dec 2025 |          Sun 21 Dec 2025 |
 | _GA = Graded Assignment_    | Best 5 of 8                   |    20% |                       |                          |
@@ -149,6 +149,8 @@ Don't bother with the content. **Start with assessments**. Ask ChatGPT for help.
 [GA6C]: https://discourse.onlinedegree.iitm.ac.in/t/ga6-data-preparation-discussion-thread-tds-sep-2025
 [GA7]: https://exam.sanand.workers.dev/tds-2025-09-ga7
 [GA7C]: https://discourse.onlinedegree.iitm.ac.in/t/ga7-data-analysis-discussion-thread-tds-sep-2025
+[GA8]: https://exam.sanand.workers.dev/tds-2025-09-ga8
+[GA8C]: https://discourse.onlinedegree.iitm.ac.in/t/ga8-data-visualization-discussion-thread-tds-sep-2025
 [P1]: project-llm-code-deployment.md
 [P1D]: https://discourse.onlinedegree.iitm.ac.in/t/project-1-llm-code-deployement-discussion-thread-tds-sep-2025/188262
 [P2]: project-llm-analysis-quiz.md
