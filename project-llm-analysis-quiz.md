@@ -1,6 +1,7 @@
 # Project: LLM Analysis Quiz
 
-> ![WARNING] THIS PROJECT IS WORK IN PROGRESS. SOME DETAILS MAY CHANGE.
+> ![WARNING] The API Project Endpoint will be at <https://tds-llm-analysis.s-anand.net/project2>
+> This will be active from 3:00 pm - 4:00 pm IST on Sat 29 Nov 2025.
 
 In this project, students will build an application that can solve a quiz that involves data sourcing, preparation, analysis, and visualization using LLMs. You will also answer a viva about your design choices.
 
