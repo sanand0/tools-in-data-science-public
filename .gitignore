@@ -25,3 +25,6 @@ project_1/output/
 project2/*result*.*
 project2/*.csv
 .DS_Store
+
+# Other projects
+project*/*.csv
