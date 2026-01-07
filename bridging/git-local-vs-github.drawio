@@ -1,46 +1,42 @@
-<mxfile host="app.diagrams.net" modified="2026-01-07T00:00:00.000Z" agent="TDS-bridging" version="20.8.16" type="device" compressed="false">
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.2.9 Chrome/140.0.7339.249 Electron/38.7.2 Safari/537.36" compressed="false" version="29.2.9">
   <diagram id="git-local-vs-github" name="Page-1">
-    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="697" dy="454" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
-        <mxCell id="0"/>
-        <mxCell id="1" parent="0"/>
-
-        <mxCell id="2" value="Your computer&#xa;Local Git repo" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="80" y="140" width="260" height="90" as="geometry"/>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Your computer&#xa;Local Git repo" vertex="1">
+          <mxGeometry height="90" width="260" x="80" y="140" as="geometry" />
         </mxCell>
-
-        <mxCell id="3" value="Commits&#xa;Branches&#xa;History" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
-          <mxGeometry x="100" y="250" width="220" height="80" as="geometry"/>
+        <mxCell id="3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Commits&#xa;Branches&#xa;History" vertex="1">
+          <mxGeometry height="80" width="220" x="100" y="250" as="geometry" />
         </mxCell>
-
-        <mxCell id="4" value="GitHub (remote)&#xa;Repo hosting" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="720" y="140" width="260" height="90" as="geometry"/>
+        <mxCell id="4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="GitHub (remote)&#xa;Repo hosting" vertex="1">
+          <mxGeometry height="90" width="260" x="720" y="140" as="geometry" />
         </mxCell>
-
-        <mxCell id="5" value="Issues&#xa;Pull requests&#xa;Actions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-          <mxGeometry x="740" y="250" width="220" height="80" as="geometry"/>
+        <mxCell id="5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="Issues&#xa;Pull requests&#xa;Actions" vertex="1">
+          <mxGeometry height="80" width="220" x="740" y="250" as="geometry" />
         </mxCell>
-
-        <mxCell id="6" value="GitHub CLI (gh)&#xa;Terminal tools for GitHub" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
-          <mxGeometry x="400" y="360" width="280" height="80" as="geometry"/>
+        <mxCell id="6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="GitHub CLI (gh)&#xa;Terminal tools for GitHub" vertex="1">
+          <mxGeometry height="80" width="280" x="400" y="360" as="geometry" />
         </mxCell>
-
-        <mxCell id="10" value="push" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="2" target="4">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="10" edge="1" parent="1" source="2" style="endArrow=block;html=1;strokeColor=#000000;" target="4" value="push">
+          <mxGeometry relative="1" y="15" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="11" value="pull" style="endArrow=block;html=1;strokeColor=#000000;dashed=1;" edge="1" parent="1" source="4" target="2">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="11" edge="1" parent="1" source="4" style="endArrow=block;html=1;strokeColor=#000000;dashed=1;" target="2" value="pull">
+          <mxGeometry relative="1" y="15" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
         </mxCell>
-
-        <mxCell id="12" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="2" target="3">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="12" edge="1" parent="1" source="2" style="endArrow=block;html=1;strokeColor=#000000;" target="3">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="13" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="4" target="5">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="13" edge="1" parent="1" source="4" style="endArrow=block;html=1;strokeColor=#000000;" target="5">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <mxCell id="14" style="endArrow=block;html=1;strokeColor=#000000;dashed=1;" edge="1" parent="1" source="6" target="4">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="14" edge="1" parent="1" source="6" style="endArrow=block;html=1;strokeColor=#000000;dashed=1;" target="4">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
