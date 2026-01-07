@@ -1,0 +1,30 @@
+<mxfile host="app.diagrams.net" modified="2026-01-07T00:00:00.000Z" agent="TDS-bridging" version="20.8.16" type="device" compressed="false">
+  <diagram id="css-box-model" name="Page-1">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="2" value="Margin" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="220" y="120" width="620" height="360" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="3" value="Border" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="260" y="160" width="540" height="280" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="4" value="Padding" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="300" y="200" width="460" height="200" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="5" value="Content" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="340" y="240" width="380" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="6" value="CSS box model: margin is outside the border, padding is inside" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="220" y="520" width="620" height="60" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

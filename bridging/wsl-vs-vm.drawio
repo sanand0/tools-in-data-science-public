@@ -1,0 +1,70 @@
+<mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+
+    <mxCell id="2" value="Physical hardware&#xa;CPU / RAM / Disk / Network" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="120" y="40" width="820" height="70" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="3" value="Windows host OS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="120" y="140" width="820" height="70" as="geometry"/>
+    </mxCell>
+
+    <!-- WSL 1 column -->
+    <mxCell id="4" value="WSL 1 (no managed VM)&#xa;Compatibility layer (syscall translation)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="120" y="250" width="390" height="90" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="5" value="Linux userland (distribution)&#xa;bash + CLI tools" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="120" y="360" width="390" height="80" as="geometry"/>
+    </mxCell>
+
+    <!-- WSL 2 column -->
+    <mxCell id="6" value="WSL 2 (managed)&#xa;Lightweight utility VM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="550" y="250" width="390" height="60" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="7" value="Linux kernel (real kernel)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+      <mxGeometry x="550" y="320" width="390" height="60" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="8" value="Linux userland (distribution)&#xa;bash + CLI tools&#xa;full system call compatibility" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="550" y="390" width="390" height="90" as="geometry"/>
+    </mxCell>
+
+    <!-- Integration note -->
+    <mxCell id="9" value="WSL integration with Windows&#xa;- Access Windows files&#xa;- Run Linux + Windows tools side by side&#xa;- VM lifecycle managed automatically (WSL 2)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="1">
+      <mxGeometry x="120" y="500" width="820" height="110" as="geometry"/>
+    </mxCell>
+
+    <!-- arrows -->
+    <mxCell id="10" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="2" target="3">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="11" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="3" target="4">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="12" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="4" target="5">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="13" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="3" target="6">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="14" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="6" target="7">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="15" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="7" target="8">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="16" style="endArrow=block;html=1;strokeColor=#000000;dashed=1;" edge="1" parent="1" source="5" target="9">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="17" style="endArrow=block;html=1;strokeColor=#000000;dashed=1;" edge="1" parent="1" source="8" target="9">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+  </root>
+</mxGraphModel>

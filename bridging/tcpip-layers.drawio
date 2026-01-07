@@ -1,0 +1,44 @@
+<mxfile host="app.diagrams.net" modified="2026-01-07T00:00:00.000Z" agent="TDS-bridging" version="20.8.16" type="device" compressed="false">
+  <diagram id="tcpip-layers" name="Page-1">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="2" value="Application layer&#xa;What you want to do&#xa;Examples: HTTP, DNS, SSH, SMTP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="240" y="60" width="620" height="90" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="3" value="Transport layer&#xa;End-to-end conversation + ports&#xa;TCP (reliable), UDP (datagrams), QUIC (secure over UDP)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="240" y="180" width="620" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="4" value="Internet layer (IP)&#xa;Addressing + routing across networks&#xa;IP, ICMP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="240" y="310" width="620" height="90" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="5" value="Link layer&#xa;Local delivery on a LAN&#xa;Ethernet, Wi-Fi" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="240" y="430" width="620" height="90" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="6" value="Encapsulation (simplified):&#xa;App data → +TCP/UDP/QUIC header → +IP header → +Link frame header" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="240" y="560" width="620" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="10" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="2" target="3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="3" target="4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="4" target="5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="13" style="endArrow=block;html=1;strokeColor=#000000;dashed=1;" edge="1" parent="1" source="5" target="6">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

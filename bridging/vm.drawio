@@ -1,0 +1,39 @@
+<mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+
+    <mxCell id="2" value="Physical hardware&#xa;CPU / RAM / Disk / Network" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="230" y="40" width="390" height="70" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="3" value="Host OS&#xa;(Windows / macOS / Linux)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="230" y="140" width="390" height="70" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="4" value="Hypervisor&#xa;(VirtualBox / VMware / Hyper-V)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="230" y="240" width="390" height="70" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="5" value="Guest OS inside VM&#xa;(Linux kernel + userland)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+      <mxGeometry x="230" y="340" width="390" height="80" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="6" value="Apps inside VM&#xa;(bash, python, services, tools)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="230" y="450" width="390" height="80" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="10" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="2" target="3">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="11" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="3" target="4">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="12" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="4" target="5">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="13" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="5" target="6">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+  </root>
+</mxGraphModel>

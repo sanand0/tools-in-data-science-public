@@ -1,0 +1,54 @@
+<mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+
+    <mxCell id="2" value="Your device&#xa;(browser)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="40" y="180" width="180" height="70" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="3" value="DNS server&#xa;(name to IP)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="310" y="60" width="180" height="70" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="4" value="Internet routers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="310" y="180" width="180" height="70" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="5" value="Web server&#xa;(website)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="580" y="180" width="180" height="70" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="6" value="Database / files" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+      <mxGeometry x="580" y="280" width="180" height="70" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="10" value="1. Ask for IP" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="2" target="3">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="11" value="2. IP address" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="3" target="2">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="12" value="3. HTTP request" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="2" target="4">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="13" value="4. Deliver request" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="4" target="5">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="14" value="5. HTTP response" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="5" target="4">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="15" value="6. Page data" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="4" target="2">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="16" value="Read / write" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="5" target="6">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="17" value="Data" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="6" target="5">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+  </root>
+</mxGraphModel>

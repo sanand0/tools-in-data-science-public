@@ -1,0 +1,50 @@
+<mxfile host="app.diagrams.net" modified="2026-01-07T00:00:00.000Z" agent="TDS-bridging" version="20.8.16" type="device" compressed="false">
+  <diagram id="git-workflow" name="Page-1">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="2" value="Working directory&#xa;(your files)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="120" width="180" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="3" value="Staging area&#xa;(select changes)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="260" y="120" width="180" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="4" value="Commit&#xa;(snapshot)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="480" y="120" width="180" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="5" value="History&#xa;(timeline)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="700" y="120" width="180" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="6" value="Remote repo&#xa;(GitHub / GitLab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="920" y="120" width="180" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="7" value="Branches let you try changes without breaking main work" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="220" y="240" width="660" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="10" value="add" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="2" target="3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="commit" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="3" target="4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="save" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="4" target="5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="13" value="push" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="5" target="6">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="14" value="pull" style="endArrow=block;html=1;strokeColor=#000000;dashed=1;" edge="1" parent="1" source="6" target="5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,95 @@
+<mxfile host="app.diagrams.net" modified="2026-01-07T00:00:00.000Z" agent="TDS-bridging" version="20.8.16" type="device" compressed="false">
+  <diagram id="html-structure" name="Page-1">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="2" value="HTML document" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="390" y="40" width="320" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="3" value="head&#xa;(metadata)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="180" y="160" width="260" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="4" value="body&#xa;(visible content)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="660" y="160" width="260" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="5" value="title" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="120" y="280" width="160" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="6" value="meta tags" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="320" y="280" width="160" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="7" value="link CSS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="120" y="360" width="160" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="8" value="script" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="320" y="360" width="160" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="9" value="headings / paragraphs / links" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="600" y="280" width="220" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="10" value="images" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="850" y="280" width="160" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="11" value="lists" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="600" y="360" width="160" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="12" value="forms / buttons" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="800" y="360" width="210" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="13" value="Browser builds a DOM tree from HTML" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="300" y="480" width="500" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="20" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="2" target="3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="21" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="2" target="4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="22" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="3" target="5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="23" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="3" target="6">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="24" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="3" target="7">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="25" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="3" target="8">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="26" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="4" target="9">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="27" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="4" target="10">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="28" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="4" target="11">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="29" style="endArrow=block;html=1;strokeColor=#000000;" edge="1" parent="1" source="4" target="12">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="30" style="endArrow=block;html=1;strokeColor=#000000;dashed=1;" edge="1" parent="1" source="2" target="13">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
