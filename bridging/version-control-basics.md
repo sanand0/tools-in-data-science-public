@@ -28,6 +28,23 @@ Think of it as a time machine for your project.
 
 ---
 
+## Git vs copying files or backups
+
+Copying folders creates a **snapshot**, but it has limits:
+- It is hard to see **exactly what changed** between copies.
+- Copies grow quickly and get messy (file-1, file-2, final-final).
+- Collaboration is painful because changes are not merged cleanly.
+
+Git gives you **structured history**:
+- Small, labeled **commits** instead of huge duplicate folders.
+- Clear **diffs** to review changes.
+- **Branches** to try ideas safely.
+- Easy **merges** when multiple people work on the same project.
+
+Backups are still useful, but Git is designed for day-to-day change tracking.
+
+---
+
 ## How Git helps
 
 **Git** is the most common version control tool.
