@@ -2,7 +2,7 @@
 
 Your editor is the most important tool in your arsenal. That's where you'll spend most of your time. Make sure you're comfortable with it.
 
-[**Visual Studio Code**](https://code.visualstudio.com/) is, _by far_, the most popular code editor today. According to the [2025 StackOverflow Survey](https://survey.stackoverflow.co/2024/technology/#1-integrated-development-environment](https://survey.stackoverflow.co/2025/technology#1-dev-id-es) almost 75% of developers use it. We recommend you learn it well. Even if you use another editor, you'll be working with others who use it, and it's a good idea to have some exposure.
+[**Visual Studio Code**](https://code.visualstudio.com/) is, _by far_, the most popular code editor today. According to the [2025 StackOverflow Survey](https://survey.stackoverflow.co/2025/technology#1-dev-id-es) almost 75% of developers use it. We recommend you learn it well. Even if you use another editor, you'll be working with others who use it, and it's a good idea to have some exposure.
 
 Watch these introductory videos (35 min) from the [Visual Studio Docs](https://code.visualstudio.com/docs) to get started:
 
