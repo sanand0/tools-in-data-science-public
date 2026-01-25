@@ -114,7 +114,7 @@ The course covers the typical data science workflow:
 | [Content][Source]           | Assessment     | Weight |    Release Date | Submission Date |
 | --------------------------- | -------------- | -----: | --------------: | --------------: |
 | [Entrance Exam][EE]         | [**EE**][EE]   |     0% | Wed 07 Jan 2026 | Mon 02 Feb 2026 |
-| Graded Assignment (GA)      | Best 5 of 8    |    20% |                 |                 |
+| Graded Assignment (GA)      | Best 5 of 8    |    10% |                 |                 |
 | [Setup][GA1]                | [**GA1**][GA1] |        | Wed 28 Jan 2026 | Mon 09 Feb 2026 |
 | [Deploy][GA2]               | [**GA2**][GA2] |        | Wed 04 Feb 2026 | Mon 16 Feb 2026 |
 | [Source][GA3]               | [**GA3**][GA3] |        | Wed 18 Feb 2026 | Mon 02 Mar 2026 |
@@ -126,7 +126,7 @@ The course covers the typical data science workflow:
 | [Project 1][P1]             | [**P1**][P1]   |    20% |  Fri 6 Feb 2026 | Mon 30 Mar 2026 |
 | [Project 2][P2]             | [**P2**][P2]   |    20% |  Fri 6 Mar 2026 | Mon 13 Apr 2026 |
 | Remote Online Exam ([hard]) | [**ROE**][ROE] |    20% | Sat 28 Mar 2026 | Sat 28 Mar 2026 |
-| Final end-term (in-person)  | F              |    20% | Sun 10 May 2026 | Sun 10 May 2026 |
+| Final end-term (in-person)  | F              |    30% | Sun 10 May 2026 | Sun 10 May 2026 |
 
 [Source]: https://github.com/sanand0/tools-in-data-science-public/commits
 [EE]: https://exam.sanand.workers.dev/tds-2026-01-ee
