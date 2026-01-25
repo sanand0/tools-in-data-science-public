@@ -1,8 +1,20 @@
-# Tools in Data Science - Sep 2025
+# Tools in Data Science - Jan 2026
 
 [Tools in Data Science](https://study.iitm.ac.in/ds/course_pages/BSSE2002.html) is a diploma level data science course at IIT Madras.
 
-It teaches the tools used to build & deploy data science applications.
+**It bridges the gap between theory and real-world implementation**. Specifically: you'll learn what tools do data scientists actually use and how.
+
+**It prepares you for AI**. AI is rapidly changing how data science work. You'll practice using AI to learn, execute, and explain data science tasks.
+
+**AI will teach you**. We give you challenges. You learn by yourself, using AI & humans. **Self-learning is part of the course skills**.
+
+[![](thats-what-ai-said.webp)](https://gemini.google.com/share/845c83f4fa9d)
+
+**AI will evaluate you**. Since results vary each run, learn to answer them _robustly_. LLM decisions are **final**.
+
+[![](my-decision-is-final.webp)](https://gemini.google.com/share/845c83f4fa9d)
+
+<!-- Source: https://gemini.google.com/app/8118aff285667319 -->
 
 <details>
 <summary><strong>Anyone can audit this course. It's public.</strong></summary>
@@ -20,7 +32,7 @@ Enrolled [IITM students](https://study.iitm.ac.in/ds/) can additionally particip
 
 You need a _good_ understanding of Python, JavaScript, HTML, APIs, Excel, ChatGPT, and data science concepts.
 
-Try [Graded Assignment 1][GA1]. Drop it if you score low.
+Take the [Entrance Exam][EE]. IITM BS students scoring below 40% shouldn't register for this course (unless there's no choice).
 
 </details>
 
@@ -76,9 +88,11 @@ But the learnings may be worth the effort.
 <details>
 <summary><strong>Copying & ChatGPT are encouraged.</strong></summary>
 
-You _CAN_ copy from friends and LLMs. You can work in groups. You can use the Internet, WhatsApp, ChatGPT, your notes, your friends, your pets...
+You _CAN_ copy from friends and AI. In fact, it's part of the curriculum.
 
-You can share code. Even in projects, assignments, and exams (except the final in-person end-term exam).
+Work in groups. You can use the Internet, WhatsApp, ChatGPT, your notes, your friends, your pets...
+
+Share code. Even in projects, assignments, and exams (except the final in-person end-term exam).
 
 - **Why copy?** Because in real life, there's no time to re-invent the wheel. You'll be working in teams on the shoulders of giants. It's important to learn how to do that well.
 - **To learn well, understand** what you're copying. If you're short of time, prioritize.
@@ -95,82 +109,54 @@ Check [system-requirements.md](system-requirements.md) for permissions you need,
 
 ## 8 modules in 12 weeks
 
-This course covers:
+The course covers the typical data science workflow:
 
-1. **Programming tools** from building to deploying (with & for AI).
-   1. [Development Tools][M1] used to build apps.
-   2. [Deployment Tools][M2] to publish for others to use.
-   3. [AI Coding][M3] to write better code faster.
-   4. [Large Language Models][M4] for apps that use AI.
-2. **Data science tools** from sourcing to narrating.
-   1. [Data Sourcing][M5] to get the data: download, query, scrape.
-   2. [Data Preparation][M6] to clean and transform.
-   3. [Data Analysis][M7] with statistics, geospatial & network analysis.
-   4. [Data Visualization][M8] using charts, slides, and narratives.
-
-Don't bother with the content. **Start with assessments**. Ask ChatGPT for help. If stuck, read content.
-
-| [Content][Source]           | Assessment                    | Weight |          Release Date |          Submission Date |
-| --------------------------- | ----------------------------- | -----: | --------------------: | -----------------------: |
-| [Development Tools][M1]     | [**GA1**][GA1] - [Chat][GA1C] |        |       Wed 03 Sep 2025 |          Sun 05 Oct 2025 |
-| [Deployment Tools][M2]      | [**GA2**][GA2] - [Chat][GA2C] |        |       Wed 24 Sep 2025 |          Sun 05 Oct 2025 |
-| [AI Coding][M3]             | [**GA3**][GA3] - [Chat][GA3C] |        |       Fri 03 Oct 2025 |          Sun 12 Oct 2025 |
-| [Project 1][P1]             | [**P1**][P1] - [Chat][P1D]    |    20% |       Fri 26 Sep 2025 |          Fri 17 Oct 2025 |
-| [Large Language Models][M4] | [**GA4**][GA4] - [Chat][GA4C] |        |       Sat 11 Oct 2025 |          Sun 19 Oct 2025 |
-| [Data Sourcing][M5]         | [**GA5**][GA5] - [Chat][GA5C] |        |       Wed 15 Oct 2025 |          Mon 27 Oct 2025 |
-| [Data Preparation][M6]      | [**GA6**][GA6] - [Chat][GA6C] |        |       Wed 23 Oct 2025 |          Mon 10 Nov 2025 |
-| [Data Analysis][M7]         | [**GA7**][GA7] - [Chat][GA7C] |        |       Thu 30 Oct 2025 |          Sun 16 Nov 2025 |
-| [Project 2][P2]             | [**P2**][P2] - [Chat][P2D]    |    20% |       Thu 30 Oct 2025 | 3:00 pm, Sat 29 Nov 2025 |
-| [Data Visualization][M8]    | [**GA8**][GA8] - [Chat][GA8C] |        |       Wed 19 Nov 2025 |          Mon 08 Dec 2025 |
-| Remote Online Exam ([hard]) | [**ROE**][ROE] - [Chat][ROEC] |    20% | 1 pm, Sun 09 Nov 2025 | 1:45 pm, Sun 09 Nov 2025 |
-| Final end-term              | F                             |    20% |       Sun 21 Dec 2025 |          Sun 21 Dec 2025 |
-| _GA = Graded Assignment_    | Best 5 of 8                   |    20% |                       |                          |
+| [Content][Source]           | Assessment     | Weight |    Release Date | Submission Date |
+| --------------------------- | -------------- | -----: | --------------: | --------------: |
+| [Entrance Exam][EE]         | [**EE**][EE]   |     0% | Wed 07 Jan 2026 | Mon 02 Feb 2026 |
+| Graded Assignment (GA)      | Best 5 of 8    |    20% |                 |                 |
+| [Setup][GA1]                | [**GA1**][GA1] |        | Wed 28 Jan 2026 | Mon 09 Feb 2026 |
+| [Deploy][GA2]               | [**GA2**][GA2] |        | Wed 04 Feb 2026 | Mon 16 Feb 2026 |
+| [Source][GA3]               | [**GA3**][GA3] |        | Wed 18 Feb 2026 | Mon 02 Mar 2026 |
+| [Wrangle][GA4]              | [**GA4**][GA4] |        | Wed 25 Feb 2026 | Mon 09 Mar 2026 |
+| [Analyze][GA5]              | [**GA5**][GA5] |        | Wed 04 Mar 2026 | Mon 16 Mar 2026 |
+| [Test][GA6]                 | [**GA6**][GA6] |        | Wed 11 Mar 2026 | Mon 23 Mar 2026 |
+| [Present][GA7]              | [**GA7**][GA7] |        | Wed 18 Mar 2026 | Mon 30 Mar 2026 |
+| [Package][GA8]              | [**GA8**][GA8] |        | Wed 25 Mar 2026 | Mon 13 Apr 2026 |
+| [Project 1][P1]             | [**P1**][P1]   |    20% |  Fri 6 Feb 2026 | Mon 30 Mar 2026 |
+| [Project 2][P2]             | [**P2**][P2]   |    20% |  Fri 6 Mar 2026 | Mon 13 Apr 2026 |
+| Remote Online Exam ([hard]) | [**ROE**][ROE] |    20% | Sat 28 Mar 2026 | Sat 28 Mar 2026 |
+| Final end-term (in-person)  | F              |    20% | Sun 10 May 2026 | Sun 10 May 2026 |
 
 [Source]: https://github.com/sanand0/tools-in-data-science-public/commits
-[M1]: development-tools.md
-[M2]: deployment-tools.md
-[M3]: ai-coding.md
-[M4]: large-language-models.md
-[M5]: data-sourcing.md
-[M6]: data-preparation.md
-[M7]: data-analysis.md
-[M8]: data-visualization.md
-[GA1]: https://exam.sanand.workers.dev/tds-2025-09-ga1
-[GA1C]: https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-sep-2025/186452
-[GA2]: https://exam.sanand.workers.dev/tds-2025-09-ga2
-[GA2C]: https://discourse.onlinedegree.iitm.ac.in/t/ga2-deployment-tools-discussion-thread-tds-sep-2025/187719
-[GA3]: https://exam.sanand.workers.dev/tds-2025-09-ga3
-[GA3C]: https://discourse.onlinedegree.iitm.ac.in/t/ga3-ai-coding-discussion-thread-tds-sep-2025/188355
-[GA4]: https://exam.sanand.workers.dev/tds-2025-09-ga4
-[GA4C]: https://discourse.onlinedegree.iitm.ac.in/t/ga4-large-language-models-discussion-thread-tds-sep-2025/188822
-[GA5]: https://exam.sanand.workers.dev/tds-2025-09-ga5
-[GA5C]: https://discourse.onlinedegree.iitm.ac.in/t/ga5-data-sourcing-discussion-thread-tds-sep-2025/189387
-[GA6]: https://exam.sanand.workers.dev/tds-2025-09-ga6
-[GA6C]: https://discourse.onlinedegree.iitm.ac.in/t/ga6-data-preparation-discussion-thread-tds-sep-2025
-[GA7]: https://exam.sanand.workers.dev/tds-2025-09-ga7
-[GA7C]: https://discourse.onlinedegree.iitm.ac.in/t/ga7-data-analysis-discussion-thread-tds-sep-2025
-[GA8]: https://exam.sanand.workers.dev/tds-2025-09-ga8
-[GA8C]: https://discourse.onlinedegree.iitm.ac.in/t/ga8-data-visualization-discussion-thread-tds-sep-2025
-[P1]: project-llm-code-deployment.md
-[P1D]: https://discourse.onlinedegree.iitm.ac.in/t/project-1-llm-code-deployement-discussion-thread-tds-sep-2025/188262
-[P2]: project-llm-analysis-quiz.md
-[P2D]: https://discourse.onlinedegree.iitm.ac.in/t/project-2-llm-analysis-quiz-tds-sep-2025
-[ROE]: https://exam.sanand.workers.dev/tds-2025-09-roe
-[ROEC]: https://discourse.onlinedegree.iitm.ac.in/t/roe-discussion-tds-sep-2025/191063
+[EE]: https://exam.sanand.workers.dev/tds-2026-01-ee
+[GA1]: https://exam.sanand.workers.dev/tds-2026-01-ga1-tools
+[GA2]: https://exam.sanand.workers.dev/tds-2026-01-ga2-deploy
+[GA3]: https://exam.sanand.workers.dev/tds-2026-01-ga3-source
+[GA4]: https://exam.sanand.workers.dev/tds-2026-01-ga4-wrangle
+[GA5]: https://exam.sanand.workers.dev/tds-2026-01-ga5-analyze
+[GA6]: https://exam.sanand.workers.dev/tds-2026-01-ga6-test
+[GA7]: https://exam.sanand.workers.dev/tds-2026-01-ga7-present
+[GA8]: https://exam.sanand.workers.dev/tds-2026-01-ga8-package
+[P1]: #TODO
+[P2]: #TODO
+[ROE]: https://exam.sanand.workers.dev/tds-2026-01-roe
 [hard]: https://discourse.onlinedegree.iitm.ac.in/t/roe-prep-discussion-thread-tds-may-2025/181581/25
 
-Updates:
+**Notes**
 
-- **23 Sep 2025**: We swapped modules 2 & 3. Deployment Tools is now _before_ AI coding - because the AI coding graded assignment needs deployment. Dates revised:
-  - GA2 release is on 24 Sep (was 18 Sep).
-  - GA3 release is on 1 Oct (was 25 Sep)
-- **05 Nov 2025**: Project 2 will be **live** evaluated between 3:00 pm - 4:00 pm IST on Sat 29 Nov 2025.
-
-### Notes
-
-- **[Graded Assignment 1][GA1] checks course pre-requisites**. Please drop this course (do it in a later term) if you score low. It'll be too tough for you now.
 - **We may post bonus activities on Discourse**. See [previous bonus activities](https://discourse.onlinedegree.iitm.ac.in/tags/c/courses/tds-kb/34/bonus-marks)
-- **LLMs will evaluate you**. Results vary each run. Learn to answer them _robustly_. LLM decisions are **final**.
+
+## Resources
+
+| Resource                      | IITM                                                                                                                                        | Public                                                                        |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Live Video Sessions           | [YouTube](https://www.youtube.com/@se-lr5ff)                                                                                                | [Archives](live-sessions.md)                                                  |
+| Discussion                    | [IITM](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34)                                                                       | [Public](https://github.com/sanand0/tools-in-data-science-public/discussions) |
+| Course page - Jan 2026        | [IITM](https://seek.onlinedegree.iitm.ac.in/courses/ns_26t1_se2002)                                                                         | [Public](https://tds.s-anand.net/)                                            |
+| Announcement group - Jan 2026 | [IITM](https://groups.google.com/a/study.iitm.ac.in/g/26t1_se2002-announce)                                                                 | [Public](https://groups.google.com/g/tds-iitm)                                |
+| Grading Document - Jan 2026   | #TODO                                                                                                                                       |                                                                               |
+| Student Handbook              | [IITM](https://docs.google.com/document/u/2/d/e/2PACX-1vRxGnnDCVAO3KX2CGtMIcJQuDrAasVk2JHbDxkjsGrTP5ShhZK8N6ZSPX89lexKx86QPAUswSzGLsOA/pub) |                                                                               |
 
 ## Contacts
 
@@ -178,7 +164,7 @@ Updates:
   [root.node@gmail.com](mailto:root.node@gmail.com) |
   [@s.anand](https://discourse.onlinedegree.iitm.ac.in/u/s.anand)
 - **Instructors** teach the course:
-  - Carlton D'Silva.
+  - Carlton D'Silva,
     [22f3001919@ds.study.iitm.ac.in](mailto:22f3001919@ds.study.iitm.ac.in) |
     [@carlton](https://discourse.onlinedegree.iitm.ac.in/u/carlton)
   - [Prasanna S](https://www.linkedin.com/in/prasanna-sugumaran-ab980222/),
@@ -191,43 +177,26 @@ Updates:
   - Jivraj Singh,
     [22f3002542@ds.study.iitm.ac.in](mailto:22f3002542@ds.study.iitm.ac.in) |
     [@Jivraj](https://discourse.onlinedegree.iitm.ac.in/u/jivraj) |
-    [LinkedIn Profile](https://www.linkedin.com/in/jivraj-singh-shekhawat-92a547269/)
+    [LinkedIn](https://www.linkedin.com/in/jivraj-singh-shekhawat-92a547269/)
+  - Mayank Poddar,
+    [23f3004197@ds.study.iitm.ac.in](mailto:23f3004197@ds.study.iitm.ac.in) |
+    [@23f3004197](https://discourse.onlinedegree.iitm.ac.in/u/23f3004197) |
+    [LinkedIn](https://www.linkedin.com/in/mynkpdr)
   - [Virtual TA](https://chatgpt.com/g/g-mZqKVxKDx-iitm-tds-teaching-assistant)
     ([GPT Instructions](tds-ta-instructions.md))
-
-## Links
-
-- [TDS: **Live Video Sessions**](live-sessions.md) + [YouTube Channel](https://www.youtube.com/@se-lr5ff)
-- [TDS: **Course files**](https://drive.google.com/drive/folders/1FE0YPAxcxMzZdjnp3FopuJCI3A2Vq6fC?usp=drive_link) -- Jupyter notebooks, datasets, etc.
-
-IITM student links:
-
-- [TDS: **Discourse** (for IITM students)](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34) - Ask questions, get help, and discuss with your peers.
-- [TDS: **Course page** - Sep 2025](https://seek.onlinedegree.iitm.ac.in/courses/ns_25t3_se2002)
-- [TDS: **Announcement group** - Sep 2025](https://groups.google.com/a/study.iitm.ac.in/g/25t3_se2002-announce)
-
-BS in Data Science Program links:
-
-- [Grading Document - Sep 2025](https://docs.google.com/document/u/2/d/e/2PACX-1vSBP6TJyZDklGPMyRtTwQc1cWZKOrozsOy5qmBwB8awTFvBbPN33-IxUV2WYupNdlXQOCgKwV9fDQKq/pub)
-- [Student Handbook - IITM BS Degree Programme](https://docs.google.com/document/u/2/d/e/2PACX-1vRxGnnDCVAO3KX2CGtMIcJQuDrAasVk2JHbDxkjsGrTP5ShhZK8N6ZSPX89lexKx86QPAUswSzGLsOA/pub)
-
-<!--
-
-- [Back-end for configuring the lessons](https://cb-prod.seek.study.iitm.ac.in/25t1_se2002/)
-
--->
 
 ## Check communications
 
 Check these three links regularly to keep up with the course.
 
-1. **[Seek Notifications](https://seek.onlinedegree.iitm.ac.in/)** for Course Notifications. Log into [seek.onlinedegree.iitm.ac.in](https://seek.onlinedegree.iitm.ac.in/) and click on the bell icon :bell: on the top right corner :arrow_upper_right:. Check notifications daily.
+1. **[Seek Notifications](https://seek.onlinedegree.iitm.ac.in/)** for Course Notifications. Log into [seek.onlinedegree.iitm.ac.in](https://seek.onlinedegree.iitm.ac.in/) and click on the bell icon on the top right corner. Check notifications daily.
    ![Portal Inbox](images/portal_notifications.webp)
 2. **[Your email](https://mail.google.com/)** for Course Announcements. [Seek](https://seek.onlinedegree.iitm.ac.in/) Inbox are forwarded to your email. Check daily. Check spam folders too.
 3. **[TDS Discourse](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34)**: Faculty, instructors, and TAs will share updates and address queries here. Email [support@study.iitm.ac.in](mailto:support@study.iitm.ac.in) cc: [discourse-staff1@study.iitm.ac.in](mailto:discourse-staff1@study.iitm.ac.in) if you can't access Discourse.
 
 ## Previous terms
 
+- [TDS: Course Content - Sep 2025](2025-09/)
 - [TDS: Course Content - May 2025](2025-05/)
   - [Community solutions](https://tdsfu.pages.dev/)
 - [TDS: Course Content - Jan 2025](2025-01/)
