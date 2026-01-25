@@ -6,15 +6,15 @@ The final score for the course is calculated as follows:
 
 | Components (All out of 100)              | Weight  |
 |------------------------------------------|---------|
-| Grade Assessments **(GA)** <br> Best 5/8 | 20%     |
+| Grade Assessments **(GA)** <br> Best 5/8 | 10%     |
 | Project 1 **(P1)**                       | 20%     |
 | Project 2 **(P2)**                       | 20%     |
 | Remote Online Exam **(ROE)**             | 20%     |
-| End Term **(ET)**                        | 20%     |
+| End Term **(ET)**                        | 30%     |
 
 #### End Term Eligibility: Best 4/5 first GAs Average >= 40
 
-T = 0.2 GA + 0.2 P1 + 0.2 P2 + 0.2 ROE + 0.2 ET
+T = 0.1 GA + 0.2 P1 + 0.2 P2 + 0.2 ROE + 0.3 ET
 
 > Note: The scores are updated one to two days after the deadline for the GAs and ROEs. Score updates for Projects can take more than a week or two due to large evaluation time frames.
 
