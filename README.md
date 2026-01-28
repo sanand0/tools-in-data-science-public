@@ -155,7 +155,7 @@ The course covers the typical data science workflow:
 | Discussion                    | [IITM](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34)                                                                       | [Public](https://github.com/sanand0/tools-in-data-science-public/discussions) |
 | Course page - Jan 2026        | [IITM](https://seek.onlinedegree.iitm.ac.in/courses/ns_26t1_se2002)                                                                         | [Public](https://tds.s-anand.net/)                                            |
 | Announcement group - Jan 2026 | [IITM](https://groups.google.com/a/study.iitm.ac.in/g/26t1_se2002-announce)                                                                 | [Public](https://groups.google.com/g/tds-iitm)                                |
-| Grading Document - Jan 2026   | #TODO                                                                                                                                       |                                                                               |
+| Grading Document - Jan 2026   | [IITM](https://docs.google.com/document/d/e/2PACX-1vSUvKzH7yIXNVwUgRYSIT8M0x1jhFSkslEtj9UPo3dtWI_sJ38Hh_PzbBygpF0vIOo8K7lTy-uYkqdu/pub)     |                                                                               |
 | Student Handbook              | [IITM](https://docs.google.com/document/u/2/d/e/2PACX-1vRxGnnDCVAO3KX2CGtMIcJQuDrAasVk2JHbDxkjsGrTP5ShhZK8N6ZSPX89lexKx86QPAUswSzGLsOA/pub) |                                                                               |
 
 ## Contacts
