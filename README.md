@@ -130,14 +130,14 @@ The course covers the typical data science workflow:
 
 [Source]: https://github.com/sanand0/tools-in-data-science-public/commits
 [EE]: https://exam.sanand.workers.dev/tds-2026-01-ee
-[GA1]: https://exam.sanand.workers.dev/tds-2026-01-ga1-tools
-[GA2]: https://exam.sanand.workers.dev/tds-2026-01-ga2-deploy
-[GA3]: https://exam.sanand.workers.dev/tds-2026-01-ga3-source
-[GA4]: https://exam.sanand.workers.dev/tds-2026-01-ga4-wrangle
-[GA5]: https://exam.sanand.workers.dev/tds-2026-01-ga5-analyze
-[GA6]: https://exam.sanand.workers.dev/tds-2026-01-ga6-test
-[GA7]: https://exam.sanand.workers.dev/tds-2026-01-ga7-present
-[GA8]: https://exam.sanand.workers.dev/tds-2026-01-ga8-package
+[GA1]: https://exam.sanand.workers.dev/tds-2026-01-ga1
+[GA2]: https://exam.sanand.workers.dev/tds-2026-01-ga2
+[GA3]: https://exam.sanand.workers.dev/tds-2026-01-ga3
+[GA4]: https://exam.sanand.workers.dev/tds-2026-01-ga4
+[GA5]: https://exam.sanand.workers.dev/tds-2026-01-ga5
+[GA6]: https://exam.sanand.workers.dev/tds-2026-01-ga6
+[GA7]: https://exam.sanand.workers.dev/tds-2026-01-ga7
+[GA8]: https://exam.sanand.workers.dev/tds-2026-01-ga8
 [P1]: #TODO
 [P2]: #TODO
 [ROE]: https://exam.sanand.workers.dev/tds-2026-01-roe
