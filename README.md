@@ -160,30 +160,22 @@ The course covers the typical data science workflow:
 
 ## Contacts
 
-- **Faculty** creates content: [Anand S](https://www.linkedin.com/in/sanand0/),
-  [root.node@gmail.com](mailto:root.node@gmail.com) |
-  [@s.anand](https://discourse.onlinedegree.iitm.ac.in/u/s.anand)
-- **Instructors** teach the course:
-  - Carlton D'Silva,
-    [22f3001919@ds.study.iitm.ac.in](mailto:22f3001919@ds.study.iitm.ac.in) |
-    [@carlton](https://discourse.onlinedegree.iitm.ac.in/u/carlton)
-  - [Prasanna S](https://www.linkedin.com/in/prasanna-sugumaran-ab980222/),
-    [prasanna@study.iitm.ac.in](mailto:prasanna@study.iitm.ac.in) |
-    [@iamprasna](https://discourse.onlinedegree.iitm.ac.in/u/iamprasna)
-- **Teaching assistants** answer your doubts:
-  - Hritik Roshan Maurya,
-    [22f3002460@ds.study.iitm.ac.in](mailto:22f3002460@ds.study.iitm.ac.in) |
-    [@HritikRoshan_HRM](https://discourse.onlinedegree.iitm.ac.in/u/hritikroshan_hrm)
-  - Jivraj Singh,
-    [22f3002542@ds.study.iitm.ac.in](mailto:22f3002542@ds.study.iitm.ac.in) |
-    [@Jivraj](https://discourse.onlinedegree.iitm.ac.in/u/jivraj) |
-    [LinkedIn](https://www.linkedin.com/in/jivraj-singh-shekhawat-92a547269/)
-  - Mayank Poddar,
-    [23f3004197@ds.study.iitm.ac.in](mailto:23f3004197@ds.study.iitm.ac.in) |
-    [@23f3004197](https://discourse.onlinedegree.iitm.ac.in/u/23f3004197) |
-    [LinkedIn](https://www.linkedin.com/in/mynkpdr)
-  - [Virtual TA](https://chatgpt.com/g/g-mZqKVxKDx-iitm-tds-teaching-assistant)
-    ([GPT Instructions](tds-ta-instructions.md))
+| Role               | Name                                                                               | Email                                                                   | Discourse                                                                         |
+| ------------------ | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| Faculty            | [Anand S](https://www.linkedin.com/in/sanand0/)                                    | [root.node@gmail.com](mailto:root.node@gmail.com)                       | [@s.anand](https://discourse.onlinedegree.iitm.ac.in/u/s.anand)                   |
+| Instructor         | [Carlton D'Silva](https://www.linkedin.com/in/carlton-d-silva-13770b35a)           | [22f3001919@ds.study.iitm.ac.in](mailto:22f3001919@ds.study.iitm.ac.in) | [@carlton](https://discourse.onlinedegree.iitm.ac.in/u/carlton)                   |
+| Instructor         | [Prasanna S](https://www.linkedin.com/in/prasanna-sugumaran-ab980222/)             | [prasanna@study.iitm.ac.in](mailto:prasanna@study.iitm.ac.in)           | [@iamprasna](https://discourse.onlinedegree.iitm.ac.in/u/iamprasna)               |
+| Teaching Assistant | [Hritik Roshan Maurya](https://www.linkedin.com/in/hritik-roshan-maurya-28446411a) | [22f3002460@ds.study.iitm.ac.in](mailto:22f3002460@ds.study.iitm.ac.in) | [@HritikRoshan_HRM](https://discourse.onlinedegree.iitm.ac.in/u/hritikroshan_hrm) |
+| Teaching Assistant | [Jivraj Singh](https://www.linkedin.com/in/jivraj-singh-shekhawat-92a547269/)      | [22f3002542@ds.study.iitm.ac.in](mailto:22f3002542@ds.study.iitm.ac.in) | [@Jivraj](https://discourse.onlinedegree.iitm.ac.in/u/jivraj)                     |
+| Teaching Assistant | [Mayank Poddar](https://www.linkedin.com/in/mynkpdr)                               | [23f3004197@ds.study.iitm.ac.in](mailto:23f3004197@ds.study.iitm.ac.in) | [@23f3004197](https://discourse.onlinedegree.iitm.ac.in/u/23f3004197)             |
+
+What to contact whom, for what, and how:
+
+- Contact teaching assistants about the subject ("How do I solve this assignment / project") **after** asking AI twice.
+- Contact instructors for exceptions ("My marks are wrong", "I need an extension", etc.) after asking AI, TAs, and with proof.
+- Contact faculty for suggestions on next term's course content.
+
+We used to have a [Virtual TA](https://chatgpt.com/g/g-mZqKVxKDx-iitm-tds-teaching-assistant) (a [custom GPT](tds-ta-instructions.md)) who has retired now.
 
 ## Check communications
 
