@@ -1,0 +1,27 @@
+<!-- Explicit dark/light toggle in sidebar.
+     `BookTheme` stays `auto`; this adds user override persisted in localStorage. -->
+<button id="tds-theme-toggle" class="tds-theme-toggle" type="button" aria-label="Toggle dark and light mode">◐ Theme</button>
+<script>
+  (function () {
+    var btn = document.getElementById("tds-theme-toggle");
+    if (!btn) return;
+
+    var getTheme = function () {
+      var saved = localStorage.getItem("tds-theme");
+      if (saved === "light" || saved === "dark") return saved;
+      return "dark";
+    };
+
+    var applyTheme = function (theme) {
+      document.documentElement.setAttribute("data-user-theme", theme);
+      localStorage.setItem("tds-theme", theme);
+      btn.textContent = theme === "dark" ? "☀ Light Mode" : "☾ Dark Mode";
+    };
+
+    applyTheme(getTheme());
+    btn.addEventListener("click", function () {
+      var now = document.documentElement.getAttribute("data-user-theme");
+      applyTheme(now === "dark" ? "light" : "dark");
+    });
+  })();
+</script>

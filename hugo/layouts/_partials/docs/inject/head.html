@@ -1,0 +1,9 @@
+<!-- Apply persisted user theme before paint to avoid theme flash. -->
+<script>
+  (function () {
+    var t = localStorage.getItem("tds-theme");
+    if (t === "light" || t === "dark") {
+      document.documentElement.setAttribute("data-user-theme", t);
+    }
+  })();
+</script>
