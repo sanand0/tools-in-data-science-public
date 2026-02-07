@@ -273,7 +273,7 @@ done < <(git -C "$ROOT_DIR" ls-files '*.md')
 while IFS= read -r rel; do
   mkdir -p "$STATIC_DIR/$(dirname "$rel")"
   cp "$ROOT_DIR/$rel" "$STATIC_DIR/$rel"
-done < <(git -C "$ROOT_DIR" ls-files | rg -v '\.md$')
+done < <(git -C "$ROOT_DIR" ls-files | grep -v '\.md$')
 
 hugo --source "$SITE_DIR" --destination "$OUTPUT_DIR" --minify
 
