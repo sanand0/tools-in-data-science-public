@@ -48,9 +48,9 @@ This is how the CBFC data flow was cracked and reproduced. ([CBFC Watch][1])
 
 Good uses:
 
-* Classify a text into action types and topics.
-* Extract structured fields into a strict JSON schema.
-* Normalize messy strings and variants.
+- Classify a text into action types and topics.
+- Extract structured fields into a strict JSON schema.
+- Normalize messy strings and variants.
 
 That is how **CBFC Watch** turned 100k free-text “cut notes” into analyzable columns, cheaply and at scale. Define the schema yourself, validate every response, and keep an audit trail. ([CBFC Watch][1])
 
@@ -78,9 +78,9 @@ Most projects in this family run fully in the browser. They are fast, cost nothi
 
 Good defaults:
 
-* Host on GitHub Pages or Netlify.
-* Use DuckDB-WASM or sql.js for querying in the browser.
-* Keep any search index external only if you must. Otherwise ship a small index file.
+- Host on GitHub Pages or Netlify.
+- Use DuckDB-WASM or sql.js for querying in the browser.
+- Keep any search index external only if you must. Otherwise ship a small index file.
 
 ---
 
@@ -90,9 +90,9 @@ A journalist said about CBFC Watch, “You brought it on a platter.” That did 
 
 What to include:
 
-* **Data dictionary** with one-line explanations and allowed values.
-* **One reproducible notebook** (R, Python, or SQL in DuckDB) that rebuilds a figure from your released CSV.
-* **Example queries or links** that show interesting slices.
+- **Data dictionary** with one-line explanations and allowed values.
+- **One reproducible notebook** (R, Python, or SQL in DuckDB) that rebuilds a figure from your released CSV.
+- **Example queries or links** that show interesting slices.
 
 ---
 
@@ -100,9 +100,9 @@ What to include:
 
 Your site is one view of the data, not the only view. Offer:
 
-* A simple search and browse view for curious readers.
-* A downloadable CSV and code for developers.
-* A notebook for analysts and reporters.
+- A simple search and browse view for curious readers.
+- A downloadable CSV and code for developers.
+- A notebook for analysts and reporters.
 
 See the menu of paths on the **Diagram Chasing** site and project pages. ([diagramchasing.fun][4])
 
@@ -112,9 +112,9 @@ See the menu of paths on the **Diagram Chasing** site and project pages. ([diagr
 
 People understand “Google-like” queries. Back your search with a fast index and parse a small syntax such as:
 
-* `field:value` for exact match
-* `field:~value` for contains
-* `year>=2021` for numeric comparisons
+- `field:value` for exact match
+- `field:~value` for contains
+- `year>=2021` for numeric comparisons
 
 CBFC Watch uses a fast index with a simple front door rather than a wall of checkboxes. Start there. ([CBFC Watch][1])
 
@@ -134,28 +134,28 @@ A well-composed narrative page beats a generic dashboard. Study the storytelling
 
 ## 11. Common government-data headaches, with fixes
 
-* **Spelling and language variants** → Normalize and classify with your schema and validator. ([CBFC Watch][1])
-* **Cryptic codes and codebooks** → Build lookup tables and ship them with your repo. Show values in plain words, not numbers. ([diagramchasing.fun][3])
-* **Ten files for one dataset** → Write one parser per file type, then standardize and append into a single table. ([diagramchasing.fun][3])
-* **Maze-like portals** → Recreate the smallest UI that answers realistic questions and make it linkable. Compare your flow to Diagram Chasing’s examples. ([diagramchasing.fun][4])
+- **Spelling and language variants** → Normalize and classify with your schema and validator. ([CBFC Watch][1])
+- **Cryptic codes and codebooks** → Build lookup tables and ship them with your repo. Show values in plain words, not numbers. ([diagramchasing.fun][3])
+- **Ten files for one dataset** → Write one parser per file type, then standardize and append into a single table. ([diagramchasing.fun][3])
+- **Maze-like portals** → Recreate the smallest UI that answers realistic questions and make it linkable. Compare your flow to Diagram Chasing’s examples. ([diagramchasing.fun][4])
 
 ---
 
 ## 12. Minimal, modern stack that students can ship
 
-* **Scraping**: DevTools Network + HAR; Playwright or `httpx`; keep raw responses. ([CBFC Watch][1])
-* **Cleaning**: Python or R with Pandas/Dplyr; DuckDB for joins.
-* **LLM-ops**: Small batches with a strict JSON schema and a validator. ([CBFC Watch][1])
-* **Search**: Typesense or a small client-side index; add a tiny query parser. ([CBFC Watch][1])
-* **Web**: Static site with MapLibre or a light charting library. See **BLR Water Log** and **Time Use Explorer** for inspiration. ([diagramchasing.fun][6])
-* **Docs**: Markdown pages in the repo; one notebook that runs end-to-end.
+- **Scraping**: DevTools Network + HAR; Playwright or `httpx`; keep raw responses. ([CBFC Watch][1])
+- **Cleaning**: Python or R with Pandas/Dplyr; DuckDB for joins.
+- **LLM-ops**: Small batches with a strict JSON schema and a validator. ([CBFC Watch][1])
+- **Search**: Typesense or a small client-side index; add a tiny query parser. ([CBFC Watch][1])
+- **Web**: Static site with MapLibre or a light charting library. See **BLR Water Log** and **Time Use Explorer** for inspiration. ([diagramchasing.fun][6])
+- **Docs**: Markdown pages in the repo; one notebook that runs end-to-end.
 
 ---
 
 ## Case studies
 
-* **CBFC Watch** — a first searchable archive of film modifications, with deep links, context charts, and open data. ([CBFC Watch][1])
-* **India Time Use Explorer** — a static, browser-only explorer for a huge national survey, with a data dictionary and “how to use.” ([diagramchasing.fun][3])
-* **BLR Water Log** — a static map that visualizes natural drainage and flood risk across Bengaluru. ([diagramchasing.fun][6])
-* **Votes in a name?** — a narrative analysis with meaningful visuals that investigates namesake candidates. ([diagramchasing.fun][5])
-* **Who is my neta?** — a unified view that joins multiple public sources into a civic tool. ([diagramchasing.fun][4])
+- **CBFC Watch** — a first searchable archive of film modifications, with deep links, context charts, and open data. ([CBFC Watch][1])
+- **India Time Use Explorer** — a static, browser-only explorer for a huge national survey, with a data dictionary and “how to use.” ([diagramchasing.fun][3])
+- **BLR Water Log** — a static map that visualizes natural drainage and flood risk across Bengaluru. ([diagramchasing.fun][6])
+- **Votes in a name?** — a narrative analysis with meaningful visuals that investigates namesake candidates. ([diagramchasing.fun][5])
+- **Who is my neta?** — a unified view that joins multiple public sources into a civic tool. ([diagramchasing.fun][4])

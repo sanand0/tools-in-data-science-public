@@ -59,8 +59,7 @@ The agent understands your project context and can make complex, multi-file chan
 
 **Best for:** Full-stack applications, educational projects, and rapid prototyping with immediate deployment needs.
 
-[![Meet the Replit Agent
-](https://i.ytimg.com/vi_webp/IYiVPrxY8-Y/sddefault.webp)](https://youtu.be/IYiVPrxY8-Y)
+[![Meet the Replit Agent](https://i.ytimg.com/vi_webp/IYiVPrxY8-Y/sddefault.webp)](https://youtu.be/IYiVPrxY8-Y)
 
 [Import from GitHub to Replit](https://docs.replit.com/getting-started/quickstarts/import-from-github)
 
@@ -80,8 +79,7 @@ The platform specializes in modern web frameworks and provides instant deploymen
 
 **Best for:** Front-end prototypes, web applications, and demos that need immediate sharing capabilities.
 
-[![Get Started with Bolt.new
-](https://i.ytimg.com/vi_webp/iFcc7FZH-xs/sddefault.webp)](https://youtu.be/iFcc7FZH-xs)
+[![Get Started with Bolt.new](https://i.ytimg.com/vi_webp/iFcc7FZH-xs/sddefault.webp)](https://youtu.be/iFcc7FZH-xs)
 
 [Bolt.new Gallery: See what others have built](https://bolt.new/gallery)
 

@@ -20,18 +20,20 @@ Common encoding issues you'll encounter:
 
 ```python
 # Reading files with explicit encoding
-with open('file.txt', encoding='utf-8') as f:
+with open("file.txt", encoding="utf-8") as f:
     text = f.read()
 
 # Handling encoding errors
 import pandas as pd
-df = pd.read_csv('data.csv', encoding='utf-8', errors='replace')
+
+df = pd.read_csv("data.csv", encoding="utf-8", errors="replace")
 
 # Detecting file encoding
 import chardet
-with open('unknown.txt', 'rb') as f:
+
+with open("unknown.txt", "rb") as f:
     result = chardet.detect(f.read())
-print(result['encoding'])
+print(result["encoding"])
 ```
 
 [![Code Pages, Character Encoding, Unicode, UTF-8 and the BOM - Computer Stuff They Didn't Teach You #2 (17 min)](https://i.ytimg.com/vi_webp/jeIBNn5Y5fI/sddefault.webp)](https://youtu.be/jeIBNn5Y5fI)

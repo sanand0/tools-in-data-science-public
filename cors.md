@@ -32,7 +32,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-app.add_middleware(CORSMiddleware, allow_origins=["*"]) # Allow GET requests from all origins
+app.add_middleware(CORSMiddleware, allow_origins=["*"])  # Allow GET requests from all origins
 # Or, provide more granular control:
 app.add_middleware(
     CORSMiddleware,

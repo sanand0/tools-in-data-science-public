@@ -36,10 +36,12 @@ app = FastAPI()
 # Create a list of items that will act like a database
 items: List[Dict[str, float | int | str]] = []
 
+
 # Create a GET endpoint that returns all items
 @app.get("/items")
 async def get_items() -> List[Dict[str, float | int | str]]:
     return items
+
 
 # Create a GET endpoint that returns a specific item by ID
 @app.get("/items/{item_id}")
@@ -48,6 +50,7 @@ async def get_item(item_id: int) -> Dict[str, float | int | str]:
         return item
     raise HTTPException(status_code=404, detail="Item not found")
 
+
 # Create a POST endpoint that creates a new item
 @app.post("/items")
 async def create_item(item: Dict[str, float | str]) -> Dict[str, float | int | str]:
@@ -55,8 +58,10 @@ async def create_item(item: Dict[str, float | str]) -> Dict[str, float | int | s
     items.append(new_item)
     return new_item
 
+
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(app, host="0.0.0.0", port=8000)
 ```
 
@@ -87,11 +92,7 @@ Best Practices:
    ```
 3. **Handle Errors Consistently**
    ```python
-   {
-     "error": "Not Found",
-     "message": "User 123 not found",
-     "status_code": 404
-   }
+   {"error": "Not Found", "message": "User 123 not found", "status_code": 404}
    ```
 4. **Use Query Parameters for Filtering**
    ```

@@ -4,13 +4,13 @@
 
 The final score for the course is calculated as follows:
 
-| Components (All out of 100)              | Weight  |
-|------------------------------------------|---------|
-| Grade Assessments **(GA)** <br> Best 5/8 | 20%     |
-| Project 1 **(P1)**                       | 20%     |
-| Project 2 **(P2)**                       | 20%     |
-| Remote Online Exam **(ROE)**             | 20%     |
-| End Term **(ET)**                        | 20%     |
+| Components (All out of 100)              | Weight |
+| ---------------------------------------- | ------ |
+| Grade Assessments **(GA)** <br> Best 5/8 | 20%    |
+| Project 1 **(P1)**                       | 20%    |
+| Project 2 **(P2)**                       | 20%    |
+| Remote Online Exam **(ROE)**             | 20%    |
+| End Term **(ET)**                        | 20%    |
 
 #### End Term Eligibility: Best 4/5 first GAs Average >= 40
 

@@ -43,7 +43,7 @@ import requests
 response = requests.post(
     "http://localhost:8080/v1/chat/completions",
     headers={"Content-Type": "application/json"},
-    json={"messages": [{"role": "user", "content": "Write a haiku about coding"}]}
+    json={"messages": [{"role": "user", "content": "Write a haiku about coding"}]},
 )
 print(response.json()["choices"][0]["message"]["content"])
 ```

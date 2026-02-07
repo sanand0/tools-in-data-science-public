@@ -46,14 +46,14 @@ from bs4 import BeautifulSoup
 import requests
 
 response = requests.get("https://example.com/products")
-soup = BeautifulSoup(response.content, 'html.parser')
-products = soup.find_all('div', class_='product-card')
+soup = BeautifulSoup(response.content, "html.parser")
+products = soup.find_all("div", class_="product-card")
 
 data = []
 for product in products:
-    title = product.find('h2', class_='title').text
-    price = product.find('span', class_='price').text
-    data.append({'title': title, 'price': price})
+    title = product.find("h2", class_="title").text
+    price = product.find("span", class_="price").text
+    data.append({"title": title, "price": price})
 ```
 
 ### Vibe scraping
@@ -77,16 +77,19 @@ Chrome Remote Debugging allows programmatic control of Chrome, enabling authenti
 ### Step 1: Launch Chrome in debug mode
 
 **Windows:**
+
 ```bash
 "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222 --user-data-dir="C:\chrome-debug-profile"
 ```
 
 **Mac:**
+
 ```bash
 /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222 --user-data-dir="/tmp/chrome-debug-profile"
 ```
 
 **Linux:**
+
 ```bash
 google-chrome --remote-debugging-port=9222 --user-data-dir="/tmp/chrome-debug-profile"
 ```
@@ -109,6 +112,7 @@ The browser is already logged into [website name].
 ```
 
 The agent will:
+
 - Connect to Chrome via the Chrome DevTools Protocol
 - Navigate to pages
 - Extract data
@@ -158,6 +162,7 @@ Save as salesforce_data.json.
 ```
 
 The LLM can:
+
 - Trigger hovers to reveal tooltips
 - Wait for lazy-loaded content
 - Handle dynamic JavaScript rendering
@@ -166,12 +171,14 @@ The LLM can:
 ### Security considerations
 
 **Pros:**
+
 - No credential storage in code
 - Browser maintains session state
 - Full control over what's accessed
 - Can review actions in real-time
 
 **Cons:**
+
 - Agent can access anything you're logged into
 - Potential for unintended actions
 - May violate site terms of service
@@ -196,6 +203,7 @@ Scrape all visible data AND all hover-revealed content.
 ```
 
 The LLM will:
+
 - Identify hoverable elements
 - Trigger hover events via JavaScript
 - Wait for content to appear
@@ -233,6 +241,7 @@ images, ensuring they're fully loaded before extraction.
 ```
 
 The LLM handles:
+
 - Scrolling to trigger lazy load
 - Waiting for `src` attributes to populate
 - Distinguishing placeholder vs actual images
@@ -248,7 +257,7 @@ import requests
 from bs4 import BeautifulSoup
 
 response = requests.get(url)
-soup = BeautifulSoup(response.content, 'html.parser')
+soup = BeautifulSoup(response.content, "html.parser")
 ```
 
 **Pros**: Fast, no browser overhead
@@ -293,6 +302,7 @@ more complex approaches. Report which method succeeded.
 ```
 
 The LLM will:
+
 1. Attempt `requests` + BeautifulSoup
 2. If JavaScript-rendered, switch to Playwright
 3. If API exists, use that instead
@@ -305,11 +315,13 @@ LLMs understand semantic structure, not just HTML structure.
 ### Example: Product listings
 
 **Traditional scraping:**
+
 ```python
-products = soup.find_all('div', class_='product-grid-item')
+products = soup.find_all("div", class_="product-grid-item")
 ```
 
 **Vibe scraping:**
+
 ```
 Extract all products on this page. For each, include:
 - Product name
@@ -327,6 +339,7 @@ Output as products.json with this schema:
 ```
 
 The LLM:
+
 - Identifies products semantically (not by class name)
 - Normalizes currencies
 - Extracts nested data (ratings from star images)
@@ -340,6 +353,7 @@ Convert it to a flat CSV where each row is fully denormalized.
 ```
 
 The LLM handles:
+
 - Interpreting rowspan/colspan
 - Carrying forward merged cell values
 - Creating proper hierarchical headers
@@ -392,11 +406,13 @@ LLMs can debug scraping failures autonomously.
 ### Scenario: Selector not found
 
 **Error:**
+
 ```
 Element not found: .product-card
 ```
 
 **Prompt:**
+
 ```
 The scraper failed with "Element not found: .product-card".
 Inspect the page HTML and find the correct selector.
@@ -404,6 +420,7 @@ Update the scraper and try again.
 ```
 
 The LLM:
+
 - Fetches current page HTML
 - Identifies product elements by semantic meaning
 - Updates selectors
@@ -412,11 +429,13 @@ The LLM:
 ### Scenario: Rate limiting
 
 **Error:**
+
 ```
 HTTP 429 Too Many Requests
 ```
 
 **Prompt:**
+
 ```
 Scraping failed due to rate limiting. Modify the scraper to:
 - Add delays between requests (2-5 seconds)
@@ -459,6 +478,7 @@ Highlight best deals (>20% cheaper than alternatives).
 ```
 
 The LLM:
+
 - Writes three separate scrapers
 - Normalizes product names (e.g., "Sony WH-1000XM5" variations)
 - Calculates savings
@@ -479,6 +499,7 @@ Create a scraper that:
 ```
 
 The LLM generates:
+
 - Scraper script
 - SQLite database schema
 - Email notification code
@@ -516,9 +537,7 @@ LLM scraping is powerful but comes with responsibilities.
 Example respectful User-Agent:
 
 ```python
-headers = {
-    'User-Agent': 'ResearchBot/1.0 (+https://yoursite.com/bot; contact@yoursite.com)'
-}
+headers = {"User-Agent": "ResearchBot/1.0 (+https://yoursite.com/bot; contact@yoursite.com)"}
 ```
 
 ## Tools and platforms
@@ -704,6 +723,7 @@ Analyze trending topics over time.
 **Cause**: JavaScript-rendered content not loaded yet
 
 **Solution:**
+
 ```
 Add wait logic. After navigating to page, wait for
 element with selector .product-card to appear before scraping.
@@ -714,6 +734,7 @@ element with selector .product-card to appear before scraping.
 **Cause**: Site blocks bots via User-Agent
 
 **Solution:**
+
 ```
 Use realistic headers:
 User-Agent: Mozilla/5.0...
@@ -726,6 +747,7 @@ Referer: [previous page URL]
 **Cause**: Data loads via AJAX after initial render
 
 **Solution:**
+
 ```
 Instead of scraping HTML, find the AJAX endpoint
 in Network tab that loads this data. Call that API directly.
@@ -736,6 +758,7 @@ in Network tab that loads this data. Call that API directly.
 **Cause**: Site changes layout or implements anti-bot measures
 
 **Solution:**
+
 ```
 Modify scraper to:
 1. Take screenshots on failure for debugging

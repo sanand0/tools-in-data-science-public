@@ -59,7 +59,7 @@ import jmespath
 data = {
     "locations": [
         {"name": "Seattle", "state": "WA", "info": {"population": 737015}},
-        {"name": "Portland", "state": "OR", "info": {"population": 652503}}
+        {"name": "Portland", "state": "OR", "info": {"population": 652503}},
     ]
 }
 
@@ -76,15 +76,16 @@ Loading huge JSON files all at once can quickly exhaust system memory. [ijson](h
 ```python
 import ijson
 
+
 def process_large_json(filepath: str) -> list:
     """Process a large JSON file without loading it entirely into memory."""
     results = []
 
-    with open(filepath, 'rb') as file:
+    with open(filepath, "rb") as file:
         # Stream objects under the 'items' key
-        parser = ijson.items(file, 'items.item')
+        parser = ijson.items(file, "items.item")
         for item in parser:  # ijson yields items synchronously
-            if item.get('value', 0) > 100:  # Process conditionally
+            if item.get("value", 0) > 100:  # Process conditionally
                 results.append(item)
 
     return results
@@ -101,15 +102,15 @@ import json
 import pandas as pd
 
 # Parse JSON strings in a column, expand to columns
-df = pd.DataFrame({'json_col': ['{"name": "Alice", "age": 30}', '{"name": "Bob", "age": 25}']})
-expanded = pd.json_normalize(df['json_col'].apply(json.loads))
+df = pd.DataFrame({"json_col": ['{"name": "Alice", "age": 30}', '{"name": "Bob", "age": 25}']})
+expanded = pd.json_normalize(df["json_col"].apply(json.loads))
 
 # Normalize nested JSON from another dataframe column
-df = pd.read_csv('data.csv')
+df = pd.read_csv("data.csv")
 df_normalized = pd.json_normalize(
-    df['nested_json'].apply(json.loads),
-    record_path=['items'],        # List of nested objects to unpack
-    meta=['id', 'timestamp']      # Keep these columns from parent
+    df["nested_json"].apply(json.loads),
+    record_path=["items"],  # List of nested objects to unpack
+    meta=["id", "timestamp"],  # Keep these columns from parent
 )
 ```
 

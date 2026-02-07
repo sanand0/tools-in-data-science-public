@@ -22,6 +22,7 @@ We’ll scrape [Quotes to Scrape (JS)](https://quotes.toscrape.com/js/)—a site
 
 from playwright.sync_api import sync_playwright
 
+
 def scrape_quotes():
     with sync_playwright() as p:
         # Channel is optional. Use "chrome", "msedge", "chrome-beta", "msedge-beta", "msedge-dev"
@@ -34,6 +35,7 @@ def scrape_quotes():
             author = q.query_selector(".author").inner_text()
             print(f"{text} — {author}")
         browser.close()
+
 
 if __name__ == "__main__":
     scrape_quotes()

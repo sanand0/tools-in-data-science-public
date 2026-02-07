@@ -42,19 +42,20 @@ data = json.loads(json_str)
 json_str = json.dumps(data, indent=2)
 
 # Read JSON from file
-with open('data.json') as f:
+with open("data.json") as f:
     data = json.load(f)
 
 # Write JSON to file
-with open('output.json', 'w') as f:
+with open("output.json", "w") as f:
     json.dump(data, f, indent=2)
 
 # Read JSON data into a Pandas DataFrame. JSON data is typically stored as an array of objects.
 import pandas as pd
-df = pd.read_json('data.json')
+
+df = pd.read_json("data.json")
 
 # Read JSON lines from file into a DataFrame. JSON lines are typically one line per object.
-df = pd.read_json('data.jsonl', lines=True)
+df = pd.read_json("data.jsonl", lines=True)
 ```
 
 Practice JSON skills with these resources:

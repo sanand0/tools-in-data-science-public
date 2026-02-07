@@ -47,6 +47,7 @@ oauth.register(
     client_kwargs={"scope": "openid email profile"},
 )
 
+
 @app.get("/")
 async def application(request: Request):
     user = request.session.get("user")
@@ -61,8 +62,10 @@ async def application(request: Request):
     # 1. For users who are logging in for the first time, redirect to Google login
     return await oauth.google.authorize_redirect(request, request.url)
 
+
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(app, port=8000)
 ```
 

@@ -158,13 +158,15 @@ import os
 openai_key = os.getenv("OPENAI_API_KEY")
 google_key = os.getenv("GOOGLE_API_KEY")
 
+
 def generate_openai_speech(text, voice="alloy", model="tts-1"):
     response = requests.post(
         "https://api.openai.com/v1/audio/speech",
         headers={"Authorization": f"Bearer {openai_key}"},
-        json={"model": model, "input": text, "voice": voice}
+        json={"model": model, "input": text, "voice": voice},
     )
     return response.content
+
 
 def generate_gemini_speech(text, voice_name="en-US-Neural2-A"):
     response = requests.post(
@@ -172,10 +174,11 @@ def generate_gemini_speech(text, voice_name="en-US-Neural2-A"):
         json={
             "input": {"text": text},
             "voice": {"languageCode": "en-US", "name": voice_name},
-            "audioConfig": {"audioEncoding": "MP3"}
-        }
+            "audioConfig": {"audioEncoding": "MP3"},
+        },
     )
     return base64.b64decode(response.json()["audioContent"])
+
 
 if __name__ == "__main__":
     with open("openai_speech.mp3", "wb") as f:

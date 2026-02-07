@@ -80,9 +80,11 @@ app = FastAPI()
 # Initialize your model (this happens once when container starts)
 classifier = pipeline("sentiment-analysis")
 
+
 @app.get("/")
 def read_root():
     return {"message": "Hello from Hugging Face Spaces!"}
+
 
 @app.post("/analyze")
 def analyze_sentiment(text: str):
@@ -92,10 +94,10 @@ def analyze_sentiment(text: str):
 
 ### Deployment Process
 
-1.  **Create Space**: Visit [huggingface.co/new-space](https://huggingface.co/new-space) and select Docker SDK.
-2.  **Clone Repository**: `git clone https://huggingface.co/spaces/your-username/your-space-name`
-3.  **Add Files**: Create the files above in your local repository.
-4.  **Deploy**:
+1. **Create Space**: Visit [huggingface.co/new-space](https://huggingface.co/new-space) and select Docker SDK.
+2. **Clone Repository**: `git clone https://huggingface.co/spaces/your-username/your-space-name`
+3. **Add Files**: Create the files above in your local repository.
+4. **Deploy**:
 
 ```bash
 git add .
@@ -116,12 +118,12 @@ import tempfile
 import os
 
 # Write temporary files
-with tempfile.NamedTemporaryFile(mode='w', delete=False) as f:
+with tempfile.NamedTemporaryFile(mode="w", delete=False) as f:
     f.write("This will be lost on restart")
     temp_path = f.name
 
 # Read it back
-with open(temp_path, 'r') as f:
+with open(temp_path, "r") as f:
     content = f.read()
 ```
 
@@ -152,7 +154,7 @@ upload_file(
     path_or_fileobj="local_file.json",
     path_in_repo="data/saved_data.json",
     repo_id="your-username/your-dataset",
-    repo_type="dataset"
+    repo_type="dataset",
 )
 ```
 
@@ -167,7 +169,7 @@ import os
 
 # Access environment variables
 model_name = os.environ.get("MODEL_NAME", "default-model")
-api_key = os.environ.get("SECRET_API_KEY") # For secrets
+api_key = os.environ.get("SECRET_API_KEY")  # For secrets
 ```
 
 **Using Variables in Dockerfile**:

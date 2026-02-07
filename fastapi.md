@@ -17,12 +17,15 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
+
 @app.get("/")
 async def root():
     return {"message": "Hello!"}
 
+
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(app, host="0.0.0.0", port=8000)
 ```
 
@@ -33,12 +36,10 @@ Run this with `uv run app.py`.
    ```python
    from fastapi import HTTPException
 
+
    async def get_item(item_id: int):
        if not valid_item(item_id):
-           raise HTTPException(
-               status_code=404,
-               detail=f"Item {item_id} not found"
-           )
+           raise HTTPException(status_code=404, detail=f"Item {item_id} not found")
    ```
 
 2. **Use middleware for logging**
@@ -46,6 +47,7 @@ Run this with `uv run app.py`.
    ```python
    from fastapi import Request
    import time
+
 
    @app.middleware("http")
    async def add_timing(request: Request, call_next):

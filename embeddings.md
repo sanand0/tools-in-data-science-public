@@ -45,17 +45,20 @@ Here's a minimal example using a local embedding model:
 from sentence_transformers import SentenceTransformer
 import numpy as np
 
-model = SentenceTransformer('BAAI/bge-base-en-v1.5')  # A small, high quality model
+model = SentenceTransformer("BAAI/bge-base-en-v1.5")  # A small, high quality model
+
 
 async def embed(text: str) -> list[float]:
     """Get embedding vector for text using local model."""
     return model.encode(text).tolist()
+
 
 async def get_similarity(text1: str, text2: str) -> float:
     """Calculate cosine similarity between two texts."""
     emb1 = np.array(await embed(text1))
     emb2 = np.array(await embed(text2))
     return float(np.dot(emb1, emb2) / (np.linalg.norm(emb1) * np.linalg.norm(emb2)))
+
 
 async def main():
     print(await get_similarity("Apple", "Orange"))
@@ -64,6 +67,7 @@ async def main():
 
 if __name__ == "__main__":
     import asyncio
+
     asyncio.run(main())
 ```
 
@@ -77,13 +81,14 @@ For comparison, here's how to use OpenAI's API with direct HTTP calls. Replace t
 import os
 import httpx
 
+
 async def embed(text: str) -> list[float]:
     """Get embedding vector for text using OpenAI's API."""
     async with httpx.AsyncClient() as client:
         response = await client.post(
             "https://api.openai.com/v1/embeddings",
             headers={"Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}"},
-            json={"model": "text-embedding-3-small", "input": text}
+            json={"model": "text-embedding-3-small", "input": text},
         )
         return response.json()["data"][0]["embedding"]
 ```

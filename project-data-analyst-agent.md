@@ -119,7 +119,12 @@ Answer the following questions and respond with a JSON object containing the ans
 Here is a sample response to the first question:
 
 ```json
-[1, "Titanic", 0.485782, "data:image/png;base64,iVBORw0KG... (response truncated)"]
+[
+  1,
+  "Titanic",
+  0.485782,
+  "data:image/png;base64,iVBORw0KG... (response truncated)"
+]
 ```
 
 ## Evaluation

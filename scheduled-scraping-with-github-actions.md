@@ -58,7 +58,7 @@ def scrape_imdb() -> List[Dict[str, str]]:
 
 # Scrape data and save with timestamp
 now = datetime.now(UTC)
-with open(f'imdb-top250-{now.strftime("%Y-%m-%d")}.json', "a") as f:
+with open(f"imdb-top250-{now.strftime('%Y-%m-%d')}.json", "a") as f:
     f.write(json.dumps({"timestamp": now.isoformat(), "movies": scrape_imdb()}) + "\n")
 ```
 

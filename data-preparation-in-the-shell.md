@@ -473,7 +473,7 @@ In this case, a file that was ~5.8MiB became ~52MiB, roughly 10 times larger. Cl
 
 ## Preview the logs
 
-To see the first few lines or the last few lines of a text file, use `head` or `tail`_italicized text_
+To see the first few lines or the last few lines of a text file, use `head` or `tail` _italicized text_
 
 ```python
 # Show the first 5 lines
@@ -516,7 +516,7 @@ Each line is an Apache log record. It has a lot of data. Some are clear. For exa
 !wc s-anand.net-Apr-2024
 ```
 
-      208539  4194545 52044491 s-anand.net-Apr-2024
+    208539  4194545 52044491 s-anand.net-Apr-2024
 
 So, in Apr 2024, there were ~208K requests to the site. Useful to know.
 
@@ -602,31 +602,31 @@ We'll use `uniq` to count the unique IP addresses. It has a `--count` option tha
 !cut --delimiter " " --fields 1 s-anand.net-Apr-2024 | sort | uniq --count | head -n 25
 ```
 
-          1 100.20.65.50
-          1 100.43.111.139
-          1 101.100.145.51
-          1 101.115.156.11
-          1 101.115.205.68
-          1 101.126.25.225
-          1 101.132.248.41
-          1 101.166.40.221
-          1 101.166.6.221
-          1 101.183.40.167
-          1 101.185.221.147
-          1 101.188.225.246
-          1 101.200.218.166
-          1 101.201.66.35
-          7 101.2.187.83
-          2 101.44.160.158
-          2 101.44.160.177
-          2 101.44.160.189
-          3 101.44.160.20
-          2 101.44.160.41
-          1 101.44.161.208
-          1 101.44.161.71
-          3 101.44.161.77
-          2 101.44.161.93
-          2 101.44.162.166
+    1 100.20.65.50
+    1 100.43.111.139
+    1 101.100.145.51
+    1 101.115.156.11
+    1 101.115.205.68
+    1 101.126.25.225
+    1 101.132.248.41
+    1 101.166.40.221
+    1 101.166.6.221
+    1 101.183.40.167
+    1 101.185.221.147
+    1 101.188.225.246
+    1 101.200.218.166
+    1 101.201.66.35
+    7 101.2.187.83
+    2 101.44.160.158
+    2 101.44.160.177
+    2 101.44.160.189
+    3 101.44.160.20
+    2 101.44.160.41
+    1 101.44.161.208
+    1 101.44.161.71
+    3 101.44.161.77
+    2 101.44.161.93
+    2 101.44.162.166
 
 That's useful. [101.2.187.83](https://www.whois.com/whois/101.2.187.83) from Colombo visited 7 times.
 
@@ -641,11 +641,11 @@ Also, we'll use `tail` instead of `head` to get the highest entries.
 !cut --delimiter " " --fields 1 s-anand.net-Apr-2024 | sort | uniq --count | sort --key 1n | tail -n 5
 ```
 
-       2560 66.249.70.6
-       3010 148.251.241.12
-       4245 35.86.164.73
-       7800 37.59.21.100
-     101255 136.243.228.193
+      2560 66.249.70.6
+      3010 148.251.241.12
+      4245 35.86.164.73
+      7800 37.59.21.100
+    101255 136.243.228.193
 
 WOW! [136.243.228.193](https://www.whois.com/whois/136.243.228.193) from Dataforseo, Ukraine, sent roughly HALF of ALL the requests!
 
@@ -721,16 +721,16 @@ The regular expression `'\S*bot\S*'` (which ChatGPT generated) finds all words t
 !grep --only-matching '\S*bot\S*' s-anand.net-Apr-2024 | sort | uniq --count | sort --key 1n | tail
 ```
 
-       4134 PetalBot;+https://webmaster.petalsearch.com/site/petalbot)"
-       4307 /robots.txt
-       5664 bingbot/2.0;
-       5664 +http://www.bing.com/bingbot.htm)
-       8771 +claudebot@anthropic.com)"
-       8827 +http://www.google.com/bot.html)"
-       8830 Googlebot/2.1;
-      13798 (Applebot/0.1;
-      13798 +http://www.apple.com/go/applebot)"
-     101262 +https://dataforseo.com/dataforseo-bot)"
+      4134 PetalBot;+https://webmaster.petalsearch.com/site/petalbot)"
+      4307 /robots.txt
+      5664 bingbot/2.0;
+      5664 +http://www.bing.com/bingbot.htm)
+      8771 +claudebot@anthropic.com)"
+      8827 +http://www.google.com/bot.html)"
+      8830 Googlebot/2.1;
+     13798 (Applebot/0.1;
+     13798 +http://www.apple.com/go/applebot)"
+    101262 +https://dataforseo.com/dataforseo-bot)"
 
 That gives me a rough sense of who's crawling my site.
 

@@ -125,6 +125,7 @@ Visit `http://localhost:8001` to see your database interface.
 When you first open Datasette, you'll see the database homepage with all available tables, row counts, and a SQL query box. Click any table name (like **orders**) to start exploring.
 
 The table view shows your data with powerful interactive features:
+
 - **Sort columns** by clicking headers
 - **Column menus** (cog icon) for faceting and filtering
 - **Pagination** controls for large datasets
@@ -134,8 +135,9 @@ The table view shows your data with powerful interactive features:
 Facets show the distribution of values in a column—Datasette's killer feature for exploratory analysis.
 
 Click the cog icon next to **status** and select "Facet by this". You'll see counts like:
+
 - `completed: 400`
-- `pending: 50`  
+- `pending: 50`
 - `cancelled: 50`
 
 Each count is clickable to filter the data. This instantly answers "How many orders are in each status?"
@@ -147,21 +149,25 @@ Each count is clickable to filter the data. This instantly answers "How many ord
 Filters drill into specific subsets. Datasette supports:
 
 **Exact match**:
+
 ```
 ?status__exact=completed
 ```
 
 **Text contains**:
+
 ```
 ?name__contains=Laptop
 ```
 
 **Numeric comparisons**:
+
 ```
 ?quantity__gt=1
 ```
 
 **Date ranges**:
+
 ```
 ?order_date__gte=2024-06-01&order_date__lt=2024-07-01
 ```

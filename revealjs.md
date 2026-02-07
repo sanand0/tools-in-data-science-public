@@ -224,7 +224,7 @@ Special presentation features:
 </section>;
 
 // Overview mode (press 'o')
-Reveal.addEventListener("overviewshown", function () {
+Reveal.addEventListener("overviewshown", function() {
   // Custom overview behavior
 });
 ```

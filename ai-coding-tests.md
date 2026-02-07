@@ -69,6 +69,7 @@ AI-produced code often fails on weird but realistic inputs. Property-based tests
 
 from hypothesis import given, strategies as st
 
+
 @given(st.text(min_size=1))
 def test_slugify_is_idempotent(text: str) -> None:
     slug = slugify(text)

@@ -39,15 +39,17 @@ The request is a JSON file like this:
   "brief": "Create a captcha solver that handles ?url=https://.../image.png. Default to attached sample.",
   // checks: mention how it will be evaluated
   "checks": [
-    "Repo has MIT license"
+    "Repo has MIT license",
     "README.md is professional",
     "Page displays captcha URL passed at ?url=...",
-    "Page displays solved captcha text within 15 seconds",
+    "Page displays solved captcha text within 15 seconds"
   ],
   // Send repo & commit details to the URL below
   "evaluation_url": "https://example.com/notify",
   // Attachments will be encoded as data URIs
-  "attachments": [{ "name": "sample.png", "url": "data:image/png;base64,iVBORw..." }]
+  "attachments": [
+    { "name": "sample.png", "url": "data:image/png;base64,iVBORw..." }
+  ]
 }
 ```
 
@@ -85,7 +87,7 @@ Students will:
      // Send these based on your GitHub repo and commit
      "repo_url": "https://github.com/user/repo",
      "commit_sha": "abc123",
-     "pages_url": "https://user.github.io/repo/",
+     "pages_url": "https://user.github.io/repo/"
    }
    ```
 8. Ensure a HTTP 200 response. On error, re-submit with a 1, 2, 4, 8, ... second delay.

@@ -14,10 +14,12 @@ Python doesn't enforce type hints at runtime. Pydantic validates data automatica
 
 from pydantic import BaseModel, Field
 
+
 class User(BaseModel):
     name: str
     age: int = Field(..., gt=0, le=120)
     email: str
+
 
 # Automatic validation and type conversion
 user = User(name="Alice", age="25", email="alice@example.com")
@@ -39,16 +41,18 @@ Pydantic is used by FastAPI, LangChain, the OpenAI SDK, and 8,000+ packages on P
 ```python
 from pydantic import BaseModel, Field, EmailStr
 
+
 class Product(BaseModel):
     name: str = Field(..., min_length=3, max_length=50)
     price: float = Field(..., gt=0)
     email: EmailStr  # Validates email format
     quantity: int = Field(default=0, ge=0)
 
+
 product = Product(
     name="Widget",
     price="19.99",  # Converted to float
-    email="shop@example.com"
+    email="shop@example.com",
 )
 print(product.model_dump())
 # {'name': 'Widget', 'price': 19.99, 'email': 'shop@example.com', 'quantity': 0}
@@ -59,18 +63,18 @@ print(product.model_dump())
 ```python
 from pydantic import BaseModel
 
+
 class Address(BaseModel):
     city: str
     country: str
+
 
 class Customer(BaseModel):
     name: str
     address: Address
 
-customer = Customer(
-    name="Alice",
-    address={"city": "London", "country": "UK"}
-)
+
+customer = Customer(name="Alice", address={"city": "London", "country": "UK"})
 print(customer.address.city)  # London
 ```
 
@@ -93,10 +97,10 @@ Here's a minimal example:
 from pydantic_ai import Agent
 
 # Create an agent with any supported model
-agent = Agent('openai:gpt-5-nano')
+agent = Agent("openai:gpt-5-nano")
 
 # Run synchronously
-result = agent.run_sync('What is the capital of France?')
+result = agent.run_sync("What is the capital of France?")
 print(result.output)
 # Paris
 ```
@@ -118,10 +122,12 @@ pip install python-dotenv
 # OPENAI_API_KEY=your-api-key-here
 
 from dotenv import load_dotenv
+
 load_dotenv()
 
 from pydantic_ai import Agent
-agent = Agent('openai:gpt-5-nano')
+
+agent = Agent("openai:gpt-5-nano")
 ```
 
 ### Structured Outputs
@@ -137,14 +143,16 @@ The power of Pydantic AI is in structured, validated responses:
 from pydantic import BaseModel
 from pydantic_ai import Agent
 
+
 class CityInfo(BaseModel):
     city: str
     country: str
     population: int
 
-agent = Agent('openai:gpt-5-nano', output_type=CityInfo)
 
-result = agent.run_sync('Tell me about Tokyo')
+agent = Agent("openai:gpt-5-nano", output_type=CityInfo)
+
+result = agent.run_sync("Tell me about Tokyo")
 print(result.output)
 # city='Tokyo' country='Japan' population=14000000
 print(type(result.output))
@@ -166,24 +174,26 @@ Handle different response scenarios:
 from pydantic import BaseModel
 from pydantic_ai import Agent
 
+
 class WeatherData(BaseModel):
     location: str
     temperature: float
     conditions: str
 
+
 agent = Agent(
-    'openai:gpt-5-nano',
+    "openai:gpt-5-nano",
     output_type=[WeatherData, str],  # Either structured data or error message
-    system_prompt='Provide weather data when available, or explain why you cannot.'
+    system_prompt="Provide weather data when available, or explain why you cannot.",
 )
 
 # Complete data available
-result1 = agent.run_sync('Weather in London: 15°C, cloudy')
+result1 = agent.run_sync("Weather in London: 15°C, cloudy")
 print(result1.output)
 # location='London' temperature=15.0 conditions='cloudy'
 
 # Incomplete data
-result2 = agent.run_sync('Weather in London')
+result2 = agent.run_sync("Weather in London")
 print(result2.output)
 # "I don't have current weather data..."
 ```
@@ -201,9 +211,9 @@ Give agents access to functions for dynamic data:
 from pydantic_ai import Agent
 
 agent = Agent(
-    'openai:gpt-5-nano',
-    system_prompt='You help with weather queries using available tools.'
+    "openai:gpt-5-nano", system_prompt="You help with weather queries using available tools."
 )
+
 
 @agent.tool_plain
 def get_weather(city: str) -> str:
@@ -211,12 +221,14 @@ def get_weather(city: str) -> str:
     # In production, call a real weather API
     return f"Weather in {city}: 22°C, sunny"
 
+
 @agent.tool_plain
 def list_cities() -> list[str]:
     """List cities with weather data available."""
     return ["London", "Paris", "Tokyo", "New York"]
 
-result = agent.run_sync('What is the weather in Paris?')
+
+result = agent.run_sync("What is the weather in Paris?")
 print(result.output)
 # The weather in Paris is 22°C and sunny.
 ```
@@ -232,11 +244,10 @@ The agent automatically:
 ```python
 from pydantic import Field
 
+
 @agent.tool_plain
 def search_products(
-    category: str,
-    max_price: float = Field(..., gt=0),
-    in_stock: bool = True
+    category: str, max_price: float = Field(..., gt=0), in_stock: bool = True
 ) -> list[str]:
     """Search products by category and price.
 
@@ -263,28 +274,30 @@ Pass runtime data to agents using dependency injection:
 from dataclasses import dataclass
 from pydantic_ai import Agent, RunContext
 
+
 @dataclass
 class UserContext:
     user_id: int
     name: str
 
-agent = Agent(
-    'openai:gpt-5-nano',
-    deps_type=UserContext
-)
+
+agent = Agent("openai:gpt-5-nano", deps_type=UserContext)
+
 
 @agent.instructions
 def add_user_context(ctx: RunContext[UserContext]) -> str:
     return f"The user's name is {ctx.deps.name}"
+
 
 @agent.tool
 def get_user_data(ctx: RunContext[UserContext]) -> str:
     """Get user information."""
     return f"User {ctx.deps.name} (ID: {ctx.deps.user_id})"
 
+
 # Run with specific user context
 deps = UserContext(user_id=123, name="Alice")
-result = agent.run_sync('What is my user ID?', deps=deps)
+result = agent.run_sync("What is my user ID?", deps=deps)
 print(result.output)
 # Your user ID is 123, Alice.
 ```
@@ -303,16 +316,13 @@ Maintain conversation context:
 
 from pydantic_ai import Agent
 
-agent = Agent('openai:gpt-5-nano')
+agent = Agent("openai:gpt-5-nano")
 
-result1 = agent.run_sync('My name is Alice')
+result1 = agent.run_sync("My name is Alice")
 print(result1.output)
 # Hello Alice! How can I help you?
 
-result2 = agent.run_sync(
-    'What did I say my name was?',
-    message_history=result1.new_messages()
-)
+result2 = agent.run_sync("What did I say my name was?", message_history=result1.new_messages())
 print(result2.output)
 # You said your name is Alice.
 ```
@@ -324,10 +334,7 @@ Use `new_messages()` to get only the latest exchange, or `all_messages()` for th
 **System prompts** set persistent context:
 
 ```python
-agent = Agent(
-    'openai:gpt-5-nano',
-    system_prompt='You are a helpful assistant. Be concise.'
-)
+agent = Agent("openai:gpt-5-nano", system_prompt="You are a helpful assistant. Be concise.")
 ```
 
 **Instructions** are dynamic and per-request:
@@ -353,19 +360,23 @@ Add custom validation with external checks:
 from pydantic import BaseModel
 from pydantic_ai import Agent, RunContext, ModelRetry
 
+
 class Age(BaseModel):
     age: int
     name: str
 
-agent = Agent('openai:gpt-5-nano', output_type=Age)
+
+agent = Agent("openai:gpt-5-nano", output_type=Age)
+
 
 @agent.output_validator
 async def validate_age(ctx: RunContext, output: Age) -> Age:
     if output.age < 0 or output.age > 120:
-        raise ModelRetry(f'Age {output.age} seems unrealistic. Please verify.')
+        raise ModelRetry(f"Age {output.age} seems unrealistic. Please verify.")
     return output
 
-result = agent.run_sync('John is 150 years old')
+
+result = agent.run_sync("John is 150 years old")
 print(result.output)
 # After retry: age=50 name='John' (model corrects itself)
 ```
@@ -385,22 +396,19 @@ Process images, audio, video, and documents:
 from pydantic_ai import Agent, ImageUrl
 from pathlib import Path
 
-agent = Agent('openai:gpt-5-nano')
+agent = Agent("openai:gpt-5-nano")
 
 # From URL
-result = agent.run_sync([
-    'What company is this?',
-    ImageUrl(url='https://example.com/logo.png')
-])
+result = agent.run_sync(["What company is this?", ImageUrl(url="https://example.com/logo.png")])
 
 # From local file
 from pydantic_ai import BinaryContent
-image_data = Path('logo.png').read_bytes()
 
-result = agent.run_sync([
-    'Describe this image',
-    BinaryContent(data=image_data, media_type='image/png')
-])
+image_data = Path("logo.png").read_bytes()
+
+result = agent.run_sync(
+    ["Describe this image", BinaryContent(data=image_data, media_type="image/png")]
+)
 ```
 
 Supports: `ImageUrl`, `AudioUrl`, `VideoUrl`, `DocumentUrl` and `BinaryContent` for local files.
@@ -417,12 +425,9 @@ Enable real-time information retrieval:
 
 from pydantic_ai import Agent, WebSearchTool
 
-agent = Agent(
-    'gemini-2.5-flash',
-    builtin_tools=[WebSearchTool()]
-)
+agent = Agent("gemini-2.5-flash", builtin_tools=[WebSearchTool()])
 
-result = agent.run_sync('What is the current price of Bitcoin?')
+result = agent.run_sync("What is the current price of Bitcoin?")
 print(result.output)
 # Bitcoin is currently trading at $X,XXX USD (real-time data)
 ```
@@ -435,19 +440,19 @@ Pydantic AI works with multiple providers:
 
 ```python
 # OpenAI
-agent = Agent('openai:gpt-4o')
+agent = Agent("openai:gpt-4o")
 
 # Anthropic
-agent = Agent('anthropic:claude-sonnet-4-0')
+agent = Agent("anthropic:claude-sonnet-4-0")
 
 # Google Gemini
-agent = Agent('gemini-2.5-flash')
+agent = Agent("gemini-2.5-flash")
 
 # Groq
-agent = Agent('groq:llama-3.1-70b-versatile')
+agent = Agent("groq:llama-3.1-70b-versatile")
 
 # Ollama (local)
-agent = Agent('ollama:llama3.2')
+agent = Agent("ollama:llama3.2")
 ```
 
 ### Testing Agents
@@ -464,15 +469,17 @@ from pydantic import BaseModel
 from pydantic_ai import Agent
 from pydantic_ai.models.test import TestModel
 
+
 class Response(BaseModel):
     answer: str
+
 
 # Create test model with predefined responses
 test_model = TestModel()
 agent = Agent(test_model, output_type=Response)
 
 # Run test
-result = agent.run_sync('test question')
+result = agent.run_sync("test question")
 print(result.output)
 # answer='test response'
 ```

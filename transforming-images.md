@@ -16,23 +16,25 @@ Here's a minimal example showing common operations:
 
 from PIL import Image, ImageEnhance, ImageFilter
 
+
 async def process_image(path: str) -> Image.Image:
     """Process an image with basic enhancements."""
     with Image.open(path) as img:
         # Convert to RGB to ensure compatibility
-        img = img.convert('RGB')
+        img = img.convert("RGB")
 
         # Resize maintaining aspect ratio
         img.thumbnail((800, 800))
 
         # Apply enhancements
-        img = (ImageEnhance.Contrast(img)
-               .enhance(1.2))
+        img = ImageEnhance.Contrast(img).enhance(1.2)
 
         return img.filter(ImageFilter.SHARPEN)
 
+
 if __name__ == "__main__":
     import asyncio
+
     img = asyncio.run(process_image("input.jpg"))
     img.save("output.jpg", quality=85)
 ```
@@ -54,11 +56,8 @@ Common operations for resizing, cropping, and rotating images:
 ```python
 from PIL import Image
 
-async def transform_image(
-    path: str,
-    size: tuple[int, int],
-    rotation: float = 0
-) -> Image.Image:
+
+async def transform_image(path: str, size: tuple[int, int], rotation: float = 0) -> Image.Image:
     """Transform image with basic operations."""
     with Image.open(path) as img:
         # Resize with anti-aliasing
@@ -81,17 +80,15 @@ Adjust image appearance with built-in enhancement tools:
 ```python
 from PIL import ImageEnhance, ImageOps
 
+
 async def enhance_image(
-    img: Image.Image,
-    brightness: float = 1.0,
-    contrast: float = 1.0,
-    saturation: float = 1.0
+    img: Image.Image, brightness: float = 1.0, contrast: float = 1.0, saturation: float = 1.0
 ) -> Image.Image:
     """Apply color enhancements to image."""
     enhancers = [
         (ImageEnhance.Brightness, brightness),
         (ImageEnhance.Contrast, contrast),
-        (ImageEnhance.Color, saturation)
+        (ImageEnhance.Color, saturation),
     ]
 
     for Enhancer, factor in enhancers:
@@ -108,17 +105,17 @@ Apply visual effects and filters to images:
 ```python
 from PIL import ImageFilter
 
+
 def apply_effects(img: Image.Image) -> Image.Image:
     """Apply various filters and effects."""
     effects = {
-        'blur': ImageFilter.GaussianBlur(radius=2),
-        'sharpen': ImageFilter.SHARPEN,
-        'edge': ImageFilter.FIND_EDGES,
-        'emboss': ImageFilter.EMBOSS
+        "blur": ImageFilter.GaussianBlur(radius=2),
+        "sharpen": ImageFilter.SHARPEN,
+        "edge": ImageFilter.FIND_EDGES,
+        "emboss": ImageFilter.EMBOSS,
     }
 
-    return {name: img.filter(effect)
-            for name, effect in effects.items()}
+    return {name: img.filter(effect) for name, effect in effects.items()}
 ```
 
 ### Drawing and Text
@@ -128,11 +125,8 @@ Add text, shapes, and overlays to images:
 ```python
 from PIL import Image, ImageDraw, ImageFont
 
-async def add_watermark(
-    img: Image.Image,
-    text: str,
-    font_size: int = 30
-) -> Image.Image:
+
+async def add_watermark(img: Image.Image, text: str, font_size: int = 30) -> Image.Image:
     """Add text watermark to image."""
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("arial.ttf", font_size)
@@ -147,8 +141,8 @@ async def add_watermark(
     y = img.height - text_height - 10
 
     # Add text with shadow
-    draw.text((x+2, y+2), text, font=font, fill='black')
-    draw.text((x, y), text, font=font, fill='white')
+    draw.text((x + 2, y + 2), text, font=font, fill="black")
+    draw.text((x, y), text, font=font, fill="white")
 
     return img
 ```
@@ -161,16 +155,13 @@ Handle large images without loading them entirely into memory:
 from PIL import Image
 import os
 
-async def process_large_images(
-    input_dir: str,
-    output_dir: str,
-    max_size: tuple[int, int]
-) -> None:
+
+async def process_large_images(input_dir: str, output_dir: str, max_size: tuple[int, int]) -> None:
     """Process multiple large images efficiently."""
     os.makedirs(output_dir, exist_ok=True)
 
     for filename in os.listdir(input_dir):
-        if not filename.lower().endswith(('.png', '.jpg', '.jpeg')):
+        if not filename.lower().endswith((".png", ".jpg", ".jpeg")):
             continue
 
         input_path = os.path.join(input_dir, filename)
@@ -307,6 +298,7 @@ For Python integration:
 
 from wand.image import Image
 
+
 async def process_image(path: str) -> None:
     """Process image with ImageMagick via Wand."""
     with Image(filename=path) as img:
@@ -318,7 +310,7 @@ async def process_image(path: str) -> None:
         img.sharpen(radius=0, sigma=3)
 
         # Save with compression
-        img.save(filename='output.jpg')
+        img.save(filename="output.jpg")
 ```
 
 Note: Always install ImageMagick before using the Wand Python binding.

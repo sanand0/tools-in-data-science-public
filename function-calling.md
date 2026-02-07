@@ -76,24 +76,15 @@ MEETING_TOOL = {
         "parameters": {
             "type": "object",
             "properties": {
-                "date": {
-                    "type": "string",
-                    "description": "Meeting date in YYYY-MM-DD format"
-                },
-                "time": {
-                    "type": "string",
-                    "description": "Meeting time in HH:MM format"
-                },
-                "meeting_room": {
-                    "type": "string",
-                    "description": "Name of the meeting room"
-                }
+                "date": {"type": "string", "description": "Meeting date in YYYY-MM-DD format"},
+                "time": {"type": "string", "description": "Meeting time in HH:MM format"},
+                "meeting_room": {"type": "string", "description": "Name of the meeting room"},
             },
             "required": ["date", "time", "meeting_room"],
-            "additionalProperties": False
+            "additionalProperties": False,
         },
-        "strict": True
-    }
+        "strict": True,
+    },
 }
 ```
 
@@ -113,16 +104,13 @@ tools = [
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "employee_id": {
-                        "type": "integer",
-                        "description": "Employee ID number"
-                    }
+                    "employee_id": {"type": "integer", "description": "Employee ID number"}
                 },
                 "required": ["employee_id"],
-                "additionalProperties": False
+                "additionalProperties": False,
             },
-            "strict": True
-        }
+            "strict": True,
+        },
     },
     {
         "type": "function",
@@ -132,21 +120,18 @@ tools = [
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "employee_id": {
-                        "type": "integer",
-                        "description": "Employee ID number"
-                    },
+                    "employee_id": {"type": "integer", "description": "Employee ID number"},
                     "current_year": {
                         "type": "integer",
-                        "description": "Year to calculate bonus for"
-                    }
+                        "description": "Year to calculate bonus for",
+                    },
                 },
                 "required": ["employee_id", "current_year"],
-                "additionalProperties": False
+                "additionalProperties": False,
             },
-            "strict": True
-        }
-    }
+            "strict": True,
+        },
+    },
 ]
 ```
 

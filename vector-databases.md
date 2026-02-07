@@ -44,6 +44,7 @@ import chromadb
 from chromadb.utils import embedding_functions
 from sentence_transformers import SentenceTransformer
 
+
 async def setup_vector_db():
     """Initialize Chroma DB with an embedding function."""
     sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(
@@ -51,10 +52,10 @@ async def setup_vector_db():
     )
     client = chromadb.PersistentClient(path="./vector_db")
     collection = client.create_collection(
-        name="documents",
-        embedding_function=sentence_transformer_ef
+        name="documents", embedding_function=sentence_transformer_ef
     )
     return collection
+
 
 async def search_similar(collection, query: str, n_results: int = 3) -> list[dict]:
     """Search for documents similar to the query."""
@@ -64,21 +65,24 @@ async def search_similar(collection, query: str, n_results: int = 3) -> list[dic
         for id, text, distance in zip(d["ids"][0], d["documents"][0], d["distances"][0])
     ]
 
+
 async def main():
     collection = await setup_vector_db()
 
     # Add some documents
     collection.add(
         documents=["Apple is a fruit", "Orange is citrus", "Computer is electronic"],
-        ids=["1", "2", "3"]
+        ids=["1", "2", "3"],
     )
 
     # Search
     results = await search_similar(collection, "fruit")
     print(results)
 
+
 if __name__ == "__main__":
     import asyncio
+
     asyncio.run(main())
 ```
 
@@ -100,6 +104,7 @@ import lancedb
 import pyarrow as pa
 from sentence_transformers import SentenceTransformer
 
+
 async def setup_vector_db():
     """Initialize LanceDB with an embedding function."""
     model = SentenceTransformer("BAAI/bge-base-en-v1.5")
@@ -108,19 +113,23 @@ async def setup_vector_db():
     # Create table with schema for documents
     table = db.create_table(
         "documents",
-        schema=pa.schema([
-            pa.field("id", pa.string()),
-            pa.field("text", pa.string()),
-            pa.field("vector", pa.list_(pa.float32(), list_size=768))
-        ])
+        schema=pa.schema(
+            [
+                pa.field("id", pa.string()),
+                pa.field("text", pa.string()),
+                pa.field("vector", pa.list_(pa.float32(), list_size=768)),
+            ]
+        ),
     )
     return table, model
+
 
 async def search_similar(table, model, query: str, n_results: int = 3) -> list[dict]:
     """Search for documents similar to the query."""
     query_embedding = model.encode(query)
     results = table.search(query_embedding).limit(n_results).to_list()
     return [{"id": r["id"], "text": r["text"], "distance": float(r["_distance"])} for r in results]
+
 
 async def main():
     table, model = await setup_vector_db()
@@ -129,17 +138,21 @@ async def main():
     documents = ["Apple is a fruit", "Orange is citrus", "Computer is electronic"]
     embeddings = model.encode(documents)
 
-    table.add(data=[
-        {"id": str(i), "text": text, "vector": embedding}
-        for i, (text, embedding) in enumerate(zip(documents, embeddings), 1)
-    ])
+    table.add(
+        data=[
+            {"id": str(i), "text": text, "vector": embedding}
+            for i, (text, embedding) in enumerate(zip(documents, embeddings), 1)
+        ]
+    )
 
     # Search
     results = await search_similar(table, model, "fruit")
     print(results)
 
+
 if __name__ == "__main__":
     import asyncio
+
     asyncio.run(main())
 ```
 
@@ -158,6 +171,7 @@ Here's the same example using DuckDB:
 
 import duckdb
 from sentence_transformers import SentenceTransformer
+
 
 async def setup_vector_db() -> tuple[duckdb.DuckDBPyConnection, SentenceTransformer]:
     """Initialize DuckDB with VSS extension and embedding model."""
@@ -183,21 +197,27 @@ async def setup_vector_db() -> tuple[duckdb.DuckDBPyConnection, SentenceTransfor
     conn.execute("CREATE INDEX vector_idx ON documents USING HNSW (vector)")
     return conn, model
 
-async def search_similar(conn: duckdb.DuckDBPyConnection, model: SentenceTransformer,
-                        query: str, n_results: int = 3) -> list[dict]:
+
+async def search_similar(
+    conn: duckdb.DuckDBPyConnection, model: SentenceTransformer, query: str, n_results: int = 3
+) -> list[dict]:
     """Search for documents similar to query using vector similarity."""
     # Encode query to vector
     query_vector = model.encode(query).tolist()
 
     # Search using HNSW index with explicit FLOAT[] cast
-    results = conn.execute("""
+    results = conn.execute(
+        """
         SELECT id, text, array_distance(vector, CAST(? AS FLOAT[768])) as distance
         FROM documents
         ORDER BY array_distance(vector, CAST(? AS FLOAT[768]))
         LIMIT ?
-    """, [query_vector, query_vector, n_results]).fetchall()
+    """,
+        [query_vector, query_vector, n_results],
+    ).fetchall()
 
     return [{"id": r[0], "text": r[1], "distance": float(r[2])} for r in results]
+
 
 async def main():
     conn, model = await setup_vector_db()
@@ -207,17 +227,24 @@ async def main():
     embeddings = model.encode(documents).tolist()
 
     # Insert documents and vectors
-    conn.executemany("""
+    conn.executemany(
+        """
         INSERT INTO documents (id, text, vector)
         VALUES (?, ?, ?)
-    """, [(str(i), text, embedding)
-          for i, (text, embedding) in enumerate(zip(documents, embeddings), 1)])
+    """,
+        [
+            (str(i), text, embedding)
+            for i, (text, embedding) in enumerate(zip(documents, embeddings), 1)
+        ],
+    )
 
     # Search similar documents
     results = await search_similar(conn, model, "fruit")
     print(results)
 
+
 if __name__ == "__main__":
     import asyncio
+
     asyncio.run(main())
 ```

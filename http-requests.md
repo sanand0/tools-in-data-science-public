@@ -154,15 +154,15 @@ Key Features:
 
    ```javascript
    // Example test scripts
-   pm.test("Status code is 200", function () {
+   pm.test("Status code is 200", function() {
      pm.response.to.have.status(200);
    });
 
-   pm.test("Response time is less than 200ms", function () {
+   pm.test("Response time is less than 200ms", function() {
      pm.expect(pm.response.responseTime).to.be.below(200);
    });
 
-   pm.test("Body contains user data", function () {
+   pm.test("Body contains user data", function() {
      const jsonData = pm.response.json();
      pm.expect(jsonData.name).to.eql("Alice");
    });

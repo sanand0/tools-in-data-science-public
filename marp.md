@@ -58,9 +58,9 @@ Marp comes with built-in themes and supports custom themes:
 
 ```markdown
 ---
-theme: default    # Clean, minimal (default)
-theme: gaia      # Modern, beautiful
-theme: uncover   # Gradually revealing
+theme: default # Clean, minimal (default)
+theme: gaia # Modern, beautiful
+theme: uncover # Gradually revealing
 ---
 ```
 

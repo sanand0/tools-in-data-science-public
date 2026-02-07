@@ -23,12 +23,12 @@ text = "Hello, World!"
 # Convert text to base64
 encoded = base64.b64encode(text.encode()).decode()  # SGVsbG8sIFdvcmxkIQ==
 # Convert base64 back to text
-decoded = base64.b64decode(encoded).decode()        # Hello, World!
+decoded = base64.b64decode(encoded).decode()  # Hello, World!
 # Convert to URL-safe base64
 url_safe = base64.urlsafe_b64encode(text.encode()).decode()  # SGVsbG8sIFdvcmxkIQ==
 
 # Working with binary files (e.g., images)
-with open('image.png', 'rb') as f:
+with open("image.png", "rb") as f:
     binary_data = f.read()
     image_b64 = base64.b64encode(binary_data).decode()
 

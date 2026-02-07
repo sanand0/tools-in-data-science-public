@@ -20,9 +20,9 @@ To run PromptFoo:
 ```yaml
 prompts:
   - |
-    Summarize this text: "{{text}}"
+      Summarize this text: "{{text}}"
   - |
-    Please write a concise summary of: "{{text}}"
+      Please write a concise summary of: "{{text}}"
 
 providers:
   - openai:gpt-3.5-turbo
