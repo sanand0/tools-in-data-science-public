@@ -24,4 +24,23 @@
       applyTheme(now === "dark" ? "light" : "dark");
     });
   })();
+
+  (function () {
+    var normalize = function (p) {
+      if (!p) return "/";
+      p = p.split("#")[0].split("?")[0];
+      if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
+      return p || "/";
+    };
+
+    var current = normalize(window.location.pathname);
+    document.querySelectorAll(".book-menu-content a[href]").forEach(function (a) {
+      var href = a.getAttribute("href") || "";
+      if (!href.startsWith("/")) return;
+      if (normalize(href) === current) {
+        a.classList.add("active");
+        a.setAttribute("aria-current", "page");
+      }
+    });
+  })();
 </script>

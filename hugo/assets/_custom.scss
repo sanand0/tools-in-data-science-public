@@ -23,3 +23,8 @@ html[data-user-theme="dark"] {
 .tds-theme-toggle:hover {
   border-color: var(--color-link);
 }
+
+.book-menu-content a.active {
+  color: var(--color-link);
+  font-weight: 600;
+}

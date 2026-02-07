@@ -5,54 +5,79 @@
 {{ $nav := index .Site.Data "sidebar-nav" }}
 
 {{ $activeKey := "root" }}
-{{ if or (eq $path "/2025-01/") (hasPrefix $path "/2025-01/") }}
-  {{ $activeKey = "2025-01" }}
-{{ else if or (eq $path "/2025-05/") (hasPrefix $path "/2025-05/") }}
-  {{ $activeKey = "2025-05" }}
-{{ else if or (eq $path "/2025-09/") (hasPrefix $path "/2025-09/") }}
-  {{ $activeKey = "2025-09" }}
-{{ else if in (default (slice) (index $nav "2025-09")) $path }}
-  {{ $activeKey = "2025-09" }}
-{{ else if in (default (slice) (index $nav "2025-05")) $path }}
-  {{ $activeKey = "2025-05" }}
-{{ else if in (default (slice) (index $nav "2025-01")) $path }}
-  {{ $activeKey = "2025-01" }}
+{{ $coursePrefix := findRE "^/20[0-9]{2}-[0-9]{2}/" $path }}
+{{ if gt (len $coursePrefix) 0 }}
+  {{ $activeKey = trim (index $coursePrefix 0) "/" }}
 {{ end }}
 
 {{ $order := default (slice) (index $nav $activeKey) }}
 {{ $ix := -1 }}
-{{ range $i, $p := $order }}
-  {{ if eq $p $path }}
+{{ range $i, $item := $order }}
+  {{ $itemPath := "" }}
+  {{ if reflect.IsMap $item }}
+    {{ $itemPath = index $item "path" }}
+  {{ else }}
+    {{ $itemPath = $item }}
+  {{ end }}
+  {{ if eq $itemPath $path }}
     {{ $ix = $i }}
   {{ end }}
 {{ end }}
 
 {{ if ge $ix 0 }}
-  {{ $prevPath := "" }}
-  {{ $nextPath := "" }}
+  {{ $prevItem := dict }}
+  {{ $nextItem := dict }}
   {{ if gt $ix 0 }}
-    {{ $prevPath = index $order (sub $ix 1) }}
+    {{ $prevItem = index $order (sub $ix 1) }}
   {{ end }}
   {{ if lt (add $ix 1) (len $order) }}
-    {{ $nextPath = index $order (add $ix 1) }}
+    {{ $nextItem = index $order (add $ix 1) }}
   {{ end }}
 
+  {{ $prevPath := "" }}
+  {{ $nextPath := "" }}
+  {{ if reflect.IsMap $prevItem }}
+    {{ if isset $prevItem "path" }}
+      {{ $prevPath = index $prevItem "path" }}
+    {{ end }}
+  {{ else }}
+    {{ $prevPath = $prevItem }}
+  {{ end }}
+  {{ if reflect.IsMap $nextItem }}
+    {{ if isset $nextItem "path" }}
+      {{ $nextPath = index $nextItem "path" }}
+    {{ end }}
+  {{ else }}
+    {{ $nextPath = $nextItem }}
+  {{ end }}
   {{ $prevPage := cond (ne $prevPath "") (.Site.GetPage $prevPath) nil }}
   {{ $nextPage := cond (ne $nextPath "") (.Site.GetPage $nextPath) nil }}
+  {{ $prevTitle := "" }}
+  {{ $nextTitle := "" }}
+  {{ if reflect.IsMap $prevItem }}
+    {{ if isset $prevItem "title" }}
+      {{ $prevTitle = index $prevItem "title" }}
+    {{ end }}
+  {{ end }}
+  {{ if reflect.IsMap $nextItem }}
+    {{ if isset $nextItem "title" }}
+      {{ $nextTitle = index $nextItem "title" }}
+    {{ end }}
+  {{ end }}
   {{ if or $prevPage $nextPage }}
   <div class="flex flex-wrap justify-between">
     <span>
     {{ with $prevPage }}
       <a href="{{ .RelPermalink }}" class="flex align-center">
         <img src="{{ partial "docs/icon" "backward" }}" class="book-icon" alt="{{ partial "docs/text/i18n" "Backward" }}" />
-        <span>{{ partial "docs/title" . }}</span>
+        <span>{{ if ne $prevTitle "" }}{{ $prevTitle }}{{ else }}{{ partial "docs/title" . }}{{ end }}</span>
       </a>
     {{ end }}
     </span>
     <span>
     {{ with $nextPage }}
       <a href="{{ .RelPermalink }}" class="flex align-center">
-        <span>{{ partial "docs/title" . }}</span>
+        <span>{{ if ne $nextTitle "" }}{{ $nextTitle }}{{ else }}{{ partial "docs/title" . }}{{ end }}</span>
         <img src="{{ partial "docs/icon" "forward" }}" class="book-icon" alt="{{ partial "docs/text/i18n" "Forward" }}" />
       </a>
     {{ end }}

@@ -83,6 +83,7 @@ Also, registering again for the course [does not improve marks much](https://dis
 
 </details>
 
+<details>
 <summary><strong>We encourage learning by sharing</strong></summary>
 
 You _CAN_ copy from friends. You can work in groups. You can share code. Even in projects, assignments, and exams (except the final end-term exam).

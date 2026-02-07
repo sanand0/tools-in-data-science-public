@@ -3,12 +3,9 @@
       This replaces Hugo Book's default file-tree menu generation. */}}
 {{ $path := .RelPermalink }}
 {{ $sidebar := "root" }}
-{{ if or (eq $path "/2025-01/") (hasPrefix $path "/2025-01/") }}
-  {{ $sidebar = "2025-01" }}
-{{ else if or (eq $path "/2025-05/") (hasPrefix $path "/2025-05/") }}
-  {{ $sidebar = "2025-05" }}
-{{ else if or (eq $path "/2025-09/") (hasPrefix $path "/2025-09/") }}
-  {{ $sidebar = "2025-09" }}
+{{ $coursePrefix := findRE "^/20[0-9]{2}-[0-9]{2}/" $path }}
+{{ if gt (len $coursePrefix) 0 }}
+  {{ $sidebar = trim (index $coursePrefix 0) "/" }}
 {{ end }}
 
 {{ $sidebarFile := printf "sidebars/%s.md" $sidebar }}

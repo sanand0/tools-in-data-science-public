@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Requires go and hugo-extended. Build via `mise x go hugo-extended -- ./setup.sh`
+
 # -----------------------------------------------------------------------------
 # Build Orchestrator
 # -----------------------------------------------------------------------------
@@ -24,6 +26,7 @@ SIDEBAR_DIR="$SITE_DIR/sidebars"
 DATA_DIR="$SITE_DIR/data"
 NAV_DATA_FILE="$DATA_DIR/sidebar-nav.yaml"
 OUTPUT_DIR="$ROOT_DIR/public"
+COURSE_DIR_PATTERN='^20[0-9]{2}-[0-9]{2}$'
 
 # Fail fast when required CLI tools are missing.
 require_cmd() {
@@ -63,6 +66,11 @@ cp -R "$SCAFFOLD_DIR"/. "$SITE_DIR"/
   hugo mod get -u >/dev/null 2>&1
 )
 
+# Discover course folders dynamically (e.g. 2025-09, 2026-01, ...).
+mapfile -t COURSE_DIRS < <(
+  find "$ROOT_DIR" -maxdepth 1 -mindepth 1 -type d -printf '%f\n' | grep -E "$COURSE_DIR_PATTERN" | sort
+)
+
 # Convert docsify sidebar markdown into Hugo-friendly sidebar markdown:
 # - remove docsify-only inline <style> blocks
 # - normalize links to Hugo permalink-style paths
@@ -70,6 +78,7 @@ normalize_sidebar() {
   local src="$1"
   local dst="$2"
   local section_root="$3"
+  local course_prefix="$4"
 
   sed '/^[[:space:]]*<style>/d' "$src" | \
     BASE_URL="$section_root" perl -pe '
@@ -78,14 +87,23 @@ normalize_sidebar() {
       s{\((?:\.\./)+([^)]+?)\.md\)}{(/$1/)}g;
       s{\((?!https?://|/|#|mailto:)([^)]+?)\.md\)}{(/$1/)}g;
       s{\((?!https?://|/|#|mailto:)([-a-zA-Z0-9_/]+)\)}{(/$1/)}g;
+    ' | \
+    COURSE_PREFIX="$course_prefix" perl -pe '
+      BEGIN { $c = $ENV{"COURSE_PREFIX"} }
+      if ($c ne "") {
+        s{\(/\)}{(/$c/)}g;
+        s{\(/(?!$c/)([^)]+)\)}{(/$c/$1)}g;
+      }
     ' > "$dst"
 }
 
 # Generate per-section sidebar files from existing sidebar sources.
-normalize_sidebar "$ROOT_DIR/_sidebar.md" "$SIDEBAR_DIR/root.md" "/"
-normalize_sidebar "$ROOT_DIR/2025-01/_sidebar.md" "$SIDEBAR_DIR/2025-01.md" "/2025-01/"
-normalize_sidebar "$ROOT_DIR/2025-05/_sidebar.md" "$SIDEBAR_DIR/2025-05.md" "/2025-05/"
-normalize_sidebar "$ROOT_DIR/2025-09/_sidebar.md" "$SIDEBAR_DIR/2025-09.md" "/2025-09/"
+normalize_sidebar "$ROOT_DIR/_sidebar.md" "$SIDEBAR_DIR/root.md" "/" ""
+for course in "${COURSE_DIRS[@]}"; do
+  if [[ -f "$ROOT_DIR/$course/_sidebar.md" ]]; then
+    normalize_sidebar "$ROOT_DIR/$course/_sidebar.md" "$SIDEBAR_DIR/$course.md" "/$course/" "$course"
+  fi
+done
 
 # Extract unique navigable links from a normalized sidebar.
 # Used to define strict prev/next order that mirrors sidebar order.
@@ -117,9 +135,11 @@ write_sidebar_nav_yaml() {
 # Build data file consumed by `hugo/layouts/_partials/docs/prev-next.html`.
 rm -f "$NAV_DATA_FILE"
 write_sidebar_nav_yaml "root" "$SIDEBAR_DIR/root.md"
-write_sidebar_nav_yaml "2025-01" "$SIDEBAR_DIR/2025-01.md"
-write_sidebar_nav_yaml "2025-05" "$SIDEBAR_DIR/2025-05.md"
-write_sidebar_nav_yaml "2025-09" "$SIDEBAR_DIR/2025-09.md"
+for course in "${COURSE_DIRS[@]}"; do
+  if [[ -f "$SIDEBAR_DIR/$course.md" ]]; then
+    write_sidebar_nav_yaml "$course" "$SIDEBAR_DIR/$course.md"
+  fi
+done
 
 # Copy tracked markdown into Hugo content.
 # Behavior:
@@ -142,6 +162,20 @@ while IFS= read -r rel; do
   cp "$ROOT_DIR/$rel" "$dest"
   sed -E -i 's#\((\.\./)?images/#(/images/#g' "$dest"
 done < <(git -C "$ROOT_DIR" ls-files '*.md')
+
+# Duplicate shared top-level content pages into each course folder.
+# This ensures links like `/2025-09/system-requirements/` resolve and keep
+# course-specific sidebar context while navigating.
+for course in "${COURSE_DIRS[@]}"; do
+  while IFS= read -r rel; do
+    dest="$CONTENT_DIR/$course/$rel"
+    if [[ ! -f "$dest" ]]; then
+      mkdir -p "$(dirname "$dest")"
+      cp "$ROOT_DIR/$rel" "$dest"
+      sed -E -i 's#\((\.\./)?images/#(/images/#g' "$dest"
+    fi
+  done < <(git -C "$ROOT_DIR" ls-files '*.md' | grep -E '^[^/]+\.md$' | grep -v -E '^README\.md$|^_sidebar\.md$')
+done
 
 # Copy all non-markdown tracked files as static assets, excluding
 # build/config scaffolding files that should not be published as assets.
