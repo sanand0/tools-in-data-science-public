@@ -8,11 +8,11 @@
 
 **AI will teach you**. We give you challenges. You learn by yourself, using AI & humans. **Self-learning is part of the course skills**.
 
-[![](thats-what-ai-said.webp)](https://gemini.google.com/share/845c83f4fa9d)
+[![](images/thats-what-ai-said.webp)](https://gemini.google.com/share/845c83f4fa9d "Things are moving so fast that your faculty and instructors don't know much more than you. Ask AI first.")
 
 **AI will evaluate you**. Since results vary each run, learn to answer them _robustly_. LLM decisions are **final**.
 
-[![](my-decision-is-final.webp)](https://gemini.google.com/share/845c83f4fa9d)
+[![](images/my-decision-is-final.webp)](https://gemini.google.com/share/845c83f4fa9d "The skill you learn is how to convince AI - an increasingly useful skill.")
 
 <!-- Source: https://gemini.google.com/app/8118aff285667319 -->
 
