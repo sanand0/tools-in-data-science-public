@@ -28,3 +28,7 @@ project2/*.csv
 
 # Other projects
 project*/*.csv
+
+# Hugo generated artifacts
+public/
+.hugo-build/
