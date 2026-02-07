@@ -261,7 +261,7 @@ Their **job** is to help you. Trouble them for your slightest doubts!
 
 ## Past Course Content
 
-- [TDS: Course Content - Jan 2025](2025-01/)
+- [TDS: Course Content - Jan 2025](../2025-01/)
 - [TDS: Live Sessions - Jan 2025](https://www.youtube.com/playlist?list=PL_h5u1jMeBCl1BquBhgunA4t08XAxsA-C) -- YouTube playlist
 - [TDS: Course calendar - Jan 2025](https://calendar.google.com/calendar/u/0/r?cid=Y19ib2Y3bnMxbDduNm84azA1dHA4YTlxNWIwZ0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t)
 - [Grading Document - Jan 2025](https://docs.google.com/document/d/e/2PACX-1vRBH1NuM3ML6MH5wfL2xPiPsiXV0waKlUUEj6C7LrHrARNUsAEA1sT2r7IHcFKi8hvQ45gSrREnFiTT/pub).

@@ -1,0 +1,25 @@
+// User-selected theme overrides (set via `data-user-theme` attribute).
+html[data-user-theme="light"] {
+  @include theme-light;
+}
+
+html[data-user-theme="dark"] {
+  @include theme-dark;
+}
+
+// Sidebar theme toggle button styling.
+.tds-theme-toggle {
+  margin-top: 1rem;
+  width: 100%;
+  border: 1px solid var(--gray-400);
+  border-radius: 0.375rem;
+  background: var(--body-background);
+  color: var(--body-font-color);
+  padding: 0.5rem 0.625rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.tds-theme-toggle:hover {
+  border-color: var(--color-link);
+}
