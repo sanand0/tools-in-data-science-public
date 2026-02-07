@@ -16,9 +16,9 @@ Here's an FAQ based on the provided transcript of the TDS tutorial:
 
 **A4:** I've found three main approaches to be reasonably robust:
 
-1.  **LLM Verification:** Have one LLM verify the output of another. This effectively doubles your cost but significantly improves accuracy. For example, in a classification task, having two LLMs cross-check each other reduced the error rate from 14% to 3.7%, and triple-checking brought it down to 2.2%.
-2.  **Code Execution and Validation:** If the code provided by an LLM runs, it's likely correct. You can verify the code itself, or simply run the code and check if the output seems reasonable.
-3.  **Systematic Prompt Improvement through Evaluation:** Instead of relying on prompt engineering (which is often more art than science), create a prompt, test it with sample questions, see how often it fails, modify it, and re-test until it reliably executes. Then, introduce more diverse examples.
+1. **LLM Verification:** Have one LLM verify the output of another. This effectively doubles your cost but significantly improves accuracy. For example, in a classification task, having two LLMs cross-check each other reduced the error rate from 14% to 3.7%, and triple-checking brought it down to 2.2%.
+2. **Code Execution and Validation:** If the code provided by an LLM runs, it's likely correct. You can verify the code itself, or simply run the code and check if the output seems reasonable.
+3. **Systematic Prompt Improvement through Evaluation:** Instead of relying on prompt engineering (which is often more art than science), create a prompt, test it with sample questions, see how often it fails, modify it, and re-test until it reliably executes. Then, introduce more diverse examples.
 
 **Q5: Will you be teaching us to use Perplexity AI Pro and Google's API in this course?**
 
@@ -36,9 +36,9 @@ Here's an FAQ based on the provided transcript of the TDS tutorial:
 
 **A8:** I'm not sure there's one "best" approach, but here are some thoughts:
 
-1.  **Keep it Simple:** Avoid over-specializing or optimizing for specific scenarios, as this can lead to worse overall results. If your solution becomes too complex to understand, simplify it, even if it means sacrificing some accuracy. Keep the solution at the level of your understanding.
-2.  **Work in a Group:** Others might spot issues or solutions you've missed.
-3.  **Use an LLM as an Advisor:** Pass your code to LLMs like CodeX, Claude Code, Cursor, or ChatGPT. Ask them specific questions on how to improve your code. If you don't know what to ask, ask them what questions you _should_ be asking.
+1. **Keep it Simple:** Avoid over-specializing or optimizing for specific scenarios, as this can lead to worse overall results. If your solution becomes too complex to understand, simplify it, even if it means sacrificing some accuracy. Keep the solution at the level of your understanding.
+2. **Work in a Group:** Others might spot issues or solutions you've missed.
+3. **Use an LLM as an Advisor:** Pass your code to LLMs like CodeX, Claude Code, Cursor, or ChatGPT. Ask them specific questions on how to improve your code. If you don't know what to ask, ask them what questions you _should_ be asking.
 
 **Q9: In my ML project, I'm stuck at 72% accuracy, while the maximum is around 78%. I've tried extensive feature engineering and increasing estimators, but it seems to be overfitting. What can I do?**
 

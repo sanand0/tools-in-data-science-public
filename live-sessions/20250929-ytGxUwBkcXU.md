@@ -29,9 +29,10 @@ Here's an FAQ based on the tutorial:
 **Q6: What are the key terms used in containerization, like "image" and "container"?**
 
 **A6:**
-*   An **Image** is a single, self-contained file (e.g., 500MB to several GB) that bundles your application code along with all its necessary prerequisites and dependencies (like Python, JEMA).
-*   A **Container** is a live, isolated environment created by Podman (or Docker) where an image runs. It's like a lightweight virtual machine specifically for your application.
-*   A **Pod** is a term used in Podman (similar to Kubernetes) to refer to a group of one or more containers that are deployed together and share resources.
+
+- An **Image** is a single, self-contained file (e.g., 500MB to several GB) that bundles your application code along with all its necessary prerequisites and dependencies (like Python, JEMA).
+- A **Container** is a live, isolated environment created by Podman (or Docker) where an image runs. It's like a lightweight virtual machine specifically for your application.
+- A **Pod** is a term used in Podman (similar to Kubernetes) to refer to a group of one or more containers that are deployed together and share resources.
 
 **Q7: How do I install Podman on my system, especially if I'm using WSL (Windows Subsystem for Linux)?**
 
@@ -84,15 +85,16 @@ Here's an FAQ based on the tutorial:
 **Q19: What is the significance of the `podman run` options like `-d`, `--name`, `-p`, `-v`, and `--network`?**
 
 **A19:**
-*   `-d` (detached mode): Runs the container in the background, freeing up your terminal.
-*   `--name [name]`: Assigns a human-readable name to your container (e.g., `jupylab`).
-*   `-p [host_port:container_port]`: Maps a port from your host machine (e.g., 8888) to a port inside the container (e.g., 8888), allowing external access.
-*   `-v [host_path:container_path]`: Mounts a local directory from your host to a directory inside the container for persistent storage.
-*   `--network [network_name]`: Connects the container to a specific custom network, enabling inter-container communication.
+
+- `-d` (detached mode): Runs the container in the background, freeing up your terminal.
+- `--name [name]`: Assigns a human-readable name to your container (e.g., `jupylab`).
+- `-p [host_port:container_port]`: Maps a port from your host machine (e.g., 8888) to a port inside the container (e.g., 8888), allowing external access.
+- `-v [host_path:container_path]`: Mounts a local directory from your host to a directory inside the container for persistent storage.
+- `--network [network_name]`: Connects the container to a specific custom network, enabling inter-container communication.
 
 **Q20: What are your recommendations for following the tutorial?**
 
-**A20:** It's important to focus on understanding the *flow* and *abstraction* of the concepts rather than simply copy-pasting commands. All the code snippets will be available in the provided notes, and you can always use AI tools like ChatGPT for basic command generation. The goal is to build something functional, so grasping the "why" behind the steps is crucial.
+**A20:** It's important to focus on understanding the _flow_ and _abstraction_ of the concepts rather than simply copy-pasting commands. All the code snippets will be available in the provided notes, and you can always use AI tools like ChatGPT for basic command generation. The goal is to build something functional, so grasping the "why" behind the steps is crucial.
 
 **Q21: What is the `sh` command used for in `podman exec`?**
 

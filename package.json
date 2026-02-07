@@ -1,5 +1,5 @@
 {
   "scripts": {
-    "lint": "npx -y pretty-quick --print-width 120 --write '**/*.md'"
+    "lint": "dprint fmt -c https://raw.githubusercontent.com/sanand0/scripts/refs/heads/main/dprint.jsonc **/*.md"
   }
 }

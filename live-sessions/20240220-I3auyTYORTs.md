@@ -12,10 +12,10 @@ Here's an FAQ based on the live tutorial, incorporating student questions and su
 
 To start with Colab:
 
-1.  Search for "Colab" and click the first link.
-2.  Open a new notebook.
-3.  Give your notebook a name (e.g., "demo scraping" or "scraping fundamentals").
-4.  You'll need to log in, typically with a Google ID.
+1. Search for "Colab" and click the first link.
+2. Open a new notebook.
+3. Give your notebook a name (e.g., "demo scraping" or "scraping fundamentals").
+4. You'll need to log in, typically with a Google ID.
 
 **Q2: How does web scraping work, and what is a URL's role in it?**
 
@@ -25,18 +25,18 @@ To start with Colab:
 
 **A3:** You'll use Python's built-in `urllib.request` library.
 
-1.  Import `urlopen` from it: `from urllib.request import urlopen`.
-2.  Define the URL of the webpage you want to scrape as a string (e.g., `url = "https://en.wikipedia.org/wiki/Wildfire"`).
-3.  Open the URL and read its content: `x = urlopen(url).read()`.
-    The variable `x` (or whatever you name it) will then hold the raw HTML content of that webpage as a single, long string.
+1. Import `urlopen` from it: `from urllib.request import urlopen`.
+2. Define the URL of the webpage you want to scrape as a string (e.g., `url = "https://en.wikipedia.org/wiki/Wildfire"`).
+3. Open the URL and read its content: `x = urlopen(url).read()`.
+   The variable `x` (or whatever you name it) will then hold the raw HTML content of that webpage as a single, long string.
 
 **Q4: The raw HTML output from `x.read()` is very hard to read because it's a single long string. How can I make it more structured and readable?**
 
 **A4:** The `BeautifulSoup` library is perfect for this.
 
-1.  Import it: `from bs4 import BeautifulSoup`.
-2.  Create a `BeautifulSoup` object, passing your raw HTML and specifying an HTML parser: `soup = BeautifulSoup(x, 'html.parser')`.
-    `BeautifulSoup` will then parse the HTML and format it neatly, with proper indentations, making it much easier to understand. You can then just call `soup` to see the formatted output.
+1. Import it: `from bs4 import BeautifulSoup`.
+2. Create a `BeautifulSoup` object, passing your raw HTML and specifying an HTML parser: `soup = BeautifulSoup(x, 'html.parser')`.
+   `BeautifulSoup` will then parse the HTML and format it neatly, with proper indentations, making it much easier to understand. You can then just call `soup` to see the formatted output.
 
 **Q5: Can I scrape a local HTML file instead of a web URL?**
 

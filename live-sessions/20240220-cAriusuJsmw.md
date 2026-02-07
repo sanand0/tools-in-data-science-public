@@ -61,21 +61,21 @@ The basic structure includes:
 
 **A11:**
 
-1.  Open Notepad (or any text editor).
-2.  Type the following code:
-    ```html
-    <html>
-      <head>
-        <title>Amit TDS</title>
-      </head>
-      <body>
-        <h1>Intro</h1>
-        <p>Hello, I am Amit. I am a TDS TA. I am here at IIT Madras.</p>
-      </body>
-    </html>
-    ```
-3.  Save the file as `demo_html.html` (making sure to select "All Files" for the file type, not ".txt").
-4.  Open the saved file in your web browser. You should see "Intro" as a large heading and the paragraph content.
+1. Open Notepad (or any text editor).
+2. Type the following code:
+   ```html
+   <html>
+     <head>
+       <title>Amit TDS</title>
+     </head>
+     <body>
+       <h1>Intro</h1>
+       <p>Hello, I am Amit. I am a TDS TA. I am here at IIT Madras.</p>
+     </body>
+   </html>
+   ```
+3. Save the file as `demo_html.html` (making sure to select "All Files" for the file type, not ".txt").
+4. Open the saved file in your web browser. You should see "Intro" as a large heading and the paragraph content.
 
 **Q12: How do I add a new line within a paragraph in HTML?**
 

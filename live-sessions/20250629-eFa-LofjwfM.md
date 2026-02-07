@@ -30,9 +30,9 @@ Here's an FAQ-style transcription of the live tutorial:
 
 **A7:** The `tr` command can perform three main types of operations on characters:
 
-1.  **Translate:** It replaces occurrences of one set of characters with another. For example, `tr ' ' ','` would change all spaces to commas. You can also use it to normalize multiple different delimiters (like commas, colons, and spaces) into a single standard delimiter.
-2.  **Delete:** It removes specific characters from the input. For example, `tr -d 'abc'` would delete all 'a', 'b', and 'c' characters.
-3.  **Squeeze:** It replaces sequences of a repeated character with a single instance of that character. For example, `tr -s ','` would turn `,,,` into `,`.
+1. **Translate:** It replaces occurrences of one set of characters with another. For example, `tr ' ' ','` would change all spaces to commas. You can also use it to normalize multiple different delimiters (like commas, colons, and spaces) into a single standard delimiter.
+2. **Delete:** It removes specific characters from the input. For example, `tr -d 'abc'` would delete all 'a', 'b', and 'c' characters.
+3. **Squeeze:** It replaces sequences of a repeated character with a single instance of that character. For example, `tr -s ','` would turn `,,,` into `,`.
 
 **Q8: How can I remove specific types of characters, like all letters or special symbols, from a string using `tr`?**
 
@@ -132,9 +132,9 @@ The tutorial continues with discussions of `sed` for more complex string manipul
 
 **A7:** The `tr` command can perform three main types of operations on characters:
 
-1.  **Translate:** It replaces occurrences of one set of characters with another. For example, `tr ' ' ','` would change all spaces to commas. You can also use it to normalize multiple different delimiters (like commas, colons, and spaces) into a single standard delimiter.
-2.  **Delete:** It removes specific characters from the input. For example, `tr -d 'abc'` would delete all 'a', 'b', and 'c' characters.
-3.  **Squeeze:** It replaces sequences of a repeated character with a single instance of that character. For example, `tr -s ','` would turn `,,,` into `,`.
+1. **Translate:** It replaces occurrences of one set of characters with another. For example, `tr ' ' ','` would change all spaces to commas. You can also use it to normalize multiple different delimiters (like commas, colons, and spaces) into a single standard delimiter.
+2. **Delete:** It removes specific characters from the input. For example, `tr -d 'abc'` would delete all 'a', 'b', and 'c' characters.
+3. **Squeeze:** It replaces sequences of a repeated character with a single instance of that character. For example, `tr -s ','` would turn `,,,` into `,`.
 
 **Q8: How can I remove specific types of characters, like all letters or special symbols, from a string using `tr`?**
 

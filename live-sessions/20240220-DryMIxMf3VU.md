@@ -10,10 +10,10 @@ This is a summary of the Q&A from a web scraping tutorial on Tools in Data Scien
 
 **A1:** Web scraping is useful for several reasons:
 
-1.  **Dynamic Data:** Websites with constantly changing data (like stock market prices or real-time world population) can be scraped to get up-to-date information efficiently.
-2.  **Large Datasets:** When dealing with huge amounts of data (thousands or millions of rows daily, as in research data or large tables), manual entry is impractical and time-consuming. A script can gather this data in minutes, saving hours of effort.
-3.  **Automation:** Once a script is written, it can be run daily to collect new data without manual intervention, saving repetitive work.
-4.  **Data Structuring:** Scraping allows you to extract data and organize it into structured formats (like tables or CSV files) for further analysis, which is difficult to do manually from web pages.
+1. **Dynamic Data:** Websites with constantly changing data (like stock market prices or real-time world population) can be scraped to get up-to-date information efficiently.
+2. **Large Datasets:** When dealing with huge amounts of data (thousands or millions of rows daily, as in research data or large tables), manual entry is impractical and time-consuming. A script can gather this data in minutes, saving hours of effort.
+3. **Automation:** Once a script is written, it can be run daily to collect new data without manual intervention, saving repetitive work.
+4. **Data Structuring:** Scraping allows you to extract data and organize it into structured formats (like tables or CSV files) for further analysis, which is difficult to do manually from web pages.
 
 **Q2: In real-world practical applications, do we open the inspect page, identify tags, and then write Python code accordingly?**
 
@@ -27,10 +27,10 @@ This is a summary of the Q&A from a web scraping tutorial on Tools in Data Scien
 
 **A4:** Your task is to scrape data from the provided World Population website. You need to extract:
 
-1.  A list of all countries (around 250 entries).
-2.  A list of their respective populations.
-3.  If possible, organize this data into two columns (country name and population) and save it as a CSV file.
-    The website has clean HTML code, so it should be manageable.
+1. A list of all countries (around 250 entries).
+2. A list of their respective populations.
+3. If possible, organize this data into two columns (country name and population) and save it as a CSV file.
+   The website has clean HTML code, so it should be manageable.
 
 **Q5: How much time should I allocate for this task?**
 
@@ -118,10 +118,10 @@ This is a summary of the Q&A from a web scraping tutorial on Tools in Data Scien
 
 Here's how cookies work in scraping:
 
-1.  **Sending Requests:** When your browser sends a request to a website, it often includes specific cookies. The server uses these cookies to identify you and tailor the response.
-2.  **Scraping Secured Websites:** To scrape websites that require login (like movie database websites that only show recommendations after login), your scraping script needs to include the appropriate cookie information in its requests. This tells the server that your script is an authenticated user.
-3.  **Finding Cookies:** You can find cookies by inspecting elements in your browser: Right-click -> Inspect -> Network tab. Refresh the page, click on the first network request (usually your homepage), and scroll down to the "Request Headers" section. You'll find a "Cookie" header with key-value pairs (e.g., `ML4_session=...`). This is your session cookie.
-4.  **Using Cookies in Python:** With the `requests` library, you can pass this cookie information as a dictionary in your GET or POST requests.
+1. **Sending Requests:** When your browser sends a request to a website, it often includes specific cookies. The server uses these cookies to identify you and tailor the response.
+2. **Scraping Secured Websites:** To scrape websites that require login (like movie database websites that only show recommendations after login), your scraping script needs to include the appropriate cookie information in its requests. This tells the server that your script is an authenticated user.
+3. **Finding Cookies:** You can find cookies by inspecting elements in your browser: Right-click -> Inspect -> Network tab. Refresh the page, click on the first network request (usually your homepage), and scroll down to the "Request Headers" section. You'll find a "Cookie" header with key-value pairs (e.g., `ML4_session=...`). This is your session cookie.
+4. **Using Cookies in Python:** With the `requests` library, you can pass this cookie information as a dictionary in your GET or POST requests.
 
 **Q26: My session cookie value for the movie website is `E3C1...8AB`. Are all cookies the same, or is everyone's different?**
 
@@ -139,10 +139,10 @@ Here's how cookies work in scraping:
 
 **A29:** Yes, we'll use the `requests` library for this, as it's better for cookie handling than `urllib`.
 
-1.  **Import Libraries:** Import `requests` and `BeautifulSoup`.
-2.  **Define Cookies:** Create a Python dictionary with your session cookie (e.g., `cookies = {'ML4_session': 'your_cookie_value'}`).
-3.  **Make Request:** Use `requests.get(URL, cookies=cookies)` to send a request including your cookie.
-4.  **Parse Response:** Use `BeautifulSoup` to parse the `response.text`.
+1. **Import Libraries:** Import `requests` and `BeautifulSoup`.
+2. **Define Cookies:** Create a Python dictionary with your session cookie (e.g., `cookies = {'ML4_session': 'your_cookie_value'}`).
+3. **Make Request:** Use `requests.get(URL, cookies=cookies)` to send a request including your cookie.
+4. **Parse Response:** Use `BeautifulSoup` to parse the `response.text`.
 
 This will allow you to access the logged-in version of the website.
 
@@ -214,19 +214,19 @@ This will allow you to access the logged-in version of the website.
 
 **A46:** While the principles of using cookies for authentication apply, highly protected websites like banking sites have much stronger security measures. They often employ:
 
-1.  **Strict Anti-Bot Measures:** Advanced CAPTCHAs, bot detection systems, and IP blocking.
-2.  **Frequent Session Expiration:** Sessions expire very quickly.
-3.  **Multi-Factor Authentication (MFA):** OTPs, security tokens, etc., which cookies alone cannot bypass.
-4.  **Complex JavaScript:** Dynamic content loading and obfuscated JavaScript that makes scraping much harder.
-    So, while theoretically possible to interact with them, successfully scraping data from banking websites is extremely difficult and usually not feasible with basic web scraping techniques, especially for bypassing security features.
+1. **Strict Anti-Bot Measures:** Advanced CAPTCHAs, bot detection systems, and IP blocking.
+2. **Frequent Session Expiration:** Sessions expire very quickly.
+3. **Multi-Factor Authentication (MFA):** OTPs, security tokens, etc., which cookies alone cannot bypass.
+4. **Complex JavaScript:** Dynamic content loading and obfuscated JavaScript that makes scraping much harder.
+   So, while theoretically possible to interact with them, successfully scraping data from banking websites is extremely difficult and usually not feasible with basic web scraping techniques, especially for bypassing security features.
 
 **Q47: Is there any way to know if a website has security measures to detect and block scraping bots?**
 
 **A47:** Yes, you can check for several signs:
 
-1.  **`robots.txt` file:** This file (e.g., `www.example.com/robots.txt`) tells bots which parts of the site they're allowed or disallowed to crawl. Respecting this file is good practice.
-2.  **CAPTCHAs:** Websites often use CAPTCHAs (like reCAPTCHA) to verify if the user is human, especially after repetitive requests.
-3.  **IP Blocking:** If you send too many requests too quickly, the website might block your IP address.
-4.  **Dynamic Content:** Websites heavily reliant on JavaScript to load content (like many modern single-page applications) are harder to scrape with basic tools because the HTML source might not contain the data until JavaScript executes.
-5.  **User-Agent Blocking:** Some sites block requests from known bot user-agents. You can try to mimic a real browser's user-agent in your request headers.
-6.  **Complex Authentication:** Websites requiring intricate login flows (MFA, session tokens, etc.) are generally harder to scrape programmatically.
+1. **`robots.txt` file:** This file (e.g., `www.example.com/robots.txt`) tells bots which parts of the site they're allowed or disallowed to crawl. Respecting this file is good practice.
+2. **CAPTCHAs:** Websites often use CAPTCHAs (like reCAPTCHA) to verify if the user is human, especially after repetitive requests.
+3. **IP Blocking:** If you send too many requests too quickly, the website might block your IP address.
+4. **Dynamic Content:** Websites heavily reliant on JavaScript to load content (like many modern single-page applications) are harder to scrape with basic tools because the HTML source might not contain the data until JavaScript executes.
+5. **User-Agent Blocking:** Some sites block requests from known bot user-agents. You can try to mimic a real browser's user-agent in your request headers.
+6. **Complex Authentication:** Websites requiring intricate login flows (MFA, session tokens, etc.) are generally harder to scrape programmatically.

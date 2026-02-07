@@ -10,7 +10,7 @@ Here's an FAQ based on the provided transcript, summarizing student questions an
 
 **A1:** The entire course content, including recorded videos, is not hosted on the C Portal. Instead, it's available on a separate site. The C Portal usually provides a link to this external site. All content will be available only via this specific site.
 
-**Q2: Will the recording of *this* session be available on YouTube?**
+**Q2: Will the recording of _this_ session be available on YouTube?**
 
 **A2:** Yes, this session's recording will be available on YouTube, usually within about a day.
 
@@ -20,7 +20,7 @@ Here's an FAQ based on the provided transcript, summarizing student questions an
 
 **Q4: Where will graded assignments be released, and how do I access them?**
 
-**A4:** Graded assignments will first appear on *our* main course website. We will also provide a link from the C Portal, but the primary place to find them will be our site as soon as they are released.
+**A4:** Graded assignments will first appear on _our_ main course website. We will also provide a link from the C Portal, but the primary place to find them will be our site as soon as they are released.
 
 **Q5: What's the difference between the "Check" button and the "Save" button on the assignment portal?**
 
@@ -32,7 +32,7 @@ Here's an FAQ based on the provided transcript, summarizing student questions an
 
 **Q7: Can I submit my assignments multiple times? Which submission will count?**
 
-**A7:** Yes, you can submit multiple times. However, only your *most recent* submission is considered the official score. So, even if you had a perfect score previously, your last submission, whatever its score, is what counts. This policy is consistent across all subjects in the program.
+**A7:** Yes, you can submit multiple times. However, only your _most recent_ submission is considered the official score. So, even if you had a perfect score previously, your last submission, whatever its score, is what counts. This policy is consistent across all subjects in the program.
 
 **Q8: I'm a direct diploma student from a non-programming background (e.g., civil/mechanical engineering), and I don't have much coding experience. Will this course accommodate students like me, especially with advanced topics like Mad 1 and Mad 2 prerequisites?**
 
@@ -42,13 +42,14 @@ Here's an FAQ based on the provided transcript, summarizing student questions an
 
 **A9:** Our course website clearly outlines the expected knowledge by module. We've curated high-quality external videos and starter code directly within the course content to save you time.
 The most crucial foundational tools are covered in Module 1, including:
-*   Using UV and NPX.
-*   Browser developer tools.
-*   Understanding JSON.
-*   Terminal commands.
-*   Basic SQL queries.
-*   Git and GitHub.
-These will be used constantly throughout the course.
+
+- Using UV and NPX.
+- Browser developer tools.
+- Understanding JSON.
+- Terminal commands.
+- Basic SQL queries.
+- Git and GitHub.
+  These will be used constantly throughout the course.
 
 The two most challenging and crucial concepts, which strongly correlate with student performance, are **APIs** (specifically REST APIs and how to build server-side APIs) and **deployment** (how to deploy your solutions to the cloud for public access). If you master these two, you will excel. Think of APIs as the "plumbing" connecting different parts of a system.
 
@@ -60,7 +61,7 @@ We don't specifically recommend external short courses because our internal cour
 
 **Q11: Will the projects be the same as previous terms, and will they become harder?**
 
-**A11:** Projects change every term and typically become harder. This is because AI tools like GPT are constantly improving, so we need to challenge you to think at a *systems level*, which GPTs haven't yet mastered. Our goal is to make you job-ready. Mastering this course alone can make you highly employable. If you only aim for a good grade without focusing on deep learning, you're doing yourself a disservice.
+**A11:** Projects change every term and typically become harder. This is because AI tools like GPT are constantly improving, so we need to challenge you to think at a _systems level_, which GPTs haven't yet mastered. Our goal is to make you job-ready. Mastering this course alone can make you highly employable. If you only aim for a good grade without focusing on deep learning, you're doing yourself a disservice.
 
 **Q12: Is there a specific tool or framework for creating AI agents (like N8N for workflow automation)?**
 
@@ -132,7 +133,7 @@ We don't specifically recommend external short courses because our internal cour
 
 **Q29: Can you explain the difference between the YouTube playlist and the content on the main course website?**
 
-**A29:** The YouTube playlist primarily contains recordings from *past* terms. The main course website (TDS.s-anand.net) hosts all current course content, including curated videos, lecture notes, and assignments. To get the most up-to-date and curated information, you should focus on the main course website.
+**A29:** The YouTube playlist primarily contains recordings from _past_ terms. The main course website (TDS.s-anand.net) hosts all current course content, including curated videos, lecture notes, and assignments. To get the most up-to-date and curated information, you should focus on the main course website.
 
 **Q30: I'm worried about my background (e.g., Mechanical Engineering) and my lack of programming knowledge. How can I best prepare for this course, especially with advanced topics like AI agents?**
 
@@ -297,20 +298,22 @@ We don't specifically recommend external short courses because our internal cour
 **Q70: How is the grading done for the projects since there is no viva?**
 
 **A70:** Project grading has two main components:
-1.  **Code Evaluation:** Your code will be evaluated using an LLM-based rubric. We provide specific criteria (e.g., code quality, robustness, error checking) that the LLM checks against. This makes the evaluation very objective and unbiased.
-2.  **Functionality:** We use test cases to assess how well your application functions. Your server will receive specific inputs, and if it responds correctly according to the defined template, you get marks. These include both deterministic and subjective tests.
+
+1. **Code Evaluation:** Your code will be evaluated using an LLM-based rubric. We provide specific criteria (e.g., code quality, robustness, error checking) that the LLM checks against. This makes the evaluation very objective and unbiased.
+2. **Functionality:** We use test cases to assess how well your application functions. Your server will receive specific inputs, and if it responds correctly according to the defined template, you get marks. These include both deterministic and subjective tests.
 
 **Q71: Can you quickly summarize the key points we've discussed today?**
 
 **A71:** We've covered several important aspects today:
-*   Course content is on our custom portal (TDS.s-anand.net), not the C Portal.
-*   Assignments are released on our portal, requiring a "Save" button click to submit.
-*   Your last submission is the official score.
-*   The course involves advanced programming, APIs, and deployment, which are crucial and often challenging.
-*   We provide significant support, including TAs, curated content, and a responsive Discord community.
-*   Projects change every term and are designed to be challenging but doable, making you job-ready.
-*   We covered WSL setup, the OpenAI API token, and basic command-line usage.
-*   All sessions are recorded and made available quickly.
+
+- Course content is on our custom portal (TDS.s-anand.net), not the C Portal.
+- Assignments are released on our portal, requiring a "Save" button click to submit.
+- Your last submission is the official score.
+- The course involves advanced programming, APIs, and deployment, which are crucial and often challenging.
+- We provide significant support, including TAs, curated content, and a responsive Discord community.
+- Projects change every term and are designed to be challenging but doable, making you job-ready.
+- We covered WSL setup, the OpenAI API token, and basic command-line usage.
+- All sessions are recorded and made available quickly.
 
 **Q72: Will you continue to provide links to the YouTube recordings, and when will they be available?**
 

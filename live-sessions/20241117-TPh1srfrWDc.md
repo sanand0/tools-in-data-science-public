@@ -47,11 +47,11 @@ Here's an FAQ based on the live tutorial:
 
 **A9:** (Instructor demonstrated using `extract_tables`) For PDFs where rows are split across pages or data is very complex, standard `extract_tables()` might miss or misinterpret data. You might get "new line" characters or incomplete rows. You'll need to:
 
-1.  **Check page by page:** The first page might have headers, but subsequent pages might not. Adjust your code to handle headers conditionally when looping through pages.
-2.  **Clean Data:** Remove unwanted characters like `\n` that appear in the extracted text.
-3.  **Use `tabula-py`:** For split rows, `tabula-py` with `stream=True` and `multiple_tables=True` can often concatenate data across pages, but observe carefully for misinterpretations.
-4.  **Manual Intervention:** For extremely complex PDFs, perfect extraction with libraries might be impossible, and some manual cleanup or data population could be necessary.
-5.  **Consider other libraries:** `Camelot` is another option for table extraction, but some complex PDFs might still cause it to fail.
+1. **Check page by page:** The first page might have headers, but subsequent pages might not. Adjust your code to handle headers conditionally when looping through pages.
+2. **Clean Data:** Remove unwanted characters like `\n` that appear in the extracted text.
+3. **Use `tabula-py`:** For split rows, `tabula-py` with `stream=True` and `multiple_tables=True` can often concatenate data across pages, but observe carefully for misinterpretations.
+4. **Manual Intervention:** For extremely complex PDFs, perfect extraction with libraries might be impossible, and some manual cleanup or data population could be necessary.
+5. **Consider other libraries:** `Camelot` is another option for table extraction, but some complex PDFs might still cause it to fail.
 
 **Q10: Are previous year's ROE questions significantly easier than this year's, and can the data files (e.g., XML, PDF) vary in type and number?**
 

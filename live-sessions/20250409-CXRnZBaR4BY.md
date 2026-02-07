@@ -193,10 +193,10 @@ Duration: 7177.0Here's an FAQ summary of the live tutorial:
 
 **A28:** Your preparation should focus on:
 
-1.  **Course Portal Content:** Thoroughly go through all the material available on the course portal.
-2.  **Previous Year Questions (PYQs):** It is highly recommended to study PYQs. While question patterns will be similar, new modules have been introduced, so PYQs up to January 2024 would be a good reference.
-3.  **Specific Topics:** As mentioned in previous answers, pay extra attention to browser tools (CSS selectors), JSON processing, database querying, Git commands, and `Pandas` filtering, among others.
-4.  **Practice:** Use tools like CSS Diner for interactive practice.
+1. **Course Portal Content:** Thoroughly go through all the material available on the course portal.
+2. **Previous Year Questions (PYQs):** It is highly recommended to study PYQs. While question patterns will be similar, new modules have been introduced, so PYQs up to January 2024 would be a good reference.
+3. **Specific Topics:** As mentioned in previous answers, pay extra attention to browser tools (CSS selectors), JSON processing, database querying, Git commands, and `Pandas` filtering, among others.
+4. **Practice:** Use tools like CSS Diner for interactive practice.
 
 ---
 
@@ -415,10 +415,10 @@ Thank you for your active participation and valuable feedback throughout this te
 
 **A28:** Your preparation should focus on:
 
-1.  **Course Portal Content:** Thoroughly go through all the material available on the course portal.
-2.  **Previous Year Questions (PYQs):** It is highly recommended to study PYQs. While question patterns will be similar, new modules have been introduced, so PYQs up to January 2024 would be a good reference.
-3.  **Specific Topics:** As mentioned in previous answers, pay extra attention to browser tools (CSS selectors), JSON processing, database querying, Git commands, and `Pandas` filtering, among others.
-4.  **Practice:** Use tools like CSS Diner for interactive practice.
+1. **Course Portal Content:** Thoroughly go through all the material available on the course portal.
+2. **Previous Year Questions (PYQs):** It is highly recommended to study PYQs. While question patterns will be similar, new modules have been introduced, so PYQs up to January 2024 would be a good reference.
+3. **Specific Topics:** As mentioned in previous answers, pay extra attention to browser tools (CSS selectors), JSON processing, database querying, Git commands, and `Pandas` filtering, among others.
+4. **Practice:** Use tools like CSS Diner for interactive practice.
 
 ---
 

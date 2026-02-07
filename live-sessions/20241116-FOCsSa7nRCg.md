@@ -10,10 +10,10 @@ Here's an FAQ-style transcription of the live tutorial:
 
 **A1:** The process typically involves four main steps:
 
-1.  **Get the data:** Obtain the data you need.
-2.  **Clean up:** Process the data to handle missing values, errors, or inconsistencies.
-3.  **Transform:** Manipulate the data into a more suitable format or structure for analysis.
-4.  **Answer questions:** Use the processed data to derive insights and answer specific questions.
+1. **Get the data:** Obtain the data you need.
+2. **Clean up:** Process the data to handle missing values, errors, or inconsistencies.
+3. **Transform:** Manipulate the data into a more suitable format or structure for analysis.
+4. **Answer questions:** Use the processed data to derive insights and answer specific questions.
 
 **Q2: What is required to get data into a Python notebook from a web source?**
 
@@ -46,18 +46,18 @@ Here's an FAQ-style transcription of the live tutorial:
 
 **A6:** If a website uses JavaScript to load data dynamically, the initial HTML fetch might only provide the page structure, not the actual content. In such cases, you can use the browser's developer console:
 
-1.  Use `document.querySelector()` or `document.querySelectorAll()` with CSS selectors to target the element containing the data.
-2.  Once you have the element, you can often extract its `outerHTML` or `textContent` and copy it to your clipboard.
-3.  Paste this data into your Python notebook and then parse it using Beautiful Soup.
+1. Use `document.querySelector()` or `document.querySelectorAll()` with CSS selectors to target the element containing the data.
+2. Once you have the element, you can often extract its `outerHTML` or `textContent` and copy it to your clipboard.
+3. Paste this data into your Python notebook and then parse it using Beautiful Soup.
 
 **Q7: How can I extract data from a database in Python?**
 
 **A7:** For databases like SQLite3, you can use the built-in `sqlite3` library:
 
-1.  **Connect** to the database using `sqlite3.connect('database_name.db')`.
-2.  **Create a cursor** to execute SQL queries.
-3.  **Execute SQL queries** (e.g., `SELECT * FROM table_name`) using the cursor.
-4.  **Fetch results** (e.g., `cursor.fetchall()`) and store them in a Pandas DataFrame for further analysis.
+1. **Connect** to the database using `sqlite3.connect('database_name.db')`.
+2. **Create a cursor** to execute SQL queries.
+3. **Execute SQL queries** (e.g., `SELECT * FROM table_name`) using the cursor.
+4. **Fetch results** (e.g., `cursor.fetchall()`) and store them in a Pandas DataFrame for further analysis.
 
 - For other databases (like PostgreSQL), you'd use specific libraries (e.g., `psycopg2`) and connection strings. You might need to provide host, port, and credentials.
 

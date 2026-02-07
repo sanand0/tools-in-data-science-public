@@ -36,12 +36,12 @@ Don't worry too much about the Return on Investment (ROE) exam or Projects 1 and
 
 **A7:** Yes, let's go step-by-step.
 
-1.  **Environment Setup:** If using VS Code, create a virtual environment (`control+shift+p` on Windows, then select "Create: Python Environment"). This isn't needed in Google Colab, as it's pre-configured.
-2.  **Install Libraries:** Install the `requests` library (e.g., by typing `!pip install requests` in a notebook cell, which runs it as a shell command).
-3.  **Make the API Call:** Use `requests.get()` and provide the API URL (e.g., `https://pokeapi.co/api/v2/pokemon/geodude`). The specific Pokemon name ("geodude" in this example) will be part of the URL from your assignment.
-4.  **Convert to JSON:** The response will be in a raw format. Convert it to a JSON object using `.json()` method (e.g., `response.json()`).
-5.  **Explore Data (pprint):** Use the `pprint` (pretty print) library to view the JSON object in a human-readable, structured format. This helps you understand the data's keys and nested dictionaries/lists.
-6.  **Extract Data:** Navigate the JSON structure like a dictionary or list, using keys (e.g., `data['moves']`) and list indices, possibly combined with conditional filtering, to extract the specific information you need. (14:49)
+1. **Environment Setup:** If using VS Code, create a virtual environment (`control+shift+p` on Windows, then select "Create: Python Environment"). This isn't needed in Google Colab, as it's pre-configured.
+2. **Install Libraries:** Install the `requests` library (e.g., by typing `!pip install requests` in a notebook cell, which runs it as a shell command).
+3. **Make the API Call:** Use `requests.get()` and provide the API URL (e.g., `https://pokeapi.co/api/v2/pokemon/geodude`). The specific Pokemon name ("geodude" in this example) will be part of the URL from your assignment.
+4. **Convert to JSON:** The response will be in a raw format. Convert it to a JSON object using `.json()` method (e.g., `response.json()`).
+5. **Explore Data (pprint):** Use the `pprint` (pretty print) library to view the JSON object in a human-readable, structured format. This helps you understand the data's keys and nested dictionaries/lists.
+6. **Extract Data:** Navigate the JSON structure like a dictionary or list, using keys (e.g., `data['moves']`) and list indices, possibly combined with conditional filtering, to extract the specific information you need. (14:49)
 
 **Q8: I'm stuck on question 9, which requires using advanced CSS selectors to extract specific data from an HTML page. How do these selectors work, especially `nth-child`?** (25:23)
 
@@ -65,18 +65,18 @@ For question 9, you need to combine these to pinpoint the specific list item bas
 
 **A9:** You can use the `tabula-py` library to extract tables from PDFs. Here's a recommended approach:
 
-1.  **Import Libraries:** Import `tabula` and `pandas`.
-2.  **Read PDF (Page-by-Page - _Inefficient_):** While you _can_ loop through each page of the PDF, read it individually using `tabula.read_pdf()`, store each page's table (which `tabula` automatically puts into a Pandas DataFrame) into a list of DataFrames, and then use `pd.concat()` to combine them into one large DataFrame. This method is computationally intensive but ensures clean headers.
-3.  **Read PDF (All Pages/Range - _Efficient_):** The most efficient way is to use `tabula.read_pdf()` with the `pages='all'` (or a specific range like `pages='33-69'`) argument. This reads all specified pages in one go, directly creating a list of DataFrames.
-4.  **Concatenate DataFrames:** Use `pd.concat(list_of_dataframes, ignore_index=True)` to combine all the individual page DataFrames into a single, unified DataFrame. The `ignore_index=True` argument ensures a clean, continuous index across all pages, preventing duplicate indices from individual pages. This will give you a clean dataset for further processing. (26:45)
+1. **Import Libraries:** Import `tabula` and `pandas`.
+2. **Read PDF (Page-by-Page - _Inefficient_):** While you _can_ loop through each page of the PDF, read it individually using `tabula.read_pdf()`, store each page's table (which `tabula` automatically puts into a Pandas DataFrame) into a list of DataFrames, and then use `pd.concat()` to combine them into one large DataFrame. This method is computationally intensive but ensures clean headers.
+3. **Read PDF (All Pages/Range - _Efficient_):** The most efficient way is to use `tabula.read_pdf()` with the `pages='all'` (or a specific range like `pages='33-69'`) argument. This reads all specified pages in one go, directly creating a list of DataFrames.
+4. **Concatenate DataFrames:** Use `pd.concat(list_of_dataframes, ignore_index=True)` to combine all the individual page DataFrames into a single, unified DataFrame. The `ignore_index=True` argument ensures a clean, continuous index across all pages, preventing duplicate indices from individual pages. This will give you a clean dataset for further processing. (26:45)
 
 **Q10: In the PDF data, some columns (like "English") have non-numeric values (e.g., "Maths," "Biology") mixed with numbers. How can I clean this data to sum only the numerical English marks?** (27:16)
 
 **A10:** You can use Pandas' `pd.to_numeric()` function for this.
 
-1.  **Identify Non-Numeric Values:** The issue is that columns might contain text like "Maths" or "Biology" instead of just numbers.
-2.  **Use `pd.to_numeric()` with `errors='coerce'`:** Apply `pd.to_numeric()` to the problematic column (e.g., `df['English'] = pd.to_numeric(df['English'], errors='coerce')`). The `errors='coerce'` argument is key here: it tells Pandas to convert any non-numeric values it encounters into `NaN` (Not a Number).
-3.  **Filter/Sum:** Once non-numeric values are `NaN`, Pandas' aggregation functions (like `.sum()`) will automatically ignore them, allowing you to correctly calculate the sum of only the numerical English marks.
+1. **Identify Non-Numeric Values:** The issue is that columns might contain text like "Maths" or "Biology" instead of just numbers.
+2. **Use `pd.to_numeric()` with `errors='coerce'`:** Apply `pd.to_numeric()` to the problematic column (e.g., `df['English'] = pd.to_numeric(df['English'], errors='coerce')`). The `errors='coerce'` argument is key here: it tells Pandas to convert any non-numeric values it encounters into `NaN` (Not a Number).
+3. **Filter/Sum:** Once non-numeric values are `NaN`, Pandas' aggregation functions (like `.sum()`) will automatically ignore them, allowing you to correctly calculate the sum of only the numerical English marks.
 
 For question 8, you would first filter for students who scored more than 58 in Economics (using boolean indexing), then convert the "English" column of _that filtered DataFrame_ to numeric (coercing errors), and finally calculate the sum of the "English" column. (27:16)
 
@@ -84,27 +84,27 @@ For question 8, you would first filter for students who scored more than 58 in E
 
 **A11:** This is a core skill for web scraping. Here’s how you can combine selectors and systematically approach it:
 
-1.  **Understand the HTML Structure:** The most important step is to inspect the HTML and visualize the parent-child relationships between elements.
-2.  **Use `pprint` for JSON/HTML:** If you have JSON or parsed HTML, use `pprint` to get a well-formatted, readable output.
-3.  **Start Broad, Then Refine:** Begin with a broader selector and progressively add more specific conditions to narrow down your target.
-4.  **Key Selector Combinations:**
-    - `.classname`: Selects elements by class.
-    - `tagname`: Selects elements by tag.
-    - `tagname.classname`: Selects specific tags with a class.
-    - `parent > child`: Selects _direct children_.
-    - `parent descendant`: Selects _any descendant_ (direct or indirect).
-    - `#id`: Selects an element by its ID.
-    - `[attribute='value']`: Selects elements with a specific attribute and value.
-5.  **`nth-child` for Position:**
-    - `tag:nth-child(n)`: Selects the nth child (e.g., `li:nth-child(2)`).
-    - `tag:nth-child(odd/even)`: Selects children by parity.
-    - `tag:nth-child(an+b)`: Selects based on mathematical patterns.
-6.  **Systematic Approach:**
-    - **Identify the top-level parent:** Find the unique element that contains your desired data.
-    - **Navigate down the hierarchy:** Use `>` for direct children and spaces for any descendants, combined with tags or classes.
-    - **Pinpoint the target:** Once you're close, use `nth-child` or other specific selectors to isolate the exact element.
-    - **Python Implementation:** Once you have the correct CSS selector string, you can use Beautiful Soup (or similar libraries) in Python to find the elements.
-7.  **Practice:** The best way to master this is to practice regularly. Use tools like your browser's Developer Console (Inspect Element) to test selectors on various websites. (28:43)
+1. **Understand the HTML Structure:** The most important step is to inspect the HTML and visualize the parent-child relationships between elements.
+2. **Use `pprint` for JSON/HTML:** If you have JSON or parsed HTML, use `pprint` to get a well-formatted, readable output.
+3. **Start Broad, Then Refine:** Begin with a broader selector and progressively add more specific conditions to narrow down your target.
+4. **Key Selector Combinations:**
+   - `.classname`: Selects elements by class.
+   - `tagname`: Selects elements by tag.
+   - `tagname.classname`: Selects specific tags with a class.
+   - `parent > child`: Selects _direct children_.
+   - `parent descendant`: Selects _any descendant_ (direct or indirect).
+   - `#id`: Selects an element by its ID.
+   - `[attribute='value']`: Selects elements with a specific attribute and value.
+5. **`nth-child` for Position:**
+   - `tag:nth-child(n)`: Selects the nth child (e.g., `li:nth-child(2)`).
+   - `tag:nth-child(odd/even)`: Selects children by parity.
+   - `tag:nth-child(an+b)`: Selects based on mathematical patterns.
+6. **Systematic Approach:**
+   - **Identify the top-level parent:** Find the unique element that contains your desired data.
+   - **Navigate down the hierarchy:** Use `>` for direct children and spaces for any descendants, combined with tags or classes.
+   - **Pinpoint the target:** Once you're close, use `nth-child` or other specific selectors to isolate the exact element.
+   - **Python Implementation:** Once you have the correct CSS selector string, you can use Beautiful Soup (or similar libraries) in Python to find the elements.
+7. **Practice:** The best way to master this is to practice regularly. Use tools like your browser's Developer Console (Inspect Element) to test selectors on various websites. (28:43)
 
 **Q12: How does the `concat` function work in Pandas, and why is `ignore_index=True` important?** (118:11)
 
@@ -112,9 +112,9 @@ For question 8, you would first filter for students who scored more than 58 in E
 
 The `pd.concat()` function is used to join DataFrames. By setting `ignore_index=True`, you're telling Pandas to:
 
-1.  Take a list of DataFrames.
-2.  Combine all their data.
-3.  Create a _new, continuous_ index for the resulting large DataFrame, starting from 0 and going all the way to the last row, ignoring the original indices of the individual DataFrames.
+1. Take a list of DataFrames.
+2. Combine all their data.
+3. Create a _new, continuous_ index for the resulting large DataFrame, starting from 0 and going all the way to the last row, ignoring the original indices of the individual DataFrames.
 
 This results in a single, clean DataFrame with a unique index for every row, which is crucial for reliable data processing. (118:11)
 
@@ -134,8 +134,8 @@ This results in a single, clean DataFrame with a unique index for every row, whi
 
 To practice, you can:
 
-1.  **Use Browser Developer Tools:** Open your browser's Developer Console (usually by pressing F12 or right-clicking "Inspect Element"). You can then test different selectors to see what elements they highlight.
-2.  **Online Resources:** Websites like W3Schools provide excellent tutorials and interactive exercises for CSS selectors.
-3.  **Practice on Any Website:** Go to any website, inspect its elements, and try to write selectors that target specific pieces of information. This hands-on experience is invaluable.
+1. **Use Browser Developer Tools:** Open your browser's Developer Console (usually by pressing F12 or right-clicking "Inspect Element"). You can then test different selectors to see what elements they highlight.
+2. **Online Resources:** Websites like W3Schools provide excellent tutorials and interactive exercises for CSS selectors.
+3. **Practice on Any Website:** Go to any website, inspect its elements, and try to write selectors that target specific pieces of information. This hands-on experience is invaluable.
 
 The power of selectors lies in their ability to pinpoint exactly what you need, even in complex HTML structures, making your scraping much more efficient and accurate. (147:00)

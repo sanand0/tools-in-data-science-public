@@ -88,9 +88,9 @@ Duration: 5440.0Here's an FAQ based on the live tutorial transcript:
 - **Video Format:** The decision for shorter, crisp videos is intentional, aligning with modern learning trends (like short-form social media content) to improve engagement and allow you to quickly grasp specific concepts. Longer sessions have been tried, but shorter ones are generally more effective for focused learning.
 - **Content Depth:** The course is designed for you to learn by _doing_ and applying concepts. We focus on providing sufficient information to understand a tool's purpose, its boundary conditions, and how to use it for specific data science deliverables. We don't aim for mastery of every tool, but rather the ability to effectively utilize them.
 - **Support for In-Depth Learning:** If you want to go deeper into any topic, we encourage you to:
-  1.  **Ask Specific Questions:** Use Discord and live learning sessions. The more precise your question, the better we can assist you.
-  2.  **Utilize All Resources:** This includes course materials, YouTube playlists (which are regularly updated with timed chapters), and collaborative learning.
-  3.  **Leverage LLMs:** Tools like ChatGPT can be valuable for independent learning and getting quick answers to specific queries.
+  1. **Ask Specific Questions:** Use Discord and live learning sessions. The more precise your question, the better we can assist you.
+  2. **Utilize All Resources:** This includes course materials, YouTube playlists (which are regularly updated with timed chapters), and collaborative learning.
+  3. **Leverage LLMs:** Tools like ChatGPT can be valuable for independent learning and getting quick answers to specific queries.
 - **Instructor Focus:** The entire team is dedicated to supporting your learning. Any specific questions about instructor style or content delivery can be shared, and we continuously strive to improve.
 
 **Q16: Is it too late to start working on GA2 topics like Ngrok? I missed some deadlines. Also, the content feels shallow, and I struggle to understand. What should I do?**

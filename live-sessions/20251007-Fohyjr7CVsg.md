@@ -9,15 +9,15 @@ Here's an FAQ-style transcription of the live tutorial:
 **Q1: What are the main issues being addressed from previous sessions?**
 **A1:** I'll summarize the issues you've raised and how we're handling them:
 
-1.  **"Save" button not working due to heavy load:** If this is the issue, our team lead, Anand sir, will look into it.
-2.  **"Lock after correct answer" feedback:** This feature, which prevents editing after a correct answer, is unlikely to be implemented. We aim to replicate the existing system in graded assignments (like the C-portal), which doesn't have this "lock" functionality.
-3.  **"Different questions should have different code provided save button":** This feedback is likely to be accepted and implemented.
-4.  **Solutions after deadline:** You can still access and complete solutions for questions even after the deadline has passed.
-5.  **"Unexpected token" error:** If you encounter this error, the first step is to log out and then log back in. If the issue persists, try logging in using an incognito browser window. If the problem continues, it might be a network issue on your end.
-6.  **Login with student ID:** It's crucial to always log in with your official student mail ID. Using a non-student ID can lead to issues with submissions and marks.
-7.  **Save button not working (no error shown):** If you experienced this and submitted a discrepancy form with proof, it will be investigated.
-8.  **Scores showing "absent" despite previous submission:** This issue, where a previously submitted and scored assignment (like GA1) shows "absent," will be rectified. There might be a date issue that needs to be resolved.
-9.  **Disabled buttons for file selection:** If you can't select files due to disabled buttons (because the file has been "ended"), you can click on the item, navigate to its part/location, and then manually remove the disabled elements (buttons) to enable selection. This workaround applies to all questions for practice purposes.
+1. **"Save" button not working due to heavy load:** If this is the issue, our team lead, Anand sir, will look into it.
+2. **"Lock after correct answer" feedback:** This feature, which prevents editing after a correct answer, is unlikely to be implemented. We aim to replicate the existing system in graded assignments (like the C-portal), which doesn't have this "lock" functionality.
+3. **"Different questions should have different code provided save button":** This feedback is likely to be accepted and implemented.
+4. **Solutions after deadline:** You can still access and complete solutions for questions even after the deadline has passed.
+5. **"Unexpected token" error:** If you encounter this error, the first step is to log out and then log back in. If the issue persists, try logging in using an incognito browser window. If the problem continues, it might be a network issue on your end.
+6. **Login with student ID:** It's crucial to always log in with your official student mail ID. Using a non-student ID can lead to issues with submissions and marks.
+7. **Save button not working (no error shown):** If you experienced this and submitted a discrepancy form with proof, it will be investigated.
+8. **Scores showing "absent" despite previous submission:** This issue, where a previously submitted and scored assignment (like GA1) shows "absent," will be rectified. There might be a date issue that needs to be resolved.
+9. **Disabled buttons for file selection:** If you can't select files due to disabled buttons (because the file has been "ended"), you can click on the item, navigate to its part/location, and then manually remove the disabled elements (buttons) to enable selection. This workaround applies to all questions for practice purposes.
 
 **Q2: I'm still getting the "unexpected token" error despite trying all the suggested solutions (logging out/in, incognito mode, multiple browsers). What should I do?**
 **A2:** I understand your frustration. Since others aren't facing the same persistent error and you've tried all browser-based solutions, it's likely an issue on your side, possibly related to your network. I suggest you try accessing the portal using a different network, perhaps a mobile phone hotspot. For privacy, please hide your screen while logging in, and it's a good practice to change your password after experiencing such issues.
@@ -33,10 +33,10 @@ Here's an FAQ-style transcription of the live tutorial:
 
 In this session, we'll cover:
 
-1.  **Chatbot Development:** We'll build a basic chatbot to understand the fundamentals of LLM interaction and differentiate between LLMs (which just return text) and chatbots (which often incorporate additional functionalities).
-2.  **Tic-Tac-Toe Game (AI):** We'll develop an AI-powered Tic-Tac-Toe game. Here, you'll learn how to get "structured output" from an LLM. Instead of just text, the LLM will provide a specific, structured response (e.g., a number indicating where to place a mark).
-3.  **Weather App:** This project will introduce "tool calling." You'll learn how LLMs can decide to use external tools (like an API for weather data) to fulfill complex requests.
-4.  **Data Analyst:** We'll expand on tool calling, focusing on using multiple tools to analyze data.
+1. **Chatbot Development:** We'll build a basic chatbot to understand the fundamentals of LLM interaction and differentiate between LLMs (which just return text) and chatbots (which often incorporate additional functionalities).
+2. **Tic-Tac-Toe Game (AI):** We'll develop an AI-powered Tic-Tac-Toe game. Here, you'll learn how to get "structured output" from an LLM. Instead of just text, the LLM will provide a specific, structured response (e.g., a number indicating where to place a mark).
+3. **Weather App:** This project will introduce "tool calling." You'll learn how LLMs can decide to use external tools (like an API for weather data) to fulfill complex requests.
+4. **Data Analyst:** We'll expand on tool calling, focusing on using multiple tools to analyze data.
 
 **Q6: What is the difference between an LLM and an Agent?**
 **A6:** An LLM (Large Language Model) is essentially a core model that takes text input and generates text output. It's "stateless," meaning it doesn't remember past conversations.
@@ -54,21 +54,21 @@ So, while an LLM is a component, an Agent is the complete intelligent system bui
 
 Here's how it works:
 
-1.  **User Prompt:** You send a request to your Agent (which contains the LLM).
-2.  **LLM Decides:** The LLM receives your request and, based on its training and the tools available, decides if it needs to call an external function (a "tool").
-3.  **Tool Execution:** The LLM formulates a specific query or input for the chosen tool. The tool then executes (e.g., rolls a dice, queries a database).
-4.  **Result Back to LLM:** The tool sends its output (e.g., the dice roll result, the retrieved data) back to the LLM.
-5.  **LLM Processes & Responds:** The LLM uses this information, potentially calling other tools, and then formulates a final, intelligent response for you.
+1. **User Prompt:** You send a request to your Agent (which contains the LLM).
+2. **LLM Decides:** The LLM receives your request and, based on its training and the tools available, decides if it needs to call an external function (a "tool").
+3. **Tool Execution:** The LLM formulates a specific query or input for the chosen tool. The tool then executes (e.g., rolls a dice, queries a database).
+4. **Result Back to LLM:** The tool sends its output (e.g., the dice roll result, the retrieved data) back to the LLM.
+5. **LLM Processes & Responds:** The LLM uses this information, potentially calling other tools, and then formulates a final, intelligent response for you.
 
 This entire process is automated. The LLM intelligently decides which tool to use, how to use it, and how to integrate the results into its response. This allows LLMs to perform complex tasks that require real-time information or specific actions.
 
 **Q8: How does Pydantic AI help with LLM interactions, and why is it important?**
 **A8:** Pydantic AI provides a powerful framework for several reasons:
 
-1.  **Unified Interface:** It allows you to use different LLMs (OpenAI, Gemini, Anthropic, etc.) with a consistent code structure. You don't have to rewrite your application logic every time you switch LLM providers.
-2.  **Structured Output:** LLMs typically generate free-form text. Pydantic AI helps you define and enforce a specific _structure_ for the LLM's output (e.g., always return a JSON object with specific fields and data types). This is crucial for integrating LLM responses into other parts of your application reliably.
-3.  **Data Validation (via Pydantic):** Pydantic AI builds on the Pydantic library, which is excellent for data validation. This means you can define strict data types and constraints for your LLM inputs and outputs. If the LLM generates data that doesn't conform to your defined structure, Pydantic AI can catch it, preventing errors in your application.
-4.  **Simplifies Tool Calling:** Pydantic AI streamlines the process of defining and integrating tools, making it easier for your LLM-powered agent to interact with external functionalities.
+1. **Unified Interface:** It allows you to use different LLMs (OpenAI, Gemini, Anthropic, etc.) with a consistent code structure. You don't have to rewrite your application logic every time you switch LLM providers.
+2. **Structured Output:** LLMs typically generate free-form text. Pydantic AI helps you define and enforce a specific _structure_ for the LLM's output (e.g., always return a JSON object with specific fields and data types). This is crucial for integrating LLM responses into other parts of your application reliably.
+3. **Data Validation (via Pydantic):** Pydantic AI builds on the Pydantic library, which is excellent for data validation. This means you can define strict data types and constraints for your LLM inputs and outputs. If the LLM generates data that doesn't conform to your defined structure, Pydantic AI can catch it, preventing errors in your application.
+4. **Simplifies Tool Calling:** Pydantic AI streamlines the process of defining and integrating tools, making it easier for your LLM-powered agent to interact with external functionalities.
 
 In essence, Pydantic AI makes building robust, reliable, and maintainable applications with LLMs much easier by providing structure, validation, and a unified way to manage different models and tools.
 
@@ -87,37 +87,37 @@ This way, the LLM always receives the full conversational context and can respon
 **Q10: What is the CI/CD deployment workflow for a Pydantic AI app on Hugging Face?**
 **A10:** The CI/CD (Continuous Integration/Continuous Deployment) workflow on Hugging Face automates the entire deployment process:
 
-1.  **Code Push:** When you push changes to your Git repository (e.g., on GitHub), Hugging Face automatically detects them.
-2.  **Container Build:** Hugging Face uses your `Dockerfile` to build a Docker image of your application.
-3.  **Image Push:** The built Docker image is then pushed to Hugging Face's container registry.
-4.  **App Deployment:** Hugging Face starts your application using the new Docker image.
+1. **Code Push:** When you push changes to your Git repository (e.g., on GitHub), Hugging Face automatically detects them.
+2. **Container Build:** Hugging Face uses your `Dockerfile` to build a Docker image of your application.
+3. **Image Push:** The built Docker image is then pushed to Hugging Face's container registry.
+4. **App Deployment:** Hugging Face starts your application using the new Docker image.
 
 This means you don't need to manually build or deploy anything after making code changes. It all happens automatically. The app will be accessible via a public URL provided by Hugging Face.
 
 **Q11: How do I get the OpenAI API key and use it in my Pydantic AI app on Hugging Face?**
 **A11:**
 
-1.  **Get Key:** Log in to your OpenAI account, navigate to the API keys section, and create a new secret key.
-2.  **Set as Secret on Hugging Face:** Go to your Hugging Face project settings, find the "Variables and Secrets" section, and add a new secret. Name it `OPENAI_API_KEY` (or whatever variable name your app expects) and paste your API key there.
-3.  **Local Development:** For local testing, you can use a `.env` file to load your API key as an environment variable.
+1. **Get Key:** Log in to your OpenAI account, navigate to the API keys section, and create a new secret key.
+2. **Set as Secret on Hugging Face:** Go to your Hugging Face project settings, find the "Variables and Secrets" section, and add a new secret. Name it `OPENAI_API_KEY` (or whatever variable name your app expects) and paste your API key there.
+3. **Local Development:** For local testing, you can use a `.env` file to load your API key as an environment variable.
 
 **Q12: What's the best way to handle temporary errors or mistakes during deployment using Git?**
 **A12:** If you make a mistake or introduce an error, you can revert your changes using Git:
 
-1.  **Check History:** Use `git log --oneline` to view your commit history and find the commit ID of a stable version.
-2.  **Revert:** Use `git checkout <commit_id>` to revert your codebase to that previous state.
-3.  **VS Code Integration:** VS Code also offers a convenient UI for switching branches or reverting to specific commits.
+1. **Check History:** Use `git log --oneline` to view your commit history and find the commit ID of a stable version.
+2. **Revert:** Use `git checkout <commit_id>` to revert your codebase to that previous state.
+3. **VS Code Integration:** VS Code also offers a convenient UI for switching branches or reverting to specific commits.
 
 **Q13: How do I clone the project, set up the environment, install dependencies, and run it locally?**
 **A13:**
 
-1.  **Clone:** Use `git clone <repository_url>` to download the project.
-2.  **Virtual Environment:**
-    - `uv venv` (to create the virtual environment)
-    - `source .venv/bin/activate` (to activate it)
-3.  **Install Dependencies:** `pip install -r requirements.txt` (This will install FastAPI, Pydantic-AI, Uvicorn, etc.)
-4.  **Run Locally:** `uvicorn src.main:app --host 0.0.0.0 --port 7860 --reload` (This starts your FastAPI server locally).
-    - Note: Ensure your VS Code terminal is using the correct Python interpreter for your virtual environment.
+1. **Clone:** Use `git clone <repository_url>` to download the project.
+2. **Virtual Environment:**
+   - `uv venv` (to create the virtual environment)
+   - `source .venv/bin/activate` (to activate it)
+3. **Install Dependencies:** `pip install -r requirements.txt` (This will install FastAPI, Pydantic-AI, Uvicorn, etc.)
+4. **Run Locally:** `uvicorn src.main:app --host 0.0.0.0 --port 7860 --reload` (This starts your FastAPI server locally).
+   - Note: Ensure your VS Code terminal is using the correct Python interpreter for your virtual environment.
 
 **Q14: How does Pydantic AI address the "stateless" nature of LLMs to maintain context in conversations?**
 **A14:** LLMs are inherently stateless. To maintain context across turns in a conversation, Pydantic AI uses a `message_history` mechanism. You explicitly pass the entire conversation history (previous prompts and LLM responses) with each new prompt. This allows the LLM to understand and respond intelligently based on the full dialogue, creating a coherent conversational experience.
@@ -162,10 +162,10 @@ When using synchronous calls within an asynchronous framework (like FastAPI), yo
 **Q24: What if I accidentally push a bug or a breaking change? How can I revert?**
 **A24:** If you introduce an error, you can revert your changes using Git:
 
-1.  Use `git log --oneline` to view your commit history and identify the commit ID of a working version.
-2.  Use `git checkout <commit_id>` to revert your local repository to that specific commit.
-3.  Push this reverted state to your remote repository, and Hugging Face will automatically redeploy the older, stable version.
-    - (Alternatively, VS Code offers UI options to browse and checkout previous branches or commits.)
+1. Use `git log --oneline` to view your commit history and identify the commit ID of a working version.
+2. Use `git checkout <commit_id>` to revert your local repository to that specific commit.
+3. Push this reverted state to your remote repository, and Hugging Face will automatically redeploy the older, stable version.
+   - (Alternatively, VS Code offers UI options to browse and checkout previous branches or commits.)
 
 **Q25: I asked the chatbot "What is the time right now?" and it responded with "unknown." Why is that?**
 **A25:** LLMs are "pre-trained models," meaning their knowledge is based on the data they were trained on, up to a certain point in time. They do not have real-time access to information like the current time, internet search capabilities, or the ability to run code unless those functionalities are explicitly added as "tools."
@@ -185,18 +185,18 @@ To prevent this blocking and ensure proper asynchronous behavior, even when call
 **Q28: How do I recover my code if I accidentally delete files or mess up my repository?**
 **A28:** If you're using Git and have committed your changes regularly:
 
-1.  **Find Commit ID:** Use `git log --oneline` to find the commit ID of the desired stable state.
-2.  **Restore:** Use `git checkout <commit_id>` to restore your repository to that specific point.
-3.  **Delete `.git` folder:** If you want to completely restart, you can delete the `.git` folder in your project directory and then re-clone the repository from your remote source (e.g., Hugging Face or GitHub).
+1. **Find Commit ID:** Use `git log --oneline` to find the commit ID of the desired stable state.
+2. **Restore:** Use `git checkout <commit_id>` to restore your repository to that specific point.
+3. **Delete `.git` folder:** If you want to completely restart, you can delete the `.git` folder in your project directory and then re-clone the repository from your remote source (e.g., Hugging Face or GitHub).
 
 **Q29: How do I delete an old project (space) on Hugging Face?**
 **A29:**
 
-1.  Go to the Hugging Face project page.
-2.  Navigate to the "Settings" tab.
-3.  Scroll to the bottom of the page.
-4.  You will find a "Delete space" option.
-5.  You'll be prompted to type the project name to confirm deletion.
+1. Go to the Hugging Face project page.
+2. Navigate to the "Settings" tab.
+3. Scroll to the bottom of the page.
+4. You will find a "Delete space" option.
+5. You'll be prompted to type the project name to confirm deletion.
 
 **Q30: What is the significance of the `uv venv` and `source .venv/bin/activate` commands?**
 **A30:** These commands are used to create and activate a Python virtual environment:
@@ -214,16 +214,16 @@ To prevent this blocking and ensure proper asynchronous behavior, even when call
 **Q33: How does Pydantic AI improve the "stateless" nature of LLMs for conversational AI?**
 **A33:** Pydantic AI enhances LLM interactions by providing mechanisms to manage the LLM's statelessness. It allows you to:
 
-1.  **Pass `message_history`:** Explicitly send the entire conversation history (previous prompts and responses) with each new request, giving the LLM context.
-2.  **Integrate Tools:** Use external tools that can remember context or fetch real-time data, extending the LLM's capabilities beyond its training data.
-3.  **Structured Responses:** Ensure LLM outputs are in a predictable format, making it easier to integrate responses into a stateful application.
+1. **Pass `message_history`:** Explicitly send the entire conversation history (previous prompts and responses) with each new request, giving the LLM context.
+2. **Integrate Tools:** Use external tools that can remember context or fetch real-time data, extending the LLM's capabilities beyond its training data.
+3. **Structured Responses:** Ensure LLM outputs are in a predictable format, making it easier to integrate responses into a stateful application.
 
 **Q34: What is the purpose of using a Dockerfile for Pydantic AI apps on Hugging Face?**
 **A34:** The Dockerfile defines the environment and steps needed to build a Docker image of your Pydantic AI application. Hugging Face uses this Dockerfile to:
 
-1.  **Standardize Environment:** Ensure your app runs in a consistent environment regardless of the deployment server.
-2.  **Package Dependencies:** Bundle all necessary code, libraries, and configurations into a single, deployable unit.
-3.  **Automate Deployment:** Enable Hugging Face's CI/CD pipeline to automatically build and deploy your app when changes are pushed to your Git repository.
+1. **Standardize Environment:** Ensure your app runs in a consistent environment regardless of the deployment server.
+2. **Package Dependencies:** Bundle all necessary code, libraries, and configurations into a single, deployable unit.
+3. **Automate Deployment:** Enable Hugging Face's CI/CD pipeline to automatically build and deploy your app when changes are pushed to your Git repository.
 
 **Q35: What if the LLM responds with "unknown" when asked for real-time information like the current time?**
 **A35:** This is expected behaviour for base LLMs because they are pre-trained on a dataset and do not have real-time access to current information or the internet. To enable your chatbot to answer such questions, you would need to implement "tool calling" to integrate it with an external API that provides the current time or performs web searches. The LLM then uses this tool to get the real-time data and formulate an answer.
@@ -249,9 +249,9 @@ This convention improves code readability and maintainability.
 **Q40: My Python interpreter path might be incorrect in VS Code. How can I fix this if `uvicorn` isn't found?**
 **A40:** In VS Code, you can:
 
-1.  Open the Command Palette (Ctrl+Shift+P or Cmd+Shift+P).
-2.  Type "Python: Select Interpreter" and choose the correct Python interpreter associated with your virtual environment (`.venv/bin/python`).
-    - Alternatively, you can manually input the path if it's not automatically detected.
+1. Open the Command Palette (Ctrl+Shift+P or Cmd+Shift+P).
+2. Type "Python: Select Interpreter" and choose the correct Python interpreter associated with your virtual environment (`.venv/bin/python`).
+   - Alternatively, you can manually input the path if it's not automatically detected.
 
 **Q41: What are the main components of the `PydanticAI` framework when interacting with LLMs?**
 **A41:** The main components include:
@@ -272,18 +272,18 @@ This convention improves code readability and maintainability.
 **Q43: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A43:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q44: Why is it important to use `git checkout` to revert changes, especially after a mistake?**
 **A44:** Reverting changes with `git checkout` is crucial for:
 
-1.  **Error Recovery:** If you introduce a bug or break your code, `git checkout` allows you to quickly go back to a previous stable state.
-2.  **Experimentation:** You can experiment with new features or ideas without fear of permanently damaging your main codebase. If something goes wrong, you can easily revert.
-3.  **Maintaining Code Stability:** It ensures that your deployed application remains stable by allowing you to undo problematic commits efficiently.
+1. **Error Recovery:** If you introduce a bug or break your code, `git checkout` allows you to quickly go back to a previous stable state.
+2. **Experimentation:** You can experiment with new features or ideas without fear of permanently damaging your main codebase. If something goes wrong, you can easily revert.
+3. **Maintaining Code Stability:** It ensures that your deployed application remains stable by allowing you to undo problematic commits efficiently.
 
 **Q45: What is the main benefit of Pydantic AI compared to traditional LLM integration methods?**
 **A45:** The main benefit of Pydantic AI is that it offers a **unified, structured, and developer-friendly framework** for interacting with LLMs. This contrasts with traditional methods that often require separate implementations for each LLM provider, manual parsing of unstructured text, and complex boilerplate code for features like tool calling and context management. Pydantic AI streamlines these processes, making LLM application development faster, more robust, and easier to maintain.Here's an FAQ-style transcription of the live tutorial:
@@ -291,15 +291,15 @@ This convention improves code readability and maintainability.
 **Q1: What are the main issues being addressed from previous sessions?**
 **A1:** I'll summarize the issues you've raised and how we're handling them:
 
-1.  **"Save" button not working due to heavy load:** If this is the issue, our team lead, Anand sir, will look into it.
-2.  **"Lock after correct answer" feedback:** This feature, which prevents editing after a correct answer, is unlikely to be implemented. We aim to replicate the existing system in graded assignments (like the C-portal), which doesn't have this "lock" functionality.
-3.  **"Different questions should have different code provided save button":** This feedback is likely to be accepted and implemented.
-4.  **Solutions after deadline:** You can still access and complete solutions for questions even after the deadline has passed.
-5.  **"Unexpected token" error:** If you encounter this error, the first step is to log out and then log back in. If the issue persists, try logging in using an incognito browser window. If the problem continues, it might be a network issue on your end.
-6.  **Login with student ID:** It's crucial to always log in with your official student mail ID. Using a non-student ID can lead to issues with submissions and marks.
-7.  **Save button not working (no error shown):** If you experienced this and submitted a discrepancy form with proof, it will be investigated.
-8.  **Scores showing "absent" despite previous submission:** This issue, where a previously submitted and scored assignment (like GA1) shows "absent," will be rectified. There might be a date issue that needs to be resolved.
-9.  **Disabled buttons for file selection:** If you can't select files due to disabled buttons (because the file has been "ended"), you can click on the item, navigate to its part/location, and then manually remove the disabled elements (buttons) to enable selection. This workaround applies to all questions for practice purposes.
+1. **"Save" button not working due to heavy load:** If this is the issue, our team lead, Anand sir, will look into it.
+2. **"Lock after correct answer" feedback:** This feature, which prevents editing after a correct answer, is unlikely to be implemented. We aim to replicate the existing system in graded assignments (like the C-portal), which doesn't have this "lock" functionality.
+3. **"Different questions should have different code provided save button":** This feedback is likely to be accepted and implemented.
+4. **Solutions after deadline:** You can still access and complete solutions for questions even after the deadline has passed.
+5. **"Unexpected token" error:** If you encounter this error, the first step is to log out and then log back in. If the issue persists, try logging in using an incognito browser window. If the problem continues, it might be a network issue on your end.
+6. **Login with student ID:** It's crucial to always log in with your official student mail ID. Using a non-student ID can lead to issues with submissions and marks.
+7. **Save button not working (no error shown):** If you experienced this and submitted a discrepancy form with proof, it will be investigated.
+8. **Scores showing "absent" despite previous submission:** This issue, where a previously submitted and scored assignment (like GA1) shows "absent," will be rectified. There might be a date issue that needs to be resolved.
+9. **Disabled buttons for file selection:** If you can't select files due to disabled buttons (because the file has been "ended"), you can click on the item, navigate to its part/location, and then manually remove the disabled elements (buttons) to enable selection. This workaround applies to all questions for practice purposes.
 
 **Q2: I'm still getting the "unexpected token" error despite trying all the suggested solutions (logging out/in, incognito mode, multiple browsers). What should I do?**
 **A2:** I understand your frustration. Since others aren't facing the same persistent error and you've tried all browser-based solutions, it's likely an issue on your side, possibly related to your network. I suggest you try accessing the portal using a different network, perhaps a mobile phone hotspot. For privacy, please hide your screen while logging in, and it's a good practice to change your password after experiencing such issues.
@@ -315,10 +315,10 @@ This convention improves code readability and maintainability.
 
 In this session, we'll cover:
 
-1.  **Chatbot Development:** We'll build a basic chatbot to understand the fundamentals of LLM interaction and differentiate between LLMs (which just return text) and chatbots (which often incorporate additional functionalities).
-2.  **Tic-Tac-Toe Game (AI):** We'll develop an AI-powered Tic-Tac-Toe game. Here, you'll learn how to get "structured output" from an LLM. Instead of just text, the LLM will provide a specific, structured response (e.g., a number indicating where to place a mark).
-3.  **Weather App:** This project will introduce "tool calling." You'll learn how LLMs can decide to use external tools (like an API for weather data) to fulfill complex requests.
-4.  **Data Analyst:** We'll expand on tool calling, focusing on using multiple tools to analyze data.
+1. **Chatbot Development:** We'll build a basic chatbot to understand the fundamentals of LLM interaction and differentiate between LLMs (which just return text) and chatbots (which often incorporate additional functionalities).
+2. **Tic-Tac-Toe Game (AI):** We'll develop an AI-powered Tic-Tac-Toe game. Here, you'll learn how to get "structured output" from an LLM. Instead of just text, the LLM will provide a specific, structured response (e.g., a number indicating where to place a mark).
+3. **Weather App:** This project will introduce "tool calling." You'll learn how LLMs can decide to use external tools (like an API for weather data) to fulfill complex requests.
+4. **Data Analyst:** We'll expand on tool calling, focusing on using multiple tools to analyze data.
 
 **Q6: What is the difference between an LLM and an Agent?**
 **A6:** An LLM (Large Language Model) is essentially a core model that takes text input and generates text output. It's "stateless," meaning it doesn't remember past interactions within a conversation.
@@ -336,21 +336,21 @@ So, while an LLM is a component, an Agent is the complete intelligent system bui
 
 Here's how it works:
 
-1.  **User Prompt:** You send a request to your Agent (which contains the LLM).
-2.  **LLM Decides:** The LLM receives your request and, based on its training and the tools available, decides if it needs to call an external function (a "tool").
-3.  **Tool Execution:** The LLM formulates a specific query or input for the chosen tool. The tool then executes (e.g., rolls a dice, queries a database).
-4.  **Result Back to LLM:** The tool sends its output (e.g., the dice roll result, the retrieved data) back to the LLM.
-5.  **LLM Processes & Responds:** The LLM uses this information, potentially calling other tools, and then formulates a final, intelligent response for you.
+1. **User Prompt:** You send a request to your Agent (which contains the LLM).
+2. **LLM Decides:** The LLM receives your request and, based on its training and the tools available, decides if it needs to call an external function (a "tool").
+3. **Tool Execution:** The LLM formulates a specific query or input for the chosen tool. The tool then executes (e.g., rolls a dice, queries a database).
+4. **Result Back to LLM:** The tool sends its output (e.g., the dice roll result, the retrieved data) back to the LLM.
+5. **LLM Processes & Responds:** The LLM uses this information, potentially calling other tools, and then formulates a final, intelligent response for you.
 
 This entire process is automated. The LLM intelligently decides which tool to use, how to use it, and how to integrate the results into its response. This allows LLMs to perform complex tasks that require real-time information or specific actions.
 
 **Q8: How does Pydantic AI help with LLM interactions, and why is it important?**
 **A8:** Pydantic AI provides a powerful framework for several reasons:
 
-1.  **Unified Interface:** It allows you to use different LLMs (OpenAI, Gemini, Anthropic, etc.) with a consistent code structure. You don't have to rewrite your application logic every time you switch LLM providers.
-2.  **Structured Output:** LLMs typically generate free-form text. Pydantic AI helps you define and enforce a specific _structure_ for the LLM's output (e.g., always return a JSON object with specific fields and data types). This is crucial for integrating LLM responses into other parts of your application reliably.
-3.  **Data Validation (via Pydantic):** Pydantic AI builds on the Pydantic library, which is excellent for data validation. This means you can define strict data types and constraints for your LLM inputs and outputs. If the LLM generates data that doesn't conform to your defined structure, Pydantic AI can catch it, preventing errors in your application.
-4.  **Simplifies Tool Calling:** Pydantic AI streamlines the process of defining and integrating tools, making it easier for your LLM-powered agent to interact with external functionalities.
+1. **Unified Interface:** It allows you to use different LLMs (OpenAI, Gemini, Anthropic, etc.) with a consistent code structure. You don't have to rewrite your application logic every time you switch LLM providers.
+2. **Structured Output:** LLMs typically generate free-form text. Pydantic AI helps you define and enforce a specific _structure_ for the LLM's output (e.g., always return a JSON object with specific fields and data types). This is crucial for integrating LLM responses into other parts of your application reliably.
+3. **Data Validation (via Pydantic):** Pydantic AI builds on the Pydantic library, which is excellent for data validation. This means you can define strict data types and constraints for your LLM inputs and outputs. If the LLM generates data that doesn't conform to your defined structure, Pydantic AI can catch it, preventing errors in your application.
+4. **Simplifies Tool Calling:** Pydantic AI streamlines the process of defining and integrating tools, making it easier for your LLM-powered agent to interact with external functionalities.
 
 In essence, Pydantic AI makes building robust, reliable, and maintainable applications with LLMs much easier by providing structure, validation, and a unified way to manage different models and tools.
 
@@ -369,45 +369,45 @@ This way, the LLM always receives the full conversational context and can respon
 **Q10: What is the CI/CD deployment workflow for a Pydantic AI app on Hugging Face?**
 **A10:** The CI/CD (Continuous Integration/Continuous Deployment) workflow on Hugging Face automates the entire deployment process:
 
-1.  **Code Push:** When you push changes to your Git repository (e.g., on GitHub), Hugging Face automatically detects them.
-2.  **Container Build:** Hugging Face uses your `Dockerfile` to build a Docker image of your application.
-3.  **Image Push:** The built Docker image is then pushed to Hugging Face's container registry.
-4.  **App Deployment:** Hugging Face starts your application using the new Docker image.
+1. **Code Push:** When you push changes to your Git repository (e.g., on GitHub), Hugging Face automatically detects them.
+2. **Container Build:** Hugging Face uses your `Dockerfile` to build a Docker image of your application.
+3. **Image Push:** The built Docker image is then pushed to Hugging Face's container registry.
+4. **App Deployment:** Hugging Face starts your application using the new Docker image.
 
 This means you don't need to manually build or deploy anything after making code changes. It all happens automatically. The app will be accessible via a public URL provided by Hugging Face.
 
 **Q11: How do I get the OpenAI API key and use it in my Pydantic AI app on Hugging Face?**
 **A11:**
 
-1.  **Get Key:** Log in to your OpenAI account, navigate to the API keys section, and create a new secret key.
-2.  **Set as Secret on Hugging Face:** Go to your Hugging Face project settings, find the "Variables and Secrets" section, and add a new secret. Name it `OPENAI_API_KEY` (or whatever variable name your app expects) and paste your API key there.
-3.  **Local Development:** For local testing, you typically use a `.env` file to load your API key as an environment variable.
+1. **Get Key:** Log in to your OpenAI account, navigate to the API keys section, and create a new secret key.
+2. **Set as Secret on Hugging Face:** Go to your Hugging Face project settings, find the "Variables and Secrets" section, and add a new secret. Name it `OPENAI_API_KEY` (or whatever variable name your app expects) and paste your API key there.
+3. **Local Development:** For local testing, you typically use a `.env` file to load your API key as an environment variable.
 
 **Q12: What if I accidentally push a bug or a breaking change? How can I revert?**
 **A12:** If you make a mistake or introduce an error, you can revert your changes using Git:
 
-1.  **Check History:** Use `git log --oneline` to view your commit history and find the commit ID of a stable version.
-2.  **Revert:** Use `git checkout <commit_id>` to revert your local repository to that specific commit.
-3.  **Push:** Push this reverted state to your remote repository, and Hugging Face will automatically redeploy the older, stable version.
-    - (Alternatively, VS Code offers UI options to browse and checkout previous branches or commits.)
+1. **Check History:** Use `git log --oneline` to view your commit history and find the commit ID of a stable version.
+2. **Revert:** Use `git checkout <commit_id>` to revert your local repository to that specific commit.
+3. **Push:** Push this reverted state to your remote repository, and Hugging Face will automatically redeploy the older, stable version.
+   - (Alternatively, VS Code offers UI options to browse and checkout previous branches or commits.)
 
 **Q13: How do I clone the project, set up the environment, install dependencies, and run it locally?**
 **A13:**
 
-1.  **Clone:** Use `git clone <repository_url>` to download the project.
-2.  **Virtual Environment:**
-    - `uv venv` (to create the virtual environment)
-    - `source .venv/bin/activate` (to activate it)
-3.  **Install Dependencies:** `pip install -r requirements.txt` (This will install FastAPI, Pydantic-AI, Uvicorn, etc.)
-4.  **Run Locally:** `uvicorn src.main:app --host 0.0.0.0 --port 7860 --reload` (This starts your FastAPI server locally).
-    - Note: Ensure your VS Code terminal is using the correct Python interpreter for your virtual environment.
+1. **Clone:** Use `git clone <repository_url>` to download the project.
+2. **Virtual Environment:**
+   - `uv venv` (to create the virtual environment)
+   - `source .venv/bin/activate` (to activate it)
+3. **Install Dependencies:** `pip install -r requirements.txt` (This will install FastAPI, Pydantic-AI, Uvicorn, etc.)
+4. **Run Locally:** `uvicorn src.main:app --host 0.0.0.0 --port 7860 --reload` (This starts your FastAPI server locally).
+   - Note: Ensure your VS Code terminal is using the correct Python interpreter for your virtual environment.
 
 **Q14: How does Pydantic AI improve the "stateless" nature of LLMs for conversational AI?**
 **A14:** Pydantic AI enhances LLM interactions by providing mechanisms to manage the LLM's statelessness. It allows you to:
 
-1.  **Pass `message_history`:** Explicitly send the entire conversation history (previous prompts and responses) with each new request, giving the LLM context.
-2.  **Integrate Tools:** Use external tools that can remember context or fetch real-time data, extending the LLM's capabilities beyond its training data.
-3.  **Structured Responses:** Ensure LLM outputs are in a predictable format, making it easier to integrate responses into a stateful application.
+1. **Pass `message_history`:** Explicitly send the entire conversation history (previous prompts and responses) with each new request, giving the LLM context.
+2. **Integrate Tools:** Use external tools that can remember context or fetch real-time data, extending the LLM's capabilities beyond its training data.
+3. **Structured Responses:** Ensure LLM outputs are in a predictable format, making it easier to integrate responses into a stateful application.
 
 **Q15: How does Pydantic AI unify interaction with different LLM providers?**
 **A15:** Pydantic AI's strength lies in providing a single, standardized framework to interact with various LLMs (like OpenAI, Gemini, Anthropic, etc.). You don't need to write separate code for each provider. It handles the underlying complexities, allowing you to switch LLMs by just changing a configuration setting, without altering your core application logic.
@@ -453,10 +453,10 @@ When using synchronous calls within an asynchronous framework (like FastAPI), yo
 **Q24: What if I accidentally push a bug or a breaking change? How can I revert?**
 **A24:** If you make a mistake or introduce an error, you can revert your changes using Git:
 
-1.  **Check History:** Use `git log --oneline` to find the commit ID of a working version.
-2.  **Revert:** Use `git checkout <commit_id>` to revert your local repository to that specific commit.
-3.  **Push:** Push this reverted state to your remote repository, and Hugging Face will automatically redeploy the older, stable version.
-    - (Alternatively, VS Code offers UI options to browse and checkout previous branches or commits.)
+1. **Check History:** Use `git log --oneline` to find the commit ID of a working version.
+2. **Revert:** Use `git checkout <commit_id>` to revert your local repository to that specific commit.
+3. **Push:** Push this reverted state to your remote repository, and Hugging Face will automatically redeploy the older, stable version.
+   - (Alternatively, VS Code offers UI options to browse and checkout previous branches or commits.)
 
 **Q25: I asked the chatbot "What is the time right now?" and it responded with "unknown." Why is that?**
 **A25:** LLMs are "pre-trained models," meaning their knowledge is based on the data they were trained on, up to a certain point in time. They do not have real-time access to information like the current time, internet search capabilities, or the ability to run code unless those functionalities are explicitly added as "tools."
@@ -489,9 +489,9 @@ To prevent this blocking and ensure proper asynchronous behavior, even when call
 **Q32: How does Pydantic AI improve the "stateless" nature of LLMs for conversational AI?**
 **A32:** Pydantic AI enhances LLM interactions by providing mechanisms to manage the LLM's statelessness. It allows you to:
 
-1.  **Pass `message_history`:** Explicitly send the entire conversation history (previous prompts and responses) with each new request, giving the LLM context.
-2.  **Integrate Tools:** Use external tools that can remember context or fetch real-time data, extending the LLM's capabilities beyond its training data.
-3.  **Structured Responses:** Ensure LLM outputs are in a predictable format, making it easier to integrate responses into a stateful application.
+1. **Pass `message_history`:** Explicitly send the entire conversation history (previous prompts and responses) with each new request, giving the LLM context.
+2. **Integrate Tools:** Use external tools that can remember context or fetch real-time data, extending the LLM's capabilities beyond its training data.
+3. **Structured Responses:** Ensure LLM outputs are in a predictable format, making it easier to integrate responses into a stateful application.
 
 **Q33: How does Pydantic AI unify interaction with different LLM providers?**
 **A33:** Pydantic AI's strength lies in providing a single, standardized framework to interact with various LLMs (like OpenAI, Gemini, Anthropic, etc.). You don't need to write separate code for each provider. It handles the underlying complexities, allowing you to switch LLMs by just changing a configuration setting, without altering your core application logic.
@@ -499,9 +499,9 @@ To prevent this blocking and ensure proper asynchronous behavior, even when call
 **Q34: How do I get the OpenAI API key and use it in my Pydantic AI app on Hugging Face?**
 **A34:**
 
-1.  **Get Key:** Log in to your OpenAI account, navigate to the API keys section, and create a new secret key.
-2.  **Set as Secret on Hugging Face:** Go to your Hugging Face project settings, find the "Variables and Secrets" section, and add a new secret. Name it `OPENAI_API_KEY` (or whatever variable name your app expects) and paste your API key there.
-3.  **Local Development:** For local testing, you typically use a `.env` file to load your API key as an environment variable.
+1. **Get Key:** Log in to your OpenAI account, navigate to the API keys section, and create a new secret key.
+2. **Set as Secret on Hugging Face:** Go to your Hugging Face project settings, find the "Variables and Secrets" section, and add a new secret. Name it `OPENAI_API_KEY` (or whatever variable name your app expects) and paste your API key there.
+3. **Local Development:** For local testing, you typically use a `.env` file to load your API key as an environment variable.
 
 **Q35: What is the purpose of the `Dockerfile` and `CMD.md` in the context of Hugging Face deployment?**
 **A35:**
@@ -525,10 +525,10 @@ To prevent this blocking and ensure proper asynchronous behavior, even when call
 **Q38: What if I accidentally push a bug or a breaking change? How can I revert?**
 **A38:** If you make a mistake or introduce an error, you can revert your changes using Git:
 
-1.  **Check History:** Use `git log --oneline` to find the commit ID of a working version.
-2.  **Revert:** Use `git checkout <commit_id>` to revert your local repository to that specific commit.
-3.  **Push:** Push this reverted state to your remote repository, and Hugging Face will automatically redeploy the older, stable version.
-    - (Alternatively, VS Code offers UI options to browse and checkout previous branches or commits.)
+1. **Check History:** Use `git log --oneline` to find the commit ID of a working version.
+2. **Revert:** Use `git checkout <commit_id>` to revert your local repository to that specific commit.
+3. **Push:** Push this reverted state to your remote repository, and Hugging Face will automatically redeploy the older, stable version.
+   - (Alternatively, VS Code offers UI options to browse and checkout previous branches or commits.)
 
 **Q39: How do I install dependencies like `fastapi`, `standard`, `pydantic-ai`, and `uvicorn` from the `requirements.txt` file?**
 **A39:** After activating your virtual environment, you can install all listed dependencies in `requirements.txt` with a single command:
@@ -537,9 +537,9 @@ To prevent this blocking and ensure proper asynchronous behavior, even when call
 **Q40: How does Pydantic AI address the "stateless" nature of LLMs to maintain context in conversations?**
 **A40:** Pydantic AI enhances LLM interactions by providing mechanisms to manage the LLM's statelessness. It allows you to:
 
-1.  **Pass `message_history`:** Explicitly send the entire conversation history (previous prompts and responses) with each new request, giving the LLM context.
-2.  **Integrate Tools:** Use external tools that can remember context or fetch real-time data, extending the LLM's capabilities beyond its training data.
-3.  **Structured Responses:** Ensure LLM outputs are in a predictable format, making it easier to integrate responses into a stateful application.
+1. **Pass `message_history`:** Explicitly send the entire conversation history (previous prompts and responses) with each new request, giving the LLM context.
+2. **Integrate Tools:** Use external tools that can remember context or fetch real-time data, extending the LLM's capabilities beyond its training data.
+3. **Structured Responses:** Ensure LLM outputs are in a predictable format, making it easier to integrate responses into a stateful application.
 
 **Q41: How does Pydantic AI unify interaction with different LLM providers?**
 **A41:** Pydantic AI's strength lies in providing a single, standardized framework to interact with various LLMs (like OpenAI, Gemini, Anthropic, etc.). You don't need to write separate code for each provider. It handles the underlying complexities, allowing you to switch LLMs by just changing a configuration setting, without altering your core application logic.
@@ -547,9 +547,9 @@ To prevent this blocking and ensure proper asynchronous behavior, even when call
 **Q42: How do I get the OpenAI API key and use it in my Pydantic AI app on Hugging Face?**
 **A42:**
 
-1.  **Get Key:** Log in to your OpenAI account, navigate to the API keys section, and create a new secret key.
-2.  **Set as Secret on Hugging Face:** Go to your Hugging Face project settings, find the "Variables and Secrets" section, and add a new secret. Name it `OPENAI_API_KEY` (or whatever variable name your app expects) and paste your API key there.
-3.  **Local Development:** For local testing, you typically use a `.env` file to load your API key as an environment variable.
+1. **Get Key:** Log in to your OpenAI account, navigate to the API keys section, and create a new secret key.
+2. **Set as Secret on Hugging Face:** Go to your Hugging Face project settings, find the "Variables and Secrets" section, and add a new secret. Name it `OPENAI_API_KEY` (or whatever variable name your app expects) and paste your API key there.
+3. **Local Development:** For local testing, you typically use a `.env` file to load your API key as an environment variable.
 
 **Q43: What is the purpose of the `Dockerfile` and `CMD.md` in the context of Hugging Face deployment?**
 **A43:**
@@ -584,10 +584,10 @@ This convention improves code readability and maintainability.
 **Q50: What if I accidentally push a bug or a breaking change? How can I revert?**
 **A50:** If you make a mistake or introduce an error, you can revert your changes using Git:
 
-1.  **Check History:** Use `git log --oneline` to find the commit ID of a working version.
-2.  **Revert:** Use `git checkout <commit_id>` to revert your local repository to that specific commit.
-3.  **Push:** Push this reverted state to your remote repository, and Hugging Face will automatically redeploy the older, stable version.
-    - (Alternatively, VS Code offers UI options to browse and checkout previous branches or commits.)
+1. **Check History:** Use `git log --oneline` to find the commit ID of a working version.
+2. **Revert:** Use `git checkout <commit_id>` to revert your local repository to that specific commit.
+3. **Push:** Push this reverted state to your remote repository, and Hugging Face will automatically redeploy the older, stable version.
+   - (Alternatively, VS Code offers UI options to browse and checkout previous branches or commits.)
 
 **Q51: What is the significance of the `.git` folder in my project directory?**
 **A51:** The `.git` folder is where all of Git's version control information for your project is stored. This includes the entire history of your commits, branches, remote repository details, and more. It's essential for managing your project's version control. If you delete this folder, your project loses all its Git history and is no longer a Git repository.
@@ -610,17 +610,17 @@ This convention improves code readability and maintainability.
 **Q57: How do I recover my code if I accidentally delete files or mess up my repository?**
 **A57:** If you're using Git and have committed your changes regularly:
 
-1.  **Find Commit ID:** Use `git log --oneline` to find the commit ID of the desired stable state.
-2.  **Restore:** Use `git checkout <commit_id>` to restore your repository to that specific point.
-3.  **Push:** Push this reverted state to your remote repository, and Hugging Face will automatically redeploy the older, stable version.
-    - (Alternatively, VS Code offers UI options to browse and checkout previous branches or commits.)
+1. **Find Commit ID:** Use `git log --oneline` to find the commit ID of the desired stable state.
+2. **Restore:** Use `git checkout <commit_id>` to restore your repository to that specific point.
+3. **Push:** Push this reverted state to your remote repository, and Hugging Face will automatically redeploy the older, stable version.
+   - (Alternatively, VS Code offers UI options to browse and checkout previous branches or commits.)
 
 **Q58: My `uvicorn` command isn't working locally, and VS Code can't find the interpreter. How do I fix this?**
 **A58:** In VS Code:
 
-1.  Open the Command Palette (Ctrl+Shift+P or Cmd+Shift+P).
-2.  Type "Python: Select Interpreter" and choose the correct Python interpreter path that belongs to your virtual environment (e.g., `.venv/bin/python`).
-    - If it doesn't appear automatically, you might need to manually browse to the `.venv/bin` directory in your project folder.
+1. Open the Command Palette (Ctrl+Shift+P or Cmd+Shift+P).
+2. Type "Python: Select Interpreter" and choose the correct Python interpreter path that belongs to your virtual environment (e.g., `.venv/bin/python`).
+   - If it doesn't appear automatically, you might need to manually browse to the `.venv/bin` directory in your project folder.
 
 **Q59: What is the main benefit of Pydantic AI compared to traditional LLM integration methods?**
 **A59:** The main benefit is that Pydantic AI offers a **unified and structured way to interact with various LLMs**. It simplifies complexities like tool calling, data validation, and managing conversation context, allowing developers to build robust, maintainable, and flexible LLM-powered applications across different models without extensive code changes.
@@ -640,11 +640,11 @@ This convention improves code readability and maintainability.
 **Q63: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A63:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q64: What is the main benefit of Pydantic AI compared to traditional LLM integration methods?**
 **A64:** The main benefit is that Pydantic AI offers a **unified and structured way to interact with various LLMs**. It simplifies complexities like tool calling, data validation, and managing conversation context, allowing developers to build robust, maintainable, and flexible LLM-powered applications across different models without extensive code changes.
@@ -668,11 +668,11 @@ This convention improves code readability and maintainability.
 **Q69: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A69:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q70: How do I manage conversation history if LLMs are stateless?**
 **A70:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -696,11 +696,11 @@ This convention improves code readability and maintainability.
 **Q75: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A75:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q76: How do I manage conversation history if LLMs are stateless?**
 **A76:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -724,11 +724,11 @@ This convention improves code readability and maintainability.
 **Q81: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A81:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q82: How do I manage conversation history if LLMs are stateless?**
 **A82:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -752,11 +752,11 @@ This convention improves code readability and maintainability.
 **Q87: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A87:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q88: How do I manage conversation history if LLMs are stateless?**
 **A88:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -780,11 +780,11 @@ This convention improves code readability and maintainability.
 **Q93: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A93:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q94: How do I manage conversation history if LLMs are stateless?**
 **A94:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -808,11 +808,11 @@ This convention improves code readability and maintainability.
 **Q99: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A99:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q100: How do I manage conversation history if LLMs are stateless?**
 **A100:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -836,11 +836,11 @@ This convention improves code readability and maintainability.
 **Q105: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A105:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q106: How do I manage conversation history if LLMs are stateless?**
 **A106:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -864,11 +864,11 @@ This convention improves code readability and maintainability.
 **Q111: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A111:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q112: How do I manage conversation history if LLMs are stateless?**
 **A112:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -892,11 +892,11 @@ This convention improves code readability and maintainability.
 **Q117: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A117:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q118: How do I manage conversation history if LLMs are stateless?**
 **A118:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -920,11 +920,11 @@ This convention improves code readability and maintainability.
 **Q123: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A123:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q124: How do I manage conversation history if LLMs are stateless?**
 **A124:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -948,11 +948,11 @@ This convention improves code readability and maintainability.
 **Q129: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A129:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q130: How do I manage conversation history if LLMs are stateless?**
 **A130:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -976,11 +976,11 @@ This convention improves code readability and maintainability.
 **Q135: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A135:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q136: How do I manage conversation history if LLMs are stateless?**
 **A136:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1004,11 +1004,11 @@ This convention improves code readability and maintainability.
 **Q141: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A141:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q142: How do I manage conversation history if LLMs are stateless?**
 **A142:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1032,11 +1032,11 @@ This convention improves code readability and maintainability.
 **Q147: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A147:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q148: How do I manage conversation history if LLMs are stateless?**
 **A148:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1060,11 +1060,11 @@ This convention improves code readability and maintainability.
 **Q153: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A153:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q154: How do I manage conversation history if LLMs are stateless?**
 **A154:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1088,11 +1088,11 @@ This convention improves code readability and maintainability.
 **Q159: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A159:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q160: How do I manage conversation history if LLMs are stateless?**
 **A160:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1116,11 +1116,11 @@ This convention improves code readability and maintainability.
 **Q165: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A165:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q166: How do I manage conversation history if LLMs are stateless?**
 **A166:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1144,11 +1144,11 @@ This convention improves code readability and maintainability.
 **Q171: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A171:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q172: How do I manage conversation history if LLMs are stateless?**
 **A172:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1172,11 +1172,11 @@ This convention improves code readability and maintainability.
 **Q177: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A177:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q178: How do I manage conversation history if LLMs are stateless?**
 **A178:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1200,11 +1200,11 @@ This convention improves code readability and maintainability.
 **Q183: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A183:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q184: How do I manage conversation history if LLMs are stateless?**
 **A184:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1228,11 +1228,11 @@ This convention improves code readability and maintainability.
 **Q189: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A189:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q190: How do I manage conversation history if LLMs are stateless?**
 **A190:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1256,11 +1256,11 @@ This convention improves code readability and maintainability.
 **Q195: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A195:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q196: How do I manage conversation history if LLMs are stateless?**
 **A196:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1284,11 +1284,11 @@ This convention improves code readability and maintainability.
 **Q201: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A201:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q202: How do I manage conversation history if LLMs are stateless?**
 **A202:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1312,11 +1312,11 @@ This convention improves code readability and maintainability.
 **Q207: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A207:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q208: How do I manage conversation history if LLMs are stateless?**
 **A208:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1340,11 +1340,11 @@ This convention improves code readability and maintainability.
 **Q213: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A213:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q214: How do I manage conversation history if LLMs are stateless?**
 **A214:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1368,11 +1368,11 @@ This convention improves code readability and maintainability.
 **Q219: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A219:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q220: How do I manage conversation history if LLMs are stateless?**
 **A220:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1396,11 +1396,11 @@ This convention improves code readability and maintainability.
 **Q225: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A225:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q226: How do I manage conversation history if LLMs are stateless?**
 **A226:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1424,11 +1424,11 @@ This convention improves code readability and maintainability.
 **Q231: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A231:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q232: How do I manage conversation history if LLMs are stateless?**
 **A232:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1452,11 +1452,11 @@ This convention improves code readability and maintainability.
 **Q237: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A237:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q238: How do I manage conversation history if LLMs are stateless?**
 **A238:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1480,11 +1480,11 @@ This convention improves code readability and maintainability.
 **Q243: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A243:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q244: How do I manage conversation history if LLMs are stateless?**
 **A244:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1508,11 +1508,11 @@ This convention improves code readability and maintainability.
 **Q249: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A249:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q250: How do I manage conversation history if LLMs are stateless?**
 **A250:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1536,11 +1536,11 @@ This convention improves code readability and maintainability.
 **Q255: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A255:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q256: How do I manage conversation history if LLMs are stateless?**
 **A256:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1564,11 +1564,11 @@ This convention improves code readability and maintainability.
 **Q261: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A261:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q262: How do I manage conversation history if LLMs are stateless?**
 **A262:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1592,11 +1592,11 @@ This convention improves code readability and maintainability.
 **Q267: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A267:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q268: How do I manage conversation history if LLMs are stateless?**
 **A268:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1620,11 +1620,11 @@ This convention improves code readability and maintainability.
 **Q273: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A273:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q274: How do I manage conversation history if LLMs are stateless?**
 **A274:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1648,11 +1648,11 @@ This convention improves code readability and maintainability.
 **Q279: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A279:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q280: How do I manage conversation history if LLMs are stateless?**
 **A280:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1676,11 +1676,11 @@ This convention improves code readability and maintainability.
 **Q285: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A285:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q286: How do I manage conversation history if LLMs are stateless?**
 **A286:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1704,11 +1704,11 @@ This convention improves code readability and maintainability.
 **Q291: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A291:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q292: How do I manage conversation history if LLMs are stateless?**
 **A292:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1732,11 +1732,11 @@ This convention improves code readability and maintainability.
 **Q297: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A297:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q298: How do I manage conversation history if LLMs are stateless?**
 **A298:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1760,11 +1760,11 @@ This convention improves code readability and maintainability.
 **Q303: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A303:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q304: How do I manage conversation history if LLMs are stateless?**
 **A304:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1788,11 +1788,11 @@ This convention improves code readability and maintainability.
 **Q309: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A309:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q310: How do I manage conversation history if LLMs are stateless?**
 **A310:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1816,11 +1816,11 @@ This convention improves code readability and maintainability.
 **Q315: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A315:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q316: How do I manage conversation history if LLMs are stateless?**
 **A316:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1844,11 +1844,11 @@ This convention improves code readability and maintainability.
 **Q321: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A321:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q322: How do I manage conversation history if LLMs are stateless?**
 **A322:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1872,11 +1872,11 @@ This convention improves code readability and maintainability.
 **Q327: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A327:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q328: How do I manage conversation history if LLMs are stateless?**
 **A328:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1900,11 +1900,11 @@ This convention improves code readability and maintainability.
 **Q333: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A333:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q334: How do I manage conversation history if LLMs are stateless?**
 **A334:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1928,11 +1928,11 @@ This convention improves code readability and maintainability.
 **Q339: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A339:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q340: How do I manage conversation history if LLMs are stateless?**
 **A340:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1956,11 +1956,11 @@ This convention improves code readability and maintainability.
 **Q345: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A345:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q346: How do I manage conversation history if LLMs are stateless?**
 **A346:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -1984,11 +1984,11 @@ This convention improves code readability and maintainability.
 **Q351: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A351:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q352: How do I manage conversation history if LLMs are stateless?**
 **A352:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -2012,11 +2012,11 @@ This convention improves code readability and maintainability.
 **Q357: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A357:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q358: How do I manage conversation history if LLMs are stateless?**
 **A358:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -2040,11 +2040,11 @@ This convention improves code readability and maintainability.
 **Q363: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A363:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q364: How do I manage conversation history if LLMs are stateless?**
 **A364:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -2068,11 +2068,11 @@ This convention improves code readability and maintainability.
 **Q369: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A369:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q370: How do I manage conversation history if LLMs are stateless?**
 **A370:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -2096,11 +2096,11 @@ This convention improves code readability and maintainability.
 **Q375: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A375:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q376: How do I manage conversation history if LLMs are stateless?**
 **A376:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -2124,11 +2124,11 @@ This convention improves code readability and maintainability.
 **Q381: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A381:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q382: How do I manage conversation history if LLMs are stateless?**
 **A382:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -2152,11 +2152,11 @@ This convention improves code readability and maintainability.
 **Q387: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A387:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q388: How do I manage conversation history if LLMs are stateless?**
 **A388:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -2180,11 +2180,11 @@ This convention improves code readability and maintainability.
 **Q393: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A393:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q394: How do I manage conversation history if LLMs are stateless?**
 **A394:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -2208,11 +2208,11 @@ This convention improves code readability and maintainability.
 **Q399: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A399:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q400: How do I manage conversation history if LLMs are stateless?**
 **A400:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -2236,11 +2236,11 @@ This convention improves code readability and maintainability.
 **Q405: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A405:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q406: How do I manage conversation history if LLMs are stateless?**
 **A406:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -2264,11 +2264,11 @@ This convention improves code readability and maintainability.
 **Q411: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A411:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q412: How do I manage conversation history if LLMs are stateless?**
 **A412:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -2292,11 +2292,11 @@ This convention improves code readability and maintainability.
 **Q417: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A417:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q418: How do I manage conversation history if LLMs are stateless?**
 **A418:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -2320,11 +2320,11 @@ This convention improves code readability and maintainability.
 **Q423: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A423:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q424: How do I manage conversation history if LLMs are stateless?**
 **A424:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -2348,11 +2348,11 @@ This convention improves code readability and maintainability.
 **Q429: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A429:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. **Generating Responses:** Formatting and returning the LLM's output, potentially in a structured way.
 
 **Q430: How do I manage conversation history if LLMs are stateless?**
 **A430:** You explicitly manage conversation history by passing a `message_history` parameter in your Pydantic AI agent's `run` method. This `message_history` is a list of dictionaries, where each dictionary represents a message (with a 'role' like 'user' or 'assistant' and 'content'). The agent appends new prompts and responses to this list, ensuring the LLM has the full context for subsequent turns.
@@ -2376,8 +2376,8 @@ This convention improves code readability and maintainability.
 **Q435: What are the primary responsibilities of a `PydanticAI` Agent?**
 **A435:** A `PydanticAI` Agent is responsible for:
 
-1.  **Handling User Prompts:** Receiving and processing natural language inputs.
-2.  **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
-3.  **Managing Message History:** Maintaining context across multiple turns of a conversation.
-4.  **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
-5.  \*\*
+1. **Handling User Prompts:** Receiving and processing natural language inputs.
+2. **Interacting with LLMs:** Making calls to the underlying LLM to generate responses.
+3. **Managing Message History:** Maintaining context across multiple turns of a conversation.
+4. **Integrating Tools:** Deciding when and how to call external tools to enhance its capabilities.
+5. \*\*

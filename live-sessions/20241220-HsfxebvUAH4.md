@@ -47,10 +47,10 @@ A6: The end-term exam will be different from this mock paper. It will primarily 
 A7:
 
 - **K-Means Algorithm:** K-Means is an iterative clustering algorithm. It involves:
-  1.  **Initialization:** Randomly or strategically choosing `n_clusters` (K) centroids (initial cluster centers).
-  2.  **Assignment:** Assigning each data point to the nearest centroid (based on distance).
-  3.  **Update:** Recalculating the centroids as the mean of all points assigned to that cluster.
-  4.  **Iteration:** Repeating steps 2 and 3 until centroids no longer move significantly or `max_iter` is reached.
+  1. **Initialization:** Randomly or strategically choosing `n_clusters` (K) centroids (initial cluster centers).
+  2. **Assignment:** Assigning each data point to the nearest centroid (based on distance).
+  3. **Update:** Recalculating the centroids as the mean of all points assigned to that cluster.
+  4. **Iteration:** Repeating steps 2 and 3 until centroids no longer move significantly or `max_iter` is reached.
 - **`n_clusters`:** This parameter determines the number of clusters (K) you want the algorithm to identify in the data.
 - **`random_state`:** This ensures reproducibility. If you set a `random_state` to a specific integer, the centroid initialization will be the same every time you run the algorithm, leading to consistent results.
 - **`max_iter`:** This sets the maximum number of iterations the algorithm will run. If the centroids don't converge before this limit, the algorithm stops.
@@ -119,13 +119,13 @@ A17: ARIMA stands for AutoRegressive Integrated Moving Average, and it's a model
 **Q18: What is the recommended strategy for preparing for the end-term exam, given the changes and nature of the questions?**
 A18:
 
-1.  **Focus on Core Concepts:** Understand the basic structure and parameters of models/libraries covered (Streamlit, ARIMA, K-Means, Pandas, Dev Tools, Geo-spatial libraries).
-2.  **Practice Scenario Analysis:** The exam will be scenario-based, so practice reading complex situations and extracting relevant information.
-3.  **LLM Interaction:** Be aware of LLM capabilities and limitations, as scenarios may involve interacting with them.
-4.  **Data Cleaning with Pandas:** Dedicate time to Pandas for data cleaning, manipulation, and exploration. You're likely to get multiple questions on this.
-5.  **Dev Tools:** Familiarize yourself with how to use browser developer tools, especially the Application and Network tabs, for inspecting cookies and network requests.
-6.  **Avoid Unnecessary Calculations:** Don't stress over complex manual calculations; they are generally not expected.
-7.  **Review PYQs (with caution):** Use previous PYQs for general understanding, but remember the syllabus is dynamic, and some older topics are no longer relevant. Focus on areas highlighted in the current term.
+1. **Focus on Core Concepts:** Understand the basic structure and parameters of models/libraries covered (Streamlit, ARIMA, K-Means, Pandas, Dev Tools, Geo-spatial libraries).
+2. **Practice Scenario Analysis:** The exam will be scenario-based, so practice reading complex situations and extracting relevant information.
+3. **LLM Interaction:** Be aware of LLM capabilities and limitations, as scenarios may involve interacting with them.
+4. **Data Cleaning with Pandas:** Dedicate time to Pandas for data cleaning, manipulation, and exploration. You're likely to get multiple questions on this.
+5. **Dev Tools:** Familiarize yourself with how to use browser developer tools, especially the Application and Network tabs, for inspecting cookies and network requests.
+6. **Avoid Unnecessary Calculations:** Don't stress over complex manual calculations; they are generally not expected.
+7. **Review PYQs (with caution):** Use previous PYQs for general understanding, but remember the syllabus is dynamic, and some older topics are no longer relevant. Focus on areas highlighted in the current term.
 
 **Q19: Will the syllabus for the next term be the same or change again?**
 A19: The syllabus is constantly changing. For the next term, they plan to remove "Comic-Gen" and replace it with LLM-based image generation tools like DALL-E, integrating it into narrative assignments. The field is very dynamic and cutting-edge.Here's an FAQ summary of the live tutorial:
@@ -171,10 +171,10 @@ A6: The end-term exam will be different from this mock paper. It will primarily 
 A7:
 
 - **K-Means Algorithm:** K-Means is an iterative clustering algorithm. It involves:
-  1.  **Initialization:** Randomly or strategically choosing `n_clusters` (K) centroids (initial cluster centers).
-  2.  **Assignment:** Assigning each data point to the nearest centroid (based on distance).
-  3.  **Update:** Recalculating the centroids as the mean of all points assigned to that cluster.
-  4.  **Iteration:** Repeating steps 2 and 3 until centroids no longer move significantly or `max_iter` is reached.
+  1. **Initialization:** Randomly or strategically choosing `n_clusters` (K) centroids (initial cluster centers).
+  2. **Assignment:** Assigning each data point to the nearest centroid (based on distance).
+  3. **Update:** Recalculating the centroids as the mean of all points assigned to that cluster.
+  4. **Iteration:** Repeating steps 2 and 3 until centroids no longer move significantly or `max_iter` is reached.
 - **`n_clusters`:** This parameter determines the number of clusters (K) you want the algorithm to identify in the data.
 - **`random_state`:** This ensures reproducibility. If you set a `random_state` to a specific integer, the centroid initialization will be the same every time you run the algorithm, leading to consistent results.
 - **`max_iter`:** This sets the maximum number of iterations the algorithm will run. If the centroids don't converge before this limit, the algorithm stops.
@@ -243,13 +243,13 @@ A17: ARIMA stands for AutoRegressive Integrated Moving Average, and it's a model
 **Q18: What is the recommended strategy for preparing for the end-term exam, given the changes and nature of the questions?**
 A18:
 
-1.  **Focus on Core Concepts:** Understand the basic structure and parameters of models/libraries covered (Streamlit, ARIMA, K-Means, Pandas, Dev Tools, Geo-spatial libraries).
-2.  **Practice Scenario Analysis:** The exam will be scenario-based, so practice reading complex situations and extracting relevant information.
-3.  **LLM Interaction:** Be aware of LLM capabilities and limitations, as scenarios may involve interacting with them.
-4.  **Data Cleaning with Pandas:** Dedicate time to Pandas for data cleaning, manipulation, and exploration. You're likely to get multiple questions on this.
-5.  **Dev Tools:** Familiarize yourself with how to use browser developer tools, especially the Application and Network tabs, for inspecting cookies and network requests.
-6.  **Review PYQs (with caution):** Use previous PYQs for general understanding, but remember the syllabus is dynamic, and some older topics are no longer relevant. Focus on areas highlighted in the current term.
-7.  **Time Management:** The exam is lengthy, so practice time management during scenario-based questions.
+1. **Focus on Core Concepts:** Understand the basic structure and parameters of models/libraries covered (Streamlit, ARIMA, K-Means, Pandas, Dev Tools, Geo-spatial libraries).
+2. **Practice Scenario Analysis:** The exam will be scenario-based, so practice reading complex situations and extracting relevant information.
+3. **LLM Interaction:** Be aware of LLM capabilities and limitations, as scenarios may involve interacting with them.
+4. **Data Cleaning with Pandas:** Dedicate time to Pandas for data cleaning, manipulation, and exploration. You're likely to get multiple questions on this.
+5. **Dev Tools:** Familiarize yourself with how to use browser developer tools, especially the Application and Network tabs, for inspecting cookies and network requests.
+6. **Review PYQs (with caution):** Use previous PYQs for general understanding, but remember the syllabus is dynamic, and some older topics are no longer relevant. Focus on areas highlighted in the current term.
+7. **Time Management:** The exam is lengthy, so practice time management during scenario-based questions.
 
 **Q19: Will the syllabus for the next term be the same or change again?**
 A19: The syllabus is constantly changing. For the next term, they plan to remove "Comic-Gen" and replace it with LLM-based image generation tools like DALL-E, integrating it into narrative assignments. The field is very dynamic and cutting-edge.

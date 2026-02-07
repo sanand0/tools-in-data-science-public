@@ -60,8 +60,8 @@ Duration: 11005.0Here's an FAQ based on the provided transcript:
 
 **A11:** You'll need to obtain an API key from OpenAI (you can do this via platform.openai.com). Once you have your key:
 
-1.  **Export the API Key:** Set an environment variable for your OpenAI API key using a command like `LLM key set open-ai YOUR_API_KEY`.
-2.  **Export the Base URL:** Set another environment variable for the AI Pipe's base URL using a command like `export OPEN_AI_BASE_URL=https://api.toolsindatascience.com/v1/`. (This URL is specifically for the TDS AI Pipe setup, which acts as a proxy to OpenAI).
+1. **Export the API Key:** Set an environment variable for your OpenAI API key using a command like `LLM key set open-ai YOUR_API_KEY`.
+2. **Export the Base URL:** Set another environment variable for the AI Pipe's base URL using a command like `export OPEN_AI_BASE_URL=https://api.toolsindatascience.com/v1/`. (This URL is specifically for the TDS AI Pipe setup, which acts as a proxy to OpenAI).
 
 **Q12: Is there a limit or expiration for the AI Pipe tokens provided by TDS?**
 
@@ -139,11 +139,11 @@ Duration: 11005.0Here's an FAQ based on the provided transcript:
 
 **A28:** The recommended workflow is:
 
-1.  **Watch the videos:** Understand the concepts presented in the video lectures.
-2.  **Practice hands-on:** Try out the commands and exercises shown in the videos yourself. Don't just passively watch.
-3.  **Identify problems:** You will inevitably make mistakes or encounter errors. This is part of the learning process.
-4.  **Use the TDS TA:** For any command or error you don't understand, use the virtual TDS TA to get step-by-step explanations in simple language.
-5.  **Ask in Discord:** If the TA can't resolve your issue, or if you prefer human interaction, post your problem (with relevant code and error messages) in the Discord channel. Other students or TAs can assist.
+1. **Watch the videos:** Understand the concepts presented in the video lectures.
+2. **Practice hands-on:** Try out the commands and exercises shown in the videos yourself. Don't just passively watch.
+3. **Identify problems:** You will inevitably make mistakes or encounter errors. This is part of the learning process.
+4. **Use the TDS TA:** For any command or error you don't understand, use the virtual TDS TA to get step-by-step explanations in simple language.
+5. **Ask in Discord:** If the TA can't resolve your issue, or if you prefer human interaction, post your problem (with relevant code and error messages) in the Discord channel. Other students or TAs can assist.
 
 **Q29: Are there any fundamental Linux commands I should be aware of to start with?**
 
@@ -240,14 +240,14 @@ Duration: 11005.0Here's an FAQ based on the provided transcript:
 
 **A47:**
 
-1.  **Install WSL:** Install Windows Subsystem for Linux.
-2.  **Install Ubuntu:** Choose and install an Ubuntu distribution within WSL (e.g., `wsl --install -d Ubuntu`).
-3.  **Update/Upgrade WSL:** After installation, open Ubuntu in WSL and run `sudo apt update` followed by `sudo apt upgrade`.
-4.  **Install VS Code:** Install VS Code _within_ your WSL instance.
-5.  **Install Python tools:** Install `uv` and other Python packages like `tiktoken` using `pip install` (or `uv install`) in your WSL.
-6.  **Install LLM tools:** Install the `LLM` tool and configure your AI Pipe tokens using the `export` commands for your API key and base URL.
-7.  **Install Git & GitHub CLI:** Install Git and GitHub CLI for version control and interacting with GitHub.
-8.  **Get Microsoft 365/Excel:** Subscribe to the free version of Microsoft 365 to access Excel for relevant GA questions.
+1. **Install WSL:** Install Windows Subsystem for Linux.
+2. **Install Ubuntu:** Choose and install an Ubuntu distribution within WSL (e.g., `wsl --install -d Ubuntu`).
+3. **Update/Upgrade WSL:** After installation, open Ubuntu in WSL and run `sudo apt update` followed by `sudo apt upgrade`.
+4. **Install VS Code:** Install VS Code _within_ your WSL instance.
+5. **Install Python tools:** Install `uv` and other Python packages like `tiktoken` using `pip install` (or `uv install`) in your WSL.
+6. **Install LLM tools:** Install the `LLM` tool and configure your AI Pipe tokens using the `export` commands for your API key and base URL.
+7. **Install Git & GitHub CLI:** Install Git and GitHub CLI for version control and interacting with GitHub.
+8. **Get Microsoft 365/Excel:** Subscribe to the free version of Microsoft 365 to access Excel for relevant GA questions.
 
 **Q48: The video links for the sessions aren't working/available yet.**
 
@@ -285,9 +285,9 @@ Duration: 11005.0Here's an FAQ based on the provided transcript:
 
 **A56:** You would use standard Git commands:
 
-1.  `git add your_file.json`
-2.  `git commit -m "Add JSON file"`
-3.  `git push`
+1. `git add your_file.json`
+2. `git commit -m "Add JSON file"`
+3. `git push`
 
 **Q57: Can I just install `astro-uv` instead of `uv`?**
 
@@ -348,10 +348,10 @@ Duration: 11005.0Here's an FAQ based on the provided transcript:
 **A68:** An "invalid token" error typically indicates that the API key you've set is either incorrect, expired, or not being recognized by the LLM tool.
 
 - **Solution:**
-  1.  **Re-verify the key:** Go back to the TDS portal page where the key is provided and re-copy it.
-  2.  **Reset the environment variable:** Use the `export` command again in your WSL terminal to set the `OPEN_AI_API_KEY` and `OPEN_AI_BASE_URL` variables, ensuring no typos and the correct `https://api.toolsindatascience.com/v1/` URL.
-  3.  **Check for extra characters:** Sometimes, copying can introduce hidden characters. Carefully paste the key.
-  4.  **Restart WSL:** As a last resort, try `wsl --shutdown` in PowerShell, then restart your system and re-set the variables.
+  1. **Re-verify the key:** Go back to the TDS portal page where the key is provided and re-copy it.
+  2. **Reset the environment variable:** Use the `export` command again in your WSL terminal to set the `OPEN_AI_API_KEY` and `OPEN_AI_BASE_URL` variables, ensuring no typos and the correct `https://api.toolsindatascience.com/v1/` URL.
+  3. **Check for extra characters:** Sometimes, copying can introduce hidden characters. Carefully paste the key.
+  4. **Restart WSL:** As a last resort, try `wsl --shutdown` in PowerShell, then restart your system and re-set the variables.
 
 **Q69: I'm getting an "invalid value for parameter data" error.**
 

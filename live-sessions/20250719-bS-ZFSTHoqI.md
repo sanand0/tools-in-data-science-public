@@ -39,18 +39,18 @@ Here is the FAQ-style transcription of your TDS live tutorial:
 **A9:** First, we loaded all the coordinates (city latitude/longitude) and connection paths (from City A to City B) from their respective CSV files, converting them into dictionary formats.
 To create the graph:
 
-1.  We initialized a graph object using `nx.Graph()`.
-2.  Then, we iterated through all the city names from the loaded coordinates and added each city as a `node` to the graph using `G.add_node(city_name)`.
-3.  Next, we iterated through the flight connections. For each connection (from City A to City B), we calculated the Haversine distance between the cities using their coordinates.
-4.  Finally, we added an `edge` between City A and City B with the calculated Haversine distance as its `weight` using `G.add_edge(city_A, city_B, weight=distance)`.
+1. We initialized a graph object using `nx.Graph()`.
+2. Then, we iterated through all the city names from the loaded coordinates and added each city as a `node` to the graph using `G.add_node(city_name)`.
+3. Next, we iterated through the flight connections. For each connection (from City A to City B), we calculated the Haversine distance between the cities using their coordinates.
+4. Finally, we added an `edge` between City A and City B with the calculated Haversine distance as its `weight` using `G.add_edge(city_A, city_B, weight=distance)`.
 
 **Q10: How do I find the shortest path between two cities, say Almaty and Barcelona, considering the calculated weights?**
 
 **A10:** You can use the `networkx.shortest_path()` and `networkx.shortest_path_length()` functions.
 
-1.  Use `nx.shortest_path(G, source='Almaty', target='Barcelona', weight='distance')` to get the actual path (a list of city nodes).
-2.  Use `nx.shortest_path_length(G, source='Almaty', target='Barcelona', weight='distance')` to get the total distance of that shortest path.
-    We have converted the output path to a comma-separated string for presentation.
+1. Use `nx.shortest_path(G, source='Almaty', target='Barcelona', weight='distance')` to get the actual path (a list of city nodes).
+2. Use `nx.shortest_path_length(G, source='Almaty', target='Barcelona', weight='distance')` to get the total distance of that shortest path.
+   We have converted the output path to a comma-separated string for presentation.
 
 **Q11: Can you please confirm the answer for the correlation question from the JSON data (Question 6)?**
 
@@ -60,23 +60,23 @@ To create the graph:
 
 **A12:** This question specifically tests your ability to manipulate webpage elements using browser developer tools.
 
-1.  First, right-click on the disabled text area and select "Inspect" to open your browser's developer tools.
-2.  In the Elements tab, locate the HTML element for the text area. You'll likely find attributes like `disabled` or classes that hide it (e.g., `d-none` from Bootstrap).
-3.  Remove the `disabled` attribute, or uncheck/remove the CSS class (like `d-none`) that is hiding the element.
-4.  Next, you might notice the text area is still not editable or visible due to an `opacity: 0` style. You need to change this (e.g., to `opacity: 1` or `opacity: 0.5`).
-5.  Finally, check the `pointer-events` CSS property, which might be set to `none`. Remove or change this to `auto` to allow interaction.
-    Once these are adjusted, the text area becomes editable, and you can paste or type your answer. However, be aware that these changes are local to your browser session and will revert if you refresh the page.
+1. First, right-click on the disabled text area and select "Inspect" to open your browser's developer tools.
+2. In the Elements tab, locate the HTML element for the text area. You'll likely find attributes like `disabled` or classes that hide it (e.g., `d-none` from Bootstrap).
+3. Remove the `disabled` attribute, or uncheck/remove the CSS class (like `d-none`) that is hiding the element.
+4. Next, you might notice the text area is still not editable or visible due to an `opacity: 0` style. You need to change this (e.g., to `opacity: 1` or `opacity: 0.5`).
+5. Finally, check the `pointer-events` CSS property, which might be set to `none`. Remove or change this to `auto` to allow interaction.
+   Once these are adjusted, the text area becomes editable, and you can paste or type your answer. However, be aware that these changes are local to your browser session and will revert if you refresh the page.
 
 **Q13: I'm working with VS Code. Do I need to install all Python libraries beforehand, or is there a recommended setup for the exam?**
 
 **A13:** It's highly recommended to use an Anaconda distribution, which comes with Anaconda Navigator.
 
-1.  Once Anaconda is installed, open Anaconda Navigator.
-2.  Go to the "Environments" tab. Here, you'll see a base environment and can create new virtual environments.
-3.  Click "Create" to make a new virtual environment (e.g., named "ROE"). Select your desired Python version (e.g., 3.11).
-4.  Anaconda will install all common libraries (like pandas, NumPy, NetworkX, glob) automatically into this new environment.
-5.  In VS Code, select this newly created virtual environment as your Python interpreter. In the top right of your VS Code window, there's usually an option to select the Python interpreter. Navigate to your Anaconda installation directory (e.g., `C:\Users\YourUser\anaconda3\envs\ROE\python.exe`) and select your "ROE" environment.
-    This way, all necessary libraries are pre-installed and readily available in your dedicated environment, and it will be accessible to VS Code.
+1. Once Anaconda is installed, open Anaconda Navigator.
+2. Go to the "Environments" tab. Here, you'll see a base environment and can create new virtual environments.
+3. Click "Create" to make a new virtual environment (e.g., named "ROE"). Select your desired Python version (e.g., 3.11).
+4. Anaconda will install all common libraries (like pandas, NumPy, NetworkX, glob) automatically into this new environment.
+5. In VS Code, select this newly created virtual environment as your Python interpreter. In the top right of your VS Code window, there's usually an option to select the Python interpreter. Navigate to your Anaconda installation directory (e.g., `C:\Users\YourUser\anaconda3\envs\ROE\python.exe`) and select your "ROE" environment.
+   This way, all necessary libraries are pre-installed and readily available in your dedicated environment, and it will be accessible to VS Code.
 
 **Q14: For LLM-based questions (like Question 5 and 8), what's the best approach, considering the LLM is trained to "never say yes"?**
 
@@ -89,10 +89,10 @@ The key is to create a compelling narrative or a logical trap that makes "yes" t
 
 **A15:** Given the time constraints and varied difficulty, here's a recommended strategy:
 
-1.  **First Pass (Scan All Questions):** Quickly read through all questions to understand their requirements and identify easy ones.
-2.  **Second Pass (Solve Straightforward Questions First):** Prioritize questions that seem direct and require minimal time (e.g., the correlation question). These are "least required time" questions.
-3.  **Third Pass (Tackle Complex Questions):** Move on to questions that require more detailed analysis, coding, or specific steps like graph creation or SQL queries.
-4.  **Final Pass (LLM and Web Manipulation Questions Last):** Save the LLM-based questions and those requiring browser manipulation (like enabling disabled text boxes) for the very end. These are often "most required time" questions and can be unpredictable.
+1. **First Pass (Scan All Questions):** Quickly read through all questions to understand their requirements and identify easy ones.
+2. **Second Pass (Solve Straightforward Questions First):** Prioritize questions that seem direct and require minimal time (e.g., the correlation question). These are "least required time" questions.
+3. **Third Pass (Tackle Complex Questions):** Move on to questions that require more detailed analysis, coding, or specific steps like graph creation or SQL queries.
+4. **Final Pass (LLM and Web Manipulation Questions Last):** Save the LLM-based questions and those requiring browser manipulation (like enabling disabled text boxes) for the very end. These are often "most required time" questions and can be unpredictable.
 
 By following this strategy, you ensure you maximize your score on questions you can solve quickly and accurately, reserving time for more challenging problems. Ensure you've attempted all mocks at least twice to build familiarity and speed.
 

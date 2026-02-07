@@ -27,13 +27,14 @@ Here's an FAQ based on the provided transcript, covering all questions and answe
 **Q5: What are the main tools and their purposes being introduced in the course, like UV, LLM, Docker, etc.?**
 
 **A5:**
-*   **Git/GitHub (Version Control):** Used for managing code repositories, tracking changes, and collaborating with others on projects.
-*   **Command-line Tools (e.g., bash, awk, grep, sed):** These are small but powerful commands that perform various tasks efficiently.
-*   **Python:** A programming language frequently used in data science, with multiple packages relevant to the course.
-*   **Databases:** For storing and querying data.
-*   **Docker:** Used for deploying applications and containerizing them, ensuring they run consistently across different environments. (More on Docker will be covered in Week 2).
-*   **LLM (CLI):** A command-line interface tool that allows you to interact with large language models, similar to how you might use a web interface, but via text commands.
-*   **UV:** Used for running Python scripts and installing packages.
+
+- **Git/GitHub (Version Control):** Used for managing code repositories, tracking changes, and collaborating with others on projects.
+- **Command-line Tools (e.g., bash, awk, grep, sed):** These are small but powerful commands that perform various tasks efficiently.
+- **Python:** A programming language frequently used in data science, with multiple packages relevant to the course.
+- **Databases:** For storing and querying data.
+- **Docker:** Used for deploying applications and containerizing them, ensuring they run consistently across different environments. (More on Docker will be covered in Week 2).
+- **LLM (CLI):** A command-line interface tool that allows you to interact with large language models, similar to how you might use a web interface, but via text commands.
+- **UV:** Used for running Python scripts and installing packages.
 
 **Q6: What has been discussed so far today? (Asked by a late joiner)**
 
@@ -73,7 +74,7 @@ Here's an FAQ based on the provided transcript, covering all questions and answe
 
 **Q15: When I created my GitHub repository, the layout (Overview, Repositories, Projects) is different from what you're showing. Why?**
 
-**A15:** You might be on a different page. The instructor's demo shows the view *after* a repository has been created. If you click on "Projects" within your repository, you should see options for creating files, similar to the demo.
+**A15:** You might be on a different page. The instructor's demo shows the view _after_ a repository has been created. If you click on "Projects" within your repository, you should see options for creating files, similar to the demo.
 
 **Q16: I encountered an error "SSH key is not..." or "Could not establish connection" when trying to clone the repository via SSH. What does this mean, and how do I fix it?**
 

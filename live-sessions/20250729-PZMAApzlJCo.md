@@ -14,11 +14,11 @@ Here's an FAQ based on the live tutorial:
 
 **A2:** The proposed strategy involves several steps:
 
-1.  **Fetch Full HTML:** Use Playwright to scrape the full HTML content of a webpage. This is crucial for dynamically loaded content that might not be available via simple HTTP requests.
-2.  **Store HTML:** Save the fetched HTML to a local file.
-3.  **Identify Relevant DOM Structure:** Use a dedicated tool (like `dom_structure.py`) to parse the HTML and identify the _specific_ DOM structure (e.g., IDs, classes, or XPath selectors) of the content you need. This reduces the amount of information the AI needs to process.
-4.  **Extract and Clean Data:** Based on the identified DOM structure, extract the raw data and perform any necessary cleaning.
-5.  **Answer Question:** Finally, use the cleaned, relevant data to answer the user's question.
+1. **Fetch Full HTML:** Use Playwright to scrape the full HTML content of a webpage. This is crucial for dynamically loaded content that might not be available via simple HTTP requests.
+2. **Store HTML:** Save the fetched HTML to a local file.
+3. **Identify Relevant DOM Structure:** Use a dedicated tool (like `dom_structure.py`) to parse the HTML and identify the _specific_ DOM structure (e.g., IDs, classes, or XPath selectors) of the content you need. This reduces the amount of information the AI needs to process.
+4. **Extract and Clean Data:** Based on the identified DOM structure, extract the raw data and perform any necessary cleaning.
+5. **Answer Question:** Finally, use the cleaned, relevant data to answer the user's question.
 
 **Q3: Why is Playwright used for web scraping, and what are the considerations for its installation and deployment?**
 
@@ -49,14 +49,14 @@ Here's an FAQ based on the live tutorial:
 
 **A8:** The workflow involves:
 
-1.  **Breaking Down Tasks:** The agent first breaks down complex requests into simpler, programmable steps.
-2.  **Tool Selection:** For each step, the agent decides which pre-defined "tool" (Python function) to use.
-3.  **Code Execution:**
-    - If the task involves web scraping, it uses Playwright. The scraped HTML is processed by `dom_structure.py` to identify relevant parts.
-    - If the task requires generating Python code (e.g., for data analysis or answering questions), the LLM generates the code. This generated code is then written to a temporary file, executed, and its output is captured.
-4.  **Error Handling (Dynamic Code):** If the dynamically generated code results in errors, that error feedback can be provided back to the LLM to help it correct its approach (though this has proven challenging).
-5.  **Data Processing:** Any relevant data is extracted and processed.
-6.  **Final Response:** After executing all necessary steps and tools, the agent compiles the information to provide the final response.
+1. **Breaking Down Tasks:** The agent first breaks down complex requests into simpler, programmable steps.
+2. **Tool Selection:** For each step, the agent decides which pre-defined "tool" (Python function) to use.
+3. **Code Execution:**
+   - If the task involves web scraping, it uses Playwright. The scraped HTML is processed by `dom_structure.py` to identify relevant parts.
+   - If the task requires generating Python code (e.g., for data analysis or answering questions), the LLM generates the code. This generated code is then written to a temporary file, executed, and its output is captured.
+4. **Error Handling (Dynamic Code):** If the dynamically generated code results in errors, that error feedback can be provided back to the LLM to help it correct its approach (though this has proven challenging).
+5. **Data Processing:** Any relevant data is extracted and processed.
+6. **Final Response:** After executing all necessary steps and tools, the agent compiles the information to provide the final response.
 
 **Q9: Can the code be run from other Python scripts, and how can I integrate the `main.py` functionality into another script?**
 
@@ -64,6 +64,7 @@ Here's an FAQ based on the live tutorial:
 
 ```python
 import subprocess
+
 subprocess.run(["uv", "run", "main.py"])
 ```
 
@@ -75,9 +76,9 @@ This allows you to execute the script and capture its output. You can also impor
 
 - **Purpose:** The goal is to provide the LLM with a concise summary of the webpage's structure, allowing it to understand the layout and identify relevant elements without processing the entire raw HTML. This helps in targeting specific parts for data extraction.
 - **Implementation:**
-  1.  **Parsing HTML:** It takes HTML content as input (e.g., from Playwright).
-  2.  **Identifying Elements:** It focuses on extracting key elements and their attributes like `id`, `class`, `name`, `type`, and potentially others that uniquely identify them. This includes HTML elements like `<a>`, `<div>`, `<img>`, `<input>`, `<button>`, etc.
-  3.  **Structuring Output:** The output is a formatted string (or JSON) representing the hierarchy and key attributes of these elements. For example, instead of a full HTML table, it might return something like: `Table with ID 'data_table' and class 'results-grid' containing columns 'Name', 'Age', 'City'`.
+  1. **Parsing HTML:** It takes HTML content as input (e.g., from Playwright).
+  2. **Identifying Elements:** It focuses on extracting key elements and their attributes like `id`, `class`, `name`, `type`, and potentially others that uniquely identify them. This includes HTML elements like `<a>`, `<div>`, `<img>`, `<input>`, `<button>`, etc.
+  3. **Structuring Output:** The output is a formatted string (or JSON) representing the hierarchy and key attributes of these elements. For example, instead of a full HTML table, it might return something like: `Table with ID 'data_table' and class 'results-grid' containing columns 'Name', 'Age', 'City'`.
   - **Optimization:** By providing this filtered and structured information, the LLM receives less noise and more contextually relevant data, which significantly reduces token usage compared to processing the raw HTML. For instance, the token count dropped from ~26,000 to ~900 tokens in one example.
 
 **Q11: What is the current status of Gated Assignment 7, and why can't I access it?**

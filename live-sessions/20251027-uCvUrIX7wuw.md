@@ -12,10 +12,10 @@ Here's an FAQ summary of the live tutorial:
 **Q2: What are the main tasks I need to complete for Round 1?**
 **A2:** You need to:
 
-1.  Create a _new_ GitHub repository.
-2.  Add specific files (the content for these files will be provided in a JSON request).
-3.  Enable GitHub Pages for this repository.
-    Before these tasks, your app should immediately send a JSON response acknowledging receipt of the task (an "OK" status).
+1. Create a _new_ GitHub repository.
+2. Add specific files (the content for these files will be provided in a JSON request).
+3. Enable GitHub Pages for this repository.
+   Before these tasks, your app should immediately send a JSON response acknowledging receipt of the task (an "OK" status).
 
 **Q3: What happens after my Round 1 task is complete?**
 **A3:** Once your task is done, your application must automatically send a JSON request to an evaluation URL that we will provide. This JSON request should include your email, task ID, round number, the URL of the _newly created_ repository, the commit SHA, and the page URL. This marks the completion of Round 1.
@@ -38,22 +38,22 @@ Here's an FAQ summary of the live tutorial:
 **Q9: What is the overall agenda being covered in this session?**
 **A9:** The session focuses on demonstrating:
 
-1.  How to get _structured output_ from your LLM.
-2.  How to manage _attachments_ (e.g., GitHub files, base64 encoded data).
-3.  How to perform _tool calling_ (integrating web search, mathematical calculations, etc.).
+1. How to get _structured output_ from your LLM.
+2. How to manage _attachments_ (e.g., GitHub files, base64 encoded data).
+3. How to perform _tool calling_ (integrating web search, mathematical calculations, etc.).
 
 **Q10: Can you briefly summarize the deployment process on Hugging Face Spaces?**
 **A10:**
 
-1.  **Generate SSH Key:** Use `ssh-keygen` in your terminal to create an SSH key pair.
-2.  **Add SSH Key to Hugging Face:** Copy the public SSH key (`id_rsa.pub` content) and paste it into your Hugging Face settings under "SSH Keys," giving it a recognizable name.
-3.  **Create a New Space:** In Hugging Face, create a new Space for your project (e.g., `tic-tac-toe`). Select "Docker" as the template, keep it public, and ensure "Enable Docker" and "Add SSH Key" are selected.
-4.  **Clone the Repository:** Clone the newly created Space repository to your local machine using SSH.
-5.  **Set up Project Structure:** Inside the cloned repository, create an `src` folder. Inside `src`, create an empty `__init__.py` file (to mark `src` as a Python package) and place your main application code (e.g., `main.py`) there. The `README.md` file (automatically generated) is important for Docker deployment, so don't remove it.
-6.  **Install Dependencies:** Activate your virtual environment and install your project's Python dependencies (`pip install fastapi uvicorn pydantic`). Then, generate a `requirements.txt` file (`pip freeze > requirements.txt`).
-7.  **Create Dockerfile:** Add a `Dockerfile` (we'll provide a template) to your project root. This file instructs Docker on how to build your application's image.
-8.  **Configure Secrets:** Add environment variables (like your LLM API key and model name) to your Hugging Face Space's secrets. This allows your app to access sensitive information without hardcoding it.
-9.  **Push to GitHub:** Commit all your changes (`git add .`, `git commit -m "Initial setup"`) and push them to your Hugging Face Space repository (`git push`). Hugging Face will then automatically build and deploy your Docker application.
+1. **Generate SSH Key:** Use `ssh-keygen` in your terminal to create an SSH key pair.
+2. **Add SSH Key to Hugging Face:** Copy the public SSH key (`id_rsa.pub` content) and paste it into your Hugging Face settings under "SSH Keys," giving it a recognizable name.
+3. **Create a New Space:** In Hugging Face, create a new Space for your project (e.g., `tic-tac-toe`). Select "Docker" as the template, keep it public, and ensure "Enable Docker" and "Add SSH Key" are selected.
+4. **Clone the Repository:** Clone the newly created Space repository to your local machine using SSH.
+5. **Set up Project Structure:** Inside the cloned repository, create an `src` folder. Inside `src`, create an empty `__init__.py` file (to mark `src` as a Python package) and place your main application code (e.g., `main.py`) there. The `README.md` file (automatically generated) is important for Docker deployment, so don't remove it.
+6. **Install Dependencies:** Activate your virtual environment and install your project's Python dependencies (`pip install fastapi uvicorn pydantic`). Then, generate a `requirements.txt` file (`pip freeze > requirements.txt`).
+7. **Create Dockerfile:** Add a `Dockerfile` (we'll provide a template) to your project root. This file instructs Docker on how to build your application's image.
+8. **Configure Secrets:** Add environment variables (like your LLM API key and model name) to your Hugging Face Space's secrets. This allows your app to access sensitive information without hardcoding it.
+9. **Push to GitHub:** Commit all your changes (`git add .`, `git commit -m "Initial setup"`) and push them to your Hugging Face Space repository (`git push`). Hugging Face will then automatically build and deploy your Docker application.
 
 **Q11: My speaker's audio was breaking up earlier. Is it fixed now?**
 **A11:** Yes, I've restarted my computer and network, and the audio should be clear now.
@@ -61,14 +61,14 @@ Here's an FAQ summary of the live tutorial:
 **Q12: How is the AI agent integrated into my code for tool calling and structured output?**
 **A12:**
 
-1.  **Define Structured Output:** You define Python classes (using Pydantic `BaseModel`) that represent the expected structure of your AI's outputs (e.g., a `FileContent` class with `file_name` and `file_content` attributes, or an `AIMove` class with an integer `chosen_move`).
-2.  **Define Tools:** You create Python functions that perform specific tasks (like web search, file operations, or calculations). You use a `@tool_plane` decorator (from `ai-agent`) above these functions. This registers them as tools that your LLM can use.
-3.  **Create the AI Agent:** You instantiate a `SearchAgent` (or `MathAgent`) from the `ai-agent` library, providing your LLM model (e.g., `openai-gpt3.5-turbo`) and a system prompt (instructions for the agent).
-4.  **Agent Invocation:** In your main application code, you call your agent's `run()` method, passing the user's prompt (e.g., "How is the weather today?") and any other necessary context.
-5.  **LLM and Tool Interaction:** The LLM receives the prompt. If it determines a tool is needed (e.g., web search for weather), it generates code to call that tool. The `ai-agent` handles executing this tool code.
-6.  **Structured Output Processing:** The tool (e.g., `duckduckgo_search_tool`) executes, gets data, and returns it. This output is automatically cast into the structured Pydantic class you defined.
-7.  **Response Generation:** The LLM then uses this structured data from the tool to formulate its final, human-readable response, which is then returned to your application.
-8.  **Output Validation and Retry:** For robust error handling, you can add validators (e.g., `Field` constraints for Pydantic models) to your structured output classes. If the LLM generates an invalid output (e.g., a number outside the allowed range), the agent automatically retries the LLM call, providing feedback on the error, until a valid response is received (or the retry limit is reached).
+1. **Define Structured Output:** You define Python classes (using Pydantic `BaseModel`) that represent the expected structure of your AI's outputs (e.g., a `FileContent` class with `file_name` and `file_content` attributes, or an `AIMove` class with an integer `chosen_move`).
+2. **Define Tools:** You create Python functions that perform specific tasks (like web search, file operations, or calculations). You use a `@tool_plane` decorator (from `ai-agent`) above these functions. This registers them as tools that your LLM can use.
+3. **Create the AI Agent:** You instantiate a `SearchAgent` (or `MathAgent`) from the `ai-agent` library, providing your LLM model (e.g., `openai-gpt3.5-turbo`) and a system prompt (instructions for the agent).
+4. **Agent Invocation:** In your main application code, you call your agent's `run()` method, passing the user's prompt (e.g., "How is the weather today?") and any other necessary context.
+5. **LLM and Tool Interaction:** The LLM receives the prompt. If it determines a tool is needed (e.g., web search for weather), it generates code to call that tool. The `ai-agent` handles executing this tool code.
+6. **Structured Output Processing:** The tool (e.g., `duckduckgo_search_tool`) executes, gets data, and returns it. This output is automatically cast into the structured Pydantic class you defined.
+7. **Response Generation:** The LLM then uses this structured data from the tool to formulate its final, human-readable response, which is then returned to your application.
+8. **Output Validation and Retry:** For robust error handling, you can add validators (e.g., `Field` constraints for Pydantic models) to your structured output classes. If the LLM generates an invalid output (e.g., a number outside the allowed range), the agent automatically retries the LLM call, providing feedback on the error, until a valid response is received (or the retry limit is reached).
 
 **Q13: What specific structure does the output of file generation look like?**
 **A13:** The agent outputs a list of file objects. Each file object is a dictionary-like structure containing two keys:
@@ -104,8 +104,8 @@ Here's an FAQ summary of the live tutorial:
 **Q22: Who is calling the `fastAPI` application, and who is invoking the `get_AI_move` function within it?**
 **A22:**
 
-1.  **FastAPI Application:** Your FastAPI application (`main.py`) is running locally using `uvicorn`. It's exposed via an API endpoint. This application is called by _our server_ during the evaluation process.
-2.  **`get_AI_move` function:** The `get_AI_move` function (within your FastAPI app) is _not_ directly called by an external entity. Instead, it's invoked internally when a user request comes into your FastAPI application. It's within this function that you use the `ai-agent` to get an LLM-generated move.
+1. **FastAPI Application:** Your FastAPI application (`main.py`) is running locally using `uvicorn`. It's exposed via an API endpoint. This application is called by _our server_ during the evaluation process.
+2. **`get_AI_move` function:** The `get_AI_move` function (within your FastAPI app) is _not_ directly called by an external entity. Instead, it's invoked internally when a user request comes into your FastAPI application. It's within this function that you use the `ai-agent` to get an LLM-generated move.
 
 **Q23: How do I handle potential conflicts or dependencies when running multiple agents or tools in parallel?**
 **A23:** The `ai-agent` framework is designed to manage parallel tool calls. If your LLM decides to invoke multiple tools simultaneously (e.g., for independent web searches), the framework handles their execution in parallel. The system prompt is crucial here; it guides the LLM on how to break down complex tasks into independent steps that can be processed concurrently. For dependencies, if one tool's output is required for another's input, the LLM will sequence the calls accordingly, ensuring that dependencies are respected before parallel execution.

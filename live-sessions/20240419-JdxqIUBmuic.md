@@ -53,8 +53,8 @@ You can find the ideal `k` using the **Elbow Method**, which involves plotting l
 
 **A10:** You can find cookie information in two main tabs within the Inspect Element tool:
 
-1.  **Network** tab
-2.  **Application** tab
+1. **Network** tab
+2. **Application** tab
 
 If you're unsure about the Application tab, the Network tab is definitely where you can find it.
 
@@ -117,9 +117,9 @@ For example, if you import Streamlit as `st`, you would use `st.text("Your text 
 
 **A22:** To change the calculation (e.g., from sum to average) in the values area of a pivot table:
 
-1.  **Right-click** on the cell in the values area of the pivot table.
-2.  Select **"Value Field Settings"**.
-3.  In the dialog box, you can choose the desired calculation (e.g., Sum, Count, Average, Max, Min).
+1. **Right-click** on the cell in the values area of the pivot table.
+2. Select **"Value Field Settings"**.
+3. In the dialog box, you can choose the desired calculation (e.g., Sum, Count, Average, Max, Min).
 
 **Q23: What happens if you choose the "Delimited" option in Text to Columns in Excel but don't select any delimiter?**
 

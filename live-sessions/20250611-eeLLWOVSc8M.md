@@ -56,20 +56,20 @@ Here is an FAQ-style transcription of the TDS live tutorial:
 
 To find these:
 
-1.  Open your browser's developer tools (usually by right-clicking and selecting "Inspect").
-2.  Go to the "Network" tab.
-3.  As you interact with the webpage (e.g., type in a search box, scroll down to load more posts), observe the requests being made in the Network tab.
-4.  Look for requests that return structured data like JSON. These often contain the parameters (like date ranges or search terms) directly in their URL or payload.
-5.  Once you identify the correct API URL, you can reconstruct it in your code, providing the necessary parameters (including authentication details like cookies for Discourse) to directly fetch the JSON data, thus avoiding HTML scraping.
+1. Open your browser's developer tools (usually by right-clicking and selecting "Inspect").
+2. Go to the "Network" tab.
+3. As you interact with the webpage (e.g., type in a search box, scroll down to load more posts), observe the requests being made in the Network tab.
+4. Look for requests that return structured data like JSON. These often contain the parameters (like date ranges or search terms) directly in their URL or payload.
+5. Once you identify the correct API URL, you can reconstruct it in your code, providing the necessary parameters (including authentication details like cookies for Discourse) to directly fetch the JSON data, thus avoiding HTML scraping.
 
 **Q13: My application doesn't use authentication, but Discourse does. How do I handle this when making API calls for Discourse content?**
 
 **A13:** (🔥 **Hot Tip 6**) Discourse requires authentication, often managed via cookies. When you log in, Discourse sends a cookie back to your browser, which is then sent with subsequent requests to maintain your session. To handle this programmatically:
 
-1.  When you make your initial login request to Discourse, capture the cookie (or cookies) that the server sends back in its response.
-2.  Store this cookie data.
-3.  For all subsequent API requests to Discourse, include this stored cookie in your request headers.
-4.  Discourse might issue a new cookie in a response (e.g., after a certain number of requests or a time-out). Always update your stored cookie with the latest one received.
+1. When you make your initial login request to Discourse, capture the cookie (or cookies) that the server sends back in its response.
+2. Store this cookie data.
+3. For all subsequent API requests to Discourse, include this stored cookie in your request headers.
+4. Discourse might issue a new cookie in a response (e.g., after a certain number of requests or a time-out). Always update your stored cookie with the latest one received.
 
 This ensures your session remains active. The instructor's evaluation system will also handle this by providing its own authentication mechanisms.
 
@@ -111,9 +111,9 @@ This allows for automated, subjective evaluation, assessing if your LLM's respon
 
 **A21:** (🔥 **Hot Tip 7**) You should _never hardcode_ your API key directly in your code, especially when deploying to GitHub. Instead, your application should be designed to fetch the API key from an _environment variable_.
 
-1.  **Define a variable:** In your code, specify a variable name (e.g., `OPENAI_API_KEY`) that your application will look for.
-2.  **Fetch from environment:** Use a method (like `os.environ.get('OPENAI_API_KEY')` in Python) to retrieve the key's value from the environment.
-3.  **Deployment:** When you deploy your application (e.g., to Versel), you will configure the `OPENAI_API_KEY` environment variable directly on the server. Your code will then automatically pick it up.
+1. **Define a variable:** In your code, specify a variable name (e.g., `OPENAI_API_KEY`) that your application will look for.
+2. **Fetch from environment:** Use a method (like `os.environ.get('OPENAI_API_KEY')` in Python) to retrieve the key's value from the environment.
+3. **Deployment:** When you deploy your application (e.g., to Versel), you will configure the `OPENAI_API_KEY` environment variable directly on the server. Your code will then automatically pick it up.
 
 This approach ensures your key is never visible in your code repository, making it secure. We will demonstrate how to implement this for cloud deployments like Versel.
 
