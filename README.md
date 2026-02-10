@@ -19,7 +19,7 @@
 
 **There is no course content**. Just challenges for you to solve, and prompts to guide you.
 
-![](images/there-is-no-content.webp "You learn by solving problems, not by reading slides.")
+![](images/there-is-no-content.webp "You learn by solving problems, not by watching videos or reading tutorials.")
 
 <!-- https://gemini.google.com/app/7354ff9f8d18b9c0 -->
 
@@ -130,7 +130,7 @@ The course covers the typical data science workflow:
 | [Test][GA6]                 | [**GA6**][GA6] |        | Fri 13 Mar 2026 | Sun 22 Mar 2026 |
 | [Present][GA7]              | [**GA7**][GA7] |        | Fri 20 Mar 2026 | Sun 29 Mar 2026 |
 | [Package][GA8]              | [**GA8**][GA8] |        | Fri 27 Mar 2026 | Wed 08 Apr 2026 |
-| [Project 1][P1]             | [**P1**][P1]   |    20% |  Fri 6 Feb 2026 | Mon 30 Mar 2026 |
+| [Project 1][P1]             | [**P1**][P1]   |    20% | Wed 11 Feb 2026 | Mon 30 Mar 2026 |
 | [Project 2][P2]             | [**P2**][P2]   |    20% |  Fri 6 Mar 2026 | Mon 13 Apr 2026 |
 | Remote Online Exam ([hard]) | [**ROE**][ROE] |    20% | Sun 05 Apr 2026 | Sun 05 Apr 2026 |
 | Final end-term (in-person)  | F              |    20% | Sun 10 May 2026 | Sun 10 May 2026 |
@@ -145,7 +145,7 @@ The course covers the typical data science workflow:
 [GA6]: https://exam.sanand.workers.dev/tds-2026-01-ga6
 [GA7]: https://exam.sanand.workers.dev/tds-2026-01-ga7
 [GA8]: https://exam.sanand.workers.dev/tds-2026-01-ga8
-[P1]: #TODO
+[P1]: https://exam.sanand.workers.dev/tds-2026-01-p1
 [P2]: #TODO
 [ROE]: https://exam.sanand.workers.dev/tds-2026-01-roe
 [hard]: https://discourse.onlinedegree.iitm.ac.in/t/roe-prep-discussion-thread-tds-may-2025/181581/25
@@ -178,9 +178,9 @@ The course covers the typical data science workflow:
 
 What to contact whom, for what, and how:
 
-- Contact teaching assistants about the subject ("How do I solve this assignment / project") **after** asking AI twice.
-- Contact instructors for exceptions ("My marks are wrong", "I need an extension", etc.) after asking AI, TAs, and with proof.
-- Contact faculty for suggestions on next term's course content.
+- **Teaching assistants**: To learn the subject **after** asking AI twice. E.g. "How do I solve this assignment / project"
+- **Unstructors**: For exceptions **after** asking AI, TAs, and with proof. E.g. "My marks are wrong", "I need an extension", etc.
+- **Faculty**: For suggestions on next term's course content.
 
 We used to have a [Virtual TA](https://chatgpt.com/g/g-mZqKVxKDx-iitm-tds-teaching-assistant) (a [custom GPT](tds-ta-instructions.md)) who has retired now.
 
