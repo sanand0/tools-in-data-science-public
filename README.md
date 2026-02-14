@@ -122,7 +122,7 @@ The course covers the typical data science workflow:
 | --------------------------- | -------------- | -----: | --------------: | --------------: |
 | [Entrance Exam][EE]         | [**EE**][EE]   |     0% | Wed 07 Jan 2026 | Mon 02 Feb 2026 |
 | Graded Assignment (GA)      | Best 5 of 8    |    20% |                 |                 |
-| [Setup][GA1]                | [**GA1**][GA1] |        | Fri 06 Feb 2026 | Sun 15 Feb 2026 |
+| [Setup][GA1]                | [**GA1**][GA1] |        | Fri 06 Feb 2026 | Wed 18 Feb 2026 |
 | [Deploy][GA2]               | [**GA2**][GA2] |        | Fri 13 Feb 2026 | Sun 22 Feb 2026 |
 | [Source][GA3]               | [**GA3**][GA3] |        | Fri 20 Feb 2026 | Sun 01 Mar 2026 |
 | [Wrangle][GA4]              | [**GA4**][GA4] |        | Fri 27 Feb 2026 | Sun 08 Mar 2026 |
