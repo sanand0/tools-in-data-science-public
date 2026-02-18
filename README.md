@@ -175,7 +175,7 @@ The course covers the typical data science workflow:
 | Teaching Assistant | [Hritik Roshan Maurya](https://www.linkedin.com/in/hritik-roshan-maurya-28446411a) | [22f3002460@ds.study.iitm.ac.in](mailto:22f3002460@ds.study.iitm.ac.in) | [@HritikRoshan_HRM](https://discourse.onlinedegree.iitm.ac.in/u/hritikroshan_hrm)          |
 | Teaching Assistant | [Jivraj Singh](https://www.linkedin.com/in/jivraj-singh-shekhawat-92a547269/)      | [22f3002542@ds.study.iitm.ac.in](mailto:22f3002542@ds.study.iitm.ac.in) | [@Jivraj](https://discourse.onlinedegree.iitm.ac.in/u/jivraj)                    |
 | Teaching Assistant | [Mayank Poddar](https://www.linkedin.com/in/mynkpdr)                               | [23f3004197@ds.study.iitm.ac.in](mailto:23f3004197@ds.study.iitm.ac.in) | [@23f3004197](https://discourse.onlinedegree.iitm.ac.in/u/23f3004197)                |
-| Teaching Assistant | [Sujal Pradhan]((https://www.linkedin.com/in/sujal-raj-pradhan-a85043242/))        | [22f3002542@ds.study.iitm.ac.in](mailto:23f2004759@ds.study.iitm.ac.in) | [@23f2004759](https://discourse.onlinedegree.iitm.ac.in/u/23f2004759)                |
+| Teaching Assistant | [Sujal Pradhan](https://www.linkedin.com/in/sujal-raj-pradhan-a85043242/)          | [22f3002542@ds.study.iitm.ac.in](mailto:23f2004759@ds.study.iitm.ac.in) | [@23f2004759](https://discourse.onlinedegree.iitm.ac.in/u/23f2004759)                |
 What to contact whom, for what, and how:
 
 - **Teaching assistants**: To learn the subject **after** asking AI twice. E.g. "How do I solve this assignment / project"
