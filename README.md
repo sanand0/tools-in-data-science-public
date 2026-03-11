@@ -127,11 +127,11 @@ The course covers the typical data science workflow:
 | [Source][GA3]               | [**GA3**][GA3] |        | Fri 20 Feb 2026 | Sun 01 Mar 2026 |
 | [Wrangle][GA4]              | [**GA4**][GA4] |        | Fri 27 Feb 2026 | Sun 08 Mar 2026 |
 | [Analyze][GA5]              | [**GA5**][GA5] |        | Fri 06 Mar 2026 | Fri 20 Mar 2026 |
-| [Test][GA6]                 | [**GA6**][GA6] |        | Fri 13 Mar 2026 | Sun 22 Mar 2026 |
-| [Present][GA7]              | [**GA7**][GA7] |        | Fri 20 Mar 2026 | Sun 29 Mar 2026 |
-| [Package][GA8]              | [**GA8**][GA8] |        | Fri 27 Mar 2026 | Wed 08 Apr 2026 |
+| [Test][GA6]                 | [**GA6**][GA6] |        | Fri 20 Mar 2026 | Sun 29 Mar 2026 |
+| [Present][GA7]              | [**GA7**][GA7] |        | Fri 27 Mar 2026 | Sun 5 Apr 2026 |
+| [Package][GA8]              | [**GA8**][GA8] |        | Fri 3 Apr 2026 | Sun 12 Apr 2026 |
 | [Project 1][P1]             | [**P1**][P1]   |    20% | Wed 11 Feb 2026 | Mon 30 Mar 2026 |
-| [Project 2][P2]             | [**P2**][P2]   |    20% |  Fri 6 Mar 2026 | Mon 13 Apr 2026 |
+| [Project 2][P2]             | [**P2**][P2]   |    20% |  Fri 20 Mar 2026 | Mon 27 Apr 2026 |
 | Remote Online Exam ([hard]) | [**ROE**][ROE] |    20% | Sun 05 Apr 2026 | Sun 05 Apr 2026 |
 | Final end-term (in-person)  | F              |    20% | Sun 10 May 2026 | Sun 10 May 2026 |
 
