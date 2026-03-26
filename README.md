@@ -135,6 +135,8 @@ The course covers the typical data science workflow:
 | Remote Online Exam ([hard]) | [**ROE**][ROE] |    20% | Sun 05 Apr 2026 | Sun 05 Apr 2026 |
 | Final end-term (in-person)  | F              |    20% | Sun 10 May 2026 | Sun 10 May 2026 |
 
+For Project 2: Sign up on [picoCTF](https://play.picoctf.org/) and join the [classroom](https://play.picoctf.org/classrooms) with invite code: `CTuhJLfpM`. Then solve your [assigned questions](https://play.picoctf.org/practice?assigned=1).
+
 [Source]: https://github.com/sanand0/tools-in-data-science-public/commits
 [EE]: https://exam.sanand.workers.dev/tds-2026-01-ee
 [GA1]: https://exam.sanand.workers.dev/tds-2026-01-ga1
@@ -146,7 +148,7 @@ The course covers the typical data science workflow:
 [GA7]: https://exam.sanand.workers.dev/tds-2026-01-ga7
 [GA8]: https://exam.sanand.workers.dev/tds-2026-01-ga8
 [P1]: https://exam.sanand.workers.dev/tds-2026-01-p1
-[P2]: #TODO
+[P2]: https://play.picoctf.org/
 [ROE]: https://exam.sanand.workers.dev/tds-2026-01-roe
 [hard]: https://discourse.onlinedegree.iitm.ac.in/t/roe-prep-discussion-thread-tds-may-2025/181581/25
 
