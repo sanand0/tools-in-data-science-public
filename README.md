@@ -150,7 +150,7 @@ Note: You must complete both parts of P2 (picoCTF AND New Questions) for the ful
 [GA7]: https://exam.sanand.workers.dev/tds-2026-01-ga7
 [GA8]: https://exam.sanand.workers.dev/tds-2026-01-ga8
 [P1]: https://exam.sanand.workers.dev/tds-2026-01-p1
-[P2]: https://play.picoctf.org/
+[P2A]: https://play.picoctf.org/
 [P2B]: https://exam.sanand.workers.dev/tds-2026-01-p2
 [ROE]: https://exam.sanand.workers.dev/tds-2026-01-roe
 [hard]: https://discourse.onlinedegree.iitm.ac.in/t/roe-prep-discussion-thread-tds-may-2025/181581/25
