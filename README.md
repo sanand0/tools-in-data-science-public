@@ -136,8 +136,7 @@ The course covers the typical data science workflow:
 | Remote Online Exam ([hard]) | [**ROE**][ROE] |    20% | Sun 05 Apr 2026 | Sun 05 Apr 2026 |
 | Final end-term (in-person)  | F              |    20% | Sun 10 May 2026 | Sun 10 May 2026 |
 
-For Project 2: Sign up on [picoCTF](https://play.picoctf.org/) and join the [classroom](https://play.picoctf.org/classrooms) with invite code: `CTuhJLfpM`. Then solve your [assigned questions](https://play.picoctf.org/practice?assigned=1).
-Note: You must complete both parts of P2 (picoCTF AND New Questions) for the full 20%
+For Project 2: Sign up on [picoCTF](https://play.picoctf.org/) and join the [classroom](https://play.picoctf.org/classrooms) with invite code: `CTuhJLfpM`. Then solve your [assigned questions](https://play.picoctf.org/practice?assigned=1). **You must complete both parts of P2** (picoCTF AND New Questions) for the full P2 score.
 
 [Source]: https://github.com/sanand0/tools-in-data-science-public/commits
 [EE]: https://exam.sanand.workers.dev/tds-2026-01-ee
