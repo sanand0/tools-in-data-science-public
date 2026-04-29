@@ -132,7 +132,7 @@ The course covers the typical data science workflow:
 | [Package][GA8]              | [**GA8**][GA8] |        | Sun 19 Apr 2026 | Thu 30 Apr 2026 |
 | [Project 1][P1]             | [**P1**][P1]   |    20% | Wed 11 Feb 2026 | Mon 30 Mar 2026 |
 | [Project 2A - picoCTF][P2A] | [**P2A**][P2A] |    20% | Fri 20 Mar 2026 | Mon 27 Apr 2026 |
-| [P2B - New Questions][P2B]  | [**P2B**][P2B] |        | Sun 19 Apr 2026 | Mon 27 Apr 2026 | 
+| [P2B - New Questions][P2B]  | [**P2B**][P2B] |        | Sun 19 Apr 2026 | Mon 04 May 2026 | 
 | Remote Online Exam ([hard]) | [**ROE**][ROE] |    20% | Sun 05 Apr 2026 | Sun 05 Apr 2026 |
 | Final end-term (in-person)  | F              |    20% | Sun 10 May 2026 | Sun 10 May 2026 |
 
