@@ -6,9 +6,12 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta charset="UTF-8" />
   <title>Tools in Data Science</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgMTI0IDEyNCIgZmlsbD0ibm9uZSI+CjxyZWN0IHdpZHRoPSIxMjQiIGhlaWdodD0iMTI0IiByeD0iMjQiIGZpbGw9IiNGOTczMTYiLz4KPHBhdGggZD0iTTE5LjM3NSAzNi43ODE4VjEwMC42MjVDMTkuMzc1IDEwMi44MzQgMjEuMTY1OSAxMDQuNjI1IDIzLjM3NSAxMDQuNjI1SDg3LjIxODFDOTAuNzgxOCAxMDQuNjI1IDkyLjU2NjQgMTAwLjMxNiA5MC4wNDY2IDk3Ljc5NjZMMjYuMjAzNCAzMy45NTM0QzIzLjY4MzYgMzEuNDMzNiAxOS4zNzUgMzMuMjE4MiAxOS4zNzUgMzYuNzgxOFoiIGZpbGw9IndoaXRlIi8+CjxjaXJjbGUgY3g9IjYzLjIxMDkiIGN5PSIzNy41MzkxIiByPSIxOC4xNjQxIiBmaWxsPSJibGFjayIvPgo8cmVjdCBvcGFjaXR5PSIwLjQiIHg9IjgxLjEzMjgiIHk9IjgwLjcxOTgiIHdpZHRoPSIxNy41Njg3IiBoZWlnaHQ9IjE3LjM4NzYiIHJ4PSI0IiB0cmFuc2Zvcm09InJvdGF0ZSgtNDUgODEuMTMyOCA4MC43MTk4KSIgZmlsbD0iI0ZEQkE3NCIvPgo8L3N2Zz4=">
-  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
-  <link rel="stylesheet" media="(prefers-color-scheme: light)" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgMTI0IDEyNCIgZmlsbD0ibm9uZSI+CjxyZWN0IHdpZHRoPSIxMjQiIGhlaWdodD0iMTI0IiByeD0iMjQiIGZpbGw9IiNGOTczMTYiLz4KPHBhdGggZD0iTTE5LjM3NSAzNi43ODE4VjEwMC42MjVDMTkuMzc1IDEwMi44MzQgMjEuMTY1OSAxMDQuNjI1IDIzLjM3NSAxMDQuNjI1SDg3LjIxODFDOTAuNzgxOCAxMDQuNjI1IDkyLjU2NjQgMTAwLjMxNiA5MC4wNDY2IDk3Ljc5NjZMMjYuMjAzNCAzMy45NTM0QzIzLjY4MzYgMzEuNDMzNiAxOS4zNzUgMzMuMjE4MiAxOS4zNzUgMzYuNzgxOFoiIGZpbGw9IndoaXRlIi8+CjxjaXJjbGUgY3g9IjYzLjIxMDkiIGN5PSIzNy41MzkxIiByPSIxOC4xNjQxIiBmaWxsPSJibGFjayIvPgo8cmVjdCBvcGFjaXR5PSIwLjQiIHg9IjgxLjEzMjgiIHk9IjgwLjcxOTgiIHdpZHRoPSIxNy41Njg3IiBoZWlnaHQ9IjE3LjM4NzYiIHJ4PSI0IiB0cmFuc2Zvcm09InJvdGF0ZSgtNDUgODEuMTMyOCA4MC43MTk4KSIgZmlsbD0iI0ZEQkE3NCIvPgo8L3N2Zz4=">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)"
+    href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
+  <link rel="stylesheet" media="(prefers-color-scheme: light)"
+    href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
   <style>
     /* Add a YouTube icon on top of all YouTube links with images */
     a[href*="youtu"]:has(img[src*="ytimg"]) {
@@ -37,23 +40,122 @@
       margin-bottom: 2rem;
     }
 
-    .sidebar-nav ul>li>span, .sidebar-nav ul>li>strong, .sidebar nav ul>li>span, .sidebar nav ul>li>strong {
+    .sidebar-nav ul>li>span,
+    .sidebar-nav ul>li>strong,
+    .sidebar nav ul>li>span,
+    .sidebar nav ul>li>strong {
       margin: var(--sidebar-nav-pagelink-padding, var(--sidebar-nav-link-padding));
       margin-top: 0.5rem;
     }
-    .sidebar-nav ul>li:first-child>span, .sidebar-nav ul>li:first-child>strong, .sidebar nav ul>li:first-child>span, .sidebar nav ul>li:first-child>strong {
+
+    .sidebar-nav ul>li:first-child>span,
+    .sidebar-nav ul>li:first-child>strong,
+    .sidebar nav ul>li:first-child>span,
+    .sidebar nav ul>li:first-child>strong {
       margin-top: 0.5rem;
     }
 
+    /* Sidebar resizer handle */
+    .sidebar-resizer {
+      width: 6px;
+      height: 100%;
+      position: absolute;
+      right: -3px;
+      top: 0;
+      cursor: col-resize;
+      z-index: 9999;
+      background-color: transparent;
+      transition: background-color 0.2s;
+    }
+
+    .sidebar-resizer:hover,
+    .sidebar-resizer.resizing {
+      background-color: rgba(220, 53, 69, 0.4) !important;
+    }
+
+    /* Disable transitions during active drag resizing to make it feel buttery smooth */
+    body.is-resizing .sidebar,
+    body.is-resizing .content {
+      transition: none !important;
+    }
+
+    /* Sleek premium scrollbar for the sidebar */
+    .sidebar::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .sidebar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 3px;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    /* Dark mode scrollbar support */
+    @media (prefers-color-scheme: dark) {
+      .sidebar::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .sidebar::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.25);
+      }
+    }
   </style>
 </head>
 
 <body>
   <div id="app"></div>
   <script>
+    function resizableSidebar(hook, vm) {
+      hook.doneEach(() => {
+        const sidebar = document.querySelector('.sidebar');
+        if (!sidebar || sidebar.querySelector('.sidebar-resizer')) return;
+
+        const resizer = document.createElement('div');
+        resizer.className = 'sidebar-resizer';
+        sidebar.appendChild(resizer);
+
+        let isResizing = false;
+
+        resizer.addEventListener('mousedown', (e) => {
+          isResizing = true;
+          resizer.classList.add('resizing');
+          document.body.classList.add('is-resizing');
+          document.body.style.cursor = 'col-resize';
+          document.body.style.userSelect = 'none';
+          e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+          if (!isResizing) return;
+          const newWidth = e.clientX;
+          if (newWidth > 200 && newWidth < 600) {
+            document.documentElement.style.setProperty('--sidebar-width', `${newWidth}px`);
+          }
+        });
+
+        document.addEventListener('mouseup', () => {
+          if (isResizing) {
+            isResizing = false;
+            resizer.classList.remove('resizing');
+            document.body.classList.remove('is-resizing');
+            document.body.style.cursor = '';
+            document.body.style.userSelect = '';
+          }
+        });
+      });
+    }
+
     window.$docsify = {
       name: 'Tools in Data Science — May 2026',
-      subMaxLevel: 2,
+      subMaxLevel: 1,
       themeColor: '#dc3545',
       loadSidebar: true,
       sidebarDisplayLevel: 1,
@@ -63,6 +165,9 @@
         crossChapter: true,
         crossChapterText: true
       },
+      plugins: [
+        resizableSidebar
+      ]
     };
 
   </script>
