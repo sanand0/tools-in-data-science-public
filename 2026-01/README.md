@@ -1,4 +1,4 @@
-# Tools in Data Science - May 2026
+# Tools in Data Science - Jan 2026
 
 [Tools in Data Science](https://study.iitm.ac.in/ds/course_pages/BSSE2002.html) is a diploma level data science course at IIT Madras.
 
@@ -164,9 +164,9 @@ For Project 2: Sign up on [picoCTF](https://play.picoctf.org/) and join the [cla
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | Live Video Sessions           | [Recordings](https://drive.google.com/drive/folders/1smwtcdgiANDkrs8LhnGGAEr43Yhp-R9O)                                                      | [YouTube](https://www.youtube.com/@se-lr5ff) / [Archives](live-sessions.md)   |
 | Discussion                    | [IITM](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34)                                                                       | [Public](https://github.com/sanand0/tools-in-data-science-public/discussions) |
-| Course page - May 2026        | [IITM](https://seek.onlinedegree.iitm.ac.in/courses/ns_26t1_se2002)                                                                         | [Public](https://tds.s-anand.net/)                                            |
-| Announcement group - May 2026 | [IITM](https://groups.google.com/a/study.iitm.ac.in/g/26t1_se2002-announce)                                                                 | [Public](https://groups.google.com/g/tds-iitm)                                |
-| Grading Document - May 2026   | [IITM](https://docs.google.com/document/d/e/2PACX-1vSUvKzH7yIXNVwUgRYSIT8M0x1jhFSkslEtj9UPo3dtWI_sJ38Hh_PzbBygpF0vIOo8K7lTy-uYkqdu/pub)     |                                                                               |
+| Course page - Jan 2026        | [IITM](https://seek.onlinedegree.iitm.ac.in/courses/ns_26t1_se2002)                                                                         | [Public](https://tds.s-anand.net/)                                            |
+| Announcement group - Jan 2026 | [IITM](https://groups.google.com/a/study.iitm.ac.in/g/26t1_se2002-announce)                                                                 | [Public](https://groups.google.com/g/tds-iitm)                                |
+| Grading Document - Jan 2026   | [IITM](https://docs.google.com/document/d/e/2PACX-1vSUvKzH7yIXNVwUgRYSIT8M0x1jhFSkslEtj9UPo3dtWI_sJ38Hh_PzbBygpF0vIOo8K7lTy-uYkqdu/pub)     |                                                                               |
 | Student Handbook              | [IITM](https://docs.google.com/document/u/2/d/e/2PACX-1vRxGnnDCVAO3KX2CGtMIcJQuDrAasVk2JHbDxkjsGrTP5ShhZK8N6ZSPX89lexKx86QPAUswSzGLsOA/pub) |                                                                               |
 
 ## Contacts
@@ -200,7 +200,6 @@ Check these three links regularly to keep up with the course.
 
 ## Previous terms
 
-- [TDS: Course Content - Jan 2026](2026-01/)
 - [TDS: Course Content - Sep 2025](2025-09/)
 - [TDS: Course Content - May 2025](2025-05/)
   - [Community solutions](https://tdsfu.pages.dev/)
