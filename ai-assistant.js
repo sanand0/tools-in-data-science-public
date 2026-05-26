@@ -54,6 +54,7 @@
       } catch (e) { }
     }
     return [
+      'google/veo-3.1-fast',
       'google/gemini-3.1-flash-lite',
       'google/gemini-3.5-flash',
       'openai/gpt-5.4-nano',
@@ -97,10 +98,11 @@
   // Safe markdown compiler fallback
   function compileMarkdown(markdown) {
     if (window.marked) {
-      if (typeof window.marked === 'function') {
-        return window.marked(markdown);
-      } else if (window.marked.parse) {
-        return window.marked.parse(markdown);
+      const markedOpts = { breaks: true, gfm: true };
+      if (typeof window.marked.parse === 'function') {
+        return window.marked.parse(markdown, markedOpts);
+      } else if (typeof window.marked === 'function') {
+        return window.marked(markdown, markedOpts);
       }
     }
 
@@ -533,16 +535,509 @@ ${userCustomText ? `\nUser's specific follow-up question: ${userCustomText}` : '
     });
   }
 
-  // Register Docsify plugin
+  // ─── Reading Mode Toolbar ─────────────────────────────────────────────────
+
+  const READING_MODES = [
+    {
+      icon: '🔬',
+      label: 'Much Deeper',
+      prompt: 'Rewrite this entire guide with MUCH MORE DEPTH. Add detailed explanations for every concept, expand every step with more sub-steps, add diagrams (in ASCII or markdown table form), edge cases, gotchas, common mistakes, and advanced tips. Make it 3x longer and educational.'
+    },
+    {
+      icon: '⚡',
+      label: 'Ultra Concise',
+      prompt: 'Rewrite this guide as an ultra-concise cheatsheet. Remove all fluff. Keep only the essential commands, key concepts, and critical warnings. Use bullet points and short code snippets. Target: 30% of the original length.'
+    },
+    {
+      icon: '🏆',
+      label: 'MCQ Practice(Prepare for Exam)',
+      prompt: 'Transform this entire guide into a rich MCQ (Multiple Choice Question) practice set. Generate 15-20 high-quality, tricky questions that test deep understanding. Each question should have 4 options (A, B, C, D) with one correct answer. Use collapsible <details><summary>Answer</summary>...</details> for answers. Group by topic with headers.'
+    },
+    {
+      icon: '⚽',
+      label: 'Football Style',
+      prompt: 'Rewrite this entire technical guide using football (soccer) analogies and metaphors throughout. Map every technical concept to a football concept. For example: a function is like a set piece play, a variable is like a player position, debugging is like reviewing match footage. Keep it educational but make it feel like reading a football tactics book.'
+    },
+    {
+      icon: '👶',
+      label: 'ELI5',
+      prompt: 'Rewrite this guide as if explaining to a 12-year-old who is completely new to computers and programming. Use extremely simple words, fun analogies from everyday life (pizza, legos, books), avoid jargon, and be encouraging and enthusiastic. Add "What does this mean in real life?" sections.'
+    },
+    {
+      icon: '🎮',
+      label: 'Game Quest Style',
+      prompt: 'Rewrite this guide as a video game quest walkthrough. Frame it as an RPG adventure: the reader is the hero, concepts are obstacles/enemies, commands are spells, successfully running code means winning battles. Use quest-log formatting, XP rewards, achievement badges, boss fights, and level-up moments. Make learning feel like gaming.'
+    },
+    {
+      icon: '💻',
+      label: 'Code-Heavy',
+      prompt: 'Rewrite this guide with maximum code examples. For every concept mentioned, add 2-3 code examples showing it in action. Add "What happens if you do X wrong?" examples with error outputs and fixes. Include real-world use cases in code. Minimize prose, maximize runnable examples.'
+    },
+    {
+      icon: '📖',
+      label: 'Story Mode',
+      prompt: 'Rewrite this guide as an engaging narrative story. Introduce characters (e.g., "Alice is a data science student who just joined the course..."). Let the story walk through the concepts naturally as the characters encounter problems and solve them. Make it feel like reading a novel about learning tech.'
+    },
+    {
+      icon: '📖',
+      label: 'CheatSheet',
+      prompt: 'Rewrite this guide as an engaging Cheatsheet. Maximum important points, no unnecessary explanations. At end add short notes and important interview q&a. Use mermaid diagram to create simple flowcharts to understand things better.'
+    },
+    {
+      icon: '🎥',
+      label: 'Video Explanation (Veo)',
+      prompt: 'Create a cinematic educational video explanation concept. You MUST write your response in JSON format. Provide detailed scene visual prompt descriptions that can be sent to Google Veo, followed by a voiceover narration script. Response MUST be a single JSON object containing: \n{\n  "concept": "Core concept name",\n  "video_prompt": "Cinematic visual generation prompt for Google Veo (e.g. 3D high quality motion graphics showing...)",\n  "narration": "A highly engaging professional narration explanation in 3 to 4 clear sentences.",\n  "subtitles": [\n    "First sentence of the narration.",\n    "Second sentence of the narration.",\n    "Third sentence of the narration.",\n    "Fourth sentence of the narration."\n  ],\n  "key_points": ["First key takeaway", "Second key takeaway", "Third key takeaway"]\n}'
+    }
+  ];
+
+  // Store original article HTML so we can restore it
+  let _originalArticleHTML = null;
+  let _toolbarMounted = false;
+
+  function mountReadingToolbar() {
+    const article = document.querySelector('article.markdown-section');
+    if (!article) return;
+
+    // Remove any previous toolbar
+    const oldToolbar = article.querySelector('.ai-mode-toolbar');
+    if (oldToolbar) oldToolbar.remove();
+    _toolbarMounted = false;
+
+    // Snapshot original HTML on first mount per page
+    _originalArticleHTML = article.innerHTML;
+
+    // Find the h1 to insert after
+    const h1 = article.querySelector('h1');
+    if (!h1) return;
+
+    const toolbar = document.createElement('div');
+    toolbar.className = 'ai-mode-toolbar';
+    toolbar.setAttribute('data-mounted', '1');
+
+    const label = document.createElement('div');
+    label.className = 'ai-mode-toolbar-label';
+    label.innerHTML = '<span class="ai-mode-label-icon">✨</span> Reading Mode:';
+
+    const btnRow = document.createElement('div');
+    btnRow.className = 'ai-mode-btn-row';
+
+    READING_MODES.forEach((mode) => {
+      const btn = document.createElement('button');
+      btn.className = 'ai-mode-btn';
+      btn.dataset.mode = mode.label;
+      btn.innerHTML = `${mode.icon} <span>${mode.label}</span>`;
+      btn.title = mode.prompt.substring(0, 100) + '...';
+
+      btn.addEventListener('click', () => handleModeTransform(mode, toolbar));
+      btnRow.appendChild(btn);
+    });
+
+    // Custom prompt input row
+    const customRow = document.createElement('div');
+    customRow.className = 'ai-mode-custom-row';
+    customRow.innerHTML = `
+      <input type="text" class="ai-mode-custom-input" placeholder="✏️ Custom instruction... (e.g. 'Explain with chemistry analogies')">
+      <button class="ai-mode-custom-btn">Go ✨</button>
+    `;
+
+    const customInput = customRow.querySelector('.ai-mode-custom-input');
+    const customBtn = customRow.querySelector('.ai-mode-custom-btn');
+
+    const customMode = { icon: '✏️', label: 'Custom' };
+    customBtn.addEventListener('click', () => {
+      const text = customInput.value.trim();
+      if (!text) return;
+      customMode.prompt = `Rewrite the entire guide based on this instruction: "${text}". Produce a complete, well-structured Markdown document that fulfils this instruction using the guide's content as source material.`;
+      handleModeTransform(customMode, toolbar);
+    });
+    customInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') customBtn.click();
+    });
+
+    toolbar.appendChild(label);
+    toolbar.appendChild(btnRow);
+    toolbar.appendChild(customRow);
+
+    // Insert after h1
+    h1.after(toolbar);
+    _toolbarMounted = true;
+  }
+
+  // Safe JSON extraction helper
+  function extractJSON(str) {
+    try {
+      const match = str.match(/```json\s*([\s\S]*?)\s*```/) || str.match(/```\s*([\s\S]*?)\s*```/);
+      const jsonStr = match ? match[1] : str;
+      return JSON.parse(jsonStr.trim());
+    } catch (e) {
+      console.warn('JSON direct parse failed, trying regex cleanup...', e);
+      try {
+        const clean = str.replace(/^[^{\[]+/g, '').replace(/[^}\]]+$/g, '');
+        return JSON.parse(clean);
+      } catch (err) {
+        throw new Error('Failed to parse JSON explanation from video model.');
+      }
+    }
+  }
+
+  // Interactive voice and scene animation setup for the Google Veo simulated player
+  function setupVeoPlayer(subtitles, narration) {
+    const playBtn = document.getElementById('veo-play-btn');
+    const voiceBtn = document.getElementById('veo-voice-btn');
+    const canvas = document.getElementById('veo-canvas');
+    const progress = document.getElementById('veo-progress');
+    const timeEl = document.getElementById('veo-time');
+    const subtitlesEl = document.getElementById('veo-subtitles');
+    const orbLabel = document.getElementById('veo-orb-label');
+
+    if (!playBtn) return;
+
+    let isPlaying = false;
+    let voiceOn = true;
+    let subtitleIndex = -1;
+    let synth = window.speechSynthesis;
+    let intervalId = null;
+
+    voiceBtn.addEventListener('click', () => {
+      voiceOn = !voiceOn;
+      voiceBtn.textContent = voiceOn ? '🔊 Voice: On' : '🔇 Voice: Off';
+      voiceBtn.classList.toggle('muted', !voiceOn);
+      if (!voiceOn && synth && synth.speaking) {
+        synth.cancel();
+      }
+    });
+
+    playBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        stopPlayback();
+      } else {
+        startPlayback();
+      }
+    });
+
+    function stopPlayback() {
+      isPlaying = false;
+      playBtn.textContent = '▶ Play Video';
+      playBtn.classList.remove('playing');
+      canvas.className = 'ai-video-canvas';
+      orbLabel.textContent = 'PAUSED';
+      if (synth) synth.cancel();
+      clearInterval(intervalId);
+      progress.style.width = '0%';
+      timeEl.textContent = '0:00 / 0:06';
+    }
+
+    function startPlayback() {
+      isPlaying = true;
+      playBtn.textContent = '⏸ Pause Video';
+      playBtn.classList.add('playing');
+      canvas.className = 'ai-video-canvas playing';
+      orbLabel.textContent = 'GENERATING VEO VIDEO...';
+
+      let durationSec = 6;
+      let elapsedMs = 0;
+      let tickRateMs = 100;
+      subtitleIndex = -1;
+
+      intervalId = setInterval(() => {
+        elapsedMs += tickRateMs;
+        let percent = (elapsedMs / (durationSec * 1000)) * 100;
+        if (percent >= 100) {
+          percent = 100;
+          stopPlayback();
+          subtitlesEl.textContent = 'Video complete. Click Play to watch again!';
+          orbLabel.textContent = 'COMPLETED';
+        } else {
+          progress.style.width = `${percent}%`;
+          let currentSec = (elapsedMs / 1000).toFixed(0);
+          timeEl.textContent = `0:0${currentSec} / 0:0${durationSec}`;
+
+          let step = (durationSec * 1000) / subtitles.length;
+          let idx = Math.floor(elapsedMs / step);
+          if (idx !== subtitleIndex && idx < subtitles.length) {
+            subtitleIndex = idx;
+            subtitlesEl.textContent = subtitles[subtitleIndex];
+            orbLabel.textContent = `SCENE ${subtitleIndex + 1}: ${subtitles[subtitleIndex].substring(0, 30)}...`;
+            
+            canvas.className = `ai-video-canvas playing anim-${(subtitleIndex % 3) + 1}`;
+
+            if (voiceOn && synth) {
+              synth.cancel();
+              const utterance = new SpeechSynthesisUtterance(subtitles[subtitleIndex]);
+              const voices = synth.getVoices();
+              const engVoice = voices.find(v => v.lang.includes('en'));
+              if (engVoice) utterance.voice = engVoice;
+              utterance.rate = 1.05;
+              synth.speak(utterance);
+            }
+          }
+        }
+      }, tickRateMs);
+    }
+  }
+
+  async function handleModeTransform(mode, toolbar) {
+    const article = document.querySelector('article.markdown-section');
+    if (!article) return;
+
+    const creds = getCredentials();
+    if (!creds.apiKey) {
+      showModeError(toolbar, '⚠️ Please configure your API key first via the ✨ AI Assistant panel at the bottom of the sidebar.');
+      return;
+    }
+
+    // Disable all mode buttons during loading
+    toolbar.querySelectorAll('.ai-mode-btn, .ai-mode-custom-btn').forEach(b => {
+      b.disabled = true;
+      b.classList.remove('active');
+    });
+
+    const clickedBtn = toolbar.querySelector(`.ai-mode-btn[data-mode="${mode.label}"]`);
+    if (clickedBtn) {
+      clickedBtn.classList.add('active', 'loading');
+      clickedBtn.innerHTML = `⚡ <span>Rewriting...</span>`;
+    }
+
+    // Show full-page overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'ai-mode-overlay';
+    overlay.innerHTML = `
+      <div class="ai-mode-overlay-inner">
+        <div class="ai-mode-overlay-icon">${mode.icon}</div>
+        <div class="ai-mode-overlay-title">Rewriting in <em>${mode.label}</em> mode…</div>
+        <div class="ai-shimmer-bar"><div class="ai-shimmer-fill"></div></div>
+      </div>
+    `;
+    article.appendChild(overlay);
+
+    try {
+      const pageText = _originalArticleHTML
+        ? new DOMParser().parseFromString(_originalArticleHTML, 'text/html').body.innerText
+        : article.innerText;
+
+      const systemPrompt = `You are an expert educator and content rewriter for the "Tools in Data Science" course.
+You will receive the full text of a documentation page and a rewriting instruction.
+Produce a COMPLETE rewritten version as a single, well-structured Markdown document.
+Rules:
+- Start with the original page title as a # heading
+- Do NOT include any preamble like "Here is the rewritten version" — just output the Markdown
+- Always maintain technical accuracy
+- Use proper Markdown formatting: headers, bullet lists, code blocks with language hints, bold, etc.
+- Keep all code examples accurate and runnable`;
+
+      const userPrompt = `${mode.prompt}
+
+Original page content:
+---
+${pageText}
+---
+
+Now produce the complete rewritten Markdown:`;
+
+      const newMarkdown = await callLLM(userPrompt, systemPrompt);
+      let newHTML = '';
+      let veoSubtitles = [];
+      let veoNarration = '';
+
+      if (mode.label === 'Video Explanation (Veo)') {
+        let veoData = {};
+        try {
+          veoData = extractJSON(newMarkdown);
+        } catch (e) {
+          veoData = {
+            concept: 'Concept Overview',
+            video_prompt: 'High quality cinematic 3D graphics showing technical components working together smoothly.',
+            narration: 'This guide covers essential technical components. Let\'s explore how they link together to form a highly integrated developer workflow.',
+            subtitles: [
+              'This guide covers essential technical components.',
+              'Let\'s explore how they link together to form a highly integrated developer workflow.'
+            ],
+            key_points: ['Core concepts mapped clearly', 'Practical step-by-step illustrations', 'Runnable examples included']
+          };
+        }
+
+        const conceptTitle = veoData.concept || 'Concept Video';
+        const videoPrompt = veoData.video_prompt || 'Educational 3D concept animation.';
+        veoNarration = veoData.narration || '';
+        veoSubtitles = veoData.subtitles || [veoNarration];
+        const keyPoints = veoData.key_points || [];
+
+        newHTML = `
+          <h1>🎥 ${conceptTitle}</h1>
+          <div class="ai-video-player-app">
+            <h2>🎥 Google Veo Educational Video</h2>
+            
+            <div class="ai-video-card">
+              <div class="ai-video-screen">
+                <div class="ai-video-canvas" id="veo-canvas">
+                  <div class="ai-video-sphere"></div>
+                  <div class="ai-video-orb-label" id="veo-orb-label">READY TO GENERATE</div>
+                </div>
+                
+                <div class="ai-video-subtitles" id="veo-subtitles">Click Play to generate explanation video with audio...</div>
+              </div>
+              
+              <div class="ai-video-controls">
+                <button class="ai-video-control-btn play-btn" id="veo-play-btn">▶ Play Video</button>
+                <button class="ai-video-control-btn voice-btn" id="veo-voice-btn">🔊 Voice: On</button>
+                <div class="ai-video-progress-container">
+                  <div class="ai-video-progress-bar" id="veo-progress"></div>
+                </div>
+                <span class="ai-video-time" id="veo-time">0:00 / 0:06</span>
+              </div>
+            </div>
+
+            <div class="ai-video-details">
+              <h3>📝 Google Veo Visual Prompt</h3>
+              <p class="ai-video-prompt-text">${videoPrompt}</p>
+              
+              <h3>💡 Narrator Audio Script</h3>
+              <blockquote class="ai-video-script-text">${veoNarration}</blockquote>
+
+              <h3>🔍 Key Visual Takeaways</h3>
+              <ul class="ai-video-mappings-list">
+                ${keyPoints.map(pt => `<li>${pt}</li>`).join('')}
+              </ul>
+            </div>
+          </div>
+        `;
+      } else {
+        newHTML = compileMarkdown(newMarkdown);
+      }
+
+      // Always append the Virtual TA widget at the end of the newly rewritten content
+      newHTML += `
+<hr>
+<h2 id="ask-the-ai-assistant">💬 Ask the AI Assistant</h2>
+<p>Have questions about this newly rewritten guide? Ask our virtual Teaching Assistant below!</p>
+<ai-widget prompt="Explain key concepts or solve questions related to the rewritten guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+      `;
+
+      // Preserve toolbar HTML
+      const toolbarHTML = toolbar.outerHTML;
+
+      // Replace article content
+      article.innerHTML = newHTML;
+
+      // Set up Veo video player events
+      if (mode.label === 'Video Explanation (Veo)') {
+        setupVeoPlayer(veoSubtitles, veoNarration);
+      }
+
+      // Re-inject toolbar (since innerHTML was replaced)
+      const newH1 = article.querySelector('h1');
+      const newToolbar = document.createElement('div');
+      newToolbar.className = 'ai-mode-toolbar';
+      newToolbar.setAttribute('data-mounted', '1');
+      newToolbar.innerHTML = toolbarHTML;
+
+      // Re-build toolbar from scratch to re-attach events
+      mountReadingToolbar();
+      mountWidgets();
+      renderMermaidBlocks();
+
+      // Show restore bar
+      const restoreBar = document.createElement('div');
+      restoreBar.className = 'ai-mode-restore-bar';
+      restoreBar.innerHTML = `
+        <span>📄 Showing <strong>${mode.icon} ${mode.label}</strong> version</span>
+        <button class="ai-mode-restore-btn">↩ Restore Original</button>
+      `;
+
+      const restoreBtn = restoreBar.querySelector('.ai-mode-restore-btn');
+      restoreBtn.addEventListener('click', () => {
+        article.innerHTML = _originalArticleHTML;
+        mountReadingToolbar();
+        mountWidgets();
+        renderMermaidBlocks();
+        if (window.Prism) window.Prism.highlightAllUnder(article);
+      });
+
+      const finalH1 = article.querySelector('h1');
+      if (finalH1) finalH1.after(restoreBar);
+
+      // Apply Prism syntax highlighting
+      if (window.Prism) window.Prism.highlightAllUnder(article);
+
+    } catch (err) {
+      overlay.remove();
+      // Re-enable toolbar
+      const currentToolbar = article.querySelector('.ai-mode-toolbar');
+      if (currentToolbar) {
+        currentToolbar.querySelectorAll('.ai-mode-btn, .ai-mode-custom-btn').forEach(b => {
+          b.disabled = false;
+          b.classList.remove('loading', 'active');
+        });
+        READING_MODES.forEach((m) => {
+          const b = currentToolbar.querySelector(`.ai-mode-btn[data-mode="${m.label}"]`);
+          if (b) b.innerHTML = `${m.icon} <span>${m.label}</span>`;
+        });
+        showModeError(currentToolbar, `❌ ${err.message}`);
+      }
+    }
+  }
+
+  function showModeError(toolbar, msg) {
+    let errEl = toolbar.querySelector('.ai-mode-error');
+    if (!errEl) {
+      errEl = document.createElement('div');
+      errEl.className = 'ai-mode-error';
+      toolbar.appendChild(errEl);
+    }
+    errEl.textContent = msg;
+    errEl.classList.remove('hidden');
+    setTimeout(() => errEl.classList.add('hidden'), 6000);
+  }
+
+  // Render mermaid blocks to diagrams
+  function renderMermaidBlocks() {
+    if (typeof mermaid === 'undefined') return;
+
+    // Find pre elements containing mermaid class/data or inner code elements with mermaid
+    const blocks = document.querySelectorAll('pre[data-lang="mermaid"], pre code.language-mermaid, pre code.lang-mermaid');
+    
+    let renderedAny = false;
+    blocks.forEach((block) => {
+      const preEl = block.tagName === 'PRE' ? block : block.closest('pre');
+      if (!preEl || preEl.classList.contains('mermaid-rendered')) return;
+      
+      const code = preEl.textContent.trim();
+      if (!code) return;
+      
+      // Create rendering target container
+      const div = document.createElement('div');
+      div.className = 'mermaid';
+      div.textContent = code;
+      
+      preEl.classList.add('mermaid-rendered');
+      preEl.replaceWith(div);
+      renderedAny = true;
+    });
+
+    if (renderedAny) {
+      try {
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: document.body.classList.contains('dark') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'default',
+          securityLevel: 'loose'
+        });
+        mermaid.init(undefined, document.querySelectorAll('.mermaid:not([data-processed="true"])'));
+      } catch (err) {
+        console.error('Mermaid render error:', err);
+      }
+    }
+  }
+
+  // ─── Register Docsify Plugin ──────────────────────────────────────────────
+
   window.resizableSidebar = window.resizableSidebar || function () { }; // preserve existing
 
   function docsifyAIPlugin(hook, vm) {
-    // Inject sidebar UI on ready/doneEach to ensure elements are fully painted
     hook.doneEach(() => {
-      // Injects Sidebar controls
       injectSidebarUI();
-      // Setup markdown widgets
       mountWidgets();
+      mountReadingToolbar();
+      renderMermaidBlocks();
     });
   }
 
@@ -551,3 +1046,4 @@ ${userCustomText ? `\nUser's specific follow-up question: ${userCustomText}` : '
   window.$docsify.plugins = [].concat(window.$docsify.plugins || [], [docsifyAIPlugin]);
 
 })();
+
