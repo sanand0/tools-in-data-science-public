@@ -3,6 +3,35 @@
 
 ---
 
+- **0. Bridge Course**
+  - [📋 Syllabus](2026-02/docs/bridge-course/bridge-course-syllabus.md)
+  - **Day 1 — Setup Day**
+    - [Installation](2026-02/docs/bridge-course/day-1-installation.md)
+    - [File Structure (Windows vs Linux)](2026-02/docs/bridge-course/day-1-file-structure.md)
+    - [Path Reading](2026-02/docs/bridge-course/day-1-path-reading.md)
+  - **Day 2 — Linux & Shell Essentials**
+    - [Terminal Navigation](2026-02/docs/bridge-course/day-2-terminal-navigation.md)
+    - [touch, mkdir, rm, cp, mv](2026-02/docs/bridge-course/day-2-touch-mkdir-rm-cp-mv.md)
+    - [Basic Script Writing](2026-02/docs/bridge-course/day-2-basic-script-writing.md)
+  - **Day 3 — VS Code + Python Project Setup with UV**
+    - [VS Code Setup](2026-02/docs/bridge-course/day-3-vscode-setup.md)
+    - [Virtual Environments](2026-02/docs/bridge-course/day-3-virtual-environments.md)
+    - [UV Workflow](2026-02/docs/bridge-course/day-3-uv-workflow.md)
+  - **Day 4 — HTTP, APIs, Chrome DevTools**
+    - [HTTP Fundamentals](2026-02/docs/bridge-course/day-4-http-fundamentals.md)
+    - [Chrome DevTools](2026-02/docs/bridge-course/day-4-chrome-devtools.md)
+    - [API Testing with curl](2026-02/docs/bridge-course/day-4-api-testing-curl.md)
+  - **Day 5 — Git & GitHub Workflow**
+    - [Git Basic Flow](2026-02/docs/bridge-course/day-5-git-basic-flow.md)
+    - [Init, Add, Commit](2026-02/docs/bridge-course/day-5-init-add-commit.md)
+    - [GitHub SSH Login](2026-02/docs/bridge-course/day-5-github-ssh-login.md)
+
+- **1. Dev Environment & Tooling**
+  - [VS Code](2026-02/docs/week-1/01-vscode.md)
+  - [UV — Python Package Manager](2026-02/docs/week-1/02-uv.md)
+  - [Bash Scripting](2026-02/docs/week-1/03-bash-scripting.md)
+  - [Git & GitHub](2026-02/docs/week-1/04-git-github.md)
+
 - **1. Dev Environment & Tooling**
   - [VS Code](2026-02/docs/week-1/01-vscode.md)
   - [UV — Python Package Manager](2026-02/docs/week-1/02-uv.md)
