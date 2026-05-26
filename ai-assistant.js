@@ -681,7 +681,7 @@ ${userCustomText ? `\nUser's specific follow-up question: ${userCustomText}` : '
   }
 
   // Interactive voice and scene animation setup for the Google Veo simulated player
-  function setupVeoPlayer(subtitles, narration) {
+  function setupVeoPlayer(subtitles, narration, veoData) {
     const playBtn = document.getElementById('veo-play-btn');
     const voiceBtn = document.getElementById('veo-voice-btn');
     const canvas = document.getElementById('veo-canvas');
@@ -739,6 +739,39 @@ ${userCustomText ? `\nUser's specific follow-up question: ${userCustomText}` : '
       let tickRateMs = 100;
       subtitleIndex = -1;
 
+      // Create high-end dynamic illustration layers inside the canvas
+      canvas.innerHTML = `
+        <div class="veo-scene-container" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; width: 100%; height: 100%;">
+          <svg id="veo-svg-canvas" viewBox="0 0 800 400" style="width: 100%; height: 100%; max-height: 380px;">
+            <defs>
+              <linearGradient id="grid-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#4facfe" stop-opacity="0.2"/>
+                <stop offset="100%" stop-color="#00f2fe" stop-opacity="0.0"/>
+              </linearGradient>
+              <linearGradient id="accent-grad-1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#ff0844"/>
+                <stop offset="100%" stop-color="#ffb199"/>
+              </linearGradient>
+              <linearGradient id="accent-grad-2" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#f12711"/>
+                <stop offset="100%" stop-color="#f5af19"/>
+              </linearGradient>
+              <linearGradient id="node-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#1e3c72"/>
+                <stop offset="100%" stop-color="#2a5298"/>
+              </linearGradient>
+            </defs>
+            <!-- Animated scanlines grid background -->
+            <rect width="800" height="400" fill="url(#grid-grad)" />
+            <g id="veo-dynamic-shapes"></g>
+          </svg>
+          <div class="ai-video-orb-label" id="veo-orb-label" style="position: absolute; top: 15px; left: 20px; z-index: 10; font-size: 0.8rem; letter-spacing: 2px;">VEO CINEMATIC GENERATION</div>
+        </div>
+      `;
+
+      const svgGroup = document.getElementById('veo-dynamic-shapes');
+      const label = document.getElementById('veo-orb-label');
+
       intervalId = setInterval(() => {
         elapsedMs += tickRateMs;
         let percent = (elapsedMs / (durationSec * 1000)) * 100;
@@ -746,7 +779,7 @@ ${userCustomText ? `\nUser's specific follow-up question: ${userCustomText}` : '
           percent = 100;
           stopPlayback();
           subtitlesEl.textContent = 'Video complete. Click Play to watch again!';
-          orbLabel.textContent = 'COMPLETED';
+          label.textContent = 'COMPLETED';
         } else {
           progress.style.width = `${percent}%`;
           let currentSec = (elapsedMs / 1000).toFixed(0);
@@ -757,9 +790,72 @@ ${userCustomText ? `\nUser's specific follow-up question: ${userCustomText}` : '
           if (idx !== subtitleIndex && idx < subtitles.length) {
             subtitleIndex = idx;
             subtitlesEl.textContent = subtitles[subtitleIndex];
-            orbLabel.textContent = `SCENE ${subtitleIndex + 1}: ${subtitles[subtitleIndex].substring(0, 30)}...`;
+            label.textContent = `SCENE ${subtitleIndex + 1}: ${veoData.concept || 'Concept'}`;
             
-            canvas.className = `ai-video-canvas playing anim-${(subtitleIndex % 3) + 1}`;
+            // Render beautiful dynamically generated vector diagrams and scenes based on technical themes
+            if (subtitleIndex === 0) {
+              // Scene 1: Concept Introduction - Floating technical structures representing components
+              svgGroup.innerHTML = `
+                <g style="animation: float 4s infinite ease-in-out;">
+                  <!-- Main Core Hub -->
+                  <circle cx="400" cy="180" r="55" fill="url(#node-grad)" stroke="#00f2fe" stroke-width="3" filter="drop-shadow(0px 0px 20px rgba(0, 242, 254, 0.6))" />
+                  <text x="400" y="185" fill="#fff" font-size="14" font-weight="bold" text-anchor="middle">${(veoData.concept || 'CORE').substring(0, 12)}</text>
+                  
+                  <!-- Satellites -->
+                  <path d="M 400 180 L 260 120" stroke="#4facfe" stroke-width="2" stroke-dasharray="5 5" />
+                  <path d="M 400 180 L 540 120" stroke="#4facfe" stroke-width="2" stroke-dasharray="5 5" />
+                  <path d="M 400 180 L 400 280" stroke="#4facfe" stroke-width="2" stroke-dasharray="5 5" />
+
+                  <circle cx="260" cy="120" r="28" fill="#111" stroke="#ff0844" stroke-width="2" />
+                  <text x="260" y="124" fill="#ffb199" font-size="10" font-weight="bold" text-anchor="middle">INPUT</text>
+
+                  <circle cx="540" cy="120" r="28" fill="#111" stroke="#38ef7d" stroke-width="2" />
+                  <text x="540" y="124" fill="#38ef7d" font-size="10" font-weight="bold" text-anchor="middle">OUTPUT</text>
+
+                  <circle cx="400" cy="280" r="28" fill="#111" stroke="#f5af19" stroke-width="2" />
+                  <text x="400" y="284" fill="#f5af19" font-size="10" font-weight="bold" text-anchor="middle">FLOW</text>
+                </g>
+              `;
+            } else if (subtitleIndex === 1) {
+              // Scene 2: Detailed connection workflow / pipeline flow
+              svgGroup.innerHTML = `
+                <g>
+                  <!-- Flow path -->
+                  <path d="M 100 200 C 250 80, 550 320, 700 200" fill="none" stroke="#00f2fe" stroke-width="4" stroke-linecap="round" />
+                  
+                  <!-- Flow pulse -->
+                  <circle cx="400" cy="200" r="14" fill="#fff" filter="drop-shadow(0 0 15px #00f2fe)">
+                    <animate attributeName="cx" values="100;700" dur="2s" repeatCount="indefinite" />
+                    <animate attributeName="cy" values="200;120;280;200" dur="2s" repeatCount="indefinite" />
+                  </circle>
+
+                  <!-- Stage Cards -->
+                  <rect x="180" y="100" width="120" height="45" rx="8" fill="#111" stroke="#4facfe" stroke-width="2" />
+                  <text x="240" y="127" fill="#fff" font-size="11" font-weight="bold" text-anchor="middle">1. PROCESS</text>
+
+                  <rect x="480" y="240" width="120" height="45" rx="8" fill="#111" stroke="#ff0844" stroke-width="2" />
+                  <text x="540" y="267" fill="#fff" font-size="11" font-weight="bold" text-anchor="middle">2. VALIDATE</text>
+                </g>
+              `;
+            } else {
+              // Scene 3: Structural final state / System balance
+              svgGroup.innerHTML = `
+                <g style="animation: pulse-spin 12s infinite linear;">
+                  <!-- Concentric circles -->
+                  <circle cx="400" cy="200" r="110" fill="none" stroke="rgba(0, 242, 254, 0.2)" stroke-width="2" stroke-dasharray="10 10" />
+                  <circle cx="400" cy="200" r="70" fill="none" stroke="rgba(255, 88, 88, 0.2)" stroke-width="2" />
+
+                  <!-- Balanced Core -->
+                  <circle cx="400" cy="200" r="35" fill="url(#accent-grad-1)" filter="drop-shadow(0 0 25px rgba(255, 8, 68, 0.5))" />
+                  
+                  <!-- Rotating nodes -->
+                  <circle cx="290" cy="200" r="16" fill="#111" stroke="#38ef7d" stroke-width="2" />
+                  <circle cx="510" cy="200" r="16" fill="#111" stroke="#4facfe" stroke-width="2" />
+                  <circle cx="400" cy="90" r="16" fill="#111" stroke="#f5af19" stroke-width="2" />
+                  <circle cx="400" cy="310" r="16" fill="#111" stroke="#fc67fa" stroke-width="2" />
+                </g>
+              `;
+            }
 
             if (voiceOn && synth) {
               synth.cancel();
@@ -921,7 +1017,7 @@ Now produce the complete rewritten Markdown:`;
 
       // Set up Veo video player events
       if (mode.label === 'Video Explanation (Veo)') {
-        setupVeoPlayer(veoSubtitles, veoNarration);
+        setupVeoPlayer(veoSubtitles, veoNarration, veoData);
       }
 
       // Re-inject toolbar (since innerHTML was replaced)
