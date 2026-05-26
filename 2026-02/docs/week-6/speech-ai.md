@@ -10,3 +10,12 @@ Scraping and generating audio data.
 - **ElevenLabs:** Incredible realism, supports voice cloning. API is paid.
 - **OpenAI TTS:** Fast, high quality, 6 standard voices.
 - **Parakeet / Piper:** Open-source, runs locally, very fast. Good for basic voice generation.
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

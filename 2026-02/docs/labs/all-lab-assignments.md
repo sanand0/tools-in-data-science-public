@@ -44,3 +44,12 @@
 
 - **CAPSTONE**: [Production Fine-Tuned Model + Full MLOps](2026-02/docs/labs/week-8/01-capstone-production-finetuned-model-mlops.md)
 - **Lab**: [Full GCP pipeline (GCS → BigQuery ML → Vertex AI → Cloud Run)](2026-02/docs/labs/week-8/02-full-gcp-pipeline-bqml-vertex-cloud-run.md)
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

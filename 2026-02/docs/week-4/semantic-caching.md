@@ -315,3 +315,12 @@ metrics = {
 - [GPTCache GitHub](https://github.com/zilliztech/GPTCache)
 - [LangChain Semantic Cache](https://python.langchain.com/docs/integrations/llm_caching/)
 - [Redis Vector Search](https://redis.io/docs/interact/search-and-query/advanced-concepts/vectors/)
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

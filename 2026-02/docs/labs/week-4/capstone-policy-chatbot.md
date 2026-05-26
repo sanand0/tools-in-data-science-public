@@ -590,3 +590,12 @@ for query, should_answer in test_queries:
 - [ ] Source citations shown for every answer
 - [ ] Deployed (HuggingFace Spaces or Render)
 - [ ] GitHub repo with README + setup instructions
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

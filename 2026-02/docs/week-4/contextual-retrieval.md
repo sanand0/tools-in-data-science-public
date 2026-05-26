@@ -291,3 +291,12 @@ class AnthropicRAGStack:
 
 - [Contextual Retrieval Blog — Anthropic](https://www.anthropic.com/news/contextual-retrieval)
 - [Prompt Caching — Anthropic Docs](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching)
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

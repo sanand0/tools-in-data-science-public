@@ -186,3 +186,12 @@ Bonus: make the rule dynamic — return `MOCKED!` only if the query string has `
 - [Requestly on GitHub](https://github.com/requestly/requestly) (open source)
 - [Sessions feature deep-dive](https://requestly.com/features/session-recording/)
 - [Local-first workspaces](https://docs.requestly.com/general/workspaces/local-workspace-beta)
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

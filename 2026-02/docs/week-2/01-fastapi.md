@@ -262,3 +262,12 @@ app = FastAPI(
 1. Add a `priority: int` field (1-5) to the Task model with a validator that rejects values outside 1-5
 2. Add a `GET /tasks?done=true` filter that returns only completed tasks
 3. Add a `PATCH /tasks/{id}` endpoint that only updates the `done` field
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

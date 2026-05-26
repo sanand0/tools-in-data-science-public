@@ -13,3 +13,12 @@ An open-source, highly accurate multi-lingual OCR model that outperforms Tessera
 
 ## HTML to Markdown
 Always convert HTML to Markdown before feeding it to an LLM. It saves tokens and removes noise.
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

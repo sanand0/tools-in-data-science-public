@@ -389,3 +389,12 @@ print(bot.get_usage())
 | Position effect | Important info at start/end, not buried in middle |
 | Context compression | Summarize old history with cheap model, keep recent verbatim |
 | RAG context | Wrap documents in XML tags, cite by ID |
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

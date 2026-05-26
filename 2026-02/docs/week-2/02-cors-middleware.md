@@ -255,3 +255,12 @@ async def root(request: Request):
 | Want timing on every request | `@app.middleware("http")` with timer |
 | Reject bad content types | Middleware checking `Content-Type` header |
 | Block unknown hosts | `TrustedHostMiddleware` |
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

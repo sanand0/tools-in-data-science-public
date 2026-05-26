@@ -449,3 +449,12 @@ Convert these Windows paths to their Linux equivalents:
 **B** — The file needs execute permission. `chmod +x analyze.py` adds it. Alternatively, you can run `python3 analyze.py` directly (Python interprets it; no execute permission needed for the file itself).
 
 </details>
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

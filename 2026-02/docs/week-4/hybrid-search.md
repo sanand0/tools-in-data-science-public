@@ -291,3 +291,12 @@ results = client.query_points(
 - [Hybrid Search — Pinecone Blog](https://www.pinecone.io/learn/hybrid-search-intro/)  
 - [RRF Original Paper — Cormack et al. 2009](https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf)  
 - [SPLADE Paper](https://arxiv.org/abs/2107.05720)
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

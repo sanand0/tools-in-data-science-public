@@ -423,3 +423,12 @@ Note: The `User-Agent` will say `curl` instead of `Mozilla` since you're now mak
 **B** — DevTools only captures requests made after it's opened. Reloading the page makes the browser send all requests again, which DevTools then records.
 
 </details>
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

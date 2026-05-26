@@ -275,3 +275,12 @@ def test_websocket_echo():
 | `conftest.py` | Shared fixtures (client, auth tokens, DB) |
 | `dependency_overrides` | Swap real services with test fakes |
 | `pytest-cov` | Measure how much code is tested |
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

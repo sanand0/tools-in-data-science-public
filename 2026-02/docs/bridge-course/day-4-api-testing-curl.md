@@ -532,3 +532,12 @@ curl -s https://httpbin.org/get | jq '{ip: .origin, agent: .headers."User-Agent"
 **B** — This sets the Content-Type to JSON and sends the JSON body. `-d` implies POST automatically. Option D is missing quotes around the JSON.
 
 </details>
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

@@ -13,3 +13,12 @@ Self-attention allows the model to weigh the importance of every token in the co
 
 ## Sparse MoE (Mixture of Experts)
 Models like Mixtral 8x7B don't use all parameters for every token. They route tokens to specialized "expert" sub-networks, making inference much faster while maintaining high capability.
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

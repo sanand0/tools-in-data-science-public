@@ -13,3 +13,12 @@ Instrument a FastAPI application to export metrics and traces, and build a Grafa
 ## Deliverables
 - The `docker-compose.yml` file.
 - A screenshot of your Grafana dashboard under load (use a tool like `ab` or `locust` to generate traffic).
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

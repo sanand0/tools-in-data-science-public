@@ -242,3 +242,12 @@ The site you're reading now is built with **Docusaurus 3 + TypeScript + Tailwind
 - [Jekyll](https://jekyllrb.com/)
 - [Docusaurus on Pages guide](https://docusaurus.io/docs/deployment#deploying-to-github-pages)
 - [actions/deploy-pages](https://github.com/actions/deploy-pages) — the canonical deployment action
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

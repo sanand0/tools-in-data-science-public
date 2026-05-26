@@ -460,3 +460,12 @@ X-RateLimit-Remaining: 0
 **B** — `Content-Type` describes the format of the request body (e.g., `application/json`). `Accept` tells the server what format you want in the response.
 
 </details>
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

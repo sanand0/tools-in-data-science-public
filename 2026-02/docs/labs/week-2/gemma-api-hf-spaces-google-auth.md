@@ -13,3 +13,12 @@ Deploy a text generation API using a local LLM framework (like Ollama or transfo
 - Link to your Hugging Face Space.
 - The `Dockerfile` and `main.py` code.
 - A brief explanation of how you configured the OAuth credentials.
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

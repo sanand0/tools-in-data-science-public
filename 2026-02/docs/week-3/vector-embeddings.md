@@ -316,3 +316,12 @@ query_embedding = embed_cohere([query], input_type="search_query")[0]
 | text-embedding-3-small | Best cloud model: cheap, fast, 1536-dim |
 | Batch embedding | Always batch multiple texts — 10x more efficient |
 | Normalization | Normalize vectors → cosine similarity becomes dot product |
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

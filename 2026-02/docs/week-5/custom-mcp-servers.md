@@ -21,3 +21,12 @@ if __name__ == "__main__":
 
 ## MCP Inspector
 Use the official MCP Inspector to test your server independently of any specific LLM client. It provides a UI to call tools and read resources.
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

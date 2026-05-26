@@ -720,3 +720,12 @@ docker compose up -d
 - [ ] RAGAS evaluation run with ≥ 10 Q&A pairs
 - [ ] Comparison: Naive RAG vs Hybrid RAG vs Contextual RAG scores documented
 - [ ] GitHub repo with README
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

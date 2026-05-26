@@ -22,3 +22,12 @@ class BlogSpider(scrapy.Spider):
         for next_page in response.css('a.next-page ::attr(href)').getall():
             yield response.follow(next_page, self.parse)
 ```
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

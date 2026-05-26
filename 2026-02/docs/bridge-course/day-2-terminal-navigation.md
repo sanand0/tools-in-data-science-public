@@ -386,3 +386,12 @@ rm -r ~/nav-practice
 **C** — The `-p` flag creates parent directories as needed. Without `-p`, `mkdir` would fail because `a/` and `b/` don't exist yet.
 
 </details>
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

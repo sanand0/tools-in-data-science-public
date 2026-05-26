@@ -14,3 +14,12 @@ ffmpeg -i video.mp4 -q:a 0 -map a audio.mp3
 
 ## Video LLMs
 Models like Gemini 1.5 Pro natively accept video files. They perform temporal reasoning (understanding the sequence of events over time), which is impossible with single images.
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

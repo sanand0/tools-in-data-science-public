@@ -277,3 +277,12 @@ http GET httpbin.org/basic-auth/u/p -a u:p
 - [Postman Learning Center](https://learning.postman.com/)
 - [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
 - [HTTP status codes — Mozilla](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

@@ -440,3 +440,12 @@ r = aioredis.from_url(REDIS_URL, decode_responses=True)
 | Pub/Sub | `PUBLISH`, `SUBSCRIBE` | ❌ | Event broadcasting |
 | Counter | `INCR`, `EXPIRE` | ✅ | View counts, analytics |
 | Leaderboard | `ZADD`, `ZRANGE` | ❌ | Rankings, scores |
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

@@ -1136,3 +1136,12 @@ Submit on the course portal:
 - Add **accuracy scoring** using an LLM-as-judge (call Claude to evaluate whether each answer matches expected)
 - Add a **streaming endpoint** (`/run-live`) that streams the benchmark results as they come in using FastAPI `StreamingResponse`
 - Add per-user budget tracking using LiteLLM's `BudgetManager` so each student gets a $0.10 daily quota
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

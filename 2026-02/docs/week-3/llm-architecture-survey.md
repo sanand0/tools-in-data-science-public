@@ -333,3 +333,12 @@ print("temp=2.0:", ["the", "a", "this", "one"][sample_with_temperature(logits, 2
 | MoE | Either | Scale without compute | Mixtral, LLaMA 4 |
 | CLIP | Cross-modal | Image-text matching | CLIP, OpenCLIP |
 | BLIP | Cross-modal | Image captioning, VQA | BLIP-2, InstructBLIP |
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

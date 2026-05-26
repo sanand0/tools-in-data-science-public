@@ -541,3 +541,12 @@ With HTTPS, you need a token/password for every push. With SSH, authentication i
 **C** — The SSH URL for GitHub is `git@github.com:user/repo.git`. Note the colon `:` between `github.com` and `user`, not a slash.
 
 </details>
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

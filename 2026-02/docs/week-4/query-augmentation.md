@@ -298,3 +298,12 @@ class AugmentedRetriever:
 - [HyDE Paper — Gao et al.](https://arxiv.org/abs/2212.10496)
 - [Step-Back Prompting — Google DeepMind](https://arxiv.org/abs/2310.06117)
 - [RAG From Scratch — LangChain](https://www.youtube.com/watch?v=wd7TZ4w1mSw)
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

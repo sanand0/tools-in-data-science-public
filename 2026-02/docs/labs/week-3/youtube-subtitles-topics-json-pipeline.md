@@ -1105,3 +1105,12 @@ Submit on the course portal:
 - Export to Markdown instead of JSON, ready for a Docusaurus docs site
 - Add a Streamlit UI so non-technical users can paste a URL and get a summary
 - Compare Claude Haiku vs Sonnet quality on the same video
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

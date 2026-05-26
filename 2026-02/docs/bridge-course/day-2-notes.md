@@ -1161,3 +1161,12 @@ command --help / man command / tldr command / which command
 ---
 
 *End of Day 2 Notes — Next up: Day 3 — VS Code + Python Project Setup with uv*
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

@@ -294,3 +294,12 @@ benchmark_reranker(
 - [Cohere Rerank API Docs](https://docs.cohere.com/docs/rerank-2)
 - [ColBERT Paper](https://arxiv.org/abs/2004.12832)
 - [RAGatouille GitHub](https://github.com/bclavie/RAGatouille)
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

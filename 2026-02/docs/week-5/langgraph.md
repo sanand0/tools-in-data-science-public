@@ -12,3 +12,12 @@ Standard LLM chains are linear. Agents require loops (e.g., trying a tool, faili
 
 ## Human-in-the-Loop & Checkpointing
 LangGraph can persist state to a database. You can pause execution, wait for a human to approve an action, and resume exactly where it left off.
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

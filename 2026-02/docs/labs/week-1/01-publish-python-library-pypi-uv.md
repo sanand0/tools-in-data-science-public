@@ -608,3 +608,12 @@ Publish a Discourse blog post covering:
 - [UV in GitHub Actions](https://docs.astral.sh/uv/guides/integration/github/)
 - [PyPI Trusted Publishing](https://docs.pypi.org/trusted-publishers/)
 - [Sample repo: astral-sh/trusted-publishing-examples](https://github.com/astral-sh/trusted-publishing-examples)
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

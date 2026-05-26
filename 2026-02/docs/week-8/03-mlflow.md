@@ -20,3 +20,12 @@ _This is placeholder content for **Week 08 — MLOps, Fine-Tuning & Model Publis
 - Add code snippets
 - Add links to official docs
 - Add troubleshooting checklist
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

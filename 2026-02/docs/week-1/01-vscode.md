@@ -220,3 +220,12 @@ If all six steps work, you're ready for [UV](./uv).
 - [Python in VS Code guide](https://code.visualstudio.com/docs/python/python-tutorial)
 - [GitHub Copilot cheat sheet](https://code.visualstudio.com/docs/copilot/reference/copilot-vscode-features)
 - [Remote Development overview](https://code.visualstudio.com/docs/remote/remote-overview)
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

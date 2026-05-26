@@ -431,3 +431,12 @@ for model in models_to_benchmark:
 | `litellm.completion()` | Single API for 100+ models | Model comparison, fallbacks |
 | LiteLLM proxy | Centralized API gateway | Team/production deployment |
 | `BudgetManager` | Per-user spend limits | Multi-user applications |
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

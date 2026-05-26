@@ -236,3 +236,12 @@ def get_current_user(request: Request) -> dict:
 - Use the access token to fetch user info from Google
 - Issue your own JWT for subsequent requests — don't use Google's token directly
 - Always validate the JWT on every protected request using `Depends`
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

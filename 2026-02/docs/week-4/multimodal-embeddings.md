@@ -181,3 +181,12 @@ print(answer)
 - [ColPali Paper](https://arxiv.org/abs/2407.01449)
 - [Byaldi (ColPali wrapper)](https://github.com/AnswerDotAI/byaldi)
 - [CLIP Paper — Radford et al.](https://arxiv.org/abs/2103.00020)
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

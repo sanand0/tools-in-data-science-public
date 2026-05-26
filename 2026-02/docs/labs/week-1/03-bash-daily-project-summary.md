@@ -520,3 +520,12 @@ Next up: **Week 2 — Deployment & API Engineering**.
 - [GitHub Actions `on.schedule`](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule)
 - [ShellCheck](https://www.shellcheck.net/)
 - [Pro Git — log formatting](https://git-scm.com/docs/pretty-formats)
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

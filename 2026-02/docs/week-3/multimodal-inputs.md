@@ -401,3 +401,12 @@ def resize_image_for_api(image_path: str, max_size: int = 1024) -> tuple[bytes, 
 | PDF | base64 encode | `type: document, source: {type: base64}` |
 | Audio | Transcribe with Whisper first | `type: text` (text transcript) |
 | Multiple files | List of content blocks | content: [{}, {}, {}] |
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

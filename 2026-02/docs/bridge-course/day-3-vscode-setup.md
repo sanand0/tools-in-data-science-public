@@ -447,3 +447,12 @@ ms-python.vscode-pylance
 **B** — VS Code runs on the Windows side but connects to WSL to read/write files and run terminals. This is the correct setup for WSL users.
 
 </details>
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

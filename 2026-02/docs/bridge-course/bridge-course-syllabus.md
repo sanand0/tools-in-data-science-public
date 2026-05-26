@@ -325,3 +325,12 @@ Optional (only if time): use a short-lived branch and merge it, just to confirm 
 - **Week 1 (Git/GitHub):** Day 5 covers core Git commands plus GitHub authentication (SSH/HTTPS) and publishing via tags/releases.
 
 If you want, I can also add a “pre-bootcamp checklist” (install steps for Linux/WSL + `uv`) tailored to your lab machines.
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

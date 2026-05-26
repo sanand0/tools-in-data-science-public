@@ -13,3 +13,12 @@ When building agents, you must track:
 3. **Looping:** Did the agent get stuck repeating the same failed action?
 
 Use LangSmith or similar tracing tools to visualize agent trajectories.
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

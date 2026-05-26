@@ -12,3 +12,12 @@ Persisted storage across sessions.
 
 ## Implementation
 Long-term memory is typically implemented via Vector Databases (retrieving relevant past memories via embeddings) combined with Knowledge Graphs for explicit relationships.
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

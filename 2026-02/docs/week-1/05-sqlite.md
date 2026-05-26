@@ -302,3 +302,12 @@ SELECT payload ->> 'user' AS user, payload ->> 'score' AS score FROM events;
 - [SQLite FTS5 reference](https://www.sqlite.org/fts5.html)
 - [Simon Willison's SQLite blog](https://simonwillison.net/tags/sqlite/)
 - [SQLite Tutorial](https://www.sqlitetutorial.net/) — beginner-friendly SQL reference
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

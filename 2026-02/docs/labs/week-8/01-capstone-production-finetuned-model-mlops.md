@@ -26,3 +26,12 @@ _This is placeholder content for **Week 08 — MLOps, Fine-Tuning & Model Publis
 - Add starter template
 - Add rubric + grading hints
 - Add common failure modes
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

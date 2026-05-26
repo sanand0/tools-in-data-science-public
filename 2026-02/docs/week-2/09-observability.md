@@ -281,3 +281,12 @@ Your API ──→ /metrics endpoint ←── Prometheus (scrapes every 15s)
 | Prometheus | Scrape and store time-series metrics |
 | Grafana | Visualize metrics, set up alerts |
 | Jaeger | Visualize traces (waterfall view) |
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

@@ -14,3 +14,12 @@ Pass a screenshot to a Vision-Language Model (VLM) and ask it to extract the dat
 1. Playwright takes a screenshot of the target element.
 2. Send image to VLM with prompt: `Extract the pricing tiers from this image as JSON.`
 3. Parse the output.
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

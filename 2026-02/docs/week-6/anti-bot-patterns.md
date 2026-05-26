@@ -12,3 +12,12 @@ Websites actively try to block scrapers. You must learn to blend in.
 - Add randomized delays between requests.
 - Don't scrape faster than a human could read.
 - Honor `robots.txt` unless you have a specific reason not to.
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

@@ -640,3 +640,12 @@ Your `baseUrl` is wrong. For a project site at `user.github.io/repo/`, baseUrl *
 - [Docusaurus deployment guide](https://docusaurus.io/docs/deployment)
 - [Typer docs](https://typer.tiangolo.com/)
 - [Rich docs](https://rich.readthedocs.io/)
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

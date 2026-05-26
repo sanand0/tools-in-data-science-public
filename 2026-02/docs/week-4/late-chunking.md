@@ -232,3 +232,12 @@ Late chunking is a simple idea — embed first, chunk later — that measurably 
 - [Late Chunking Blog Post — Jina AI](https://jina.ai/news/late-chunking-in-long-context-embedding-models/)
 - [Late Chunking Paper](https://arxiv.org/abs/2409.04701)
 - [Jina Embeddings v3](https://huggingface.co/jinaai/jina-embeddings-v3)
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

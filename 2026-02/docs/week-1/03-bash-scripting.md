@@ -323,3 +323,12 @@ find "$dir" -type f -printf "%s  %p\n" 2>/dev/null \
 - [jq manual](https://jqlang.github.io/jq/manual/)
 - [Unix Shell / Bash cheatsheet](https://devhints.io/bash)
 - [Explainshell](https://explainshell.com/) — paste any shell command, get a breakdown
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

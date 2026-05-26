@@ -302,3 +302,12 @@ GraphRAG runs many LLM calls during indexing — it extracts entities from **eve
 - [Microsoft GraphRAG GitHub](https://github.com/microsoft/graphrag)
 - [GraphRAG Paper](https://arxiv.org/abs/2404.16130)
 - [GraphRAG Docs](https://microsoft.github.io/graphrag/)
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

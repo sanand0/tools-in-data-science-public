@@ -19,3 +19,12 @@ contours, _ = cv2.findContours(gray, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
 ## Bounding Boxes & Cropping
 Use ML models (like YOLO or Grounding DINO) to detect objects, then use OpenCV to crop those bounding boxes and save them as individual files.
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

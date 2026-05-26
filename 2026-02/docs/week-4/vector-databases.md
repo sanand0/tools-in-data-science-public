@@ -319,3 +319,12 @@ def choose_vector_db(n_vectors: int, need_server: bool, existing_postgres: bool)
 - [ChromaDB Docs](https://docs.trychroma.com/)
 - [Qdrant Docs](https://qdrant.tech/documentation/)
 - [pgvector GitHub](https://github.com/pgvector/pgvector)
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

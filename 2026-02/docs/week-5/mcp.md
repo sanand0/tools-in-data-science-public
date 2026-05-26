@@ -13,3 +13,12 @@ MCP standardizes how AI models interact with external data sources and tools.
 3. **Prompts:** Reusable prompt templates.
 
 MCP allows developers to write a tool once and use it across any compatible AI assistant.
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

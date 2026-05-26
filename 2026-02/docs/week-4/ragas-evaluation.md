@@ -359,3 +359,12 @@ plt.show()
 - [RAGAS Documentation](https://docs.ragas.io/)
 - [RAGAS Paper](https://arxiv.org/abs/2309.15217)
 - [RAGAS GitHub](https://github.com/explodinggradients/ragas)
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

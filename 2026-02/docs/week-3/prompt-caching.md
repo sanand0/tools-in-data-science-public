@@ -365,3 +365,12 @@ print(result)
 | Min tokens to cache | 1,024 tokens | 1,024 tokens |
 | Max cache breakpoints | 4 per request | Automatic |
 | Best for | Document Q&A, large system prompts, tools | Standard chat with repeated system prompts |
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

@@ -10,3 +10,12 @@
 | C6 | [AI Signature Detection & Cropper](2026-02/docs/labs/week-6/capstone-ai-signature-detection-cropper.md) | Week 06 | Grounding DINO + local vision cascade |
 | C7 | [Live Multilingual Travel Translator](2026-02/docs/labs/week-6/capstone-live-multilingual-travel-translator.md) | Week 06 | STT → translate → TTS pipeline |
 | C8 | [Production Fine-Tuned Model + Full MLOps](2026-02/docs/labs/week-8/01-capstone-production-finetuned-model-mlops.md) | Week 08 | QLoRA → MLflow → Vertex AI → publish |
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

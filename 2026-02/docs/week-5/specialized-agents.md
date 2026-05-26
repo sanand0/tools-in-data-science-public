@@ -10,3 +10,12 @@ These agents write Python/Bash and execute it in a sandbox. They rely on REPL en
 
 ## Image Analysis Agents
 Agents utilizing models like GPT-4o or Claude 3.5 Sonnet to inspect charts, UI screenshots, or physical documents to extract structured data.
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

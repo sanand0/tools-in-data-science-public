@@ -796,3 +796,12 @@ Generate a Markdown/PDF report summarizing the evaluation with `reportlab` or `f
 | RAGAS evaluation slow | Normal — each metric calls GPT; ~2-3 min for 5 questions |
 | Contextual RAG fails | Check `ANTHROPIC_API_KEY` is set |
 | `No module named 'src'` | Run from project root: `streamlit run dashboard.py` |
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

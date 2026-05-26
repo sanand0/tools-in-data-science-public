@@ -162,3 +162,12 @@ def self_verify(query: str, answer: str, context_chunks: list[str]) -> dict:
 
 - [Anthropic's Constitutional AI](https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback)
 - [LlamaIndex Citation Engine](https://docs.llamaindex.ai/en/stable/examples/query_engine/citation_query_engine/)
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

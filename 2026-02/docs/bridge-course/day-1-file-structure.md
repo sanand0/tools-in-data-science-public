@@ -468,3 +468,12 @@ cat -v /tmp/windows-file.txt
 **C** — The Linux filesystem (`/home/you/`) is fast. `/mnt/c/` crosses the filesystem boundary and is up to 10x slower.
 
 </details>
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

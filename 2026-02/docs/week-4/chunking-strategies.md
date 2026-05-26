@@ -278,3 +278,12 @@ splitter = RecursiveCharacterTextSplitter(
 - [LangChain Text Splitters Docs](https://python.langchain.com/docs/modules/data_connection/document_transformers/)
 - [Chunking Strategies for LLM Applications (Pinecone)](https://www.pinecone.io/learn/chunking-strategies/)
 - [SemanticChunker Paper — Greg Kamradt](https://github.com/FullStackRetrieval-com/RetrievalTutorials)
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+

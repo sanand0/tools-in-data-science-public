@@ -208,3 +208,12 @@ ollama run llama3.2 --verbose   # show token stats
 | **LM Studio** | GUI, easy model management, same API |
 | **llama.cpp** | Maximum performance, custom builds |
 | **GGUF Q4_K_M** | Best quality/size/speed balance |
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about this guide? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
+
