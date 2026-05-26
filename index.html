@@ -13,6 +13,18 @@
   <link rel="stylesheet" media="(prefers-color-scheme: light)"
     href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
   <style>
+    /* Reduce excessive padding and set a comfortable max-width for main content */
+    :root {
+      --content-max-width: 1000px;
+      --content-padding: 1.5rem 1rem;
+    }
+    
+    @media screen and (min-width: 1000px) {
+      :root {
+        --content-padding: 2.5rem 3rem;
+      }
+    }
+
     /* Add a YouTube icon on top of all YouTube links with images */
     a[href*="youtu"]:has(img[src*="ytimg"]) {
       position: relative;
