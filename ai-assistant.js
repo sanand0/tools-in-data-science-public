@@ -10,7 +10,7 @@
     aipipe: {
       name: 'AIPipe',
       baseUrl: 'https://aipipe.org/openrouter/v1',
-      model: 'google/gemini-3.5-flash',
+      model: 'google/gemini-3.1-flash-lite',
       isNativeGemini: false
     },
     gemini: {
@@ -51,11 +51,11 @@
     if (saved) {
       try {
         return JSON.parse(saved);
-      } catch (e) {}
+      } catch (e) { }
     }
     return [
-      'google/gemini-3.5-flash',
       'google/gemini-3.1-flash-lite',
+      'google/gemini-3.5-flash',
       'openai/gpt-5.4-nano',
       'z-ai/glm-5.1',
       'gpt-5.3-codex',
@@ -267,7 +267,7 @@
       updatePresetVisibility(selected);
       const preset = PROVIDERS[selected];
       baseUrlInput.value = preset.baseUrl;
-      
+
       if (preset.model) {
         addModelToList(preset.model);
         renderModelOptions(preset.model);
