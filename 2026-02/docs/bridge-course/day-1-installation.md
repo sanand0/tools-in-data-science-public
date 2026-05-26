@@ -422,3 +422,12 @@ pwd
 This confirms you created the directory and navigated into it successfully.
 
 </details>
+
+---
+
+## 💬 Ask the AI Assistant
+
+Have questions about setting up your terminal, Git, Python, or UV? Ask our virtual Teaching Assistant below!
+
+<ai-widget prompt="Explain troubleshooting steps for the day 1 installation guide or answer general setup questions." button="✨ Ask Virtual TA" placeholder="Ask a question about this installation guide (e.g., 'How do I fix wsl --install errors?')..."></ai-widget>
+
