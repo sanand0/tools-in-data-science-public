@@ -582,11 +582,6 @@ ${userCustomText ? `\nUser's specific follow-up question: ${userCustomText}` : '
       icon: '📖',
       label: 'CheatSheet',
       prompt: 'Rewrite this guide as an engaging Cheatsheet. Maximum important points, no unnecessary explanations. At end add short notes and important interview q&a. Use mermaid diagram to create simple flowcharts to understand things better.'
-    },
-    {
-      icon: '🎥',
-      label: 'Video Explanation (Veo)',
-      prompt: 'Create a cinematic educational video explanation concept. You MUST write your response in JSON format. Provide detailed scene visual prompt descriptions that can be sent to Google Veo, followed by a voiceover narration script. Response MUST be a single JSON object containing: \n{\n  "concept": "Core concept name",\n  "video_prompt": "Cinematic visual generation prompt for Google Veo (e.g. 3D high quality motion graphics showing...)",\n  "narration": "A highly engaging professional narration explanation in 3 to 4 clear sentences.",\n  "subtitles": [\n    "First sentence of the narration.",\n    "Second sentence of the narration.",\n    "Third sentence of the narration.",\n    "Fourth sentence of the narration."\n  ],\n  "key_points": ["First key takeaway", "Second key takeaway", "Third key takeaway"]\n}'
     }
   ];
 
@@ -617,6 +612,59 @@ ${userCustomText ? `\nUser's specific follow-up question: ${userCustomText}` : '
     const label = document.createElement('div');
     label.className = 'ai-mode-toolbar-label';
     label.innerHTML = '<span class="ai-mode-label-icon">✨</span> Reading Mode:';
+
+    // Destination selector container (In-Page vs External AI Chat)
+    const savedDest = localStorage.getItem('docsify_ai_mode_dest') || 'inline';
+    const savedProvider = localStorage.getItem('docsify_ai_mode_ext_prov') || 'chatgpt';
+
+    const destContainer = document.createElement('div');
+    destContainer.className = 'ai-mode-destination-container';
+    destContainer.innerHTML = `
+      <div class="ai-mode-destination-options">
+        <label class="ai-destination-option" title="Rewrite and transform this guide directly inside this browser tab.">
+          <input type="radio" name="ai-destination" value="inline" ${savedDest === 'inline' ? 'checked' : ''}>
+          <span>✨ In-Page Inline (Usual)</span>
+        </label>
+        <label class="ai-destination-option" title="Open an external AI website (e.g. ChatGPT, Claude) with the rewritten prompt and code automatically copied.">
+          <input type="radio" name="ai-destination" value="external" ${savedDest === 'external' ? 'checked' : ''}>
+          <span>🚀 Send to External AI Chat</span>
+        </label>
+      </div>
+      <div class="ai-external-provider-select-group ${savedDest === 'external' ? '' : 'hidden'}" id="aiExternalProviderSelectGroup">
+        <label for="aiExternalProvider">Select Website:</label>
+        <select id="aiExternalProvider">
+          <option value="chatgpt" ${savedProvider === 'chatgpt' ? 'selected' : ''}>ChatGPT (chatgpt.com)</option>
+          <option value="gemini" ${savedProvider === 'gemini' ? 'selected' : ''}>Google Gemini (gemini.google.com)</option>
+          <option value="claude" ${savedProvider === 'claude' ? 'selected' : ''}>Anthropic Claude (claude.ai)</option>
+          <option value="notebooklm" ${savedProvider === 'notebooklm' ? 'selected' : ''}>Google NotebookLM (notebooklm.google.com)</option>
+          <option value="minimax" ${savedProvider === 'minimax' ? 'selected' : ''}>MiniMax M2 (hailuoai.com)</option>
+          <option value="kimi" ${savedProvider === 'kimi' ? 'selected' : ''}>Moonshot Kimi (kimi.moonshot.cn)</option>
+          <option value="qwen" ${savedProvider === 'qwen' ? 'selected' : ''}>Alibaba Qwen (chat.qwenlm.ai)</option>
+          <option value="perplexity" ${savedProvider === 'perplexity' ? 'selected' : ''}>Perplexity AI (perplexity.ai)</option>
+        </select>
+      </div>
+    `;
+
+    // Hook listeners for Destination Selector state change
+    const radioOptions = destContainer.querySelectorAll('input[name="ai-destination"]');
+    const selectGroup = destContainer.querySelector('#aiExternalProviderSelectGroup');
+    const providerSelect = destContainer.querySelector('#aiExternalProvider');
+
+    radioOptions.forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        const value = e.target.value;
+        localStorage.setItem('docsify_ai_mode_dest', value);
+        if (value === 'external') {
+          selectGroup.classList.remove('hidden');
+        } else {
+          selectGroup.classList.add('hidden');
+        }
+      });
+    });
+
+    providerSelect.addEventListener('change', (e) => {
+      localStorage.setItem('docsify_ai_mode_ext_prov', e.target.value);
+    });
 
     const btnRow = document.createElement('div');
     btnRow.className = 'ai-mode-btn-row';
@@ -655,6 +703,7 @@ ${userCustomText ? `\nUser's specific follow-up question: ${userCustomText}` : '
     });
 
     toolbar.appendChild(label);
+    toolbar.appendChild(destContainer);
     toolbar.appendChild(btnRow);
     toolbar.appendChild(customRow);
 
@@ -680,201 +729,499 @@ ${userCustomText ? `\nUser's specific follow-up question: ${userCustomText}` : '
     }
   }
 
-  // Interactive voice and scene animation setup for the Google Veo simulated player
-  function setupVeoPlayer(subtitles, narration, veoData) {
-    const playBtn = document.getElementById('veo-play-btn');
-    const voiceBtn = document.getElementById('veo-voice-btn');
-    const canvas = document.getElementById('veo-canvas');
-    const progress = document.getElementById('veo-progress');
-    const timeEl = document.getElementById('veo-time');
-    const subtitlesEl = document.getElementById('veo-subtitles');
-    const orbLabel = document.getElementById('veo-orb-label');
+  // Presentation slide deck player with high-quality AI/Hybrid voiceover
+  function setupPresentationPlayer(presData) {
+    const container = document.getElementById('pres-player');
+    if (!container) return;
 
-    if (!playBtn) return;
+    const slides = presData.slides || [];
+    if (!slides.length) return;
 
+    let currentSlide = 0;
     let isPlaying = false;
     let voiceOn = true;
-    let subtitleIndex = -1;
     let synth = window.speechSynthesis;
-    let intervalId = null;
+    let currentAudio = null; // Standard HTML5 Audio element
+    let autoTimer = null; // Timeout reference for auto-advancing
 
-    voiceBtn.addEventListener('click', () => {
-      voiceOn = !voiceOn;
-      voiceBtn.textContent = voiceOn ? '🔊 Voice: On' : '🔇 Voice: Off';
-      voiceBtn.classList.toggle('muted', !voiceOn);
-      if (!voiceOn && synth && synth.speaking) {
-        synth.cancel();
-      }
+    const slideArea = container.querySelector('.pres-slide-area');
+    const prevBtn = container.querySelector('#pres-prev');
+    const nextBtn = container.querySelector('#pres-next');
+    const playBtn = container.querySelector('#pres-play');
+    const voiceBtn = container.querySelector('#pres-voice');
+    const slideCounter = container.querySelector('#pres-counter');
+    const progressBar = container.querySelector('#pres-progress-fill');
+    const thumbStrip = container.querySelector('.pres-thumb-strip');
+
+    // Gradient palette for slide backgrounds
+    const gradients = [
+      'linear-gradient(135deg, #0f0c29, #302b63, #24243e)',
+      'linear-gradient(135deg, #1a1a2e, #16213e, #0f3460)',
+      'linear-gradient(135deg, #0d1117, #161b22, #21262d)',
+      'linear-gradient(135deg, #1b1b2f, #162447, #1f4068)',
+      'linear-gradient(135deg, #0a0a23, #1b1b32, #2a2a4a)',
+      'linear-gradient(135deg, #141e30, #243b55, #141e30)',
+      'linear-gradient(135deg, #0f2027, #203a43, #2c5364)',
+      'linear-gradient(135deg, #1c1c3c, #2d2d5e, #1c1c3c)'
+    ];
+
+    // Build thumbnail strip
+    slides.forEach((s, i) => {
+      const thumb = document.createElement('button');
+      thumb.className = 'pres-thumb' + (i === 0 ? ' active' : '');
+      thumb.textContent = s.icon || (i + 1);
+      thumb.title = s.heading;
+      thumb.addEventListener('click', () => goToSlide(i));
+      thumbStrip.appendChild(thumb);
     });
 
-    playBtn.addEventListener('click', () => {
-      if (isPlaying) {
-        stopPlayback();
-      } else {
-        startPlayback();
-      }
-    });
+    // Helper: Split text into chunks to respect Translate limits
+    function chunkText(text, maxLength) {
+      const words = text.split(' ');
+      const chunks = [];
+      let currentChunk = '';
 
-    function stopPlayback() {
-      isPlaying = false;
-      playBtn.textContent = '▶ Play Video';
-      playBtn.classList.remove('playing');
-      canvas.className = 'ai-video-canvas';
-      orbLabel.textContent = 'PAUSED';
-      if (synth) synth.cancel();
-      clearInterval(intervalId);
-      progress.style.width = '0%';
-      timeEl.textContent = '0:00 / 0:06';
+      words.forEach(word => {
+        if ((currentChunk + ' ' + word).length > maxLength) {
+          chunks.push(currentChunk.trim());
+          currentChunk = word;
+        } else {
+          currentChunk += ' ' + word;
+        }
+      });
+      if (currentChunk) {
+        chunks.push(currentChunk.trim());
+      }
+      return chunks.filter(c => c.length > 0);
     }
 
-    function startPlayback() {
-      isPlaying = true;
-      playBtn.textContent = '⏸ Pause Video';
-      playBtn.classList.add('playing');
-      canvas.className = 'ai-video-canvas playing';
-      orbLabel.textContent = 'GENERATING VEO VIDEO...';
+    // Helper: Stop all current narration (both HTML5 Audio and browser speechSynthesis)
+    function stopNarration() {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.src = '';
+        currentAudio = null;
+      }
+      if (synth && synth.speaking) {
+        synth.cancel();
+      }
+      const narrationBar = slideArea.querySelector('.pres-narration-bar');
+      if (narrationBar) {
+        narrationBar.classList.remove('speaking');
+      }
+    }
 
-      let durationSec = 6;
-      let elapsedMs = 0;
-      let tickRateMs = 100;
-      subtitleIndex = -1;
+    // Play browser built-in fallback speech
+    function playBrowserSpeech(text, onEnded) {
+      if (!voiceOn || !synth) {
+        if (onEnded) onEnded();
+        return;
+      }
+      synth.cancel();
+      const utter = new SpeechSynthesisUtterance(text);
+      const voices = synth.getVoices();
+      const eng = voices.find(v => v.lang.startsWith('en'));
+      if (eng) utter.voice = eng;
+      utter.rate = 0.95;
+      utter.pitch = 1.0;
+      utter.addEventListener('end', () => {
+        if (onEnded) onEnded();
+      });
+      utter.addEventListener('error', () => {
+        if (onEnded) onEnded();
+      });
+      synth.speak(utter);
+    }
 
-      // Create high-end dynamic illustration layers inside the canvas
-      canvas.innerHTML = `
-        <div class="veo-scene-container" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; width: 100%; height: 100%;">
-          <svg id="veo-svg-canvas" viewBox="0 0 800 400" style="width: 100%; height: 100%; max-height: 380px;">
-            <defs>
-              <linearGradient id="grid-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#4facfe" stop-opacity="0.2"/>
-                <stop offset="100%" stop-color="#00f2fe" stop-opacity="0.0"/>
-              </linearGradient>
-              <linearGradient id="accent-grad-1" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#ff0844"/>
-                <stop offset="100%" stop-color="#ffb199"/>
-              </linearGradient>
-              <linearGradient id="accent-grad-2" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#f12711"/>
-                <stop offset="100%" stop-color="#f5af19"/>
-              </linearGradient>
-              <linearGradient id="node-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#1e3c72"/>
-                <stop offset="100%" stop-color="#2a5298"/>
-              </linearGradient>
-            </defs>
-            <!-- Animated scanlines grid background -->
-            <rect width="800" height="400" fill="url(#grid-grad)" />
-            <g id="veo-dynamic-shapes"></g>
-          </svg>
-          <div class="ai-video-orb-label" id="veo-orb-label" style="position: absolute; top: 15px; left: 20px; z-index: 10; font-size: 0.8rem; letter-spacing: 2px;">VEO CINEMATIC GENERATION</div>
+    // Play high quality Google Translate TTS in sequential chunks
+    function playFallbackTTS(text, onEnded) {
+      if (!voiceOn) {
+        if (onEnded) onEnded();
+        return;
+      }
+
+      try {
+        const chunks = chunkText(text, 160);
+        let chunkIndex = 0;
+
+        function playNextChunk() {
+          if (!voiceOn) return;
+          if (chunkIndex >= chunks.length) {
+            if (onEnded) onEnded();
+            return;
+          }
+
+          const chunkTextStr = chunks[chunkIndex++];
+          const ttsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=en&client=tw-ob&q=${encodeURIComponent(chunkTextStr)}`;
+
+          currentAudio = new Audio(ttsUrl);
+          currentAudio.addEventListener('ended', playNextChunk);
+          currentAudio.addEventListener('error', (e) => {
+            console.warn('Google Translate TTS chunk failed, falling back to browser Speech...', e);
+            // Fall back immediately to browser speech for the remainder of the sentence
+            const remainingText = chunks.slice(chunkIndex - 1).join(' ');
+            playBrowserSpeech(remainingText, onEnded);
+          });
+
+          currentAudio.play().catch(err => {
+            console.warn('Audio play blocked/failed, trying browser Speech...', err);
+            const remainingText = chunks.slice(chunkIndex - 1).join(' ');
+            playBrowserSpeech(remainingText, onEnded);
+          });
+        }
+
+        playNextChunk();
+
+      } catch (e) {
+        console.warn('Fallback TTS failed, using browser Speech...', e);
+        playBrowserSpeech(text, onEnded);
+      }
+    }
+
+    // Play slide narration: try API provider first, then high-quality Google fallback, then local speech
+    async function playSlideNarration(text, onEnded) {
+      if (!voiceOn) {
+        if (onEnded) onEnded();
+        return;
+      }
+
+      const creds = getCredentials();
+      // We skip AIPipe's chat completions endpoint as it fails for raw binary audio (returns pricing unknown)
+      const isAIPipe = creds.provider === 'aipipe';
+      const hasKey = !!creds.apiKey;
+
+      if (hasKey && !isAIPipe) {
+        try {
+          let url = creds.baseUrl;
+          if (url.endsWith('/chat/completions')) {
+            url = url.replace(/\/chat\/completions$/, '/audio/speech');
+          } else {
+            url = url.replace(/\/$/, '') + '/audio/speech';
+          }
+
+          const model = creds.provider === 'openai' ? 'tts-1' : 'openai/tts-1';
+
+          const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${creds.apiKey}`
+            },
+            body: JSON.stringify({
+              model: model,
+              input: text,
+              voice: 'alloy'
+            })
+          });
+
+          if (response.ok) {
+            const blob = await response.blob();
+            const audioUrl = URL.createObjectURL(blob);
+            currentAudio = new Audio(audioUrl);
+            currentAudio.addEventListener('ended', () => {
+              URL.revokeObjectURL(audioUrl);
+              if (onEnded) onEnded();
+            });
+            currentAudio.addEventListener('error', (e) => {
+              URL.revokeObjectURL(audioUrl);
+              console.warn('API TTS loaded but failed to play, trying fallback...', e);
+              playFallbackTTS(text, onEnded);
+            });
+            await currentAudio.play();
+            return;
+          } else {
+            const errText = await response.text();
+            console.warn(`AI Provider TTS returned status ${response.status}: ${errText}`);
+          }
+        } catch (e) {
+          console.warn('AI Provider TTS failed, trying high-quality fallback...', e);
+        }
+      }
+
+      // If AI provider is not openrouter/openai, or failed, use high quality Google Translate fallback
+      playFallbackTTS(text, onEnded);
+    }
+
+    function renderSlide(idx) {
+      const slide = slides[idx];
+      const grad = gradients[idx % gradients.length];
+      const bulletsHTML = (slide.bullets || []).map((b, bi) =>
+        `<li class="pres-bullet" style="animation-delay: ${0.3 + bi * 0.15}s">${b}</li>`
+      ).join('');
+
+      slideArea.innerHTML = `
+        <div class="pres-slide" style="background: ${grad}">
+          <div class="pres-slide-number">SLIDE ${idx + 1} / ${slides.length}</div>
+          <div class="pres-slide-icon">${slide.icon || '📌'}</div>
+          <h2 class="pres-slide-heading">${slide.heading || ''}</h2>
+          <ul class="pres-bullet-list">${bulletsHTML}</ul>
+          <div class="pres-narration-bar">
+            <span class="pres-narration-icon">🎙️</span>
+            <span class="pres-narration-text">${slide.narration || ''}</span>
+          </div>
         </div>
       `;
 
-      const svgGroup = document.getElementById('veo-dynamic-shapes');
-      const label = document.getElementById('veo-orb-label');
+      // Update counter and progress
+      slideCounter.textContent = `${idx + 1} / ${slides.length}`;
+      progressBar.style.width = `${((idx + 1) / slides.length) * 100}%`;
 
-      intervalId = setInterval(() => {
-        elapsedMs += tickRateMs;
-        let percent = (elapsedMs / (durationSec * 1000)) * 100;
-        if (percent >= 100) {
-          percent = 100;
-          stopPlayback();
-          subtitlesEl.textContent = 'Video complete. Click Play to watch again!';
-          label.textContent = 'COMPLETED';
-        } else {
-          progress.style.width = `${percent}%`;
-          let currentSec = (elapsedMs / 1000).toFixed(0);
-          timeEl.textContent = `0:0${currentSec} / 0:0${durationSec}`;
+      // Update thumbnails
+      thumbStrip.querySelectorAll('.pres-thumb').forEach((t, i) => {
+        t.classList.toggle('active', i === idx);
+      });
 
-          let step = (durationSec * 1000) / subtitles.length;
-          let idx = Math.floor(elapsedMs / step);
-          if (idx !== subtitleIndex && idx < subtitles.length) {
-            subtitleIndex = idx;
-            subtitlesEl.textContent = subtitles[subtitleIndex];
-            label.textContent = `SCENE ${subtitleIndex + 1}: ${veoData.concept || 'Concept'}`;
-            
-            // Render beautiful dynamically generated vector diagrams and scenes based on technical themes
-            if (subtitleIndex === 0) {
-              // Scene 1: Concept Introduction - Floating technical structures representing components
-              svgGroup.innerHTML = `
-                <g style="animation: float 4s infinite ease-in-out;">
-                  <!-- Main Core Hub -->
-                  <circle cx="400" cy="180" r="55" fill="url(#node-grad)" stroke="#00f2fe" stroke-width="3" filter="drop-shadow(0px 0px 20px rgba(0, 242, 254, 0.6))" />
-                  <text x="400" y="185" fill="#fff" font-size="14" font-weight="bold" text-anchor="middle">${(veoData.concept || 'CORE').substring(0, 12)}</text>
-                  
-                  <!-- Satellites -->
-                  <path d="M 400 180 L 260 120" stroke="#4facfe" stroke-width="2" stroke-dasharray="5 5" />
-                  <path d="M 400 180 L 540 120" stroke="#4facfe" stroke-width="2" stroke-dasharray="5 5" />
-                  <path d="M 400 180 L 400 280" stroke="#4facfe" stroke-width="2" stroke-dasharray="5 5" />
+      // Update button states
+      prevBtn.disabled = idx === 0;
+      nextBtn.disabled = idx === slides.length - 1;
 
-                  <circle cx="260" cy="120" r="28" fill="#111" stroke="#ff0844" stroke-width="2" />
-                  <text x="260" y="124" fill="#ffb199" font-size="10" font-weight="bold" text-anchor="middle">INPUT</text>
+      // Stop any existing timers & speech
+      clearTimeout(autoTimer);
+      stopNarration();
 
-                  <circle cx="540" cy="120" r="28" fill="#111" stroke="#38ef7d" stroke-width="2" />
-                  <text x="540" y="124" fill="#38ef7d" font-size="10" font-weight="bold" text-anchor="middle">OUTPUT</text>
-
-                  <circle cx="400" cy="280" r="28" fill="#111" stroke="#f5af19" stroke-width="2" />
-                  <text x="400" y="284" fill="#f5af19" font-size="10" font-weight="bold" text-anchor="middle">FLOW</text>
-                </g>
-              `;
-            } else if (subtitleIndex === 1) {
-              // Scene 2: Detailed connection workflow / pipeline flow
-              svgGroup.innerHTML = `
-                <g>
-                  <!-- Flow path -->
-                  <path d="M 100 200 C 250 80, 550 320, 700 200" fill="none" stroke="#00f2fe" stroke-width="4" stroke-linecap="round" />
-                  
-                  <!-- Flow pulse -->
-                  <circle cx="400" cy="200" r="14" fill="#fff" filter="drop-shadow(0 0 15px #00f2fe)">
-                    <animate attributeName="cx" values="100;700" dur="2s" repeatCount="indefinite" />
-                    <animate attributeName="cy" values="200;120;280;200" dur="2s" repeatCount="indefinite" />
-                  </circle>
-
-                  <!-- Stage Cards -->
-                  <rect x="180" y="100" width="120" height="45" rx="8" fill="#111" stroke="#4facfe" stroke-width="2" />
-                  <text x="240" y="127" fill="#fff" font-size="11" font-weight="bold" text-anchor="middle">1. PROCESS</text>
-
-                  <rect x="480" y="240" width="120" height="45" rx="8" fill="#111" stroke="#ff0844" stroke-width="2" />
-                  <text x="540" y="267" fill="#fff" font-size="11" font-weight="bold" text-anchor="middle">2. VALIDATE</text>
-                </g>
-              `;
-            } else {
-              // Scene 3: Structural final state / System balance
-              svgGroup.innerHTML = `
-                <g style="animation: pulse-spin 12s infinite linear;">
-                  <!-- Concentric circles -->
-                  <circle cx="400" cy="200" r="110" fill="none" stroke="rgba(0, 242, 254, 0.2)" stroke-width="2" stroke-dasharray="10 10" />
-                  <circle cx="400" cy="200" r="70" fill="none" stroke="rgba(255, 88, 88, 0.2)" stroke-width="2" />
-
-                  <!-- Balanced Core -->
-                  <circle cx="400" cy="200" r="35" fill="url(#accent-grad-1)" filter="drop-shadow(0 0 25px rgba(255, 8, 68, 0.5))" />
-                  
-                  <!-- Rotating nodes -->
-                  <circle cx="290" cy="200" r="16" fill="#111" stroke="#38ef7d" stroke-width="2" />
-                  <circle cx="510" cy="200" r="16" fill="#111" stroke="#4facfe" stroke-width="2" />
-                  <circle cx="400" cy="90" r="16" fill="#111" stroke="#f5af19" stroke-width="2" />
-                  <circle cx="400" cy="310" r="16" fill="#111" stroke="#fc67fa" stroke-width="2" />
-                </g>
-              `;
-            }
-
-            if (voiceOn && synth) {
-              synth.cancel();
-              const utterance = new SpeechSynthesisUtterance(subtitles[subtitleIndex]);
-              const voices = synth.getVoices();
-              const engVoice = voices.find(v => v.lang.includes('en'));
-              if (engVoice) utterance.voice = engVoice;
-              utterance.rate = 1.05;
-              synth.speak(utterance);
-            }
-          }
+      // Trigger high-quality speech narration
+      if (voiceOn && slide.narration) {
+        const narrationBar = slideArea.querySelector('.pres-narration-bar');
+        if (narrationBar) {
+          narrationBar.classList.add('speaking');
         }
-      }, tickRateMs);
+
+        playSlideNarration(slide.narration, () => {
+          if (narrationBar) {
+            narrationBar.classList.remove('speaking');
+          }
+          // Narration completed! If Auto Play is enabled, wait 1.5 seconds, then auto-advance
+          if (isPlaying) {
+            autoTimer = setTimeout(autoAdvance, 1500);
+          }
+        });
+      } else {
+        // If Voice is disabled and Auto Play is enabled, use standard 8-second timer
+        if (isPlaying) {
+          autoTimer = setTimeout(autoAdvance, 8000);
+        }
+      }
+    }
+
+    function goToSlide(idx) {
+      if (idx < 0 || idx >= slides.length) return;
+      currentSlide = idx;
+      renderSlide(idx);
+    }
+
+    function autoAdvance() {
+      if (currentSlide < slides.length - 1) {
+        currentSlide++;
+        renderSlide(currentSlide);
+      } else {
+        stopAutoPlay();
+      }
+    }
+
+    function startAutoPlay() {
+      isPlaying = true;
+      playBtn.textContent = '⏸ Pause';
+      playBtn.classList.add('playing');
+
+      if (currentSlide >= slides.length - 1) {
+        currentSlide = 0;
+        renderSlide(0);
+      } else {
+        renderSlide(currentSlide);
+      }
+    }
+
+    function stopAutoPlay() {
+      isPlaying = false;
+      playBtn.textContent = '▶ Auto Play';
+      playBtn.classList.remove('playing');
+      clearTimeout(autoTimer);
+      stopNarration();
+    }
+
+    prevBtn.addEventListener('click', () => {
+      stopAutoPlay();
+      goToSlide(currentSlide - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      stopAutoPlay();
+      goToSlide(currentSlide + 1);
+    });
+
+    playBtn.addEventListener('click', () => {
+      if (isPlaying) stopAutoPlay();
+      else startAutoPlay();
+    });
+
+    voiceBtn.addEventListener('click', () => {
+      voiceOn = !voiceOn;
+      voiceBtn.textContent = voiceOn ? '🔊 Voice On' : '🔇 Voice Off';
+      if (!voiceOn) {
+        stopNarration();
+        // If auto play is running, reset timer to standard 8-second interval since narration stopped
+        if (isPlaying) {
+          clearTimeout(autoTimer);
+          autoTimer = setTimeout(autoAdvance, 8000);
+        }
+      } else {
+        // Voice turned back on, trigger narration for current slide
+        renderSlide(currentSlide);
+      }
+    });
+
+    // Keyboard navigation
+    const keyHandler = (e) => {
+      if (!container.closest('article')) return;
+      if (e.key === 'ArrowRight') { stopAutoPlay(); goToSlide(currentSlide + 1); }
+      if (e.key === 'ArrowLeft') { stopAutoPlay(); goToSlide(currentSlide - 1); }
+      if (e.key === ' ') { e.preventDefault(); isPlaying ? stopAutoPlay() : startAutoPlay(); }
+    };
+    document.addEventListener('keydown', keyHandler);
+
+    // Clean up event listener when player is removed from DOM
+    const observer = new MutationObserver((mutations, obs) => {
+      if (!document.getElementById('pres-player')) {
+        document.removeEventListener('keydown', keyHandler);
+        stopNarration();
+        clearTimeout(autoTimer);
+        obs.disconnect();
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Render first slide
+    renderSlide(0);
+  }
+
+  async function fetchCurrentPageMarkdown() {
+    try {
+      const hash = window.location.hash || '#/';
+      let path = hash.replace(/^#/, '');
+      if (path === '/' || path === '') {
+        path = '/README';
+      }
+
+      // Construct the absolute path to the local markdown file
+      const mdUrl = window.location.origin + window.location.pathname.replace(/\/$/, '') + path + '.md';
+
+      const response = await fetch(mdUrl);
+      if (response.ok) {
+        return await response.text();
+      }
+    } catch (e) {
+      console.warn('Failed to fetch raw markdown via path, using fallback', e);
+    }
+
+    // Fallback: use DOM text
+    const article = document.querySelector('article.markdown-section');
+    return article ? article.innerText : '';
+  }
+
+  function copyToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    // Fallback using legacy document.execCommand
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+      document.execCommand('copy');
+      return Promise.resolve();
+    } catch (e) {
+      return Promise.reject(e);
+    } finally {
+      document.body.removeChild(textarea);
     }
   }
 
   async function handleModeTransform(mode, toolbar) {
     const article = document.querySelector('article.markdown-section');
     if (!article) return;
+
+    // Check if the user selected to send to an external AI site
+    const dest = localStorage.getItem('docsify_ai_mode_dest') || 'inline';
+    if (dest === 'external') {
+      try {
+        // Option 3: Use Raw GitHub URL instead of raw markdown text to completely bypass HTTP 414 length limits
+        const hash = window.location.hash || '#/';
+        let path = hash.replace(/^#/, '');
+        if (path === '/' || path === '') {
+          path = '/README';
+        }
+
+        const GITHUB_REPO_BASE = 'https://raw.githubusercontent.com/sanand0/tools-in-data-science-public/t2-26';
+        const githubFileUrl = `${GITHUB_REPO_BASE}${path}.md`;
+
+        // Build the consolidated unified prompt combining the instructions and the GitHub link
+        const unifiedPrompt = `${mode.prompt}
+
+First please read the source document available at raw github url below:
+${githubFileUrl}
+
+Please perform the transformation as described in the instructions above.`;
+
+        // Copy the entire unified prompt to the user's clipboard!
+        await copyToClipboard(unifiedPrompt);
+
+        // Get provider info and pre-fill URL parameters
+        const providerKey = localStorage.getItem('docsify_ai_mode_ext_prov') || 'chatgpt';
+        const PROVIDER_INFO = {
+          chatgpt: { name: 'ChatGPT', url: 'https://chatgpt.com' },
+          gemini: { name: 'Google Gemini', url: 'https://gemini.google.com/app' },
+          claude: { name: 'Anthropic Claude', url: 'https://claude.ai/new' },
+          notebooklm: { name: 'Google NotebookLM', url: 'https://notebooklm.google.com' },
+          minimax: { name: 'MiniMax M2', url: 'https://test.hailuoai.com' },
+          kimi: { name: 'Moonshot Kimi', url: 'https://kimi.moonshot.cn' },
+          qwen: { name: 'Alibaba Qwen', url: 'https://chat.qwenlm.ai' },
+          perplexity: { name: 'Perplexity AI', url: 'https://www.perplexity.ai' }
+        };
+
+        const info = PROVIDER_INFO[providerKey] || PROVIDER_INFO.chatgpt;
+
+        // Auto pre-fill the prompt query parameters for the selected provider
+        // Since we are using the GitHub URL, it is incredibly short and completely safe from HTTP 414 limits!
+        const separator = info.url.includes('?') ? '&' : '?';
+        const targetUrl = `${info.url}${separator}q=${encodeURIComponent(unifiedPrompt)}`;
+
+        // Display the premium toast notification
+        const toast = document.createElement('div');
+        toast.className = 'ai-external-toast';
+        toast.innerHTML = `
+          <div class="ai-external-toast-header">
+            <span class="ai-toast-success-icon">🚀</span>
+            <span>Sending to ${info.name}!</span>
+          </div>
+          <div class="ai-external-toast-body">
+            📋 Prompt & GitHub Link copied to clipboard.<br>
+            Opening <strong>${info.name}</strong> now...<br>
+            <div style="margin-top: 8px; font-weight: bold; color: var(--ai-primary);">
+              ⚡ <strong>Prompt is auto-filled and running automatically!</strong>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(toast);
+
+        // Animate out and remove after 3.8s
+        setTimeout(() => {
+          toast.classList.add('hide');
+          setTimeout(() => toast.remove(), 300);
+        }, 3800);
+
+        // Open website in new tab after 1.2s
+        setTimeout(() => {
+          window.open(targetUrl, '_blank');
+        }, 1200);
+
+      } catch (err) {
+        showModeError(toolbar, '⚠️ Failed to prepare external redirect. Please allow clipboard permissions.');
+        console.error('External redirect failed:', err);
+      }
+      return;
+    }
 
     const creds = getCredentials();
     if (!creds.apiKey) {
@@ -931,75 +1278,7 @@ ${pageText}
 Now produce the complete rewritten Markdown:`;
 
       const newMarkdown = await callLLM(userPrompt, systemPrompt);
-      let newHTML = '';
-      let veoSubtitles = [];
-      let veoNarration = '';
-
-      if (mode.label === 'Video Explanation (Veo)') {
-        let veoData = {};
-        try {
-          veoData = extractJSON(newMarkdown);
-        } catch (e) {
-          veoData = {
-            concept: 'Concept Overview',
-            video_prompt: 'High quality cinematic 3D graphics showing technical components working together smoothly.',
-            narration: 'This guide covers essential technical components. Let\'s explore how they link together to form a highly integrated developer workflow.',
-            subtitles: [
-              'This guide covers essential technical components.',
-              'Let\'s explore how they link together to form a highly integrated developer workflow.'
-            ],
-            key_points: ['Core concepts mapped clearly', 'Practical step-by-step illustrations', 'Runnable examples included']
-          };
-        }
-
-        const conceptTitle = veoData.concept || 'Concept Video';
-        const videoPrompt = veoData.video_prompt || 'Educational 3D concept animation.';
-        veoNarration = veoData.narration || '';
-        veoSubtitles = veoData.subtitles || [veoNarration];
-        const keyPoints = veoData.key_points || [];
-
-        newHTML = `
-          <h1>🎥 ${conceptTitle}</h1>
-          <div class="ai-video-player-app">
-            <h2>🎥 Google Veo Educational Video</h2>
-            
-            <div class="ai-video-card">
-              <div class="ai-video-screen">
-                <div class="ai-video-canvas" id="veo-canvas">
-                  <div class="ai-video-sphere"></div>
-                  <div class="ai-video-orb-label" id="veo-orb-label">READY TO GENERATE</div>
-                </div>
-                
-                <div class="ai-video-subtitles" id="veo-subtitles">Click Play to generate explanation video with audio...</div>
-              </div>
-              
-              <div class="ai-video-controls">
-                <button class="ai-video-control-btn play-btn" id="veo-play-btn">▶ Play Video</button>
-                <button class="ai-video-control-btn voice-btn" id="veo-voice-btn">🔊 Voice: On</button>
-                <div class="ai-video-progress-container">
-                  <div class="ai-video-progress-bar" id="veo-progress"></div>
-                </div>
-                <span class="ai-video-time" id="veo-time">0:00 / 0:06</span>
-              </div>
-            </div>
-
-            <div class="ai-video-details">
-              <h3>📝 Google Veo Visual Prompt</h3>
-              <p class="ai-video-prompt-text">${videoPrompt}</p>
-              
-              <h3>💡 Narrator Audio Script</h3>
-              <blockquote class="ai-video-script-text">${veoNarration}</blockquote>
-
-              <h3>🔍 Key Visual Takeaways</h3>
-              <ul class="ai-video-mappings-list">
-                ${keyPoints.map(pt => `<li>${pt}</li>`).join('')}
-              </ul>
-            </div>
-          </div>
-        `;
-      } else {
-        newHTML = compileMarkdown(newMarkdown);
-      }
+      let newHTML = compileMarkdown(newMarkdown);
 
       // Always append the Virtual TA widget at the end of the newly rewritten content
       newHTML += `
@@ -1014,11 +1293,6 @@ Now produce the complete rewritten Markdown:`;
 
       // Replace article content
       article.innerHTML = newHTML;
-
-      // Set up Veo video player events
-      if (mode.label === 'Video Explanation (Veo)') {
-        setupVeoPlayer(veoSubtitles, veoNarration, veoData);
-      }
 
       // Re-inject toolbar (since innerHTML was replaced)
       const newH1 = article.querySelector('h1');
@@ -1091,20 +1365,20 @@ Now produce the complete rewritten Markdown:`;
 
     // Find pre elements containing mermaid class/data or inner code elements with mermaid
     const blocks = document.querySelectorAll('pre[data-lang="mermaid"], pre code.language-mermaid, pre code.lang-mermaid');
-    
+
     let renderedAny = false;
     blocks.forEach((block) => {
       const preEl = block.tagName === 'PRE' ? block : block.closest('pre');
       if (!preEl || preEl.classList.contains('mermaid-rendered')) return;
-      
+
       const code = preEl.textContent.trim();
       if (!code) return;
-      
+
       // Create rendering target container
       const div = document.createElement('div');
       div.className = 'mermaid';
       div.textContent = code;
-      
+
       preEl.classList.add('mermaid-rendered');
       preEl.replaceWith(div);
       renderedAny = true;
