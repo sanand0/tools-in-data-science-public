@@ -4,6 +4,16 @@
  * Includes sidebar configuration panel and inline markdown widgets.
  */
 
+
+// Inject CSS styles dynamically
+(function() {
+  const css = '/** * Docsify AI Assistant CSS * Premium, polished styles matching both dark and light modes. */:root { --ai-primary: #dc3545; --ai-primary-hover: #b02a37; --ai-primary-rgb: 220, 53, 69; /* Light theme colors */ --ai-sidebar-bg: rgba(248, 249, 250, 0.95); --ai-sidebar-border: rgba(0, 0, 0, 0.08); --ai-card-bg: rgba(255, 255, 255, 0.7); --ai-card-border: rgba(0, 0, 0, 0.06); --ai-text: #212529; --ai-text-muted: #6c757d; --ai-input-bg: #ffffff; --ai-input-border: #ced4da; --ai-input-focus: rgba(220, 53, 69, 0.25); --ai-success: #198754; --ai-error: #ea868f; --ai-error-text: #842029; --ai-error-bg: #f8d7da; --ai-code-bg: #f8f9fa;}@media (prefers-color-scheme: dark) { :root { /* Dark theme overrides */ --ai-sidebar-bg: rgba(30, 30, 30, 0.95); --ai-sidebar-border: rgba(255, 255, 255, 0.08); --ai-card-bg: rgba(38, 38, 38, 0.7); --ai-card-border: rgba(255, 255, 255, 0.05); --ai-text: #f8f9fa; --ai-text-muted: #a6a6a6; --ai-input-bg: #2d2d2d; --ai-input-border: #404040; --ai-input-focus: rgba(220, 53, 69, 0.4); --ai-success: #2ea44f; --ai-error: #f85149; --ai-error-text: #f85149; --ai-error-bg: rgba(248, 81, 73, 0.1); --ai-code-bg: #1e1e1e; }}/* 1. Sidebar credentials card */.ai-sidebar-container { order: 100 !important; flex-shrink: 0 !important; margin-top: auto !important; margin: 1rem 1rem 1.5rem 1rem; border-radius: 12px; border: 1px solid var(--ai-sidebar-border); background: var(--ai-sidebar-bg); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);}.ai-sidebar-toggle { display: flex; align-items: center; width: 100%; padding: 0.8rem 1rem; background: transparent; border: none; color: var(--ai-text); font-weight: 600; font-size: 0.95rem; cursor: pointer; text-align: left; outline: none; transition: background-color 0.2s ease;}.ai-sidebar-toggle:hover { background-color: rgba(220, 53, 69, 0.05);}.ai-sparkles-icon { margin-right: 8px; font-size: 1.1rem; animation: float-sparkle 3s ease-in-out infinite;}@keyframes float-sparkle { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-2px) scale(1.1); }}.ai-toggle-text { flex-grow: 1;}/* Status Dot */.ai-status-indicator { width: 8px; height: 8px; border-radius: 50%; margin-right: 12px; display: inline-block; position: relative;}.ai-status-indicator.active { background-color: var(--ai-success); box-shadow: 0 0 8px var(--ai-success); animation: pulse-green 2s infinite;}.ai-status-indicator.inactive { background-color: var(--ai-text-muted);}@keyframes pulse-green { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 164, 79, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(46, 164, 79, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 164, 79, 0); }}.ai-toggle-chevron { font-size: 0.75rem; color: var(--ai-text-muted); transition: transform 0.3s ease;}.ai-toggle-chevron.expanded { transform: rotate(180deg);}/* Credentials Panel */.ai-sidebar-panel { padding: 1rem; border-top: 1px solid var(--ai-sidebar-border); animation: slide-down 0.25s ease-out;}@keyframes slide-down { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); }}.ai-form-group { margin-bottom: 0.9rem;}.ai-form-group label { display: block; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; color: var(--ai-text-muted);}.ai-select,.ai-input { width: 100%; padding: 0.5rem 0.75rem; font-size: 0.85rem; border-radius: 6px; border: 1px solid var(--ai-input-border); background-color: var(--ai-input-bg); color: var(--ai-text); box-sizing: border-box; outline: none; transition: all 0.2s ease;}.ai-select:focus,.ai-input:focus { border-color: var(--ai-primary); box-shadow: 0 0 0 3px var(--ai-input-focus);}/* Input password wrapper */.ai-input-wrapper { position: relative; display: flex; align-items: center;}.ai-input-wrapper .ai-input { padding-right: 2.2rem;}.ai-key-visibility { position: absolute; right: 6px; background: transparent; border: none; color: var(--ai-text-muted); cursor: pointer; padding: 4px; font-size: 0.9rem; outline: none; user-select: none;}.ai-key-visibility:hover { color: var(--ai-text);}/* Buttons */.ai-btn-save { display: block; width: 100%; padding: 0.6rem; font-size: 0.85rem; font-weight: 600; border-radius: 6px; border: none; background: linear-gradient(135deg, var(--ai-primary), #b02a37); color: white; cursor: pointer; box-shadow: 0 2px 6px rgba(220, 53, 69, 0.2); transition: all 0.2s ease;}.ai-btn-save:hover { transform: translateY(-1px); box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3);}.ai-btn-save:active { transform: translateY(1px);}.ai-save-feedback { font-size: 0.75rem; color: var(--ai-success); font-weight: 600; margin-top: 6px; text-align: center; animation: fade-in-out 2s forwards;}@keyframes fade-in-out { 0% { opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; }}/* 2. Embedded AI Questions Widgets */.ai-widget-container { margin: 2rem 0; padding: 1.5rem; border-radius: 14px; border: 1px solid var(--ai-card-border); background: linear-gradient(135deg, rgba(var(--ai-primary-rgb), 0.04), rgba(var(--ai-primary-rgb), 0.01)); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);}.ai-widget-container:hover { box-shadow: 0 8px 28px rgba(0, 0, 0, 0.04); border-color: rgba(var(--ai-primary-rgb), 0.15);}.ai-widget-header { display: flex; align-items: center; margin-bottom: 1rem;}.ai-widget-logo { font-size: 1.3rem; margin-right: 10px;}.ai-widget-title { font-weight: 700; font-size: 0.95rem; color: var(--ai-text); letter-spacing: 0.2px;}.ai-widget-body { display: flex; flex-direction: column; gap: 0.8rem;}.ai-prompt-preview { font-size: 0.85rem; color: var(--ai-text-muted); background: var(--ai-card-bg); padding: 0.6rem 0.9rem; border-radius: 8px; border: 1px dashed rgba(var(--ai-primary-rgb), 0.15); line-height: 1.4;}.ai-input-row { display: flex; gap: 10px; width: 100%;}.ai-widget-input { flex-grow: 1; padding: 0.75rem 1rem; font-size: 0.9rem; border-radius: 8px; border: 1px solid var(--ai-input-border); background-color: var(--ai-input-bg); color: var(--ai-text); box-sizing: border-box; outline: none; transition: all 0.25s ease;}.ai-widget-input:focus { border-color: var(--ai-primary); box-shadow: 0 0 0 3px var(--ai-input-focus);}.ai-widget-btn { padding: 0.75rem 1.4rem; font-size: 0.9rem; font-weight: 600; border-radius: 8px; border: none; background: linear-gradient(135deg, var(--ai-primary), #b02a37); color: white; cursor: pointer; white-space: nowrap; box-shadow: 0 2px 6px rgba(220, 53, 69, 0.2); transition: all 0.2s ease;}.ai-widget-btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);}.ai-widget-btn:active:not(:disabled) { transform: translateY(1px);}.ai-widget-btn:disabled { background: var(--ai-text-muted); opacity: 0.6; cursor: not-allowed; box-shadow: none;}/* Loading animations */.ai-widget-loader { padding: 1rem; display: flex; flex-direction: column; gap: 10px; background: var(--ai-card-bg); border-radius: 8px; border: 1px solid var(--ai-sidebar-border);}.ai-loading-sparkles { font-size: 0.85rem; font-weight: 600; color: var(--ai-primary); animation: pulse-loading 1.5s ease-in-out infinite;}@keyframes pulse-loading { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; }}.ai-shimmer-bar { height: 6px; background: var(--ai-sidebar-border); border-radius: 3px; overflow: hidden; position: relative;}.ai-shimmer-fill { height: 100%; width: 40%; background: linear-gradient(90deg, transparent, var(--ai-primary), transparent); position: absolute; top: 0; left: 0; animation: shimmy 1.8s infinite ease-in-out;}@keyframes shimmy { 0% { left: -40%; } 100% { left: 100%; }}/* Error messages */.ai-widget-error { padding: 0.8rem 1rem; font-size: 0.85rem; font-weight: 600; border-radius: 8px; color: var(--ai-error-text); background-color: var(--ai-error-bg); border: 1px solid rgba(var(--ai-primary-rgb), 0.15); animation: shake 0.4s ease-in-out;}@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); }}/* Response Area */.ai-widget-response { padding: 1.5rem; border-radius: 10px; background-color: var(--ai-card-bg); border: 1px solid var(--ai-sidebar-border); color: var(--ai-text); line-height: 1.6; font-size: 0.95rem; overflow-x: auto; animation: pop-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1);}@keyframes pop-fade { from { opacity: 0; transform: translateY(10px) scale(0.99); } to { opacity: 1; transform: translateY(0) scale(1); }}/* Response inside-markdown styling */.ai-widget-response h1,.ai-widget-response h2,.ai-widget-response h3,.ai-widget-response h4 { margin-top: 1.2rem; margin-bottom: 0.6rem; color: var(--ai-text); font-weight: 700;}.ai-widget-response h1 { font-size: 1.3rem; border-bottom: 1px solid var(--ai-sidebar-border); padding-bottom: 0.3rem; }.ai-widget-response h2 { font-size: 1.15rem; }.ai-widget-response h3 { font-size: 1.05rem; }.ai-widget-response p { margin: 0.6rem 0;}.ai-widget-response ul,.ai-widget-response ol { margin: 0.6rem 0; padding-left: 1.5rem;}.ai-widget-response li { margin: 0.3rem 0;}.ai-widget-response code { background: var(--ai-code-bg); color: var(--ai-primary); padding: 0.15rem 0.35rem; border-radius: 4px; font-family: "Courier New", Courier, monospace; font-size: 0.85em;}.ai-widget-response pre { background: var(--ai-code-bg); border-radius: 8px; padding: 1rem; margin: 0.8rem 0; overflow-x: auto; border: 1px solid var(--ai-sidebar-border);}.ai-widget-response pre code { background: transparent; color: inherit; padding: 0; border-radius: 0; font-size: 0.85rem;}.ai-widget-response blockquote { margin: 0.8rem 0; padding-left: 1rem; border-left: 4px solid var(--ai-primary); color: var(--ai-text-muted); font-style: italic;}/* Global utility classes */.hidden { display: none !important;}/* ─── Reading Mode Toolbar ─────────────────────────────────────────────── */.ai-mode-toolbar { margin: 1.5rem 0 2rem 0; padding: 1rem; background: var(--ai-card-bg); border: 1px solid var(--ai-sidebar-border); border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; animation: pop-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1);}.ai-mode-toolbar-label { font-size: 0.95rem; font-weight: 700; color: var(--ai-text); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 6px;}.ai-mode-label-icon { color: var(--ai-primary);}.ai-mode-btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem;}.ai-mode-btn { display: inline-flex; align-items: center; gap: 6px; padding: 0.5rem 0.8rem; font-size: 0.85rem; font-weight: 600; color: var(--ai-text); background: var(--ai-sidebar-bg); border: 1px solid var(--ai-sidebar-border); border-radius: 20px; cursor: pointer; transition: all 0.2s ease; white-space: nowrap;}.ai-mode-btn:hover:not(:disabled) { border-color: var(--ai-primary); color: var(--ai-primary); transform: translateY(-1px); box-shadow: 0 2px 8px rgba(var(--ai-primary-rgb), 0.15);}.ai-mode-btn.active { background: linear-gradient(135deg, var(--ai-primary), #b02a37); color: white; border-color: transparent; box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);}.ai-mode-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none;}.ai-mode-custom-row { display: flex; gap: 8px;}.ai-mode-custom-input { flex-grow: 1; padding: 0.6rem 1rem; font-size: 0.9rem; border-radius: 20px; border: 1px solid var(--ai-input-border); background-color: var(--ai-input-bg); color: var(--ai-text); outline: none; transition: all 0.2s ease;}.ai-mode-custom-input:focus { border-color: var(--ai-primary); box-shadow: 0 0 0 3px var(--ai-input-focus);}.ai-mode-custom-btn { padding: 0.6rem 1.2rem; font-size: 0.9rem; font-weight: 600; border-radius: 20px; border: none; background: var(--ai-sidebar-border); color: var(--ai-text); cursor: pointer; transition: all 0.2s ease;}.ai-mode-custom-btn:hover:not(:disabled) { background: var(--ai-primary); color: white;}.ai-mode-error { margin-top: 1rem; padding: 0.8rem; border-radius: 8px; background: var(--ai-error-bg); color: var(--ai-error-text); font-size: 0.85rem; font-weight: 600; border: 1px solid rgba(248, 81, 73, 0.2); animation: shake 0.4s ease-in-out;}.ai-mode-restore-bar { margin: 1.5rem 0 2rem 0; padding: 1rem; background: rgba(var(--ai-primary-rgb), 0.05); border: 1px dashed var(--ai-primary); border-radius: 12px; display: flex; justify-content: space-between; align-items: center; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; animation: pop-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1);}.ai-mode-restore-bar span { font-size: 0.95rem; color: var(--ai-text);}.ai-mode-restore-btn { padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 600; color: var(--ai-primary); background: transparent; border: 1px solid var(--ai-primary); border-radius: 20px; cursor: pointer; transition: all 0.2s ease;}.ai-mode-restore-btn:hover { background: var(--ai-primary); color: white;}/* Full-page Overlay */.ai-mode-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); z-index: 1000; display: flex; justify-content: center; align-items: flex-start; padding-top: 20vh; border-radius: 8px; animation: fade-in 0.3s ease;}[data-theme="dark"] .ai-mode-overlay,body.dark .ai-mode-overlay { background: rgba(13, 17, 23, 0.85);}.ai-mode-overlay-inner { background: var(--ai-card-bg); padding: 2rem; border-radius: 16px; border: 1px solid var(--ai-sidebar-border); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); text-align: center; min-width: 300px; animation: pop-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1);}.ai-mode-overlay-icon { font-size: 3rem; margin-bottom: 1rem; animation: bounce 2s infinite ease-in-out;}.ai-mode-overlay-title { font-size: 1.1rem; font-weight: 600; color: var(--ai-text); margin-bottom: 1.5rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;}@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); }}@keyframes fade-in { from { opacity: 0; } to { opacity: 1; }}';
+  const style = document.createElement('style');
+  style.type = 'text/css';
+  style.appendChild(document.createTextNode(css));
+  document.head.appendChild(style);
+})();
+
 (function () {
   // Config presets for providers
   const PROVIDERS = {
@@ -620,19 +630,19 @@ ${userCustomText ? `\nUser's specific follow-up question: ${userCustomText}` : '
     const destContainer = document.createElement('div');
     destContainer.className = 'ai-mode-destination-container';
     destContainer.innerHTML = `
-      <div class="ai-mode-destination-options">
-        <label class="ai-destination-option" title="Rewrite and transform this guide directly inside this browser tab.">
+      <div class="ai-mode-destination-options" style="display: flex; gap: 20px; margin-bottom: 15px; flex-wrap: wrap; padding: 10px; background: var(--ai-sidebar-bg); border-radius: 8px; border: 1px solid var(--ai-sidebar-border);">
+        <label class="ai-destination-option" title="Rewrite and transform this guide directly inside this browser tab." style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.9rem; color: var(--ai-text);">
           <input type="radio" name="ai-destination" value="inline" ${savedDest === 'inline' ? 'checked' : ''}>
           <span>✨ In-Page Inline (Usual)</span>
         </label>
-        <label class="ai-destination-option" title="Open an external AI website (e.g. ChatGPT, Claude) with the rewritten prompt and code automatically copied.">
+        <label class="ai-destination-option" title="Open an external AI website (e.g. ChatGPT, Claude) with the rewritten prompt and code automatically copied." style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.9rem; color: var(--ai-text);">
           <input type="radio" name="ai-destination" value="external" ${savedDest === 'external' ? 'checked' : ''}>
           <span>🚀 Send to External AI Chat</span>
         </label>
       </div>
-      <div class="ai-external-provider-select-group ${savedDest === 'external' ? '' : 'hidden'}" id="aiExternalProviderSelectGroup">
-        <label for="aiExternalProvider">Select Website:</label>
-        <select id="aiExternalProvider">
+      <div class="ai-external-provider-select-group ${savedDest === 'external' ? '' : 'hidden'}" id="aiExternalProviderSelectGroup" style="margin-bottom: 15px; background: var(--ai-sidebar-bg); padding: 12px 15px; border-radius: 8px; border: 1px solid var(--ai-sidebar-border);">
+        <label for="aiExternalProvider" style="display: block; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--ai-text-muted); margin-bottom: 8px;">Select Website:</label>
+        <select id="aiExternalProvider" class="ai-select" style="max-width: 350px; cursor: pointer; font-weight: 500;">
           <option value="chatgpt" ${savedProvider === 'chatgpt' ? 'selected' : ''}>ChatGPT (chatgpt.com)</option>
           <option value="gemini" ${savedProvider === 'gemini' ? 'selected' : ''}>Google Gemini (gemini.google.com)</option>
           <option value="claude" ${savedProvider === 'claude' ? 'selected' : ''}>Anthropic Claude (claude.ai)</option>
@@ -712,411 +722,6 @@ ${userCustomText ? `\nUser's specific follow-up question: ${userCustomText}` : '
     _toolbarMounted = true;
   }
 
-  // Safe JSON extraction helper
-  function extractJSON(str) {
-    try {
-      const match = str.match(/```json\s*([\s\S]*?)\s*```/) || str.match(/```\s*([\s\S]*?)\s*```/);
-      const jsonStr = match ? match[1] : str;
-      return JSON.parse(jsonStr.trim());
-    } catch (e) {
-      console.warn('JSON direct parse failed, trying regex cleanup...', e);
-      try {
-        const clean = str.replace(/^[^{\[]+/g, '').replace(/[^}\]]+$/g, '');
-        return JSON.parse(clean);
-      } catch (err) {
-        throw new Error('Failed to parse JSON explanation from video model.');
-      }
-    }
-  }
-
-  // Presentation slide deck player with high-quality AI/Hybrid voiceover
-  function setupPresentationPlayer(presData) {
-    const container = document.getElementById('pres-player');
-    if (!container) return;
-
-    const slides = presData.slides || [];
-    if (!slides.length) return;
-
-    let currentSlide = 0;
-    let isPlaying = false;
-    let voiceOn = true;
-    let synth = window.speechSynthesis;
-    let currentAudio = null; // Standard HTML5 Audio element
-    let autoTimer = null; // Timeout reference for auto-advancing
-
-    const slideArea = container.querySelector('.pres-slide-area');
-    const prevBtn = container.querySelector('#pres-prev');
-    const nextBtn = container.querySelector('#pres-next');
-    const playBtn = container.querySelector('#pres-play');
-    const voiceBtn = container.querySelector('#pres-voice');
-    const slideCounter = container.querySelector('#pres-counter');
-    const progressBar = container.querySelector('#pres-progress-fill');
-    const thumbStrip = container.querySelector('.pres-thumb-strip');
-
-    // Gradient palette for slide backgrounds
-    const gradients = [
-      'linear-gradient(135deg, #0f0c29, #302b63, #24243e)',
-      'linear-gradient(135deg, #1a1a2e, #16213e, #0f3460)',
-      'linear-gradient(135deg, #0d1117, #161b22, #21262d)',
-      'linear-gradient(135deg, #1b1b2f, #162447, #1f4068)',
-      'linear-gradient(135deg, #0a0a23, #1b1b32, #2a2a4a)',
-      'linear-gradient(135deg, #141e30, #243b55, #141e30)',
-      'linear-gradient(135deg, #0f2027, #203a43, #2c5364)',
-      'linear-gradient(135deg, #1c1c3c, #2d2d5e, #1c1c3c)'
-    ];
-
-    // Build thumbnail strip
-    slides.forEach((s, i) => {
-      const thumb = document.createElement('button');
-      thumb.className = 'pres-thumb' + (i === 0 ? ' active' : '');
-      thumb.textContent = s.icon || (i + 1);
-      thumb.title = s.heading;
-      thumb.addEventListener('click', () => goToSlide(i));
-      thumbStrip.appendChild(thumb);
-    });
-
-    // Helper: Split text into chunks to respect Translate limits
-    function chunkText(text, maxLength) {
-      const words = text.split(' ');
-      const chunks = [];
-      let currentChunk = '';
-
-      words.forEach(word => {
-        if ((currentChunk + ' ' + word).length > maxLength) {
-          chunks.push(currentChunk.trim());
-          currentChunk = word;
-        } else {
-          currentChunk += ' ' + word;
-        }
-      });
-      if (currentChunk) {
-        chunks.push(currentChunk.trim());
-      }
-      return chunks.filter(c => c.length > 0);
-    }
-
-    // Helper: Stop all current narration (both HTML5 Audio and browser speechSynthesis)
-    function stopNarration() {
-      if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.src = '';
-        currentAudio = null;
-      }
-      if (synth && synth.speaking) {
-        synth.cancel();
-      }
-      const narrationBar = slideArea.querySelector('.pres-narration-bar');
-      if (narrationBar) {
-        narrationBar.classList.remove('speaking');
-      }
-    }
-
-    // Play browser built-in fallback speech
-    function playBrowserSpeech(text, onEnded) {
-      if (!voiceOn || !synth) {
-        if (onEnded) onEnded();
-        return;
-      }
-      synth.cancel();
-      const utter = new SpeechSynthesisUtterance(text);
-      const voices = synth.getVoices();
-      const eng = voices.find(v => v.lang.startsWith('en'));
-      if (eng) utter.voice = eng;
-      utter.rate = 0.95;
-      utter.pitch = 1.0;
-      utter.addEventListener('end', () => {
-        if (onEnded) onEnded();
-      });
-      utter.addEventListener('error', () => {
-        if (onEnded) onEnded();
-      });
-      synth.speak(utter);
-    }
-
-    // Play high quality Google Translate TTS in sequential chunks
-    function playFallbackTTS(text, onEnded) {
-      if (!voiceOn) {
-        if (onEnded) onEnded();
-        return;
-      }
-
-      try {
-        const chunks = chunkText(text, 160);
-        let chunkIndex = 0;
-
-        function playNextChunk() {
-          if (!voiceOn) return;
-          if (chunkIndex >= chunks.length) {
-            if (onEnded) onEnded();
-            return;
-          }
-
-          const chunkTextStr = chunks[chunkIndex++];
-          const ttsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=en&client=tw-ob&q=${encodeURIComponent(chunkTextStr)}`;
-
-          currentAudio = new Audio(ttsUrl);
-          currentAudio.addEventListener('ended', playNextChunk);
-          currentAudio.addEventListener('error', (e) => {
-            console.warn('Google Translate TTS chunk failed, falling back to browser Speech...', e);
-            // Fall back immediately to browser speech for the remainder of the sentence
-            const remainingText = chunks.slice(chunkIndex - 1).join(' ');
-            playBrowserSpeech(remainingText, onEnded);
-          });
-
-          currentAudio.play().catch(err => {
-            console.warn('Audio play blocked/failed, trying browser Speech...', err);
-            const remainingText = chunks.slice(chunkIndex - 1).join(' ');
-            playBrowserSpeech(remainingText, onEnded);
-          });
-        }
-
-        playNextChunk();
-
-      } catch (e) {
-        console.warn('Fallback TTS failed, using browser Speech...', e);
-        playBrowserSpeech(text, onEnded);
-      }
-    }
-
-    // Play slide narration: try API provider first, then high-quality Google fallback, then local speech
-    async function playSlideNarration(text, onEnded) {
-      if (!voiceOn) {
-        if (onEnded) onEnded();
-        return;
-      }
-
-      const creds = getCredentials();
-      // We skip AIPipe's chat completions endpoint as it fails for raw binary audio (returns pricing unknown)
-      const isAIPipe = creds.provider === 'aipipe';
-      const hasKey = !!creds.apiKey;
-
-      if (hasKey && !isAIPipe) {
-        try {
-          let url = creds.baseUrl;
-          if (url.endsWith('/chat/completions')) {
-            url = url.replace(/\/chat\/completions$/, '/audio/speech');
-          } else {
-            url = url.replace(/\/$/, '') + '/audio/speech';
-          }
-
-          const model = creds.provider === 'openai' ? 'tts-1' : 'openai/tts-1';
-
-          const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${creds.apiKey}`
-            },
-            body: JSON.stringify({
-              model: model,
-              input: text,
-              voice: 'alloy'
-            })
-          });
-
-          if (response.ok) {
-            const blob = await response.blob();
-            const audioUrl = URL.createObjectURL(blob);
-            currentAudio = new Audio(audioUrl);
-            currentAudio.addEventListener('ended', () => {
-              URL.revokeObjectURL(audioUrl);
-              if (onEnded) onEnded();
-            });
-            currentAudio.addEventListener('error', (e) => {
-              URL.revokeObjectURL(audioUrl);
-              console.warn('API TTS loaded but failed to play, trying fallback...', e);
-              playFallbackTTS(text, onEnded);
-            });
-            await currentAudio.play();
-            return;
-          } else {
-            const errText = await response.text();
-            console.warn(`AI Provider TTS returned status ${response.status}: ${errText}`);
-          }
-        } catch (e) {
-          console.warn('AI Provider TTS failed, trying high-quality fallback...', e);
-        }
-      }
-
-      // If AI provider is not openrouter/openai, or failed, use high quality Google Translate fallback
-      playFallbackTTS(text, onEnded);
-    }
-
-    function renderSlide(idx) {
-      const slide = slides[idx];
-      const grad = gradients[idx % gradients.length];
-      const bulletsHTML = (slide.bullets || []).map((b, bi) =>
-        `<li class="pres-bullet" style="animation-delay: ${0.3 + bi * 0.15}s">${b}</li>`
-      ).join('');
-
-      slideArea.innerHTML = `
-        <div class="pres-slide" style="background: ${grad}">
-          <div class="pres-slide-number">SLIDE ${idx + 1} / ${slides.length}</div>
-          <div class="pres-slide-icon">${slide.icon || '📌'}</div>
-          <h2 class="pres-slide-heading">${slide.heading || ''}</h2>
-          <ul class="pres-bullet-list">${bulletsHTML}</ul>
-          <div class="pres-narration-bar">
-            <span class="pres-narration-icon">🎙️</span>
-            <span class="pres-narration-text">${slide.narration || ''}</span>
-          </div>
-        </div>
-      `;
-
-      // Update counter and progress
-      slideCounter.textContent = `${idx + 1} / ${slides.length}`;
-      progressBar.style.width = `${((idx + 1) / slides.length) * 100}%`;
-
-      // Update thumbnails
-      thumbStrip.querySelectorAll('.pres-thumb').forEach((t, i) => {
-        t.classList.toggle('active', i === idx);
-      });
-
-      // Update button states
-      prevBtn.disabled = idx === 0;
-      nextBtn.disabled = idx === slides.length - 1;
-
-      // Stop any existing timers & speech
-      clearTimeout(autoTimer);
-      stopNarration();
-
-      // Trigger high-quality speech narration
-      if (voiceOn && slide.narration) {
-        const narrationBar = slideArea.querySelector('.pres-narration-bar');
-        if (narrationBar) {
-          narrationBar.classList.add('speaking');
-        }
-
-        playSlideNarration(slide.narration, () => {
-          if (narrationBar) {
-            narrationBar.classList.remove('speaking');
-          }
-          // Narration completed! If Auto Play is enabled, wait 1.5 seconds, then auto-advance
-          if (isPlaying) {
-            autoTimer = setTimeout(autoAdvance, 1500);
-          }
-        });
-      } else {
-        // If Voice is disabled and Auto Play is enabled, use standard 8-second timer
-        if (isPlaying) {
-          autoTimer = setTimeout(autoAdvance, 8000);
-        }
-      }
-    }
-
-    function goToSlide(idx) {
-      if (idx < 0 || idx >= slides.length) return;
-      currentSlide = idx;
-      renderSlide(idx);
-    }
-
-    function autoAdvance() {
-      if (currentSlide < slides.length - 1) {
-        currentSlide++;
-        renderSlide(currentSlide);
-      } else {
-        stopAutoPlay();
-      }
-    }
-
-    function startAutoPlay() {
-      isPlaying = true;
-      playBtn.textContent = '⏸ Pause';
-      playBtn.classList.add('playing');
-
-      if (currentSlide >= slides.length - 1) {
-        currentSlide = 0;
-        renderSlide(0);
-      } else {
-        renderSlide(currentSlide);
-      }
-    }
-
-    function stopAutoPlay() {
-      isPlaying = false;
-      playBtn.textContent = '▶ Auto Play';
-      playBtn.classList.remove('playing');
-      clearTimeout(autoTimer);
-      stopNarration();
-    }
-
-    prevBtn.addEventListener('click', () => {
-      stopAutoPlay();
-      goToSlide(currentSlide - 1);
-    });
-
-    nextBtn.addEventListener('click', () => {
-      stopAutoPlay();
-      goToSlide(currentSlide + 1);
-    });
-
-    playBtn.addEventListener('click', () => {
-      if (isPlaying) stopAutoPlay();
-      else startAutoPlay();
-    });
-
-    voiceBtn.addEventListener('click', () => {
-      voiceOn = !voiceOn;
-      voiceBtn.textContent = voiceOn ? '🔊 Voice On' : '🔇 Voice Off';
-      if (!voiceOn) {
-        stopNarration();
-        // If auto play is running, reset timer to standard 8-second interval since narration stopped
-        if (isPlaying) {
-          clearTimeout(autoTimer);
-          autoTimer = setTimeout(autoAdvance, 8000);
-        }
-      } else {
-        // Voice turned back on, trigger narration for current slide
-        renderSlide(currentSlide);
-      }
-    });
-
-    // Keyboard navigation
-    const keyHandler = (e) => {
-      if (!container.closest('article')) return;
-      if (e.key === 'ArrowRight') { stopAutoPlay(); goToSlide(currentSlide + 1); }
-      if (e.key === 'ArrowLeft') { stopAutoPlay(); goToSlide(currentSlide - 1); }
-      if (e.key === ' ') { e.preventDefault(); isPlaying ? stopAutoPlay() : startAutoPlay(); }
-    };
-    document.addEventListener('keydown', keyHandler);
-
-    // Clean up event listener when player is removed from DOM
-    const observer = new MutationObserver((mutations, obs) => {
-      if (!document.getElementById('pres-player')) {
-        document.removeEventListener('keydown', keyHandler);
-        stopNarration();
-        clearTimeout(autoTimer);
-        obs.disconnect();
-      }
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    // Render first slide
-    renderSlide(0);
-  }
-
-  async function fetchCurrentPageMarkdown() {
-    try {
-      const hash = window.location.hash || '#/';
-      let path = hash.replace(/^#/, '');
-      if (path === '/' || path === '') {
-        path = '/README';
-      }
-
-      // Construct the absolute path to the local markdown file
-      const mdUrl = window.location.origin + window.location.pathname.replace(/\/$/, '') + path + '.md';
-
-      const response = await fetch(mdUrl);
-      if (response.ok) {
-        return await response.text();
-      }
-    } catch (e) {
-      console.warn('Failed to fetch raw markdown via path, using fallback', e);
-    }
-
-    // Fallback: use DOM text
-    const article = document.querySelector('article.markdown-section');
-    return article ? article.innerText : '';
-  }
 
   function copyToClipboard(text) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -1153,7 +758,8 @@ ${userCustomText ? `\nUser's specific follow-up question: ${userCustomText}` : '
           path = '/README';
         }
 
-        const GITHUB_REPO_BASE = 'https://raw.githubusercontent.com/sanand0/tools-in-data-science-public/t2-26';
+        const GITHUB_BRANCH = 't2-26';
+        const GITHUB_REPO_BASE = `https://raw.githubusercontent.com/sanand0/tools-in-data-science-public/${GITHUB_BRANCH}`;
         const githubFileUrl = `${GITHUB_REPO_BASE}${path}.md`;
 
         // Build the consolidated unified prompt combining the instructions and the GitHub link
