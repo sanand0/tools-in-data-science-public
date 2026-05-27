@@ -13,9 +13,3 @@ Agents utilizing models like GPT-4o or Claude 3.5 Sonnet to inspect charts, UI s
 
 ---
 
-## 💬 Ask the AI Assistant
-
-Have questions about this guide? Ask our virtual Teaching Assistant below!
-
-<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
-

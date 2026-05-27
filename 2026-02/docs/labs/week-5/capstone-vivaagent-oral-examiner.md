@@ -20,9 +20,3 @@ Create a real-time, voice-based AI agent capable of conducting an oral examinati
 
 ---
 
-## 💬 Ask the AI Assistant
-
-Have questions about this guide? Ask our virtual Teaching Assistant below!
-
-<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
-

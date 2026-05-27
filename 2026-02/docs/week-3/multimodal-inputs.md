@@ -404,9 +404,3 @@ def resize_image_for_api(image_path: str, max_size: int = 1024) -> tuple[bytes, 
 
 ---
 
-## 💬 Ask the AI Assistant
-
-Have questions about this guide? Ask our virtual Teaching Assistant below!
-
-<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
-

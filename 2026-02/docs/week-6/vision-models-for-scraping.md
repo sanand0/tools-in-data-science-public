@@ -17,9 +17,3 @@ Pass a screenshot to a Vision-Language Model (VLM) and ask it to extract the dat
 
 ---
 
-## 💬 Ask the AI Assistant
-
-Have questions about this guide? Ask our virtual Teaching Assistant below!
-
-<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
-

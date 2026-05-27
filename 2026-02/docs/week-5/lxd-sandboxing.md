@@ -18,9 +18,3 @@ LXD is a next-generation system container manager. It provides full OS environme
 
 ---
 
-## 💬 Ask the AI Assistant
-
-Have questions about this guide? Ask our virtual Teaching Assistant below!
-
-<ai-widget prompt="Explain key concepts or solve questions related to the guide above." button="✨ Ask Virtual TA" placeholder="Ask a question about this guide..."></ai-widget>
-
