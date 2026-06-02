@@ -61,7 +61,7 @@ code .
 │ B  │                                      │            │
 │ a  │                                      │            │
 │ r  │──────────────────────────────────────│            │
-│    │    Terminal Panel                     │            │
+│    │    Terminal Panel                    │            │
 │    │    $ _                               │            │
 ├────┴──────────────────────────────────────┴────────────┤
 │ Status Bar (branch, errors, encoding, line/col)        │
