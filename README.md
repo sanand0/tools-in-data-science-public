@@ -1,5 +1,7 @@
 # Tools in Data Science - Jan 2026
 
+<askai showopenin="true" common_question="true"></askai>
+
 [Tools in Data Science](https://study.iitm.ac.in/ds/course_pages/BSSE2002.html) is a diploma level data science course at IIT Madras.
 
 **It bridges the gap between theory and real-world implementation**. Specifically: you'll learn what tools do data scientists actually use and how.
@@ -24,7 +26,7 @@
 <!-- https://gemini.google.com/app/7354ff9f8d18b9c0 -->
 
 <details>
-<summary><strong>Anyone can audit this course. It's public.</strong></summary>
+<summary><strong>Anyone can audit this course. It's public.</strong> <askai questions='[{"prompt":"Can anyone really audit this course for free?","label":"Free to audit?"}]'></askai></summary>
 
 Anyone can access this course content for free and submit assessments.
 
@@ -35,7 +37,7 @@ Enrolled [IITM students](https://study.iitm.ac.in/ds/) can additionally particip
 </details>
 
 <details>
-<summary><strong>You MUST know Python, JavaScript, APIs, etc.</strong></summary>
+<summary><strong>You MUST know Python, JavaScript, APIs, etc.</strong> <askai questions='[{"prompt":"What are the exact prerequisites for this course?","label":"Prerequisites?"},{"prompt":"Do I really need to know JavaScript if this is a Data Science course?","label":"Why JS?"}]'></askai></summary>
 
 You need a _good_ understanding of Python, JavaScript, HTML, APIs, Excel, ChatGPT, and data science concepts.
 
