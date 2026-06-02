@@ -10,7 +10,7 @@
 (function () {
   "use strict";
 
-  var BRANCH = "t2-26";
+  var BRANCH = "askai";
   var RAW_BASE = "https://raw.githubusercontent.com/sanand0/tools-in-data-science-public/" + BRANCH;
 
   var PROVIDERS = [
