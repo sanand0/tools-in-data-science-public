@@ -616,6 +616,46 @@ Your `baseUrl` is wrong. For a project site at `user.github.io/repo/`, baseUrl *
 
 ---
 
+## Knowledge Check
+
+**Q1.** What is the purpose of the `[project.scripts]` section in `pyproject.toml`?
+- [ ] A) It tells UV which scripts to run during the build process
+- [ ] B) It registers CLI entry points, allowing users to run your app directly from the terminal
+- [ ] C) It defines the test scripts to be executed by GitHub Actions
+- [ ] D) It lists the Python scripts that should be ignored by the formatter
+
+<details>
+<summary>Answer</summary>
+
+**B** — `[project.scripts]` creates an executable command (e.g., `tds-csv = "cli:app"`) that invokes a specific Python function when the package is installed.
+</details>
+
+**Q2.** When running a tool with `uvx tds-csv sample.csv`, what happens if the tool is not installed globally?
+- [ ] A) UV returns an error and asks you to run `uv tool install` first
+- [ ] B) UV downloads the package, installs it in a temporary, ephemeral environment, runs it, and cleans up
+- [ ] C) UV automatically installs it permanently into your global Python environment
+- [ ] D) UV uses a web browser to run the command online
+
+<details>
+<summary>Answer</summary>
+
+**B** — `uvx` (or `uv tool run`) allows you to execute CLI tools seamlessly without cluttering your global environment. It fetches the tool, runs it in an isolated cache, and finishes.
+</details>
+
+**Q3.** Why do we use `actions/upload-pages-artifact` and `actions/deploy-pages` in the GitHub Actions workflow?
+- [ ] A) To upload the PDF document to PyPI
+- [ ] B) To store backup copies of the documentation in a secret bucket
+- [ ] C) To natively publish the built Docusaurus HTML site to GitHub Pages
+- [ ] D) To send the generated site to an external hosting provider like AWS or Vercel
+
+<details>
+<summary>Answer</summary>
+
+**C** — These are the official GitHub Actions for taking a folder of static files (like the `build/` folder from Docusaurus) and securely deploying it to GitHub Pages.
+</details>
+
+---
+
 ## What You've Learned
 
 - Turning UV-managed code into an installable CLI via `[project.scripts]`.

@@ -374,10 +374,12 @@ REPOS=(
 
 OUT_DIR="${OUT_DIR:-./daily-summaries}"
 TODAY="$(date +%Y-%m-%d)"
-OUT_FILE="$OUT_DIR/$TODAY-all.md"
 TMP=$(mktemp -d)
 
 mkdir -p "$OUT_DIR"
+# Make OUT_DIR absolute so subshells can find it
+OUT_DIR="$(cd "$OUT_DIR" && pwd)"
+OUT_FILE="$OUT_DIR/$TODAY-all.md"
 
 {
   echo "# Daily Summary (All Repos) — $TODAY"
@@ -484,6 +486,46 @@ git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
 BSD `sed` (macOS) needs `sed -i '' 's/.../.../' file`. GNU `sed` (Linux) uses `sed -i 's/.../.../' file`. If you need cross-platform, use `sed -i.bak` and delete the `.bak` after.
 
+</details>
+
+---
+
+## Knowledge Check
+
+**Q1.** In Bash, what does `set -euo pipefail` do?
+- [ ] A) It forces the script to run with root privileges
+- [ ] B) It automatically formats the output as Markdown
+- [ ] C) It makes the script exit immediately on errors, unset variables, and pipeline failures
+- [ ] D) It redirects all errors to a log file instead of the console
+
+<details>
+<summary>Answer</summary>
+
+**C** — `set -e` stops on errors, `-u` stops on uninitialized variables, and `-o pipefail` ensures that an error in the middle of a pipeline (e.g., `command_fails | grep foo`) causes the entire command to fail. It makes scripts much safer.
+</details>
+
+**Q2.** Which cron expression runs a job every day at exactly 9:00 AM?
+- [ ] A) `* 9 * * *`
+- [ ] B) `0 9 * * *`
+- [ ] C) `9 0 * * *`
+- [ ] D) `0 0 9 * *`
+
+<details>
+<summary>Answer</summary>
+
+**B** — The cron format is `minute hour day month weekday`. `0 9 * * *` means the 0th minute of the 9th hour, every day.
+</details>
+
+**Q3.** Why might you use `git clone --depth 200` instead of a regular `git clone` in an automated script?
+- [ ] A) It prevents the repository from being modified
+- [ ] B) It forces Git to use SSH instead of HTTPS
+- [ ] C) It clones only the 200 most recent commits, saving time and disk space for large repositories
+- [ ] D) It downloads exactly 200 repositories simultaneously
+
+<details>
+<summary>Answer</summary>
+
+**C** — A "shallow clone" (`--depth N`) fetches only the recent history. For a daily summary script that only looks at the last 24 hours, downloading the entire history of a 10-year-old repository would be a massive waste of resources.
 </details>
 
 ---

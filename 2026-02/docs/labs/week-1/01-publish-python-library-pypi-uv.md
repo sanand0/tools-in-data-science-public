@@ -581,6 +581,46 @@ PyPI does not allow re-uploading the same version. Bump the version in `pyprojec
 
 ---
 
+## Knowledge Check
+
+**Q1.** Why do we use a `src/` layout when building a Python library?
+- [ ] A) It is required by PyPI for all new packages
+- [ ] B) It forces tests to run against the installed version of the package, preventing import bugs
+- [ ] C) It makes the package download size smaller
+- [ ] D) It is a requirement for using the UV package manager
+
+<details>
+<summary>Answer</summary>
+
+**B** — The `src/` layout ensures that your code is not importable directly from the project root. This forces `pytest` to use the installed package (just like your users will), catching issues where files are missing from the build.
+</details>
+
+**Q2.** What is the primary benefit of PyPI Trusted Publishing (OIDC) over traditional API tokens?
+- [ ] A) It allows publishing directly from your local terminal without a password
+- [ ] B) It eliminates the need to manage and store long-lived secrets in GitHub Actions
+- [ ] C) It makes the upload speed to PyPI significantly faster
+- [ ] D) It bypasses the need to have a PyPI account
+
+<details>
+<summary>Answer</summary>
+
+**B** — Trusted Publishing uses short-lived tokens generated on the fly. You don't need to save a PyPI password or token in GitHub Secrets, eliminating the risk of a leaked token.
+</details>
+
+**Q3.** Why should you always test your release on TestPyPI before the real PyPI?
+- [ ] A) TestPyPI automatically fixes broken Python code
+- [ ] B) TestPyPI is required by GitHub Actions before deploying to PyPI
+- [ ] C) PyPI does not allow you to re-upload or reuse a version number if you make a mistake
+- [ ] D) TestPyPI gives you free compute resources to run your unit tests
+
+<details>
+<summary>Answer</summary>
+
+**C** — PyPI's strict immutability means if you upload a broken `v0.1.0`, you can never upload a fixed `v0.1.0`. TestPyPI lets you catch packaging errors before you burn a version number on the real index.
+</details>
+
+---
+
 ## What You've Learned
 
 - Scaffolding a proper Python library with `src/` layout using UV.
