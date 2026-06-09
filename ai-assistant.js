@@ -3,14 +3,15 @@
  *
  * Attributes:
  *   questions='[{"prompt":"...","label":"..."}]'  — buttons: label shown, prompt sent/copied
- *   common_question="true|false"                  — include built-in question buttons
+ *   preset="true|false"                           — include built-in preset buttons
+ *   provider="google-ai-mode"                     — default provider (default: google-ai-mode)
  *   showopenin="true|false"                       — true: full toolbar bar with presets + dropdown
  *                                                   false (default): bare buttons, click → provider popup
  */
 (function () {
   "use strict";
 
-  var BRANCH = "askai";
+  var BRANCH = "main";
   var RAW_BASE = "https://raw.githubusercontent.com/sanand0/tools-in-data-science-public/" + BRANCH;
 
   var PROVIDERS = [
@@ -19,7 +20,7 @@
       name: "Google AI Mode",
       icon: "\u{1F50D}\u2728",
       url: function (p) {
-        return "https://www.google.com/search?q=" + encodeURIComponent(p);
+        return "https://www.google.com/search?udm=50&q=" + encodeURIComponent(p);
       }
     },
     {
@@ -58,41 +59,33 @@
 
   var PRESETS = [
     {
-      label: "Explain like I am a beginner",
+      label: "Explain for beginner",
       icon: "\u{1F476}",
       prompt: function (u) {
-        return "Explain this page simply for a beginner.\n\nPage: " + u;
+        return "Explain this page simply for a beginner with real world use cases.\n\nPage: " + u;
       }
     },
     {
-      label: "Teach me with step-by-step examples/use cases",
+      label: "Examples",
       icon: "\u{1F4D6}",
       prompt: function (u) {
-        return "Teach me this page with step-by-step examples/use cases.\n\nPage: " + u;
+        return "Teach me this page with step-by-step with working examples/use cases.\n\nPage: " + u;
       }
     },
     {
       label: "MCQ Practice",
       icon: "\u{1F4DD}",
       prompt: function (u) {
-        return "Generate 10 MCQs with answers for this page.\n\nPage: " + u;
+        return "Teach me with 20 MCQs with answers for this page.\n\nPage: " + u;
       }
     },
     {
-      label: "Generate a summary and cheat sheet",
+      label: "CheatSheet",
       icon: "\u{1F4CB}",
       prompt: function (u) {
         return "Generate a summary and cheat sheet for this page.\n\nPage: " + u;
       }
     }
-  ];
-
-  var COMMON_QS = [
-    { label: "Explain step by step", prompt: "Explain this topic step by step with examples" },
-    { label: "Common mistakes", prompt: "What are the most common mistakes beginners make with this?" },
-    { label: "Practice exercises", prompt: "Give me 5 practice exercises for this topic" },
-    { label: "Real-world relevance", prompt: "How does this relate to real-world data science workflows?" },
-    { label: "Quiz me", prompt: "Quiz me on this topic with 5 questions and answers" }
   ];
 
   // ── CSS ───────────────────────────────────────────────────────────────────
@@ -376,10 +369,11 @@
   // ── Build: showopenin=true (toolbar bar) ──────────────────────────────────
   function buildToolbar(el) {
     var url = rawUrl();
-    var showCommon = el.getAttribute("common_question") === "true";
+    var showPreset = el.getAttribute("preset") === "true";
     var customQs = parseQuestions(el);
-    var allQs = (showCommon ? COMMON_QS : []).concat(customQs);
-    var saved = sessionStorage.getItem("ai-prov") || PROVIDERS[0].id;
+    var tagProv = (el.getAttribute("provider") || "").trim();
+    var isValidProv = PROVIDERS.some(function (p) { return p.id === tagProv; });
+    var saved = (isValidProv ? tagProv : null) || sessionStorage.getItem("ai-prov") || PROVIDERS[0].id;
 
     var bar = document.createElement("div");
     bar.className = "ai-bar";
@@ -391,17 +385,19 @@
     bar.appendChild(lbl);
 
     // Presets
-    PRESETS.forEach(function (p) {
-      var btn = document.createElement("button");
-      btn.className = "ai-pill";
-      btn.title = p.label;
-      btn.textContent = p.icon + " " + p.label;
-      btn.addEventListener("click", function () {
-        var s = bar.querySelector(".ai-sel");
-        openAI(p.prompt(url), s ? s.value : saved);
+    if (showPreset) {
+      PRESETS.forEach(function (p) {
+        var btn = document.createElement("button");
+        btn.className = "ai-pill";
+        btn.title = p.label;
+        btn.textContent = p.icon + " " + p.label;
+        btn.addEventListener("click", function () {
+          var s = bar.querySelector(".ai-sel");
+          openAI(p.prompt(url), s ? s.value : saved);
+        });
+        bar.appendChild(btn);
       });
-      bar.appendChild(btn);
-    });
+    }
 
     // Sep + dropdown
     var sep = document.createElement("span");
@@ -433,10 +429,10 @@
     bar.appendChild(pw);
 
     // Extra question chips
-    if (allQs.length) {
+    if (customQs.length) {
       var chips = document.createElement("div");
       chips.className = "ai-chips";
-      allQs.forEach(function (q) {
+      customQs.forEach(function (q) {
         var btn = document.createElement("button");
         btn.className = "ai-pill";
         btn.textContent = q.label || q.prompt;
@@ -456,9 +452,9 @@
   // ── Build: showopenin=false (bare buttons + popup) ────────────────────────
   function buildBare(el) {
     var url = rawUrl();
-    var showCommon = el.getAttribute("common_question") === "true";
+    var showPreset = el.getAttribute("preset") === "true";
     var customQs = parseQuestions(el);
-    var allQs = (showCommon ? COMMON_QS : []).concat(customQs);
+    var allQs = (showPreset ? PRESETS : []).concat(customQs);
 
     var wrap = document.createElement("span");
     wrap.className = "ai-bare";
@@ -466,13 +462,16 @@
     allQs.forEach(function (q) {
       var btn = document.createElement("button");
       btn.className = "ai-pill";
-      btn.textContent = q.label || q.prompt;
-      btn.title = q.prompt;
+      btn.textContent = q.icon ? q.icon + " " + (q.label || q.prompt) : (q.label || q.prompt);
+
+      var basePrompt = typeof q.prompt === "function" ? q.prompt(url) : q.prompt;
+      btn.title = basePrompt;
+
       btn.addEventListener("click", function (e) {
         e.stopPropagation();
         var section = findNearestHeading(wrap);
         var ctx = "\n\n<Context>\nThe context is:\nSection: `" + (section || "(page top)") + "`\nMain Doc URL: `" + url + "`\n\n Note: User is asking from the main doc. So before answering fetch main doc & understand.\n</Context>";
-        showProviderPopup(q.prompt + ctx, btn);
+        showProviderPopup(basePrompt + ctx, btn);
       });
       wrap.appendChild(btn);
     });

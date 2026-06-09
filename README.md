@@ -1,6 +1,6 @@
 # Tools in Data Science - Jan 2026
 
-<askai showopenin="true" common_question="true"></askai>
+<askai showopenin="true" preset="true"></askai>
 
 [Tools in Data Science](https://study.iitm.ac.in/ds/course_pages/BSSE2002.html) is a diploma level data science course at IIT Madras.
 
