@@ -1,5 +1,8 @@
 # 01 · VS Code
 
+<askai showopenin="true" preset="true" provider="claude"></askai>
+
+
 ?> **TL;DR**
 ?> Visual Studio Code is a free, extensible code editor from Microsoft. It has ~75% developer market share in 2026 and runs locally, over SSH, inside Docker, and in the browser. It is your home base for the entire course.
 
@@ -7,11 +10,11 @@
 
 There are fancier editors (JetBrains PyCharm, Neovim), but VS Code wins because:
 
-1. **It's free and open source** — no subscription, no vendor lock-in.
-2. **Extension ecosystem** — tens of thousands of extensions. Python + Jupyter + Docker + Remote-SSH all work together.
-3. **Runs anywhere** — local, over SSH to a GPU server, inside a Docker container, inside WSL, in a browser via code-server.
-4. **Native AI assistance** — GitHub Copilot, Claude, Gemini all have first-class VS Code integrations.
-5. **You'll see it in every job** — it's the editor of the industry.
+1. **It's free and open source** — no subscription, no vendor lock-in.  <askai showopenin="false" questions='[{"prompt":"Explain as beginner","label":"Explain as beginner"}, {"prompt":"Explain as expert","label":"Explain as expert"}]'></askai>
+2. **Extension ecosystem** — tens of thousands of extensions. Python + Jupyter + Docker + Remote-SSH all work together. <askai showopenin="false" questions='[{"prompt":"Explain as beginner","label":"Explain as beginner"}, {"prompt":"Explain as expert","label":"Explain as expert"}]'></askai>
+3. **Runs anywhere** — local, over SSH to a GPU server, inside a Docker container, inside WSL, in a browser via code-server. <askai showopenin="false" questions='[{"prompt":"Explain as beginner","label":"Explain as beginner"}, {"prompt":"Explain as expert","label":"Explain as expert"}]'></askai>
+4. **Native AI assistance** — GitHub Copilot, Claude, Gemini all have first-class VS Code integrations. <askai showopenin="false" questions='[{"prompt":"Explain as beginner","label":"Explain as beginner"}, {"prompt":"Explain as expert","label":"Explain as expert"}]'></askai>
+5. **You'll see it in every job** — it's the editor of the industry. <askai showopenin="false" questions='[{"prompt":"Explain as beginner","label":"Explain as beginner"}, {"prompt":"Explain as expert","label":"Explain as expert"}]'></askai>
 
 [![VS Code Tutorial for Beginners](https://img.youtube.com/vi/KMxo3T_MTvY/0.jpg)](https://youtu.be/KMxo3T_MTvY "VS Code Tutorial for Beginners")
 
