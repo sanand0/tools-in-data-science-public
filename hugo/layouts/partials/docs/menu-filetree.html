@@ -1,0 +1,13 @@
+{{/* Sidebar selector override.
+      Chooses exactly one normalized sidebar file based on current path.
+      This replaces Hugo Book's default file-tree menu generation. */}}
+{{ $path := .RelPermalink }}
+{{ $sidebar := "root" }}
+{{ $coursePrefix := findRE "^/20[0-9]{2}-[0-9]{2}/" $path }}
+{{ if gt (len $coursePrefix) 0 }}
+  {{ $sidebar = trim (index $coursePrefix 0) "/" }}
+{{ end }}
+
+{{ $sidebarFile := printf "sidebars/%s.md" $sidebar }}
+{{ $sidebarMarkdown := readFile $sidebarFile }}
+{{ $sidebarMarkdown | markdownify }}

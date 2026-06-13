@@ -27,6 +27,10 @@ DATA_DIR="$SITE_DIR/data"
 NAV_DATA_FILE="$DATA_DIR/sidebar-nav.yaml"
 OUTPUT_DIR="$ROOT_DIR/public"
 COURSE_DIR_PATTERN='^20[0-9]{2}-[0-9]{2}$'
+LEGACY_CONTENT_DIR="legacy/2025-content"
+# Pin to the v9 tag commit. Newer Hugo Book tags require newer Hugo/Go
+# versions than common local environments provide.
+HUGO_BOOK_VERSION="${HUGO_BOOK_VERSION:-9e9c7d34038a830d22397bbec08e7ec64eb0a0d7}"
 
 # Fail fast when required CLI tools are missing.
 require_cmd() {
@@ -39,6 +43,14 @@ require_cmd() {
 require_cmd git
 require_cmd hugo
 require_cmd go
+
+# Include tracked files and new source files that are not ignored. This keeps
+# local builds useful before a maintainer stages newly added term content.
+repo_files() {
+  git -C "$ROOT_DIR" ls-files --cached --others --exclude-standard "$@" | while IFS= read -r rel; do
+    [[ -e "$ROOT_DIR/$rel" ]] && printf '%s\n' "$rel"
+  done
+}
 
 # Hugo Book uses SCSS. Non-extended Hugo may fail at build time.
 if ! hugo version 2>/dev/null | grep -qi "extended"; then
@@ -59,11 +71,14 @@ mkdir -p "$SITE_DIR" "$CONTENT_DIR" "$STATIC_DIR" "$SIDEBAR_DIR" "$DATA_DIR"
 cp -R "$SCAFFOLD_DIR"/. "$SITE_DIR"/
 
 # Initialize and resolve Hugo modules in the temporary site.
-# This fetches the theme declared in `hugo/hugo.toml`.
+# `hugo mod init` can fail on some Hugo builds when imports are already listed
+# in config, so initialize the Go module directly and then fetch the theme.
 (
   cd "$SITE_DIR"
-  hugo mod init github.com/sanand0/tools-in-data-science-public >/dev/null 2>&1 || true
-  hugo mod get -u >/dev/null 2>&1
+  if [[ ! -f go.mod ]]; then
+    go mod init github.com/sanand0/tools-in-data-science-public >/dev/null
+  fi
+  go get "github.com/alex-shpak/hugo-book@$HUGO_BOOK_VERSION"
 )
 
 # Discover course folders dynamically (e.g. 2025-09, 2026-01, ...).
@@ -84,6 +99,8 @@ normalize_sidebar() {
     BASE_URL="$section_root" perl -pe '
       BEGIN { $base = $ENV{"BASE_URL"} }
       s{\(README\.md\)}{($base)}g;
+      s{\((?:\.\./)+((?:[-a-zA-Z0-9_]+/)*)README\.md\)}{(/$1)}g;
+      s{\((?!https?://|/|#|mailto:)((?:[-a-zA-Z0-9_]+/)*)README\.md\)}{(/$1)}g;
       s{\((?:\.\./)+([^)]+?)\.md\)}{(/$1/)}g;
       s{\((?!https?://|/|#|mailto:)([^)]+?)\.md\)}{(/$1/)}g;
       s{\((?!https?://|/|#|mailto:)([-a-zA-Z0-9_/]+)\)}{(/$1/)}g;
@@ -141,13 +158,17 @@ for course in "${COURSE_DIRS[@]}"; do
   fi
 done
 
-# Copy tracked markdown into Hugo content.
+# Copy source markdown into Hugo content.
 # Behavior:
 # - skip docsify sidebar files
+# - skip legacy source pages; they are republished below at compatibility URLs
 # - map README.md -> _index.md for clean section URLs
 # - rewrite `images/` links to absolute `/images/`
 while IFS= read -r rel; do
   case "$rel" in
+    "$LEGACY_CONTENT_DIR"/*)
+      continue
+      ;;
     */_sidebar.md|_sidebar.md)
       continue
       ;;
@@ -161,28 +182,35 @@ while IFS= read -r rel; do
   mkdir -p "$(dirname "$dest")"
   cp "$ROOT_DIR/$rel" "$dest"
   sed -E -i 's#\((\.\./)?images/#(/images/#g' "$dest"
-done < <(git -C "$ROOT_DIR" ls-files '*.md')
+done < <(repo_files '*.md')
 
-# Duplicate shared top-level content pages into each course folder.
-# This ensures links like `/2025-09/system-requirements/` resolve and keep
-# course-specific sidebar context while navigating.
-for course in "${COURSE_DIRS[@]}"; do
-  while IFS= read -r rel; do
-    dest="$CONTENT_DIR/$course/$rel"
+# Republish legacy root pages at their historic root URLs and under each term.
+# This preserves old links while keeping the repository root focused on current
+# term entry points and publishing configuration.
+while IFS= read -r rel; do
+  legacy_rel="${rel#"$LEGACY_CONTENT_DIR"/}"
+
+  dest="$CONTENT_DIR/$legacy_rel"
+  mkdir -p "$(dirname "$dest")"
+  cp "$ROOT_DIR/$rel" "$dest"
+  sed -E -i 's#\((\.\./)?images/#(/images/#g' "$dest"
+
+  for course in "${COURSE_DIRS[@]}"; do
+    dest="$CONTENT_DIR/$course/$legacy_rel"
     if [[ ! -f "$dest" ]]; then
       mkdir -p "$(dirname "$dest")"
       cp "$ROOT_DIR/$rel" "$dest"
       sed -E -i 's#\((\.\./)?images/#(/images/#g' "$dest"
     fi
-  done < <(git -C "$ROOT_DIR" ls-files '*.md' | grep -E '^[^/]+\.md$' | grep -v -E '^README\.md$|^_sidebar\.md$')
-done
+  done
+done < <(repo_files "$LEGACY_CONTENT_DIR/*.md")
 
 # Copy all non-markdown tracked files as static assets, excluding
 # build/config scaffolding files that should not be published as assets.
 while IFS= read -r rel; do
   mkdir -p "$STATIC_DIR/$(dirname "$rel")"
   cp "$ROOT_DIR/$rel" "$STATIC_DIR/$rel"
-done < <(git -C "$ROOT_DIR" ls-files | grep -v '\.md$|^hugo/|^\.github/|^\.gitignore$|^setup\.sh$')
+done < <(repo_files | grep -v '\.md$|^hugo/|^\.github/|^\.gitignore$|^setup\.sh$')
 
 # Build final static site into `public/`.
 hugo --source "$SITE_DIR" --destination "$OUTPUT_DIR" --minify

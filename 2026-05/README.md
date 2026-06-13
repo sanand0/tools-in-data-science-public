@@ -42,17 +42,17 @@ The May 2026 course content is organized into eight weeks. The sidebar keeps eac
 
 ## Assessments
 
-- [Project 1](2026-05/docs/projects/project-1.md) appears after Week 4.
-- [ROE](2026-05/docs/assessments/remote-online-exam.md) appears after Week 6.
-- [Project 2](2026-05/docs/projects/project-2.md) appears after Week 8.
-- [End Term](2026-05/docs/assessments/end-term.md) appears after Week 8.
+- [Project 1](docs/projects/project-1.md) appears after Week 4.
+- [ROE](docs/assessments/remote-online-exam.md) appears after Week 6.
+- [Project 2](docs/projects/project-2.md) appears after Week 8.
+- [End Term](docs/assessments/end-term.md) appears after Week 8.
 
 ## Important Links
 
-- [Live Sessions](2026-05/docs/live-sessions/README.md)
-- [Resources](2026-05/docs/resources/README.md)
-- [System Requirements](2026-05/docs/reference/system-requirements.md)
-- [Course Links](2026-05/docs/reference/course-links.md)
+- [Live Sessions](docs/live-sessions/README.md)
+- [Resources](docs/resources/README.md)
+- [System Requirements](docs/reference/system-requirements.md)
+- [Course Links](docs/reference/course-links.md)
 
 ## Repository Guide
 

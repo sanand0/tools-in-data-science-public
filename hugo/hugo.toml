@@ -17,8 +17,8 @@ disableKinds = ['taxonomy', 'term']
       unsafe = true
 
 [params]
-  # Keep theme mode in auto by default; explicit toggle is injected via partial.
-  BookTheme = 'auto'
+  # Keep theme mode in auto by default.
+  BookTheme = 'dark'
   BookToC = true
   BookSearch = true
   BookSection = '*'

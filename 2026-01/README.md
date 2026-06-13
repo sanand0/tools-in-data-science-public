@@ -8,18 +8,18 @@
 
 **AI will teach you**. We give you challenges. You learn by yourself, using AI & humans. **Self-learning is part of the course skills**.
 
-![](images/thats-what-ai-said.webp "Things are moving so fast that your faculty and instructors don't know much more than you. Ask AI first.")
+![](/images/thats-what-ai-said.webp "Things are moving so fast that your faculty and instructors don't know much more than you. Ask AI first.")
 
 **AI will evaluate you**. Since results vary each run, learn to answer them _robustly_. LLM decisions are **final**.
 
-![](images/my-decision-is-final.webp "The skill you learn is how to convince AI - an increasingly useful skill.")
+![](/images/my-decision-is-final.webp "The skill you learn is how to convince AI - an increasingly useful skill.")
 
 <!-- https://gemini.google.com/app/2421e54562afb8c7 -->
 <!-- Archive: https://gemini.google.com/app/8118aff285667319 -->
 
 **There is no course content**. Just challenges for you to solve, and prompts to guide you.
 
-![](images/there-is-no-content.webp "You learn by solving problems, not by watching videos or reading tutorials.")
+![](/images/there-is-no-content.webp "You learn by solving problems, not by watching videos or reading tutorials.")
 
 <!-- https://gemini.google.com/app/7354ff9f8d18b9c0 -->
 
@@ -194,13 +194,13 @@ We used to have a [Virtual TA](https://chatgpt.com/g/g-mZqKVxKDx-iitm-tds-teachi
 Check these three links regularly to keep up with the course.
 
 1. **[Seek Notifications](https://seek.onlinedegree.iitm.ac.in/)** for Course Notifications. Log into [seek.onlinedegree.iitm.ac.in](https://seek.onlinedegree.iitm.ac.in/) and click on the bell icon on the top right corner. Check notifications daily.
-   ![Portal Inbox](images/portal_notifications.webp)
+   ![Portal Inbox](/images/portal_notifications.webp)
 2. **[Your email](https://mail.google.com/)** for Course Announcements. [Seek](https://seek.onlinedegree.iitm.ac.in/) Inbox are forwarded to your email. Check daily. Check spam folders too.
 3. **[TDS Discourse](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34)**: Faculty, instructors, and TAs will share updates and address queries here. Email [support@study.iitm.ac.in](mailto:support@study.iitm.ac.in) cc: [discourse-staff1@study.iitm.ac.in](mailto:discourse-staff1@study.iitm.ac.in) if you can't access Discourse.
 
 ## Previous terms
 
-- [TDS: Course Content - Sep 2025](2025-09/)
-- [TDS: Course Content - May 2025](2025-05/)
+- [TDS: Course Content - Sep 2025](../2025-09/)
+- [TDS: Course Content - May 2025](../2025-05/)
   - [Community solutions](https://tdsfu.pages.dev/)
-- [TDS: Course Content - Jan 2025](2025-01/)
+- [TDS: Course Content - Jan 2025](../2025-01/)
