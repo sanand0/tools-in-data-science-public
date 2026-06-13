@@ -18,6 +18,19 @@
     :root {
       --content-max-width: 1000px;
       --content-padding: 1.5rem 1rem;
+      --sidebar-width: 20vw;
+      --theme-color: #81a1c1;
+      --base-background-color: #2e3440;
+      --base-color: #eceff4;
+      --sidebar-background: #2e3440;
+      --sidebar-name-color: #eceff4;
+      --sidebar-nav-link-color: #eceff4;
+      --sidebar-nav-link-color--active: #81a1c1;
+      --sidebar-nav-link-border-color--active: #81a1c1;
+      --search-input-background-color: #3b4252;
+      --search-input-color: #eceff4;
+      --search-result-keyword-background: #434c5e;
+      --search-result-keyword-color: #eceff4;
     }
     
     @media screen and (min-width: 1000px) {
@@ -47,6 +60,64 @@
 
     summary {
       cursor: pointer;
+    }
+
+    body {
+      background: #2e3440;
+      color: #eceff4;
+    }
+
+    .sidebar-nav .tds-week,
+    .sidebar nav .tds-week {
+      margin: 0.55rem 0;
+      border-bottom: 1px solid var(--mono-tint2, #e5e7eb);
+      padding-bottom: 0.4rem;
+    }
+
+    .sidebar-nav .tds-week summary,
+    .sidebar nav .tds-week summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-weight: 600;
+      line-height: 1.35;
+      list-style: none;
+    }
+
+    .sidebar-nav .tds-week summary::-webkit-details-marker,
+    .sidebar nav .tds-week summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .sidebar-nav .tds-week summary::after,
+    .sidebar nav .tds-week summary::after {
+      content: "+";
+      color: var(--theme-color, #dc3545);
+      font-weight: 700;
+    }
+
+    .sidebar-nav .tds-week[open] summary::after,
+    .sidebar nav .tds-week[open] summary::after {
+      content: "-";
+    }
+
+    .sidebar-nav .tds-week ul,
+    .sidebar nav .tds-week ul {
+      border-left: 2px solid var(--mono-tint2, #e5e7eb);
+      margin: 0.6rem 0 0 0.15rem;
+      padding-left: 0.85rem;
+    }
+
+    .sidebar-nav .tds-week li,
+    .sidebar nav .tds-week li {
+      margin: 0.35rem 0;
+    }
+
+    @media screen and (max-width: 768px) {
+      :root {
+        --sidebar-width: 82vw;
+      }
     }
 
     .open.folder.level-1 {
@@ -125,7 +196,20 @@
 
 <body>
   <div id="app"></div>
+  <script src="legacy/legacy-pages.js"></script>
   <script>
+    const legacyAlias = {};
+    const legacyTerms = ['2025-01', '2025-05', '2025-09', '2026-01', '2026-02', '2026-05'];
+    (window.tdsLegacyPages || []).forEach((page) => {
+      const target = `/legacy/2025-content/${page}.md`;
+      legacyAlias[`/${page}`] = target;
+      legacyAlias[`/${page}.md`] = target;
+      legacyTerms.forEach((term) => {
+        legacyAlias[`/${term}/${page}`] = target;
+        legacyAlias[`/${term}/${page}.md`] = target;
+      });
+    });
+
     function resizableSidebar(hook, vm) {
       hook.doneEach(() => {
         const sidebar = document.querySelector('.sidebar');
@@ -166,12 +250,65 @@
       });
     }
 
+    function persistSidebarDetails(hook, vm) {
+      const storageKey = 'tds-sidebar-week-state';
+
+      const readState = () => {
+        try {
+          return JSON.parse(localStorage.getItem(storageKey) || '{}');
+        } catch (e) {
+          return {};
+        }
+      };
+
+      const keyFor = (detail) => detail.querySelector('summary')?.textContent?.trim() || '';
+
+      const applySidebarState = () => {
+        const details = [...document.querySelectorAll('.sidebar details.tds-week')];
+        const state = readState();
+
+        details.forEach((detail) => {
+          const key = keyFor(detail);
+          if (Object.prototype.hasOwnProperty.call(state, key)) detail.open = !!state[key];
+        });
+
+        const active = document.querySelector('.sidebar a.active, .sidebar a[aria-current="page"]');
+        const activeParent = active?.closest('details.tds-week');
+        if (activeParent) activeParent.open = true;
+
+        const writeState = () => {
+          const next = {};
+          details.forEach((detail) => {
+            const key = keyFor(detail);
+            if (key) next[key] = detail.open;
+          });
+          localStorage.setItem(storageKey, JSON.stringify(next));
+        };
+
+        details.forEach((detail) => detail.addEventListener('toggle', writeState));
+        document.querySelectorAll('.sidebar a[href]').forEach((link) => link.addEventListener('click', writeState));
+        writeState();
+      };
+
+      hook.doneEach(() => {
+        setTimeout(applySidebarState, 0);
+      });
+    }
+
     window.$docsify = {
-      name: 'Tools in Data Science — May 2026',
+      name: 'Tools in Data Science',
       subMaxLevel: 1,
-      themeColor: '#dc3545',
+      themeColor: '#81a1c1',
       loadSidebar: true,
+      alias: legacyAlias,
       sidebarDisplayLevel: 1,
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: 'Search',
+        noData: 'No results',
+        depth: 3
+      },
       pagination: {
         previousText: 'Previous',
         nextText: 'Next',
@@ -179,7 +316,8 @@
         crossChapterText: true
       },
       plugins: [
-        resizableSidebar
+        resizableSidebar,
+        persistSidebarDetails
       ]
     };
 

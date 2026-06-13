@@ -8,18 +8,18 @@
 
 **AI will teach you**. We give you challenges. You learn by yourself, using AI & humans. **Self-learning is part of the course skills**.
 
-![](images/thats-what-ai-said.webp "Things are moving so fast that your faculty and instructors don't know much more than you. Ask AI first.")
+![](/images/thats-what-ai-said.webp "Things are moving so fast that your faculty and instructors don't know much more than you. Ask AI first.")
 
 **AI will evaluate you**. Since results vary each run, learn to answer them _robustly_. LLM decisions are **final**.
 
-![](images/my-decision-is-final.webp "The skill you learn is how to convince AI - an increasingly useful skill.")
+![](/images/my-decision-is-final.webp "The skill you learn is how to convince AI - an increasingly useful skill.")
 
 <!-- https://gemini.google.com/app/2421e54562afb8c7 -->
 <!-- Archive: https://gemini.google.com/app/8118aff285667319 -->
 
 **There is no course content**. Just challenges for you to solve, and prompts to guide you.
 
-![](images/there-is-no-content.webp "You learn by solving problems, not by watching videos or reading tutorials.")
+![](/images/there-is-no-content.webp "You learn by solving problems, not by watching videos or reading tutorials.")
 
 <!-- https://gemini.google.com/app/7354ff9f8d18b9c0 -->
 
@@ -132,7 +132,7 @@ The course covers the typical data science workflow:
 | [Package][GA8]              | [**GA8**][GA8] |        | Sun 19 Apr 2026 | Thu 30 Apr 2026 |
 | [Project 1][P1]             | [**P1**][P1]   |    20% | Wed 11 Feb 2026 | Mon 30 Mar 2026 |
 | [Project 2A - picoCTF][P2A] | [**P2A**][P2A] |    20% | Fri 20 Mar 2026 | Mon 27 Apr 2026 |
-| [P2B - New Questions][P2B]  | [**P2B**][P2B] |        | Sun 19 Apr 2026 | Mon 04 May 2026 | 
+| [P2B - New Questions][P2B]  | [**P2B**][P2B] |        | Sun 19 Apr 2026 | Mon 04 May 2026 |
 | Remote Online Exam ([hard]) | [**ROE**][ROE] |    20% | Sun 05 Apr 2026 | Sun 05 Apr 2026 |
 | Final end-term (in-person)  | F              |    20% | Sun 10 May 2026 | Sun 10 May 2026 |
 
@@ -175,11 +175,11 @@ For Project 2: Sign up on [picoCTF](https://play.picoctf.org/) and join the [cla
 | ------------------ | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | Faculty            | [Anand S](https://www.linkedin.com/in/sanand0/)                                    | [root.node@gmail.com](mailto:root.node@gmail.com)                       | [@s.anand](https://discourse.onlinedegree.iitm.ac.in/u/s.anand)                   |
 | Instructor         | [Carlton D'Silva](https://www.linkedin.com/in/carlton-d-silva-13770b35a)           | [22f3001919@ds.study.iitm.ac.in](mailto:22f3001919@ds.study.iitm.ac.in) | [@carlton](https://discourse.onlinedegree.iitm.ac.in/u/carlton)                   |
-| Instructor         | [Prasanna S](https://www.linkedin.com/in/prasanna-sugumaran-ab980222/)             | [prasanna@study.iitm.ac.in](mailto:prasanna@study.iitm.ac.in)           | [@iamprasna](https://discourse.onlinedegree.iitm.ac.in/u/iamprasna)                 |
-| Teaching Assistant | [Hritik Roshan Maurya](https://www.linkedin.com/in/hritik-roshan-maurya-28446411a) | [22f3002460@ds.study.iitm.ac.in](mailto:22f3002460@ds.study.iitm.ac.in) | [@HritikRoshan_HRM](https://discourse.onlinedegree.iitm.ac.in/u/hritikroshan_hrm)          |
-| Teaching Assistant | [Jivraj Singh](https://www.linkedin.com/in/jivraj-singh-shekhawat-92a547269/)      | [22f3002542@ds.study.iitm.ac.in](mailto:22f3002542@ds.study.iitm.ac.in) | [@Jivraj](https://discourse.onlinedegree.iitm.ac.in/u/jivraj)                    |
-| Teaching Assistant | [Mayank Poddar](https://www.linkedin.com/in/mynkpdr)                               | [23f3004197@ds.study.iitm.ac.in](mailto:23f3004197@ds.study.iitm.ac.in) | [@23f3004197](https://discourse.onlinedegree.iitm.ac.in/u/23f3004197)                |
-| Teaching Assistant | [Sujal Pradhan](https://www.linkedin.com/in/sujal-raj-pradhan-a85043242/)          | [23f2004759@ds.study.iitm.ac.in](mailto:23f2004759@ds.study.iitm.ac.in) | [@23f2004759](https://discourse.onlinedegree.iitm.ac.in/u/23f2004759)                |
+| Instructor         | [Prasanna S](https://www.linkedin.com/in/prasanna-sugumaran-ab980222/)             | [prasanna@study.iitm.ac.in](mailto:prasanna@study.iitm.ac.in)           | [@iamprasna](https://discourse.onlinedegree.iitm.ac.in/u/iamprasna)               |
+| Teaching Assistant | [Hritik Roshan Maurya](https://www.linkedin.com/in/hritik-roshan-maurya-28446411a) | [22f3002460@ds.study.iitm.ac.in](mailto:22f3002460@ds.study.iitm.ac.in) | [@HritikRoshan_HRM](https://discourse.onlinedegree.iitm.ac.in/u/hritikroshan_hrm) |
+| Teaching Assistant | [Jivraj Singh](https://www.linkedin.com/in/jivraj-singh-shekhawat-92a547269/)      | [22f3002542@ds.study.iitm.ac.in](mailto:22f3002542@ds.study.iitm.ac.in) | [@Jivraj](https://discourse.onlinedegree.iitm.ac.in/u/jivraj)                     |
+| Teaching Assistant | [Mayank Poddar](https://www.linkedin.com/in/mynkpdr)                               | [23f3004197@ds.study.iitm.ac.in](mailto:23f3004197@ds.study.iitm.ac.in) | [@23f3004197](https://discourse.onlinedegree.iitm.ac.in/u/23f3004197)             |
+| Teaching Assistant | [Sujal Pradhan](https://www.linkedin.com/in/sujal-raj-pradhan-a85043242/)          | [23f2004759@ds.study.iitm.ac.in](mailto:23f2004759@ds.study.iitm.ac.in) | [@23f2004759](https://discourse.onlinedegree.iitm.ac.in/u/23f2004759)             |
 
 What to contact whom, for what, and how:
 
@@ -194,13 +194,13 @@ We used to have a [Virtual TA](https://chatgpt.com/g/g-mZqKVxKDx-iitm-tds-teachi
 Check these three links regularly to keep up with the course.
 
 1. **[Seek Notifications](https://seek.onlinedegree.iitm.ac.in/)** for Course Notifications. Log into [seek.onlinedegree.iitm.ac.in](https://seek.onlinedegree.iitm.ac.in/) and click on the bell icon on the top right corner. Check notifications daily.
-   ![Portal Inbox](images/portal_notifications.webp)
+   ![Portal Inbox](/images/portal_notifications.webp)
 2. **[Your email](https://mail.google.com/)** for Course Announcements. [Seek](https://seek.onlinedegree.iitm.ac.in/) Inbox are forwarded to your email. Check daily. Check spam folders too.
 3. **[TDS Discourse](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34)**: Faculty, instructors, and TAs will share updates and address queries here. Email [support@study.iitm.ac.in](mailto:support@study.iitm.ac.in) cc: [discourse-staff1@study.iitm.ac.in](mailto:discourse-staff1@study.iitm.ac.in) if you can't access Discourse.
 
 ## Previous terms
 
-- [TDS: Course Content - Sep 2025](2025-09/)
-- [TDS: Course Content - May 2025](2025-05/)
+- [TDS: Course Content - Sep 2025](../2025-09/)
+- [TDS: Course Content - May 2025](../2025-05/)
   - [Community solutions](https://tdsfu.pages.dev/)
-- [TDS: Course Content - Jan 2025](2025-01/)
+- [TDS: Course Content - Jan 2025](../2025-01/)
