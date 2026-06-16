@@ -1,5 +1,3 @@
-import Details from '@theme/Details';
-
 # Vector Databases
 
 > Embeddings without a vector database are like data without a database — unusable at scale.

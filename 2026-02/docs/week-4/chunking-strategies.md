@@ -1,5 +1,3 @@
-import Details from '@theme/Details';
-
 # Chunking Strategies
 
 > **The most underrated step in RAG.** Better chunking → better retrieval → better answers. No amount of fancy reranking rescues bad chunks.
