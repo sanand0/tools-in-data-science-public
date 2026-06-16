@@ -1,10 +1,10 @@
-# Tools in Data Science - Jan 2026
+# Tools in Data Science - May 2026
 
 [Tools in Data Science](https://study.iitm.ac.in/ds/course_pages/BSSE2002.html) is a diploma level data science course at IIT Madras.
 
-**It bridges the gap between theory and real-world implementation**. Specifically: you'll learn what tools do data scientists actually use and how.
+**It bridges the gap between theory and real-world implementation**. Specifically: you'll learn what tools data scientists actually use and how.
 
-**It prepares you for AI**. AI is rapidly changing how data science work. You'll practice using AI to learn, execute, and explain data science tasks.
+**It prepares you for AI**. AI is rapidly changing how data science works. You'll practice using AI to learn, execute, and explain data science tasks.
 
 **AI will teach you**. We give you challenges. You learn by yourself, using AI & humans. **Self-learning is part of the course skills**.
 
@@ -17,11 +17,7 @@
 <!-- https://gemini.google.com/app/2421e54562afb8c7 -->
 <!-- Archive: https://gemini.google.com/app/8118aff285667319 -->
 
-**There is no course content**. Just challenges for you to solve, and prompts to guide you.
-
-![](images/there-is-no-content.webp "You learn by solving problems, not by watching videos or reading tutorials.")
-
-<!-- https://gemini.google.com/app/7354ff9f8d18b9c0 -->
+**Course content is there but we highly encourage you to take that as just topic reference and you should do a lot of practice and learn using open internet / AI etc.**
 
 <details>
 <summary><strong>Anyone can audit this course. It's public.</strong></summary>
@@ -44,7 +40,7 @@ Take the [Entrance Exam][EE]. IITM BS students scoring below 40% shouldn't regis
 </details>
 
 <details>
-<summary><strong>It's a practical course. Just get it done. "How" matter less.</strong></summary>
+<summary><strong>It's a practical course. Just get it done. "How" matters less.</strong></summary>
 
 The course models **real-life**. Unclear problems, messy data, ridiculous deadlines, limited support.
 
@@ -81,7 +77,7 @@ Here's students' feedback from past terms:
   [#](https://discourse.onlinedegree.iitm.ac.in/t/is-it-fair-to-consider-20-weightage-of-such-exam-which-is-impossible-to-solve-in-given-time-i-e-roe/141413/10)
 - [Should you take Tools in Data Science this term?](https://discourse.onlinedegree.iitm.ac.in/t/tools-in-data-science-should-you-take-tools-in-data-science-this-term/186454) (Ans: take it in your **last term**)
 
-**[Take Graded assignment 1](https://exam.sanand.workers.dev/tds-2025-09-ga1) to check if you're ready for this course.** Please drop this course (do it in a later term) if you score low. It'll be too tough for you now.
+**[Take Graded assignment 0](https://exam.sanand.workers.dev/tds-2026-05-ga0) to check if you're ready for this course.** Please drop this course (do it in a later term) if you score low. It'll be too tough for you now.
 
 But the learnings may be worth the effort.
 
@@ -118,40 +114,37 @@ Check [system-requirements.md](system-requirements.md) for permissions you need,
 
 The course covers the typical data science workflow:
 
-| [Content][Source]           | Assessment     | Weight |    Release Date | Submission Date |
-| --------------------------- | -------------- | -----: | --------------: | --------------: |
-| [Entrance Exam][EE]         | [**EE**][EE]   |     0% | Wed 07 Jan 2026 | Mon 02 Feb 2026 |
-| Graded Assignment (GA)      | Best 5 of 8    |    20% |                 |                 |
-| [Setup][GA1]                | [**GA1**][GA1] |        | Fri 06 Feb 2026 | Wed 18 Feb 2026 |
-| [Deploy][GA2]               | [**GA2**][GA2] |        | Fri 13 Feb 2026 | Sun 22 Feb 2026 |
-| [Source][GA3]               | [**GA3**][GA3] |        | Fri 20 Feb 2026 | Sun 01 Mar 2026 |
-| [Wrangle][GA4]              | [**GA4**][GA4] |        | Fri 27 Feb 2026 | Sun 08 Mar 2026 |
-| [Analyze][GA5]              | [**GA5**][GA5] |        | Fri 06 Mar 2026 | Fri 20 Mar 2026 |
-| [Test][GA6]                 | [**GA6**][GA6] |        | Sun 22 Mar 2026 | Tue 31 Mar 2026 |
-| [Present][GA7]              | [**GA7**][GA7] |        | Fri 27 Mar 2026 | Mon 13 Apr 2026 |
-| [Package][GA8]              | [**GA8**][GA8] |        | Sun 19 Apr 2026 | Thu 30 Apr 2026 |
-| [Project 1][P1]             | [**P1**][P1]   |    20% | Wed 11 Feb 2026 | Mon 30 Mar 2026 |
-| [Project 2A - picoCTF][P2A] | [**P2A**][P2A] |    20% | Fri 20 Mar 2026 | Mon 27 Apr 2026 |
-| [P2B - New Questions][P2B]  | [**P2B**][P2B] |        | Sun 19 Apr 2026 | Mon 04 May 2026 | 
-| Remote Online Exam ([hard]) | [**ROE**][ROE] |    20% | Sun 05 Apr 2026 | Sun 05 Apr 2026 |
-| Final end-term (in-person)  | F              |    20% | Sun 10 May 2026 | Sun 10 May 2026 |
+| Content                     | Assessment      | Weight | Release Date    | Submission Date | Feedback |
+| --------------------------- | --------------- | -----: | --------------- | --------------- | -------- |
+| Graded Assignment (GA)      | Best 7 of 9     |    20% |                 |                 |          |
+| [Bootcamp][GA0]             | [**GA0**][GA0]  | —      | Thu 14 May 2026 | Sun 21 Jun 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-bootcamp)         |
+| [Week-1][GA1]               | [**GA1**][GA1]  | —      | Wed 17 Jun 2026 | Sun 28 Jun 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-week1-feedback)   |
+| [Week-2][GA2]               | [**GA2**][GA2]  | —      | Wed 24 Jun 2026 | Sun 05 Jul 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-week2-feedback)   |
+| [Project 1][P1]             | **P1**          |    20% | Wed 24 Jun 2026 | Wed 22 Jul 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-project1-feedback)|
+| [Week-3][GA3]               | [**GA3**][GA3]  | —      | Wed 01 Jul 2026 | Sun 12 Jul 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-week3-feedback)   |
+| [Week-4][GA4]               | [**GA4**][GA4]  | —      | Wed 08 Jul 2026 | Wed 22 Jul 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-week4-feedback)   |
+| [Week-5][GA5]               | [**GA5**][GA5]  | —      | Wed 15 Jul 2026 | Sun 26 Jul 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-week5-feedback)   |
+| [Week-6][GA6]               | [**GA6**][GA6]  | —      | Wed 22 Jul 2026 | Sun 02 Aug 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-week6-feedback)   |
+| [Project 2][P2]             | **P2**          |    20% | Wed 22 Jul 2026 | Wed 19 Aug 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-project2-feedback)|
+| [Remote Online Exam][ROE]   | [**ROE**][ROE]  |    20% | Sun 02 Aug 2026 | Sun 02 Aug 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-roe-feedback)     |
+| [Week-7][GA7]               | [**GA7**][GA7]  | —      | Wed 05 Aug 2026 | Wed 19 Aug 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-week7-feedback)   |
+| [Week-8][GA8]               | [**GA8**][GA8]  | —      | Wed 12 Aug 2026 | Sun 23 Aug 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-week8-feedback)   |
+| Final end-term (in-person)  | F               |    20% | Sun 13 Sep 2026 | Sun 13 Sep 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-et)               |
 
-For Project 2: Sign up on [picoCTF](https://play.picoctf.org/) and join the [classroom](https://play.picoctf.org/classrooms) with invite code: `CTuhJLfpM`. Then solve your [assigned questions](https://play.picoctf.org/practice?assigned=1). **You must complete both parts of P2** (picoCTF AND New Questions) for the full P2 score.
 
 [Source]: https://github.com/sanand0/tools-in-data-science-public/commits
-[EE]: https://exam.sanand.workers.dev/tds-2026-01-ee
-[GA1]: https://exam.sanand.workers.dev/tds-2026-01-ga1
-[GA2]: https://exam.sanand.workers.dev/tds-2026-01-ga2
-[GA3]: https://exam.sanand.workers.dev/tds-2026-01-ga3
-[GA4]: https://exam.sanand.workers.dev/tds-2026-01-ga4
-[GA5]: https://exam.sanand.workers.dev/tds-2026-01-ga5
-[GA6]: https://exam.sanand.workers.dev/tds-2026-01-ga6
-[GA7]: https://exam.sanand.workers.dev/tds-2026-01-ga7
-[GA8]: https://exam.sanand.workers.dev/tds-2026-01-ga8
-[P1]: https://exam.sanand.workers.dev/tds-2026-01-p1
-[P2A]: https://play.picoctf.org/
-[P2B]: https://exam.sanand.workers.dev/tds-2026-01-p2
-[ROE]: https://exam.sanand.workers.dev/tds-2026-01-roe
+[GA0]: https://exam.sanand.workers.dev/tds-2026-05-ga0
+[GA1]: https://exam.sanand.workers.dev/tds-2026-05-ga1
+[GA2]: https://exam.sanand.workers.dev/tds-2026-05-ga2
+[GA3]: https://exam.sanand.workers.dev/tds-2026-05-ga3
+[GA4]: https://exam.sanand.workers.dev/tds-2026-05-ga4
+[GA5]: https://exam.sanand.workers.dev/tds-2026-05-ga5
+[GA6]: https://exam.sanand.workers.dev/tds-2026-05-ga6
+[GA7]: https://exam.sanand.workers.dev/tds-2026-05-ga7
+[GA8]: https://exam.sanand.workers.dev/tds-2026-05-ga8
+[P1]: https://exam.sanand.workers.dev/tds-2026-05-p1
+[P2]: https://exam.sanand.workers.dev/tds-2026-05-p2
+[ROE]: https://exam.sanand.workers.dev/tds-2026-05-roe
 [hard]: https://discourse.onlinedegree.iitm.ac.in/t/roe-prep-discussion-thread-tds-may-2025/181581/25
 
 **Notes**
@@ -160,14 +153,14 @@ For Project 2: Sign up on [picoCTF](https://play.picoctf.org/) and join the [cla
 
 ## Resources
 
-| Resource                      | IITM                                                                                                                                        | Public                                                                        |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Live Video Sessions           | [Recordings](https://drive.google.com/drive/folders/1smwtcdgiANDkrs8LhnGGAEr43Yhp-R9O)                                                      | [YouTube](https://www.youtube.com/@se-lr5ff) / [Archives](live-sessions.md)   |
-| Discussion                    | [IITM](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34)                                                                       | [Public](https://github.com/sanand0/tools-in-data-science-public/discussions) |
-| Course page - Jan 2026        | [IITM](https://seek.onlinedegree.iitm.ac.in/courses/ns_26t1_se2002)                                                                         | [Public](https://tds.s-anand.net/)                                            |
-| Announcement group - Jan 2026 | [IITM](https://groups.google.com/a/study.iitm.ac.in/g/26t1_se2002-announce)                                                                 | [Public](https://groups.google.com/g/tds-iitm)                                |
-| Grading Document - Jan 2026   | [IITM](https://docs.google.com/document/d/e/2PACX-1vSUvKzH7yIXNVwUgRYSIT8M0x1jhFSkslEtj9UPo3dtWI_sJ38Hh_PzbBygpF0vIOo8K7lTy-uYkqdu/pub)     |                                                                               |
-| Student Handbook              | [IITM](https://docs.google.com/document/u/2/d/e/2PACX-1vRxGnnDCVAO3KX2CGtMIcJQuDrAasVk2JHbDxkjsGrTP5ShhZK8N6ZSPX89lexKx86QPAUswSzGLsOA/pub) |                                                                               |
+| Resource                      | IITM                                                                                                                                                                  | Public                                                                        |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Live Video Sessions           |                                                                                                                                                                       | [YouTube](https://www.youtube.com/@se-lr5ff) / [Archives](live-sessions.md)   |
+| Discussion                    | [IITM](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34)                                                                                                 | [Public](https://github.com/sanand0/tools-in-data-science-public/discussions) |
+| Course page - May 2026        | [IITM](https://seek.onlinedegree.iitm.ac.in/courses/ns_26t2_se2002)                                                                                                   | [Public](https://tds.s-anand.net/)                                            |
+| Announcement group - May 2026 | [IITM](https://groups.google.com/a/study.iitm.ac.in/g/26t2_se2002-announce)                                                                                           | [Public](https://groups.google.com/g/tds-iitm)                                |
+| Grading Document - May 2026   | [IITM](https://docs.google.com/document/d/e/2PACX-1vT5PBOz4OH663W0IJPVGVjG_nfmYZGfFI7W1j-6wTLcex13O_7BZmf6a96Q6liO0W-mLZB5hOGZeNNl/pub#h.2bn6wsx)                     |                                                                               |
+| Student Handbook              | [IITM](https://docs.google.com/document/d/e/2PACX-1vRxGnnDCVAO3KX2CGtMIcJQuDrAasVk2JHbDxkjsGrTP5ShhZK8N6ZSPX89lexKx86QPAUswSzGLsOA/pub)                               |                                                                               |
 
 ## Contacts
 
@@ -175,16 +168,16 @@ For Project 2: Sign up on [picoCTF](https://play.picoctf.org/) and join the [cla
 | ------------------ | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | Faculty            | [Anand S](https://www.linkedin.com/in/sanand0/)                                    | [root.node@gmail.com](mailto:root.node@gmail.com)                       | [@s.anand](https://discourse.onlinedegree.iitm.ac.in/u/s.anand)                   |
 | Instructor         | [Carlton D'Silva](https://www.linkedin.com/in/carlton-d-silva-13770b35a)           | [22f3001919@ds.study.iitm.ac.in](mailto:22f3001919@ds.study.iitm.ac.in) | [@carlton](https://discourse.onlinedegree.iitm.ac.in/u/carlton)                   |
-| Instructor         | [Prasanna S](https://www.linkedin.com/in/prasanna-sugumaran-ab980222/)             | [prasanna@study.iitm.ac.in](mailto:prasanna@study.iitm.ac.in)           | [@iamprasna](https://discourse.onlinedegree.iitm.ac.in/u/iamprasna)                 |
-| Teaching Assistant | [Hritik Roshan Maurya](https://www.linkedin.com/in/hritik-roshan-maurya-28446411a) | [22f3002460@ds.study.iitm.ac.in](mailto:22f3002460@ds.study.iitm.ac.in) | [@HritikRoshan_HRM](https://discourse.onlinedegree.iitm.ac.in/u/hritikroshan_hrm)          |
-| Teaching Assistant | [Jivraj Singh](https://www.linkedin.com/in/jivraj-singh-shekhawat-92a547269/)      | [22f3002542@ds.study.iitm.ac.in](mailto:22f3002542@ds.study.iitm.ac.in) | [@Jivraj](https://discourse.onlinedegree.iitm.ac.in/u/jivraj)                    |
-| Teaching Assistant | [Mayank Poddar](https://www.linkedin.com/in/mynkpdr)                               | [23f3004197@ds.study.iitm.ac.in](mailto:23f3004197@ds.study.iitm.ac.in) | [@23f3004197](https://discourse.onlinedegree.iitm.ac.in/u/23f3004197)                |
-| Teaching Assistant | [Sujal Pradhan](https://www.linkedin.com/in/sujal-raj-pradhan-a85043242/)          | [23f2004759@ds.study.iitm.ac.in](mailto:23f2004759@ds.study.iitm.ac.in) | [@23f2004759](https://discourse.onlinedegree.iitm.ac.in/u/23f2004759)                |
+| Instructor         | [Prasanna S](https://www.linkedin.com/in/prasanna-sugumaran-ab980222/)             | [prasanna@study.iitm.ac.in](mailto:prasanna@study.iitm.ac.in)           | [@iamprasna](https://discourse.onlinedegree.iitm.ac.in/u/iamprasna)               |
+| Teaching Assistant | [Hritik Roshan Maurya](https://www.linkedin.com/in/hritik-roshan-maurya-28446411a) | [22f3002460@ds.study.iitm.ac.in](mailto:22f3002460@ds.study.iitm.ac.in) | [@HritikRoshan_HRM](https://discourse.onlinedegree.iitm.ac.in/u/hritikroshan_hrm) |
+| Teaching Assistant | [Mayank Poddar](https://www.linkedin.com/in/mynkpdr)                               | [23f3004197@ds.study.iitm.ac.in](mailto:23f3004197@ds.study.iitm.ac.in) | [@23f3004197](https://discourse.onlinedegree.iitm.ac.in/u/23f3004197)             |
+| Teaching Assistant | [Jaideep Medavarapu](https://discourse.onlinedegree.iitm.ac.in/u/jaideep)          | [23f2001992@ds.study.iitm.ac.in](mailto:23f2001992@ds.study.iitm.ac.in) | [@jaideep](https://discourse.onlinedegree.iitm.ac.in/u/jaideep)                   |
+| Teaching Assistant | [Agrim Srivastava](https://discourse.onlinedegree.iitm.ac.in/u/23f3002782)         | [23f3002782@ds.study.iitm.ac.in](mailto:23f3002782@ds.study.iitm.ac.in) | [@23f3002782](https://discourse.onlinedegree.iitm.ac.in/u/23f3002782)             |
 
 What to contact whom, for what, and how:
 
 - **Teaching assistants**: To learn the subject **after** asking AI twice. E.g. "How do I solve this assignment / project"
-- **Unstructors**: For exceptions **after** asking AI, TAs, and with proof. E.g. "My marks are wrong", "I need an extension", etc.
+- **Instructors**: For exceptions **after** asking AI, TAs, and with proof. E.g. "My marks are wrong", "I need an extension", etc.
 - **Faculty**: For suggestions on next term's course content.
 
 We used to have a [Virtual TA](https://chatgpt.com/g/g-mZqKVxKDx-iitm-tds-teaching-assistant) (a [custom GPT](tds-ta-instructions.md)) who has retired now.
@@ -195,12 +188,12 @@ Check these three links regularly to keep up with the course.
 
 1. **[Seek Notifications](https://seek.onlinedegree.iitm.ac.in/)** for Course Notifications. Log into [seek.onlinedegree.iitm.ac.in](https://seek.onlinedegree.iitm.ac.in/) and click on the bell icon on the top right corner. Check notifications daily.
    ![Portal Inbox](images/portal_notifications.webp)
-2. **[Your email](https://mail.google.com/)** for Course Announcements. [Seek](https://seek.onlinedegree.iitm.ac.in/) Inbox are forwarded to your email. Check daily. Check spam folders too.
+2. **[Your email](https://mail.google.com/)** for Course Announcements. [Seek](https://seek.onlinedegree.iitm.ac.in/) Inbox is forwarded to your email. Check daily. Check spam folders too.
 3. **[TDS Discourse](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34)**: Faculty, instructors, and TAs will share updates and address queries here. Email [support@study.iitm.ac.in](mailto:support@study.iitm.ac.in) cc: [discourse-staff1@study.iitm.ac.in](mailto:discourse-staff1@study.iitm.ac.in) if you can't access Discourse.
 
 ## Previous terms
 
+- No Content for Jan 2026 Term
 - [TDS: Course Content - Sep 2025](2025-09/)
 - [TDS: Course Content - May 2025](2025-05/)
-  - [Community solutions](https://tdsfu.pages.dev/)
 - [TDS: Course Content - Jan 2025](2025-01/)
