@@ -1,282 +1,576 @@
-# 06 · HTTP Clients
+# HTTP Clients — Practical Notes
 
-?> **TL;DR**
-?> Before you write a single line of Python to talk to an API, test it with an HTTP client. **curl** is in every Linux/macOS/Windows (since 2018) install. **httpie** is curl for humans. **Postman** is for saving and sharing collections of requests.
+## 1. Big Picture
 
-## Why Learn Multiple Clients?
+```mermaid
+flowchart LR
+    A[Client: curl / Python / Browser] --> B[HTTP Request]
+    B --> C[Server / API]
+    C --> D[HTTP Response]
+    D --> A
 
-Each has its sweet spot:
+    B --> B1[Method: GET/POST/PATCH]
+    B --> B2[URL]
+    B --> B3[Headers]
+    B --> B4[Body JSON/Form/File]
 
-| Client | Best for |
-|--------|----------|
-| **curl** | Scripts, CI, server-side automation, docs (every API doc uses it) |
-| **httpie** | Exploring APIs interactively with clean output |
-| **Postman / Requestly API Client** | Saving request collections, teams, environments, pre-request scripts |
-| **VS Code REST Client extension** | Requests checked into Git alongside your code |
-
-## curl — The Universal Client
-
-`curl` is preinstalled on macOS, most Linux distros, and Windows 10+.
-
-### The 80% you need
-
-```bash
-# GET
-curl https://api.github.com/users/octocat
-
-# GET with headers
-curl -H "Accept: application/json" \
-     -H "Authorization: Bearer $TOKEN" \
-     https://api.github.com/user
-
-# POST JSON
-curl -X POST https://httpbin.org/post \
-     -H "Content-Type: application/json" \
-     -d '{"name": "Alice", "role": "admin"}'
-
-# POST from a file
-curl -X POST https://httpbin.org/post \
-     -H "Content-Type: application/json" \
-     -d @payload.json
-
-# Follow redirects, show headers, verbose
-curl -L -i -v https://example.com
-
-# Download a file
-curl -O https://example.com/big.zip       # save as big.zip
-curl -o out.zip https://example.com/big.zip
+    D --> D1[Status Code]
+    D --> D2[Headers]
+    D --> D3[Body JSON/Text/File]
 ```
 
-### Useful flags
+HTTP client means: **a tool or library used to talk to APIs**.
 
-| Flag | Purpose |
-|------|---------|
-| `-X METHOD` | Set HTTP method (`GET`, `POST`, `PUT`, ...) |
-| `-H "K: V"` | Add a header |
-| `-d "data"` | Request body |
-| `-d @file` | Body from file |
-| `-F "file=@path"` | Multipart upload |
-| `-u user:pass` | Basic auth |
-| `-o file` / `-O` | Write response body to file |
-| `-i` | Include response headers in output |
-| `-I` | HEAD request (headers only) |
-| `-L` | Follow redirects |
-| `-v` | Verbose (see full request/response) |
-| `-s` | Silent (for scripting) |
-| `-w "%{http_code}"` | Print HTTP status code |
-| `--fail-with-body` | Exit non-zero on 4xx/5xx, still show body |
+Common clients:
 
-### Real-world curl patterns
-
-```bash
-# Piping to jq for pretty JSON
-curl -s https://api.github.com/users/octocat | jq .
-
-# Save cookies and reuse
-curl -c cookies.txt -b cookies.txt https://example.com/login
-
-# Upload a file via multipart
-curl -X POST https://httpbin.org/post \
-     -F "file=@report.pdf" \
-     -F "description=Q3 report"
-
-# Test a GraphQL endpoint
-curl -X POST https://api.example.com/graphql \
-  -H "Content-Type: application/json" \
-  -d '{"query": "{ viewer { login name } }"}'
-
-# Download everything (resume + retries)
-curl -L -C - --retry 5 --retry-delay 2 -O https://example.com/data.zip
-```
-
-## httpie — curl for humans
-
-`httpie` makes output colorful, pretty-prints JSON, and uses a cleaner command syntax.
-
-```bash
-# Install
-brew install httpie
-# or
-sudo apt install httpie
-# or
-uv tool install httpie
-```
-
-### The syntax
-
-```bash
-# GET
-http GET https://api.github.com/users/octocat
-# Or shorter:
-http api.github.com/users/octocat
-
-# POST JSON (httpie assumes JSON by default)
-http POST httpbin.org/post name=Alice role=admin
-# Equivalent to:
-# curl -X POST ... -d '{"name": "Alice", "role": "admin"}'
-
-# Headers with `Name:Value`
-http httpbin.org/headers Authorization:"Bearer abc123" User-Agent:TDS
-
-# Query params with `name==value`
-http api.github.com/search/repositories q==tensorflow per_page==5
-
-# File body (@)
-http POST httpbin.org/post @payload.json
-```
-
-### Output features
-
-```bash
-# Just the headers
-http --headers GET httpbin.org/get
-
-# Just the body, suitable for piping
-http --body httpbin.org/get | jq .
-
-# Follow redirects; show all the intermediate responses
-http --follow --all GET bit.ly/somelink
-
-# Print request too (-v)
-http -v POST httpbin.org/post name=alice
-```
-
-### Sessions and auth
-
-```bash
-# Basic auth
-http -a user:pass GET httpbin.org/basic-auth/user/pass
-
-# Bearer token (stored in session)
-http --session=github api.github.com Authorization:"Bearer $GH_TOKEN"
-http --session=github api.github.com/user       # reuses token
-```
-
-## Postman / Requestly API Client — GUI Collections
-
-A GUI is indispensable when you're dealing with:
-
-- **Collections** — dozens of related requests saved and shared.
-- **Environments** — swap `baseUrl`, `token` across `dev`/`staging`/`prod` with one click.
-- **Pre-request scripts** — compute signatures, refresh tokens.
-- **Tests** — assertions on responses (`pm.test("status 200", ...)`)
-- **Documentation** — auto-generated API docs from your collection.
-
-[**Postman**](https://www.postman.com/) (the original) is great but increasingly requires login and pushes cloud features. [**Requestly API Client**](https://requestly.com/) (covered next page) is a privacy-first alternative that stores collections as plain JSON in a folder — so you can commit them to Git. We'll use Requestly throughout this course.
-
-### Postman quick tour
-
-```
-Workspaces → Collections → Folders → Requests
-       └── Environments (variables)
-```
-
-1. Create a request: `GET https://api.github.com/users/{{username}}`
-2. Create an environment with `username = octocat`.
-3. Switch environments to test as different users.
-4. Write tests in the "Tests" tab:
-   ```js
-   pm.test("Status is 200", () => pm.response.to.have.status(200));
-   const data = pm.response.json();
-   pm.expect(data.login).to.eql("octocat");
-   ```
-
-## VS Code REST Client — Requests in Git
-
-The [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) lets you write `.http` files with your requests. Save, commit, share.
-
-```http title="api-tests.http"
-### Get user (click "Send Request" above the line)
-GET https://api.github.com/users/octocat
-Accept: application/json
-
-### Variables
-@host = https://api.github.com
-@token = {{$processEnv GITHUB_TOKEN}}
-
-### Authenticated request
-GET {{host}}/user
-Authorization: Bearer {{token}}
-
-### POST example
-POST {{host}}/repos
-Authorization: Bearer {{token}}
-Content-Type: application/json
-
-{
-  "name": "test-repo",
-  "private": false
-}
-```
-
-No separate app, no cloud account, fully auditable via Git.
-
-## REST vs GraphQL — The Quick Comparison
-
-| | REST | GraphQL |
-|---|------|---------|
-| Endpoints | Many (`/users/1`, `/users/1/repos`) | One (`/graphql`) |
-| Methods | `GET`, `POST`, `PUT`, `DELETE` | Always `POST` |
-| Over/under-fetching | Common | Client picks exact fields |
-| Caching | HTTP caches work natively | Harder — needs client cache |
-| Learning curve | Low | Medium |
-| Docs/Discovery | OpenAPI / Swagger | Introspection built-in |
-
-GraphQL request with curl:
-
-```bash
-curl -X POST https://api.github.com/graphql \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"query": "{ viewer { login repositories(first: 5) { nodes { name } } } }"}' \
-  | jq .
-```
-
-## HTTP Status Codes — The Quick Map
-
-| Range | Meaning | Common codes |
-|-------|---------|--------------|
-| **2xx** | Success | `200 OK`, `201 Created`, `204 No Content` |
-| **3xx** | Redirect | `301 Moved`, `302 Found`, `304 Not Modified` |
-| **4xx** | **Your** fault | `400 Bad Request`, `401 Unauthorized`, `403 Forbidden`, `404 Not Found`, `429 Too Many Requests` |
-| **5xx** | **Server** fault | `500 Internal`, `502 Bad Gateway`, `503 Unavailable`, `504 Timeout` |
-
-Rule of thumb: if you get `401`, check your token; `403`, check permissions; `404`, check the URL; `429`, back off and retry; `5xx`, retry with exponential backoff.
-
-## A Playground for Testing: httpbin.org
-
-Use [httpbin.org](https://httpbin.org) to experiment without touching a real API:
-
-```bash
-http GET httpbin.org/get                  # echo back your request
-http POST httpbin.org/post name=test      # see what the server received
-http GET httpbin.org/status/429           # simulate rate-limit
-http GET httpbin.org/delay/3              # 3-second response
-http GET httpbin.org/basic-auth/u/p -a u:p
-```
-
-## 5-Minute Exercise
-
-1. Get a GitHub personal access token: github.com → Settings → Developer settings → Personal access tokens → generate classic, no scopes needed.
-2. Run:
-   ```bash
-   export GH=ghp_your_token
-   curl -s -H "Authorization: Bearer $GH" https://api.github.com/user | jq .login
-   ```
-3. Same with `httpie`:
-   ```bash
-   http api.github.com/user "Authorization:Bearer $GH"
-   ```
-4. Create a `.http` file in VS Code with the same request. Install the REST Client extension. Click "Send Request".
-5. Compare output ergonomics.
-
-## Further Reading
-
-- [curl man page](https://curl.se/docs/manpage.html)
-- [httpie docs](https://httpie.io/docs/cli)
-- [Postman Learning Center](https://learning.postman.com/)
-- [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
-- [HTTP status codes — Mozilla](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+| Client                | Best use                         |
+| --------------------- | -------------------------------- |
+| `curl`                | Test/debug APIs from terminal    |
+| Python `requests`     | Simple Python API work           |
+| Python `httpx`        | Modern sync + async API work     |
+| httpbin               | Safe API testing playground      |
+| Postman / REST Client | GUI or project-based API testing |
 
 ---
 
+## 2. HTTP Request Structure
+
+```txt
+METHOD URL
+Headers
+Body
+```
+
+Example:
+
+```bash
+curl -X POST https://httpbin.org/post \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"name":"Alice","course":"TDS"}'
+```
+
+Meaning:
+
+| Part            | Meaning                  |
+| --------------- | ------------------------ |
+| `POST`          | Send/create data         |
+| URL             | API endpoint             |
+| `Content-Type`  | Body format is JSON      |
+| `Authorization` | Login/API token          |
+| `-d`            | Data/body sent to server |
+
+---
+
+## 3. HTTP Methods
+
+| Method   | Meaning             | Example            |
+| -------- | ------------------- | ------------------ |
+| `GET`    | Read data           | Get user info      |
+| `POST`   | Create/send data    | Login, create user |
+| `PUT`    | Replace full data   | Replace profile    |
+| `PATCH`  | Update partial data | Change only name   |
+| `DELETE` | Delete data         | Delete record      |
+
+Simple rule:
+
+```txt
+GET = read
+POST = create/action
+PUT/PATCH = update
+DELETE = remove
+```
+
+---
+
+## 4. `curl` Essentials
+
+### GET request
+
+```bash
+curl https://httpbin.org/get
+```
+
+With query parameters:
+
+```bash
+curl "https://httpbin.org/get?name=Alice&course=TDS"
+```
+
+Better safe version:
+
+```bash
+curl -G https://httpbin.org/get \
+  --data-urlencode "name=Alice" \
+  --data-urlencode "course=TDS"
+```
+
+---
+
+### Show headers + body
+
+```bash
+curl -i https://httpbin.org/get
+```
+
+---
+
+### Debug request deeply
+
+```bash
+curl -v https://httpbin.org/get
+```
+
+Use `-v` when something is not working.
+
+---
+
+### Send JSON
+
+```bash
+curl -X POST https://httpbin.org/post \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Alice"}'
+```
+
+---
+
+### Send token
+
+```bash
+export TOKEN="your_token_here"
+
+curl https://httpbin.org/headers \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+Never hardcode real tokens in files.
+
+---
+
+### Send JSON from file
+
+```bash
+curl -X POST https://httpbin.org/post \
+  -H "Content-Type: application/json" \
+  -d @payload.json
+```
+
+---
+
+### Upload file
+
+```bash
+curl -X POST https://httpbin.org/post \
+  -F "file=@report.pdf" \
+  -F "description=My report"
+```
+
+---
+
+### Follow redirect
+
+```bash
+curl -L https://httpbin.org/redirect/2
+```
+
+---
+
+### Important curl flags
+
+| Flag               | Use                           |
+| ------------------ | ----------------------------- |
+| `-X`               | Set method                    |
+| `-H`               | Add header                    |
+| `-d`               | Send body data                |
+| `-F`               | Upload form/file              |
+| `-i`               | Show response headers         |
+| `-v`               | Debug details                 |
+| `-L`               | Follow redirects              |
+| `-u user:pass`     | Basic auth                    |
+| `-sS`              | Silent but show errors        |
+| `--fail-with-body` | Fail on 4xx/5xx but show body |
+
+Good script-style curl:
+
+```bash
+curl -sS --fail-with-body \
+  -w "\nStatus: %{http_code}\n" \
+  https://httpbin.org/status/404
+```
+
+---
+
+## 5. httpbin — API Practice Playground
+
+`httpbin.org` echoes what you send.
+
+```mermaid
+flowchart TD
+    A[You send request] --> B[httpbin.org]
+    B --> C[It returns your method, headers, args, body]
+```
+
+Useful endpoints:
+
+| Endpoint                | Use              |
+| ----------------------- | ---------------- |
+| `/get`                  | Test GET         |
+| `/post`                 | Test POST        |
+| `/headers`              | See sent headers |
+| `/status/404`           | Test status code |
+| `/delay/3`              | Test slow API    |
+| `/basic-auth/user/pass` | Test basic auth  |
+| `/redirect/2`           | Test redirects   |
+
+Practice:
+
+```bash
+curl https://httpbin.org/get
+curl -X POST https://httpbin.org/post -d '{"x":1}' -H "Content-Type: application/json"
+curl -i https://httpbin.org/status/429
+curl https://httpbin.org/delay/3
+```
+
+---
+
+## 6. HTTP Status Codes
+
+```mermaid
+flowchart LR
+    A[HTTP Status Code] --> B[2xx Success]
+    A --> C[3xx Redirect]
+    A --> D[4xx Client Error]
+    A --> E[5xx Server Error]
+```
+
+| Code          | Meaning              | What to do            |
+| ------------- | -------------------- | --------------------- |
+| `200`         | OK                   | Parse response        |
+| `201`         | Created              | New resource made     |
+| `204`         | No content           | Do not call `.json()` |
+| `301/302`     | Redirect             | Use/follow redirect   |
+| `400`         | Bad request          | Fix body/params       |
+| `401`         | Unauthorized         | Check token/login     |
+| `403`         | Forbidden            | Check permission      |
+| `404`         | Not found            | Check URL/id          |
+| `409`         | Conflict             | Duplicate/state issue |
+| `422`         | Validation error     | Check fields          |
+| `429`         | Rate limited         | Wait/retry slowly     |
+| `500`         | Server error         | Retry/log             |
+| `502/503/504` | Gateway/down/timeout | Retry later           |
+
+Golden rule:
+
+```txt
+2xx = success
+4xx = your request problem
+5xx = server problem
+429 = slow down
+```
+
+---
+
+## 7. Python `requests`
+
+Use for simple Python scripts and normal API work.
+
+Install:
+
+```bash
+uv add requests
+```
+
+### GET
+
+```python
+import requests
+
+r = requests.get(
+    "https://httpbin.org/get",
+    params={"name": "Alice"},
+    timeout=10,
+)
+
+r.raise_for_status()
+print(r.json())
+```
+
+### POST JSON
+
+```python
+import requests
+
+r = requests.post(
+    "https://httpbin.org/post",
+    json={"name": "Alice", "course": "TDS"},
+    timeout=10,
+)
+
+r.raise_for_status()
+print(r.json())
+```
+
+### With token
+
+```python
+import os
+import requests
+
+token = os.environ["TOKEN"]
+
+r = requests.get(
+    "https://httpbin.org/headers",
+    headers={"Authorization": f"Bearer {token}"},
+    timeout=10,
+)
+
+print(r.json())
+```
+
+### Error handling
+
+```python
+import requests
+
+try:
+    r = requests.get("https://httpbin.org/status/404", timeout=10)
+    r.raise_for_status()
+    print(r.json())
+
+except requests.exceptions.Timeout:
+    print("Request timed out")
+
+except requests.exceptions.HTTPError as e:
+    print("HTTP error:", e)
+
+except requests.exceptions.RequestException as e:
+    print("Network error:", e)
+```
+
+Practical rules:
+
+```txt
+Always use timeout
+Use params= for query parameters
+Use json= for JSON body
+Use raise_for_status() for 4xx/5xx
+Use environment variables for tokens
+```
+
+---
+
+## 8. Python `httpx`
+
+Use when you want modern API code, especially async.
+
+Install:
+
+```bash
+uv add httpx
+```
+
+### Sync GET
+
+```python
+import httpx
+
+r = httpx.get(
+    "https://httpbin.org/get",
+    params={"name": "Alice"},
+    timeout=10,
+)
+
+r.raise_for_status()
+print(r.json())
+```
+
+### Better: use Client
+
+```python
+import httpx
+
+with httpx.Client(
+    base_url="https://httpbin.org",
+    headers={"Accept": "application/json"},
+    timeout=10,
+) as client:
+    r = client.get("/get", params={"topic": "httpx"})
+    r.raise_for_status()
+    print(r.json())
+```
+
+### Async example
+
+```python
+import asyncio
+import httpx
+
+async def main():
+    async with httpx.AsyncClient(timeout=10) as client:
+        r = await client.get("https://httpbin.org/get")
+        r.raise_for_status()
+        print(r.json())
+
+asyncio.run(main())
+```
+
+When to use:
+
+| Library    | Use                                    |
+| ---------- | -------------------------------------- |
+| `requests` | Simple scripts, beginner-friendly      |
+| `httpx`    | Modern apps, async, FastAPI-style work |
+
+---
+
+## 9. REST API
+
+REST usually means: **URLs represent resources, methods represent actions.**
+
+```mermaid
+flowchart TD
+    A[REST API] --> B[GET /users]
+    A --> C[GET /users/10]
+    A --> D[POST /users]
+    A --> E[PATCH /users/10]
+    A --> F[DELETE /users/10]
+```
+
+Example:
+
+```txt
+GET    /users        # list users
+GET    /users/10     # get one user
+POST   /users        # create user
+PATCH  /users/10     # update user
+DELETE /users/10     # delete user
+```
+
+REST is best for normal CRUD apps.
+
+---
+
+## 10. GraphQL
+
+GraphQL usually uses one endpoint:
+
+```txt
+POST /graphql
+```
+
+Client asks exactly what fields it wants.
+
+```graphql
+{
+  user(id: 10) {
+    name
+    email
+    posts {
+      title
+    }
+  }
+}
+```
+
+With curl:
+
+```bash
+curl -X POST https://api.example.com/graphql \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"query":"{ viewer { login name } }"}'
+```
+
+REST vs GraphQL:
+
+| Topic         | REST           | GraphQL                |
+| ------------- | -------------- | ---------------------- |
+| Endpoints     | Many           | Usually one            |
+| Data shape    | Server decides | Client decides         |
+| Easy to learn | Yes            | Medium                 |
+| Best for      | CRUD APIs      | Complex nested UI data |
+
+---
+
+## 11. Best Debugging Flow
+
+```mermaid
+flowchart TD
+    A[API not working] --> B[Test same request with curl]
+    B --> C[Check URL + method]
+    C --> D[Check headers]
+    D --> E[Check JSON body]
+    E --> F[Check status code]
+    F --> G{Status?}
+    G -->|401| H[Fix token]
+    G -->|403| I[Fix permission]
+    G -->|404| J[Fix URL/id]
+    G -->|429| K[Retry slowly]
+    G -->|5xx| L[Retry/log server issue]
+    G -->|2xx| M[Now convert to Python]
+```
+
+Use this command when stuck:
+
+```bash
+curl -v -i --fail-with-body \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Alice"}' \
+  https://httpbin.org/post
+```
+
+---
+
+## 12. Professional Habit
+
+```mermaid
+flowchart LR
+    A[Read API docs] --> B[Test with curl]
+    B --> C[Test on httpbin if needed]
+    C --> D[Write Python requests/httpx]
+    D --> E[Add timeout + error handling]
+    E --> F[Store token in env]
+    F --> G[Use in app/script]
+```
+
+## Important Q&A
+
+**Q: When should I use `requests` vs `httpx`?**
+A: `requests` is the industry standard for simple, synchronous Python scripts and is very beginner-friendly. `httpx` is newer and provides both synchronous and asynchronous capabilities. If you're building a modern async app (e.g., with FastAPI) or need HTTP/2 support, use `httpx`.
+
+**Q: Why do I need to use `raise_for_status()`?**
+A: By default, `requests` and `httpx` will not raise an exception if a request fails with a 4xx or 5xx status code; they simply return the error response. Calling `raise_for_status()` explicitly tells Python to throw an error so your code doesn't silently continue failing.
+
+**Q: What is the difference between POST and PUT/PATCH?**
+A: POST is used to create a new resource or perform an action. PUT completely replaces an existing resource with the data you send. PATCH updates only the specific fields you send, leaving the rest of the existing resource unchanged.
+
+## Final revision checklist
+
+```text
+[ ] I can use `curl` to make GET and POST requests.
+[ ] I understand the structure of an HTTP request (Method, URL, Headers, Body).
+[ ] I know how to test APIs safely using `httpbin.org`.
+[ ] I know what the 2xx, 4xx, and 5xx status codes generally mean.
+[ ] I can use Python's `requests` library to fetch JSON data.
+[ ] I always use `raise_for_status()` and `timeout` in my Python requests.
+[ ] I understand the high-level difference between REST and GraphQL.
+```
+
+Final summary:
+
+```txt
+curl      = test/debug API
+httpbin   = safe practice server
+requests  = simple Python API calls
+httpx     = modern sync/async Python API calls
+status codes = understand result
+REST      = resource-based API
+GraphQL   = query-based API
+```
+
+Most important line:
+
+```txt
+First make the API work in curl, then write Python code.
+```

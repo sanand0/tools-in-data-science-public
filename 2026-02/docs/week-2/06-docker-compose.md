@@ -1,333 +1,455 @@
-id: docker-compose
+# Podman Compose — Practical Notes
 
-# Docker & Compose
+Use containers when your app is not one process anymore. Real projects usually have **API + database + frontend + admin UI + cache**. Podman runs each part in an isolated container; Compose starts/stops them together with one file.
 
-Docker packages your app and all its dependencies into a **container** — a lightweight, isolated environment that runs identically on any machine. No more "works on my machine" problems.
-
-?> **Key Mental Model**
-?> - **Image** = blueprint (like a class in Python)
-?> - **Container** = running instance of an image (like an object)
-?> - **Dockerfile** = recipe for building an image
-?> - **Docker Compose** = run multiple containers together
-
----
-
-## Installing Docker
-
-Download [Docker Desktop](https://www.docker.com/products/docker-desktop/) for Windows/Mac. On Linux:
-
-```bash
-curl -fsSL https://get.docker.com | sh
-sudo usermod -aG docker $USER   # add yourself to docker group
-# logout and login again
-docker run hello-world           # verify it works
+```mermaid
+flowchart LR
+  Dev[Developer laptop] --> Compose[compose.yml]
+  Compose --> API[backend container]
+  Compose --> FE[frontend container]
+  Compose --> DB[postgres container]
+  Compose --> UI[pgadmin container]
+  DB --> Vol[(named volume)]
+  API --> DB
+  UI --> DB
 ```
 
----
+Podman is free and open source (Apache License). `podman-compose` is a Compose implementation for Podman focused on rootless and daemonless use.
 
-## Your First Dockerfile
+### Install, verify, uninstall
 
-```dockerfile title="Dockerfile"
-# Base image — Python 3.12 slim (smaller than full Python image)
+```bash
+# Ubuntu / Debian
+sudo apt-get update
+sudo apt-get -y install podman podman-compose
+
+# Fedora
+sudo dnf -y install podman podman-compose
+
+# macOS
+brew install podman podman-compose
+podman machine init
+podman machine start
+
+# verify
+podman --version
+podman info
+podman-compose --version
+
+# uninstall: Ubuntu / Debian
+sudo apt-get remove -y podman podman-compose
+sudo apt-get autoremove -y
+
+# uninstall: Fedora
+sudo dnf remove -y podman podman-compose
+
+# uninstall: macOS
+podman machine stop
+podman machine rm
+brew uninstall podman podman-compose
+```
+
+`podman-compose` is direct and simple. Newer Podman also has `podman compose`, but that is a wrapper around an installed Compose provider, so beginners should use **one style consistently**: `podman-compose up`, `podman-compose down`, `podman-compose logs`.
+
+First learn single containers. An **image** is the packaged blueprint. A **container** is the running process. `-p` publishes ports as `host_port:container_port`. `-v` attaches storage. Named volumes are safer than random folders for databases.
+
+```bash
+# pull small test image
+podman pull postgres:16-alpine
+
+# create named volumes
+podman volume create pgdata
+podman volume create pgadmin_data
+
+# run PostgreSQL
+podman run -d \
+  --name tds-postgres \
+  -e POSTGRES_DB=tdsdb \
+  -e POSTGRES_USER=tdsuser \
+  -e POSTGRES_PASSWORD=tdspass \
+  -p 5432:5432 \
+  -v pgdata:/var/lib/postgresql/data \
+  postgres:16-alpine
+
+# run pgAdmin
+podman run -d \
+  --name tds-pgadmin \
+  -e PGADMIN_DEFAULT_EMAIL=admin@example.com \
+  -e PGADMIN_DEFAULT_PASSWORD=adminpass \
+  -p 5050:80 \
+  -v pgadmin_data:/var/lib/pgadmin \
+  dpage/pgadmin4:latest
+
+# check containers
+podman ps
+podman ps -a
+
+# open pgAdmin in browser
+# http://localhost:5050
+# connect host: host.containers.internal or your machine IP if needed
+# port: 5432, user: tdsuser, password: tdspass, db: tdsdb
+
+# logs
+podman logs tds-postgres
+podman logs -f tds-pgadmin
+
+# enter container shell
+podman exec -it tds-postgres sh
+
+# run psql inside postgres container
+podman exec -it tds-postgres psql -U tdsuser -d tdsdb
+
+# stop / start / restart
+podman stop tds-postgres tds-pgadmin
+podman start tds-postgres tds-pgadmin
+podman restart tds-postgres
+
+# remove stopped containers
+podman rm tds-postgres tds-pgadmin
+
+# remove volumes only when you want to delete database data
+podman volume ls
+podman volume rm pgdata pgadmin_data
+
+# clean unused images/containers/networks
+podman system prune
+```
+
+Important mental model:
+
+```mermaid
+flowchart TD
+  Img[Image: postgres:16-alpine] --> C[Container: tds-postgres]
+  C --> Port[Port publish: 5432:5432]
+  C --> Env[Env vars: user/pass/db]
+  C --> V[Volume: pgdata]
+  V --> Data[Database files survive container delete]
+```
+
+Now build your own app image. In Podman, name the recipe **Containerfile**. Keep `.containerignore` beside it so secrets, virtual environments, and cache do not enter the build context.
+
+```bash
+mkdir -p tds-podman-app/backend
+cd tds-podman-app/backend
+
+cat > main.py <<'PY'
+from fastapi import FastAPI
+import os
+
+app = FastAPI()
+
+@app.get("/")
+def home():
+    return {
+        "message": "Backend running with Podman",
+        "database_url": os.getenv("DATABASE_URL", "missing")
+    }
+PY
+
+cat > requirements.txt <<'TXT'
+fastapi
+uvicorn[standard]
+psycopg[binary]
+TXT
+
+cat > Containerfile <<'EOF'
 FROM python:3.12-slim
 
-# Set working directory inside container
 WORKDIR /app
 
-# Install UV first (for fast installs)
-RUN pip install uv
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy dependency files first (Docker layer caching trick)
-COPY pyproject.toml uv.lock ./
+COPY main.py .
 
-# Install dependencies (this layer is cached unless deps change)
-RUN uv sync --frozen --no-dev
-
-# Copy application code
-COPY . .
-
-# Tell Docker which port the app listens on
 EXPOSE 8000
 
-# Command to run the app
-CMD ["uv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-```
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+EOF
 
-Build and run:
-```bash
-docker build -t my-api .           # build image, tag it "my-api"
-docker run -p 8000:8000 my-api     # run, map host:8000 → container:8000
-# → http://localhost:8000
-```
-
----
-
-## .dockerignore
-
-Like `.gitignore` but for Docker. Keeps your image small and fast:
-
-```text title=".dockerignore"
+cat > .containerignore <<'EOF'
 .env
-.env.*
-__pycache__
+__pycache__/
 *.pyc
-*.pyo
-.git
-.gitignore
-.venv
-venv
-*.egg-info
-dist/
-build/
-.pytest_cache
-.mypy_cache
-README.md
-docs/
-tests/
+.venv/
+.git/
+.pytest_cache/
+EOF
+
+podman build -t tds-backend .
+podman run --rm -p 8000:8000 tds-backend
+
+# browser: http://localhost:8000
 ```
 
-Without `.dockerignore`, Docker copies your entire project including `.venv` (hundreds of MB) into the build context.
+For multi-folder projects, keep each service isolated:
 
----
-
-## Multi-Stage Build (Production Best Practice)
-
-Multi-stage builds create smaller, more secure images by separating the build environment from the runtime environment:
-
-```dockerfile title="Dockerfile"
-# ── Stage 1: Builder ──────────────────────────────────────────
-FROM python:3.12-slim AS builder
-
-WORKDIR /app
-
-# Install UV
-RUN pip install uv
-
-# Install dependencies into a virtual environment
-COPY pyproject.toml uv.lock ./
-RUN uv sync --frozen --no-dev
-
-# ── Stage 2: Runtime ─────────────────────────────────────────
-FROM python:3.12-slim AS runtime
-
-# Security: don't run as root
-RUN useradd --create-home appuser
-USER appuser
-WORKDIR /home/appuser/app
-
-# Copy only the installed packages from builder
-COPY --from=builder /app/.venv /home/appuser/app/.venv
-
-# Copy application code
-COPY --chown=appuser:appuser . .
-
-# Activate venv
-ENV PATH="/home/appuser/app/.venv/bin:$PATH"
-
-EXPOSE 8000
-
-# Use exec form (not shell form) for proper signal handling
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]
+```text
+tds-podman-app/
+  compose.yml
+  .env
+  backend/
+    Containerfile
+    main.py
+    requirements.txt
+    .containerignore
+  frontend/
+    Containerfile
+    index.html
+    .containerignore
+  db/
+    Containerfile
+    init.sql
 ```
 
-Result: the runtime image has no build tools, no pip, no UV — just Python and your app. Typically **70-80% smaller** than a naive image.
+```mermaid
+flowchart TD
+  Root[project root] --> Compose[compose.yml]
+  Root --> B[backend/Containerfile]
+  Root --> F[frontend/Containerfile]
+  Root --> D[db/Containerfile]
+  Compose --> BuildB[build backend image]
+  Compose --> BuildF[build frontend image]
+  Compose --> BuildD[build db image]
+  BuildB --> Up[podman-compose up]
+  BuildF --> Up
+  BuildD --> Up
+```
 
----
-
-## Essential Docker Commands
+Create the complete example:
 
 ```bash
-# Building
-docker build -t my-api .                    # build with tag
-docker build -t my-api:v1.0 .              # build with version tag
+cd ..
+mkdir -p frontend db
 
-# Running
-docker run my-api                           # run (stops when terminal closes)
-docker run -d my-api                        # run in background (detached)
-docker run -d -p 8000:8000 my-api          # detached + port mapping
-docker run -d -p 8000:8000 \
-  -e DATABASE_URL=sqlite:///./db.sqlite \  # pass env vars
-  my-api
+cat > frontend/index.html <<'HTML'
+<h1>TDS Podman Compose App</h1>
+<p>Frontend is running.</p>
+<p>Backend: <a href="http://localhost:8000">http://localhost:8000</a></p>
+HTML
 
-# Inspecting
-docker ps                                   # running containers
-docker ps -a                               # all containers (including stopped)
-docker logs my-container                   # view logs
-docker logs -f my-container               # follow logs (like tail -f)
-docker exec -it my-container bash         # shell inside running container
+cat > frontend/Containerfile <<'EOF'
+FROM nginx:alpine
+COPY index.html /usr/share/nginx/html/index.html
+EXPOSE 80
+EOF
 
-# Cleanup
-docker stop my-container                   # graceful stop
-docker rm my-container                     # delete container
-docker rmi my-api                          # delete image
-docker system prune                        # delete all unused stuff
-```
+cat > frontend/.containerignore <<'EOF'
+.git/
+node_modules/
+.env
+EOF
 
----
+cat > db/init.sql <<'SQL'
+CREATE TABLE IF NOT EXISTS notes (
+  id SERIAL PRIMARY KEY,
+  text TEXT NOT NULL
+);
 
-## Docker Compose
+INSERT INTO notes (text)
+VALUES ('Podman Compose started PostgreSQL successfully');
+SQL
 
-Compose runs multiple containers as a single application. Your FastAPI app needs both the API server and a Redis cache — Compose handles them together.
+cat > db/Containerfile <<'EOF'
+FROM postgres:16-alpine
+COPY init.sql /docker-entrypoint-initdb.d/init.sql
+EOF
 
-```yaml title="docker-compose.yml"
-version: "3.9"
+cat > .env <<'EOF'
+POSTGRES_DB=tdsdb
+POSTGRES_USER=tdsuser
+POSTGRES_PASSWORD=tdspass
+PGADMIN_DEFAULT_EMAIL=admin@example.com
+PGADMIN_DEFAULT_PASSWORD=adminpass
+EOF
 
+cat > compose.yml <<'YAML'
 services:
-  # ── FastAPI App ────────────────────────────────────────────
-  api:
-    build: .                          # build from local Dockerfile
-    ports:
-      - "8000:8000"
-    environment:
-      - DATABASE_URL=postgresql://postgres:password@db:5432/mydb
-      - REDIS_URL=redis://redis:6379
-    env_file:
-      - .env                          # also load .env file
-    depends_on:
-      db:
-        condition: service_healthy    # wait for postgres to be ready
-      redis:
-        condition: service_started
-    volumes:
-      - ./app:/app                    # mount code for hot reload
-    restart: unless-stopped
-
-  # ── PostgreSQL ─────────────────────────────────────────────
   db:
-    image: postgres:16-alpine         # use official image, don't build
-    environment:
-      POSTGRES_DB: mydb
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+    build: ./db
+    container_name: tds-db
+    env_file:
+      - .env
     volumes:
-      - postgres_data:/var/lib/postgresql/data  # persist data
+      - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -U tdsuser -d tdsdb"]
       interval: 5s
       timeout: 5s
       retries: 5
 
-  # ── Redis ──────────────────────────────────────────────────
-  redis:
-    image: redis:7-alpine
+  backend:
+    build: ./backend
+    container_name: tds-backend
+    environment:
+      DATABASE_URL: postgresql://tdsuser:tdspass@db:5432/tdsdb
     ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
+      - "8000:8000"
+    depends_on:
+      - db
 
-  # ── Grafana (monitoring) ───────────────────────────────────
-  grafana:
-    image: grafana/grafana:latest
+  frontend:
+    build: ./frontend
+    container_name: tds-frontend
     ports:
-      - "3000:3000"
+      - "8080:80"
+    depends_on:
+      - backend
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: tds-pgadmin
+    env_file:
+      - .env
+    ports:
+      - "5050:80"
     volumes:
-      - grafana_data:/var/lib/grafana
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - db
 
 volumes:
-  postgres_data:
-  redis_data:
-  grafana_data:
+  pgdata:
+  pgadmin_data:
+YAML
 ```
+
+Run the whole system:
 
 ```bash
-# Start everything
-docker compose up
+# build and start all services
+podman-compose up --build
 
-# Start in background
-docker compose up -d
+# or run in background
+podman-compose up -d --build
 
-# View logs from all services
-docker compose logs -f
+# see all services
+podman-compose ps
+podman ps
 
-# View logs from one service
-docker compose logs -f api
+# follow all logs
+podman-compose logs -f
 
-# Stop everything
-docker compose down
+# follow one service
+podman-compose logs -f backend
 
-# Stop and delete volumes (wipe database!)
-docker compose down -v
+# rebuild only backend after changing backend code
+podman-compose build backend
+podman-compose up -d backend
 
-# Rebuild after code changes
-docker compose up --build
+# stop services but keep database volumes
+podman-compose down
+
+# stop and delete database/admin volumes too: dangerous
+podman-compose down -v
+
+# deep cleanup after experiments
+podman system prune
+podman volume prune
 ```
 
----
+Open:
 
-## Compose Profiles (Advanced)
+```text
+Frontend: http://localhost:8080
+Backend:  http://localhost:8000
+pgAdmin:  http://localhost:5050
+```
 
-Run different subsets of services:
+Inside Compose, service names become network names. The backend uses `db:5432`, not `localhost:5432`, because `localhost` inside backend means “backend container itself”.
 
-```yaml title="docker-compose.yml"
+```mermaid
+flowchart LR
+  Browser -->|localhost:8080| FE[frontend]
+  Browser -->|localhost:8000| API[backend]
+  Browser -->|localhost:5050| PGADMIN[pgAdmin]
+  API -->|db:5432| DB[(PostgreSQL)]
+  PGADMIN -->|db:5432| DB
+```
+
+Profiles are useful when some services are optional. For example, run only app + database normally, and add pgAdmin only when debugging.
+
+```yaml
 services:
-  api:
-    build: .
-    ports: ["8000:8000"]
-
-  db:
-    image: postgres:16-alpine
-    profiles: ["full", "db"]    # only starts with these profiles
-
-  prometheus:
-    image: prom/prometheus
-    profiles: ["monitoring"]    # only starts with monitoring profile
-
-  grafana:
-    image: grafana/grafana
-    profiles: ["monitoring"]
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    profiles: ["debug"]
+    ports:
+      - "5050:80"
 ```
 
 ```bash
-# Start just the API (no DB, no monitoring)
-docker compose up api
+# normal app
+podman-compose up -d
 
-# Start API + DB
-docker compose --profile db up
-
-# Start everything including monitoring
-docker compose --profile full --profile monitoring up
+# include debug tools
+podman-compose --profile debug up -d
 ```
 
----
+Build caching rule: copy dependency files first, then source code. That way, changing `main.py` does not reinstall every package.
 
-## Layer Caching — The Key to Fast Builds
+```Containerfile
+FROM python:3.12-slim
+WORKDIR /app
 
-Docker caches each layer. If a layer hasn't changed, it uses the cache. The trick: **copy files that change least first**.
+# dependencies change less often
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-```dockerfile
-# GOOD: deps first (rarely change), code second (often changes)
-COPY pyproject.toml uv.lock ./
-RUN uv sync --frozen                # cached unless deps change
-COPY . .                            # only re-copies when code changes
+# app code changes often
+COPY . .
 
-# BAD: code first (always changes, invalidates all layers after)
-COPY . .                            # changes every time
-RUN uv sync --frozen                # always re-runs!
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
 
----
+Beginner mistakes and safe habits:
 
-## Video Reference
+```text
+Mistake: putting secrets directly in compose.yml
+Safe: use .env locally, real secrets manager in production
 
-[![Docker Tutorial for Beginners](https://img.youtube.com/vi/pg19Z8LL06w/0.jpg)](https://youtu.be/pg19Z8LL06w "Docker Tutorial for Beginners")
+Mistake: using localhost between containers
+Safe: use service name, like db:5432
 
----
+Mistake: deleting volumes accidentally
+Safe: podman-compose down keeps volumes; down -v deletes data
 
-## Summary
+Mistake: no .containerignore
+Safe: exclude .env, .venv, node_modules, cache, .git
 
-| Concept | Purpose |
-|---------|---------|
-| `FROM` | Base image to build on |
-| `WORKDIR` | Working directory inside container |
-| `COPY` | Copy files from host to container |
-| `RUN` | Execute commands during build |
-| `CMD` | Command to run when container starts |
-| `EXPOSE` | Document which port the app uses |
-| Multi-stage | Smaller production images |
-| `.dockerignore` | Exclude files from build context |
-| `docker-compose.yml` | Define multi-container applications |
-| `depends_on` | Control container startup order |
-| `healthcheck` | Verify service is actually ready |
+Mistake: random latest image everywhere
+Safe: pin versions for serious work, like postgres:16-alpine
 
----
+Mistake: rebuilding everything after every small change
+Safe: podman-compose build backend, then up -d backend
+
+Mistake: assuming container is ready because it started
+Safe: add healthcheck for DB-like services
+```
+
+## Important Q&A
+
+**Q: Can I use Docker Compose instead of Podman Compose?**
+A: Yes. Docker Compose and Podman Compose use the same `compose.yml` file format. If you use Docker, run `docker compose up` instead.
+
+**Q: Why does my backend fail to connect to the database on start?**
+A: Containers start at the same time. Even if backend `depends_on` database, the database process might still be booting up. That's why healthchecks are used to delay the backend startup until the database is truly ready.
+
+**Q: How do I rebuild the image if I change `requirements.txt`?**
+A: Use `podman-compose up --build backend`. The `--build` flag forces a fresh build using your updated Containerfile and requirements.
+
+Final revision checklist:
+
+```text
+[ ] Can install, verify, and uninstall Podman
+[ ] Know image vs container vs volume vs port publish
+[ ] Can run PostgreSQL + pgAdmin using podman run
+[ ] Can build an app using Containerfile
+[ ] Can keep builds clean using .containerignore
+[ ] Can structure backend/frontend/db folders
+[ ] Can combine services using compose.yml
+[ ] Can run up, up -d, logs, ps, build, down, down -v
+[ ] Know that service-to-service uses service names, not localhost
+[ ] Never delete volumes unless you really want to wipe data
+```
 

@@ -6,11 +6,13 @@
 - **0. Bridge Course**
   - [📋 Syllabus](2026-02/docs/bridge-course/bridge-course-syllabus.md)
   - **Day 1 — Setup Day**
+    - [Complete Notes](2026-02/docs/bridge-course/day-1-notes.md)
     - [Installation](2026-02/docs/bridge-course/day-1-installation.md)
     - [File Structure (Windows vs Linux)](2026-02/docs/bridge-course/day-1-file-structure.md)
     - [Path Reading](2026-02/docs/bridge-course/day-1-path-reading.md)
     - [Quiz & Exercises](2026-02/docs/bridge-course/day-1-quiz-exercises.md)
   - **Day 2 — Linux & Shell Essentials**
+    - [Survival Toolkit (Notes)](2026-02/docs/bridge-course/day-2-notes.md)
     - [Terminal Navigation](2026-02/docs/bridge-course/day-2-terminal-navigation.md)
     - [touch, mkdir, rm, cp, mv](2026-02/docs/bridge-course/day-2-touch-mkdir-rm-cp-mv.md)
     - [Basic Script Writing](2026-02/docs/bridge-course/day-2-basic-script-writing.md)
@@ -32,8 +34,10 @@
     - [Quiz & Exercises](2026-02/docs/bridge-course/day-5-quiz-exercises.md)
 
 - **1. Dev Environment & Tooling**
-  - [VS Code](2026-02/docs/week-1/01-vscode.md)
-  - [UV — Python Package Manager](2026-02/docs/week-1/02-uv.md)
+  - [VS Code — Basics](2026-02/docs/week-1/01-vscode-1-basics.md)
+  - [VS Code — Advanced](2026-02/docs/week-1/01-vscode-2-advanced.md)
+  - [UV — Basics](2026-02/docs/week-1/02-uv-1-basics.md)
+  - [UV — Advanced](2026-02/docs/week-1/02-uv-2-advanced.md)
   - [Bash Scripting](2026-02/docs/week-1/03-bash-scripting.md)
   - [Git & GitHub](2026-02/docs/week-1/04-git-github.md)
   - [SQLite](2026-02/docs/week-1/05-sqlite.md)
@@ -43,27 +47,28 @@
   - [GitHub Pages](2026-02/docs/week-1/09-github-pages.md)
   - [LaTeX](2026-02/docs/week-1/10-latex.md)
   - [**Lab: Publish a Python library to PyPI**](2026-02/docs/labs/week-1/01-publish-python-library-pypi-uv.md)
-  - [**Lab: Publish a UV CLI tool**](2026-02/docs/labs/week-1/02-uv-cli-tool-latex-docs.md)
-  - [**Lab: Bash automation**](2026-02/docs/labs/week-1/03-bash-daily-project-summary.md)
 
 - **2. Deployment & API Engineering**
   - [FastAPI Fundamentals](2026-02/docs/week-2/01-fastapi.md)
   - [CORS & Middleware](2026-02/docs/week-2/02-cors-middleware.md)
   - [Google OAuth 2.0](2026-02/docs/week-2/03-google-oauth.md)
-  - [FastAPI Advanced](2026-02/docs/week-2/04-fastapi-advanced.md)
   - [Config Management](2026-02/docs/week-2/05-config-management.md)
   - [Docker & Compose](2026-02/docs/week-2/06-docker-compose.md)
   - [Deployment Platforms](2026-02/docs/week-2/07-deployment-platforms.md)
   - [Logging & Testing](2026-02/docs/week-2/08-logging-testing.md)
   - [Observability](2026-02/docs/week-2/09-observability.md)
   - [Cloudflare Tunnels](2026-02/docs/week-2/10-cloudflare-tunnels.md)
-  - [Local LLMs](2026-02/docs/week-2/11-local-llms.md)
-  - [Redis Caching](2026-02/docs/week-2/12-redis-caching.md)
-  - [**Lab: Publish a Gemma model API**](2026-02/docs/labs/week-2/gemma-api-hf-spaces-google-auth.md)
-  - [**Lab: Add full observability**](2026-02/docs/labs/week-2/fastapi-observability-grafana.md)
+  - [Local LLMs — Basics](2026-02/docs/week-2/11-local-llms-1-basics.md)
+  - [Local LLMs — LM Studio & Ollama](2026-02/docs/week-2/11-local-llms-2-lmstudio-ollama.md)
+  - [Local LLMs — llama.cpp & vLLM](2026-02/docs/week-2/11-local-llms-3-llamacpp-vllm.md)
+  - [Local LLMs — MLX Labs](2026-02/docs/week-2/11-local-llms-4-mlx-labs.md)
+  - [**Lab: Deploying Private LLMs with vLLM & API Gateway**](2026-02/docs/labs/week-2/01-llm-deployment.md)
+  - [**Lab: WebSocket Chat with Redis & PostgreSQL**](2026-02/docs/labs/week-2/02-socket-chat.md)
 
 - **3. LLM Engineering**
-  - [Prompt Engineering](2026-02/docs/week-3/prompt-engineering.md)
+  - [Prompt Engineering — Foundations](2026-02/docs/week-3/01-prompt-engineering-1-foundations.md)
+  - [Prompt Engineering — Reliable Reasoning & Output Control](2026-02/docs/week-3/01-prompt-engineering-2-reliable-reasoning-output-control.md)
+  - [Prompt Engineering — Prompted Applications & Production Practice](2026-02/docs/week-3/01-prompt-engineering-3-prompted-applications-production-practice.md)
   - [Context Engineering](2026-02/docs/week-3/context-engineering.md)
   - [Prompt Caching](2026-02/docs/week-3/prompt-caching.md)
   - [Structured Output](2026-02/docs/week-3/structured-output.md)
@@ -92,7 +97,6 @@
   - [RAGAS Evaluation](2026-02/docs/week-4/ragas-evaluation.md)
   - [**Lab: RAGAS evaluation dashboard**](2026-02/docs/labs/week-4/ragas-evaluation-dashboard.md)
   - [**CAPSTONE: BS Degree Chatbot**](2026-02/docs/labs/week-4/capstone-bs-degree-chatbot.md)
-  - [**CAPSTONE: Policy Chatbot**](2026-02/docs/labs/week-4/capstone-policy-chatbot.md)
 
 - [Project 1](2026-02/docs/projects/01-project-1.md)
 
@@ -108,9 +112,7 @@
   - [Async & Parallelism](2026-02/docs/week-5/async-parallelism.md)
   - [LXD Sandboxing](2026-02/docs/week-5/lxd-sandboxing.md)
   - [Agent Evaluation](2026-02/docs/week-5/agent-evaluation.md)
-  - [**Lab: Context-based extraction tool**](2026-02/docs/labs/week-5/context-based-extraction-tool.md)
   - [**CAPSTONE: Autonomous Research Agent**](2026-02/docs/labs/week-5/capstone-autonomous-research-agent.md)
-  - [**CAPSTONE: VivaAgent — AI Oral Examiner**](2026-02/docs/labs/week-5/capstone-vivaagent-oral-examiner.md)
 
 - **6. Web Scraping & Data Processing**
   - [Playwright & Selenium](2026-02/docs/week-6/playwright-selenium.md)
@@ -135,11 +137,11 @@
 - **7. CI/CD, Security & Cloud**
   - [GitHub Actions Advanced](2026-02/docs/week-7/01-github-actions-advanced.md)
   - [Advanced Docker](2026-02/docs/week-7/02-advanced-docker.md)
-  - [Serverless Functions](2026-02/docs/week-7/07-serverless-functions.md)
   - [LLM Security — Offensive](2026-02/docs/week-7/03-llm-security-offensive.md)
   - [LLM Safety — Defensive](2026-02/docs/week-7/04-llm-safety-defensive.md)
   - [OWASP LLM Top 10](2026-02/docs/week-7/05-owasp-llm-top-10.md)
   - [VMs & SSH](2026-02/docs/week-7/06-vms-ssh.md)
+  - [Serverless Functions](2026-02/docs/week-7/07-serverless-functions.md)
   - [Terraform & IaC](2026-02/docs/week-7/08-terraform-iac.md)
   - [Cost Alerting & Budgets](2026-02/docs/week-7/09-cost-alerting.md)
   - [Pub/Sub & Event-Driven](2026-02/docs/week-7/10-pubsub-event-driven.md)
@@ -149,13 +151,13 @@
 - **8. MLOps & Fine-Tuning**
   - [Cloud Storage for ML](2026-02/docs/week-8/01-cloud-storage-ml.md)
   - [BigQuery ML](2026-02/docs/week-8/02-bigquery-ml.md)
-  - [GCP ML Pipeline](2026-02/docs/week-8/09-gcp-ml-pipeline.md)
   - [MLflow](2026-02/docs/week-8/03-mlflow.md)
   - [Fine-Tuning Strategy](2026-02/docs/week-8/04-finetuning-strategy.md)
   - [HuggingFace Ecosystem](2026-02/docs/week-8/05-huggingface-ecosystem.md)
   - [Fine-Tuning Techniques](2026-02/docs/week-8/06-finetuning-techniques.md)
   - [Quantization](2026-02/docs/week-8/07-quantization.md)
   - [Gemma 4 Fine-Tuning](2026-02/docs/week-8/08-gemma4-finetuning.md)
+  - [GCP ML Pipeline](2026-02/docs/week-8/09-gcp-ml-pipeline.md)
   - [Model Publishing & Cards](2026-02/docs/week-8/10-model-publishing.md)
   - [**Lab: Full GCP pipeline**](2026-02/docs/labs/week-8/02-full-gcp-pipeline-bqml-vertex-cloud-run.md)
   - [**CAPSTONE: Production Fine-Tuned Model**](2026-02/docs/labs/week-8/01-capstone-production-finetuned-model-mlops.md)

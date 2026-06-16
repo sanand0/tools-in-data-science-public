@@ -3,13 +3,11 @@
 ## Week 01 — Development Environment & Tooling
 
 - **Lab**: [Publish a Python library to PyPI using UV](2026-02/docs/labs/week-1/01-publish-python-library-pypi-uv.md)
-- **Lab**: [Publish a UV CLI tool + generate LaTeX documentation PDF](2026-02/docs/labs/week-1/02-uv-cli-tool-latex-docs.md)
-- **Lab**: [Bash automation: daily project summary committed to GitHub](2026-02/docs/labs/week-1/03-bash-daily-project-summary.md)
 
 ## Week 02 — Deployment & API Engineering
 
-- **Lab**: [Publish a Gemma model API on HuggingFace Spaces with Google Auth](2026-02/docs/labs/week-2/gemma-api-hf-spaces-google-auth.md)
-- **Lab**: [Add full observability to a FastAPI service; build Grafana dashboard](2026-02/docs/labs/week-2/fastapi-observability-grafana.md)
+- **Lab**: [Deploying Private LLMs with vLLM & API Gateway](2026-02/docs/labs/week-2/01-llm-deployment.md)
+- **Lab**: [WebSocket Chat with Redis & PostgreSQL](2026-02/docs/labs/week-2/02-socket-chat.md)
 
 ## Week 03 — LLM Engineering
 
@@ -19,14 +17,11 @@
 ## Week 04 — RAG & Hybrid RAG
 
 - **CAPSTONE**: [BS Degree Chatbot](2026-02/docs/labs/week-4/capstone-bs-degree-chatbot.md)
-- **CAPSTONE**: [Policy Chatbot (Sujal Nirmaan)](2026-02/docs/labs/week-4/capstone-policy-chatbot.md)
 - **Lab**: [RAGAS evaluation dashboard (Naive vs Hybrid vs Contextual)](2026-02/docs/labs/week-4/ragas-evaluation-dashboard.md)
 
 ## Week 05 — Agentic AI
 
 - **CAPSTONE**: [Autonomous Research Agent](2026-02/docs/labs/week-5/capstone-autonomous-research-agent.md)
-- **CAPSTONE**: [VivaAgent — AI Oral Examiner](2026-02/docs/labs/week-5/capstone-vivaagent-oral-examiner.md)
-- **Lab**: [Context-based extraction tool (PDF/Web/Video)](2026-02/docs/labs/week-5/context-based-extraction-tool.md)
 
 ## Week 06 — Web Scraping & Data Processing
 
@@ -46,4 +41,3 @@
 - **Lab**: [Full GCP pipeline (GCS → BigQuery ML → Vertex AI → Cloud Run)](2026-02/docs/labs/week-8/02-full-gcp-pipeline-bqml-vertex-cloud-run.md)
 
 ---
-

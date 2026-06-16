@@ -33,23 +33,16 @@ python pipeline.py "https://www.youtube.com/watch?v=VIDEO_ID"
 
 ## Architecture
 
-```
-YouTube URL
-    │
-    ▼ (yt-dlp)
-VTT Subtitle File (.vtt)
-    │
-    ▼ (parse_vtt.py)
-Timestamped Segments: [{text, start_time, end_time}, ...]
-    │
-    ├─ ▼ (Claude — topic extraction)
-    │  Topics: ["docker", "containers", "networking", ...]
-    │
-    ├─ ▼ (Claude — chapter segmentation)
-    │  Chapters with titles and time ranges
-    │
-    └─ ▼ (Claude — Q&A extraction + structured JSON)
-       Final summary.json
+```mermaid
+graph TD
+    A[YouTube URL] -->|yt-dlp| B(VTT Subtitle File)
+    B -->|vtt_parser.py| C(Timestamped Segments)
+    C -->|Claude Haiku| D[Topic Extraction]
+    C -->|Claude Haiku| E[Chapter Segmentation]
+    C -->|Claude Haiku| F[Q&A Extraction]
+    D --> G[Assemble VideoSummary JSON]
+    E --> G
+    F --> G
 ```
 
 ---
@@ -512,7 +505,7 @@ This module contains all Claude calls. Each function does one focused task.
 ```python title="llm_processor.py"
 """
 All LLM calls for the YouTube pipeline.
-Uses Claude claude-haiku-4-5-20251001 for cheap steps, claude-sonnet-4-6 for final summary.
+Uses Claude claude-3-5-haiku-20241022 for cheap steps, claude-3-5-sonnet-20241022 for final summary.
 """
 import anthropic
 import instructor
@@ -546,7 +539,7 @@ def extract_topics(segments: list[SubtitleSegment], title: str) -> TopicList:
     transcript_sample = segments_to_transcript(sample_segments)
 
     return claude.messages.create(
-        model="claude-haiku-4-5-20251001",   # cheap model for this step
+        model="claude-3-5-haiku-20241022",   # cheap model for this step
         max_tokens=512,
         messages=[{
             "role": "user",
@@ -589,7 +582,7 @@ def create_chapters(
         chunk_end = chunk[-1].start_formatted
 
         result = claude.messages.create(
-            model="claude-haiku-4-5-20251001",
+            model="claude-3-5-haiku-20241022",
             max_tokens=1024,
             messages=[{
                 "role": "user",
@@ -610,7 +603,7 @@ Identify 2-4 logical chapters in this section with timestamps."""
 
 def _create_chapters_single(transcript: str, title: str, topics: list[str]) -> list[Chapter]:
     result = claude.messages.create(
-        model="claude-haiku-4-5-20251001",
+        model="claude-3-5-haiku-20241022",
         max_tokens=2048,
         messages=[{
             "role": "user",
@@ -645,7 +638,7 @@ def extract_qa_pairs(
     transcript = segments_to_transcript(sample)
 
     result = claude.messages.create(
-        model="claude-haiku-4-5-20251001",
+        model="claude-3-5-haiku-20241022",
         max_tokens=2048,
         messages=[{
             "role": "user",
@@ -926,8 +919,9 @@ raw_claude = anthropic.Anthropic()
 def extract_topics_cached(transcript: str, title: str) -> dict:
     """Extract topics with the transcript cached."""
     response = raw_claude.messages.create(
-        model="claude-haiku-4-5-20251001",
+        model="claude-3-5-haiku-20241022",
         max_tokens=512,
+        extra_headers={"anthropic-beta": "prompt-caching-2024-07-31"},
         system=[
             {
                 "type": "text",

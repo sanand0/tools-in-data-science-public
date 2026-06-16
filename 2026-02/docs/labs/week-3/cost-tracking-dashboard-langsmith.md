@@ -20,18 +20,18 @@
 
 ## Architecture
 
-```
-benchmark.py
-    │
-    ├── run_zero_shot(task)     → @traceable → LangSmith
-    ├── run_few_shot(task)      → @traceable → LangSmith
-    ├── run_cot(task)           → @traceable → LangSmith
-    └── run_self_consistency(task, n=7) → @traceable × 7 → LangSmith
-                                               │
-                                          LangSmith API
-                                               │
-                                    FastAPI /dashboard endpoint
-                                    returns cost comparison JSON
+```mermaid
+graph TD
+    A[benchmark.py] -->|traceable| B(run_zero_shot)
+    A -->|traceable| C(run_few_shot)
+    A -->|traceable| D(run_cot)
+    A -->|traceable| E(run_self_consistency)
+    B -->|LangSmith API| F[LangSmith Cloud Dashboard]
+    C -->|LangSmith API| F
+    D -->|LangSmith API| F
+    E -->|LangSmith API| F
+    G[FastAPI Server] -->|Query API| F
+    G -->|Endpoint: /dashboard| H[Live Cost JSON Dashboard]
 ```
 
 ---
@@ -648,7 +648,7 @@ def get_project_stats(project_name: str = None, hours_back: int = 24) -> dict:
         if run.completion_tokens:
             stats["completion_tokens"] += run.completion_tokens
         if run.total_cost:
-            stats["total_cost_usd"] += run.total_cost
+            stats["total_cost_usd"] += float(run.total_cost)
 
         if run.end_time and run.start_time:
             latency_ms = (run.end_time - run.start_time).total_seconds() * 1000
@@ -700,11 +700,11 @@ def get_cost_by_category(project_name: str = None, hours_back: int = 24) -> dict
         limit=500,
     ))
 
-    by_category = defaultdict(lambda: {"calls": 0, "cost": 0})
+    by_category = defaultdict(lambda: {"calls": 0, "cost": 0.0})
     for run in runs:
         cat = (run.extra or {}).get("metadata", {}).get("category", "unknown")
         by_category[cat]["calls"] += 1
-        by_category[cat]["cost"] += run.total_cost or 0
+        by_category[cat]["cost"] += float(run.total_cost or 0.0)
 
     return dict(by_category)
 ```
@@ -818,16 +818,27 @@ def get_comparison_table():
 
     # For each task-strategy, check if answer is "close enough" to expected
     for task_id, strategies in by_task.items():
+        if not strategies:
+            continue
         expected = list(strategies.values())[0].get("expected", "")
         for strategy, data in strategies.items():
             answer_lower = data["answer"].lower()
             expected_lower = expected.lower()
-            # Simple substring match (good enough for lab purposes)
-            data["is_correct"] = any(
-                part in answer_lower
-                for part in expected_lower.split()
-                if len(part) > 3
-            )
+            
+            is_correct = False
+            if len(expected_lower) <= 3:
+                is_correct = (expected_lower in answer_lower)
+            else:
+                if expected_lower in answer_lower:
+                    is_correct = True
+                else:
+                    parts = [p.strip(".,?!₹$") for p in expected_lower.split()]
+                    parts = [p for p in parts if len(p) >= 2]
+                    if parts:
+                        is_correct = any(p in answer_lower for p in parts)
+                    else:
+                        is_correct = (expected_lower in answer_lower)
+            data["is_correct"] = is_correct
 
     return {
         "tasks": dict(by_task),
@@ -958,10 +969,19 @@ for r in results:
     answer = r.get("answer", "").lower()
 
     # Simple correctness heuristic
-    is_correct = any(
-        word in answer for word in expected.split()
-        if len(word) > 3
-    )
+    is_correct = False
+    if len(expected) <= 3:
+        is_correct = (expected in answer)
+    else:
+        if expected in answer:
+            is_correct = True
+        else:
+            parts = [p.strip(".,?!₹$") for p in expected.split()]
+            parts = [p for p in parts if len(p) >= 2]
+            if parts:
+                is_correct = any(p in answer for p in parts)
+            else:
+                is_correct = (expected in answer)
 
     s = by_cat_strat[cat][strategy]
     s["costs"].append(cost)
