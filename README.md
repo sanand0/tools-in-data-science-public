@@ -118,18 +118,18 @@ The course covers the typical data science workflow:
 | --------------------------- | --------------- | -----: | --------------- | --------------- | -------- |
 | Graded Assignment (GA)      | Best 7 of 9     |    20% |                 |                 |          |
 | [Bootcamp][GA0]             | [**GA0**][GA0]  | —      | Thu 14 May 2026 | Sun 21 Jun 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-bootcamp)         |
-| [Week-1][GA1]               | [**GA1**][GA1]  | —      | Wed 17 Jun 2026 | Sun 28 Jun 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-week1-feedback)   |
-| [Week-2][GA2]               | [**GA2**][GA2]  | —      | Wed 24 Jun 2026 | Sun 05 Jul 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-week2-feedback)   |
-| [Project 1][P1]             | **P1**          |    20% | Wed 24 Jun 2026 | Wed 22 Jul 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-project1-feedback)|
-| [Week-3][GA3]               | [**GA3**][GA3]  | —      | Wed 01 Jul 2026 | Sun 12 Jul 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-week3-feedback)   |
-| [Week-4][GA4]               | [**GA4**][GA4]  | —      | Wed 08 Jul 2026 | Wed 22 Jul 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-week4-feedback)   |
-| [Week-5][GA5]               | [**GA5**][GA5]  | —      | Wed 15 Jul 2026 | Sun 26 Jul 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-week5-feedback)   |
-| [Week-6][GA6]               | [**GA6**][GA6]  | —      | Wed 22 Jul 2026 | Sun 02 Aug 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-week6-feedback)   |
-| [Project 2][P2]             | **P2**          |    20% | Wed 22 Jul 2026 | Wed 19 Aug 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-project2-feedback)|
-| [Remote Online Exam][ROE]   | [**ROE**][ROE]  |    20% | Sun 02 Aug 2026 | Sun 02 Aug 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-roe-feedback)     |
-| [Week-7][GA7]               | [**GA7**][GA7]  | —      | Wed 05 Aug 2026 | Wed 19 Aug 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-week7-feedback)   |
-| [Week-8][GA8]               | [**GA8**][GA8]  | —      | Wed 12 Aug 2026 | Sun 23 Aug 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-week8-feedback)   |
-| Final end-term (in-person)  | F               |    20% | Sun 13 Sep 2026 | Sun 13 Sep 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-et)               |
+| [Week-1][GA1]               | [**GA1**][GA1]  | —      | Wed 17 Jun 2026 | Sun 28 Jun 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-feedback#week1)   |
+| [Week-2][GA2]               | [**GA2**][GA2]  | —      | Wed 24 Jun 2026 | Sun 05 Jul 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-feedback#week2)   |
+| [Project 1][P1]             | **P1**          |    20% | Wed 24 Jun 2026 | Wed 22 Jul 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-feedback#project1)|
+| [Week-3][GA3]               | [**GA3**][GA3]  | —      | Wed 01 Jul 2026 | Sun 12 Jul 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-feedback#week3)   |
+| [Week-4][GA4]               | [**GA4**][GA4]  | —      | Wed 08 Jul 2026 | Wed 22 Jul 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-feedback#week4)   |
+| [Week-5][GA5]               | [**GA5**][GA5]  | —      | Wed 15 Jul 2026 | Sun 26 Jul 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-feedback#week5)   |
+| [Week-6][GA6]               | [**GA6**][GA6]  | —      | Wed 22 Jul 2026 | Sun 02 Aug 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-feedback#week6)   |
+| [Project 2][P2]             | **P2**          |    20% | Wed 22 Jul 2026 | Wed 19 Aug 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-feedback#project2)|
+| [Remote Online Exam][ROE]   | [**ROE**][ROE]  |    20% | Sun 02 Aug 2026 (01:00 PM) | Sun 02 Aug 2026 (01:45 PM) | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-feedback#roe)     |
+| [Week-7][GA7]               | [**GA7**][GA7]  | —      | Wed 05 Aug 2026 | Wed 19 Aug 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-feedback#week7)   |
+| [Week-8][GA8]               | [**GA8**][GA8]  | —      | Wed 12 Aug 2026 | Sun 23 Aug 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-feedback#week8)   |
+| Final end-term (in-person)  | F               |    20% | Sun 13 Sep 2026 | Sun 13 Sep 2026 | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-feedback#endterm) |
 
 
 [Source]: https://github.com/sanand0/tools-in-data-science-public/commits
