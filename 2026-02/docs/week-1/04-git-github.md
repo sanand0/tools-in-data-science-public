@@ -595,6 +595,18 @@ A: Rebasing rewrites Git history. If you rebase commits that other people have a
 **Q: What do I do if I accidentally committed a `.env` file with a secret?**
 A: Do not just delete the file in a new commit. The secret will remain in the Git history. You must rewrite the Git history (e.g., using `git filter-repo` or `BFG Repo-Cleaner`) to completely remove the file, and more importantly, immediately revoke and rotate the leaked secret.
 
+---
+
+## Video Resources
+
+Watch these introductory videos to learn the basics of Git and GitHub (98 min):
+
+[![Git Tutorial for Beginners: Command-Line Fundamentals (30 min)](https://i.ytimg.com/vi_webp/HVsySz-h9r4/sddefault.webp)](https://youtu.be/HVsySz-h9r4)
+
+[![Git and GitHub for Beginners - Crash Course (68 min)](https://i.ytimg.com/vi_webp/RGOj5yH7evk/sddefault.webp)](https://youtu.be/RGOj5yH7evk)
+
+---
+
 ## Final revision checklist
 
 ```text

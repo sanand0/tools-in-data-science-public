@@ -744,6 +744,20 @@ A: No! Base64 is *encoding*, not encryption. Anyone can decode it easily using `
 A: Use TOON when your prompt includes a large array of highly uniform objects (like rows from a database). TOON's syntax saves significant tokens in these cases. For highly nested or irregular data, or when requiring strict output generation from an LLM, JSON is still preferred.
 
 
+---
+
+## Video Resources
+
+Watch these tutorials to understand common data formats and character encodings:
+
+[![JSON Crash Course (10 min)](https://i.ytimg.com/vi_webp/GpOO5iKzOmY/sddefault.webp)](https://youtu.be/GpOO5iKzOmY)
+
+[![Code Pages, Character Encoding, Unicode, UTF-8 and the BOM (17 min)](https://i.ytimg.com/vi_webp/jeIBNn5Y5fI/sddefault.webp)](https://youtu.be/jeIBNn5Y5fI)
+
+[![Markdown Crash Course (19 min)](https://i.ytimg.com/vi_webp/HUBNt18RFbo/sddefault.webp)](https://youtu.be/HUBNt18RFbo)
+
+---
+
 ## Final revision checklist
 
 ```text

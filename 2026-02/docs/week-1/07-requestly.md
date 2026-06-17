@@ -622,6 +622,18 @@ A: Because Burp intercepts the traffic, it has to present its own SSL certificat
 A: You can use Requestly to create a "Modify Response" or "Redirect" rule that intercepts the API call and returns a mock 500 error or empty JSON object. This lets you test how your frontend handles failures without touching the backend code.
 
 
+---
+
+## Video Resources
+
+Watch these tutorials to understand how to use Requestly and Burp Suite for HTTP debugging and API testing:
+
+[![Requestly Overview - HTTP Interceptor & Mocking (16 min)](https://img.youtube.com/vi/xrqmAffe86k/0.jpg)](https://www.youtube.com/watch?v=xrqmAffe86k)
+
+[![Burp Suite Basics Community Edition](https://i.ytimg.com/vi_webp/G3hpAeoZ4ek/sddefault.webp)](https://www.youtube.com/watch?v=G3hpAeoZ4ek)
+
+---
+
 ## Final revision checklist
 
 ```text

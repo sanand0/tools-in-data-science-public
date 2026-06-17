@@ -782,6 +782,18 @@ A: `logging.info` uses the root logger, which is shared by all installed package
 **Q: Why doesn't `pytest` find my tests?**
 A: Pytest looks for files starting with `test_` or ending with `_test.py`, and functions starting with `test_`. If your test is named `check_api()`, pytest will ignore it.
 
+---
+
+## Video Resources
+
+Watch these videos to learn about Python's built-in logging module and unit testing with Pytest:
+
+[![Python Logging - Corey Schafer](https://i.ytimg.com/vi_webp/-ARI4Cz-awo/sddefault.webp)](https://youtu.be/-ARI4Cz-awo)
+
+[![Pytest Unit Testing - Pixegami](https://i.ytimg.com/vi_webp/YbpKMIUjvK8/sddefault.webp)](https://youtu.be/YbpKMIUjvK8)
+
+---
+
 ## Final revision checklist
 
 ```text

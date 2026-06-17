@@ -645,7 +645,16 @@ Start with:
    - request rate
    - error rate
    - p95 latency
+7. Grafana Dashboard
 ```
+
+---
+
+## Video Resources
+
+Watch this video to learn how to set up monitoring with Prometheus and Grafana:
+
+[![Monitoring Made Easy with Grafana and Prometheus](https://i.ytimg.com/vi_webp/pGSkPutCKtQ/sddefault.webp)](https://youtu.be/pGSkPutCKtQ)
 
 ---
 

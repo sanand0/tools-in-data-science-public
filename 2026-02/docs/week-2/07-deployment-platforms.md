@@ -793,6 +793,20 @@ A: `127.0.0.1` binds the server to loopback only, meaning the platform's load ba
 **Q: What is a `Dockerfile` vs `render.yaml` vs `railway.json`?**
 A: A `Dockerfile` is a universal standard for building containers. Specific platform files (`render.yaml`, `railway.json`) are platform-specific configs that tell the platform how to handle infrastructure (like connecting databases and setting env vars).
 
+---
+
+## Video Resources
+
+Watch these videos to learn about deployment workflows on Vercel and Hugging Face Spaces:
+
+[![Vercel Product Walkthrough](https://i.ytimg.com/vi_webp/sPmat30SE4k/sddefault.webp)](https://youtu.be/sPmat30SE4k)
+
+[![Deploy FastAPI on Vercel | Quick and Easy Tutorial](https://i.ytimg.com/vi_webp/8R-cetf_sZ4/sddefault.webp)](https://youtu.be/8R-cetf_sZ4)
+
+[![Best Platform for Python Apps Deployment - Hugging Face Spaces with Docker](https://i.ytimg.com/vi_webp/DQjze1SlYd4/sddefault.webp)](https://www.youtube.com/watch?v=DQjze1SlYd4)
+
+---
+
 # Final revision checklist
 
 ```text

@@ -467,6 +467,16 @@ flowchart TD
 
 ---
 
+## Video Resources
+
+Watch these videos to learn about public tunneling using ngrok and setting up secure Cloudflare Tunnels:
+
+[![ngrok in 60 seconds](https://i.ytimg.com/vi_webp/dfMdLGZLXSg/sddefault.webp)](https://youtu.be/dfMdLGZLXSg)
+
+[![Cloudflare Tunnels - NetworkChuck](https://i.ytimg.com/vi_webp/ey4u7OUAF3c/sddefault.webp)](https://youtu.be/ey4u7OUAF3c)
+
+---
+
 ## Final mental model
 
 * **localhost / 127.0.0.1:** Only this machine

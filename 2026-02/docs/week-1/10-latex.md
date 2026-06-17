@@ -514,6 +514,16 @@ A: LaTeX processes files sequentially. When it first sees a `\cite{}`, it doesn'
 **Q: Why do I get an error when I type `100% accuracy` in my document?**
 A: In LaTeX, the `%` symbol is used for comments (everything after it on the line is ignored). To print a literal percent sign, you must escape it with a backslash: `100\% accuracy`.
 
+---
+
+## Video Resources
+
+Watch this tutorial to learn how to write documents in LaTeX:
+
+[![LaTeX – Full Tutorial for Beginners](https://i.ytimg.com/vi_webp/ydOTMQC7np0/sddefault.webp)](https://www.youtube.com/watch?v=ydOTMQC7np0)
+
+---
+
 ## Final checklist
 
 ```text

@@ -976,6 +976,16 @@ A: Browser CORS headers do not apply to WebSocket connections. However, you shou
 
 ---
 
+## Video Resources
+
+Watch these videos to learn about WebSockets in FastAPI and scaling real-time apps with Redis Pub/Sub:
+
+[![FastAPI WebSocket Chat Application with Vanilla JavaScript](https://i.ytimg.com/vi_webp/77c12i5C64U/sddefault.webp)](https://youtu.be/77c12i5C64U)
+
+[![FastApi Web socket App + Broadcast + Redis](https://img.youtube.com/vi/525j4-5uM2k/0.jpg)](https://www.youtube.com/watch?v=525j4-5uM2k)
+
+---
+
 ## Revision Checklist
 
 - [ ] local PostgreSQL and Redis services are running via Docker.

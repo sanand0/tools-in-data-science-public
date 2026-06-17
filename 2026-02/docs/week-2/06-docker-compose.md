@@ -438,6 +438,20 @@ A: Containers start at the same time. Even if backend `depends_on` database, the
 **Q: How do I rebuild the image if I change `requirements.txt`?**
 A: Use `podman-compose up --build backend`. The `--build` flag forces a fresh build using your updated Containerfile and requirements.
 
+---
+
+## Video Resources
+
+Watch these videos to learn the fundamentals of Docker, Podman, and containerization:
+
+[![Podman Tutorial Zero to Hero | Full 1 Hour Course](https://i.ytimg.com/vi_webp/YXfA5O5Mr18/sddefault.webp)](https://youtu.be/YXfA5O5Mr18)
+
+[![Learn Docker in 7 Easy Steps - Full Beginner's Tutorial](https://i.ytimg.com/vi_webp/gAkwW2tuIqE/sddefault.webp)](https://youtu.be/gAkwW2tuIqE)
+
+*   **Optional:** For Windows, see [WSL 2 with Docker getting started](https://youtu.be/5RQbdMn04Oc)
+
+---
+
 Final revision checklist:
 
 ```text

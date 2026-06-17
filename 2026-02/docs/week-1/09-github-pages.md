@@ -933,6 +933,16 @@ A: Project sites are hosted at `username.github.io/repo-name/`. If your HTML lin
 A: By default, GitHub Pages uses Jekyll to build your site and ignores folders starting with an underscore (like `_next` or `_static`). Placing an empty `.nojekyll` file tells GitHub to skip the Jekyll build step and serve your files exactly as they are.
 
 
+---
+
+## Video Resources
+
+Watch this tutorial to learn how to deploy a website using GitHub Pages:
+
+[![Deploy your first GitHub Pages Website](https://i.ytimg.com/vi_webp/sT_zXIX3ZA0/sddefault.webp)](https://youtu.be/sT_zXIX3ZA0)
+
+---
+
 ## Final revision checklist
 
 ```text

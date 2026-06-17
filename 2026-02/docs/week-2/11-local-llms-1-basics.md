@@ -285,6 +285,18 @@ A: No. `llama.cpp` and similar tools run entirely locally. Your data and prompts
 **Q: Are open weights the same as open source?**
 A: Not always. True open-source licenses (like MIT or Apache 2.0) allow unrestricted use. Many "open weights" models have custom licenses that restrict commercial use or limit usage based on monthly active users.
 
+---
+
+## Video Resources
+
+Watch these videos to learn how to run open-source large language models locally using Ollama and Llamafile:
+
+[![Run AI Models Locally: Ollama Tutorial (Step-by-Step Guide + WebUI)](https://i.ytimg.com/vi_webp/Lb5D892-2HY/sddefault.webp)](https://youtu.be/Lb5D892-2HY)
+
+[![Llamafile: Local LLMs Made Easy](https://img.youtube.com/vi/d1Fnfvat6nM/0.jpg)](https://youtu.be/d1Fnfvat6nM)
+
+---
+
 ## Final revision checklist
 
 ```text

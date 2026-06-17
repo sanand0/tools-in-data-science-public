@@ -684,6 +684,18 @@ A: Use SQLite for local development, desktop apps, mobile apps, smaller websites
 **Q: What is WAL mode and why should I enable it?**
 A: WAL (Write-Ahead Log) mode improves performance and concurrency by allowing readers to continue reading from the database even while another process is writing to it.
 
+---
+
+## Video Resources
+
+Watch these introductory videos to understand SQLite and how it's used in Python (34 min):
+
+[![SQLite Introduction - Beginners Guide to SQL and Databases (22 min)](https://i.ytimg.com/vi_webp/8Xyn8R9eKB8/sddefault.webp)](https://youtu.be/8Xyn8R9eKB8)
+
+[![SQLite Backend for Beginners - Create Quick Databases with Python and SQL (13 min)](https://i.ytimg.com/vi_webp/Ohj-CqALrwk/sddefault.webp)](https://youtu.be/Ohj-CqALrwk)
+
+---
+
 ## Final revision checklist
 
 ```text

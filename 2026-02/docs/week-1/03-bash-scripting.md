@@ -864,6 +864,20 @@ A: No, this is called "Useless Use of Cat". `grep` and many other tools can read
 **Q: Why must I quote my variables like `"$name"`?**
 A: Without quotes, Bash performs "word splitting" on the variable's contents, breaking spaces into separate arguments. Quoting variables preserves them exactly as one string, preventing unexpected command arguments.
 
+---
+
+## Video Resources
+
+Watch this video to install WSL (12 min).
+
+[![How to Install Ubuntu on Windows 10 (WSL) (12 min)](https://i.ytimg.com/vi_webp/X-DHaQLrBi8/sddefault.webp)](https://youtu.be/X-DHaQLrBi8)
+
+Watch this video to understand the basics of Bash and UNIX shell commands (75 min).
+
+[![Beginner's Guide to the Bash Terminal (75 min)](https://i.ytimg.com/vi_webp/oxuRxtrO2Ag/sddefault.webp)](https://youtu.be/oxuRxtrO2Ag)
+
+---
+
 ## Final revision checklist
 
 ```text

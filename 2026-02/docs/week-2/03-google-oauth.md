@@ -395,6 +395,16 @@ A: An Access Token is used to call APIs (like reading Google Drive). An ID Token
 **Q: Where should the session secret come from in production?**
 A: Use a strong, random, and unguessable string stored in environment variables. Do not hardcode it in the script.
 
+---
+
+## Video Resources
+
+Watch this tutorial to learn how to integrate Google OAuth2 Login with FastAPI:
+
+[![FastAPI Google Login Tutorial](https://i.ytimg.com/vi_webp/4ExQYRCwbzw/sddefault.webp)](https://youtu.be/4ExQYRCwbzw)
+
+---
+
 ## Tiny revision checklist
 
 ```text

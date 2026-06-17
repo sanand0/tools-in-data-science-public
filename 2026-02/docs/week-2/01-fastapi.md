@@ -725,7 +725,17 @@ A: `BackgroundTasks` run in the same process and memory space after the response
 Q: Can I return Python objects directly?
 A: FastAPI will automatically convert dictionaries, lists, and Pydantic models to JSON. However, complex objects like custom classes or ML models will throw an error unless converted.
 
-Final revision checklist:
+---
+
+## Video Resources
+
+Watch this course to learn the fundamentals of FastAPI:
+
+[![FastAPI Course for Beginners (64 min)](https://i.ytimg.com/vi_webp/tLKKmouUams/sddefault.webp)](https://youtu.be/tLKKmouUams)
+
+---
+
+## Final revision checklist:
 
 ```text
 [ ] Can I create and run a FastAPI app with uvicorn?

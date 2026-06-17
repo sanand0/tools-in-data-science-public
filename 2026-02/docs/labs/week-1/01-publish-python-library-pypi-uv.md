@@ -642,6 +642,16 @@ Publish a Discourse blog post covering:
 
 [**Lab 1.2 — Web Traffic Debugging with Burp Suite**](./02-burpsuite-traffic-debugging.md)
 
+---
+
+## Video Resources
+
+Watch this video to learn about Python package and project management with uv, including package building and publishing:
+
+[![uv - Python package and project management | Inline Script Metadata](https://i.ytimg.com/vi_webp/igWlYl3asKw/sddefault.webp)](https://youtu.be/igWlYl3asKw?t=1240)
+
+---
+
 ## References
 
 - [UV publishing guide](https://docs.astral.sh/uv/guides/publish/)

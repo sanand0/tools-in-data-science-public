@@ -545,6 +545,18 @@ A: By default, `requests` and `httpx` will not raise an exception if a request f
 **Q: What is the difference between POST and PUT/PATCH?**
 A: POST is used to create a new resource or perform an action. PUT completely replaces an existing resource with the data you send. PATCH updates only the specific fields you send, leaving the rest of the existing resource unchanged.
 
+---
+
+## Video Resources
+
+Watch these tutorials to understand HTTP requests and API testing (60 min):
+
+[![How to use cURL for API requests (15 min)](https://i.ytimg.com/vi_webp/7XUibDYw4mc/sddefault.webp)](https://youtu.be/7XUibDYw4mc)
+
+[![Postman Beginner's Course - API Testing (45 min)](https://i.ytimg.com/vi_webp/VywxIQ2ZXw4/sddefault.webp)](https://youtu.be/VywxIQ2ZXw4)
+
+---
+
 ## Final revision checklist
 
 ```text

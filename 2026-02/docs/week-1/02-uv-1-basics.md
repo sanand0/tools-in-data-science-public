@@ -338,6 +338,12 @@ A: Yes. `uv.lock` contains exact pinned versions, ensuring everyone on the team 
 
 ---
 
+## Video Resources
+
+[![uv - Python package and project management | Inline Script Metadata (28 min)](https://i.ytimg.com/vi_webp/igWlYl3asKw/sddefault.webp)](https://youtu.be/igWlYl3asKw)
+
+---
+
 ## Revision Checklist
 
 ```

@@ -635,6 +635,14 @@ A: Large models take seconds to fully generate responses. Streaming returns toke
 
 ---
 
+## Video Resources
+
+Watch this video to learn how to deploy and run large language models locally using Ollama:
+
+[![Run AI Models Locally: Ollama Tutorial](https://i.ytimg.com/vi_webp/Lb5D892-2HY/sddefault.webp)](https://youtu.be/Lb5D892-2HY)
+
+---
+
 ## Revision Checklist
 
 - [ ] A local model service is running (vLLM or Ollama).

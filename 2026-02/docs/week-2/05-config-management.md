@@ -417,6 +417,16 @@ A: If you use a regular `str` for passwords or keys, printing the `Settings` obj
 **Q: Is `lru_cache` really necessary for settings?**
 A: Yes! Without it, `Settings()` reads the disk (`.env`) every single time a request comes in. `lru_cache` ensures it only reads the disk once at startup.
 
+---
+
+## Video Resources
+
+Watch this video to understand environment variables and why they are used to manage configuration and secrets in Python:
+
+[![Python Environment Variables - Corey Schafer](https://i.ytimg.com/vi_webp/5iWhQWVXosU/sddefault.webp)](https://youtu.be/5iWhQWVXosU)
+
+---
+
 Final revision checklist:
 
 ```text

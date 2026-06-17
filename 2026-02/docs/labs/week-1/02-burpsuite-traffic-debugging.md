@@ -818,6 +818,14 @@ If you receive an error that address/port is already in use when launching `serv
 
 ---
 
+## Video Resources
+
+Watch this video to learn the basics of Burp Suite Community Edition:
+
+[![Burp Suite Basics Community Edition](https://i.ytimg.com/vi_webp/G3hpAeoZ4ek/sddefault.webp)](https://www.youtube.com/watch?v=G3hpAeoZ4ek)
+
+---
+
 ## What You've Learned
 
 - How to scaffold a local Python-based test API using built-in libraries.

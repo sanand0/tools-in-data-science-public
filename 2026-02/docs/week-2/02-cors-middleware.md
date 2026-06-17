@@ -464,6 +464,16 @@ A: That is the CORS preflight. The browser checks if the server allows the actua
 **Q: Is it safe to use `allow_origins=["*"]`?**
 A: It is okay for a purely public API with no sensitive data. However, if your API handles user accounts, cookies, or sensitive data, you must explicitly list your frontend URLs.
 
+---
+
+## Video Resources
+
+Watch this video to understand CORS in 100 seconds:
+
+[![CORS in 100 Seconds](https://i.ytimg.com/vi_webp/4KHiSt0oLJ0/sddefault.webp)](https://youtu.be/4KHiSt0oLJ0)
+
+---
+
 ## Final revision checklist
 
 ```text
