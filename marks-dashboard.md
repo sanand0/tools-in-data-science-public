@@ -19,9 +19,9 @@ T = 0.2 GA + 0.2 P1 + 0.2 P2 + 0.2 ROE + 0.2 ET
 > Note: The scores are updated one to two days after the deadline for the GAs and ROEs. Score updates for Projects can take more than a week or two due to large evaluation time frames.
 
 - Live Session (Recording/Live) : https://www.youtube.com/@se-lr5ff (see in live section)
-- All ga & roe will happen on : http://exam.sanand.workers.dev/
+- GAs & ROE will be on : https://exam.sanand.workers.dev/
 - Submit feedback every week to improve the course.
 
 The scores for your various components are available at this link. You must login with your student id to view them.
 
-### [Open the score dashboard: (To be Updated)](https://lookerstudio.google.com/reporting/f697ff2b-9b0c-4df9-8aed-f6998a2977ff)
+### [Open the score dashboard (link to be updated)](https://lookerstudio.google.com/reporting/f697ff2b-9b0c-4df9-8aed-f6998a2977ff)

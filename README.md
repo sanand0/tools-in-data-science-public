@@ -17,7 +17,7 @@
 <!-- https://gemini.google.com/app/2421e54562afb8c7 -->
 <!-- Archive: https://gemini.google.com/app/8118aff285667319 -->
 
-**Course content is there but we highly encourage you to take that as just topic reference and you should do a lot of practice and learn using open internet / AI etc.**
+ **Course content is available, but treat it only as a topic reference — practice extensively and learn using the open internet and AI.**
 
 <details>
 <summary><strong>Anyone can audit this course. It's public.</strong></summary>
@@ -35,7 +35,7 @@ Enrolled [IITM students](https://study.iitm.ac.in/ds/) can additionally particip
 
 You need a _good_ understanding of Python, JavaScript, HTML, APIs, Excel, ChatGPT, and data science concepts.
 
-Take the [Entrance Exam][EE]. IITM BS students scoring below 40% shouldn't register for this course (unless there's no choice).
+Take the [Entrance Exam][GA0]. IITM BS students scoring below 40% shouldn't register for this course (unless there's no choice).
 
 </details>
 
