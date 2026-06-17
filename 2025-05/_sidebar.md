@@ -89,7 +89,7 @@
   - [Data Analysis with SQL](data-analysis-with-sql.md)
   - [Data Analysis with Datasette](data-analysis-with-datasette.md)
   - [Data Analysis with DuckDB](data-analysis-with-duckdb.md)
-  - [Data Analysis with ChatGPT](data-analysis-with-chatgpt.md)
+  - [Vibe Analysis](vibe-analysis.md)
   - [Geospatial Analysis with Excel](geospatial-analysis-with-excel.md)
   - [Geospatial Analysis with Python](geospatial-analysis-with-python.md)
   - [Geospatial Analysis with QGIS](geospatial-analysis-with-qgis.md)

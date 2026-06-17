@@ -1,7 +1,7 @@
 # Hugo scaffold configuration used by `setup.sh`.
 # Theme is pulled via Hugo Modules (no committed `themes/` directory).
 baseURL = '/'
-languageCode = 'en-us'
+locale = 'en-us'
 title = 'Tools in Data Science'
 
 disableKinds = ['taxonomy', 'term']
@@ -17,7 +17,7 @@ disableKinds = ['taxonomy', 'term']
       unsafe = true
 
 [params]
-  # Keep theme mode in auto by default; explicit toggle is injected via partial.
+  # Keep theme mode in auto by default.
   BookTheme = 'auto'
   BookToC = true
   BookSearch = true

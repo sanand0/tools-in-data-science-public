@@ -1,0 +1,32 @@
+current: 2026-05
+
+terms:
+  - id: 2026-05
+    title: Tools in Data Science - May 2026
+    status: active-draft
+    path: 2026-05/
+    notes: Current term scaffold. Content is expected to change substantially.
+
+  - id: 2026-01
+    title: Tools in Data Science - Jan 2026
+    status: archived
+    path: 2026-01/
+    notes: Lightweight term archive.
+
+  - id: 2025-09
+    title: Tools in Data Science - Sep 2025
+    status: archived
+    path: 2025-09/
+    notes: Main reference for the 8-module May 2026 structure.
+
+  - id: 2025-05
+    title: Tools in Data Science - May 2025
+    status: archived
+    path: 2025-05/
+
+  - id: 2025-01
+    title: Tools in Data Science - Jan 2025
+    status: archived
+    path: 2025-01/
+
+legacy_content: legacy/2025-content/

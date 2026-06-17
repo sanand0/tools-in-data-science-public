@@ -33,14 +33,17 @@ jobs:
       - name: Setup Hugo Extended
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: "0.158.0"
+          hugo-version: "0.163.1"
           extended: true
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
 
       - name: Build Site
         run: ./setup.sh
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+        env:
+          HUGO_BASEURL: ${{ steps.pages.outputs.base_url }}/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

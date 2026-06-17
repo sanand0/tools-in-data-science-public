@@ -1,37 +1,42 @@
-<!-- Explicit dark/light toggle in sidebar.
-     `BookTheme` stays `auto`; this adds user override persisted in localStorage. -->
-<button id="tds-theme-toggle" class="tds-theme-toggle" type="button" aria-label="Toggle dark and light mode">◐ Theme</button>
 <script>
   (function () {
-    var btn = document.getElementById("tds-theme-toggle");
-    if (!btn) return;
+    var STORAGE_KEY = "tds-sidebar-week-state";
 
-    var getTheme = function () {
-      var saved = localStorage.getItem("tds-theme");
-      if (saved === "light" || saved === "dark") return saved;
-      return "dark";
-    };
-
-    var applyTheme = function (theme) {
-      document.documentElement.setAttribute("data-user-theme", theme);
-      localStorage.setItem("tds-theme", theme);
-      btn.textContent = theme === "dark" ? "☀ Light Mode" : "☾ Dark Mode";
-    };
-
-    applyTheme(getTheme());
-    btn.addEventListener("click", function () {
-      var now = document.documentElement.getAttribute("data-user-theme");
-      applyTheme(now === "dark" ? "light" : "dark");
-    });
-  })();
-
-  (function () {
     var normalize = function (p) {
       if (!p) return "/";
       p = p.split("#")[0].split("?")[0];
       if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
       return p || "/";
     };
+
+    var details = Array.prototype.slice.call(document.querySelectorAll(".book-menu-content details.tds-week"));
+    var readState = function () {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+      } catch (e) {
+        return {};
+      }
+    };
+    var keyFor = function (detail) {
+      var summary = detail.querySelector("summary");
+      return summary ? summary.textContent.trim() : "";
+    };
+    var writeState = function () {
+      var state = {};
+      details.forEach(function (detail) {
+        var key = keyFor(detail);
+        if (key) state[key] = detail.open;
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    };
+
+    var saved = readState();
+    details.forEach(function (detail) {
+      var key = keyFor(detail);
+      if (Object.prototype.hasOwnProperty.call(saved, key)) {
+        detail.open = !!saved[key];
+      }
+    });
 
     var current = normalize(window.location.pathname);
     document.querySelectorAll(".book-menu-content a[href]").forEach(function (a) {
@@ -46,7 +51,16 @@
       if (normalize(url.pathname) === current) {
         a.classList.add("active");
         a.setAttribute("aria-current", "page");
+        var parent = a.closest("details.tds-week");
+        if (parent) parent.open = true;
       }
+      a.addEventListener("click", writeState);
     });
+
+    details.forEach(function (detail) {
+      detail.addEventListener("toggle", writeState);
+    });
+    window.addEventListener("beforeunload", writeState);
+    writeState();
   })();
 </script>
