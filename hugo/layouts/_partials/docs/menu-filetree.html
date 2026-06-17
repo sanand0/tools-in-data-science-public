@@ -9,5 +9,9 @@
 {{ end }}
 
 {{ $sidebarFile := printf "sidebars/%s.md" $sidebar }}
+{{ if not (fileExists $sidebarFile) }}
+  {{ $sidebarFile = "sidebars/root.md" }}
+{{ end }}
 {{ $sidebarMarkdown := readFile $sidebarFile }}
-{{ $sidebarMarkdown | markdownify }}
+{{- $basePath := .Site.BaseURL | strings.TrimSuffix "/" -}}
+{{ $sidebarMarkdown | markdownify | replaceRE `href="(/[^"]*)"` (printf `href="%s$1"` $basePath) | safeHTML }}
