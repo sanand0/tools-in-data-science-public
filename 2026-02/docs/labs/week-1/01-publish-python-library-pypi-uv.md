@@ -640,7 +640,7 @@ Publish a Discourse blog post covering:
 
 ## Next Lab
 
-[**Lab 1.2 — UV CLI tool + LaTeX docs PDF on GitHub Pages**](./uv-cli-tool-latex-docs)
+[**Lab 1.2 — Web Traffic Debugging with Burp Suite**](./02-burpsuite-traffic-debugging.md)
 
 ## References
 

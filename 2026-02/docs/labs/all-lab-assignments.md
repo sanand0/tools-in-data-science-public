@@ -3,6 +3,7 @@
 ## Week 01 — Development Environment & Tooling
 
 - **Lab**: [Publish a Python library to PyPI using UV](2026-02/docs/labs/week-1/01-publish-python-library-pypi-uv.md)
+- **Lab**: [Web Traffic Debugging with Burp Suite](2026-02/docs/labs/week-1/02-burpsuite-traffic-debugging.md)
 
 ## Week 02 — Deployment & API Engineering
 

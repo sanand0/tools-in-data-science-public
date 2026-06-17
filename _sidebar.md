@@ -47,6 +47,7 @@
   - [GitHub Pages](2026-02/docs/week-1/09-github-pages.md)
   - [LaTeX](2026-02/docs/week-1/10-latex.md)
   - [**Lab: Publish a Python library to PyPI**](2026-02/docs/labs/week-1/01-publish-python-library-pypi-uv.md)
+  - [**Lab: Web Traffic Debugging with Burp Suite**](2026-02/docs/labs/week-1/02-burpsuite-traffic-debugging.md)
 
 - **2. Deployment & API Engineering**
   - [FastAPI Fundamentals](2026-02/docs/week-2/01-fastapi.md)
