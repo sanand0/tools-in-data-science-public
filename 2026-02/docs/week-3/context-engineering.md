@@ -2,9 +2,9 @@
 
 Context engineering is the discipline of designing **what goes in the context window** — the system prompt, background documents, instructions, tools, and conversation history — to make an LLM behave consistently and correctly across all inputs.
 
-?> **Prompt Engineering vs Context Engineering**
-?> - **Prompt Engineering**: How to phrase one query to get a good answer
-?> - **Context Engineering**: How to architect the entire context so the model behaves reliably *on every query*
+**Prompt Engineering vs Context Engineering**
+- **Prompt Engineering**: How to phrase one query to get a good answer
+- **Context Engineering**: How to architect the entire context so the model behaves reliably *on every query*
 
 ---
 

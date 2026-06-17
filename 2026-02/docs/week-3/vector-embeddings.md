@@ -2,10 +2,10 @@
 
 An **embedding** is a fixed-length list of numbers (a vector) that represents the meaning of a text. Texts with similar meanings have vectors that are close to each other in high-dimensional space. This is the mathematical foundation of semantic search, RAG, and recommendation systems.
 
-?> **Intuition**
-?> "King" − "Man" + "Woman" ≈ "Queen"
-?>
-?> This isn't magic — embeddings place semantically related words in similar geometric regions of the vector space.
+**Intuition**
+"King" − "Man" + "Woman" ≈ "Queen"
+
+This isn't magic — embeddings place semantically related words in similar geometric regions of the vector space.
 
 ---
 
