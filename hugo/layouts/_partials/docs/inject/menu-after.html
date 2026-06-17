@@ -36,10 +36,25 @@
     var current = normalize(window.location.pathname);
     document.querySelectorAll(".book-menu-content a[href]").forEach(function (a) {
       var href = a.getAttribute("href") || "";
-      if (!href.startsWith("/")) return;
-      if (normalize(href) === current) {
+      var url;
+      try {
+        url = new URL(href, window.location.origin);
+      } catch (_e) {
+        return;
+      }
+      if (url.origin !== window.location.origin) return;
+      if (normalize(url.pathname) === current) {
         a.classList.add("active");
         a.setAttribute("aria-current", "page");
+
+        // Auto-expand the parent <details> folders of the active link
+        var parent = a.parentElement;
+        while (parent && parent !== document.body) {
+          if (parent.tagName === "DETAILS") {
+            parent.open = true;
+          }
+          parent = parent.parentElement;
+        }
       }
     });
   })();
