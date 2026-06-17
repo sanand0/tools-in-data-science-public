@@ -40,6 +40,15 @@
       if (normalize(href) === current) {
         a.classList.add("active");
         a.setAttribute("aria-current", "page");
+
+        // Auto-expand the parent <details> folders of the active link
+        var parent = a.parentElement;
+        while (parent && parent !== document.body) {
+          if (parent.tagName === "DETAILS") {
+            parent.open = true;
+          }
+          parent = parent.parentElement;
+        }
       }
     });
   })();
