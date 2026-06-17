@@ -1,5 +1,5 @@
 - [May 2026: Tools in Data Science](/)
-- [Marks Dashboard](marks-dashboard.md)
+- <a href="marks-dashboard.md">Marks Dashboard</a>
 
 ---
 
