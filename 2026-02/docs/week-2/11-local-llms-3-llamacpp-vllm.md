@@ -1,5 +1,7 @@
 # 8. llama.cpp: best low-level control tool
 
+[![Llama cpp Video](https://img.youtube.com/vi/8F_5pdcD3HY/0.jpg)](https://youtu.be/8F_5pdcD3HY?si=zQT8bgUXqXxnqAXr)
+
 ## 8.1 What it is
 
 llama.cpp is a C/C++ inference engine for running LLMs locally, especially GGUF models. It supports many backends including Metal, CUDA, HIP/ROCm, Vulkan, SYCL, OpenCL, WebGPU, CPU backends, and more.

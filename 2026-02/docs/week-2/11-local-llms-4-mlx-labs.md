@@ -1,5 +1,7 @@
 # 10. MLX / mlx-lm: Apple Silicon-native path
 
+[![MLX Video](https://img.youtube.com/vi/wykPErJ8M-8/0.jpg)](https://youtu.be/wykPErJ8M-8?si=dLvXpnoaLjCITTC4)
+
 ## 10.1 What it is
 
 MLX is Apple’s machine-learning framework for Apple Silicon. It is designed for efficient and flexible machine learning on Apple Silicon, has Python/C++/Swift/C support, uses a NumPy-like API, supports CPU/GPU, and is designed around unified memory.

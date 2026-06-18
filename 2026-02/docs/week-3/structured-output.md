@@ -1,5 +1,7 @@
 # Pydantic & Structured Output
 
+[![Structured Output Video](https://img.youtube.com/vi/fuMKrKlaku4/0.jpg)](https://youtu.be/fuMKrKlaku4?si=y1Tgb09oBW67CPVB)
+
 LLMs return free-form text. Your application needs typed, validated data. **Instructor** is the bridge — it wraps any LLM client and guarantees structured, validated Pydantic output with automatic retry on failure.
 
 **Why this matters**

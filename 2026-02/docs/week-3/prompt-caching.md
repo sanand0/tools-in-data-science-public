@@ -1,5 +1,7 @@
 # Prompt Caching
 
+[![Prompt Caching Video](https://img.youtube.com/vi/tECAkJAI_Vk/0.jpg)](https://youtu.be/tECAkJAI_Vk?si=7zJK7B2nEtO5kD3S)
+
 Every time you call an LLM API, you pay to process the **entire** prompt — even if the system prompt, the 50-page document, or the tool definitions haven't changed since the last call. Prompt caching fixes this: process once, read from cache for a fraction of the cost.
 
 **Real numbers (Anthropic Claude Sonnet 4.6)**

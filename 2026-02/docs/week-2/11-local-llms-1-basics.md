@@ -2,6 +2,8 @@
 
 ---
 
+[![Local LLM Tools Video](https://img.youtube.com/vi/U8lGbSaCCYI/0.jpg)](https://youtu.be/U8lGbSaCCYI?si=LvFNfoY0WmWnNwSJ)
+
 ## One-page summary of all tools
 
 | Tool             | Best use                                                                       | Interface                    | Best user                            |

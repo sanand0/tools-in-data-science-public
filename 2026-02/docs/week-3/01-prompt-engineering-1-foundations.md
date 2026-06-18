@@ -1,5 +1,9 @@
 # Prompt Engineering — Chapter 1: Foundations
 
+[![Prompt Engineering Video 1](https://img.youtube.com/vi/2BpCk4d2Cc0/0.jpg)](https://www.youtube.com/watch?v=2BpCk4d2Cc0)
+
+[![Prompt Engineering Video 2](https://img.youtube.com/vi/_ZvnD73m40o/0.jpg)](https://www.youtube.com/watch?v=_ZvnD73m40o)
+
 Prompt engineering is not magic wording. It is the habit of giving an AI model a clear task, useful context, strong boundaries, and a verifiable output format.
 
 A good beginner rule:

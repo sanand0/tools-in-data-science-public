@@ -1,5 +1,7 @@
 # Multimodal Inputs
 
+[![Multimodal Inputs Video](https://img.youtube.com/vi/wdeZIOJjjdE/0.jpg)](https://youtu.be/wdeZIOJjjdE?si=wFK2fsXu96TbYIiL)
+
 Modern LLMs aren't just text-in, text-out. You can send images, PDFs, and audio directly in API requests and get back rich, structured analysis. This is the foundation of document processing pipelines, visual QA, and OCR-free data extraction.
 
 ---

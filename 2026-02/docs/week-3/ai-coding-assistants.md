@@ -1,5 +1,9 @@
 # AI Coding Assistants
 
+[![AI Coding Assistants Video 1](https://img.youtube.com/vi/gq5uGNSUVx4/0.jpg)](https://youtu.be/gq5uGNSUVx4?si=aWwYbKD-rrObxDWO)
+
+[![AI Coding Assistants Video 2](https://img.youtube.com/vi/6C0FjHoN3qE/0.jpg)](https://youtu.be/6C0FjHoN3qE?si=uZbMdP9FEMkc941u)
+
 AI coding assistants are not just autocomplete. Used well, they can write, test, refactor, and explain entire codebases. Used poorly, they produce confident-sounding but wrong code. This page is about using them well.
 
 ---

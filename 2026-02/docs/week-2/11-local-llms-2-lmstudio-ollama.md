@@ -1,5 +1,7 @@
 # 6. LM Studio: best beginner GUI and local API tool
 
+[![LM Studio Video](https://img.youtube.com/vi/OOCioZC4tk0/0.jpg)](https://youtu.be/OOCioZC4tk0?si=MICcoDpAbHlpeXcK)
+
 ## 6.1 What it is
 
 LM Studio is a desktop app for downloading, managing, chatting with, and serving local models. It supports local model search/download, chat UI, MCP servers, OpenAI-like endpoints, prompt/config management, and document chat. It runs on macOS, Windows, and Linux.
