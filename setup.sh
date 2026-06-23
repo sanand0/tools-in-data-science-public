@@ -161,6 +161,24 @@ while IFS= read -r rel; do
   mkdir -p "$(dirname "$dest")"
   cp "$ROOT_DIR/$rel" "$dest"
   sed -E -i 's#\((\.\./)?images/#(/images/#g' "$dest"
+  if grep -q 'data-live-session-slides' "$dest"; then
+    python3 -c '
+import sys, re, base64
+def encode_slides(match):
+    attrs = match.group(1)
+    content = match.group(2)
+    b64_content = base64.b64encode(content.encode("utf-8")).decode("utf-8")
+    return f"<script type=\"text/template\" {attrs} data-slides-encoded=\"{b64_content}\"></script>"
+
+with open(sys.argv[1], "r", encoding="utf-8") as f:
+    content = f.read()
+
+new_content = re.sub(r"<textarea([^>]*data-live-session-slides[^>]*)>(.*?)</textarea>", encode_slides, content, flags=re.DOTALL | re.IGNORECASE)
+
+with open(sys.argv[1], "w", encoding="utf-8") as f:
+    f.write(new_content)
+' "$dest"
+  fi
 done < <(git -C "$ROOT_DIR" ls-files '*.md')
 
 # Duplicate shared top-level content pages into each course folder.

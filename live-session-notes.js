@@ -743,8 +743,26 @@
     function attr(name) {
       return (registered && registered.attrs && registered.attrs[name]) || sourceEl.getAttribute(name) || "";
     }
-    var textarea = sourceEl.querySelector("textarea[data-live-session-slides]");
-    var raw = registered ? registered.raw : (textarea ? (textarea.value || textarea.textContent) : "");
+    function decodeBase64(str) {
+      try {
+        return decodeURIComponent(escape(atob(str)));
+      } catch (e) {
+        return atob(str);
+      }
+    }
+    var textarea = sourceEl.querySelector("textarea[data-live-session-slides], script[data-live-session-slides]");
+    var raw = "";
+    if (textarea) {
+      var encoded = textarea.getAttribute("data-slides-encoded");
+      if (encoded) {
+        raw = decodeBase64(encoded);
+      } else {
+        raw = registered ? registered.raw : (textarea.value || textarea.textContent || "");
+      }
+    }
+    if (raw) {
+      raw = raw.replace(/^\s*<!--\s*/, "").replace(/\s*-->\s*$/, "");
+    }
     var meta = {
       title: attr("data-title") || extractSlideTitle(raw, document.title),
       week: attr("data-week"),
