@@ -292,6 +292,9 @@
       '<div class="lsn-stage" tabindex="0">' +
       '<div class="reveal"><div class="slides">' + buildSlidesHtml(slides) + "</div></div>" +
       '<canvas class="lsn-ink-canvas" aria-hidden="true"></canvas>' +
+      '<button type="button" class="lsn-nav-arrow lsn-nav-prev" data-action="prev" aria-label="Previous slide">' + svg("chevronLeft") + "</button>" +
+      '<button type="button" class="lsn-nav-arrow lsn-nav-next" data-action="next" aria-label="Next slide">' + svg("chevronRight") + "</button>" +
+      '<div class="lsn-slide-counter" aria-live="polite"><span class="lsn-counter-current">1</span><span class="lsn-counter-sep">/</span><span class="lsn-counter-total">' + slides.length + "</span></div>" +
       "</div>" +
       '<footer class="lsn-footer"><span class="lsn-slide-meta"></span><span class="lsn-status" role="status"></span></footer>' +
       '<input type="file" class="lsn-file-input" accept="application/json,.json" hidden>';
@@ -704,8 +707,23 @@
     state.showToolbar = showToolbar;
   }
 
+  function updateSlideCounter(state) {
+    var counter = state.el.querySelector(".lsn-counter-current");
+    if (counter) counter.textContent = currentSlideIndex(state) + 1;
+  }
+
   function bindControls(state) {
     var actions = state.el.querySelector(".lsn-actions");
+
+    // Floating nav arrows (inside .lsn-stage, always accessible in present mode)
+    state.el.addEventListener("click", function (event) {
+      var navBtn = event.target.closest(".lsn-nav-arrow");
+      if (!navBtn) return;
+      var action = navBtn.getAttribute("data-action");
+      if (action === "prev" && state.deck) { state.deck.prev(); updateSlideCounter(state); }
+      if (action === "next" && state.deck) { state.deck.next(); updateSlideCounter(state); }
+    });
+
     actions.addEventListener("click", function (event) {
       var actionButton = event.target.closest("[data-action]");
       var toolButton = event.target.closest("[data-tool]");
@@ -726,10 +744,10 @@
         setAnnotationVisibility(state, modeButton.getAttribute("data-value") === "show");
         return;
       }
-      if (!actionButton) return;
+      if (!actionButton || actionButton.closest(".lsn-nav-arrow")) return;
       var action = actionButton.getAttribute("data-action");
-      if (action === "prev" && state.deck) state.deck.prev();
-      if (action === "next" && state.deck) state.deck.next();
+      if (action === "prev" && state.deck) { state.deck.prev(); updateSlideCounter(state); }
+      if (action === "next" && state.deck) { state.deck.next(); updateSlideCounter(state); }
       if (action === "present") enterPresentation(state);
       if (action === "exit-present") {
         if (document.exitFullscreen) {
@@ -788,6 +806,7 @@
         deck.on("slidechanged", function () {
           state.currentStroke = null;
           resizeCanvas(state);
+          updateSlideCounter(state);
           syncStatus(state, "Ready");
         });
         deck.on("fragmentshown", function () { redraw(state); });
@@ -918,6 +937,19 @@
       ".lsn-workspace.is-presenting .reveal h3,.lsn-workspace:fullscreen .reveal h3{color:#cbd5e1}" +
       ".lsn-workspace.is-presenting .lsn-footer,.lsn-workspace:fullscreen .lsn-footer{position:absolute;bottom:0.75rem;left:1.5rem;right:1.5rem;z-index:9999;color:rgba(255,255,255,0.45);margin:0;pointer-events:none}" +
       ".lsn-pptx-render-root{position:fixed;left:-20000px;top:0;width:1280px;background:#fff;z-index:-1}" +
+      /* Floating nav arrows - only visible in presentation mode */
+      ".lsn-nav-arrow{display:none;position:absolute;top:50%;transform:translateY(-50%);z-index:9990;width:3.5rem;height:3.5rem;border:0;border-radius:50%;background:rgba(15,23,42,0.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;cursor:pointer;transition:background 0.2s,opacity 0.2s,transform 0.2s;padding:0;align-items:center;justify-content:center}" +
+      ".lsn-nav-arrow svg{width:1.6rem;height:1.6rem;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}" +
+      ".lsn-nav-arrow:hover{background:rgba(220,53,69,0.82);transform:translateY(-50%) scale(1.08)}" +
+      ".lsn-nav-prev{left:1.25rem}.lsn-nav-next{right:1.25rem}" +
+      /* Slide counter - bottom center, only in presentation mode */
+      ".lsn-slide-counter{display:none;position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);z-index:9990;background:rgba(15,23,42,0.65);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:rgba(255,255,255,0.9);font-size:.95rem;font-weight:700;letter-spacing:.06em;padding:.3rem .85rem;border-radius:20px;border:1px solid rgba(255,255,255,0.15);pointer-events:none;white-space:nowrap}" +
+      ".lsn-counter-sep{margin:0 .3em;opacity:.5}" +
+      /* Show nav arrows and counter only in presentation/fullscreen mode */
+      ".lsn-workspace.is-presenting .lsn-nav-arrow,.lsn-workspace:fullscreen .lsn-nav-arrow{display:flex}" +
+      ".lsn-workspace.is-presenting .lsn-slide-counter,.lsn-workspace:fullscreen .lsn-slide-counter{display:block}" +
+      /* Hide the nav arrows when annotating to avoid interfering with canvas */
+      ".lsn-workspace.is-presenting.is-annotating .lsn-nav-arrow,.lsn-workspace:fullscreen.is-annotating .lsn-nav-arrow{opacity:0.18;pointer-events:none}" +
       EXPORT_CSS +
       "@media(max-width:840px){.lsn-toolbar{grid-template-columns:1fr}.lsn-actions{justify-content:flex-start}.lsn-btn span,.lsn-segment span{display:none}.lsn-stage .reveal .slides section{padding:30px 34px}.lsn-stage .reveal h1{font-size:1.35em}.lsn-stage .reveal h2{font-size:1.12em}.lsn-stage .reveal p,.lsn-stage .reveal li{font-size:.58em}.lsn-footer{flex-direction:column;gap:.2rem}}";
     document.head.appendChild(style);
