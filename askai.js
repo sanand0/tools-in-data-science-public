@@ -130,9 +130,39 @@
     capturedSelection = text ? text.slice(0, MAX_CONTEXT) : "";
   });
 
-  function wholePageContent() {
+  var rawMarkdownContent = "";
+
+  function fetchRawMarkdown() {
+    rawMarkdownContent = "";
+    var url = rawUrl();
+    if (!url) return;
+    fetch(url)
+      .then(function (res) {
+        if (res.ok) return res.text();
+        throw new Error("fail");
+      })
+      .then(function (text) {
+        rawMarkdownContent = text;
+      })
+      .catch(function () {});
+  }
+
+  function getCleanDOMText() {
     var c = document.querySelector(".markdown-section") || document.querySelector(".content") || document.querySelector("article") || document.body;
-    return c ? clean(c.textContent).slice(0, 3000) : "";
+    if (!c) return "";
+    var clone = c.cloneNode(true);
+    var removeSelectors = "script, style, nav, footer, header, svg, iframe, noscript, .ai-launcher, .ai-panel, .ai-inline-wrap, .book-menu, .book-toc, .sidebar";
+    clone.querySelectorAll(removeSelectors).forEach(function (el) {
+      el.remove();
+    });
+    return clone.textContent.replace(/\r\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
+  }
+
+  function wholePageContent() {
+    if (rawMarkdownContent) {
+      return rawMarkdownContent.slice(0, 3000);
+    }
+    return getCleanDOMText().slice(0, 3000);
   }
 
   // ── CSS Style (with premium Green/Violet themes & custom font sizes) ───
@@ -367,6 +397,7 @@
       syncContext: function () {
         closePanel(); panel.querySelector(".ai-panel-page-title").textContent = pageTitle();
         capturedSelection = ""; setScope("page");
+        fetchRawMarkdown();
       }
     };
   }
@@ -496,6 +527,11 @@
   var widget;
 
   function plugin(hook) {
+    hook.beforeEach(function (markdown) {
+      rawMarkdownContent = markdown;
+      return markdown;
+    });
+
     hook.ready(function () {
       if (!document.getElementById("ai-css")) {
         var s = document.createElement("style"); s.id = "ai-css"; s.textContent = CSS; document.head.appendChild(s);
@@ -526,6 +562,7 @@
     }
     widget = createWidget();
     applyTheme(storageGet(THEME_STORAGE_KEY, "purple"));
+    fetchRawMarkdown();
 
     var c = document.querySelector(".markdown-section") || document.querySelector(".content") || document.querySelector("article") || document.body;
     if (!c) return;
