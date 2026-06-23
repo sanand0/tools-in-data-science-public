@@ -1,49 +1,96 @@
-# 08 · Data Formats
+# Data Formats — Practical Notes
 
-?> **TL;DR**
-?> Different problems need different formats. **JSON** for APIs. **TOML** for Python configs. **YAML** for CI/infra. **Markdown** for prose. **Base64** for binary-in-text. **Unicode/UTF-8** underlies all of them.
+Data formats are how programs **store, send, read, and explain data**.
 
-## Unicode and UTF-8 — The Foundation
+In real developer work:
 
-All text on the internet is **Unicode**. Unicode assigns a unique number ("code point") to every character in every human language. For example:
-
-- `A` → `U+0041` (code point 65)
-- `अ` → `U+0905` (code point 2309)
-- `🙏` → `U+1F64F` (code point 128591)
-
-**UTF-8** is how we encode those code points into bytes. ASCII characters (`A–Z`, `0–9`, punctuation) take 1 byte. Indian/European characters take 2. CJK characters 3. Emoji 4.
-
-```python
->>> "नमस्ते 🙏".encode("utf-8")
-b'\xe0\xa4\xa8\xe0\xa4\xae\xe0\xa4\xb8\xe0\xa5\x8d\xe0\xa4\xa4\xe0\xa5\x87 \xf0\x9f\x99\x8f'
-
->>> len("नमस्ते 🙏")              # 7 code points
-7
->>> len("नमस्ते 🙏".encode("utf-8"))  # 21 bytes
-21
+```text
+API response        -> JSON
+Python project      -> TOML / pyproject.toml
+GitHub Actions      -> YAML
+README / notes      -> Markdown
+Image/PDF in JSON   -> Base64
+Fast internal data  -> MessagePack / Protobuf
+LLM prompt data     -> JSON / Markdown / TOON
+All text            -> UTF-8
 ```
 
-**Rule of thumb: always use UTF-8.** Every modern API, database, and tool expects it by default.
-
-```python
-# When reading files:
-open("file.txt", encoding="utf-8")   # be explicit on Windows
-
-# In HTTP:
-Content-Type: application/json; charset=utf-8
+```mermaid
+flowchart LR
+    A[Data in program] --> B{Where is it going?}
+    B --> C[API / web app: JSON]
+    B --> D[Config: YAML or TOML]
+    B --> E[Docs: Markdown]
+    B --> F[Binary inside text: Base64]
+    B --> G[High speed internal: MessagePack]
+    B --> H[LLM context: JSON / TOON / Markdown]
 ```
 
-[![Unicode, UTF-8, and the Web — Computerphile](https://img.youtube.com/vi/MijmeoH9LT4/0.jpg)](https://youtu.be/MijmeoH9LT4 "Unicode, UTF-8, and the Web — Computerphile")
+## Start with a small lab
 
-## JSON — The Universal API Format
+```bash
+mkdir data-formats-lab
+cd data-formats-lab
 
-JSON (JavaScript Object Notation) is the format every REST API returns. Simple, strict, machine-parseable.
+# Use uv if you have it
+uv init --bare
+uv add pyyaml msgpack tomli-w
 
-```json
+# Optional but very useful for JSON
+sudo apt-get update
+sudo apt-get install -y jq
+
+# Check tools
+python --version
+jq --version
+```
+
+## UTF-8: the rule below every format
+
+Always assume text is **Unicode**, and store/send it as **UTF-8**. Unicode gives each character a number; UTF-8 turns that character into bytes. Normal ASCII characters use 1 byte, many non-Latin characters use 2–3 bytes, and emoji can use 4 bytes.
+
+```bash
+cat > unicode_demo.py <<'PY'
+text = "नमस्ते 🙏"
+
+print(text)
+print(len(text))                    # number of Python characters/code points
+print(len(text.encode("utf-8")))    # number of bytes
+print(text.encode("utf-8"))         # actual UTF-8 bytes
+
+# Safe habit: always mention encoding when reading/writing text files
+with open("hello.txt", "w", encoding="utf-8") as f:
+    f.write(text)
+
+with open("hello.txt", "r", encoding="utf-8") as f:
+    print(f.read())
+PY
+
+uv run python unicode_demo.py
+```
+
+Safe habit:
+
+```python
+# Good
+open("data.txt", encoding="utf-8")
+
+# Risky on some systems
+open("data.txt")
+```
+
+## JSON: the API language
+
+JSON is the default format for REST APIs, webhooks, browser apps, config exchange, and LLM tools. It is strict and machine-readable. JSON supports: strings, numbers, booleans, null, objects, and arrays — but **not** comments, trailing commas, native dates, or binary blobs.
+
+Create a file:
+
+```bash
+cat > user.json <<'JSON'
 {
   "name": "Alice",
   "age": 30,
-  "is_admin": true,
+  "is_admin": false,
   "roles": ["editor", "reviewer"],
   "address": {
     "city": "Chennai",
@@ -51,358 +98,679 @@ JSON (JavaScript Object Notation) is the format every REST API returns. Simple, 
   },
   "deleted_at": null
 }
+JSON
 ```
 
-### Data types
-
-| JSON type | Python type |
-|-----------|-------------|
-| `string` | `str` |
-| `number` | `int` or `float` |
-| `true` / `false` | `bool` |
-| `null` | `None` |
-| `object` | `dict` |
-| `array` | `list` |
-
-Notably missing: dates, binary blobs, comments, trailing commas. Dates are usually stored as ISO 8601 strings (`"2026-05-10T14:30:00Z"`); binary as Base64 strings.
-
-### Working with JSON
-
-```python
-import json
-
-# Serialize
-data = {"name": "Alice", "scores": [1, 2, 3]}
-s = json.dumps(data, indent=2, ensure_ascii=False)
-# ensure_ascii=False keeps Unicode characters readable
-
-# Parse
-data = json.loads(s)
-
-# Files
-json.dump(data, open("out.json", "w"))
-data = json.load(open("out.json"))
-```
-
-### JSON at the command line
+Use JSON from terminal:
 
 ```bash
-# Pretty-print
-cat data.json | jq .
+cat user.json | jq .
 
-# Validate
-jq empty < data.json      # exits non-zero on bad JSON
+# Validate JSON
+jq empty user.json
 
-# Edit a field
-jq '.name = "Bob"' data.json > new.json
+# Extract one field
+jq '.name' user.json
+
+# Extract nested field
+jq '.address.city' user.json
+
+# Change a field and save as new file
+jq '.name = "Bob"' user.json > user2.json
+
+# Compact JSON for APIs
+jq -c . user.json
 ```
 
-?> **JSON vs JSON5 vs JSONC**
-?> Strict JSON has no comments. **JSONC** (JSON with Comments) and **JSON5** are loose variants used in config files (VS Code `settings.json` is JSONC). For machine-readable data interchange, stick to strict JSON.
+Use JSON in Python:
 
-## YAML — Human-Readable Config
+```bash
+cat > json_demo.py <<'PY'
+import json
 
-YAML is JSON with indentation instead of braces. It's used in GitHub Actions, Docker Compose, Kubernetes, Ansible, and countless CI configs.
+data = {
+    "project": "tds-2026",
+    "language": "हिन्दी",
+    "scores": [10, 20, 30],
+}
 
-```yaml
-name: Deploy
-on:
-  push:
-    branches: [main]
-  pull_request:
+# ensure_ascii=False keeps Unicode readable
+text = json.dumps(data, indent=2, ensure_ascii=False)
+print(text)
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    env:
-      API_KEY: ${{ secrets.API_KEY }}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run tests
-        run: |
-          uv sync
-          uv run pytest
+with open("project.json", "w", encoding="utf-8") as f:
+    json.dump(data, f, indent=2, ensure_ascii=False)
+
+with open("project.json", "r", encoding="utf-8") as f:
+    loaded = json.load(f)
+
+print(loaded["language"])
+PY
+
+uv run python json_demo.py
 ```
 
-### Key YAML quirks
+Beginner mistakes:
 
-```yaml
-# All three are equivalent strings:
-- foo
-- "foo"
-- 'foo'
-
-# But these are DIFFERENT:
-- true          # boolean true
-- "true"        # string "true"
-- yes           # boolean true (!!!)
-- on            # boolean true (!!!)
-
-# Anchors and aliases let you reuse values
-defaults: &defaults
-  timeout: 30
-  retries: 3
-
-prod:
-  <<: *defaults
-  url: https://prod
-
-staging:
-  <<: *defaults
-  url: https://staging
+```json
+{
+  "name": "Alice",
+  "age": 30
+}
 ```
 
-!> **The Norway bug**
-!> YAML 1.1 treats `no`, `yes`, `on`, `off` as booleans. A country list `[no, is, se, de, fi]` silently becomes `[False, "is", "se", "de", "fi"]`. Use YAML 1.2 libraries (`ruamel.yaml`) and quote strings that look like booleans.
+Good JSON uses **double quotes**, no comments, no trailing comma.
 
-### Python YAML
+```json
+{
+  "name": "Alice",
+  "age": 30,
+}
+```
 
-```python
-# Library: PyYAML (install: `uv add pyyaml`)
+Bad strict JSON because of the trailing comma.
+
+Use ISO date strings:
+
+```json
+{
+  "created_at": "2026-06-15T10:30:00Z"
+}
+```
+
+Use Base64 for binary:
+
+```json
+{
+  "filename": "photo.png",
+  "content_base64": "iVBORw0KGgo..."
+}
+```
+
+## YAML: human-friendly config, but be careful
+
+YAML is common in GitHub Actions, Docker Compose, Kubernetes, Ansible, and CI/CD configs. It is readable, but indentation and automatic type conversion can surprise beginners. Be careful with values like `yes`, `no`, `on`, and `off` — some parsers treat them as booleans.
+
+```bash
+cat > config.yml <<'YAML'
+app:
+  name: tds-demo
+  debug: true
+  port: 8000
+
+database:
+  host: localhost
+  port: 5432
+
+countries:
+  - "no"   # quote this, otherwise some parsers may treat it as false
+  - "in"
+  - "se"
+
+commands:
+  setup: |
+    uv sync
+    uv run pytest
+YAML
+```
+
+Read YAML safely in Python:
+
+```bash
+cat > yaml_demo.py <<'PY'
 import yaml
 
-data = yaml.safe_load(open("config.yml"))   # ← always safe_load, not load
-yaml.safe_dump(data, open("out.yml", "w"), sort_keys=False)
+with open("config.yml", "r", encoding="utf-8") as f:
+    # Safe habit: use safe_load, not yaml.load
+    config = yaml.safe_load(f)
+
+print(config["app"]["name"])
+print(config["countries"])
+
+with open("config.out.yml", "w", encoding="utf-8") as f:
+    yaml.safe_dump(config, f, sort_keys=False, allow_unicode=True)
+PY
+
+uv run python yaml_demo.py
 ```
 
-## TOML — Config for Python Projects
+Good YAML habits:
 
-TOML (Tom's Obvious, Minimal Language) is the official format for `pyproject.toml`. Stricter than YAML, kinder to humans than JSON.
+```yaml
+# Use 2 spaces, not tabs
+app:
+  name: tds-demo
 
-```toml title="pyproject.toml"
+# Quote strings that look like booleans or numbers
+country_code: "no"
+pin: "600113"
+version: "1.0"
+
+# Use | for multi-line shell blocks
+run: |
+  uv sync
+  uv run pytest
+```
+
+## TOML: best for Python project config
+
+TOML is stricter than YAML and easier to read than JSON for config. Python projects use `pyproject.toml` — it's the standard config format for modern Python projects.
+
+```bash
+cat > pyproject.toml <<'TOML'
 [project]
-name = "my-package"
+name = "data-formats-lab"
 version = "0.1.0"
-description = "A sample package."
-readme = "README.md"
+description = "Practice project for data formats"
 requires-python = ">=3.11"
-license = "MIT"
 dependencies = [
-    "requests>=2.31",
-    "pydantic>=2",
+    "pyyaml",
+    "msgpack",
 ]
 
 [project.optional-dependencies]
 dev = ["pytest", "ruff"]
 
-[project.scripts]
-my-cli = "my_package.cli:main"
-
 [tool.ruff]
 line-length = 100
-```
 
-### TOML data types
-
-```toml
-# Strings
-name = "Alice"
-multiline = """
-First line.
-Second line.
-"""
-
-# Numbers
-age = 30
-pi = 3.14
-hex = 0xdeadbeef
-
-# Booleans
-debug = true
-
-# Arrays
-tags = ["python", "rust", "fast"]
-
-# Tables (= maps / objects / dicts)
 [database]
 host = "localhost"
 port = 5432
-
-# Array of tables
-[[users]]
-name = "Alice"
-[[users]]
-name = "Bob"
-
-# Dates
-start = 2026-05-10
-birthday = 1993-06-15T08:30:00Z
+debug = true
+TOML
 ```
 
-### Python TOML
-
-```python
-# Python 3.11+ has built-in tomllib (read only):
-import tomllib
-with open("pyproject.toml", "rb") as f:     # binary mode required!
-    data = tomllib.load(f)
-
-# To write, use `tomli-w` (uv add tomli-w):
-import tomli_w
-tomli_w.dumps(data)
-```
-
-## Markdown — Text with Structure
-
-Markdown is a lightweight markup for prose. This entire document is written in Markdown (more precisely, MDX — Markdown + React).
-
-```markdown
-# Heading 1
-## Heading 2
-
-**Bold** and *italic* and `inline code`.
-
-- bullet list
-- item two
-
-1. numbered list
-2. item two
-
-[Link text](https://example.com)
-![Alt text](./image.png)
-
-> A blockquote.
-
-| Column A | Column B |
-|----------|----------|
-| cell 1   | cell 2   |
-
-\`\`\`python
-# Code block with syntax highlighting
-print("hello")
-\`\`\`
-```
-
-### GitHub Flavored Markdown (GFM) extras
-
-- **Task lists**: `- [ ] todo`, `- [x] done`
-- **Strikethrough**: `~~old~~`
-- **Autolink**: `https://example.com` becomes a link
-- **Tables** (shown above)
-- **Mentions**: `@username`, `#issue-number`
-
-## Base64 — Encoding Binary as Text
-
-Base64 turns arbitrary bytes into a text string using `A-Z`, `a-z`, `0-9`, `+`, `/`, `=`. Use it when you need to embed binary inside JSON, HTTP headers, or data URIs.
-
-```python
-import base64
-
-encoded = base64.b64encode(b"hello").decode("ascii")
-# 'aGVsbG8='
-
-decoded = base64.b64decode(encoded)
-# b'hello'
-```
-
-Common real-world uses:
-
-- **Data URIs for images**: `data:image/png;base64,iVBORw0K...`
-- **Basic Auth headers**: `Authorization: Basic dXNlcjpwYXNz`
-- **JWT tokens**: three base64url-encoded parts separated by `.`
-- **API payloads with binary**: images/PDFs inside JSON
-
-!> **Not encryption**
-!> Base64 is **encoding**, not encryption. Anyone can decode it. Don't put secrets there.
-
-### Command line
+Read TOML in Python:
 
 ```bash
-echo -n "hello" | base64              # aGVsbG8=
-echo -n "aGVsbG8=" | base64 -d         # hello
+cat > toml_demo.py <<'PY'
+import tomllib
 
-# Binary file → base64 text
-base64 < photo.png > photo.b64
-base64 -d < photo.b64 > copy.png
+# tomllib needs binary mode: "rb"
+with open("pyproject.toml", "rb") as f:
+    data = tomllib.load(f)
+
+print(data["project"]["name"])
+print(data["database"]["port"])
+PY
+
+uv run python toml_demo.py
 ```
 
-## MessagePack — Compact Binary JSON
+TOML mental model:
 
-MessagePack encodes the same data model as JSON but in binary — smaller and faster. Used internally by Redis, some gRPC alternatives, and high-throughput pipelines.
+```toml
+# key-value
+name = "Alice"
+age = 30
+debug = true
+
+# array
+tags = ["python", "api", "tds"]
+
+# table = nested dict/object
+[server]
+host = "localhost"
+port = 8000
+
+# array of tables = list of objects
+[[users]]
+name = "Alice"
+
+[[users]]
+name = "Bob"
+```
+
+Use TOML for stable config. Use YAML when ecosystem demands it, such as GitHub Actions or Kubernetes.
+
+## Markdown: documentation that developers actually read
+
+Markdown is for README files, notes, docs, GitHub issues, project explanations, and LLM-friendly structured text. GitHub Flavored Markdown adds task lists, tables, strikethrough, autolinks, mentions, and issue references.
+
+````bash
+cat > README.md <<'MD'
+# Data Formats Lab
+
+This project practices common developer data formats.
+
+## Run
+
+```bash
+uv run python json_demo.py
+uv run python yaml_demo.py
+uv run python toml_demo.py
+````
+
+## Checklist
+
+* [x] JSON validation
+* [x] YAML config
+* [x] TOML project config
+* [ ] Base64 image payload
+* [ ] MessagePack binary payload
+
+| Format   | Use                   |
+| -------- | --------------------- |
+| JSON     | APIs                  |
+| YAML     | CI/config             |
+| TOML     | Python project config |
+| Markdown | Docs                  |
+| MD       |                       |
+
+````
+
+Markdown safe habits:
+
+```md
+# One main heading
+
+Use short paragraphs.
+
+Use tables only when they improve scanning.
+
+Use fenced code blocks with language names:
 
 ```python
-# uv add msgpack
-import msgpack
-data = {"name": "Alice", "scores": [1, 2, 3]}
+print("hello")
+````
 
-packed = msgpack.packb(data)     # bytes, ~3x smaller than JSON
-msgpack.unpackb(packed)           # round-trip
+Add alt text for images:
+
+![Architecture diagram](./diagram.png)
+
+````
+
+## Base64: binary data as text
+
+Base64 converts bytes into plain text, useful when binary data must travel inside JSON, HTTP headers, or text-only systems. **Base64 is encoding, not encryption.** Anyone can decode it.
+
+```bash
+echo -n "hello" | base64
+
+echo -n "aGVsbG8=" | base64 -d
+````
+
+Encode and decode a file:
+
+```bash
+echo "small image or pdf placeholder" > file.bin
+
+# Binary file -> base64 text
+base64 < file.bin > file.b64
+
+# Base64 text -> binary file
+base64 -d < file.b64 > file.copy.bin
+
+diff file.bin file.copy.bin
 ```
 
-Use JSON for APIs; use MessagePack when you're storing or shuttling data between machines you control.
+Python version:
 
-## Format Decision Table
+```bash
+cat > base64_demo.py <<'PY'
+import base64
 
-| Situation | Use |
-|-----------|-----|
-| REST API request/response | JSON |
-| Python project config | TOML (pyproject.toml) |
-| CI/infra config, Kubernetes | YAML |
-| Documentation, README, blog post | Markdown |
-| Binary inside HTTP/JSON | Base64 |
-| Internal high-performance serialization | MessagePack / Protobuf |
-| Text in any human language | UTF-8 (always) |
+raw = b"hello"
+encoded = base64.b64encode(raw).decode("ascii")
+decoded = base64.b64decode(encoded)
 
-## 5-Minute Exercise
+print(encoded)
+print(decoded)
 
-Convert this data between all four formats:
+# Safe habit: do not store passwords/secrets as "base64" thinking it is secure
+PY
+
+uv run python base64_demo.py
+```
+
+Common real use:
+
+```text
+Authorization: Basic dXNlcjpwYXNz
+data:image/png;base64,iVBORw0KGgo...
+```
+
+But remember:
+
+```text
+Base64 = encoding
+Encryption = security
+Hashing = one-way fingerprint
+```
+
+## MessagePack: compact binary JSON
+
+MessagePack stores JSON-like data as binary bytes. Useful when both sides of the system are controlled by you and you want smaller/faster payloads. Prefer JSON for public APIs and MessagePack for internal high-throughput machine-to-machine data.
+
+```bash
+cat > msgpack_demo.py <<'PY'
+import json
+import msgpack
+
+data = {
+    "name": "Alice",
+    "scores": [10, 20, 30],
+    "active": True,
+}
+
+json_bytes = json.dumps(data).encode("utf-8")
+packed = msgpack.packb(data)
+
+print("JSON bytes:", len(json_bytes))
+print("MessagePack bytes:", len(packed))
+
+unpacked = msgpack.unpackb(packed, raw=False)
+print(unpacked)
+PY
+
+uv run python msgpack_demo.py
+```
+
+Use:
+
+```text
+Public API?       JSON
+Internal service? MessagePack / Protobuf
+Need schema?      Protobuf / Avro
+Need analytics?   Parquet / Arrow
+```
+
+## TOON: compact JSON-like format for LLM prompts
+
+TOON means **Token-Oriented Object Notation**. It is a compact, human-readable encoding of the JSON data model designed for LLM input. Use JSON in programs, convert to TOON when sending structured data to an LLM. It works best for uniform arrays of objects where many rows share the same fields. 
+
+JSON:
 
 ```json
+{
+  "students": [
+    {"id": 1, "name": "Asha", "score": 91},
+    {"id": 2, "name": "Ravi", "score": 85},
+    {"id": 3, "name": "Meera", "score": 94}
+  ]
+}
+```
+
+TOON-style representation:
+
+```toon
+students[3]{id,name,score}:
+  1,Asha,91
+  2,Ravi,85
+  3,Meera,94
+```
+
+Why TOON helps:
+
+```text
+JSON repeats keys many times:
+{"id":1,"name":"Asha","score":91}
+{"id":2,"name":"Ravi","score":85}
+
+TOON declares keys once:
+students[3]{id,name,score}:
+  1,Asha,91
+  2,Ravi,85
+```
+
+Try TOON CLI:
+
+```bash
+cat > students.json <<'JSON'
+{
+  "students": [
+    {"id": 1, "name": "Asha", "score": 91},
+    {"id": 2, "name": "Ravi", "score": 85},
+    {"id": 3, "name": "Meera", "score": 94}
+  ]
+}
+JSON
+
+# Convert JSON to TOON with the official CLI
+npx @toon-format/cli students.json
+
+# Show token/stat information
+npx @toon-format/cli students.json --stats
+```
+
+
+
+Use TOON when:
+
+```text
+Good:
+- LLM prompt has many similar records
+- You want fewer tokens
+- Data is mostly table-like
+- You still want structure, not plain CSV
+
+Avoid / benchmark:
+- Deeply nested objects
+- Very irregular arrays
+- Public API contracts
+- When the model must generate strict output
+```
+
+TOON can be useful for token efficiency, but JSON often remains more reliable for generation, especially when structured output or constrained decoding is available. **TOON is useful for LLM input context, but JSON is still safer for APIs and strict outputs.**
+
+## One practical conversion flow
+
+```mermaid
+flowchart TD
+    A[Raw app data] --> B[Python dict/list]
+    B --> C[JSON for API]
+    B --> D[YAML for CI/config]
+    B --> E[TOML for project settings]
+    B --> F[Markdown for docs]
+    B --> G[Base64 for binary inside JSON]
+    B --> H[MessagePack for internal fast transfer]
+    B --> I[TOON for LLM prompt context]
+```
+
+Create one dataset and convert it:
+
+```bash
+cat > course.json <<'JSON'
 {
   "project": "tds-2026",
   "semester": 2,
   "instructors": ["Anand", "Priyanshu"],
-  "grading": {"ga": 0.4, "projects": 0.4, "roe": 0.2}
+  "grading": {
+    "ga": 0.4,
+    "projects": 0.4,
+    "roe": 0.2
+  },
+  "students": [
+    {"id": 1, "name": "Asha", "score": 91},
+    {"id": 2, "name": "Ravi", "score": 85}
+  ]
 }
+JSON
+
+# Validate and pretty-print
+jq . course.json
+
+# Extract useful values
+jq '.grading.projects' course.json
+jq '.students[] | select(.score > 90)' course.json
+
+# Compact JSON for APIs
+jq -c . course.json > course.compact.json
+
+# Base64 encode compact JSON
+base64 < course.compact.json > course.json.b64
+
+# Decode back
+base64 -d < course.json.b64 > course.decoded.json
+
+# Check both are same
+diff course.compact.json course.decoded.json
+
+# Convert JSON to TOON for LLM context
+npx @toon-format/cli course.json > course.toon
+cat course.toon
 ```
 
-<details>
-<summary>YAML</summary>
-
-```yaml
-project: tds-2026
-semester: 2
-instructors:
-  - Anand
-  - Priyanshu
-grading:
-  ga: 0.4
-  projects: 0.4
-  roe: 0.2
-```
-</details>
-
-<details>
-<summary>TOML</summary>
-
-```toml
-project = "tds-2026"
-semester = 2
-instructors = ["Anand", "Priyanshu"]
-
-[grading]
-ga = 0.4
-projects = 0.4
-roe = 0.2
-```
-</details>
-
-<details>
-<summary>Base64 of the JSON string</summary>
+Now convert JSON to YAML, TOML-ish config, MessagePack, and Markdown:
 
 ```bash
-echo -n '{"project":"tds-2026","semester":2,"instructors":["Anand","Priyanshu"],"grading":{"ga":0.4,"projects":0.4,"roe":0.2}}' | base64
+cat > convert_all.py <<'PY'
+import json
+import base64
+import yaml
+import msgpack
+import tomli_w
+
+with open("course.json", "r", encoding="utf-8") as f:
+    data = json.load(f)
+
+# JSON pretty
+with open("course.pretty.json", "w", encoding="utf-8") as f:
+    json.dump(data, f, indent=2, ensure_ascii=False)
+
+# YAML config
+with open("course.yml", "w", encoding="utf-8") as f:
+    yaml.safe_dump(data, f, sort_keys=False, allow_unicode=True)
+
+# TOML works best for config-like data
+# TOML supports nested tables, but very complex JSON may not map nicely
+with open("course.toml", "wb") as f:
+    f.write(tomli_w.dumps(data).encode("utf-8"))
+
+# MessagePack binary
+with open("course.msgpack", "wb") as f:
+    f.write(msgpack.packb(data))
+
+# Base64 JSON text
+json_bytes = json.dumps(data, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+with open("course.b64", "w", encoding="ascii") as f:
+    f.write(base64.b64encode(json_bytes).decode("ascii"))
+
+# Markdown summary
+with open("COURSE.md", "w", encoding="utf-8") as f:
+    f.write("# Course Summary\n\n")
+    f.write(f"Project: **{data['project']}**\n\n")
+    f.write("| Component | Weight |\n")
+    f.write("|---|---:|\n")
+    for key, value in data["grading"].items():
+        f.write(f"| {key} | {value} |\n")
+
+print("Created JSON, YAML, TOML, MessagePack, Base64, and Markdown files.")
+PY
+
+uv run python convert_all.py
+
+ls -lh
 ```
-</details>
 
-## Further Reading
+## Format decision table
 
-- [The Absolute Minimum About Unicode — Joel Spolsky](https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/)
-- [JSON spec](https://www.json.org/)
-- [TOML spec](https://toml.io/en/)
-- [YAML 1.2 spec](https://yaml.org/spec/1.2.2/)
-- [CommonMark (strict Markdown)](https://commonmark.org/)
-- [GitHub Flavored Markdown](https://github.github.com/gfm/)
+| Need                              | Use                    | Why                                             |
+| --------------------------------- | ---------------------- | ----------------------------------------------- |
+| API request/response              | JSON                   | universal, strict, language-independent         |
+| Python project settings           | TOML                   | standard `pyproject.toml` format                |
+| CI/CD, Docker Compose, Kubernetes | YAML                   | ecosystem expects it                            |
+| README, notes, docs               | Markdown               | readable in GitHub and docs tools               |
+| Binary inside JSON/HTTP           | Base64                 | binary becomes text                             |
+| Internal fast payload             | MessagePack            | compact binary JSON-like data                   |
+| Huge analytics table              | Parquet                | compressed columnar storage                     |
+| Streaming logs                    | NDJSON                 | one JSON object per line                        |
+| Strict service contracts          | Protobuf / Avro        | schema + compact binary                         |
+| LLM prompt data                   | JSON / Markdown / TOON | JSON for safety, TOON for compact repeated rows |
+
+Small future-ready extras:
+
+```text
+NDJSON:
+{"event":"login","user":"asha"}
+{"event":"logout","user":"asha"}
+
+CSV:
+id,name,score
+1,Asha,91
+2,Ravi,85
+
+Parquet:
+Best for large analytics datasets, not manual editing.
+
+Protobuf:
+Best when services need fast, typed, schema-controlled communication.
+
+TOON:
+Best when sending repeated structured data into LLM prompts.
+```
+
+## Beginner mistakes and safe habits
+
+```text
+Mistake: treating Base64 as secure
+Safe: remember Base64 is only encoding
+
+Mistake: using yaml.load on untrusted files
+Safe: use yaml.safe_load
+
+Mistake: forgetting UTF-8
+Safe: open files with encoding="utf-8"
+
+Mistake: writing comments in strict JSON
+Safe: use YAML/TOML for config comments, JSON for data exchange
+
+Mistake: storing PIN/IDs as numbers
+Safe: store "600113" as string if leading zeros or exact formatting matter
+
+Mistake: using YAML without quoting yes/no/on/off
+Safe: quote suspicious strings
+
+Mistake: using TOML for arbitrary deeply nested API data
+Safe: use JSON for data, TOML for config
+
+Mistake: sending huge JSON tables to LLMs
+Safe: test TOON/CSV/Markdown table and compare token cost + accuracy
+
+Mistake: assuming one format is always best
+Safe: choose by consumer: API, human, config, database, LLM, analytics
+```
+
+## Important Q&A
+
+**Q: Should I use YAML or TOML for my Python project config?**
+A: Use TOML. `pyproject.toml` is the standard configuration file format for modern Python projects. YAML is generally used for CI/CD pipelines (like GitHub Actions) and infrastructure config (like Kubernetes).
+
+**Q: If Base64 makes data unreadable, is it safe for passwords?**
+A: No! Base64 is *encoding*, not encryption. Anyone can decode it easily using `base64 -d`. It is only used to safely transmit binary data (like images) over text-based protocols (like JSON), not to protect secrets.
+
+**Q: When should I use TOON instead of JSON for LLM prompts?**
+A: Use TOON when your prompt includes a large array of highly uniform objects (like rows from a database). TOON's syntax saves significant tokens in these cases. For highly nested or irregular data, or when requiring strict output generation from an LLM, JSON is still preferred.
+
 
 ---
 
+## Video Resources
+
+Watch these tutorials to understand common data formats and character encodings:
+
+[![JSON Crash Course (10 min)](https://i.ytimg.com/vi_webp/GpOO5iKzOmY/sddefault.webp)](https://youtu.be/GpOO5iKzOmY)
+
+[![Code Pages, Character Encoding, Unicode, UTF-8 and the BOM (17 min)](https://i.ytimg.com/vi_webp/jeIBNn5Y5fI/sddefault.webp)](https://youtu.be/jeIBNn5Y5fI)
+
+[![Markdown Crash Course (19 min)](https://i.ytimg.com/vi_webp/HUBNt18RFbo/sddefault.webp)](https://youtu.be/HUBNt18RFbo)
+
+---
+
+## Final revision checklist
+
+```text
+[ ] I know JSON is best for APIs.
+[ ] I know YAML is common for CI/infra config.
+[ ] I know TOML is standard for Python pyproject.toml.
+[ ] I know Markdown is for docs and README files.
+[ ] I know Base64 is not encryption.
+[ ] I know MessagePack is binary and good for internal systems.
+[ ] I know UTF-8 should be used explicitly for text files.
+[ ] I can validate JSON with jq empty.
+[ ] I can read/write JSON, YAML, TOML in Python.
+[ ] I can convert binary/text with base64.
+[ ] I understand TOON is mainly for compact LLM input, not a general API replacement.
+[ ] I choose data formats based on where the data is going.
+```

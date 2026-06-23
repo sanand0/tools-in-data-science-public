@@ -417,7 +417,7 @@ for model in models_to_benchmark:
 
 ## Video Reference
 
-[![LangSmith Tutorial](https://img.youtube.com/vi/A_HLg6s3LOQ/0.jpg)](https://youtu.be/A_HLg6s3LOQ "LangSmith Tutorial")
+[![LangSmith Tutorial](https://img.youtube.com/vi/XkekH2z94Fo/0.jpg)](https://youtu.be/XkekH2z94Fo?si=MxMcvxyfDerN-ZJo)
 
 ---
 

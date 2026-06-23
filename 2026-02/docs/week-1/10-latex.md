@@ -1,102 +1,67 @@
-# 10 · LaTeX
+# LaTeX — Practical Notes
 
-?> **TL;DR**
-?> LaTeX is the typesetting system universities and scientific journals have used for 40 years. It separates content from layout, produces stunning PDFs, and makes equations + references feel automatic. You'll use it to generate the PDF documentation in **Lab 1.2** and any project report you write.
+LaTeX is used when Markdown is not enough: **math equations, project reports, research-style PDFs, citations, figures, tables, and academic documents**. Pandoc can convert Markdown to LaTeX/PDF without writing raw `.tex` files.
 
-## Why LaTeX?
-
-For most writing, Markdown is easier. But LaTeX is essential when you need:
-
-- **Mathematical equations** — nothing else comes close.
-- **Bibliographies and citations** — add papers to a `.bib` file, cite with `\cite{key}`, get a formatted reference list automatically.
-- **Consistency across 50+ pages** — headers, page numbers, figure numbering, table of contents all "just work".
-- **Journal / conference templates** — NeurIPS, IEEE, ACM all publish `.tex` templates.
-- **Reproducible PDFs** — source control a `.tex` file; anyone running `pdflatex` gets the same output.
-
-<YouTube id="ydOTMQC7np0" title="LaTeX Tutorial - A Complete Beginner's Guide" />
-
-## The Two Ways to Use LaTeX
-
-### Option A — Overleaf (the easy way)
-
-[Overleaf](https://www.overleaf.com/) is a web-based LaTeX editor. No install, live preview, free for personal use, collaborative like Google Docs.
-
-1. Go to [overleaf.com](https://www.overleaf.com/).
-2. Sign up (free tier is fine).
-3. **New Project → Blank Project**.
-4. Edit the left pane, watch PDF render on the right.
-
-This is how 90% of students use LaTeX. **Start here.**
-
-### Option B — Local install with `pandoc` (for Lab 1.2)
-
-For automated builds (CI, GitHub Actions), you want a local LaTeX + `pandoc` install.
-
-<details>
-<summary><b>macOS</b></summary>
-
-```bash
-# MacTeX is huge (~4 GB). For most people, BasicTeX is enough:
-brew install --cask basictex
-# Then add packages as needed:
-sudo tlmgr update --self
-sudo tlmgr install collection-fontsrecommended
-
-# Pandoc for Markdown → LaTeX conversion
-brew install pandoc
+```mermaid
+flowchart LR
+    A[Markdown .md] -->|pandoc| B[PDF via LaTeX]
+    C[LaTeX .tex file] -->|pdflatex / latexmk| D[PDF]
+    D --> E[polished report]
 ```
-</details>
 
-<details>
-<summary><b>Linux (Ubuntu)</b></summary>
+## Use LaTeX in two ways
 
-```bash
-sudo apt install texlive-full pandoc      # ~5 GB
-# Or lighter:
-sudo apt install texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra pandoc
-```
-</details>
-
-<details>
-<summary><b>Windows</b></summary>
-
-Download [MiKTeX](https://miktex.org/download) and [pandoc](https://pandoc.org/installing.html). MiKTeX auto-installs missing packages on demand.
-</details>
-
-Verify:
+For beginners, start with **Overleaf** (overleaf.com) — no install, browser-based editor, live PDF preview. For local or automated work, install LaTeX and Pandoc so reports can be built from the terminal or GitHub Actions.
 
 ```bash
+# Ubuntu / WSL: full install, large but easiest
+sudo apt update
+sudo apt install texlive-full pandoc -y
+
+# Lighter install
+sudo apt install texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra pandoc -y
+
+# Check installation
 pdflatex --version
 pandoc --version
 ```
 
-## Your First Document
+## Smallest LaTeX document
 
-```latex title="hello.tex"
+Create `hello.tex`:
+
+```tex
 \documentclass[11pt]{article}
 
 \usepackage[a4paper,margin=1in]{geometry}
-\usepackage{hyperref}              % clickable links
-\usepackage{graphicx}               % include images
-\usepackage{amsmath, amssymb}       % math
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
 
-\title{Tools in Data Science}
+\title{My First LaTeX Report}
 \author{Your Name}
 \date{\today}
 
 \begin{document}
+
 \maketitle
 
 \section{Introduction}
-LaTeX turns plain text into \textbf{professional documents}.
+
+LaTeX is useful for writing clean PDFs with \textbf{math}, figures, tables, and references.
 
 \section{Math}
-Einstein said $E = mc^2$. The fundamental theorem of calculus:
-\begin{equation}
-\int_a^b f'(x)\, dx = f(b) - f(a)
-\end{equation}
 
-\section{References}
+Inline math: $E = mc^2$.
+
+Display math:
+
+\[
+\sum_{i=1}^{n} i = \frac{n(n+1)}{2}
+\]
+
+\section{Link}
+
 Visit \url{https://iitm.ac.in}.
 
 \end{document}
@@ -105,281 +70,470 @@ Visit \url{https://iitm.ac.in}.
 Compile:
 
 ```bash
-pdflatex hello.tex         # creates hello.pdf
+pdflatex hello.tex
+
+# Run twice when using references, table of contents, labels, etc.
+pdflatex hello.tex
 ```
 
-?> **Two compiles for correct cross-refs**
-?> LaTeX needs **two passes** to resolve forward references (table of contents, `\ref{}`, page numbers). Always run `pdflatex` twice, or use `latexmk`:
-?> ```bash
-?> latexmk -pdf hello.tex
-?> ```
+Better compile command:
 
-## Essential Structure Commands
+```bash
+latexmk -pdf hello.tex
 
-```latex
-\documentclass[options]{class}     % article | report | book | beamer (slides)
-
-\usepackage{pkg}                   % import package (hyperref, graphicx, etc.)
-
-\title{...} \author{...} \date{...}
-\maketitle                         % render title block
-
-\tableofcontents                   % auto-generated TOC
-
-\section{Intro}                    % H1
-\subsection{Background}            % H2
-\subsubsection{Details}            % H3
-
-\label{sec:intro}                  % attach a label
-Refer to Section~\ref{sec:intro}.  % reference it
+# Clean generated files
+latexmk -C
 ```
 
-## Text Formatting
+## Basic structure to remember
 
-| LaTeX | Result |
-|-------|--------|
-| `\textbf{bold}` | **bold** |
-| `\textit{italic}` | *italic* |
-| `\texttt{code}` | `code` (monospace) |
-| `\emph{emphasis}` | *emphasis* (context-aware) |
-| `\underline{under}` | underlined |
-| `\footnote{note}` | footnote superscript + note at page bottom |
+```tex
+\documentclass{article}
 
-## Math Mode — LaTeX's Superpower
+\usepackage{amsmath}     % math
+\usepackage{graphicx}    % images
+\usepackage{hyperref}    % clickable links
 
-Inline math with `$...$`:
+\begin{document}
 
-```latex
-The speed of light is $c \approx 3 \times 10^8$ m/s.
+\title{Title}
+\author{Name}
+\date{\today}
+\maketitle
+
+\tableofcontents
+
+\section{Main heading}
+\subsection{Sub heading}
+
+\end{document}
 ```
 
-Display math with `\[ ... \]` (or `\begin{equation}...\end{equation}` for numbering):
+```mermaid
+flowchart TD
+    A[hello.tex] --> B[documentclass article]
+    B --> C[usepackage amsmath / graphicx / hyperref]
+    C --> D[begin document]
+    D --> E[title, section, math, link]
+    E --> F[end document]
+    F --> G[latexmk -pdf hello.tex]
+    G --> H[hello.pdf]
+```
 
-```latex
+## Text formatting
+
+```tex
+\textbf{bold text}
+
+\textit{italic text}
+
+\texttt{code style}
+
+\emph{important text}
+
+This is a footnote.\footnote{Extra explanation at bottom of page.}
+```
+
+Special characters must be escaped:
+
+```tex
+\%   % percent
+\&   % ampersand
+\$   % dollar
+\#   % hash
+\_   % underscore
+\{ \} % braces
+```
+
+Beginner mistake:
+
+```tex
+accuracy_score
+```
+
+This may break because `_` is special.
+
+Correct:
+
+```tex
+accuracy\_score
+```
+
+## Math mode
+
+Use `$...$` for inline math:
+
+```tex
+The model predicts $\hat{y}$ from input $x$.
+```
+
+Use `\[...\]` for display math:
+
+```tex
 \[
-\hat{y} = \arg\max_y P(y \mid x) = \arg\max_y \frac{P(x \mid y) P(y)}{P(x)}
+P(y \mid x) = \frac{P(x \mid y)P(y)}{P(x)}
 \]
 ```
 
-Common constructs:
+Common math patterns:
 
-| LaTeX | Math |
-|-------|------|
-| `\frac{a}{b}` | a/b as fraction |
-| `\sqrt{x}` | √x |
-| `x^2`, `x_{ij}` | superscript / subscript |
-| `\sum_{i=1}^n`, `\prod`, `\int` | Σ, Π, ∫ |
-| `\alpha, \beta, \gamma, ... \omega` | Greek letters |
-| `\mathbb{R}, \mathbb{N}` | ℝ, ℕ |
-| `\mathbf{v}` | bold vector |
-| `\to, \leftarrow, \Rightarrow` | arrows |
-| `\leq, \geq, \neq, \approx` | relations |
-| `\in, \subset, \cup, \cap` | set operations |
+```tex
+\frac{a}{b}          % fraction
 
-Matrices:
+x^2                 % superscript
 
-```latex
+x_i                 % subscript
+
+\sqrt{x}            % square root
+
+\sum_{i=1}^{n} x_i  % summation
+
+\int_a^b f(x)\,dx   % integral
+
+\alpha \beta \gamma % Greek letters
+
+\leq \geq \neq \approx
+```
+
+Matrix:
+
+```tex
 \[
-A = \begin{pmatrix}
-1 & 2 & 3 \\
-4 & 5 & 6
+A =
+\begin{pmatrix}
+1 & 2 \\
+3 & 4
 \end{pmatrix}
 \]
 ```
 
-## Images and Figures
+## Images and figures
 
-```latex
+Folder structure:
+
+```text
+project/
+├── main.tex
+└── figures/
+    └── loss.png
+```
+
+Use image:
+
+```tex
 \usepackage{graphicx}
 
-% Just the image
-\includegraphics[width=0.6\linewidth]{plots/loss.png}
-
-% Figure with caption + label
-\begin{figure}[h]                  % h = here, t = top, b = bottom, p = page
+\begin{figure}[h]
   \centering
-  \includegraphics[width=0.8\linewidth]{diagram.pdf}
-  \caption{Architecture of our RAG system.}
-  \label{fig:arch}
+  \includegraphics[width=0.75\linewidth]{figures/loss.png}
+  \caption{Training loss over epochs.}
+  \label{fig:loss}
 \end{figure}
 
-Refer to Figure~\ref{fig:arch}.
+As shown in Figure~\ref{fig:loss}, loss decreases.
 ```
+
+Safe habit: use PNG/JPG for screenshots and PDF/SVG-like exports for diagrams when possible.
 
 ## Tables
 
-```latex
+Simple table:
+
+```tex
 \begin{table}[h]
   \centering
-  \begin{tabular}{lcr}              % l=left, c=center, r=right
+  \begin{tabular}{lrr}
     \hline
-    Model  & Accuracy & F1    \\
+    Model & Accuracy & F1 \\
     \hline
-    BM25   & 0.72     & 0.69  \\
-    Dense  & 0.81     & 0.78  \\
+    BM25 & 0.72 & 0.69 \\
+    Dense & 0.81 & 0.78 \\
     Hybrid & \textbf{0.86} & \textbf{0.84} \\
     \hline
   \end{tabular}
-  \caption{Retrieval results on the TDS benchmark.}
-  \label{tab:retrieval}
+  \caption{Retrieval results.}
+  \label{tab:results}
 \end{table}
 ```
 
-For prettier tables, use the `booktabs` package (`\toprule`, `\midrule`, `\bottomrule`).
+Column alignment:
+
+```text
+l = left
+c = center
+r = right
+```
+
+Cleaner table with `booktabs`:
+
+```tex
+\usepackage{booktabs}
+
+\begin{tabular}{lrr}
+\toprule
+Model & Accuracy & F1 \\
+\midrule
+BM25 & 0.72 & 0.69 \\
+Dense & 0.81 & 0.78 \\
+Hybrid & 0.86 & 0.84 \\
+\bottomrule
+\end{tabular}
+```
 
 ## Citations with BibTeX
 
-Create a `references.bib` file:
+Create `references.bib`:
 
-```bibtex title="references.bib"
+```bibtex
 @article{vaswani2017attention,
-  title   = {Attention Is All You Need},
-  author  = {Vaswani, Ashish and others},
-  journal = {NeurIPS},
-  year    = {2017}
-}
-
-@misc{astral2024uv,
-  title  = {uv: An extremely fast Python package manager},
-  author = {{Astral Software}},
-  year   = {2024},
-  url    = {https://github.com/astral-sh/uv}
+  title={Attention Is All You Need},
+  author={Vaswani, Ashish and others},
+  journal={NeurIPS},
+  year={2017}
 }
 ```
 
-In your `.tex`:
+Use in `main.tex`:
 
-```latex
-\usepackage{natbib}   % or: \usepackage{biblatex} for modern bibliography
-
+```tex
 Transformers were introduced by \cite{vaswani2017attention}.
 
 \bibliographystyle{plain}
 \bibliography{references}
 ```
 
-Compile order: `pdflatex → bibtex → pdflatex → pdflatex`. Or just `latexmk -pdf`.
-
-## Pandoc — Markdown → PDF in One Command
-
-For Lab 1.2 we'll convert Markdown docs to LaTeX-rendered PDFs. Pandoc is the tool.
+Compile order:
 
 ```bash
-# Basic
-pandoc README.md -o README.pdf
+pdflatex main.tex
+bibtex main
+pdflatex main.tex
+pdflatex main.tex
+```
 
-# With nice engine (unicode fonts, better typography)
-pandoc README.md -o README.pdf --pdf-engine=xelatex
+Or easier:
 
-# With title, TOC, sections, syntax highlighting
-pandoc docs/intro.md -o intro.pdf \
+```bash
+latexmk -pdf main.tex
+```
+
+## Pandoc: Markdown to PDF
+
+Pandoc converts Markdown to PDF using LaTeX in the background. Write in Markdown, get a polished PDF — without writing raw `.tex` for most documents.
+
+Create `report.md`:
+
+```md
+---
+title: "TDS Report"
+author: "Your Name"
+date: today
+---
+
+# Introduction
+
+This report was written in Markdown and converted to PDF.
+
+## Equation
+
+The sum is:
+
+$$
+\sum_{i=1}^{n} i = \frac{n(n+1)}{2}
+$$
+```
+
+Convert:
+
+```bash
+pandoc report.md -o report.pdf
+
+# Better Unicode/font support
+pandoc report.md -o report.pdf --pdf-engine=xelatex
+
+# With useful report options
+pandoc report.md -o report.pdf \
   --pdf-engine=xelatex \
   --toc \
   --number-sections \
   -V geometry:margin=1in \
   -V fontsize=11pt \
-  -V colorlinks=true \
-  --highlight-style=tango
+  -V colorlinks=true
 ```
 
-### A Custom Template
+## Good project structure
 
-Create `template.tex` to control the look:
+```text
+latex-report/
+├── main.tex
+├── references.bib
+├── figures/
+│   └── architecture.png
+├── sections/
+│   ├── intro.tex
+│   ├── method.tex
+│   └── results.tex
+└── Makefile
+```
 
-```latex title="template.tex"
-\documentclass[11pt, a4paper]{article}
-\usepackage[margin=1in]{geometry}
+`main.tex`:
+
+```tex
+\documentclass{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
 \usepackage{hyperref}
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\lhead{$title$}
-\rhead{\today}
 
-\title{$title$}
-\author{$author$}
+\title{Project Report}
+\author{Your Name}
+\date{\today}
 
 \begin{document}
+
 \maketitle
 \tableofcontents
-\newpage
 
-$body$
+\input{sections/intro}
+\input{sections/method}
+\input{sections/results}
+
+\bibliographystyle{plain}
+\bibliography{references}
 
 \end{document}
 ```
 
-Use it:
-
-```bash
-pandoc README.md -o README.pdf \
-  --template=template.tex \
-  --pdf-engine=xelatex
-```
-
-## LaTeX Project Structure for Labs
-
-```
-project/
-├── main.tex              # document root
-├── sections/
-│   ├── intro.tex
-│   ├── methods.tex
-│   └── results.tex
-├── figures/
-│   ├── arch.pdf
-│   └── loss.png
-├── references.bib
-└── Makefile
-```
-
-In `main.tex`:
-
-```latex
-\input{sections/intro}
-\input{sections/methods}
-\input{sections/results}
-```
-
-Makefile:
+`Makefile`:
 
 ```makefile
 main.pdf: main.tex sections/*.tex references.bib
-	latexmk -pdf -interaction=nonstopmode main.tex
+	latexmk -pdf main.tex
 
 clean:
 	latexmk -C
-	rm -f *.bbl *.aux *.log
 ```
 
-## Common Pitfalls
+Run:
 
-!> **Special characters need escaping**
-!> These characters have special meaning in LaTeX: `& % $ # _ { } ~ ^ \`
-!> To print them literally: `\& \% \$ \# \_ \{ \} \~{} \^{} \textbackslash`
-!>
-!> Pandoc handles this for you when converting from Markdown.
+```bash
+make
+make clean
+```
 
-?> **Missing packages**
-?> `! LaTeX Error: File `xxx.sty' not found.` On TeX Live, install with `sudo tlmgr install xxx`. On MiKTeX, it auto-installs on demand.
+## Common mistakes
 
-## 5-Minute Exercise
+```text
+Mistake: forgetting to escape _ % & #
+Fix: use \_ \% \& \#
 
-1. Open [overleaf.com](https://www.overleaf.com/) → New Project → Blank.
-2. Paste the `hello.tex` above.
-3. Click Recompile → see the PDF.
-4. Add an equation:
-   ```latex
-   \[ \sum_{i=1}^{100} i = \frac{100 \cdot 101}{2} = 5050 \]
-   ```
-5. Download PDF — share on Discourse.
+Mistake: image not found
+Fix: check folder path and file extension
 
-## Further Reading
+Mistake: citations show [?]
+Fix: run latexmk -pdf or compile BibTeX sequence
 
-- [Overleaf Learn](https://www.overleaf.com/learn) — the best LaTeX reference site
-- [A Short Introduction to LaTeX2e (lshort)](https://tobi.oetiker.ch/lshort/lshort.pdf) — the classic 100-page PDF
-- [pandoc manual](https://pandoc.org/MANUAL.html)
-- [Detexify](https://detexify.kirelabs.org/) — draw a symbol, get the LaTeX command
-- [LaTeX Wikibook](https://en.wikibooks.org/wiki/LaTeX)
+Mistake: table/figure appears somewhere else
+Fix: LaTeX floats figures/tables; use labels and references, not “below image”
+
+Mistake: writing everything in LaTeX when Markdown is enough
+Fix: use Markdown for notes, LaTeX for serious PDFs/math-heavy documents
+
+Mistake: package missing
+Fix: install missing TeX package or use texlive-full if disk space is okay
+```
+
+## Tiny complete example
+
+```bash
+mkdir latex-small-demo
+cd latex-small-demo
+
+cat > main.tex <<'TEX'
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+\title{Small LaTeX Demo}
+\author{Your Name}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Goal}
+
+This PDF shows text, math, table, and link usage.
+
+\section{Math}
+
+The average of $n$ values is:
+
+\[
+\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i
+\]
+
+\section{Result Table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lr}
+\toprule
+Method & Score \\
+\midrule
+Baseline & 72 \\
+Improved & \textbf{86} \\
+\bottomrule
+\end{tabular}
+\caption{Simple experiment result.}
+\end{table}
+
+\section{Link}
+
+Course website: \url{https://tds.s-anand.net}
+
+\end{document}
+TEX
+
+latexmk -pdf main.tex
+```
+
+## Important Q&A
+
+**Q: When should I use LaTeX instead of Markdown?**
+A: Use Markdown for 90% of your daily notes, READMEs, and quick documentation. Use LaTeX when you need to write a formal research paper, a thesis, a document with complex mathematical equations, or when you need strict control over PDF typography and layout.
+
+**Q: Why does my LaTeX document show `[?]` instead of the citation number?**
+A: LaTeX processes files sequentially. When it first sees a `\cite{}`, it doesn't know the number yet. You have to compile multiple times (usually `pdflatex`, then `bibtex`, then `pdflatex` twice) or just use `latexmk -pdf` which automates the multi-pass compilation for you.
+
+**Q: Why do I get an error when I type `100% accuracy` in my document?**
+A: In LaTeX, the `%` symbol is used for comments (everything after it on the line is ignored). To print a literal percent sign, you must escape it with a backslash: `100\% accuracy`.
 
 ---
 
+## Video Resources
+
+Watch this tutorial to learn how to write documents in LaTeX:
+
+[![LaTeX – Full Tutorial for Beginners](https://i.ytimg.com/vi_webp/ydOTMQC7np0/sddefault.webp)](https://www.youtube.com/watch?v=ydOTMQC7np0)
+
+---
+
+## Final checklist
+
+```text
+[ ] I know LaTeX is best for math-heavy PDF reports.
+[ ] I can create a .tex file and compile it.
+[ ] I know inline math uses $...$.
+[ ] I know display math uses \[...\].
+[ ] I can add sections, tables, images, and citations.
+[ ] I know special characters like _ and % need escaping.
+[ ] I know latexmk is easier than manual multiple compiles.
+[ ] I can use Pandoc to convert Markdown to PDF.
+[ ] I use Markdown for simple notes and LaTeX for polished reports.
+```

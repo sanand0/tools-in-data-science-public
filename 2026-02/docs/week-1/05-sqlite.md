@@ -1,307 +1,741 @@
-# 05 · SQLite
+# SQLite — Practical Notes
 
-?> **TL;DR**
-?> SQLite is the most-deployed database engine in existence — it runs in Firefox, iOS, Android, airplanes, and every Python install. It's a **single file** on disk. For the projects in this course (up to a few million rows), SQLite is often the right answer.
+SQLite = **one database inside one file**. No server to install, no process to manage — just a `.db` file you can copy, query, and share.
 
-## Why SQLite?
-
-- **Zero config** — no server, no user management, no port to open. Just a `.sqlite` file.
-- **Ships with Python** — `import sqlite3` works out of the box.
-- **ACID-compliant** — real transactions, real guarantees.
-- **Extremely fast** — for local workloads, often faster than Postgres (no network round-trips).
-- **Fantastic tooling** — `sqlite-utils` and `datasette` from Simon Willison turn any `.sqlite` file into a queryable web UI.
-
-[![SQLite in 100 Seconds](https://img.youtube.com/vi/pFr80VSP8iw/0.jpg)](https://youtu.be/pFr80VSP8iw "SQLite in 100 Seconds")
-
-## Install the CLI and Helpers
-
-The SQLite library is already everywhere. Install the CLI tool and the wrapper we'll actually use:
-
-```bash
-# Mac
-brew install sqlite
-# Ubuntu/Debian
-sudo apt install sqlite3
-
-# Then (via uv):
-uv tool install sqlite-utils
-uv tool install datasette
+```text
+CSV / JSON          SQLite .db file              PostgreSQL
+simple files   →    real queryable DB      →     big server DB
+weak search         local + portable             multi-user production
 ```
 
-Verify:
+Use SQLite when you want:
+
+```text
+scraping data
+course projects
+local APIs
+small dashboards
+RAG metadata
+logs / cache
+searchable notes
+quick demos
+```
+
+Avoid SQLite when many machines/users must write to the same DB at the same time. Then use PostgreSQL.
+
+---
+
+## 1. Setup
 
 ```bash
-sqlite3 --version       # 3.45+ expected
-sqlite-utils --version  # 3.x
+sudo apt install sqlite3          # Linux
+brew install sqlite               # macOS
+
+uv tool install sqlite-utils
+uv tool install datasette
+
+sqlite3 --version
+sqlite-utils --version
 datasette --version
 ```
 
-## Your First Database — in 30 Seconds
+Uninstall:
 
 ```bash
-# Create (implicitly) and insert from JSON:
-echo '[{"name": "Cleo", "age": 4}, {"name": "Pancakes", "age": 2}]' \
-  | sqlite-utils insert pets.db dogs -
-
-# Query:
-sqlite-utils pets.db "select * from dogs where age > 3"
-# [{"name": "Cleo", "age": 4}]
+uv tool uninstall sqlite-utils
+uv tool uninstall datasette
 ```
 
-That's it. You now have a relational database, queryable by SQL, in one file. No server started, no credentials configured.
+---
 
-## The Core SQL You Need
+## 2. The SQLite workflow
+
+```mermaid
+flowchart LR
+    A[CSV / JSON / API data] --> B[sqlite-utils insert]
+    B --> C[app.db SQLite file]
+    C --> D[SQL queries]
+    C --> E[Python code]
+    C --> F[Datasette web UI]
+    C --> G[FastAPI backend]
+```
+
+Example:
+
+```bash
+sqlite-utils insert app.db users users.csv --csv
+sqlite-utils tables app.db --counts
+sqlite-utils schema app.db
+sqlite-utils app.db "select * from users limit 5"
+```
+
+This means:
+
+```text
+app.db     = database file
+users      = table
+columns    = fields
+rows       = records
+```
+
+---
+
+## 3. Core SQL you must know
+
+Create table:
 
 ```sql
--- Create a table
 CREATE TABLE tasks (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
-    done INTEGER DEFAULT 0,          -- 0 or 1 (SQLite has no native BOOL)
-    due_date TEXT,                    -- ISO 8601 string
-    created_at TEXT DEFAULT (datetime('now'))
+  id INTEGER PRIMARY KEY,
+  title TEXT NOT NULL,
+  done INTEGER DEFAULT 0,
+  due_date TEXT,
+  created_at TEXT DEFAULT (datetime('now'))
+);
+```
+
+Insert:
+
+```sql
+INSERT INTO tasks (title, due_date)
+VALUES ('Read SQLite notes', '2026-06-15');
+```
+
+Read:
+
+```sql
+SELECT * FROM tasks;
+```
+
+Filter:
+
+```sql
+SELECT * FROM tasks
+WHERE done = 0;
+```
+
+Sort:
+
+```sql
+SELECT * FROM tasks
+ORDER BY due_date;
+```
+
+Update:
+
+```sql
+UPDATE tasks
+SET done = 1
+WHERE id = 1;
+```
+
+Delete:
+
+```sql
+DELETE FROM tasks
+WHERE id = 1;
+```
+
+Group:
+
+```sql
+SELECT due_date, COUNT(*) AS total
+FROM tasks
+GROUP BY due_date
+ORDER BY due_date;
+```
+
+Remember:
+
+```text
+SELECT  → read
+WHERE   → filter
+ORDER BY → sort
+GROUP BY → summarize
+JOIN    → connect tables
+```
+
+---
+
+## 4. Table design mental model
+
+Bad table:
+
+```text
+orders(id, user_name, user_email, product_name, price)
+```
+
+Better:
+
+```text
+users
+ ├─ id
+ ├─ name
+ └─ email
+
+products
+ ├─ id
+ ├─ name
+ └─ price
+
+orders
+ ├─ id
+ ├─ user_id     → users.id
+ ├─ product_id  → products.id
+ └─ ordered_at
+```
+
+SQL version:
+
+```sql
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT UNIQUE NOT NULL
 );
 
--- Insert
-INSERT INTO tasks (title, due_date) VALUES ('Read TDS week 1', '2026-05-10');
+CREATE TABLE products (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  price REAL NOT NULL
+);
 
--- Read
-SELECT * FROM tasks WHERE done = 0 ORDER BY due_date;
-
--- Update
-UPDATE tasks SET done = 1 WHERE id = 1;
-
--- Delete
-DELETE FROM tasks WHERE id = 1;
-
--- Aggregations
-SELECT COUNT(*) AS open_count FROM tasks WHERE done = 0;
-SELECT date(due_date) AS day, COUNT(*) AS n FROM tasks GROUP BY day;
+CREATE TABLE orders (
+  id INTEGER PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+  product_id INTEGER NOT NULL,
+  ordered_at TEXT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (product_id) REFERENCES products(id)
+);
 ```
 
-## WAL Mode — Always Enable This
-
-By default, SQLite uses a rollback journal that locks the whole database during writes. **WAL (Write-Ahead Logging) mode** lets readers and writers work concurrently.
+Always enable foreign keys:
 
 ```sql
-PRAGMA journal_mode = WAL;           -- one-time; persists in the file
-PRAGMA synchronous = NORMAL;          -- WAL + NORMAL = sweet spot
 PRAGMA foreign_keys = ON;
 ```
 
-?> **When to enable WAL**
-?> Almost always. The only cases where you'd avoid WAL are read-only databases or databases on a network filesystem (WAL requires real shared-memory).
+Simple rule:
 
-## FTS5 — Full-Text Search
-
-SQLite's FTS5 module turns any text column into a blazing-fast searchable index. This powers everything from Apple Spotlight to Firefox history to countless mobile apps.
-
-### The easy way with `sqlite-utils`
-
-```bash
-# Assume 'tasks' table has a 'title' column
-sqlite-utils enable-fts tasks.db tasks title --create-triggers
-
-# Now search!
-sqlite-utils search tasks.db tasks "groceries"
+```text
+One real-world thing  → one table
+Repeated data         → separate table
+Connection            → foreign key
 ```
 
-The `--create-triggers` flag keeps the FTS index automatically synced whenever you insert/update/delete from the main table.
+---
 
-### The manual way (for reference)
+## 5. Joins are very important
+
+Tables become useful when connected.
 
 ```sql
-CREATE VIRTUAL TABLE tasks_fts USING fts5(
-    title,
-    content='tasks',           -- shadow the tasks table
-    content_rowid='id'
-);
-
--- Populate
-INSERT INTO tasks_fts(rowid, title) SELECT id, title FROM tasks;
-
--- Search with ranking
-SELECT t.*, rank
-FROM tasks t
-JOIN tasks_fts ON tasks_fts.rowid = t.id
-WHERE tasks_fts MATCH 'grocery OR shopping'
-ORDER BY rank;
-
--- Prefix search (great for autocomplete)
-SELECT * FROM tasks_fts WHERE tasks_fts MATCH 'groc*';
-
--- Phrase search
-SELECT * FROM tasks_fts WHERE tasks_fts MATCH '"to do"';
+SELECT
+  orders.id,
+  users.name,
+  products.name AS product,
+  products.price,
+  orders.ordered_at
+FROM orders
+JOIN users ON users.id = orders.user_id
+JOIN products ON products.id = orders.product_id;
 ```
 
-## `sqlite-utils` Cheat Sheet
+Visual:
 
-`sqlite-utils` is the command-line + Python swiss-army knife for SQLite. It imports CSV/JSON, alters schema, creates indexes, and more — all without hand-writing SQL.
-
-```bash
-# Import a CSV file
-sqlite-utils insert logs.db access access.csv --csv
-
-# Add a column
-sqlite-utils add-column logs.db access status_code INTEGER
-
-# Create an index
-sqlite-utils create-index logs.db access timestamp
-
-# Run a query as JSON / CSV / markdown
-sqlite-utils logs.db "select * from access limit 5"
-sqlite-utils logs.db "select * from access limit 5" --csv
-sqlite-utils logs.db "select * from access limit 5" --fmt github
-
-# Schema inspection
-sqlite-utils schema logs.db
-sqlite-utils tables logs.db --counts
-
-# Extract a column into its own lookup table (normalize)
-sqlite-utils extract logs.db access user_agent --table user_agents
+```text
+orders.user_id     ─────→ users.id
+orders.product_id  ─────→ products.id
 ```
 
-### Python library
+Use:
 
-```python title="load_csv.py"
-import sqlite_utils
-
-db = sqlite_utils.Database("logs.db")
-
-# Auto-create table from records
-db["events"].insert_all([
-    {"user": "alice", "action": "login"},
-    {"user": "bob",   "action": "view"},
-], pk="id")
-
-# Query
-for row in db.query("SELECT action, COUNT(*) AS n FROM events GROUP BY action"):
-    print(row)
-
-# Enable FTS
-db["events"].enable_fts(["user", "action"], create_triggers=True)
+```text
+JOIN       → matching rows only
+LEFT JOIN  → keep left table rows even if match missing
 ```
 
-## Datasette — Instant Web UI for Your Data
+---
 
-Point `datasette` at a `.sqlite` file and get a **full web application** — browsable tables, filter UIs, SQL playground, JSON/CSV downloads, plugin ecosystem. This is how most "public data" sites (census, journalism) expose their SQLite files.
+## 6. Python + SQLite
 
-```bash
-datasette serve tasks.db
-# Open http://localhost:8001
-```
-
-Publish it to the web for free on HuggingFace Spaces / Vercel:
-
-```bash
-datasette publish vercel tasks.db --project my-tasks
-```
-
-Add plugins:
-
-```bash
-datasette install datasette-graphql   # GraphQL endpoint
-datasette install datasette-dashboards # dashboards
-```
-
-?> **Use case: publish a course dataset**
-?> If you scrape or build a dataset in another week, `sqlite-utils insert + datasette publish` is the fastest way to ship a browsable version to the internet.
-
-## Connecting from Python
-
-You almost never need raw `sqlite3`, but here it is:
+Python already has SQLite.
 
 ```python
 import sqlite3
 
-con = sqlite3.connect("tasks.db")
-con.row_factory = sqlite3.Row          # dict-like rows
+con = sqlite3.connect("app.db")
+con.row_factory = sqlite3.Row
+
 con.execute("PRAGMA journal_mode = WAL")
 con.execute("PRAGMA foreign_keys = ON")
 
-cur = con.execute("SELECT * FROM tasks WHERE done = ?", (0,))
-for row in cur:
+rows = con.execute(
+    "SELECT * FROM tasks WHERE done = ?",
+    (0,)
+)
+
+for row in rows:
     print(row["title"])
 
-con.commit()
 con.close()
 ```
 
-**Always parameterize queries.** Never f-string values into SQL — that's how you get SQL-injected.
+Most important rule: **never use f-string SQL**.
+
+Bad:
 
 ```python
-# WRONG — vulnerable to injection
-con.execute(f"SELECT * FROM users WHERE name = '{user_name}'")
-
-# CORRECT — parameterized
-con.execute("SELECT * FROM users WHERE name = ?", (user_name,))
+con.execute(f"SELECT * FROM users WHERE name = '{name}'")
 ```
 
-## JSON1 — Storing JSON in Columns
+Good:
 
-SQLite's built-in JSON1 extension lets you mix relational + document storage:
-
-```sql
-CREATE TABLE events (
-    id INTEGER PRIMARY KEY,
-    ts TEXT,
-    payload TEXT CHECK (json_valid(payload))
-);
-
-INSERT INTO events VALUES (1, '2026-01-01', '{"user": "a", "score": 10}');
-
--- Extract fields
-SELECT json_extract(payload, '$.user') AS user,
-       json_extract(payload, '$.score') AS score
-FROM events;
-
--- Shorthand (SQLite 3.38+)
-SELECT payload ->> 'user' AS user, payload ->> 'score' AS score FROM events;
+```python
+con.execute("SELECT * FROM users WHERE name = ?", (name,))
 ```
 
-## Performance Tips
-
-1. **Add indexes to columns used in `WHERE`, `JOIN`, `ORDER BY`.** Without them, SQLite scans the table.
-   ```sql
-   CREATE INDEX idx_tasks_due ON tasks(due_date);
-   ```
-2. **Wrap bulk inserts in a transaction.** 10× faster:
-   ```python
-   with con:
-       con.executemany("INSERT INTO events VALUES (?, ?)", rows)
-   ```
-3. **Use `EXPLAIN QUERY PLAN`** to see what SQLite is actually doing:
-   ```sql
-   EXPLAIN QUERY PLAN SELECT * FROM tasks WHERE due_date > '2026-01-01';
-   ```
-4. **After bulk inserts into an FTS5 table, rebuild:**
-   ```sql
-   INSERT INTO tasks_fts(tasks_fts) VALUES('rebuild');
-   ```
-
-## Common Pitfalls
-
-!> **SQLite is not a client-server DB**
-!> If multiple processes on different machines need to write the same database, use Postgres. SQLite excels at single-process or single-machine workloads.
-
-!> **No real `DATE` type**
-!> SQLite stores dates as `TEXT` (ISO 8601), `REAL` (Julian day), or `INTEGER` (Unix epoch). Pick one and stick with it. The ecosystem has standardized on ISO 8601 strings: `2026-05-10T14:30:00Z`.
-
-## 5-Minute Exercise
-
-1. Download any CSV dataset (try [city of Chennai open data](https://data.gov.in)).
-2. `sqlite-utils insert chennai.db data file.csv --csv`
-3. `sqlite-utils enable-fts chennai.db data <some_text_column> --create-triggers`
-4. `datasette serve chennai.db`
-5. Open the UI, run an SQL query, toggle FTS search on a column.
-
-## Further Reading
-
-- [sqlite-utils docs](https://sqlite-utils.datasette.io/)
-- [Datasette docs](https://docs.datasette.io/)
-- [SQLite FTS5 reference](https://www.sqlite.org/fts5.html)
-- [Simon Willison's SQLite blog](https://simonwillison.net/tags/sqlite/)
-- [SQLite Tutorial](https://www.sqlitetutorial.net/) — beginner-friendly SQL reference
+Why? It protects against SQL injection.
 
 ---
 
+## 7. WAL mode: practical default
+
+Use these for app-style work:
+
+```sql
+PRAGMA journal_mode = WAL;
+PRAGMA synchronous = NORMAL;
+PRAGMA foreign_keys = ON;
+```
+
+Meaning:
+
+```text
+WAL = Write-Ahead Log
+
+Better for:
+- local apps
+- readers + writers
+- safer database writes
+```
+
+When WAL is active, you may see:
+
+```text
+app.db
+app.db-wal
+app.db-shm
+```
+
+Keep these together while the DB is active.
+
+---
+
+## 8. Transactions: fast and safe inserts
+
+Bad style:
+
+```python
+for row in rows:
+    con.execute("INSERT INTO logs VALUES (?, ?)", row)
+    con.commit()
+```
+
+Better:
+
+```python
+with con:
+    con.executemany(
+        "INSERT INTO logs VALUES (?, ?)",
+        rows
+    )
+```
+
+Transaction idea:
+
+```text
+BEGIN
+  many inserts / updates
+COMMIT
+```
+
+Use transactions for:
+
+```text
+scraping
+bulk import
+ETL
+logs
+dataset building
+```
+
+---
+
+## 9. Indexes: make queries fast
+
+If you often filter by a column, index it.
+
+```sql
+CREATE INDEX idx_tasks_due_date
+ON tasks(due_date);
+```
+
+Use indexes on columns used in:
+
+```text
+WHERE
+JOIN
+ORDER BY
+GROUP BY
+```
+
+Check query plan:
+
+```sql
+EXPLAIN QUERY PLAN
+SELECT * FROM tasks
+WHERE due_date > '2026-06-01';
+```
+
+Mental model:
+
+```text
+Without index → SQLite scans many rows
+With index    → SQLite jumps directly to useful rows
+```
+
+---
+
+## 10. Full-text search with FTS5
+
+Normal search:
+
+```sql
+SELECT * FROM notes
+WHERE body LIKE '%sqlite%';
+```
+
+Better search:
+
+```bash
+sqlite-utils enable-fts notes.db notes title body --create-triggers
+sqlite-utils search notes.db notes "database"
+```
+
+FTS5 gives:
+
+```text
+word search      database
+phrase search    "full text search"
+prefix search    data*
+ranked results   best match first
+```
+
+Use FTS5 for:
+
+```text
+searchable notes
+document search
+logs search
+RAG keyword search
+course material search
+support chatbot search
+```
+
+RAG mental model:
+
+```text
+SQLite FTS5      → keyword search
+Vector database  → semantic search
+SQL filters      → metadata filtering
+```
+
+---
+
+## 11. JSON in SQLite
+
+Sometimes data is flexible:
+
+```json
+{"user":"alice","score":10,"tags":["sql","tds"]}
+```
+
+Store JSON:
+
+```sql
+CREATE TABLE events (
+  id INTEGER PRIMARY KEY,
+  ts TEXT,
+  payload TEXT CHECK (json_valid(payload))
+);
+```
+
+Query JSON:
+
+```sql
+SELECT
+  payload ->> 'user' AS user,
+  payload ->> 'score' AS score
+FROM events;
+```
+
+Use JSON columns for:
+
+```text
+API response
+scraped raw data
+LLM output
+metadata
+event logs
+```
+
+But important fields should become real columns.
+
+```text
+Search/filter often?  → make it a column
+Store extra details?  → JSON is fine
+```
+
+---
+
+## 12. Datasette: instant database web app
+
+```bash
+datasette serve app.db
+```
+
+Then open:
+
+```text
+http://localhost:8001
+```
+
+Datasette gives:
+
+```text
+table browser
+SQL editor
+filters
+CSV export
+JSON API
+quick demo UI
+```
+
+Project flow:
+
+```text
+scrape/API/CSV
+    ↓
+SQLite
+    ↓
+Datasette
+    ↓
+shareable mini data app
+```
+
+---
+
+## 13. Useful command sheet
+
+```bash
+# Import CSV
+sqlite-utils insert app.db users users.csv --csv
+
+# Import JSON
+sqlite-utils insert app.db events events.json
+
+# See tables
+sqlite-utils tables app.db --counts
+
+# See schema
+sqlite-utils schema app.db
+
+# Query
+sqlite-utils app.db "select * from users limit 5"
+
+# Add index
+sqlite-utils create-index app.db users email
+
+# Enable search
+sqlite-utils enable-fts app.db notes title body --create-triggers
+
+# Search
+sqlite-utils search app.db notes "sqlite"
+
+# Serve
+datasette serve app.db
+
+# Open SQLite shell
+sqlite3 app.db
+```
+
+SQLite shell basics:
+
+```sql
+.tables
+.schema
+.headers on
+.mode table
+SELECT * FROM users LIMIT 5;
+.quit
+```
+
+---
+
+## 14. Mini practical script: build searchable notes DB
+
+Create `notes.csv`:
+
+```csv
+title,body,week
+SQLite Basics,SQLite is a single-file database,1
+FTS5 Search,FTS5 enables full-text search,1
+Datasette,Datasette serves SQLite as a web UI,1
+```
+
+Run:
+
+```bash
+sqlite-utils insert notes.db notes notes.csv --csv
+sqlite-utils tables notes.db --counts
+sqlite-utils schema notes.db
+
+sqlite-utils enable-fts notes.db notes title body --create-triggers
+sqlite-utils search notes.db notes "single-file database"
+
+datasette serve notes.db
+```
+
+This one mini project teaches:
+
+```text
+CSV import
+SQL database
+schema inspection
+full-text search
+web publishing
+```
+
+---
+
+## 15. SQLite in future projects
+
+Use SQLite like this:
+
+```text
+Data analysis:
+CSV → SQLite → SQL queries → charts/reports
+
+Scraping:
+Website/API → SQLite → clean data → export
+
+Backend:
+FastAPI/Flask → SQLite → local app database
+
+RAG:
+documents → chunks table → FTS5 search → metadata filter
+
+Dashboard:
+SQLite → Datasette → quick web UI
+
+Testing:
+SQLite → simple local DB before PostgreSQL
+```
+
+---
+
+## 16. Common mistakes
+
+```text
+❌ No primary key
+✅ Use id INTEGER PRIMARY KEY
+
+❌ Dates like 15/06/26
+✅ Use 2026-06-15
+
+❌ SQL with f-strings
+✅ Use ? parameters
+
+❌ No index on filter columns
+✅ Index WHERE/JOIN columns
+
+❌ One huge messy table
+✅ Separate repeated entities
+
+❌ PostgreSQL too early
+✅ Start with SQLite for local projects
+
+❌ SQLite for heavy multi-user writes
+✅ Move to PostgreSQL
+```
+
+---
+
+## Important Q&A
+
+**Q: Why shouldn't I use f-strings for SQL queries in Python?**
+A: Using f-strings or string concatenation for SQL queries makes your code vulnerable to SQL Injection attacks. A malicious user could input something like `'; DROP TABLE users; --` which would be executed directly. Always use parameterized queries (with `?`) instead.
+
+**Q: When should I use SQLite instead of PostgreSQL?**
+A: Use SQLite for local development, desktop apps, mobile apps, smaller websites, logs, testing, and anywhere where you don't have high concurrency writes from multiple servers. Switch to PostgreSQL when your application scales up and requires a dedicated database server with many concurrent users modifying data.
+
+**Q: What is WAL mode and why should I enable it?**
+A: WAL (Write-Ahead Log) mode improves performance and concurrency by allowing readers to continue reading from the database even while another process is writing to it.
+
+---
+
+## Video Resources
+
+Watch these introductory videos to understand SQLite and how it's used in Python (34 min):
+
+[![SQLite Introduction - Beginners Guide to SQL and Databases (22 min)](https://i.ytimg.com/vi_webp/8Xyn8R9eKB8/sddefault.webp)](https://youtu.be/8Xyn8R9eKB8)
+
+[![SQLite Backend for Beginners - Create Quick Databases with Python and SQL (13 min)](https://i.ytimg.com/vi_webp/Ohj-CqALrwk/sddefault.webp)](https://youtu.be/Ohj-CqALrwk)
+
+---
+
+## Final revision checklist
+
+```text
+[ ] I can use `sqlite-utils` to import CSV or JSON data into a local DB.
+[ ] I know the basic SQL commands: `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `JOIN`.
+[ ] I understand why parameterized queries (using `?`) are essential for security.
+[ ] I know how to create tables with a primary key and foreign keys.
+[ ] I can set `PRAGMA journal_mode = WAL` for better performance.
+[ ] I understand when to use SQLite vs a large server database like PostgreSQL.
+```
+
+## Final memory map
+
+```text
+SQLite = local data engine
+
+sqlite-utils  → import/query/manage DB from terminal
+sqlite3       → raw SQLite shell
+Python sqlite3 → use DB inside code
+FTS5          → full-text search
+JSON1         → flexible metadata
+Indexes       → speed
+Transactions  → safe + fast writes
+Datasette     → instant web UI/API
+PostgreSQL    → when SQLite becomes too small
+```
+
+Best learning order:
+
+```text
+1. Import CSV/JSON
+2. SELECT, WHERE, ORDER BY, GROUP BY
+3. CREATE, INSERT, UPDATE, DELETE
+4. Keys and JOINs
+5. Python sqlite3
+6. Indexes and transactions
+7. FTS5 search
+8. JSON metadata
+9. Datasette publishing
+```
+
+**One-line understanding:**
+SQLite is not “just a small database.” It is a **portable local data engine** for practical developer work.

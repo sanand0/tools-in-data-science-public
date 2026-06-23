@@ -1,7 +1,7 @@
 # Lab 1.1 — Publish a Python Library to PyPI using UV
 
-?> **What you'll build**
-?> A real Python package, installable by the world via `pip install your-package-name`, published to PyPI from GitHub Actions using **Trusted Publishing** (no API tokens, no secrets in your repo). We'll use **UV** for every step.
+**What you'll build**
+> A real Python package, installable by the world via `pip install your-package-name`, published to PyPI from GitHub Actions using **Trusted Publishing** (no API tokens, no secrets in your repo). We'll use **UV** for every step.
 
 **Time:** 60–90 minutes.
 **Difficulty:** ⭐⭐☆☆☆.
@@ -85,8 +85,8 @@ tds-hello-YOURNAME/
         └── py.typed
 ```
 
-?> **src-layout matters**
-?> `--lib` gives you a `src/` layout. This is best practice because it forces tests to run against the *installed* version, not the source directory. You'll avoid a whole class of import bugs.
+**src-layout matters**
+`--lib` gives you a `src/` layout. This is best practice because it forces tests to run against the *installed* version, not the source directory. You'll avoid a whole class of import bugs.
 
 </details>
 
@@ -193,8 +193,8 @@ build-backend = "hatchling.build"
 dev = ["pytest>=8"]
 ```
 
-?> **Why `hatchling`?**
-?> UV uses `hatchling` as the default build backend — it's PyPA-maintained, fast, and configuration-free for most projects. Leave this section alone unless you know what you're doing.
+**Why `hatchling`?**
+> UV uses `hatchling` as the default build backend — it's PyPA-maintained, fast, and configuration-free for most projects. Leave this section alone unless you know what you're doing.
 
 Write a proper README:
 
@@ -297,11 +297,11 @@ uv publish dist/*
 
 Visit `https://test.pypi.org/project/tds-hello-YOURNAME/` — you should see your package.
 
-?> **Did it fail?**
-?> Common errors:
-?> - `403 Forbidden` — name is already taken; change it.
-?> - `400 Bad metadata` — fix `pyproject.toml` and rerun `uv build`.
-?> - `The user YOURNAME isn't allowed to upload to project ...` — token scope wrong.
+**Did it fail?**
+Common errors:
+- `403 Forbidden` — name is already taken; change it.
+- `400 Bad metadata` — fix `pyproject.toml` and rerun `uv build`.
+- `The user YOURNAME isn't allowed to upload to project ...` — token scope wrong.
 
 Now **delete** that token from TestPyPI (we'll use Trusted Publishing from now on).
 
@@ -325,8 +325,8 @@ Now repeat the same on the real [PyPI](https://pypi.org/manage/account/publishin
 2. Fill in the same details, with **Environment name**: `pypi`.
 3. Save.
 
-?> **What is Trusted Publishing?**
-?> Trusted Publishing (a.k.a. OIDC publishing) lets PyPI verify that a publish request came from a specific GitHub Actions workflow using short-lived OIDC tokens — no long-lived secrets to manage or leak. This is now the recommended way to publish.
+**What is Trusted Publishing?**
+> Trusted Publishing (a.k.a. OIDC publishing) lets PyPI verify that a publish request came from a specific GitHub Actions workflow using short-lived OIDC tokens — no long-lived secrets to manage or leak. This is now the recommended way to publish.
 
 </details>
 
@@ -427,8 +427,8 @@ jobs:
         run: uv publish dist/*
 ```
 
-?> **Why two stages?**
-?> TestPyPI is your staging environment — catch bad metadata or missing files before they hit the real PyPI (which you cannot re-upload to with the same version number).
+**Why two stages?**
+> TestPyPI is your staging environment — catch bad metadata or missing files before they hit the real PyPI (which you cannot re-upload to with the same version number).
 
 </details>
 
@@ -640,7 +640,17 @@ Publish a Discourse blog post covering:
 
 ## Next Lab
 
-[**Lab 1.2 — UV CLI tool + LaTeX docs PDF on GitHub Pages**](./uv-cli-tool-latex-docs)
+[**Lab 1.2 — Web Traffic Debugging with Burp Suite**](./02-burpsuite-traffic-debugging.md)
+
+---
+
+## Video Resources
+
+Watch this video to learn about Python package and project management with uv, including package building and publishing:
+
+[![uv - Python package and project management | Inline Script Metadata](https://i.ytimg.com/vi_webp/igWlYl3asKw/sddefault.webp)](https://youtu.be/igWlYl3asKw?t=1240)
+
+---
 
 ## References
 

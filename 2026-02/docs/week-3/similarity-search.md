@@ -1,5 +1,7 @@
 # Similarity Search
 
+[![Similarity Search Video](https://img.youtube.com/vi/nbJVJ1RPBEg/0.jpg)](https://youtu.be/nbJVJ1RPBEg?si=KTCsKw7zSdMcfBdt)
+
 You have a million embeddings. A user queries arrive. Brute-force cosine similarity over 1M × 1536-dim vectors takes seconds. **Approximate Nearest Neighbor (ANN)** indices make it milliseconds — with only a small loss in recall.
 
 ---
