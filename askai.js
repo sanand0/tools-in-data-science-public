@@ -144,7 +144,7 @@
       .then(function (text) {
         rawMarkdownContent = text;
       })
-      .catch(function () {});
+      .catch(function () { });
   }
 
   function getCleanDOMText() {
@@ -159,7 +159,7 @@
   }
 
   function wholePageContent(limit) {
-    limit = limit || 3000;
+    limit = limit || 5000;
     if (rawMarkdownContent) {
       return rawMarkdownContent.slice(0, limit);
     }
@@ -227,7 +227,7 @@
       '</label>' +
       '<div style="display:flex;align-items:center;gap:.25rem;">' +
       '<span style="font-size:.7rem;font-weight:600;opacity:0.8;">Limit:</span>' +
-      '<input type="number" id="ai-truncate-limit" value="3000" min="500" max="10000" step="500" style="width:3.8rem;height:1.4rem;padding:.1rem .25rem;border:1px solid var(--ai-line);border-radius:.3rem;color:var(--ai-ink);background:var(--ai-panel-input);font:inherit;font-size:.7rem;font-weight:700;box-sizing:border-box;text-align:right;">' +
+      '<input type="number" id="ai-truncate-limit" value="5000" min="500" max="10000" step="500" style="width:3.8rem;height:1.4rem;padding:.1rem .25rem;border:1px solid var(--ai-line);border-radius:.3rem;color:var(--ai-ink);background:var(--ai-panel-input);font:inherit;font-size:.7rem;font-weight:700;box-sizing:border-box;text-align:right;">' +
       '</div>' +
       '</div>' +
       '<div class="ai-presets"></div>' +
@@ -301,10 +301,10 @@
 
     var LIMIT_KEY = "tds-ai-limit";
     var limitInput = panel.querySelector("#ai-truncate-limit");
-    limitInput.value = storageGet(LIMIT_KEY, "3000");
+    limitInput.value = storageGet(LIMIT_KEY, "5000");
     limitInput.addEventListener("change", function () {
       var val = parseInt(limitInput.value, 10);
-      if (isNaN(val) || val < 100) val = 3000;
+      if (isNaN(val) || val < 100) val = 5000;
       limitInput.value = val;
       storageSet(LIMIT_KEY, val.toString());
     });
@@ -333,7 +333,7 @@
     function widgetPrompt() {
       var q = panel.querySelector("#ai-question").value.trim();
       var includeWhole = panel.querySelector("#ai-include-whole").checked;
-      var limit = parseInt(panel.querySelector("#ai-truncate-limit").value, 10) || 3000;
+      var limit = parseInt(panel.querySelector("#ai-truncate-limit").value, 10) || 5000;
       return buildPrompt({
         question: q,
         selectedText: widgetState.scope === "selection" ? capturedSelection : "",
