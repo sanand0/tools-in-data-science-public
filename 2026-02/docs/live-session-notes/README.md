@@ -12,8 +12,7 @@ This section contains slide-style notes for live sessions. Each session opens as
 
 ## Week 2
 
-- [Session 1: API engineering](week-2/session-1-api-engineering.md)
-- [Session 2: Auth, CORS, and config](week-2/session-2-auth-cors-config.md)
-- [Session 3: Docker and GitHub Actions](week-2/session-3-docker-github-actions.md)
-- [Session 4: Deployment playbook](week-2/session-4-deployment-playbook.md)
-- [Session 5: Local LLMs and tunnels](week-2/session-5-local-llms-tunnels.md)
+- [Session 1: Pydantic & FastAPI](week-2/session-1-fastapi-pydantic.md)
+- [Session 2: Configuration & HF Deployment](week-2/session-2-config-deployment.md)
+- [Session 3: Security & Google OAuth](week-2/session-3-fastapi-oauth.md)
+- [Session 4: Podman, Docker & Local LLMs](week-2/session-4-docker-local-llms.md)

@@ -19,11 +19,10 @@
 - [Session 5: Week 1 clinic](2026-02/docs/live-session-notes/week-1/session-5-week-1-clinic.md)
 
 **Week 2**
-- [Session 1: API engineering](2026-02/docs/live-session-notes/week-2/session-1-api-engineering.md)
-- [Session 2: Auth, CORS, and config](2026-02/docs/live-session-notes/week-2/session-2-auth-cors-config.md)
-- [Session 3: Docker and GitHub Actions](2026-02/docs/live-session-notes/week-2/session-3-docker-github-actions.md)
-- [Session 4: Deployment playbook](2026-02/docs/live-session-notes/week-2/session-4-deployment-playbook.md)
-- [Session 5: Local LLMs and tunnels](2026-02/docs/live-session-notes/week-2/session-5-local-llms-tunnels.md)
+- [Session 1: Pydantic & FastAPI](2026-02/docs/live-session-notes/week-2/session-1-fastapi-pydantic.md)
+- [Session 2: Configuration & HF Deployment](2026-02/docs/live-session-notes/week-2/session-2-config-deployment.md)
+- [Session 3: Security & Google OAuth](2026-02/docs/live-session-notes/week-2/session-3-fastapi-oauth.md)
+- [Session 4: Podman, Docker & Local LLMs](2026-02/docs/live-session-notes/week-2/session-4-docker-local-llms.md)
 
 </details>
 

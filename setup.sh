@@ -158,11 +158,12 @@ while IFS= read -r rel; do
     dest="$(dirname "$dest")/_index.md"
   fi
 
-  mkdir -p "$(dirname "$dest")"
-  cp "$ROOT_DIR/$rel" "$dest"
-  sed -E -i 's#\((\.\./)?images/#(/images/#g' "$dest"
-  if grep -q 'data-live-session-slides' "$dest"; then
-    python3 -c '
+  if [[ -f "$ROOT_DIR/$rel" ]]; then
+    mkdir -p "$(dirname "$dest")"
+    cp "$ROOT_DIR/$rel" "$dest"
+    sed -E -i 's#\((\.\./)?images/#(/images/#g' "$dest"
+    if grep -q 'data-live-session-slides' "$dest"; then
+      python3 -c '
 import sys, re, base64
 def encode_slides(match):
     attrs = match.group(1)
@@ -178,8 +179,9 @@ new_content = re.sub(r"<textarea([^>]*data-live-session-slides[^>]*)>(.*?)</text
 with open(sys.argv[1], "w", encoding="utf-8") as f:
     f.write(new_content)
 ' "$dest"
+    fi
   fi
-done < <(git -C "$ROOT_DIR" ls-files '*.md')
+done < <(git -C "$ROOT_DIR" ls-files -c -o --exclude-standard '*.md')
 
 # Duplicate shared top-level content pages into each course folder.
 # This ensures links like `/2025-09/system-requirements/` resolve and keep
@@ -192,15 +194,17 @@ for course in "${COURSE_DIRS[@]}"; do
       cp "$ROOT_DIR/$rel" "$dest"
       sed -E -i 's#\((\.\./)?images/#(/images/#g' "$dest"
     fi
-  done < <(git -C "$ROOT_DIR" ls-files '*.md' | grep -E '^[^/]+\.md$' | grep -v -E '^README\.md$|^_sidebar\.md$')
+  done < <(git -C "$ROOT_DIR" ls-files -c -o --exclude-standard '*.md' | grep -E '^[^/]+\.md$' | grep -v -E '^README\.md$|^_sidebar\.md$')
 done
 
 # Copy all non-markdown tracked files as static assets, excluding
 # build/config scaffolding files that should not be published as assets.
 while IFS= read -r rel; do
-  mkdir -p "$STATIC_DIR/$(dirname "$rel")"
-  cp "$ROOT_DIR/$rel" "$STATIC_DIR/$rel"
-done < <(git -C "$ROOT_DIR" ls-files | grep -v '\.md$|^hugo/|^\.github/|^\.gitignore$|^setup\.sh$')
+  if [[ -f "$ROOT_DIR/$rel" ]]; then
+    mkdir -p "$STATIC_DIR/$(dirname "$rel")"
+    cp "$ROOT_DIR/$rel" "$STATIC_DIR/$rel"
+  fi
+done < <(git -C "$ROOT_DIR" ls-files -c -o --exclude-standard | grep -v '\.md$|^hugo/|^\.github/|^\.gitignore$|^setup\.sh$')
 
 # Build final static site into `public/`.
 hugo --source "$SITE_DIR" --destination "$OUTPUT_DIR" --minify
