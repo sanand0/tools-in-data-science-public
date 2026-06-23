@@ -6,26 +6,6 @@
 
 </div>
 
-<details class="tds-week">
-<summary>Live Session Notes</summary>
-
-- [Overview](2026-02/docs/live-session-notes/README.md)
-
-**Week 1**
-- [Session 1: TDS orientation](2026-02/docs/live-session-notes/week-1/session-1-tds-orientation.md)
-- [Session 2: Setup and debugging](2026-02/docs/live-session-notes/week-1/session-2-setup-debugging.md)
-- [Session 3: Shell and Git foundations](2026-02/docs/live-session-notes/week-1/session-3-shell-git-foundations.md)
-- [Session 4: Environment variables and GitHub](2026-02/docs/live-session-notes/week-1/session-4-env-github.md)
-- [Session 5: Week 1 clinic](2026-02/docs/live-session-notes/week-1/session-5-week-1-clinic.md)
-
-**Week 2**
-- [Session 1: Pydantic & FastAPI](2026-02/docs/live-session-notes/week-2/session-1-fastapi-pydantic.md)
-- [Session 2: Configuration & HF Deployment](2026-02/docs/live-session-notes/week-2/session-2-config-deployment.md)
-- [Session 3: Security & Google OAuth](2026-02/docs/live-session-notes/week-2/session-3-fastapi-oauth.md)
-- [Session 4: Podman, Docker & Local LLMs](2026-02/docs/live-session-notes/week-2/session-4-docker-local-llms.md)
-
-</details>
-
 ---
 
 <details class="tds-week">
@@ -280,3 +260,27 @@
 - [All Capstone Projects](2026-02/docs/labs/capstone-projects.md)
 
 </details>
+
+---
+
+<details class="tds-week">
+<summary>Live Session Notes</summary>
+
+- [Overview](2026-02/docs/live-session-notes/README.md)
+
+**Week 1**
+- [Session 1: TDS orientation](2026-02/docs/live-session-notes/week-1/session-1-tds-orientation.md)
+- [Session 2: Setup and debugging](2026-02/docs/live-session-notes/week-1/session-2-setup-debugging.md)
+- [Session 3: Shell and Git foundations](2026-02/docs/live-session-notes/week-1/session-3-shell-git-foundations.md)
+- [Session 4: Environment variables and GitHub](2026-02/docs/live-session-notes/week-1/session-4-env-github.md)
+- [Session 5: Week 1 clinic](2026-02/docs/live-session-notes/week-1/session-5-week-1-clinic.md)
+
+**Week 2**
+- [Session 1: Pydantic & FastAPI](2026-02/docs/live-session-notes/week-2/session-1-fastapi-pydantic.md)
+- [Session 2: Configuration & HF Deployment](2026-02/docs/live-session-notes/week-2/session-2-config-deployment.md)
+- [Session 3: Security & Google OAuth](2026-02/docs/live-session-notes/week-2/session-3-fastapi-oauth.md)
+- [Session 4: Podman, Docker & Local LLMs](2026-02/docs/live-session-notes/week-2/session-4-docker-local-llms.md)
+
+</details>
+
+---
