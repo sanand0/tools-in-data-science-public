@@ -9,21 +9,21 @@
 <details class="tds-week">
 <summary>Live Session Notes</summary>
 
-- [Overview](2026-02/live-session-notes/README.md)
+- [Overview](2026-02/docs/live-session-notes/README.md)
 
 **Week 1**
-- [Session 1: TDS orientation](2026-02/live-session-notes/week-1/session-1-tds-orientation.md)
-- [Session 2: Setup and debugging](2026-02/live-session-notes/week-1/session-2-setup-debugging.md)
-- [Session 3: Shell and Git foundations](2026-02/live-session-notes/week-1/session-3-shell-git-foundations.md)
-- [Session 4: Environment variables and GitHub](2026-02/live-session-notes/week-1/session-4-env-github.md)
-- [Session 5: Week 1 clinic](l2026-02/ive-session-notes/week-1/session-5-week-1-clinic.md)
+- [Session 1: TDS orientation](2026-02/docs/live-session-notes/week-1/session-1-tds-orientation.md)
+- [Session 2: Setup and debugging](2026-02/docs/live-session-notes/week-1/session-2-setup-debugging.md)
+- [Session 3: Shell and Git foundations](2026-02/docs/live-session-notes/week-1/session-3-shell-git-foundations.md)
+- [Session 4: Environment variables and GitHub](2026-02/docs/live-session-notes/week-1/session-4-env-github.md)
+- [Session 5: Week 1 clinic](2026-02/docs/live-session-notes/week-1/session-5-week-1-clinic.md)
 
 **Week 2**
-- [Session 1: API engineering](2026-02/live-session-notes/week-2/session-1-api-engineering.md)
-- [Session 2: Auth, CORS, and config](2026-02/live-session-notes/week-2/session-2-auth-cors-config.md)
-- [Session 3: Docker and GitHub Actions](2026-02/live-session-notes/week-2/session-3-docker-github-actions.md)
-- [Session 4: Deployment playbook](2026-02/live-session-notes/week-2/session-4-deployment-playbook.md)
-- [Session 5: Local LLMs and tunnels](2026-02/live-session-notes/week-2/session-5-local-llms-tunnels.md)
+- [Session 1: API engineering](2026-02/docs/live-session-notes/week-2/session-1-api-engineering.md)
+- [Session 2: Auth, CORS, and config](2026-02/docs/live-session-notes/week-2/session-2-auth-cors-config.md)
+- [Session 3: Docker and GitHub Actions](2026-02/docs/live-session-notes/week-2/session-3-docker-github-actions.md)
+- [Session 4: Deployment playbook](2026-02/docs/live-session-notes/week-2/session-4-deployment-playbook.md)
+- [Session 5: Local LLMs and tunnels](2026-02/docs/live-session-notes/week-2/session-5-local-llms-tunnels.md)
 
 </details>
 
