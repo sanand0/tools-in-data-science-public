@@ -158,11 +158,12 @@
     return clone.textContent.replace(/\r\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
   }
 
-  function wholePageContent() {
+  function wholePageContent(limit) {
+    limit = limit || 3000;
     if (rawMarkdownContent) {
-      return rawMarkdownContent.slice(0, 3000);
+      return rawMarkdownContent.slice(0, limit);
     }
-    return getCleanDOMText().slice(0, 3000);
+    return getCleanDOMText().slice(0, limit);
   }
 
   // ── CSS Style (with premium Green/Violet themes & custom font sizes) ───
@@ -219,10 +220,16 @@
       '<button class="is-active" type="button" data-scope="page">Page link</button>' +
       '<button type="button" data-scope="selection">Selected text</button>' +
       '</fieldset>' +
-      '<label class="ai-include-content" style="display:flex;align-items:center;gap:.4rem;margin:.42rem 0 .7rem;font-size:.76rem;font-weight:700;color:var(--ai-muted);cursor:pointer;">' +
+      '<div class="ai-include-row" style="display:flex;align-items:center;justify-content:space-between;gap:.4rem;margin:.42rem 0 .7rem;font-size:.76rem;font-weight:700;color:var(--ai-muted);">' +
+      '<label class="ai-include-content" style="display:flex;align-items:center;gap:.4rem;margin:0;cursor:pointer;">' +
       '<input type="checkbox" id="ai-include-whole" style="margin:0;cursor:pointer;">' +
       '<span>Include full page text content</span>' +
       '</label>' +
+      '<div style="display:flex;align-items:center;gap:.25rem;">' +
+      '<span style="font-size:.7rem;font-weight:600;opacity:0.8;">Limit:</span>' +
+      '<input type="number" id="ai-truncate-limit" value="3000" min="500" max="10000" step="500" style="width:3.8rem;height:1.4rem;padding:.1rem .25rem;border:1px solid var(--ai-line);border-radius:.3rem;color:var(--ai-ink);background:var(--ai-panel-input);font:inherit;font-size:.7rem;font-weight:700;box-sizing:border-box;text-align:right;">' +
+      '</div>' +
+      '</div>' +
       '<div class="ai-presets"></div>' +
       '<label class="ai-panel-label" for="ai-question">What would you like to understand?</label>' +
       '<textarea id="ai-question" rows="5" maxlength="' + MAX_QUESTION + '" placeholder="Ask about a concept, command, example..."></textarea>' +
@@ -292,6 +299,16 @@
     select.addEventListener("change", function () { storageSet(STORAGE_KEY, select.value); syncSubmitLabel(); });
     syncSubmitLabel();
 
+    var LIMIT_KEY = "tds-ai-limit";
+    var limitInput = panel.querySelector("#ai-truncate-limit");
+    limitInput.value = storageGet(LIMIT_KEY, "3000");
+    limitInput.addEventListener("change", function () {
+      var val = parseInt(limitInput.value, 10);
+      if (isNaN(val) || val < 100) val = 3000;
+      limitInput.value = val;
+      storageSet(LIMIT_KEY, val.toString());
+    });
+
     var presetsEl = panel.querySelector(".ai-presets");
     PRESETS.forEach(function (p) {
       var btn = document.createElement("button"); btn.type = "button"; btn.textContent = p.label;
@@ -316,10 +333,11 @@
     function widgetPrompt() {
       var q = panel.querySelector("#ai-question").value.trim();
       var includeWhole = panel.querySelector("#ai-include-whole").checked;
+      var limit = parseInt(panel.querySelector("#ai-truncate-limit").value, 10) || 3000;
       return buildPrompt({
         question: q,
         selectedText: widgetState.scope === "selection" ? capturedSelection : "",
-        wholeContent: includeWhole ? wholePageContent() : "",
+        wholeContent: includeWhole ? wholePageContent(limit) : "",
       });
     }
 
