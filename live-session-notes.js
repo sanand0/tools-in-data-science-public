@@ -30,6 +30,7 @@
     play: '<path d="m8 5 11 7-11 7Z"></path>',
     chevronLeft: '<path d="m15 18-6-6 6-6"></path>',
     chevronRight: '<path d="m9 18 6-6-6-6"></path>',
+    x: '<path d="M18 6 6 18"></path><path d="m6 6 12 12"></path>',
   };
 
   function svg(name) {
@@ -261,6 +262,7 @@
       '<button type="button" class="lsn-btn lsn-icon-btn" data-action="prev" title="Previous slide">' + svg("chevronLeft") + "<span>Prev</span></button>" +
       '<button type="button" class="lsn-btn lsn-icon-btn" data-action="next" title="Next slide"><span>Next</span>' + svg("chevronRight") + "</button>" +
       '<button type="button" class="lsn-btn lsn-primary" data-action="present">' + svg("play") + "<span>Present</span></button>" +
+      '<button type="button" class="lsn-btn lsn-exit-present-btn" data-action="exit-present" title="Exit Presentation">' + svg("x") + "<span>Exit</span></button>" +
       '<button type="button" class="lsn-btn" data-action="annotate" aria-pressed="false">' + svg("annotate") + "<span>Annotate</span></button>" +
       '<div class="lsn-segment" aria-label="Annotation visibility">' +
       '<button type="button" data-mode="annotations" data-value="show">' + svg("eye") + "<span>With</span></button>" +
@@ -651,16 +653,37 @@
 
     var isHovered = false;
 
-    function showToolbar() {
+    function hideToolbar() {
+      if (state.el.classList.contains("is-presenting") && !isHovered && !state.currentStroke) {
+        toolbar.classList.add("lsn-toolbar-hidden");
+      }
+    }
+
+    function showToolbar(event) {
+      if (!state.el.classList.contains("is-presenting")) {
+        toolbar.classList.remove("lsn-toolbar-hidden");
+        return;
+      }
+
+      if (state.currentStroke) {
+        // Do not show toolbar while actively drawing
+        return;
+      }
+
+      // If in presenting mode, only show if mouse is near the top (e.g. clientY < 80)
+      if (event && event.clientY >= 80) {
+        // If mouse moved away from top and toolbar is visible, queue hiding it
+        if (!toolbar.classList.contains("lsn-toolbar-hidden") && !isHovered) {
+          clearTimeout(hideTimeout);
+          hideTimeout = setTimeout(hideToolbar, 1000);
+        }
+        return;
+      }
+
+      // Mouse is near the top
       toolbar.classList.remove("lsn-toolbar-hidden");
       clearTimeout(hideTimeout);
-      if (state.el.classList.contains("is-presenting") && !isHovered) {
-        hideTimeout = setTimeout(function () {
-          if (!state.currentStroke) {
-            toolbar.classList.add("lsn-toolbar-hidden");
-          }
-        }, 2500);
-      }
+      hideTimeout = setTimeout(hideToolbar, 2500);
     }
 
     state.el.addEventListener("mousemove", showToolbar);
@@ -674,7 +697,8 @@
 
     toolbar.addEventListener("mouseleave", function () {
       isHovered = false;
-      showToolbar();
+      clearTimeout(hideTimeout);
+      hideTimeout = setTimeout(hideToolbar, 1500);
     });
 
     state.showToolbar = showToolbar;
@@ -707,6 +731,13 @@
       if (action === "prev" && state.deck) state.deck.prev();
       if (action === "next" && state.deck) state.deck.next();
       if (action === "present") enterPresentation(state);
+      if (action === "exit-present") {
+        if (document.exitFullscreen) {
+          document.exitFullscreen().catch(function () {});
+        } else {
+          exitPresentation(state);
+        }
+      }
       if (action === "annotate") toggleAnnotating(state);
       if (action === "undo") undoStroke(state);
       if (action === "clear") clearSlide(state);
@@ -867,10 +898,18 @@
       ".lsn-stage{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border:1px solid var(--lsn-line);border-radius:8px;background:#111827;box-shadow:var(--lsn-shadow)}.lsn-stage:focus{outline:2px solid var(--lsn-accent);outline-offset:2px}.lsn-stage .reveal{position:absolute;inset:0;color:#182033;background:#fff}.lsn-stage .reveal .slides{text-align:left}.lsn-stage .reveal .slides section{box-sizing:border-box;padding:42px 56px}.lsn-stage .reveal h1,.lsn-stage .reveal h2,.lsn-stage .reveal h3{letter-spacing:0}.lsn-stage .reveal h1{font-size:1.82em;line-height:1.04}.lsn-stage .reveal h2{font-size:1.48em;line-height:1.08}.lsn-stage .reveal h3{font-size:1.08em;line-height:1.14;color:#374151}.lsn-stage .reveal p,.lsn-stage .reveal li{font-size:.74em;line-height:1.32}.lsn-stage .reveal pre{width:100%;font-size:.42em;border-radius:8px;background:#0f172a;color:#e5e7eb}.lsn-stage .reveal code{font-family:'SFMono-Regular',Consolas,monospace}.lsn-stage .reveal blockquote{width:auto;margin:.5em 0;padding:.1em .8em;border-left:8px solid var(--lsn-accent);background:#fff5f5;color:#374151;box-shadow:none}.lsn-stage .reveal table{font-size:.55em}.lsn-stage .reveal th,.lsn-stage .reveal td{border:1px solid #d9e2ec;padding:.32em .45em}" +
       ".lsn-ink-canvas{position:absolute;inset:0;z-index:32;width:100%;height:100%;pointer-events:none;touch-action:none}.lsn-workspace.is-annotating .lsn-ink-canvas{pointer-events:auto;cursor:crosshair}.lsn-workspace.is-ink-hidden .lsn-ink-canvas{opacity:0}.lsn-footer{display:flex;justify-content:space-between;gap:1rem;margin-top:.55rem;color:var(--lsn-muted);font-size:.78rem;font-weight:700}.lsn-status[data-type='error']{color:var(--lsn-accent)}" +
       ".lsn-workspace.is-presenting,.lsn-workspace:fullscreen{position:fixed;inset:0;z-index:99999;width:100vw;height:100vh;background:#000;margin:0;padding:0;overflow:hidden}" +
-      ".lsn-workspace.is-presenting .lsn-toolbar,.lsn-workspace:fullscreen .lsn-toolbar{position:absolute;top:1rem;left:50%;transform:translateX(-50%);z-index:10000;width:92%;max-width:1300px;display:flex;justify-content:space-between;align-items:center;background:rgba(15,23,42,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.12);border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,0.6);padding:.75rem 1.25rem}" +
+      ".lsn-workspace.is-presenting .lsn-toolbar,.lsn-workspace:fullscreen .lsn-toolbar{position:absolute;top:1rem;left:50%;transform:translateX(-50%);z-index:10000;width:auto;max-width:1300px;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;background:rgba(15,23,42,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15);border-radius:30px;box-shadow:0 24px 64px rgba(0,0,0,0.7);padding:.5rem 1.25rem}" +
       ".lsn-workspace.is-presenting .lsn-toolbar.lsn-toolbar-hidden,.lsn-workspace:fullscreen .lsn-toolbar.lsn-toolbar-hidden{transform:translate(-50%, -130%) !important;opacity:0 !important}" +
-      ".lsn-workspace.is-presenting .lsn-title-block h2,.lsn-workspace:fullscreen .lsn-title-block h2{color:#f8fafc!important;font-size:1.15rem!important;margin:0!important}" +
+      ".lsn-workspace.is-presenting .lsn-title-block h2,.lsn-workspace:fullscreen .lsn-title-block h2{color:#f8fafc!important;font-size:1rem!important;margin:0!important;font-weight:600}" +
+      ".lsn-workspace.is-presenting .lsn-title-block .lsn-kicker,.lsn-workspace:fullscreen .lsn-title-block .lsn-kicker{display:none}" +
       ".lsn-workspace.is-presenting .lsn-title-block .lsn-links,.lsn-workspace:fullscreen .lsn-title-block .lsn-links{display:none}" +
+      ".lsn-workspace.is-presenting [data-action='present'],.lsn-workspace:fullscreen [data-action='present']{display:none!important}" +
+      ".lsn-workspace.is-presenting [data-action='import-json'],.lsn-workspace:fullscreen [data-action='import-json']{display:none!important}" +
+      ".lsn-workspace.is-presenting [data-action='export-json'],.lsn-workspace:fullscreen [data-action='export-json']{display:none!important}" +
+      ".lsn-workspace.is-presenting [data-action='export-pdf'],.lsn-workspace:fullscreen [data-action='export-pdf']{display:none!important}" +
+      ".lsn-workspace.is-presenting [data-action='export-pptx'],.lsn-workspace:fullscreen [data-action='export-pptx']{display:none!important}" +
+      ".lsn-workspace.is-presenting .lsn-exit-present-btn,.lsn-workspace:fullscreen .lsn-exit-present-btn{border-color:var(--lsn-accent);color:#fff;background:var(--lsn-accent);border-radius:20px}" +
+      ".lsn-workspace.is-presenting .lsn-exit-present-btn:hover,.lsn-workspace:fullscreen .lsn-exit-present-btn:hover{background:#b91c1c;border-color:#b91c1c}" +
       ".lsn-workspace.is-presenting .lsn-stage,.lsn-workspace:fullscreen .lsn-stage{width:100vw;height:100vh;max-width:100vw;max-height:100vh;border:0;border-radius:0;box-shadow:none;background:#000;display:flex;align-items:center;justify-content:center}" +
       ".lsn-workspace.is-presenting .lsn-stage .reveal,.lsn-workspace:fullscreen .lsn-stage .reveal{width:100vw!important;height:100vh!important;background:#000;color:#fff}" +
       ".lsn-workspace.is-presenting .reveal .slides section,.lsn-workspace:fullscreen .reveal .slides section{color:#f3f4f6;background:#111827;border-radius:12px;padding:60px 80px;box-shadow:0 12px 40px rgba(0,0,0,0.5)}" +
