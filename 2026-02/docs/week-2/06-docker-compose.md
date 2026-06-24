@@ -1,6 +1,6 @@
 # Podman Compose — Practical Notes
 
-Use containers when your app is not one process anymore. Real projects usually have **API + database + frontend + admin UI + cache**. Podman runs each part in an isolated container; Compose starts/stops them together with one file.
+Use <askai question="what are containers in podman/docker?" label="containers"></askai> when your app is not one process anymore. Real projects usually have **API + database + frontend + admin UI + cache**. Podman runs each part in an isolated container; Compose starts/stops them together with one file.
 
 ```mermaid
 flowchart LR
@@ -49,9 +49,14 @@ podman machine rm
 brew uninstall podman podman-compose
 ```
 
+<askai question="Explain how to install Podman on different systems and verify the installation. What does rootless and daemonless containerization mean, and how does it compare to Docker?" label="How to install and verify Podman?">How to install and verify Podman?</askai>
+
+
 `podman-compose` is direct and simple. Newer Podman also has `podman compose`, but that is a wrapper around an installed Compose provider, so beginners should use **one style consistently**: `podman-compose up`, `podman-compose down`, `podman-compose logs`.
 
 First learn single containers. An **image** is the packaged blueprint. A **container** is the running process. `-p` publishes ports as `host_port:container_port`. `-v` attaches storage. Named volumes are safer than random folders for databases.
+
+<askai question="Explain the difference between a container image and a running container with simple examples. Also explain what volumes are and why named volumes are better than bind mounts for databases." label="Image vs Container vs Volume?">Image vs Container vs Volume?</askai>
 
 ```bash
 # pull small test image
@@ -115,6 +120,9 @@ podman volume rm pgdata pgadmin_data
 podman system prune
 ```
 
+<askai question="Explain port mapping (host_port:container_port) and named volumes in detail. What happens to files inside a container when it restarts versus when it is deleted?" label="Explain ports and volumes mapping">Explain ports and volumes mapping</askai>
+
+
 Important mental model:
 
 ```mermaid
@@ -127,6 +135,8 @@ flowchart TD
 ```
 
 Now build your own app image. In Podman, name the recipe **Containerfile**. Keep `.containerignore` beside it so secrets, virtual environments, and cache do not enter the build context.
+
+<askai question="Explain Containerfile (Dockerfile) instructions FROM, COPY, RUN, CMD, EXPOSE with examples. How does build caching work and how to write Containerfiles that build faster?" label="Containerfile instructions explained">Containerfile instructions explained</askai>
 
 ```bash
 mkdir -p tds-podman-app/backend
@@ -182,6 +192,9 @@ podman run --rm -p 8000:8000 tds-backend
 # browser: http://localhost:8000
 ```
 
+<askai question="Explain the FastAPI application Containerfile setup step-by-step. Why do we set WORKDIR, and how do we ensure uvicorn runs correctly on port 8000 inside the container?" label="FastAPI Containerfile explained">FastAPI Containerfile explained</askai>
+
+
 For multi-folder projects, keep each service isolated:
 
 ```text
@@ -215,6 +228,9 @@ flowchart TD
   BuildF --> Up
   BuildD --> Up
 ```
+
+<askai question="Why is it important to structure a containerized application into separate folders for frontend, backend, and database? How does compose.yml link them during development?" label="Why structure container folders?">Why structure container folders?</askai>
+
 
 Create the complete example:
 
@@ -314,6 +330,8 @@ volumes:
 YAML
 ```
 
+<askai question="Explain each line in the compose.yml services, ports, environment, volumes, depends_on, and healthcheck configurations. What role does .env file play here?" label="Compose.yml parameters explained">Compose.yml parameters explained</askai>
+
 Run the whole system:
 
 ```bash
@@ -358,6 +376,8 @@ pgAdmin:  http://localhost:5050
 
 Inside Compose, service names become network names. The backend uses `db:5432`, not `localhost:5432`, because `localhost` inside backend means “backend container itself”.
 
+<askai question="How does container networking work in Docker/Podman Compose? Why use service names instead of localhost? Also explain depends_on and healthcheck — when do I need each?" label="Compose networking explained">Compose networking explained</askai>
+
 ```mermaid
 flowchart LR
   Browser -->|localhost:8080| FE[frontend]
@@ -386,6 +406,9 @@ podman-compose up -d
 podman-compose --profile debug up -d
 ```
 
+<askai question="Explain Compose Profiles and when to use them. How do you run debug containers (like pgAdmin or terminal shells) only when needed without bloating production?" label="Compose profiles & debugging">Compose profiles & debugging</askai>
+
+
 Build caching rule: copy dependency files first, then source code. That way, changing `main.py` does not reinstall every package.
 
 ```Containerfile
@@ -401,6 +424,9 @@ COPY . .
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
+
+<askai question="Explain Podman container build cache optimization. Why does copying requirements.txt before the rest of the code speed up successive builds?" label="Optimizing build cache">Optimizing build cache</askai>
+
 
 Beginner mistakes and safe habits:
 
@@ -427,6 +453,8 @@ Mistake: assuming container is ready because it started
 Safe: add healthcheck for DB-like services
 ```
 
+<askai question="Quiz me on Podman Compose with five questions covering images vs containers, volumes, Containerfile instructions, compose.yml services, networking, and the difference between down and down -v." label="Quiz me on Podman Compose">Quiz me on Podman Compose</askai>
+
 ## Important Q&A
 
 **Q: Can I use Docker Compose instead of Podman Compose?**
@@ -434,6 +462,9 @@ A: Yes. Docker Compose and Podman Compose use the same `compose.yml` file format
 
 **Q: Why does my backend fail to connect to the database on start?**
 A: Containers start at the same time. Even if backend `depends_on` database, the database process might still be booting up. That's why healthchecks are used to delay the backend startup until the database is truly ready.
+
+<askai question="Explain why depends_on alone is not enough for container startup synchronization. How do healthchecks solve this, and how can a backend wait for database initialization?" label="depends_on vs healthchecks">depends_on vs healthchecks</askai>
+
 
 **Q: How do I rebuild the image if I change `requirements.txt`?**
 A: Use `podman-compose up --build backend`. The `--build` flag forces a fresh build using your updated Containerfile and requirements.
