@@ -39,11 +39,11 @@
   const add = (root, path) => path.split("/").slice(1).reduce((o, p, i, a) => o[p] = i === a.length - 1 ? path : o[p] || {}, root);
   async function init() {
     const nav = q(".book-menu-content nav,.sidebar-nav,.sidebar nav"); if (!nav || q("#live-sessions")) return;
-    const box = document.createElement("details"); box.id = "live-sessions"; box.innerHTML = '<summary class="live-title"><span>Live Sessions</span><span>+</span></summary><p>Loading...</p>';
+    const box = document.createElement("details"); box.id = "live-sessions"; box.innerHTML = '<summary class="live-title">Live Sessions</summary><p>Loading...</p>';
     (q("#tds-theme-toggle") || nav.lastElementChild)?.before(box);
     const groups = {}, branch = SRC.branch;
     (await paths(branch)).filter(allowed).forEach((p) => add(groups[folder(p)] ||= {}, p));
-    box.innerHTML = '<summary class="live-title"><span>Live Sessions</span><span>+</span></summary>' + Object.entries(groups).sort().map(([k, v]) => `<details class="live-folder"><summary>${esc(k)}</summary>${tree(v)}</details>`).join("");
+    box.innerHTML = '<summary class="live-title">Live Sessions</summary>' + Object.entries(groups).sort().map(([k, v]) => `<details class="live-folder"><summary>${esc(k)}</summary>${tree(v)}</details>`).join("");
     box.onclick = (e) => { const p = e.target.dataset.live; if (p) e.preventDefault(), view(branch, p); };
   }
   document.addEventListener("DOMContentLoaded", init); setInterval(() => q("#live-sessions") || init(), 1000);

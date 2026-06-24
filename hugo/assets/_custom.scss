@@ -32,73 +32,46 @@ html[data-user-theme="dark"] {
 .book-menu-content nav > ul > li {
   margin: 0.55rem 0;
 }
-.book-menu-content .tds-week {
+.book-menu-content .tds-week,
+#live-sessions {
   margin: 0.55rem 0;
   border-bottom: 1px solid var(--gray-200);
   padding-bottom: 0.4rem;
 }
-.book-menu-content .tds-week summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  cursor: pointer;
-  font-weight: 600;
-  line-height: 1.35;
-}
-.book-menu-content .tds-week summary::-webkit-details-marker {
-  display: none;
-}
-.book-menu-content .tds-week summary::after {
-  content: "+";
-}
-.book-menu-content .tds-week[open] summary::after {
-  content: "-";
-}
-.book-menu-content .tds-week ul {
-  border-left: 2px solid var(--gray-200);
-  margin: 0.6rem 0 0 0.15rem;
-  padding-inline-start: 0.85rem;
-}
-#live-sessions {
-  margin: 0.55rem 0;
-  border-top: 1px solid var(--gray-200);
-  border-bottom: 1px solid var(--gray-200);
-  padding: 0.4rem 0;
-}
+.book-menu-content .tds-week summary,
 #live-sessions summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
   cursor: pointer;
+  font-weight: 600;
   line-height: 1.35;
 }
+.book-menu-content .tds-week summary::-webkit-details-marker,
 #live-sessions summary::-webkit-details-marker {
   display: none;
 }
-#live-sessions summary::marker {
-  content: "";
-}
+.book-menu-content .tds-week summary::after,
 #live-sessions summary::after {
   content: "+";
 }
+.book-menu-content .tds-week[open] summary::after,
 #live-sessions[open] > summary::after,
 #live-sessions .live-folder[open] > summary::after {
   content: "-";
 }
-#live-sessions .live-title span:last-child {
-  display: none;
+.book-menu-content .tds-week ul,
+#live-sessions ul {
+  border-left: 2px solid var(--gray-200);
+  margin: 0.6rem 0 0 0.15rem;
+  padding-inline-start: 0.85rem;
 }
-#live-sessions > summary,
-#live-sessions .live-folder > summary {
-  font-weight: 600;
+#live-sessions {
+  border-top: 1px solid var(--gray-200);
 }
 #live-sessions ul {
   list-style: none;
-  margin: 0.6rem 0 0 0.15rem;
-  padding-left: 0.85rem;
-  border-left: 2px solid var(--gray-200);
 }
 #live-sessions a {
   display: block;
