@@ -60,6 +60,31 @@ html[data-user-theme="dark"] {
   margin: 0.6rem 0 0 0.15rem;
   padding-inline-start: 0.85rem;
 }
+#live-sessions {
+  margin: 0.75rem 0;
+  border-top: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 0.55rem 0;
+}
+#live-sessions summary {
+  cursor: pointer;
+}
+#live-sessions > summary,
+#live-sessions .live-folder > summary {
+  font-weight: 600;
+}
+#live-sessions ul {
+  list-style: none;
+  margin: 0.35rem 0 0.55rem 0.15rem;
+  padding-left: 0.85rem;
+  border-left: 2px solid var(--gray-200);
+}
+#live-sessions a {
+  display: block;
+  padding: 0.2rem 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 // Milestone links (projects, ROE, and resource shortcuts) shown as pill rows.
 .book-menu-content .tds-link ul {
   list-style: none;
@@ -93,4 +118,3 @@ html[data-user-theme="dark"] {
 .book-menu-content:hover::-webkit-scrollbar-thumb {
   background: var(--gray-500);
 }
-
