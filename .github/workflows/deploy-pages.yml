@@ -21,6 +21,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      HUGO_CACHEDIR: /tmp/hugo_cache
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -33,8 +35,16 @@ jobs:
       - name: Setup Hugo Extended
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: "0.158.0"
+          hugo-version: "0.163.3"
           extended: true
+
+      - name: Cache Hugo modules
+        uses: actions/cache@v4
+        with:
+          path: /tmp/hugo_cache
+          key: ${{ runner.os }}-hugo-${{ hashFiles('hugo/go.mod') }}
+          restore-keys: |
+            ${{ runner.os }}-hugo-
 
       - name: Build Site
         run: ./setup.sh

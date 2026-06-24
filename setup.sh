@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Requires go and hugo-extended. Build via `mise x go hugo-extended -- ./setup.sh`
+# Requires Go and Hugo Extended. Build via `mise x go hugo-extended@0.163.3 -- ./setup.sh`
 
 # -----------------------------------------------------------------------------
 # Build Orchestrator
@@ -40,9 +40,11 @@ require_cmd git
 require_cmd hugo
 require_cmd go
 
-# Hugo Book uses SCSS. Non-extended Hugo may fail at build time.
+# Hugo Book uses SCSS, so fail early when the regular Hugo binary is installed.
 if ! hugo version 2>/dev/null | grep -qi "extended"; then
-  echo "Warning: running without Hugo extended. Build may fail for themes that require SCSS." >&2
+  echo "Error: Hugo Extended is required. Install Hugo Extended v0.163.3 or run:" >&2
+  echo "  mise x go hugo-extended@0.163.3 -- ./setup.sh" >&2
+  exit 1
 fi
 
 # Ensure committed scaffold exists before proceeding.
@@ -58,12 +60,13 @@ mkdir -p "$SITE_DIR" "$CONTENT_DIR" "$STATIC_DIR" "$SIDEBAR_DIR" "$DATA_DIR"
 # Copy committed Hugo scaffold (config, layout overrides, styles).
 cp -R "$SCAFFOLD_DIR"/. "$SITE_DIR"/
 
-# Initialize and resolve Hugo modules in the temporary site.
-# This fetches the theme declared in `hugo/hugo.toml`.
+# Initialize Hugo modules only when the scaffold does not provide go.mod.
+# Normal builds use the pinned module versions copied from `hugo/go.mod`.
 (
   cd "$SITE_DIR"
-  hugo mod init github.com/sanand0/tools-in-data-science-public >/dev/null 2>&1 || true
-  hugo mod get -u >/dev/null 2>&1
+  if [[ ! -f go.mod ]]; then
+    hugo mod init github.com/sanand0/tools-in-data-science-public >/dev/null 2>&1
+  fi
 )
 
 # Discover course folders dynamically (e.g. 2025-09, 2026-01, ...).
@@ -182,7 +185,7 @@ done
 while IFS= read -r rel; do
   mkdir -p "$STATIC_DIR/$(dirname "$rel")"
   cp "$ROOT_DIR/$rel" "$STATIC_DIR/$rel"
-done < <(git -C "$ROOT_DIR" ls-files | grep -v '\.md$|^hugo/|^\.github/|^\.gitignore$|^setup\.sh$')
+done < <(git -C "$ROOT_DIR" ls-files | grep -Ev '\.md$|^hugo/|^\.github/|^\.gitignore$|^setup\.sh$')
 
 # Build final static site into `public/`.
 hugo --source "$SITE_DIR" --destination "$OUTPUT_DIR" --minify
