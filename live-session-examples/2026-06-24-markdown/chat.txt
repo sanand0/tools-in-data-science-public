@@ -1,0 +1,3 @@
+Live session text sample
+
+This plain text file should render in a preformatted block inside the portal.
