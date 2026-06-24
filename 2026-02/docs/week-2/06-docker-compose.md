@@ -1,6 +1,6 @@
 # Podman Compose — Practical Notes
 
-Use containers when your app is not one process anymore. Real projects usually have **API + database + frontend + admin UI + cache**. Podman runs each part in an isolated container; Compose starts/stops them together with one file.
+Use <askai question="what are containers in podman/docker?" label="containers"></askai> when your app is not one process anymore. Real projects usually have **API + database + frontend + admin UI + cache**. Podman runs each part in an isolated container; Compose starts/stops them together with one file.
 
 ```mermaid
 flowchart LR
