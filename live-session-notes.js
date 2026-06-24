@@ -318,8 +318,6 @@
       '<div class="lsn-stage" tabindex="0">' +
       '<div class="reveal"><div class="slides">' + buildSlidesHtml(slides) + "</div></div>" +
       '<canvas class="lsn-ink-canvas" aria-hidden="true"></canvas>' +
-      '<button type="button" class="lsn-nav-arrow lsn-nav-prev" data-action="prev" aria-label="Previous slide">' + svg("chevronLeft") + "</button>" +
-      '<button type="button" class="lsn-nav-arrow lsn-nav-next" data-action="next" aria-label="Next slide">' + svg("chevronRight") + "</button>" +
       '<div class="lsn-slide-counter" aria-live="polite"><span class="lsn-counter-current">1</span><span class="lsn-counter-sep">/</span><span class="lsn-counter-total">' + slides.length + "</span></div>" +
       '<div class="lsn-progress-bar-wrap"><div class="lsn-progress-bar" style="width: 0%"></div></div>' +
       "</div>" +
@@ -365,24 +363,30 @@
     ctx.scale(ratio, ratio);
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
+    
+    var baseSize = stroke.size || 5;
     if (stroke.tool === "eraser") {
       ctx.strokeStyle = "rgba(0,0,0,1)";
       ctx.globalCompositeOperation = "destination-out";
-      ctx.lineWidth = (stroke.size || 5) * 4;
+      baseSize = baseSize * 4;
     } else {
       ctx.strokeStyle = stroke.color || DEFAULT_COLOR;
       ctx.globalCompositeOperation = "source-over";
       ctx.globalAlpha = stroke.tool === "highlighter" ? 0.32 : 1;
-      ctx.lineWidth = stroke.tool === "highlighter" ? (stroke.size || 5) * 3 : stroke.size || 5;
+      baseSize = stroke.tool === "highlighter" ? baseSize * 3 : baseSize;
     }
-    ctx.beginPath();
-    points.forEach(function (point, index) {
-      var x = point.x * rect.width;
-      var y = point.y * rect.height;
-      if (index === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    });
-    ctx.stroke();
+
+    for (var i = 1; i < points.length; i++) {
+      var p1 = points[i - 1];
+      var p2 = points[i];
+      var press = (p2.pressure !== undefined && p2.pressure !== 0) ? p2.pressure : 0.6;
+      var scale = 0.4 + press * 1.2;
+      ctx.lineWidth = baseSize * scale;
+      ctx.beginPath();
+      ctx.moveTo(p1.x * rect.width, p1.y * rect.height);
+      ctx.lineTo(p2.x * rect.width, p2.y * rect.height);
+      ctx.stroke();
+    }
     ctx.restore();
   }
 
@@ -397,9 +401,11 @@
 
   function pointerPoint(state, event) {
     var rect = state.canvas.getBoundingClientRect();
+    var pressure = (event.pressure !== undefined && event.pressure !== 0) ? event.pressure : 0.6;
     return {
       x: Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width)),
       y: Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height)),
+      pressure: pressure,
     };
   }
 
@@ -813,6 +819,16 @@
       if (event.key === "Escape") exitPresentation(state);
       if (event.key.toLowerCase() === "a") toggleAnnotating(state);
       if (event.key.toLowerCase() === "v") setAnnotationVisibility(state, !state.showAnnotations);
+      if ((event.key === "ArrowLeft" || event.key === "PageUp") && state.deck) {
+        state.deck.prev();
+        updateSlideCounter(state);
+        event.preventDefault();
+      }
+      if ((event.key === "ArrowRight" || event.key === "PageDown" || event.key === "Space") && state.deck) {
+        state.deck.next();
+        updateSlideCounter(state);
+        event.preventDefault();
+      }
     });
   }
 
@@ -826,9 +842,9 @@
         width: compactDeck ? 760 : 1024,
         height: compactDeck ? 428 : 576,
         margin: 0.045,
-        controls: true,
-        progress: true,
-        slideNumber: "c/t",
+        controls: false,
+        progress: false,
+        slideNumber: false,
         hash: false,
         history: false,
         transition: "slide",
@@ -964,7 +980,7 @@
       ".lsn-workspace.is-presenting .lsn-exit-present-btn:hover,.lsn-workspace:fullscreen .lsn-exit-present-btn:hover{background:rgba(239,68,68,0.5) !important;border-color:rgba(239,68,68,0.7) !important;color:#fff !important;box-shadow:0 4px 12px rgba(239,68,68,0.3) !important}" +
       ".lsn-workspace.is-presenting .lsn-stage,.lsn-workspace:fullscreen .lsn-stage{width:100vw;height:100vh;max-width:100vw;max-height:100vh;border:0;border-radius:0;box-shadow:none;background:#030712;display:flex;align-items:center;justify-content:center}" +
       ".lsn-workspace.is-presenting .lsn-stage .reveal,.lsn-workspace:fullscreen .lsn-stage .reveal{width:100vw!important;height:100vh!important;background:radial-gradient(circle at 50% 50%,#0f172a 0%,#030712 100%);color:#fff}" +
-      ".lsn-workspace.is-presenting .reveal .slides section,.lsn-workspace:fullscreen .reveal .slides section{color:#f1f5f9;background:#0b0f19 !important;border:1px solid rgba(99,102,241,0.15);border-radius:16px;padding:60px 80px;box-shadow:0 25px 60px -15px rgba(0,0,0,0.85),0 0 40px rgba(99,102,241,0.05)}" +
+      ".lsn-workspace.is-presenting .reveal .slides section,.lsn-workspace:fullscreen .reveal .slides section{color:#f1f5f9;background:transparent !important;border:0 !important;padding:40px 60px;box-shadow:none !important}" +
       ".lsn-workspace.is-presenting .reveal h1,.lsn-workspace:fullscreen .reveal h1{background:linear-gradient(135deg,#ffffff 30%,#cbd5e1 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;color:#fff}" +
       ".lsn-workspace.is-presenting .reveal h2,.lsn-workspace:fullscreen .reveal h2{background:linear-gradient(135deg,#f8fafc 40%,#94a3b8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;color:#fff}" +
       ".lsn-workspace.is-presenting .reveal h3,.lsn-workspace:fullscreen .reveal h3{color:#94a3b8}" +
@@ -972,17 +988,9 @@
       ".lsn-workspace.is-presenting .reveal pre,.lsn-workspace:fullscreen .reveal pre{background:#05070c;border:1px solid rgba(255,255,255,0.06)}" +
       ".lsn-workspace.is-presenting .lsn-footer,.lsn-workspace:fullscreen .lsn-footer{position:absolute;bottom:1.25rem;left:2rem;right:2rem;z-index:9999;color:rgba(255,255,255,0.35);margin:0;pointer-events:none}" +
       ".lsn-pptx-render-root{position:fixed;left:-20000px;top:0;width:1280px;background:#fff;z-index:-1}" +
-      ".lsn-nav-arrow{display:none;position:absolute;top:50%;transform:translateY(-50%);z-index:9990;width:3.5rem;height:3.5rem;border:1px solid rgba(255,255,255,0.1);border-radius:50%;background:rgba(15,23,42,0.45);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:rgba(255,255,255,0.85);cursor:pointer;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);padding:0;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,0.25)}" +
-      ".lsn-nav-arrow svg{width:1.6rem;height:1.6rem;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}" +
-      ".lsn-nav-arrow:hover{background:var(--lsn-accent);border-color:rgba(255,255,255,0.25);color:#fff;transform:translateY(-50%) scale(1.1);box-shadow:0 0 25px var(--lsn-accent-glow)}" +
-      ".lsn-nav-arrow:active{transform:translateY(-50%) scale(0.95)}" +
-      ".lsn-nav-prev{left:1.5rem}.lsn-nav-next{right:1.5rem}" +
       ".lsn-slide-counter{display:none;position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:9990;background:rgba(15,23,42,0.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:rgba(255,255,255,0.9);font-size:0.85rem;font-weight:600;letter-spacing:0.1em;padding:0.4rem 1rem;border-radius:9999px;border:1px solid rgba(255,255,255,0.1);pointer-events:none;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,0.15)}" +
       ".lsn-counter-sep{margin:0 .3em;opacity:.5}" +
-      ".lsn-workspace.is-presenting .lsn-nav-arrow,.lsn-workspace:fullscreen .lsn-nav-arrow{display:flex}" +
       ".lsn-workspace.is-presenting .lsn-slide-counter,.lsn-workspace:fullscreen .lsn-slide-counter{display:block}" +
-      ".lsn-workspace.is-presenting.is-annotating .lsn-nav-arrow,.lsn-workspace:fullscreen.is-annotating .lsn-nav-arrow{opacity:0.65;pointer-events:auto}" +
-      ".lsn-workspace.is-presenting.is-annotating .lsn-nav-arrow:hover,.lsn-workspace:fullscreen.is-annotating .lsn-nav-arrow:hover{opacity:1}" +
       ".lsn-progress-bar-wrap{position:absolute;bottom:0;left:0;right:0;height:4px;background:rgba(255,255,255,0.08);z-index:9995;pointer-events:none}" +
       ".lsn-progress-bar{height:100%;background:linear-gradient(90deg,var(--lsn-accent),#a855f7);width:0%;transition:width 0.3s cubic-bezier(0.4,0,0.2,1)}" +
       EXPORT_CSS +
