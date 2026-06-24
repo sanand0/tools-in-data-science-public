@@ -81,9 +81,47 @@ html[data-user-theme="dark"] {
 }
 #live-sessions a {
   display: block;
-  padding: 0.2rem 0;
+  padding: 0.22rem 0.3rem;
+  border-radius: 0.3rem;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+#live-sessions .live-folder {
+  margin: 0.45rem 0;
+}
+#live-sessions .live-folder > summary {
+  padding: 0.25rem 0.35rem;
+  border-radius: 0.35rem;
+}
+#live-sessions .live-folder > summary:hover,
+#live-sessions a:hover {
+  background: var(--gray-100);
+  text-decoration: none;
+}
+body.live-session-mode .book-toc {
+  display: none;
+}
+.live-view {
+  width: 100%;
+  height: 82vh;
+  border: 1px solid var(--gray-300);
+  border-radius: 0.45rem;
+  background: white;
+}
+.live-bar {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin: 0.7rem 0;
+}
+.live-bar button {
+  border: 1px solid var(--gray-300);
+  border-radius: 0.35rem;
+  background: transparent;
+  color: var(--color-link);
+  padding: 0.28rem 0.55rem;
+  font: inherit;
+  cursor: pointer;
 }
 // Milestone links (projects, ROE, and resource shortcuts) shown as pill rows.
 .book-menu-content .tds-link ul {
