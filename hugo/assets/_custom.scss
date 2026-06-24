@@ -94,3 +94,149 @@ html[data-user-theme="dark"] {
   background: var(--gray-500);
 }
 
+// Floating notifications widget.
+#notif-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--gray-200);
+  border-radius: 50%;
+  background: var(--gray-100);
+  color: var(--body-font-color);
+  box-shadow: 0 4px 16px #0002;
+  cursor: pointer;
+}
+
+#notif-btn:hover {
+  background: var(--gray-200);
+}
+
+#notif-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent-danger, #ff3b30);
+}
+
+#notif-box {
+  position: fixed;
+  right: 20px;
+  bottom: 76px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  height: 480px;
+  min-width: 280px;
+  min-height: 280px;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+  resize: both;
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  background: var(--body-background, #fff);
+  color: var(--body-font-color, #000);
+  box-shadow: 0 12px 36px #0003;
+}
+
+#notif-box[hidden],
+#notif-badge[hidden] {
+  display: none;
+}
+
+#notif-hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--gray-200);
+  background: var(--gray-100);
+  font-size: 0.95em;
+  font-weight: 600;
+}
+
+#notif-hdr div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#notif-body {
+  flex: 1;
+  overflow: auto;
+  padding: 16px;
+  font-size: 0.9em;
+  line-height: 1.45;
+}
+
+.notif-item {
+  margin-bottom: 12px;
+  padding: 12px;
+  border-left: 3px solid var(--color-link);
+  border-radius: 6px;
+  background: var(--gray-100);
+}
+
+.notif-item > :first-child {
+  margin-top: 0;
+}
+
+.notif-item > :last-child {
+  margin-bottom: 0;
+}
+
+.notif-btn-link {
+  padding: 2px 6px;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  color: var(--color-link);
+  font-size: 0.8em;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.notif-btn-link:hover {
+  background: var(--gray-200);
+  text-decoration: underline;
+}
+
+@keyframes ring {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  15% {
+    transform: rotate(12deg);
+  }
+  30% {
+    transform: rotate(-10deg);
+  }
+  45% {
+    transform: rotate(8deg);
+  }
+  60% {
+    transform: rotate(-6deg);
+  }
+  75% {
+    transform: rotate(4deg);
+  }
+  90% {
+    transform: rotate(-2deg);
+  }
+}
+
+.ringing svg {
+  animation: ring 1.8s ease infinite;
+  transform-origin: top center;
+}
