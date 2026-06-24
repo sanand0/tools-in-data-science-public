@@ -61,13 +61,34 @@ html[data-user-theme="dark"] {
   padding-inline-start: 0.85rem;
 }
 #live-sessions {
-  margin: 0.75rem 0;
+  margin: 0.55rem 0;
   border-top: 1px solid var(--gray-200);
   border-bottom: 1px solid var(--gray-200);
-  padding: 0.55rem 0;
+  padding: 0.4rem 0;
 }
 #live-sessions summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
   cursor: pointer;
+  line-height: 1.35;
+}
+#live-sessions summary::-webkit-details-marker {
+  display: none;
+}
+#live-sessions summary::marker {
+  content: "";
+}
+#live-sessions summary::after {
+  content: "+";
+}
+#live-sessions[open] > summary::after,
+#live-sessions .live-folder[open] > summary::after {
+  content: "-";
+}
+#live-sessions .live-title span:last-child {
+  display: none;
 }
 #live-sessions > summary,
 #live-sessions .live-folder > summary {
@@ -75,7 +96,7 @@ html[data-user-theme="dark"] {
 }
 #live-sessions ul {
   list-style: none;
-  margin: 0.35rem 0 0.55rem 0.15rem;
+  margin: 0.6rem 0 0 0.15rem;
   padding-left: 0.85rem;
   border-left: 2px solid var(--gray-200);
 }
@@ -87,7 +108,7 @@ html[data-user-theme="dark"] {
   text-overflow: ellipsis;
 }
 #live-sessions .live-folder {
-  margin: 0.45rem 0;
+  margin: 0.35rem 0;
 }
 #live-sessions .live-folder > summary {
   padding: 0.25rem 0.35rem;
