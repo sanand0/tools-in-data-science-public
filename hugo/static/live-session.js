@@ -110,6 +110,42 @@
     q("#live-full") && (q("#live-full").onclick = () => q("#live-frame").requestFullscreen());
   }
 
+  const makeTree = (paths) => {
+    const root = {};
+    for (const path of paths) {
+      const parts = path.split("/").slice(1);
+      let current = root;
+      for (let i = 0; i < parts.length; i++) {
+        const part = parts[i];
+        if (i === parts.length - 1) {
+          current[part] = path;
+        } else {
+          current[part] ||= {};
+          current = current[part];
+        }
+      }
+    }
+    return root;
+  };
+
+  const renderTree = (node) => {
+    const keys = Object.keys(node).sort((a, b) => {
+      const aIsDir = typeof node[a] === "object";
+      const bIsDir = typeof node[b] === "object";
+      if (aIsDir !== bIsDir) return aIsDir ? -1 : 1;
+      return a.localeCompare(b);
+    });
+
+    return `<ul>` + keys.map(key => {
+      const val = node[key];
+      if (typeof val === "object") {
+        return `<li><details class="live-folder"><summary>${esc(key)}</summary>${renderTree(val)}</details></li>`;
+      } else {
+        return `<li><a href="#" data-live="${esc(val)}" title="${esc(val)}">${esc(key)}</a></li>`;
+      }
+    }).join("") + `</ul>`;
+  };
+
   async function init() {
     const nav = q(".book-menu-content nav,.sidebar-nav,.sidebar nav"); if (!nav || q("#live-sessions")) return;
     document.head.insertAdjacentHTML("beforeend", `<style>${css}</style>`);
@@ -121,7 +157,10 @@
     const groups = {};
     paths.filter(allowed).forEach((p) => (groups[folder(p)] ||= []).push(p));
 
-    box.innerHTML = '<summary class="live-title"><span>Live Sessions</span><span>+</span></summary>' + Object.entries(groups).sort().map(([d, fs]) => `<details class="live-folder"><summary>${esc(d)}</summary><ul>${fs.sort().map((f) => `<li><a href="#" data-live="${esc(f)}" title="${esc(f)}">${esc(f.split("/").slice(1).join("/") || f)}</a></li>`).join("")}</ul></details>`).join("");
+    box.innerHTML = '<summary class="live-title"><span>Live Sessions</span><span>+</span></summary>' + Object.entries(groups).sort().map(([d, fs]) => {
+      const tree = makeTree(fs);
+      return `<details class="live-folder"><summary>${esc(d)}</summary>${renderTree(tree)}</details>`;
+    }).join("");
     box.onclick = (e) => { const p = e.target.dataset.live; if (p) { e.preventDefault(); view(branch, p); } };
   }
 
