@@ -261,8 +261,6 @@
 
 </details>
 
----
-
 <details class="tds-week">
 <summary>Live Session Notes</summary>
 
