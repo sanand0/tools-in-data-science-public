@@ -119,7 +119,7 @@ The course covers the typical data science workflow:
 | Graded Assignment (GA)      | Best 7 of 9     |    20% |                            |                            |          |
 | [Bootcamp][GA0]             | [**GA0**][GA0]  | —      | Wed 13 May 2026            | Sun 21 Jun 2026            | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-bootcamp)         |
 | [Week-1][GA1]               | [**GA1**][GA1]  | —      | Wed 17 Jun 2026            | Sun 28 Jun 2026            | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-feedback#week1)   |
-| [Week-2][GA2]               | [**GA2**][GA2]  | —      | Thu 25 Jun 2026            | Sun 05 Jul 2026            | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-feedback#week2)   |
+| [Week-2][GA2]               | [**GA2**][GA2]  | —      | Thu 25 Jun 2026            | Wed 08 Jul 2026            | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-feedback#week2)   |
 | [Project 1][P1]             | **P1**          |    20% | Thu 25 Jun 2026            | Wed 22 Jul 2026            | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-feedback#project1)|
 | [Week-3][GA3]               | [**GA3**][GA3]  | —      | Wed 01 Jul 2026            | Sun 12 Jul 2026            | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-feedback#week3)   |
 | [Week-4][GA4]               | [**GA4**][GA4]  | —      | Wed 08 Jul 2026            | Wed 22 Jul 2026            | [Feedback](https://exam.sanand.workers.dev/tds-2026-05-feedback#week4)   |
