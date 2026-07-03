@@ -24,4 +24,4 @@ T = 0.2 GA + 0.2 P1 + 0.2 P2 + 0.2 ROE + 0.2 ET
 
 The scores for your various components are available at this link. You must login with your student id to view them.
 
-### [Open the score dashboard (link to be updated)](https://lookerstudio.google.com/reporting/f697ff2b-9b0c-4df9-8aed-f6998a2977ff)
+### [Open the score dashboard](https://datastudio.google.com/reporting/72eb6b59-5e28-4678-a19d-a0d7c26def96)
