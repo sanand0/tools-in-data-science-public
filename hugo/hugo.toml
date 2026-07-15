@@ -1,7 +1,7 @@
 # Hugo scaffold configuration used by `setup.sh`.
 # Theme is pulled via Hugo Modules (no committed `themes/` directory).
 baseURL = '/'
-languageCode = 'en-us'
+locale = 'en-US'
 title = 'Tools in Data Science'
 
 disableKinds = ['taxonomy', 'term']

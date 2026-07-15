@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Requires go and hugo-extended. Build via `mise x go hugo-extended -- ./setup.sh`
+# Requires Go and Hugo Extended. Build via `mise x go hugo-extended@0.163.3 -- ./setup.sh`
 
 # -----------------------------------------------------------------------------
 # Build Orchestrator
@@ -40,9 +40,11 @@ require_cmd git
 require_cmd hugo
 require_cmd go
 
-# Hugo Book uses SCSS. Non-extended Hugo may fail at build time.
+# Hugo Book uses SCSS, so fail early when the regular Hugo binary is installed.
 if ! hugo version 2>/dev/null | grep -qi "extended"; then
-  echo "Warning: running without Hugo extended. Build may fail for themes that require SCSS." >&2
+  echo "Error: Hugo Extended is required. Install Hugo Extended v0.163.3 or run:" >&2
+  echo "  mise x go hugo-extended@0.163.3 -- ./setup.sh" >&2
+  exit 1
 fi
 
 # Ensure committed scaffold exists before proceeding.
@@ -58,12 +60,13 @@ mkdir -p "$SITE_DIR" "$CONTENT_DIR" "$STATIC_DIR" "$SIDEBAR_DIR" "$DATA_DIR"
 # Copy committed Hugo scaffold (config, layout overrides, styles).
 cp -R "$SCAFFOLD_DIR"/. "$SITE_DIR"/
 
-# Initialize and resolve Hugo modules in the temporary site.
-# This fetches the theme declared in `hugo/hugo.toml`.
+# Initialize Hugo modules only when the scaffold does not provide go.mod.
+# Normal builds use the pinned module versions copied from `hugo/go.mod`.
 (
   cd "$SITE_DIR"
-  hugo mod init github.com/sanand0/tools-in-data-science-public >/dev/null 2>&1 || true
-  hugo mod get -u >/dev/null 2>&1
+  if [[ ! -f go.mod ]]; then
+    hugo mod init github.com/sanand0/tools-in-data-science-public >/dev/null 2>&1
+  fi
 )
 
 # Discover course folders dynamically (e.g. 2025-09, 2026-01, ...).
@@ -141,48 +144,47 @@ for course in "${COURSE_DIRS[@]}"; do
   fi
 done
 
-# Copy tracked markdown into Hugo content.
+# Copy tracked markdown into Hugo content in bulk.
 # Behavior:
 # - skip docsify sidebar files
 # - map README.md -> _index.md for clean section URLs
 # - rewrite `images/` links to absolute `/images/`
-while IFS= read -r rel; do
-  case "$rel" in
-    */_sidebar.md|_sidebar.md)
-      continue
-      ;;
-  esac
+mapfile -t MD_FILES < <(
+  git -C "$ROOT_DIR" ls-files '*.md' | grep -v '_sidebar.md'
+)
+if [[ ${#MD_FILES[@]} -gt 0 ]]; then
+  tar -cf - -C "$ROOT_DIR" "${MD_FILES[@]}" | tar -xf - -C "$CONTENT_DIR"
+fi
 
-  dest="$CONTENT_DIR/$rel"
-  if [[ "$(basename "$rel")" == "README.md" ]]; then
-    dest="$(dirname "$dest")/_index.md"
-  fi
-
-  mkdir -p "$(dirname "$dest")"
-  cp "$ROOT_DIR/$rel" "$dest"
-  sed -E -i 's#\((\.\./)?images/#(/images/#g' "$dest"
-done < <(git -C "$ROOT_DIR" ls-files '*.md')
-
-# Duplicate shared top-level content pages into each course folder.
+# Duplicate shared top-level content pages into each course folder in bulk.
 # This ensures links like `/2025-09/system-requirements/` resolve and keep
 # course-specific sidebar context while navigating.
-for course in "${COURSE_DIRS[@]}"; do
-  while IFS= read -r rel; do
-    dest="$CONTENT_DIR/$course/$rel"
-    if [[ ! -f "$dest" ]]; then
-      mkdir -p "$(dirname "$dest")"
-      cp "$ROOT_DIR/$rel" "$dest"
-      sed -E -i 's#\((\.\./)?images/#(/images/#g' "$dest"
-    fi
-  done < <(git -C "$ROOT_DIR" ls-files '*.md' | grep -E '^[^/]+\.md$' | grep -v -E '^README\.md$|^_sidebar\.md$')
+mapfile -t SHARED_MD_FILES < <(
+  git -C "$ROOT_DIR" ls-files '*.md' | grep -E '^[^/]+\.md$' | grep -v -E '^README\.md$|^_sidebar\.md$'
+)
+if [[ ${#SHARED_MD_FILES[@]} -gt 0 ]]; then
+  for course in "${COURSE_DIRS[@]}"; do
+    mkdir -p "$CONTENT_DIR/$course"
+    cp "${SHARED_MD_FILES[@]/#/$ROOT_DIR/}" "$CONTENT_DIR/$course/"
+  done
+fi
+
+# Rename README.md files to _index.md
+find "$CONTENT_DIR" -name 'README.md' | while IFS= read -r file; do
+  mv "$file" "$(dirname "$file")/_index.md"
 done
 
-# Copy all non-markdown tracked files as static assets, excluding
-# build/config scaffolding files that should not be published as assets.
-while IFS= read -r rel; do
-  mkdir -p "$STATIC_DIR/$(dirname "$rel")"
-  cp "$ROOT_DIR/$rel" "$STATIC_DIR/$rel"
-done < <(git -C "$ROOT_DIR" ls-files | grep -v '\.md$|^hugo/|^\.github/|^\.gitignore$|^setup\.sh$')
+# Copy all non-markdown tracked files as static assets in bulk.
+# Excluding build/config scaffolding files that should not be published as assets.
+mapfile -t STATIC_FILES < <(
+  git -C "$ROOT_DIR" ls-files | grep -Ev '\.md$|^hugo/|^\.github/|^\.gitignore$|^setup\.sh$'
+)
+if [[ ${#STATIC_FILES[@]} -gt 0 ]]; then
+  tar -cf - -C "$ROOT_DIR" "${STATIC_FILES[@]}" | tar -xf - -C "$STATIC_DIR"
+fi
+
+# Perform bulk replacement for images/ links in one go to avoid spawning sed per file.
+find "$CONTENT_DIR" -name '*.md' -exec sed -i -E 's#\((\.\./)?images/#(/images/#g' {} +
 
 # Build final static site into `public/`.
 hugo --source "$SITE_DIR" --destination "$OUTPUT_DIR" --minify
