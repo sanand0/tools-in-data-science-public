@@ -156,15 +156,14 @@
 
 - [Agent Fundamentals](2026-02/docs/week-5/agent-fundamentals.md)
 - [Tool / Function Calling](2026-02/docs/week-5/tool-calling.md)
+- [Agent Evaluation & Benchmarking](2026-02/docs/week-5/agent-evaluation-benchmarking.md)
 - [Agent Memory Systems](2026-02/docs/week-5/agent-memory-systems.md)
-- [LangGraph](2026-02/docs/week-5/langgraph.md)
+- [Loop Engineering](2026-02/docs/week-5/loop-engineering.md)
 - [Multi-Agent Systems](2026-02/docs/week-5/multi-agent-systems.md)
 - [Specialized Agents](2026-02/docs/week-5/specialized-agents.md)
 - [Model Context Protocol (MCP)](2026-02/docs/week-5/mcp.md)
-- [Custom MCP Servers](2026-02/docs/week-5/custom-mcp-servers.md)
 - [Async & Parallelism](2026-02/docs/week-5/async-parallelism.md)
-- [LXD Sandboxing](2026-02/docs/week-5/lxd-sandboxing.md)
-- [Agent Evaluation](2026-02/docs/week-5/agent-evaluation.md)
+- [Sandboxing Agent Code](2026-02/docs/week-5/sandboxing.md)
 
 <div class="tds-link">
 
