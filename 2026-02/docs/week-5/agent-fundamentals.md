@@ -56,65 +56,53 @@ Use an agent when the next step depends on information discovered during the tas
 
 Use normal code when the steps are already known. A fixed workflow is usually faster, cheaper, and easier to test.
 
-### Goal, plan, and state
+### Build a minimal agent
 
-A useful goal is **observable**, not vague. “Research AI” gives the agent no
-finish line. “Find three official announcements published this week, write a
-150-word digest, and include their links” gives it a result that can be
-checked.
+Start with a one-tool, read-only agent. Write its run contract before writing a
+prompt or choosing a framework:
 
-A plan is a short list of intended steps. It helps with long tasks, but it is
-not a promise: a tool result may show that the plan needs to change. **State**
-is the agent's current working record—for example, the task, sources already
-read, tool results, remaining budget, and draft answer. Keep state small and
-structured so a retry can continue rather than start from zero.
-
-```text
-Goal: compare two laptops under a budget
-Plan: search → collect specifications → compare → cite sources
-State: URLs seen, prices, missing fields, time left
-Done: comparison table has both products and source links
+```yaml
+goal: "Find three official announcements from this week and write a 150-word digest."
+tools: [web_search]
+max_tool_calls: 6
+max_elapsed_seconds: 90
+must_return: [three_source_urls, 150_word_digest]
+done_when: "Three official URLs and a digest are present."
+approval_required_for: []
 ```
 
-### Autonomy levels
+The goal, limits, and `done_when` rule are application data—not an informal
+model promise. Save a small run record so a retry knows what has already been
+checked:
 
-Not every agent should have the same freedom.
+```json
+{"task_id":"digest-042","sources":[],"tool_calls":0,"status":"running"}
+```
 
-| Level | Agent may do | Example |
+### Choose an autonomy level
+
+| Level | Enable | Example gate |
 |---|---|---|
-| **Suggest** | Read and draft | Propose a reply to a support ticket |
-| **Assist** | Use safe read-only tools | Search documentation and summarize it |
-| **Act with approval** | Prepare a side effect, then pause | Draft a refund or pull request |
-| **Limited autonomous** | Complete pre-approved low-risk work | Label issues or refresh a report |
+| Suggest | Read and draft only | Human copies the answer |
+| Assist | Safe read-only tools | Returned source URLs are checked |
+| Act with approval | Prepare a write, then stop | Signed approval ID is required |
+| Limited autonomous | Pre-approved low-risk writes | Idempotency key and audit log are required |
 
-Start at the lowest useful level. Increase autonomy only after observing good
-results, reliable checks, and understandable logs.
+Use the lowest row that completes the task. Do not let a prompt decide whether
+to send, delete, pay, publish, or deploy; make the write tool require the gate.
 
-### A practical agent run
+### Test the agent before adding tools
 
-For a support example, an agent can read the ticket, look up the order, check
-the return policy, draft a reply, and stop for approval. It should not send the
-reply simply because it found a plausible answer. The application must check
-the customer's identity, policy version, and approval rule outside the model.
+| Test input | Expected evidence | If it fails, change |
+|---|---|---|
+| Normal request | Required artifact and sources exist | Goal or verifier |
+| Missing information | It asks or reports the gap | Stop rule |
+| Tool timeout | Bounded retry, then safe failure | Timeout/retry policy |
+| Prompt injection in a page | It treats page text as data | Tool-result instruction |
+| Request to send a message | It stops for approval | Write-tool contract |
 
-This separation matters: the model is good at choosing and explaining; normal
-code is better for permissions, money, dates, and irreversible actions.
-
-### Common failure modes
-
-- **Tool loop:** the agent keeps searching without learning anything new. Set a
-  maximum tool-call count and ask it to explain why another call is needed.
-- **Wrong tool:** the prompt is vague or tool descriptions overlap. Give tools
-  precise names and examples.
-- **False completion:** the agent writes “done” without evidence. Check files,
-  test output, returned IDs, or source links.
-- **Too much context:** long histories hide the important facts. Summarize
-  older work and retrieve only what is relevant.
-- **Permission confusion:** an agent can see a button but should not be allowed
-  to press it. Enforce authorization in the tool implementation.
-
-The smallest dependable agent is often one model, one or two tools, a clear
-stop rule, and a verifier.
+Keep one failing example as a regression test. The smallest dependable agent is
+usually one model, one or two tools, a clear stop rule, and a verifier.
 
 ## Safety checklist
 

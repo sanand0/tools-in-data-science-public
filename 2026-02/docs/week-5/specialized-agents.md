@@ -64,57 +64,51 @@ A coding agent should receive:
 - Letting a coding agent access host secrets
 - Retrying a broken website forever
 
-### Specialize the whole system, not just the prompt
+### Write a role card
 
-“You are a research expert” is not enough to create a research agent. A useful
-research agent needs search or document tools, a source policy, a citation
-format, and a verifier that checks the cited pages. The same idea applies to
-every role: the **data**, **tools**, **permissions**, and **success test** must
-fit the job.
+Specialize the system, not only the prompt. A role card makes an agent's data,
+tools, permission boundary, and verifier reviewable:
 
-| Role | Inputs to provide | Permission boundary | Useful output |
-|---|---|---|---|
-| Research | Question, date range, trusted sources | Read-only web/documents | Claims with source URLs |
-| Coding | Issue, repository, tests | Sandbox and branch only | Diff plus test results |
-| Data | Schema, metric definition, sample data | Read-only database by default | Query, result, checks |
-| Operations | Runbook, service scope, alert | Scoped diagnostic access | Diagnosis and rollback plan |
+```yaml
+name: research-agent
+goal: "Answer a question with current primary sources."
+inputs: [question, date_range, trusted_domains]
+tools: [web_search, fetch_page]
+forbidden_tools: [shell, send_email, database_write]
+output: claims.json
+must_include: [claim, source_url, publication_date]
+verify: check_claim_citations
+stop_when: "Every factual claim has a source or is marked unknown."
+```
 
-This design reduces accidental power. A research agent should not have a shell;
-a coding agent should not need customer records; an operations agent should not
-have authority to delete infrastructure without a separate approval tool.
+Create one file per role and test that the application—not the prompt—actually
+enforces the tool list.
 
-### Match verification to the artifact
+### Ready-to-use verification commands
 
-An answer can sound professional and still be wrong. Verify the artifact the
-agent created, not just its explanation:
+| Agent | Artifact | First checks to automate |
+|---|---|---|
+| Coding | Branch diff | `uv run pytest`, formatter, type check, `git diff --check` |
+| Data | Query + result | Row count, null count, constraints, saved SQL |
+| Research | Claims JSON | URL opens, date range, every claim has a source |
+| Browser | Final page state | Expected URL, visible confirmation, saved screenshot |
+| Document | `.docx` or PDF | Rendered pages, headings, links, page count |
 
-- Browser agent: element state, URL, downloaded file, and screenshot when
-  visual layout matters.
-- Coding agent: focused tests, formatter, type check, security scan, and diff
-  review.
-- Data agent: row counts, null checks, constraints, totals, and a saved query.
-- Research agent: source quality, publication date, quotation accuracy, and
-  claim-to-citation match.
-- Document agent: rendered pages, headings, page numbers, and link targets.
+For example, a coding agent can receive only the commands it needs:
 
-### Tool design examples
+```bash
+uv run pytest tests/test_total.py
+uv run ruff check src/
+git diff --check
+```
 
-A browser agent benefits from `find_by_role`, `click`, `fill`, and
-`get_page_text`, not one unrestricted “browse anywhere” command. A data agent
-benefits from a parameterized read-only query tool with maximum row limits. A
-coding agent needs commands that run selected tests, not a production deploy
-tool.
+Do not give it a production deploy command because it can run tests.
 
-Smaller tools make logs more meaningful and make permissions possible to
-enforce. They also let students diagnose whether the failure came from model
-reasoning, the tool, the data, or the verification rule.
+### Keep or merge a specialist
 
-### When to generalize
-
-Keep a specialist when its inputs, permissions, and verifier remain stable.
-Create a new specialist only when the work genuinely has a different boundary.
-If two agents use the same tools, same context, and same checks, one simpler
-agent with a routing prompt is usually easier to maintain.
+Keep a dedicated agent only when it has a distinct input set, permission
+boundary, or verifier. If two roles use the same context, tools, and checks,
+use one simpler agent with routing instructions instead.
 
 ## References
 

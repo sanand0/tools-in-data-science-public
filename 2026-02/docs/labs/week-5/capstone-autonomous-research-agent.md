@@ -881,17 +881,6 @@ Tomorrow's queries can be different because memory, logs, and previous posts hav
 - Run log showing multiple different searches per post
 - Short README section explaining one failure and how the loop recovered or stopped
 
-## Suggested assessment
-
-| Area | Marks |
-|---|---:|
-| Agent uses DuckDuckGo 3–5 times and selects current stories | 20 |
-| Memory, previous posts, and logs influence research | 15 |
-| Markdown posts are short, readable, original, and cited | 20 |
-| Validation, duplicate prevention, retry, and stop rules work | 15 |
-| GitHub Actions schedules, commits, builds, and deploys | 20 |
-| Repository quality, documentation, and secret handling | 10 |
-
 ## References
 
 - [LangChain agents](https://docs.langchain.com/oss/python/langchain/agents)

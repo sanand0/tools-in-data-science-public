@@ -89,69 +89,62 @@ Use loop engineering for recurring, measurable work such as dependency updates, 
 
 Do not build an autonomous loop when the task has no objective check, requires broad production access, or is cheaper for a human to complete once.
 
-### A loop is a small state machine
+### Store a run record
 
-Thinking in states makes a loop easier to debug than thinking only in prompts.
-For example, a documentation-maintenance loop can move through:
+Treat a loop as a persisted state machine. This record lets a cancelled run
+resume safely and gives a human something concrete to inspect:
 
-```text
-queued → researching → drafting → checking → published
-                         ↓              ↓
-                      blocked         retrying → blocked
+```json
+{
+  "run_id": "digest-2026-07-23",
+  "state": "checking",
+  "attempt": 1,
+  "max_attempts": 2,
+  "tool_calls": 4,
+  "artifacts": ["sources.json", "digest.md"],
+  "last_check": {"passed": false, "error": "Two claims have no URLs"},
+  "idempotency_key": "digest-2026-07-23-publish"
+}
 ```
 
-Each state needs an owner, allowed actions, and a record of why it changed. A
-run that is **blocked** should preserve the task and its evidence, then stop.
-It must not keep spending tokens on the same missing permission or broken API.
+Use states such as `queued`, `working`, `checking`, `retrying`, `blocked`, and
+`complete`. A `blocked` run saves its evidence and stops; it must not keep
+spending on the same broken tool or missing permission.
 
-### Feedback must be specific
+### A retry loop you can adapt
 
-“Try again” is weak feedback. A useful verifier returns a concrete gap the
-agent can act on:
+```python
+for attempt in range(run["max_attempts"]):
+    artifact = agent.run(task, previous_error=run.get("last_check"))
+    check = verify(artifact)
+    save_checkpoint(run, artifact, check)
+
+    if check.passed:
+        publish_once(artifact, idempotency_key=run["idempotency_key"])
+        mark_complete(run)
+        break
+
+    run["last_check"] = check.smallest_actionable_error
+else:
+    mark_blocked(run, reason="verification failed repeatedly")
+```
+
+Return a specific verifier error, not “try again”:
 
 | Weak feedback | Useful feedback |
 |---|---|
-| “Tests failed” | “`test_total` expects 12 but received 10; preserve cancelled items” |
-| “Research is poor” | “Two claims lack source URLs; use official sources published this week” |
-| “Invalid document” | “Add a title, an owner, and a rollback section” |
+| “Tests failed” | “`test_total` expects 12; preserve cancelled items.” |
+| “Research is poor” | “Two claims lack source URLs; use official sources this week.” |
+| “Invalid document” | “Add title, owner, and rollback section.” |
 
-The agent should receive only the smallest relevant error report. Long raw logs
-can hide the cause and may include secrets or untrusted text.
+### Pre-flight checklist
 
-### Idempotency and checkpoints
-
-A retry must not create duplicate side effects. Give each work item a stable
-ID, save completed steps, and use an idempotency key for actions such as sending
-an email, creating an issue, or charging a payment. Before writing, check
-whether the expected output already exists and whether it matches the current
-task version.
-
-Checkpoint after useful milestones: fetched source URLs, generated artifact,
-verification result, approval result, and publication ID. On restart, load the
-checkpoint and continue from the first incomplete safe step. Do not merely
-store a free-form summary if code needs to make the next decision.
-
-### Budget and observability
-
-Every loop should have measurable limits: maximum attempts, total tool calls,
-deadline, model-token budget, concurrent runs, and money spent. Record enough
-information to answer: What started this run? Which tools were called? What
-evidence passed or failed? What changed? Why did it stop?
-
-Useful operational metrics include success rate, retries per successful run,
-mean time to completion, human-escalation rate, duplicate-action rate, and
-cost per completed item. Compare these to a simpler baseline; automation that
-costs more and fails more often is not an improvement.
-
-### Example: daily research loop
-
-A scheduler starts one run. The agent reads yesterday's digest and a small
-watchlist, chooses several searches, and collects source URLs. Code rejects
-uncited claims and repeated stories. If the digest passes, the system writes a
-dated Markdown file, updates memory, and publishes once. If the same check
-fails twice, it stores a failure record and asks for human review the next day.
-That is loop engineering: trigger, bounded work, evidence, memory, and a stop
-condition working together.
+- Stable task ID and idempotency key for every write
+- Maximum attempts, time, tool calls, tokens, and spend
+- One file or record per checkpoint
+- Deterministic verifier where possible
+- Human escalation rule for blocked or high-impact work
+- Dashboard fields: success, retry count, duration, cost, and stop reason
 
 ## References
 

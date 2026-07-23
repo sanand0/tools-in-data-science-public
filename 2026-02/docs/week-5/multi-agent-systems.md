@@ -64,65 +64,55 @@ Do not send a large unfiltered conversation when a short task summary is enough.
 - Communication costs more than the work itself.
 - There is no objective way to combine or check results.
 
-### Coordination costs are real
+### Use an artifact-based handoff
 
-Every extra agent needs a task description, relevant context, a tool budget,
-and a way to report back. The supervisor then needs to compare reports and
-resolve contradictions. This costs tokens, time, and engineering effort. Split
-work only when the benefit is larger than that cost.
+Do not pass full chats between workers. Give each worker a small task file and
+an expected artifact:
 
-Good splits are independent and produce clear artifacts:
-
-```text
-Research worker → source list with dates and links
-Data worker     → validated table with query and row count
-Writer          → draft using only supplied artifacts
-Reviewer        → checklist with pass/fail evidence
+```yaml
+task_id: weekly-digest-042
+owner: research-worker
+goal: "Find three official announcements published this week."
+allowed_tools: [web_search, fetch_page]
+input_artifacts: [watchlist.yaml]
+output_artifact: sources.json
+acceptance_test: "Three distinct official URLs, each with title and date."
+deadline_seconds: 90
 ```
 
-“Work on this somehow” is not a handoff. It creates overlap, duplicated
-searches, and vague results that are hard to combine.
+The worker returns structured output, not a status paragraph:
 
-### Shared state and message design
+```json
+{"status":"complete","artifact":"sources.json","facts":["..."],"unknowns":[],"evidence":["https://..."]}
+```
 
-Use a small shared task record rather than passing every conversation to every
-worker. Useful fields include task ID, goal, assumptions, allowed tools,
-artifact locations, status, owner, deadline, and acceptance tests. Store large
-artifacts in files or a database and pass references when possible.
+### A supervisor recipe
 
-Messages should distinguish facts, assumptions, and requests. A research worker
-can say “confirmed: link A”, “unconfirmed: publication date”, and “need:
-access to document B.” This helps a supervisor make a safe next decision.
+```text
+1. Create one task file per independent artifact.
+2. Give each worker only its permitted tools and input artifacts.
+3. Run independent workers in parallel with individual deadlines.
+4. Validate each artifact before handing it to the next worker.
+5. Send conflicts back as one specific question, or escalate to a human.
+6. Keep one final owner responsible for the combined result.
+```
 
-### Conflict and failure handling
+Start with a generator + verifier pair. Add another worker only when a measured
+bottleneck needs a different tool, context, or permission boundary.
 
-Workers can disagree. A supervisor should not simply average their answers.
-Prefer evidence: primary source over summary, successful test over confident
-claim, current version over older version. When evidence is equal, send a
-targeted follow-up or escalate to a human.
+### Failure policy cheat sheet
 
-If one optional research worker fails, the task may continue with a note. If a
-security or payment checker fails, the whole workflow should stop. Define this
-before execution using required versus optional workers and explicit deadlines.
+| Worker result | Supervisor action |
+|---|---|
+| Optional source search timed out | Continue, label the gap, do not invent a source |
+| Required policy check failed | Stop the workflow |
+| Two workers disagree | Prefer primary evidence; otherwise ask one focused follow-up |
+| Artifact fails its schema | Retry that worker with the validation error only |
+| Worker exhausts budget | Preserve its artifact and escalate or finish with a stated limitation |
 
-### A practical starting design
-
-Start with one agent and record where it is slow, unreliable, or needs a
-different permission boundary. Then add one specialized worker for that single
-bottleneck. Measure task success, elapsed time, token cost, and human review
-time against the one-agent baseline.
-
-Many real systems need only a **generator + verifier** pair. This gives an
-independent check without the complexity of a large agent team.
-
-### Evaluation questions
-
-- Did each worker receive only the information and tools it needed?
-- Are artifact formats explicit enough to be checked automatically?
-- Can a failed handoff be retried without repeating completed work?
-- Does the final owner cite the evidence used to resolve disagreements?
-- Is the multi-agent system better than a sequential workflow on accuracy,
-  latency, cost, or access separation?
+Compare the multi-agent version with one agent on task success, elapsed time,
+token cost, and human-review time. More workers are useful only if the result
+improves on one of these measures.
 
 ## Safety checklist
 

@@ -65,61 +65,72 @@ Ask four questions:
 3. Did the memory improve the answer?
 4. Can the memory be corrected and completely deleted?
 
-### Memory is not one long prompt
+### Start with a small memory table
 
-Putting all past messages into every request is expensive and often makes the
-answer worse. Old details can distract the model, conflict with newer facts,
-or include untrusted instructions. A better design separates **write**,
-**retrieve**, and **use**:
+Use a normal database for facts that must be exact and current. This SQLite
+schema is enough for a project profile or support-agent memory:
 
-1. Decide whether a new event is worth saving.
-2. Store it with an owner, source, timestamp, and expiry rule.
-3. Retrieve a small number of relevant memories for the current task.
-4. Tell the model that retrieved text is data, not instructions.
-5. Show the user which remembered facts changed the answer when appropriate.
+```sql
+CREATE TABLE memory (
+  id TEXT PRIMARY KEY,
+  owner_id TEXT NOT NULL,
+  kind TEXT NOT NULL,
+  value TEXT NOT NULL,
+  source TEXT NOT NULL,
+  verified_at TEXT,
+  expires_at TEXT,
+  superseded_by TEXT
+);
 
-For example, save “team uses Python 3.12” as a dated project fact. Do not save
-“the user likes clean code” unless that preference is specific, useful, and
-consented to.
+CREATE INDEX memory_lookup ON memory (owner_id, kind, expires_at);
+```
 
-### Retrieval choices
+Write only a fact with an owner and source. For example:
 
-| Need | Retrieval method | Example |
+```sql
+INSERT INTO memory VALUES (
+  'm-17', 'team-9', 'project_fact', 'Python 3.12',
+  'pyproject.toml', '2026-07-23', NULL, NULL
+);
+```
+
+Retrieve the smallest relevant set and always filter by owner, expiry, and
+current status:
+
+```sql
+SELECT kind, value, source, verified_at
+FROM memory
+WHERE owner_id = :owner_id
+  AND kind IN ('project_fact', 'preference')
+  AND superseded_by IS NULL
+  AND (expires_at IS NULL OR expires_at > CURRENT_TIMESTAMP)
+ORDER BY verified_at DESC
+LIMIT 5;
+```
+
+Pass the retrieved rows to the model as **reference data**, not instructions.
+
+### Choose retrieval by the question
+
+| Need | First implementation | Check before use |
 |---|---|---|
-| Exact current value | Key or SQL query | Current subscription plan |
-| Recent event | Filter and sort by date | Last deployment incident |
-| Similar past case | Vector search, then filter | Previous tickets with the same symptom |
-| Required procedure | Versioned document lookup | Current release checklist |
+| Exact current value | SQL/key lookup | Owner and last verification time |
+| Recent event | Filter and sort by date | Event is not superseded |
+| Similar past case | Vector search, then SQL filters | Access, source, and freshness |
+| Required procedure | Versioned document lookup | Version is current |
 
-Vector search finds similar wording; it does not prove that a memory is true or
-current. Filter by user, organization, access level, time, and source before
-placing it in the model context. When a fact affects a decision, prefer the
-authoritative database or document over a semantically similar note.
+Add vector search only after an exact lookup cannot answer the question. It
+finds similar text; it does not prove the text is true or current.
 
-### Forgetting and conflict resolution
+### Memory test checklist
 
-Memory needs an expiry policy. A delivery address may change, a temporary
-preference should expire, and a deployment incident may be valuable for months.
-Store a `valid_from`, optional `expires_at`, and a confidence or verification
-status where possible.
-
-When two memories disagree, do not silently concatenate them. Prefer the newer
-verified source, mark the old value as superseded, and ask the user if the
-conflict cannot be resolved safely. Deletion must remove both the visible
-record and any retrieval index or backup according to the product's retention
-policy.
-
-### Useful memory metrics
-
-- **Write precision:** how many saved memories were genuinely useful later?
-- **Retrieval precision:** how many retrieved memories were relevant?
-- **Freshness:** how often did a retrieved fact turn out to be outdated?
-- **Impact:** did memory improve task success, speed, or user satisfaction?
-- **Privacy:** can access, correction, export, and deletion be demonstrated?
-
-Start with a small explicit profile and a run log. Add a vector database only
-after you can describe the question that keyword or database lookup cannot
-answer.
+| Test | Expected result |
+|---|---|
+| Save another team's fact | Rejected or invisible to this owner |
+| Retrieve an expired address | No result |
+| Add a corrected fact | Old record is superseded, not silently combined |
+| Delete a memory | Removed from the table and retrieval index |
+| Retrieve a page containing instructions | Page text is never saved as an instruction |
 
 ## References
 

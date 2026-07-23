@@ -70,72 +70,64 @@ Both calls wait together, so this takes about one second instead of two.
 - Do not run blocking code such as `time.sleep()` inside `async def`.
 - Keep writes ordered when one action depends on another.
 
-### Why agent systems benefit
+### A bounded parallel-read helper
 
-An agent may need prices from three sites, metadata from several documents, or
-status from a group of services. These are independent **reads**, so starting
-them together reduces wall-clock time. It does not make a slow API faster; it
-avoids wasting time while another call is waiting on the network.
-
-Do not parallelize decisions that depend on earlier output. For example,
-`search → choose source → summarize source` is naturally sequential. Starting
-the summary before selecting a source creates extra work and can use the wrong
-input.
-
-### Timeouts, limits, and partial success
-
-External calls fail in normal operation. Give each call a timeout and decide
-what a partial result means. A dashboard can show the two successful sources
-and label the third as unavailable. A money transfer should fail closed and do
-nothing unless every required check succeeds.
-
-Use a semaphore to cap the number of requests. This protects rate limits and
-prevents a large input list from creating thousands of connections at once.
+Use this for independent reads such as fetching several known URLs. It has a
+per-call timeout, a concurrency limit, and a result shape that makes partial
+failure explicit.
 
 ```python
 import asyncio
+import httpx
 
 limit = asyncio.Semaphore(5)
 
-async def limited_fetch(url):
-    async with limit:
-        return await fetch_with_timeout(url)
+async def fetch(client: httpx.AsyncClient, url: str) -> dict:
+    try:
+        async with limit, asyncio.timeout(10):
+            response = await client.get(url)
+            response.raise_for_status()
+            return {"url": url, "status": "ok", "text": response.text}
+    except (httpx.HTTPError, TimeoutError) as error:
+        return {"url": url, "status": "failed", "error": str(error)}
 
-results = await asyncio.gather(
-    *(limited_fetch(url) for url in urls),
-    return_exceptions=True,
-)
+async def fetch_all(urls: list[str]) -> list[dict]:
+    async with httpx.AsyncClient(follow_redirects=True) as client:
+        return await asyncio.gather(*(fetch(client, url) for url in urls))
 ```
 
-With `return_exceptions=True`, inspect every result. Do not accidentally treat
-an exception object as valid content.
+```bash
+uv add httpx
+uv run python fetch_sources.py
+```
 
-### Cancellation and cleanup
+Do not use this pattern for dependent work: `search → choose source →
+summarize` must remain sequential. For writes, add an idempotency key and stop
+if any required precondition fails.
 
-When the user cancels a task or one essential request fails, cancel work that
-is no longer useful. Use `try`/`finally` to close files, HTTP clients, database
-connections, and browser sessions. Cancellation is cooperative: a coroutine
-usually stops at an `await`, so long CPU loops need a process or a redesign.
+### Choose the execution model
 
-### Choosing threads and processes
+| Work | Start with | Practical rule |
+|---|---|---|
+| Independent HTTP, model, or database reads | `asyncio` | Use a semaphore and timeout |
+| Blocking SDK you cannot replace | `asyncio.to_thread()` | Keep shared state out of the thread |
+| CPU-heavy parsing or image work | Process | Pass file paths, not huge Python objects |
+| Ordered writes or decisions | Sequential code | Verify one step before the next |
 
-Threads are useful for a blocking library that cannot be replaced, but shared
-mutable state can make them difficult to reason about. Processes give CPU-heavy
-work a separate interpreter and can use multiple cores, but transferring large
-data has overhead. For a simple agent workflow, sequential code is often the
-clearest choice until measurements show that waiting is the bottleneck.
+### Cancellation and result handling
 
-### Common mistakes
+```python
+results = await fetch_all(urls)
+successful = [item for item in results if item["status"] == "ok"]
+failed = [item for item in results if item["status"] != "ok"]
 
-- Calling a synchronous SDK directly inside `async def` and blocking the event
-  loop.
-- Launching unlimited requests, then receiving rate-limit errors.
-- Retrying all failures immediately instead of using bounded exponential
-  backoff for temporary errors.
-- Writing the same record from parallel tasks without an idempotency key or
-  transaction.
-- Using concurrency to hide an unclear workflow rather than separating truly
-  independent work.
+if not successful:
+    raise RuntimeError("No source could be fetched")
+```
+
+Use `try`/`finally` around files, database connections, and browser sessions.
+Set a clear policy for partial success: a research digest may continue with two
+sources; a payment or deployment should fail closed.
 
 ## References
 
