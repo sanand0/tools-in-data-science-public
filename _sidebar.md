@@ -176,18 +176,17 @@
 <summary>Week 6: Web Scraping & Data Processing</summary>
 
 - [Playwright & Selenium](2026-02/docs/week-6/playwright-selenium.md)
-- [Scrapy](2026-02/docs/week-6/scrapy.md)
 - [Anti-bot Patterns](2026-02/docs/week-6/anti-bot-patterns.md)
-- [Crawl4AI](2026-02/docs/week-6/crawl4ai.md)
-- [Firecrawl & Apify](2026-02/docs/week-6/firecrawl-apify.md)
 - [Vision Models for Scraping](2026-02/docs/week-6/vision-models-for-scraping.md)
 - [Document Parsing](2026-02/docs/week-6/document-parsing.md)
 - [DuckDB + Parquet](2026-02/docs/week-6/duckdb-parquet.md)
 - [Image Processing Pipeline](2026-02/docs/week-6/image-processing-pipeline.md)
 - [Speech AI](2026-02/docs/week-6/speech-ai.md)
 - [Video Understanding](2026-02/docs/week-6/video-understanding.md)
-- [Firestore Database](2026-02/docs/week-6/firestore.md)
 - [Scheduled Scraping](2026-02/docs/week-6/scheduled-scraping.md)
+- [Google Dorking](2026-02/docs/week-6/google-dork.md)
+- [OSINT](2026-02/docs/week-6/osint.md)
+- [Cloudfare Bot Protection](2026-02/docs/week-6/cloudfare-bot.md)
 - [LLM Architecture](2026-02/docs/week-6/llm-architecture.md)
 
 <div class="tds-link">
