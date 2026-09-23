@@ -77,10 +77,8 @@
 
 </div>
 
-<details class="tds-week">
-<summary>Reference</summary>
+<div class="tds-link">
 
-- [Labs](labs/README.md)
-- [Reference](reference/README.md)
+[Reference](reference/README.md)
 
-</details>
+</div>
