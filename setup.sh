@@ -96,6 +96,7 @@ normalize_sidebar() {
     BASE_URL="$section_root" perl -pe '
       BEGIN { $base = $ENV{"BASE_URL"} }
       s{\(README\.md\)}{($base)}g;
+      s{\((?!https?://|/|#|mailto:)((?:[-a-zA-Z0-9_]+/)+)README\.md\)}{(/$1)}g;
       s{\((?:\.\./)+([^)]+?)\.md\)}{(/$1/)}g;
       s{\((?!https?://|/|#|mailto:)([^)]+?)\.md\)}{(/$1/)}g;
       s{\((?!https?://|/|#|mailto:)([-a-zA-Z0-9_/]+)\)}{(/$1/)}g;
