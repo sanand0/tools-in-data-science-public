@@ -195,7 +195,7 @@ done
 # term folder (`week-1/x.md` -> `/2026-05/week-1/x.md`, `../images/` -> `/images/`).
 TERM_ID="$CURRENT_TERM" perl -pe '
   BEGIN { $t = $ENV{"TERM_ID"} }
-  s{(\]\(|^\[[^\]]+\]:[ \t]*|src=")(?!https?:|mailto:|tel:|#|/)(\.\./)?}{$1 . ($2 ? "/" : "/$t/")}ge;
+  s{(\]\(|^\[[^\]]+\]:[ \t]*+|src=")(?!https?:|mailto:|tel:|#|/)(\.\./)?}{$1 . ($2 ? "/" : "/$t/")}ge;
 ' "$ROOT_DIR/$CURRENT_TERM/README.md" > "$CONTENT_DIR/_index.md"
 
 # Copy all non-markdown tracked files as static assets in bulk.
