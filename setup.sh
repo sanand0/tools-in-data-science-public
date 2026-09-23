@@ -27,6 +27,8 @@ DATA_DIR="$SITE_DIR/data"
 NAV_DATA_FILE="$DATA_DIR/sidebar-nav.yaml"
 OUTPUT_DIR="$ROOT_DIR/public"
 COURSE_DIR_PATTERN='^20[0-9]{2}-[0-9]{2}$'
+# Shared topic pages live in `topics/` but publish at the site root (`/bash/`).
+TOPICS_DIR="topics"
 
 # Fail fast when required CLI tools are missing.
 require_cmd() {
@@ -149,18 +151,21 @@ done
 # - skip docsify sidebar files
 # - map README.md -> _index.md for clean section URLs
 # - rewrite `images/` links to absolute `/images/`
+# - publish `topics/` at the site root
 mapfile -t MD_FILES < <(
   git -C "$ROOT_DIR" ls-files '*.md' | grep -v '_sidebar.md'
 )
 if [[ ${#MD_FILES[@]} -gt 0 ]]; then
   tar -cf - -C "$ROOT_DIR" "${MD_FILES[@]}" | tar -xf - -C "$CONTENT_DIR"
 fi
+cp -R "$CONTENT_DIR/$TOPICS_DIR"/. "$CONTENT_DIR"/
+rm -rf "${CONTENT_DIR:?}/$TOPICS_DIR"
 
-# Duplicate shared top-level content pages into each course folder in bulk.
+# Duplicate shared topic pages into each course folder in bulk.
 # This ensures links like `/2025-09/system-requirements/` resolve and keep
 # course-specific sidebar context while navigating.
 mapfile -t SHARED_MD_FILES < <(
-  git -C "$ROOT_DIR" ls-files '*.md' | grep -E '^[^/]+\.md$' | grep -v -E '^README\.md$|^_sidebar\.md$'
+  git -C "$ROOT_DIR" ls-files "$TOPICS_DIR/*.md" | grep -E "^$TOPICS_DIR/[^/]+\.md$"
 )
 if [[ ${#SHARED_MD_FILES[@]} -gt 0 ]]; then
   for course in "${COURSE_DIRS[@]}"; do
@@ -182,6 +187,8 @@ mapfile -t STATIC_FILES < <(
 if [[ ${#STATIC_FILES[@]} -gt 0 ]]; then
   tar -cf - -C "$ROOT_DIR" "${STATIC_FILES[@]}" | tar -xf - -C "$STATIC_DIR"
 fi
+cp -R "$STATIC_DIR/$TOPICS_DIR"/. "$STATIC_DIR"/
+rm -rf "${STATIC_DIR:?}/$TOPICS_DIR"
 
 # Perform bulk replacement for images/ links in one go to avoid spawning sed per file.
 find "$CONTENT_DIR" -name '*.md' -exec sed -i -E 's#\((\.\./)?images/#(/images/#g' {} +
