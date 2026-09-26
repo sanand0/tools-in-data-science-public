@@ -1,5 +1,5 @@
 +++
-aliases = ["/2026-02/docs/week-8/09-full-gcp-walkthrough/"]
+aliases = ["/2026-02/docs/week-8/09-full-gcp-walkthrough/", "/2026-02/docs/week-8/09-gcp-ml-pipeline/"]
 +++
 
 # Milestone: Full GCP Walkthrough

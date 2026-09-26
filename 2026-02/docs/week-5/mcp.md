@@ -1,3 +1,7 @@
++++
+aliases = ["/2026-02/docs/week-5/custom-mcp-servers/"]
++++
+
 # Model Context Protocol (MCP)
 
 > **MCP** is a standard way for AI applications to connect to external tools and data sources.

@@ -1,3 +1,7 @@
++++
+aliases = ["/2026-02/docs/week-5/agent-evaluation/"]
++++
+
 # Agent Benchmarking and Evaluation
 
 > **Benchmarking** compares agents on the same repeatable tasks. **Evaluation** decides whether one is good enough for your real task.

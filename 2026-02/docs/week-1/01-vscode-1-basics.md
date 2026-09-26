@@ -1,3 +1,7 @@
++++
+aliases = ["/2026-02/docs/week-1/01-vscode/"]
++++
+
 # VS Code — Part 1: Basics
 
 VS Code is not just a text editor. It is a full development workspace: files, terminal, Git, debugger, extensions, and settings all integrated in one window. Most beginners treat it like Notepad. That is fine early on, but it limits you.

@@ -1,3 +1,7 @@
++++
+aliases = ["/2026-02/docs/week-5/lxd-sandboxing/"]
++++
+
 # Sandboxing Agent Code
 
 > A **sandbox** is an isolated environment that limits what agent-generated code can access and damage.
