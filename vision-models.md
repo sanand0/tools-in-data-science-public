@@ -59,7 +59,7 @@ Let's break down the request:
         - `"detail": "low"`: The detail level of the image. `low` uses fewer tokens at lower detail. `high` uses more tokens for higher detail.
         - `"image_url": {"url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Correlation_coefficient.png"}`: The URL of the image.
 
-You can send images in a [base64 encoded format](base64-image.md), too. For example:
+You can send images in a [base64 encoded format](/base64-encoding/), too. For example:
 
 ```bash
 # Download image and convert to base64 in one step

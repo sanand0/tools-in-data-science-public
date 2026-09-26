@@ -22,7 +22,7 @@ Agents operate through a loop:
 
 ### Command-Line Agent Example
 
-We've created a minimal command-line agent called [`llm-cmd-agent.py`](llm-cmd-agent.py ":ignore") that:
+We've created a minimal command-line agent called [`llm-cmd-agent.py`](/llm-cmd-agent.py ":ignore") that:
 
 1. Takes a task description from the command line
 2. Generates code to accomplish the task

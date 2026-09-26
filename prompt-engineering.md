@@ -144,7 +144,7 @@ When you need structured data, ask for a JSON-formatted response. This ensures t
 
   (Reason: Instructing JSON format ensures structured, machine-readable output.)
 
-Note: Always use [JSON schema](playground#attachments) if possible. [JSON schema](https://json-schema.org/) is a way to describe the structure of JSON data. An easy way to get the JSON schema is to give ChatGPT sample output and ask it to generate the schema.
+Note: Always use JSON schema if possible. [JSON schema](https://json-schema.org/) is a way to describe the structure of JSON data. An easy way to get the JSON schema is to give ChatGPT sample output and ask it to generate the schema.
 
 > Imagine you’re organizing data for a big project. Plain text is like dumping everything into one messy pile — it’s hard to find what you need later.
 > JSON, on the other hand, is like packing your data into neat, labeled boxes within boxes.

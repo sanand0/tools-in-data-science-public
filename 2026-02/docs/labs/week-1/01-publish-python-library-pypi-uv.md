@@ -21,7 +21,7 @@ And every `git tag v*` push auto-publishes a new version.
 
 ## Prerequisites
 
-- UV installed ([see uv.mdx](../../week-1/uv))
+- UV installed ([see UV basics](/2026-02/docs/week-1/02-uv-1-basics/))
 - GitHub account + `gh` CLI authenticated
 - [PyPI account](https://pypi.org/account/register/) with **2FA enabled** (required)
 - [TestPyPI account](https://test.pypi.org/account/register/) (separate) with 2FA

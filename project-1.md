@@ -96,7 +96,7 @@ Note:
 
 ## Evaluation
 
-This [evaluation script](project-1/evaluate.py) evaluates the scripts.Here's how will evaluate a task, e.g. **Task A2**.
+This [evaluation script](/project-1/evaluate.py) evaluates the scripts.Here's how will evaluate a task, e.g. **Task A2**.
 
 1. Call `POST http://localhost:8000/run?task=Format+/data/format.md+with+prettier+3.4.2`. Ensure that the respose is a HTTP 200.
    - Note: The task may be worded differently. It may use a different prettier version. But the broad task is the same.
@@ -122,6 +122,6 @@ Your score will be the sum of the marks above. No normalization, i.e. whether it
 
 This execution will be automated via:
 
-- [`validate.py`](project-1/validate.py) to check the pre-requisites and generate the eligible `images.txt`
+- `validate.py` to check the pre-requisites and generate the eligible `images.txt`
 - `export AIPROXY_TOKEN=...` to set the AI Proxy token
-- [`run.sh`](project-1/run.sh) to evaluate all submissions.
+- `run.sh` to evaluate all submissions.

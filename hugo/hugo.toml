@@ -15,6 +15,9 @@ disableKinds = ['taxonomy', 'term']
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+    [markup.goldmark.renderHooks]
+      [markup.goldmark.renderHooks.link]
+        useEmbedded = 'always'
 
 [params]
   # Keep theme mode in auto by default; explicit toggle is injected via partial.
