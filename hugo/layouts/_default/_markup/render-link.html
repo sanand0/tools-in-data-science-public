@@ -1,0 +1,42 @@
+{{- $dest := .Destination -}}
+{{- $href := $dest -}}
+{{- $target := replaceRE "([?#].*)$" "" $dest -}}
+{{- $suffix := replaceRE "^[^?#]*" "" $dest -}}
+{{- $isInternal := not (or
+  (strings.HasPrefix $dest "http://")
+  (strings.HasPrefix $dest "https://")
+  (strings.HasPrefix $dest "mailto:")
+  (strings.HasPrefix $dest "tel:")
+  (strings.HasPrefix $dest "#")
+) -}}
+{{- if and $isInternal (strings.HasSuffix $target ".md") -}}
+  {{- $clean := $target -}}
+  {{- if not (strings.HasPrefix $clean "/") -}}
+    {{- $pageDir := "" -}}
+    {{- with .Page.File -}}
+      {{- $pageDir = .Dir -}}
+    {{- end -}}
+    {{- $clean = path.Clean (printf "/%s/%s" $pageDir $clean) -}}
+  {{- end -}}
+  {{- if eq $clean "/README.md" -}}
+    {{- $clean = "/" -}}
+  {{- else if strings.HasSuffix $clean "/README.md" -}}
+    {{- $clean = replaceRE "/README\\.md$" "/" $clean -}}
+  {{- else -}}
+    {{- $clean = replaceRE "\\.md$" "/" $clean -}}
+  {{- end -}}
+  {{- /* Hugo lowercases page URLs; match it so links work on case-sensitive hosts. */ -}}
+  {{- $clean = lower $clean -}}
+  {{- $href = printf "%s%s" $clean $suffix -}}
+{{- end -}}
+{{- /* Prefix internal links with the site base path so links work on project
+       (sub-path) deployments. relURL only prefixes relative paths, not the
+       root-absolute ("/...") links this site generates, so do it explicitly. */ -}}
+{{- /* Other relative links (e.g. `evaluate.py`) are left for the browser to
+       resolve against the page URL. */ -}}
+{{- $out := $href -}}
+{{- if and $isInternal (strings.HasPrefix $href "/") -}}
+  {{- $base := (urls.Parse site.BaseURL).Path | strings.TrimSuffix "/" -}}
+  {{- $out = printf "%s%s" $base $href -}}
+{{- end -}}
+<a href="{{ $out | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text | safeHTML }}</a>

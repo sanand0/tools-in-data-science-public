@@ -27,6 +27,8 @@ DATA_DIR="$SITE_DIR/data"
 NAV_DATA_FILE="$DATA_DIR/sidebar-nav.yaml"
 OUTPUT_DIR="$ROOT_DIR/public"
 COURSE_DIR_PATTERN='^20[0-9]{2}-[0-9]{2}$'
+# Shared topic pages live in `topics/` but publish at the site root (`/bash/`).
+TOPICS_DIR="topics"
 
 # Fail fast when required CLI tools are missing.
 require_cmd() {
@@ -69,6 +71,13 @@ cp -R "$SCAFFOLD_DIR"/. "$SITE_DIR"/
   fi
 )
 
+# The current term (from terms.yml) is rendered at the site root.
+CURRENT_TERM="$(sed -nE 's/^current:[[:space:]]*(20[0-9]{2}-[0-9]{2})[[:space:]]*$/\1/p' "$ROOT_DIR/terms.yml")"
+if [[ -z "$CURRENT_TERM" || ! -f "$ROOT_DIR/$CURRENT_TERM/README.md" || ! -f "$ROOT_DIR/$CURRENT_TERM/_sidebar.md" ]]; then
+  echo "Error: terms.yml 'current' must name a folder with README.md and _sidebar.md (got '$CURRENT_TERM')" >&2
+  exit 1
+fi
+
 # Discover course folders dynamically (e.g. 2025-09, 2026-01, ...).
 mapfile -t COURSE_DIRS < <(
   find "$ROOT_DIR" -maxdepth 1 -mindepth 1 -type d -printf '%f\n' | grep -E "$COURSE_DIR_PATTERN" | sort
@@ -87,6 +96,7 @@ normalize_sidebar() {
     BASE_URL="$section_root" perl -pe '
       BEGIN { $base = $ENV{"BASE_URL"} }
       s{\(README\.md\)}{($base)}g;
+      s{\((?!https?://|/|#|mailto:)((?:[-a-zA-Z0-9_]+/)+)README\.md\)}{(/$1)}g;
       s{\((?:\.\./)+([^)]+?)\.md\)}{(/$1/)}g;
       s{\((?!https?://|/|#|mailto:)([^)]+?)\.md\)}{(/$1/)}g;
       s{\((?!https?://|/|#|mailto:)([-a-zA-Z0-9_/]+)\)}{(/$1/)}g;
@@ -101,12 +111,15 @@ normalize_sidebar() {
 }
 
 # Generate per-section sidebar files from existing sidebar sources.
-normalize_sidebar "$ROOT_DIR/_sidebar.md" "$SIDEBAR_DIR/root.md" "/" ""
 for course in "${COURSE_DIRS[@]}"; do
   if [[ -f "$ROOT_DIR/$course/_sidebar.md" ]]; then
     normalize_sidebar "$ROOT_DIR/$course/_sidebar.md" "$SIDEBAR_DIR/$course.md" "/$course/" "$course"
   fi
 done
+
+# Root pages (home + shared topics) use the current term's sidebar, with its
+# title link pointing at the site root.
+sed -E "s#\]\(/$CURRENT_TERM/\)#](/)#" "$SIDEBAR_DIR/$CURRENT_TERM.md" > "$SIDEBAR_DIR/root.md"
 
 # Extract unique navigable links from a normalized sidebar.
 # Used to define strict prev/next order that mirrors sidebar order.
@@ -149,18 +162,22 @@ done
 # - skip docsify sidebar files
 # - map README.md -> _index.md for clean section URLs
 # - rewrite `images/` links to absolute `/images/`
+# - publish `topics/` at the site root
+# - skip the root README.md (GitHub landing page); the home page is built below
 mapfile -t MD_FILES < <(
-  git -C "$ROOT_DIR" ls-files '*.md' | grep -v '_sidebar.md'
+  git -C "$ROOT_DIR" ls-files '*.md' | grep -v -e '_sidebar.md' -e '^README\.md$'
 )
 if [[ ${#MD_FILES[@]} -gt 0 ]]; then
   tar -cf - -C "$ROOT_DIR" "${MD_FILES[@]}" | tar -xf - -C "$CONTENT_DIR"
 fi
+cp -R "$CONTENT_DIR/$TOPICS_DIR"/. "$CONTENT_DIR"/
+rm -rf "${CONTENT_DIR:?}/$TOPICS_DIR"
 
-# Duplicate shared top-level content pages into each course folder in bulk.
+# Duplicate shared topic pages into each course folder in bulk.
 # This ensures links like `/2025-09/system-requirements/` resolve and keep
 # course-specific sidebar context while navigating.
 mapfile -t SHARED_MD_FILES < <(
-  git -C "$ROOT_DIR" ls-files '*.md' | grep -E '^[^/]+\.md$' | grep -v -E '^README\.md$|^_sidebar\.md$'
+  git -C "$ROOT_DIR" ls-files "$TOPICS_DIR/*.md" | grep -E "^$TOPICS_DIR/[^/]+\.md$"
 )
 if [[ ${#SHARED_MD_FILES[@]} -gt 0 ]]; then
   for course in "${COURSE_DIRS[@]}"; do
@@ -174,14 +191,23 @@ find "$CONTENT_DIR" -name 'README.md' | while IFS= read -r file; do
   mv "$file" "$(dirname "$file")/_index.md"
 done
 
+# Home page: the current term's README, with relative links rebased onto the
+# term folder (`week-1/x.md` -> `/2026-05/week-1/x.md`, `../images/` -> `/images/`).
+TERM_ID="$CURRENT_TERM" perl -pe '
+  BEGIN { $t = $ENV{"TERM_ID"} }
+  s{(\]\(|^\[[^\]]+\]:[ \t]*+|src=")(?!https?:|mailto:|tel:|#|/)(\.\./)?}{$1 . ($2 ? "/" : "/$t/")}ge;
+' "$ROOT_DIR/$CURRENT_TERM/README.md" > "$CONTENT_DIR/_index.md"
+
 # Copy all non-markdown tracked files as static assets in bulk.
 # Excluding build/config scaffolding files that should not be published as assets.
 mapfile -t STATIC_FILES < <(
-  git -C "$ROOT_DIR" ls-files | grep -Ev '\.md$|^hugo/|^\.github/|^\.gitignore$|^setup\.sh$'
+  git -C "$ROOT_DIR" ls-files | grep -Ev '\.md$|^hugo/|^\.github/|^\.gitignore$|^setup\.sh$|^terms\.yml$'
 )
 if [[ ${#STATIC_FILES[@]} -gt 0 ]]; then
   tar -cf - -C "$ROOT_DIR" "${STATIC_FILES[@]}" | tar -xf - -C "$STATIC_DIR"
 fi
+cp -R "$STATIC_DIR/$TOPICS_DIR"/. "$STATIC_DIR"/
+rm -rf "${STATIC_DIR:?}/$TOPICS_DIR"
 
 # Perform bulk replacement for images/ links in one go to avoid spawning sed per file.
 find "$CONTENT_DIR" -name '*.md' -exec sed -i -E 's#\((\.\./)?images/#(/images/#g' {} +
