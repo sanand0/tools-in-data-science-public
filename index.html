@@ -12,6 +12,7 @@
     href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
   <link rel="stylesheet" media="(prefers-color-scheme: light)"
     href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16/dist/katex.min.css">
 
   <style>
     /* Reduce excessive padding and set a comfortable max-width for main content */
@@ -166,6 +167,25 @@
       });
     }
 
+    function katexMath(hook) {
+      const MATH = /^([ \t]*)(`{3,}|~{3,})[ \t]*(\S*)[^\n]*\n([\s\S]*?)^[ \t]*\2[ \t]*$|(`+)[\s\S]*?\5|\\\$|\$\$([\s\S]+?)\$\$|\$(?=[^\s$])((?:\\.|[^$\\\n])*?(?:\\.|[^\s\\$]))\$(?!\d)/gm;
+      let rendered = [];
+      const stash = (tex, displayMode) => {
+        rendered.push(katex.renderToString(tex.trim(), { displayMode, throwOnError: false }));
+        return `KATEXMATH${rendered.length - 1}X`;
+      };
+      hook.beforeEach((md) => {
+        rendered = [];
+        return md.replace(MATH, (m, indent, fence, lang, body, ticks, display, inline) => {
+          if (fence) return lang === 'math' ? indent + stash(body, true) : m;
+          if (display !== undefined) return stash(display, true);
+          if (inline !== undefined) return stash(inline, false);
+          return m;
+        });
+      });
+      hook.afterEach((html) => html.replace(/KATEXMATH(\d+)X/g, (_, i) => rendered[i]));
+    }
+
     window.$docsify = {
       name: 'Tools in Data Science — May 2026',
       subMaxLevel: 1,
@@ -179,13 +199,15 @@
         crossChapterText: true
       },
       plugins: [
-        resizableSidebar
+        resizableSidebar,
+        katexMath
       ]
     };
 
   </script>
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/zoom-image.min.js"></script>
