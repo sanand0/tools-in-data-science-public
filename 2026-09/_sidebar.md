@@ -5,7 +5,10 @@
 <details class="tds-week">
 <summary>Week 0: Bridge Course</summary>
 
-- [Overview](bridge-course/README.md)
+- [Module 1: Linux setup & CLI](bridge-course/01-linux-and-cli.md)
+- [Module 2: Python & uv](bridge-course/02-python-and-uv.md)
+- [Module 3: HTTP & Chrome DevTools](bridge-course/03-http-and-devtools.md)
+- [Module 4: Git & GitHub](bridge-course/04-git-and-github.md)
 
 </details>
 

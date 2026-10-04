@@ -16,5 +16,14 @@
   {{ $sidebarFile = "sidebars/root.md" }}
 {{ end }}
 {{ $sidebarMarkdown := readFile $sidebarFile }}
+{{/* Keep placeholders in the source sidebar; show only published pages. */}}
+{{ range findRE `(?m)^.*\]\(/[^)]+\).*$` $sidebarMarkdown }}
+  {{ $link := replaceRE `^.*\]\((/[^)]+)\).*$` "$1" . }}
+  {{ $page := site.GetPage $link }}
+  {{ if not (and $page $page.RelPermalink) }}
+    {{ $sidebarMarkdown = replace $sidebarMarkdown . "" }}
+  {{ end }}
+{{ end }}
+{{ $sidebarMarkdown = replaceRE `(?s)<details[^>]*>\s*<summary>[^<]*</summary>\s*</details>|<div class="tds-link">\s*</div>` "" $sidebarMarkdown }}
 {{- $basePath := .Site.BaseURL | strings.TrimSuffix "/" -}}
 {{ $sidebarMarkdown | markdownify | replaceRE `href="(/[^"]*)"` (printf `href="%s$1"` $basePath) | safeHTML }}
