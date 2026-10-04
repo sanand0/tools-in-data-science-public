@@ -1,123 +1,186 @@
 # Module 3: HTTP & Chrome DevTools
 
-Your browser talks to servers through requests and responses. You will inspect this conversation with curl and Chrome, then make a temporary visual edit to a page.
+By the end, you can:
 
-> Have Chrome and curl ready. Use harmless practice text; the public httpbin service can see what you send.
+- Send a web request and inspect its response.
+- Find the request behind a browser action.
+- Change a page locally and explain why a reload removes the edit.
 
-## Quick game: OverTheWire Natas
+**Bring:**
 
-Use this only after the HTTP lessons and only on Natas's designated game hosts.
+- Chrome, curl and `~/bridge-lab`.
+- Invented practice data for [httpbin](https://httpbin.org/), which echoes what you send.
 
-1. Open [Natas Level 0](http://natas0.natas.labs.overthewire.org/) and sign in with the published `natas0` / `natas0` starter credentials.
-2. Open DevTools → **Network**, reload, and inspect the document response.
-3. Compare the page with its HTML, find the clue for the next login, and try Level 1.
+<style>
+.markdown #game {
+  margin: 1.5rem 0;
+  border-inline-start: 4px solid var(--color-link);
+  border-radius: 0.5rem;
+  background: var(--gray-100);
+}
+.markdown #game > summary { color: var(--color-link); line-height: 1.4; }
+.markdown #game > summary strong { font-size: 1.125rem; }
+.markdown #game > summary span {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--body-font-color);
+  font-size: 0.875rem;
+  font-weight: normal;
+}
+.markdown #game > summary:focus-visible { outline: 2px solid var(--color-link); outline-offset: 3px; }
+.markdown #game details > summary::before { transform: rotate(0deg); }
+.markdown #game details[open] > summary::before { transform: rotate(90deg); }
+</style>
 
-Keep game passwords private. [Natas rules and levels](https://overthewire.org/wargames/natas/)
+<details class="bridge-game" id="game">
+<summary><strong>Game mission: Natas</strong><span>Look behind the page. Find the next clue. | 3 challenges</span></summary>
 
-## Quick practice: httpbin
+## Start here
 
-1. Run `curl -i 'https://httpbin.org/get?topic=bridge'` and find `topic` in the response.
-2. Run `curl -i 'https://httpbin.org/redirect/1'`, then repeat with `-L`.
-3. Explain: `-i` shows headers; `-L` follows the redirect.
+- **Game:** [Natas](https://overthewire.org/wargames/natas/), a web-security training game.
+- **Flow:** find a password → open the next level's URL → enter it in the browser's login dialog.
+- **Goal:** log into `natas3`.
+- **Scope:** use only the designated game hosts.
 
-Use invented practice data only. [httpbin](https://httpbin.org/)
+1. Open [Level 0](http://natas0.natas.labs.overthewire.org/) in Chrome.
+2. In the **browser's login dialog**, enter `natas0` for both **Username** and **Password**, then click **Sign in**.
+3. Check the page heading is `natas0`, then start Challenge 1.
 
-## Learning path
-
-Open a section to begin. Work in order, try the commands, and reveal answers only after choosing your own.
-
-<details name="module-3">
-<summary><strong>3.1 · The round trip</strong></summary>
-
-## Learn
-
-A **client** (browser or curl) sends a request to a **server**. The server returns a response. HTTP defines the messages; HTTPS protects their transport with encryption.
-
-```text
-You type or click
-      ↓
-Client → method + URL + headers + optional body → Server
-Client ← status + headers + response body      ← Server
-      ↓
-Browser displays something, or curl prints the response
-```
-
-### Read a URL
-
-Example: `https://httpbin.org/get?topic=python`
-
-| Part | Value |
-| --- | --- |
-| Scheme | `https` |
-| Host | `httpbin.org` |
-| Path | `/get` |
-| Query parameter | `topic=python` |
-
-- **Endpoint:** an address an application accepts requests at.
-- **API:** defines how software can use such endpoints.
-
-### Read the messages
-
-| Part | Example | Purpose |
-| --- | --- | --- |
-| Method | `GET`, `POST` | Requested kind of action |
-| Request header | `Accept: application/json` | Extra information about the request |
-| Request body | `{"topic":"python"}` | Data sent to the server |
-| Status | `200`, `404` | Outcome of the request |
-| Response header | `Content-Type: application/json` | How to interpret returned data |
-| Response body | JSON, HTML, an image | Returned content |
-
-JSON is a text format for data: objects use `{}`, keys and strings use double quotes. `{"module":3,"ready":true}` has a number and a boolean value.
-
-## Predict
-
-Is `404` a connection failure or a server response?
+- **Private notes:** keep recovered passwords outside `bridge-lab`.
 
 <details>
-<summary>Answer</summary>
+<summary>Where does the password go? Browser login vs “Submit token”</summary>
 
-It is a response saying the requested resource was not found. A DNS lookup failure or connection timeout can happen before any HTTP response arrives.
+- **To advance:** open the next Natas URL. Enter that level's username and the recovered password in the browser's login dialog (HTTP Basic authentication).
+- **`realwechallform` / “Submit token”:** submits to `wechall.net` for the optional [WeChall scoreboard](https://overthewire.org/information/wechall.html); leave it unchanged for this lab.
+- **`type="hidden"`:** hides those fields from the page; it does not disable them. Revealing or editing them does not open the next Natas level.
 
 </details>
 
+### Challenge 1: Inspect the HTML comment (Level 0 → 1)
+
+1. Right-click the page → **Inspect**.
+2. Select **Elements** and expand `<body>` → `<div id="content">`.
+3. Look for a comment: `<!-- ... -->`.
+
+<details>
+<summary>Walkthrough: read the hidden comment</summary>
+
+1. Inside `div#content`, find the comment identifying the password for `natas1`.
+2. Copy only the password, without the surrounding comment text.
+3. Open [Level 1](http://natas1.natas.labs.overthewire.org/) in a new tab.
+4. In the browser's login dialog, enter **Username:** `natas1`.
+5. Paste the recovered value into **Password**, then click **Sign in**.
+
+- **Success:** the page heading is `natas1`.
+- **Lesson:** HTML comments can contain information that the visible page does not display.
+
 </details>
+
+### Challenge 2: Inspect when right-click is blocked (Level 1 → 2)
+
+1. Try right-clicking; the page blocks the menu.
+2. Open DevTools with **Ctrl+Shift+I** (Windows/Linux) or **Cmd+Option+I** (macOS).
+3. Select **Elements** and inspect the HTML again.
+
+<details>
+<summary>Walkthrough: use the keyboard to open DevTools</summary>
+
+1. Expand `<body>` → `<div id="content">` in **Elements**.
+2. Find the comment identifying the password for `natas2`.
+3. Copy only that password.
+4. Open [Level 2](http://natas2.natas.labs.overthewire.org/) in a new tab.
+5. In the browser's login dialog, enter **Username:** `natas2`.
+6. Paste the recovered value into **Password**, then click **Sign in**.
+
+- **Success:** the page heading is `natas2`.
+- **Lesson:** blocking right-click does not prevent you from inspecting the page's HTML.
+
+</details>
+
+### Challenge 3: Follow the image's HTML path (Level 2 → 3)
+
+1. Right-click → **Inspect** and open **Elements**.
+2. Expand `<body>` → `<div id="content">`.
+3. Find the `<img>` tag and read its `src` path.
+
+<details>
+<summary>Walkthrough: follow the resource path</summary>
+
+1. Find `<img src="files/pixel.png">`; the clue is the `files/` directory.
+2. In the authenticated Level 2 tab, change the address to `http://natas2.natas.labs.overthewire.org/files/`.
+3. Open `users.txt` from the directory listing.
+4. Find the `natas3` entry; copy the password after its colon.
+5. Open [Level 3](http://natas3.natas.labs.overthewire.org/) in a new tab.
+6. In the browser's login dialog, enter **Username:** `natas3`.
+7. Paste the password from `users.txt` into **Password**, then click **Sign in**.
+
+- **Success:** the page heading is `natas3`.
+- **Lesson:** an HTML resource path can reveal a directory containing other files.
+
+</details>
+
+**Stuck?**
+
+- **Comment missing:** expand `div#content`. In DevTools settings → **Preferences → Elements**, enable **Show HTML comments** if disabled.
+- **Find a clue:** click inside **Elements**, press **Ctrl+F** / **Cmd+F**, and search for `password` or `pixel.png`.
+- **`401`:** match the username to the hostname and use the previous level's password, without comment markers or extra spaces.
+- **No login dialog:** if the correct level already loads, the browser has remembered its credentials; continue from that page.
+- **Reference:** [official Natas instructions](https://overthewire.org/wargames/natas/) · [Chrome's Elements guide](https://developer.chrome.com/docs/devtools/dom).
+
+**Keep the skill:**
+
+1. Record each clue's location and why it worked in `notes/http.txt`.
+2. Leave out passwords and copied credential-bearing requests.
+3. Try Level 3 independently using the [official game description](https://overthewire.org/wargames/natas/).
+
+</details>
+
+## Your lab
 
 <details name="module-3">
-<summary><strong>3.2 · Send a GET</strong></summary>
-
-## Practice
-
-[httpbin](https://httpbin.org/) is a request/response playground. Its echo endpoints show data you sent, making them useful for experiments.
+<summary><strong>3.1 · Send a request and read the reply</strong></summary>
 
 ```bash
 curl -i 'https://httpbin.org/get?topic=python&module=3'
 ```
 
-- **Quotes:** keep `&` from being interpreted by the shell.
-- **`-i`:** include response headers.
+**Check:**
 
-### Pause and explain
+- **Status:** a success response.
+- **Content-Type:** JSON.
+- **`args`:** both query values appear.
 
-**Why does the URL need quotes in the terminal when it works unquoted in a browser address bar?**
+**Read the command:**
 
-<details>
-<summary>Check your explanation</summary>
+- `-i` includes response headers.
+- Quotes keep the shell from treating `&` as a background-command operator.
 
-In a shell, `&` has a special meaning: it can send a command to the background. Quotes pass the whole URL, including its query parameters, as one argument to `curl`. A browser address bar is not interpreting the URL with shell syntax.
+- **Client:** curl or a browser sends a request.
+- **Server:** returns a response.
+- **HTTPS:** encrypts the transport.
 
-</details>
+```text
+Client -- method + URL + headers + optional body --> Server
+Client <-- status + headers + response body -------- Server
+```
 
-### Find three pieces of evidence
+| URL part | In this request |
+| --- | --- |
+| Scheme / host | `https` / `httpbin.org` |
+| Path | `/get` |
+| Query parameters | `topic=python`, `module=3` |
 
-- [ ] A success status.
-- [ ] A JSON content-type.
-- [ ] An `args` object containing `topic` and `module` as strings.
+- **Endpoint:** an address that accepts requests.
+- **API:** defines how software can use endpoints.
+- **JSON:** a text data format; `{"module":3,"ready":true}` contains a number and a boolean.
+- **JSON syntax:** keys and strings use double quotes.
 
-Header capitalisation and protocol versions can vary.
+**Your turn:**
 
-**Change one thing:** replace `python` with `linux`. Find the changed value in the response rather than reading every field.
-
-Now save just the response body:
+1. Change only `topic`.
+2. Predict which response field changes, then run again.
+3. Save and format the body:
 
 ```bash
 cd ~/bridge-lab
@@ -125,223 +188,181 @@ curl -sS 'https://httpbin.org/get?topic=linux' -o notes/http-get.json
 python3 -m json.tool notes/http-get.json
 ```
 
-- **`-sS`:** hide the progress meter, but keep error messages.
-- **`-o`:** write the response body to a file.
-- **`json.tool`:** format the saved JSON.
+- **`-sS`:** hides progress but shows errors.
+- **`-o`:** writes the body to a file.
+- **Check:** the formatted `args` contains `"topic": "linux"`.
 
-## Check
+**If formatting fails:**
 
-- [ ] The formatted output has an `args` entry with `topic: linux`.
-
-If the service returns HTML, a rate limit, or a gateway error, wait and retry later. Do not treat every returned body as JSON. Preserve the exact status and error in your notes if it persists.
+1. Inspect the file; a service error may return HTML instead of JSON.
+2. Record the status/error.
+3. Retry later.
 
 </details>
 
 <details name="module-3">
-<summary><strong>3.3 · Methods and status</strong></summary>
+<summary><strong>3.2 · Compare bodies, methods and status codes</strong></summary>
 
-## Practice
-
-POST commonly submits data. This example sends a JSON body:
+Send a JSON body:
 
 ```bash
-curl -i 'https://httpbin.org/post' -H 'Content-Type: application/json' -d '{"learner":"Explorer","module":3}'
+curl -i 'https://httpbin.org/post' \
+  -H 'Content-Type: application/json' \
+  -d '{"learner":"Explorer","module":3}'
 ```
 
-`-H` adds a header; `-d` supplies the body and makes curl use POST by default. Find your object in the response’s `json` field.
+- **`-H`:** adds a request header.
+- **`-d`:** supplies a body and selects POST by default.
+- **Backslashes:** continue this command across lines.
+- **Check:** your object appears in the response's `json` field.
 
-Try two more actions and two deliberate status responses:
+| Part | Question it answers |
+| --- | --- |
+| Method and URL | What action, at which address? |
+| Request headers and body | What extra information/data did I send? |
+| Status and response headers | What happened; what type of data came back? |
+| Response body | What did the server return? |
+
+### Try methods
 
 ```bash
 curl -i -X PUT 'https://httpbin.org/put' -H 'Content-Type: application/json' -d '{"ready":true}'
+curl -i -X PATCH 'https://httpbin.org/patch' -H 'Content-Type: application/json' -d '{"topic":"git"}'
 curl -i -X DELETE 'https://httpbin.org/delete'
-curl -i 'https://httpbin.org/status/404'
-curl -i 'https://httpbin.org/status/500'
 ```
 
-`-X` sets the method explicitly.
+- **`-X`:** chooses a method explicitly.
+- **GET:** retrieves data.
+- **POST:** submits data.
+- **PUT:** commonly replaces a resource.
+- **PATCH:** changes part of a resource.
+- **DELETE:** requests removal.
+- **httpbin:** echoes these actions; it does not maintain a learner record.
 
-| Method | Common purpose |
-| --- | --- |
-| GET | Retrieve a resource |
-| POST | Submit data |
-| PUT | Replace a resource |
-| PATCH | Change part of a resource |
-| DELETE | Request removal |
+### Predict a response
 
-> **Practice service:** httpbin echoes/simulates behaviour; it is not permanently storing and deleting your learner record.
+```bash
+curl -i 'https://httpbin.org/status/404'
+curl -i 'https://httpbin.org/status/500'
+curl -i 'https://httpbin.org/redirect/1'
+curl -i -L 'https://httpbin.org/redirect/1'
+```
 
-### Read the status
+| Family | Meaning | Example |
+| --- | --- | --- |
+| `2xx` | Success | `200` |
+| `3xx` | Redirect | `302`; `-L` follows it |
+| `4xx` | Request cannot be fulfilled as sent | `401` authentication required; `404` not found |
+| `5xx` | Server-side failure | `500` |
 
-| Status family | Read it as |
-| --- | --- |
-| `2xx` | Request succeeded, e.g. `200` |
-| `3xx` | Redirection, e.g. `302`; curl needs `-L` to follow |
-| `4xx` | Request cannot be fulfilled as sent, e.g. `400`, `401`, `403`, `404` |
-| `5xx` | Server-side failure, e.g. `500` |
+**Check:**
 
-### Pause and explain
+1. Compare the two redirect calls.
+2. Find the successive response headers shown by `-i -L`.
 
-**Why does a `404` or `500` still show that the client and server completed part of the round trip?**
+**Your turn:**
+
+1. Record one method, status and echoed field in `notes/http.txt`.
+2. Explain whether `404` is the same as a connection timeout.
 
 <details>
 <summary>Check your explanation</summary>
 
-Those codes are HTTP responses sent by a server or intermediary. The request did not succeed as intended, but receiving a status code proves that an HTTP response came back; a connection or DNS failure may produce no HTTP status at all.
+- **`404`:** an HTTP response arrived, but the resource was not found.
+- **Timeout or DNS failure:** may occur before any HTTP response arrives.
+- **Response received:** does not guarantee success.
 
 </details>
 
-## Check
-
-- [ ] Both `/status/` calls return the requested status, even if the body is empty.
-- [ ] I can explain why receiving a response does not always mean the request succeeded.
-
-## Try it yourself
-
-Use `/patch` with `-X PATCH` and a JSON field `"topic":"git"`. Record the method, status, and one echoed field in `notes/http.txt`.
-
 </details>
 
-<details name="module-3">
-<summary><strong>3.4 · Inspect the Network tab</strong></summary>
+<details name="module-3" id="network-lab">
+<summary><strong>3.3 · Find the request behind an action</strong></summary>
 
-## Practice
+Open Chrome's [Network demo](https://chrome.dev/devtools-network-activity/getstarted.html).
 
-Start with Google’s stable [Network activity demo](https://chrome.dev/devtools-network-activity/getstarted.html).
+1. Open DevTools → **Network**, then reload; each row is a request/resource.
+2. Click **Get Data** on the demo.
+3. Filter for `getstarted.json` and select it.
+4. In **Headers**, find Request URL, Request Method and Status Code.
+5. Compare request and response headers.
+6. Read **Response** (raw data), **Preview** (formatted view) and **Timing** (timeline).
 
-1. Open Chrome DevTools with **Ctrl+Shift+I** on Windows/Linux or **Cmd+Option+I** on macOS. Select **Network**.
-2. Reload the demo. The list records requests made while DevTools is open; each row is a resource or request.
-3. Click the demo’s **Get Data** button. Find `getstarted.json`, using the filter if needed.
-4. Select it. In **Headers**, find the Request URL, Request Method, and Status Code. Compare Request Headers with Response Headers.
-5. Open **Response** to inspect raw data, **Preview** for its rendered form, and **Timing** for the request timeline.
+**Check:**
 
-## Check
+- Name the action that caused the request.
+- Find one returned value.
+- For panel help, use the [official tutorial](https://developer.chrome.com/docs/devtools/network).
 
-- [ ] I can identify the action that triggered the JSON request.
-- [ ] I found a value in its response and can explain what it represents.
+### Replay your own harmless request
 
-If the interface looks unfamiliar, follow the [official Network tutorial](https://developer.chrome.com/docs/devtools/network).
+1. Open **Network**, then visit `https://httpbin.org/get?topic=browser`.
+2. Select its document request.
+3. Right-click → **Copy → Copy as cURL**.
+4. Inspect the command, then run it in your terminal.
 
-### Repeat a browser request in your terminal
+- **Compare:** the endpoint and query match; headers may differ.
+- **Private requests:** commands from signed-in sites may contain cookies/tokens. Do not share them.
 
-1. Open `https://httpbin.org/get?topic=browser` in a separate tab with Network open.
-2. Select the document request.
-3. Right-click and choose **Copy → Copy as cURL**.
-4. Inspect the copied command, then run it in your terminal.
+### Explore suggestions
 
-> **Share safely:** this is your own harmless practice request. Commands copied from signed-in sites may include cookies or tokens and should not be shared.
+1. Open [Google Search](https://www.google.com/) and clear Network.
+2. Type `weather in ch` without submitting.
+3. Inspect new requests for your query and suggestion data.
+4. Try **Fetch/XHR**, then **All** if needed.
 
-**Compare:** browser and curl can request the same endpoint without producing identical headers. A document navigation is not necessarily listed under Fetch/XHR.
-
-</details>
-
-<details name="module-3">
-<summary><strong>3.5 · Investigate suggestions</strong></summary>
-
-## Discovery lab
-
-Find the request behind Google search suggestions rather than memorising an endpoint that may change.
-
-1. Open [Google Search](https://www.google.com/) in Chrome. Complete any consent prompt.
-2. Open **Network**, clear the request list, and type a harmless phrase such as `weather in ch` into the search box without submitting.
-3. Try the **Fetch/XHR** filter. If empty, switch to **All**; suggestions may use a different request type or cached data. Try another phrase.
-4. Inspect requests triggered as you type. A name containing `complete`, `search`, or `suggest` is a clue, not proof.
-5. Compare the URL/query or payload with your typed text, then examine Preview/Response for suggestion data.
-
-### Record your evidence in notes/http.txt
-
-- **Where:** host and path.
-- **Action and result:** method and status.
-- **Input:** parameter carrying your query.
-- **Connection:** why you believe the response produced the visible suggestions.
-
-> **Keep it safe:** do not save cookies, authorisation headers, or an entire account-related request.
-
-### If the request is hard to find
-
-- **Expect variation:** Google’s interface depends on region, browser, session, and experiments.
-- **Do not assume API support:** an internal endpoint seen in DevTools is not necessarily a supported public API.
-- **If you cannot find the request:** use the earlier Get Data demo and document its request instead.
-
-The goal is the same: identify a request from evidence.
-
-<details>
-<summary>What a useful observation sounds like</summary>
-
-“When I typed a new phrase, a new request appeared. Its query contained that phrase, and the response included the suggestions I saw. I recorded the actual host and path from my browser.” Avoid guessing an endpoint solely from its filename.
-
-</details>
+- **Record:** host/path, method/status and evidence connecting the response to the suggestions.
+- **Evidence:** `suggest` in a filename is a clue; verify the response data.
+- **Fallback:** results vary by region/session. If no request appears, use the Get Data demo.
+- **API distinction:** an internal endpoint may not be a supported public API.
 
 </details>
 
 <details name="module-3">
-<summary><strong>3.6 · Change the page locally</strong></summary>
+<summary><strong>3.4 · Change what your browser displays</strong></summary>
 
-## Practice
+- **Elements:** shows the DOM, the browser's current page representation.
 
-The **Elements** panel shows the DOM: the browser’s current representation of the page. Its Styles pane lets you experiment with appearance.
+On Google's homepage:
 
-1. On Google’s homepage, right-click the logo (or current doodle) and choose **Inspect**. If it is hard to select, use the element picker: Ctrl+Shift+C, or Cmd+Option+C on macOS.
-2. Select the image or its visible wrapper. In the Styles pane, add `filter: grayscale(1);` and `transform: rotate(-8deg);` under `element.style`.
-3. Observe the changed logo. Uncheck each property to compare before and after.
-4. Reload the page. With normal settings and no local overrides, your changes disappear.
+1. Right-click the logo → **Inspect**, or use the element picker: Ctrl+Shift+C / Cmd+Option+C.
+2. Select the image or its wrapper. Under `element.style` in **Styles**, add:
 
-## Check
+   ```css
+   filter: grayscale(1);
+   transform: rotate(-8deg);
+   ```
 
-- [ ] Reloading removes my local edit.
-- [ ] I can explain why editing a displayed value does not change the value stored by the site.
+3. Uncheck each property to compare its effect.
+4. Reload; with normal settings and no local overrides, the edits disappear.
 
-If a doodle or iframe makes the logo difficult to edit, practise on the [official DOM tutorial](https://developer.chrome.com/docs/devtools/dom) and its linked demo: inspect a heading, edit its text, and reload. The same browser-side principle applies.
+- **Check:** explain why only your page view changed.
+- **Fallback:** if the doodle is difficult to select, edit a heading in the [official DOM demo](https://developer.chrome.com/docs/devtools/dom).
 
-**Tiny experiment:** disconnect from the network after a page has loaded and change a style. Does the local edit still work? Explain why inspecting/editing an existing DOM differs from fetching new content.
+**Your turn:**
+
+1. Load a page, then disconnect from the network.
+2. Edit its style.
+3. Explain why editing the existing DOM can work while fetching a new page cannot.
 
 </details>
 
-## Check your understanding
+## Finish without copying
 
-Revisit any lab whose evidence you cannot explain.
+1. Inspect a new request.
+2. Identify its method, URL, status and one response value.
+3. Explain which browser action triggered it and how you know.
 
-### 1. Where does the JSON you send with curl -d go?
+- [ ] I reached `natas3` and can explain all three clues.
+- [ ] I sent GET and POST requests and found my input in the replies.
+- [ ] I distinguished an HTTP error from a connection failure.
+- [ ] I changed a page locally and verified what reload did.
 
-- **A.** Always into the URL path
-- **B.** Into the request body
-- **C.** Into a Git commit
+**Explore:**
 
-**Answer and why:** B. `-d` supplies request data. The Content-Type header tells the server you intend that body to be JSON; it does not make malformed JSON valid.
-
-### 2. You rotate Google’s logo in Elements. Who sees that edit?
-
-- **A.** Everyone visiting Google
-- **B.** Only Google’s developers
-- **C.** You, in that local page view
-
-**Answer and why:** C. A normal DevTools edit changes the browser’s current document. It is not an authenticated update to the website’s stored content.
-
-### 3. A response says HTTP 500. What does that tell you?
-
-- **A.** A server returned an error response
-- **B.** No server was reached at all
-- **C.** The request definitely succeeded
-
-**Answer and why:** A. You received an HTTP response; its status indicates a server-side error. It may come from the application or an intermediary such as a gateway.
-
-## Before you continue
-
-- [ ] I can identify method, URL, headers, body, and status.
-- [ ] I sent GET and POST requests and inspected echoed data.
-- [ ] I identified a browser request using observed evidence.
-- [ ] I edited a page locally and explained why refreshing removed the edit.
-
-## Explore yourself
-
-Choose one browser or HTTP playground after this module.
-
-- [httpbin](https://httpbin.org/) lets you experiment with request headers, redirects, status codes, and delays.
-- [Chrome DevTools demos](https://chrome.dev/devtools-network-activity/getstarted.html) provide a stable page for inspecting Network activity and editing the DOM.
-- [OverTheWire: Natas](https://overthewire.org/wargames/natas/) offers web-security puzzles. Start with the quick game above; levels 0–10 are optional further exploration.
-
-**Try next:** pick one endpoint or one browser action, predict the result, then record the evidence you observe.
-
+1. Try httpbin's `/headers` endpoint with `-H 'X-Lab: bridge'`.
+2. Predict where your custom header appears, then verify it.
+3. Keep observations in `notes/http.txt`.
 
 ---
 

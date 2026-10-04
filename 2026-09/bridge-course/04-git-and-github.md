@@ -1,147 +1,147 @@
 # Module 4: Git & GitHub
 
-By the end, your bridge notebook will have local snapshots, a copy on GitHub, and a second local copy recovered with clone. Your first goal is the simple everyday workflow.
+By the end, you can:
 
-> Have your `bridge-lab` folder and a GitHub account ready. Practise inside this folder, not an existing course or work repository.
+- Record your bridge lab in Git.
+- Push it to GitHub.
+- Clone it into a new folder and run your scripts again.
 
-## Quick game: Oh My Git!
+**Bring:**
 
-1. Download and open [Oh My Git!](https://ohmygit.org/) for your operating system.
-2. Start an introductory level and predict what an add or commit action will change.
-3. Play the action, inspect the visual result, and explain what Git staged or committed.
+- `~/bridge-lab` from the earlier modules.
+- Git and a GitHub account.
+- Use this practice lab for the exercises.
 
-Use its practice repositories; stop before advanced topics.
+<style>
+.markdown #game {
+  margin: 1.5rem 0;
+  border-inline-start: 4px solid var(--color-link);
+  border-radius: 0.5rem;
+  background: var(--gray-100);
+}
+.markdown #game > summary { color: var(--color-link); line-height: 1.4; }
+.markdown #game > summary strong { font-size: 1.125rem; }
+.markdown #game > summary span {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--body-font-color);
+  font-size: 0.875rem;
+  font-weight: normal;
+}
+.markdown #game > summary:focus-visible { outline: 2px solid var(--color-link); outline-offset: 3px; }
+.markdown #game details > summary::before { transform: rotate(0deg); }
+.markdown #game details[open] > summary::before { transform: rotate(90deg); }
+</style>
 
-## Optional game: Githug
+<details class="bridge-game" id="game">
+<summary><strong>Game mission: Oh My Git!</strong><span>Make a snapshot. See what Git remembers. | 3 challenges</span></summary>
 
-Use this only if you already have a compatible Ruby environment.
+## Start here
 
-1. Run `gem install githug`, then create and enter `~/bridge-games/githug-practice`.
-2. Run `githug`, read the puzzle, make the Git change, then run `githug` again to check it.
-3. If stuck, run `githug hint`; use `githug reset` only inside the game's folder.
+1. Download [Oh My Git!](https://ohmygit.org/) for your OS.
+2. Extract it and launch the included executable/app.
+3. Open the introductory chapter and read each level's goal.
+4. Run the commands below in the **game's black terminal**.
 
-Githug may not work with Ruby 3+. If so, use Oh My Git! instead. [Githug instructions](https://github.com/Gazler/githug#readme)
+**Warm-ups, if shown:**
 
-## Learning path
+- **Living dangerously:** open `form.txt`, add a reason on a new line and save.
+- **Making backups:** repeat in `form2_really_final.txt`.
+- **Save:** Ctrl+S (Windows/Linux) or Cmd+S (macOS); click **Next Level** after completion.
 
-Open a section to begin. Work in order, try the commands, and reveal answers only after choosing your own.
+### Challenge 1: Enter the time machine
 
-<details name="module-4">
-<summary><strong>4.1 · Before version control</strong></summary>
-
-## Learn
-
-Imagine submitting `assignment.zip`, then `assignment-final.zip`, then `assignment-final-really.zip`. Which one fixed the error? Which changes came from your teammate? Whole-folder copies are easy to create but hard to compare.
-
-### From folder copies to version control
-
-A **version control system (VCS)** records changes with an author and an explanation.
-
-| Approach | Where history lives | What to remember |
-| --- | --- | --- |
-| ZIP copies | Separate copies you name and organise | Hard to compare changes or identify the latest work |
-| Local VCS | On one machine | History is recorded locally |
-| Centralised VCS | Shared history on a central server | The server holds the shared repository history |
-| Distributed VCS, such as Git | Each normal clone has its own repository history | Record work offline, then share commits later |
-
-### Git and GitHub are different
-
-**Git is the tool. GitHub is a hosting service.** You do not need a GitHub account to make local commits. You do need a remote copy if you want your committed work available after losing your laptop.
-
-```text
-Working files → git add → Staged snapshot → git commit → Local history
-                                                          ↓ git push
-                                                     GitHub repository
-```
-
-### Follow one change
-
-1. **Save:** write editor changes to the working file.
-2. **`git add`:** select content for the next snapshot.
-3. **`git commit`:** record that snapshot in local history.
-4. **`git push`:** send commits to the remote.
-
-> **Remember:** saving is necessary before adding a file, but saving is not itself a commit.
-
-## Predict
-
-After a local commit, can someone see it on your GitHub page before you push?
+Try the blue **init** card before opening the walkthrough.
 
 <details>
-<summary>Answer</summary>
+<summary>Walkthrough: start tracking</summary>
 
-No. Local history and remote history are separate until you transfer commits. GitHub also cannot back up uncommitted files merely because the folder is a Git repository.
+1. Drag the **init** card upward to play it.
+2. Check the goal completes, then click **Next Level**.
 
-</details>
-
-</details>
-
-<details name="module-4">
-<summary><strong>4.2 · Configure Git once</strong></summary>
-
-## Practice
-
-Check `git --version`. If missing, use Module 1’s install instructions. Configure new repositories to start with a branch called `main`:
-
-```bash
-git config --global init.defaultBranch main
-git config --global user.name "Your Name"
-git config --global user.email "you@example.com"
-git config --global --get init.defaultBranch
-git config --global --get user.name
-git config --global --get user.email
-```
-
-### Choose your commit identity
-
-- Replace the name and email before running the commands.
-- These fields label your commits; they are **not your GitHub password or login**.
-- Use an email verified on GitHub.
-- For email privacy, copy the exact no-reply address in **Settings → Emails**.
-
-`--global` applies to this user account on this machine. `init.defaultBranch` affects newly initialised repositories, not the branch names of existing ones. We only use one branch in this bridge. [Git init reference](https://git-scm.com/docs/git-init).
-
-## Check
-
-- [ ] The three `--get` commands show `main` and your chosen identity.
-
-Create a project description:
-
-```bash
-cd ~/bridge-lab
-nano README.md
-```
-
-Include three things in README:
-
-- A project title, beginning with Markdown’s `#` heading marker.
-- The skills you practised.
-- The run instruction: `uv run --script scripts/check-in.py`.
-
-Save the file. Ordinary sentences need no special Markdown markup.
+- **Meaning:** Git is ready to track history; no snapshot exists yet.
 
 </details>
 
-<details name="module-4">
-<summary><strong>4.3 · Make local snapshots</strong></summary>
+### Challenge 2: The command line
 
-## Practice
-
-From `~/bridge-lab`, initialise Git once:
+1. Click the black terminal.
+2. Enter this command and press Enter:
 
 ```bash
 git init
-ls -a
 ```
 
-## Check
+3. Check the goal completes and continue to **Your first commit**.
 
-- [ ] `ls -a` shows `.git`.
-- [ ] I can explain why existing files are still working files until I add and commit them.
+- **Meaning:** typing the command performs the same action as the init card.
 
-`.git` contains the repository metadata and history. Do not edit or delete it manually.
+### Challenge 3: Your first commit
 
-Create `nano .gitignore` with these lines, then save:
+Save two versions of the glass.
+
+<details>
+<summary>Walkthrough: two snapshots</summary>
+
+1. In the game's terminal, record the full glass:
+
+```bash
+git add glass
+git commit -m "Full glass"
+```
+
+2. Open `glass`, change its text to `The glass is empty.` and save.
+3. Record the changed glass:
+
+```bash
+git add glass
+git commit -m "Empty glass"
+git log --oneline
+```
+
+4. Click each snapshot in the visual history and compare the contents.
+
+- **Success:** two commits appear and the level completes.
+- **Meaning:** add selects content; commit records that selection.
+
+</details>
+
+- **Stuck?** Read the goal and run `git status`; editing alone does not create a commit.
+- **Can't run the game?** Practise the same operations in the lab below.
+- **Reference:** [official introductory levels](https://github.com/git-learning-game/oh-my-git/tree/main/levels/intro).
+
+</details>
+
+## Your lab
+
+- **Git:** saves version history on your computer.
+- **GitHub:** hosts the history you push online.
+- **Flow:** edit → save → add → inspect → commit → push.
+
+Open **Setup** first, then follow sections **4.1–4.4**.
+
+<details name="module-4" id="git-setup">
+<summary><strong>Setup · Git identity and defaults (once)</strong></summary>
+
+Replace the name/email with yours; use a verified GitHub email or your no-reply address from **Settings → Emails**.
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+git config --global init.defaultBranch main
+```
+
+- **Name/email:** label the author of your commits; these are not login credentials.
+- **Default branch:** new repositories start on `main`.
+- **`--global`:** saves settings for your user on this machine; do this once.
+
+</details>
+
+<details name="module-4">
+<summary><strong>4.1 · Create a local snapshot</strong></summary>
+
+1. In `~/bridge-lab`, create `README.md` with a title and the run instruction `uv run scripts/check-in.py`.
+2. Create `.gitignore` with these lines:
 
 ```text
 .venv/
@@ -150,295 +150,169 @@ __pycache__/
 .DS_Store
 ```
 
-| Pattern | Leave out of future adds |
-| --- | --- |
-| `.venv/` | Local environments |
-| `__pycache__/` | Generated Python cache files |
-| `.env` | A common file for secrets and local settings |
-| `.DS_Store` | macOS folder metadata |
-
-> **Important:** an ignore rule does not remove anything already committed. Only keep harmless practice material in your notes.
-
-### Stage, inspect, then commit
+- **Ignore:** local environments, caches, secret settings and macOS metadata. Keep passwords and private keys outside the lab.
 
 ```bash
-git status
-git add README.md .gitignore scripts notes
+cd ~/bridge-lab
+git init
+git add .
 git diff --cached
-git commit -m "Record my bridge course practice"
+git commit -m "Save my bridge lab"
 git log --oneline
 ```
 
-`status` reports file state; `diff --cached` lets you inspect the staged snapshot (`q` exits a pager); `log` shows recorded commits. Confirm no passwords, tokens, or private keys are staged before committing.
+1. **Initialise:** `git init` starts a repository; the setup above makes its first branch `main`.
+2. **Stage:** `git add .` selects new/changed files under this folder, respecting `.gitignore` for untracked files.
+3. **Inspect:** `git diff --cached` shows the staged content; press `q` if a pager opens.
+4. **Commit:** saves the staged snapshot locally; `-m` supplies its message.
+5. **History:** `git log --oneline` lists commits compactly; expect one commit.
 
-### Pause and explain
-
-**Why run `git diff --cached` instead of only looking at the file in your editor before committing?**
-
-<details>
-<summary>Check your explanation</summary>
-
-Git commits the staged snapshot, not automatically the latest working-file contents. `git diff --cached` shows exactly what the next commit would record, including whether you staged the intended files and avoided secrets.
-
-</details>
-
-## Try it yourself
-
-Add a sentence to README, save it, then run `git add README.md` and `git commit -m "Explain what I learned"`.
-
-## Check
-
-- [ ] `git log --oneline` shows two commits.
-- [ ] I can explain why an untracked practice folder is absent from those commits.
-
-A commit records staged content, not every file on the machine.
+- **Check before committing:** source files are staged; `.venv` and private data are absent.
+- **Later edits:** save and add again before committing; commit uses the staged version.
 
 </details>
 
 <details name="module-4">
-<summary><strong>4.4 · Create your SSH key</strong></summary>
+<summary><strong>4.2 · Connect to GitHub: generate → copy → paste</strong></summary>
 
-## Practice
+If you already have a working GitHub SSH key, reuse it. Otherwise:
 
-SSH lets GitHub recognise your machine using a key pair.
-
-| Key | Default filename | Where it belongs |
-| --- | --- | --- |
-| **Public** | `id_ed25519.pub` | Upload to GitHub |
-| **Private** | `id_ed25519` | Keep on your machine, outside the project; never share |
-
-### Look for an existing key
-
-In the same Ubuntu/WSL/macOS environment where you run Git:
+1. Generate a key pair:
 
 ```bash
-ls -la ~/.ssh
+ssh-keygen
 ```
 
-“No such file” is normal on a new setup. If a working GitHub key already exists, reuse it; do not overwrite it. Otherwise run:
+2. Accept the default save path if unused; do not overwrite an existing key. Enter a passphrase when prompted.
+3. Find the output line **Your public key has been saved in ...**. Use that exact `.pub` path with `cat`:
+
+```bash
+cat "/path/from/ssh-keygen.pub"
+```
+
+4. Copy the entire printed line.
+5. On GitHub: **Settings → SSH and GPG keys → New SSH key**.
+6. Choose **Authentication Key**, name the device, paste and save.
+
+- **Replace the example path:** use the public-key path printed on your computer.
+- **Key pair:** share the `.pub` file; keep the private key on your machine.
+- **Default location:** SSH can use the key directly; an agent is optional. Enter your passphrase when asked.
+
+<details id="ssh-options">
+<summary>Optional SSH options: when to use them and why</summary>
+
+**Choose a key type and label** — use this instead of plain `ssh-keygen` when you want to specify both:
 
 ```bash
 ssh-keygen -t ed25519 -C "you@example.com"
 ```
 
-### Answer the prompts carefully
+- **`-t`:** chooses Ed25519; **`-C`:** adds an email label to identify the key.
 
-1. Replace the email in the command with your own.
-2. Accept the default file path only if it is unused.
-3. Choose a passphrase you can remember.
-4. If asked to overwrite a file, answer **no** and choose a new filename. Substitute that path in the next commands.
-
-### Load the key
-
-For a key saved at the default path:
+**Avoid repeated passphrase prompts** — load your private key into an agent for this session:
 
 ```bash
 eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519
+ssh-add "/path/to/private/key"
 ```
 
-The agent holds the unlocked identity for your session. `ssh-add` may ask for your key’s passphrase, not your GitHub password. [GitHub’s key generation guide](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) covers OS-specific options.
+- **`eval ...`:** starts the agent and connects this shell to it.
+- **`ssh-add`:** unlocks and loads the private key; replace the path and omit `.pub`.
 
-### Pause and explain
+**Use a custom key path** — if you saved outside the default location, add/update this block in `~/.ssh/config`:
 
-**Why can you upload the `.pub` key to GitHub but must never share the matching private key?**
-
-<details>
-<summary>Check your explanation</summary>
-
-GitHub uses the public key to verify signatures made by the matching private key. The private key is the secret proof that you control that identity; anyone who obtains it may be able to authenticate as you, especially if they also obtain its passphrase.
-
-</details>
-
-## Check
-
-- [ ] `ssh-add -l` lists a key fingerprint.
-- [ ] I know that a fingerprint identifies the loaded key without exposing the private key.
-
-If `ssh-keygen` is missing on Ubuntu, install `openssh-client` using apt.
-
-</details>
-
-<details name="module-4">
-<summary><strong>4.5 · Connect the key to GitHub</strong></summary>
-
-## Practice
-
-Display **only** the public key:
-
-```bash
-cat ~/.ssh/id_ed25519.pub
+```text
+Host github.com
+  IdentityFile /path/to/private/key
+  IdentitiesOnly yes
 ```
 
-1. Copy the entire public-key line.
-2. Open GitHub’s **Settings → SSH and GPG keys → New SSH key**.
-3. Choose an authentication key.
-4. Give it a device name and paste the public key.
+- **`IdentityFile`:** chooses your private key; **`IdentitiesOnly`:** limits which identities SSH offers.
 
-See [GitHub’s account instructions](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
-
-Then test:
+**Check the connection** — use this before pushing or when diagnosing login problems:
 
 ```bash
 ssh -T git@github.com
 ```
 
-### Interpret the connection test
-
-1. **Before accepting:** compare the host fingerprint with [GitHub’s published fingerprints](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints).
-2. **Look for your username:** a successful test greets your GitHub account.
-3. **Expect “no shell access”:** GitHub does not provide an interactive shell. The successful authentication test can still exit with status 1.
-
-See the [connection test guide](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection).
-
-<details>
-<summary>Permission denied (publickey)?</summary>
-
-1. Confirm you uploaded the matching `.pub` key.
-2. Run `ssh-add -l` and check that it lists the intended identity.
-3. Use the same terminal environment: WSL and Windows have separate home folders.
-4. If you chose a custom key filename, add that file to the agent.
-5. If your network blocks port 22, follow GitHub’s [SSH over HTTPS port](https://docs.github.com/en/authentication/troubleshooting-ssh/using-ssh-over-the-https-port) route or ask for help.
+- **`-T`:** disables terminal allocation; GitHub authenticates you without providing a shell.
+- **First host prompt:** compare with [GitHub's fingerprints](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints) before accepting.
+- **Success:** GitHub greets your username; "no shell access" is expected.
 
 </details>
-
-## Check
-
-- [ ] The SSH greeting names my intended GitHub account.
-
-Keep your private key out of websites, repositories, screenshots, and chats.
 
 </details>
 
 <details name="module-4">
-<summary><strong>4.6 · Add origin and push</strong></summary>
+<summary><strong>4.3 · Push your commits to GitHub</strong></summary>
 
-## Practice
-
-### 1. Create an empty remote repository
-
-1. Create a GitHub repository called `bridge-lab`.
-2. Choose **Private** for your learning notebook.
-3. Leave README, license, and `.gitignore` unchecked: you already have local files and commits.
-
-### 2. Connect and upload
-
-Copy its **SSH** URL. Replace `YOUR_USERNAME` below with your GitHub username:
+1. On GitHub, create a **Private** repository named `bridge-lab`.
+2. Leave README, license and `.gitignore` unchecked; you already have local files.
+3. Copy its **SSH** URL and replace `YOUR_USERNAME` below:
 
 ```bash
 cd ~/bridge-lab
 git remote add origin git@github.com:YOUR_USERNAME/bridge-lab.git
-git remote -v
 git push -u origin main
 ```
 
-| Part | Meaning |
-| --- | --- |
-| `origin` | Conventional local nickname for the remote URL, not a special server |
-| `push` | Transfer your branch’s commits |
-| `-u` | Remember the upstream connection so later pushes can use `git push` |
+1. **Remote:** `origin` is a nickname for your GitHub repository's URL.
+2. **Push:** uploads commits from `main`; `-u` remembers the upstream so later pushes use `git push`.
 
-## Check
-
-- [ ] On GitHub I can see README, `scripts`, `notes`, and the two commit messages.
-- [ ] I cannot see `.venv`, because it was not added and pushed.
-
-GitHub receives the commits you push, not every untracked file in your folder.
-
-<details>
-<summary>Common first-push errors</summary>
-
-- **origin already exists:** inspect `git remote -v`. If the URL is wrong, correct it with `git remote set-url origin YOUR_COPIED_SSH_URL`.
-- **src refspec main does not match:** check `git log --oneline` and `git branch --show-current`; this lab expects a commit on main.
-- **Rejected because the remote contains work:** do not force-push. You may have created a remote README. For this beginner lab, clone that repository to a separate folder, copy in your practice source files, add, commit, and push.
-
-</details>
+- **Check:** GitHub shows your README, code and commit; `.venv` is absent.
+- **Remember:** GitHub receives pushed commits, not unsaved or uncommitted edits.
 
 </details>
 
 <details name="module-4">
-<summary><strong>4.7 · Clone means ready-made Git</strong></summary>
+<summary><strong>4.4 · Clone and continue working</strong></summary>
 
-## Practice
-
-### What a normal clone sets up
-
-- **Working files:** a new folder with a checked-out working branch.
-- **History:** the repository’s recorded commits.
-- **`.git`:** the repository metadata directory.
-- **`origin`:** the connection to the repository you cloned.
-
-See the [Git clone reference](https://git-scm.com/docs/git-clone).
-
-From your home directory, with the username replaced:
+Use a destination that does not already exist; replace `YOUR_USERNAME`.
 
 ```bash
 cd ~
 git clone git@github.com:YOUR_USERNAME/bridge-lab.git bridge-lab-recovered
 cd bridge-lab-recovered
-ls -a
-git remote -v
 git log --oneline
-uv run --script scripts/check-in.py
+uv run scripts/check-in.py
 ```
 
-## Check
+1. **Clone:** downloads working files and Git history, and sets up `origin` automatically.
+2. **Enter:** `cd` moves into the recovered copy.
+3. **Verify:** your commit appears and the NumPy script runs; uv prepares its dependencies.
 
-- [ ] The clone contains `.git` and has an `origin` URL.
-- [ ] The two commits appear in its log.
-- [ ] The Python script runs after uv recreates its environment from inline metadata.
-
-The original `.venv` folders do not need to travel with the clone.
-
-Do **not** run `git init` or `git remote add origin` after this normal clone—they are already set up. Cloning into an existing non-empty folder fails; choose a fresh destination rather than deleting your work.
-
-**Everyday loop:** edit → save → `git add` → `git commit` → `git push`. Use `git status` whenever you are unsure. If you later work from multiple copies, you will also need to learn `git pull`; for this exercise, stop editing the original copy after this recovery check.
+- **Already set up:** no new `git init` or `remote add` is needed.
+- **During this exercise:** edit only the recovered copy.
 
 </details>
 
-## Check your understanding
+## Finish without copying
 
-These three distinctions are enough for the bridge.
+1. In the recovered copy, add a sentence to README and save.
+2. Stage, inspect, commit with a useful message, then push.
+3. Check that the new commit appears on GitHub.
 
-### 1. You edit a file after git add, then commit without adding it again. What is recorded?
+| Command | Remember |
+| --- | --- |
+| `git status` | What changed; what is staged? |
+| `git add README.md` | Select the saved changes |
+| `git diff --cached` | Inspect what you will commit |
+| `git commit -m "Explain my NumPy example"` | Record a local snapshot |
+| `git push` | Send commits to GitHub |
 
-- **A.** Always the latest text in the editor
-- **B.** The content staged by the earlier git add
-- **C.** Everything on GitHub
+- [ ] I completed the three guided game levels.
+- [ ] I can explain add, commit and push.
+- [ ] My cloned script runs and my second commit is on GitHub.
 
-**Answer and why:** B. Staging selects a snapshot of content. Save and add again to include the later edit in the next commit.
+**Stuck?**
 
-### 2. Which key belongs in GitHub’s SSH key form?
+- **SSH permission denied:** check your public key on GitHub and load the matching private key in the same terminal environment.
+- **`origin` exists:** inspect `git remote -v`; correct a wrong URL with `git remote set-url origin YOUR_COPIED_SSH_URL`.
 
-- **A.** The public key ending in .pub
-- **B.** The private key without .pub
-- **C.** Your GitHub password
+**Explore:** run `git diff` before staging, then `git diff --cached` after staging. Explain the difference.
 
-**Answer and why:** A. The public key lets GitHub verify your machine’s authentication. The private key must stay private.
-
-### 3. After a normal git clone, what should you expect?
-
-- **A.** Files only; run git init and add origin yourself
-- **B.** An empty directory
-- **C.** Working files, repository history, .git, and an origin remote
-
-**Answer and why:** C. Clone establishes the repository and its remote connection. It differs from downloading a ZIP of source files.
-
-## Ready for the main course
-
-- [ ] I can navigate my project and explain a path or permission.
-- [ ] I can run my Bash and Python scripts from the recovered clone.
-- [ ] I can explain where uv gets the script’s dependencies.
-- [ ] I can identify a request’s method, status, and response in DevTools.
-- [ ] I can add, commit, push, and find my committed work on GitHub.
-
-Revisit the relevant module if an item is uncertain. Keep your repository and notes as your reference.
-
-## Explore yourself
-
-Choose **Oh My Git!** above for visual practice or **Githug** for checked terminal puzzles. Repeat one add/commit exercise until you can predict its effect.
-
+**References:** [Git tutorial](https://git-scm.com/docs/gittutorial) · [GitHub SSH setup](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
 
 ---
 
-**Bridge complete:** keep your repository as a reference for the main course.
+**Bridge complete:** keep your repository and notes as your reference for the main course.
