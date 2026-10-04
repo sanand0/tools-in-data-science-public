@@ -94,3 +94,24 @@ html[data-user-theme="dark"] {
   background: var(--gray-500);
 }
 
+
+// Side-by-side images with visible captions (e.g. the term README cartoons).
+.markdown .tds-figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+.markdown .tds-figures figure {
+  margin: 0;
+}
+.markdown .tds-figures img {
+  display: block;
+  width: 100%;
+}
+.markdown .tds-figures figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--gray-500);
+  text-align: center;
+}

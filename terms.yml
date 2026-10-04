@@ -1,0 +1,17 @@
+# Course terms. Each id is a top-level folder with README.md and _sidebar.md.
+# `current` is the term rendered at the site root (/). setup.sh reads it.
+current: 2026-09
+
+terms:
+  - id: 2026-09
+    title: Tools in Data Science - Sep 2026
+  - id: 2026-05
+    title: Tools in Data Science - May 2026
+  - id: 2026-01
+    title: Tools in Data Science - Jan 2026
+  - id: 2025-09
+    title: Tools in Data Science - Sep 2025
+  - id: 2025-05
+    title: Tools in Data Science - May 2025
+  - id: 2025-01
+    title: Tools in Data Science - Jan 2025
