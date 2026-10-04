@@ -39,6 +39,21 @@ mise x go hugo-extended@0.163.3 -- ./setup.sh
 
 The static site is written to `public/`. Pushes to `main` deploy to GitHub Pages via `.github/workflows/`.
 
+### Release content
+
+Unreleased placeholders stay in the repository and `_sidebar.md`. Set `draft: true`
+in a page's YAML front matter to hide it from the published site and navigation.
+For a week's `README.md`, use `cascade: {draft: true}` to hide the entire week,
+including its lessons. Change `true` to `false` and rebuild to release it.
+
+To preview drafts locally after running `./setup.sh`:
+
+```bash
+hugo server --source .hugo-build/site --buildDrafts
+```
+
+Re-run `./setup.sh` after editing the source files; the Hugo site is a generated copy.
+
 ## Start a new term
 
 1. Create a `20YY-MM/` folder with `README.md` and `_sidebar.md` (copy the structure of the latest term).

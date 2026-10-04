@@ -11,6 +11,21 @@
 {{ end }}
 
 {{ $order := default (slice) (index $nav $activeKey) }}
+{{/* Skip unpublished pages so navigation continues across hidden sections. */}}
+{{ $published := slice }}
+{{ range $order }}
+  {{ $item := . }}
+  {{ $itemPath := . }}
+  {{ if reflect.IsMap . }}
+    {{ $itemPath = index . "path" }}
+  {{ end }}
+  {{ with site.GetPage $itemPath }}
+    {{ if .RelPermalink }}
+      {{ $published = $published | append $item }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ $order = $published }}
 {{ $ix := -1 }}
 {{ range $i, $item := $order }}
   {{ $itemPath := "" }}
