@@ -13,16 +13,39 @@
 </details>
 
 <details class="tds-week">
-<summary>Week 1</summary>
+<summary>Week 1: Dev Environment & Tooling</summary>
 
-- [Overview](week-1/README.md)
+- [VS Code — Basics](week-1/01-vscode-1-basics.md)
+- [VS Code — Advanced](week-1/01-vscode-2-advanced.md)
+- [UV — Basics](week-1/02-uv-1-basics.md)
+- [UV — Advanced](week-1/02-uv-2-advanced.md)
+- [Bash Scripting](week-1/03-bash-scripting.md)
+- [Git & GitHub](week-1/04-git-github.md)
+- [SQLite](week-1/05-sqlite.md)
+- [HTTP Clients](week-1/06-http-clients.md)
+- [Requestly](week-1/07-requestly.md)
+- [Data Formats](week-1/08-data-formats.md)
+- [GitHub Pages](week-1/09-github-pages.md)
+- [LaTeX](week-1/10-latex.md)
 
 </details>
 
 <details class="tds-week">
-<summary>Week 2</summary>
+<summary>Week 2: Deployment & API Engineering</summary>
 
-- [Overview](week-2/README.md)
+- [FastAPI Fundamentals](week-2/01-fastapi.md)
+- [CORS & Middleware](week-2/02-cors-middleware.md)
+- [Google OAuth 2.0](week-2/03-google-oauth.md)
+- [Config Management](week-2/05-config-management.md)
+- [Docker & Compose](week-2/06-docker-compose.md)
+- [Deployment Platforms](week-2/07-deployment-platforms.md)
+- [Logging & Testing](week-2/08-logging-testing.md)
+- [Observability](week-2/09-observability.md)
+- [Cloudflare Tunnels](week-2/10-cloudflare-tunnels.md)
+- [Local LLMs — Basics](week-2/11-local-llms-1-basics.md)
+- [Local LLMs — LM Studio & Ollama](week-2/11-local-llms-2-lmstudio-ollama.md)
+- [Local LLMs — llama.cpp & vLLM](week-2/11-local-llms-3-llamacpp-vllm.md)
+- [Local LLMs — MLX Labs](week-2/11-local-llms-4-mlx-labs.md)
 
 </details>
 
