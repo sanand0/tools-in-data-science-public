@@ -878,6 +878,14 @@ Watch this video to understand the basics of Bash and UNIX shell commands (75 mi
 
 ---
 
+## Interactive Practice Game: The Command Line Murders
+
+Put your shell and text-processing skills to the test with <a href="https://github.com/veltman/clmystery" target="_blank" rel="noopener noreferrer"><strong>The Command Line Murders</strong></a>.
+
+A murder occurred in Terminal City! Clone the repository, navigate through the crime scene files, and use command-line tools (`grep`, `head`, `tail`, `cat`, `cut`, `sort`, `uniq`, and pipes) across police records, interview transcripts, and suspect lists to find the culprit.
+
+---
+
 ## Final revision checklist
 
 ```text

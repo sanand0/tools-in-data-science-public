@@ -607,6 +607,14 @@ Watch these introductory videos to learn the basics of Git and GitHub (98 min):
 
 ---
 
+## Interactive Practice Game: Learn Git Branching
+
+Visualize and practice Git workflows with <a href="https://learngitbranching.js.org/" target="_blank" rel="noopener noreferrer"><strong>Learn Git Branching</strong></a>.
+
+An interactive, visual game that simulates Git repository commit trees in your browser. Practice branching, merging, rebasing, cherry-picking, and remote repository syncing through guided hands-on challenges.
+
+---
+
 ## Final revision checklist
 
 ```text

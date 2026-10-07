@@ -696,6 +696,14 @@ Watch these introductory videos to understand SQLite and how it's used in Python
 
 ---
 
+## Interactive Practice Game: SQL Murder Mystery
+
+Test your database querying skills with <a href="https://mystery.knightlab.com/" target="_blank" rel="noopener noreferrer"><strong>SQL Murder Mystery</strong></a>.
+
+There's been a murder in SQL City! Practice real SQL queries (`SELECT`, `JOIN`, `WHERE`, aggregations) directly in your browser to investigate crime scene reports, interview witnesses, check vehicle registrations, and track down the culprit.
+
+---
+
 ## Final revision checklist
 
 ```text

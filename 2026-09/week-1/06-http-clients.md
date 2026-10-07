@@ -557,6 +557,14 @@ Watch these tutorials to understand HTTP requests and API testing (60 min):
 
 ---
 
+## Interactive Practice Game: OverTheWire Natas
+
+Practice HTTP request inspection and header manipulation with <a href="https://overthewire.org/wargames/natas/" target="_blank" rel="noopener noreferrer"><strong>OverTheWire Natas</strong></a>.
+
+A web security wargame where each level challenges you to inspect HTTP traffic, craft custom request headers (`Referer`, `User-Agent`), handle basic authentication, and inspect cookies using `curl` and browser developer tools to find the next level's credentials.
+
+---
+
 ## Final revision checklist
 
 ```text
