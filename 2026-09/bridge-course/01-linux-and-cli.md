@@ -9,6 +9,36 @@
 **New to terminals?** Complete [1.1: Setup](#setup) first, then return to the game.
 
 <style>
+.markdown .cli-roadmap {
+  margin: 1.5rem 0;
+  padding: clamp(1rem, 3vw, 2rem);
+  border-radius: 1rem;
+  background: #f8f9f5;
+  color: #526765;
+}
+.markdown .cli-roadmap > p { margin: 0 0 1rem; }
+.markdown .cli-roadmap svg { display: block; width: 100%; height: auto; }
+.markdown .cli-roadmap ol {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+  gap: 1.5rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.markdown .cli-roadmap li { margin: 0; }
+.markdown .cli-roadmap .cli-roadmap-level {
+  color: #087e70;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.markdown .cli-roadmap h3 { margin: 0.5rem 0; font-size: 1.1rem; line-height: 1.4; }
+.markdown .cli-roadmap a { color: #087e70; text-decoration: underline; text-underline-offset: 0.2em; }
+.markdown .cli-roadmap a:hover { color: #bd5439; }
+.markdown .cli-roadmap a:focus-visible { outline: 2px solid #087e70; outline-offset: 4px; }
+.markdown .cli-roadmap li p { margin: 0; font-size: 0.9rem; line-height: 1.6; }
 .markdown #game {
   margin: 1.5rem 0;
   border-inline-start: 4px solid var(--color-link);
@@ -28,6 +58,56 @@
 .markdown #game details > summary::before { transform: rotate(0deg); }
 .markdown #game details[open] > summary::before { transform: rotate(90deg); }
 </style>
+
+## Practice roadmap
+
+<section class="cli-roadmap" aria-label="Four levels of command-line practice">
+<p>Start in the browser. Build confidence. Then try a real shell challenge.</p>
+<svg viewBox="0 0 820 228" role="img" aria-labelledby="cli-roadmap-title cli-roadmap-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="cli-roadmap-title">Your next levels</title>
+  <desc id="cli-roadmap-desc">A winding road connects four stops: CMD Challenge, ExplainShell, Linux Journey, and Bandit, ending at a finish flag.</desc>
+  <path d="M72 168C128 168 121 73 225 73S297 172 422 172S523 71 606 71S686 82 754 53" fill="none" stroke="#b9d1c4" stroke-width="14" stroke-linecap="round"/>
+  <path d="M72 168C128 168 121 73 225 73S297 172 422 172S523 71 606 71S686 82 754 53" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="8 9"/>
+  <g text-anchor="middle" font-family="sans-serif" font-size="28" font-weight="700">
+    <circle cx="72" cy="168" r="33" fill="#087e70"/>
+    <text x="72" y="178" fill="#fff">01</text>
+    <circle cx="225" cy="73" r="33" fill="#fff" stroke="#087e70" stroke-width="3"/>
+    <text x="225" y="83" fill="#087e70">02</text>
+    <circle cx="422" cy="172" r="33" fill="#fff" stroke="#087e70" stroke-width="3"/>
+    <text x="422" y="182" fill="#087e70">03</text>
+    <circle cx="606" cy="71" r="33" fill="#fff0e7" stroke="#bd5439" stroke-width="3"/>
+    <text x="606" y="81" fill="#bd5439">04</text>
+  </g>
+  <path d="M754 54V16" stroke="#172c29" stroke-width="3"/>
+  <path d="M756 16H792L781 28L792 40H756Z" fill="#bd5439"/>
+  <path d="M15 58L39 22L61 58Z" fill="#e6f1eb"/>
+  <path d="M669 190L694 151L720 190Z" fill="#e6f1eb"/>
+  <circle cx="339" cy="48" r="6" fill="#e8b16e"/>
+  <circle cx="523" cy="211" r="5" fill="#e8b16e"/>
+</svg>
+<ol>
+  <li>
+    <div class="cli-roadmap-level">Level 01 · Do</div>
+    <h3><a href="https://cmdchallenge.com/" target="_blank" rel="noopener">CMD Challenge ↗</a></h3>
+    <p>Try the first few Unix command challenges in the browser.</p>
+  </li>
+  <li>
+    <div class="cli-roadmap-level">Level 02 · Decode</div>
+    <h3><a href="https://explainshell.com/" target="_blank" rel="noopener">ExplainShell ↗</a></h3>
+    <p>Paste a command and inspect what its arguments mean.</p>
+  </li>
+  <li>
+    <div class="cli-roadmap-level">Level 03 · Learn</div>
+    <h3><a href="https://labex.io/linuxjourney" target="_blank" rel="noopener">Linux Journey ↗</a></h3>
+    <p>Read the Command Line and Permissions lessons.</p>
+  </li>
+  <li>
+    <div class="cli-roadmap-level">Level 04 · Play</div>
+    <h3><a href="https://overthewire.org/wargames/bandit/" target="_blank" rel="noopener">Bandit ↗</a></h3>
+    <p>Use SSH after setup. Start with levels 0–3 in the game mission below.</p>
+  </li>
+</ol>
+</section>
 
 <details class="bridge-game" id="game">
 <summary><strong>Game mission: Bandit</strong><span>Read a file. Unlock the next level. | 3 challenges</span></summary>
