@@ -12,6 +12,100 @@ By the end, you can:
 - Invented practice data for [httpbin](https://httpbin.org/), which echoes what you send.
 
 <style>
+.markdown .bridge-roadmap {
+  margin: 1.5rem 0;
+  padding: clamp(1rem, 3vw, 2rem);
+  border: 1px solid var(--roadmap-track);
+  border-radius: 1.25rem;
+  background: linear-gradient(145deg, #fff, var(--roadmap-soft));
+  color: #243746;
+}
+.markdown .bridge-roadmap .roadmap-eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--roadmap-accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.markdown .bridge-roadmap .roadmap-intro { margin: 0; line-height: 1.65; }
+.markdown .bridge-roadmap svg { display: block; width: 100%; height: auto; margin: 1rem 0; }
+.markdown .bridge-roadmap .roadmap-stops {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.markdown .bridge-roadmap .roadmap-stops > li,
+.markdown .bridge-roadmap .roadmap-challenge {
+  min-width: 0;
+  margin: 0;
+  padding: 1.1rem;
+  border: 1px solid var(--roadmap-track);
+  border-radius: 0.85rem;
+  background: #fff;
+}
+.markdown .bridge-roadmap .roadmap-stops > .roadmap-stretch { border-color: #e7c1a6; background: #fffaf5; }
+.markdown .bridge-roadmap .roadmap-challenge { margin-bottom: 1.25rem; }
+.markdown .bridge-roadmap .roadmap-featured {
+  border-color: transparent;
+  background: linear-gradient(135deg, #f2fbf8, #f7f4ff) padding-box,
+    linear-gradient(115deg, #087e70, #7963bd, #087e70, #7963bd) border-box;
+  background-size: 100% 100%, 300% 100%;
+  background-position: 0 0, 0% 50%;
+  box-shadow: 0 4px 18px #087e7015;
+}
+.markdown .bridge-roadmap .roadmap-step { display: flex; align-items: center; gap: 0.65rem; }
+.markdown .bridge-roadmap .roadmap-number {
+  display: grid;
+  place-items: center;
+  flex: 0 0 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--roadmap-soft);
+  color: var(--roadmap-accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.markdown .bridge-roadmap .roadmap-level { color: var(--roadmap-accent); font-size: 0.8rem; font-weight: 700; }
+.markdown .bridge-roadmap .roadmap-challenge-label {
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #087e70, #6350a5);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.markdown .bridge-roadmap .roadmap-featured h3 a { font-weight: 700; }
+.markdown .bridge-roadmap .roadmap-stretch .roadmap-number { background: #fbe9d9; color: #934321; }
+.markdown .bridge-roadmap .roadmap-stretch .roadmap-level { color: #934321; }
+.markdown .bridge-roadmap h3 { margin: 0.8rem 0 0.35rem; font-size: 1.1rem; line-height: 1.4; }
+.markdown .bridge-roadmap a { color: var(--roadmap-accent); text-decoration: underline; text-underline-offset: 0.2em; }
+.markdown .bridge-roadmap a:hover { color: #934321; }
+.markdown .bridge-roadmap a:focus-visible { outline: 2px solid var(--roadmap-accent); outline-offset: 4px; border-radius: 2px; }
+.markdown .bridge-roadmap code { padding: 0.1em 0.25em; border-radius: 0.2rem; background: var(--roadmap-soft); color: #243746; overflow-wrap: anywhere; }
+.markdown .bridge-roadmap li p,
+.markdown .bridge-roadmap .roadmap-challenge p { margin: 0.65rem 0 0; font-size: 0.9rem; line-height: 1.6; }
+.markdown .bridge-roadmap li .roadmap-access,
+.markdown .bridge-roadmap .roadmap-challenge .roadmap-access { margin: 0; color: #526373; font-size: 0.75rem; }
+.markdown .bridge-roadmap li .roadmap-checkpoint,
+.markdown .bridge-roadmap .roadmap-challenge .roadmap-checkpoint { padding-top: 0.65rem; border-top: 1px solid #dce3e8; }
+.markdown .bridge-roadmap .roadmap-note { margin: 1rem 0 0; font-size: 0.85rem; line-height: 1.6; }
+@media (max-width: 600px) {
+  .markdown .bridge-roadmap .roadmap-stops { grid-template-columns: 1fr; }
+  .markdown .bridge-roadmap .roadmap-svg-label { display: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .markdown .bridge-roadmap .roadmap-stops > li { transition: box-shadow 160ms ease; }
+  .markdown .bridge-roadmap .roadmap-stops > li:hover { box-shadow: 0 4px 16px #24374612; }
+  .markdown .bridge-roadmap .roadmap-featured { animation: tds-roadmap-flow 12s linear infinite; }
+}
+@keyframes tds-roadmap-flow {
+  0%, 100% { background-position: 0 0, 0% 50%; }
+  50% { background-position: 0 0, 100% 50%; }
+}
 .markdown #game {
   margin: 1.5rem 0;
   border-inline-start: 4px solid var(--color-link);
@@ -31,6 +125,78 @@ By the end, you can:
 .markdown #game details > summary::before { transform: rotate(0deg); }
 .markdown #game details[open] > summary::before { transform: rotate(90deg); }
 </style>
+
+## Practice roadmap
+
+<section class="bridge-roadmap" aria-label="TDS Games challenge and three HTTP and DevTools practice levels" style="--roadmap-accent: #087e70; --roadmap-soft: #edf7f3; --roadmap-track: #bddbd1;">
+<p class="roadmap-eyebrow">Start where you are · Choose your target</p>
+<p class="roadmap-intro">Try Mayank's TDS Games challenge. Build your skills with 01 for browser investigation, 02 for API testing, and 03 for Natas web-security puzzles. Choose your starting level; use the request and Network labs below when you need a foundation.</p>
+<svg viewBox="0 0 880 216" role="img" aria-labelledby="http-roadmap-title http-roadmap-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="http-roadmap-title">Your HTTP and DevTools learning roadmap</title>
+  <desc id="http-roadmap-desc">An unnumbered TDS Games challenge by Mayank connects to three practice levels: 01 SolveJS for browser investigation, 02 API Challenges for testing, and 03 Natas for web-security puzzles.</desc>
+  <defs>
+    <linearGradient id="http-roadmap-featured-gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#087e70"/>
+      <stop offset="100%" stop-color="#6350a5"/>
+    </linearGradient>
+  </defs>
+  <path d="M90 140C185 140 205 66 320 66S430 140 550 140S670 66 780 66S830 66 850 66" fill="none" stroke="#bddbd1" stroke-width="16" stroke-linecap="round"/>
+  <path d="M90 140C185 140 205 66 320 66S430 140 550 140S670 66 780 66S830 66 850 66" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="7 10"/>
+  <g text-anchor="middle" font-family="sans-serif" font-size="28" font-weight="700">
+    <circle cx="90" cy="140" r="31" fill="url(#http-roadmap-featured-gradient)" stroke="#fff" stroke-width="3"/>
+    <path d="M80 129L69 140L80 151M100 129L111 140L100 151M94 125L86 155" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="320" cy="66" r="31" fill="#fff" stroke="#087e70" stroke-width="3"/>
+    <text x="320" y="76" fill="#087e70">01</text>
+    <circle cx="550" cy="140" r="31" fill="#fff" stroke="#087e70" stroke-width="3"/>
+    <text x="550" y="150" fill="#087e70">02</text>
+    <circle cx="780" cy="66" r="31" fill="#fff0e3" stroke="#934321" stroke-width="3"/>
+    <text x="780" y="76" fill="#934321">03</text>
+  </g>
+  <g class="roadmap-svg-label" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="700" fill="#243746">
+    <text x="90" y="188">Challenge</text>
+    <text x="90" y="208" font-size="14" fill="#087e70">TDS Games</text>
+    <text x="320" y="121">Investigate</text>
+    <text x="550" y="195">Test</text>
+    <text x="780" y="121" fill="#934321">Unlock</text>
+  </g>
+  <path d="M850 66V24" stroke="#243746" stroke-width="3"/>
+  <path d="M852 24H876L868 34L876 44H852Z" fill="#934321"/>
+  <circle cx="185" cy="44" r="6" fill="#bddbd1"/>
+  <circle cx="437" cy="184" r="5" fill="#edbf8d"/>
+  <path d="M639 190L656 163L674 190Z" fill="#edf7f3"/>
+</svg>
+<article class="roadmap-challenge roadmap-featured" aria-labelledby="tds-games-challenge">
+  <div class="roadmap-step"><span class="roadmap-challenge-label">Challenge</span><span class="roadmap-level">DevTools · Debug</span></div>
+  <h3 id="tds-games-challenge"><a href="https://tds-games.mynkpdr.in/" target="_blank" rel="noopener">TDS Games · Debug Paradox ↗</a></h3>
+  <p class="roadmap-access">Made by Mayank · Chrome DevTools · Sign in to play</p>
+  <p>Read the <a href="https://tds-games.mynkpdr.in/2026-09/#guide" target="_blank" rel="noopener">workshop guide ↗</a>, then investigate the game's twelve broken campus systems. Look for clues in response headers, HTML comments and console output. Use Network, Elements and Console to test one hypothesis at a time, then explain the evidence behind each solution.</p>
+  <p class="roadmap-checkpoint"><strong>Challenge goal:</strong> solve three scenarios and record the clue, DevTools panel and action that led to each solution.</p>
+</article>
+<ol class="roadmap-stops">
+  <li>
+    <div class="roadmap-step"><span class="roadmap-number">01</span><span class="roadmap-level">Foundation · Investigate</span></div>
+    <h3><a href="https://solvejs.com/challenges/recon?lang=en" target="_blank" rel="noopener">SolveJS: DevTools puzzles ↗</a></h3>
+    <p class="roadmap-access">Browser · Free account for full catalog · Selected demos without login</p>
+    <p>Recover a response-header or XHR flag in <strong>Find the flag</strong>. Then solve <strong>The role cookie</strong> and the Medium <strong>Forged role token</strong> puzzle in <a href="https://solvejs.com/challenges/tamper?lang=en" target="_blank" rel="noopener">Tamper the request</a>. Compare requests before and after changing the cookie.</p>
+    <p class="roadmap-checkpoint"><strong>Move on when:</strong> three puzzles pass and you can locate response evidence and explain how cookie changes affected the server reply.</p>
+  </li>
+  <li>
+    <div class="roadmap-step"><span class="roadmap-number">02</span><span class="roadmap-level">Intermediate · Test</span></div>
+    <h3><a href="https://apichallenges.com/gui/challenges" target="_blank" rel="noopener">API Challenges ↗</a></h3>
+    <p class="roadmap-access">Free · curl or API client · Temporary challenger ID; no personal account</p>
+    <p>Create a session with <code>POST /api/challenger</code> and reuse its <code>X-CHALLENGER</code> header. Complete a TODO create/read/update/delete cycle, then filtering, pagination, unsupported Content-Type and failed-authentication challenges. Use the board's API documentation to construct your requests.</p>
+    <p class="roadmap-checkpoint"><strong>Move on when:</strong> eight relevant board entries pass and you can explain the difference between a <code>415</code> input-format rejection and a <code>401</code> authentication failure.</p>
+  </li>
+  <li class="roadmap-stretch">
+    <div class="roadmap-step"><span class="roadmap-number">03</span><span class="roadmap-level">Optional stretch · Unlock</span></div>
+    <h3><a href="https://overthewire.org/wargames/natas/" target="_blank" rel="noopener">OverTheWire · Natas ↗</a></h3>
+    <p class="roadmap-access">Free · Browser + DevTools or curl · Published starter credentials</p>
+    <p>Use the game mission below to reach <code>natas3</code>, then attempt the next levels independently. Each recovered password opens the next level's website. Inspect page content and requests, replay them with curl when useful, and keep notes on why each clue works. Continue beyond the guided levels toward your own target.</p>
+    <p class="roadmap-checkpoint"><strong>Target:</strong> reach <code>natas6</code> and explain three independently solved levels using request, response or page evidence.</p>
+  </li>
+</ol>
+<p class="roadmap-note">Build request skills in labs 3.1–3.2 and the <a href="#network-lab">Network lab</a>. Save your API Challenges session before breaks; idle data may expire. Keep recovered Natas passwords out of your lab notes and practise only on the named game hosts.</p>
+</section>
 
 <details class="bridge-game" id="game">
 <summary><strong>Game mission: Natas</strong><span>Look behind the page. Find the next clue. | 3 challenges</span></summary>
