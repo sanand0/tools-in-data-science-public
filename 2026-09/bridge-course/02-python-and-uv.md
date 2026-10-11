@@ -13,6 +13,73 @@
 - Source files stored outside `.venv`.
 
 <style>
+.markdown .bridge-roadmap {
+  margin: 1.5rem 0;
+  padding: clamp(1rem, 3vw, 2rem);
+  border: 1px solid var(--roadmap-track);
+  border-radius: 1.25rem;
+  background: linear-gradient(145deg, #fff, var(--roadmap-soft));
+  color: #243746;
+}
+.markdown .bridge-roadmap .roadmap-eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--roadmap-accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.markdown .bridge-roadmap .roadmap-intro { margin: 0; line-height: 1.65; }
+.markdown .bridge-roadmap svg { display: block; width: 100%; height: auto; margin: 1rem 0; }
+.markdown .bridge-roadmap .roadmap-stops {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.markdown .bridge-roadmap .roadmap-stops > li {
+  min-width: 0;
+  margin: 0;
+  padding: 1.1rem;
+  border: 1px solid var(--roadmap-track);
+  border-radius: 0.85rem;
+  background: #fff;
+}
+.markdown .bridge-roadmap .roadmap-stops > .roadmap-stretch { border-color: #e7c1a6; background: #fffaf5; }
+.markdown .bridge-roadmap .roadmap-step { display: flex; align-items: center; gap: 0.65rem; }
+.markdown .bridge-roadmap .roadmap-number {
+  display: grid;
+  place-items: center;
+  flex: 0 0 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--roadmap-soft);
+  color: var(--roadmap-accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.markdown .bridge-roadmap .roadmap-level { color: var(--roadmap-accent); font-size: 0.8rem; font-weight: 700; }
+.markdown .bridge-roadmap .roadmap-stretch .roadmap-number { background: #fbe9d9; color: #934321; }
+.markdown .bridge-roadmap .roadmap-stretch .roadmap-level { color: #934321; }
+.markdown .bridge-roadmap h3 { margin: 0.8rem 0 0.35rem; font-size: 1.1rem; line-height: 1.4; }
+.markdown .bridge-roadmap a { color: var(--roadmap-accent); text-decoration: underline; text-underline-offset: 0.2em; }
+.markdown .bridge-roadmap a:hover { color: #934321; }
+.markdown .bridge-roadmap a:focus-visible { outline: 2px solid var(--roadmap-accent); outline-offset: 4px; border-radius: 2px; }
+.markdown .bridge-roadmap code { padding: 0.1em 0.25em; border-radius: 0.2rem; background: var(--roadmap-soft); color: #243746; overflow-wrap: anywhere; }
+.markdown .bridge-roadmap li p { margin: 0.65rem 0 0; font-size: 0.9rem; line-height: 1.6; }
+.markdown .bridge-roadmap li .roadmap-access { margin: 0; color: #526373; font-size: 0.75rem; }
+.markdown .bridge-roadmap li .roadmap-checkpoint { padding-top: 0.65rem; border-top: 1px solid #dce3e8; }
+.markdown .bridge-roadmap .roadmap-note { margin: 1rem 0 0; font-size: 0.85rem; line-height: 1.6; }
+@media (max-width: 600px) {
+  .markdown .bridge-roadmap .roadmap-stops { grid-template-columns: 1fr; }
+  .markdown .bridge-roadmap .roadmap-svg-label { display: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .markdown .bridge-roadmap .roadmap-stops > li { transition: box-shadow 160ms ease; }
+  .markdown .bridge-roadmap .roadmap-stops > li:hover { box-shadow: 0 4px 16px #24374612; }
+}
 .markdown #game {
   margin: 1.5rem 0;
   border-inline-start: 4px solid var(--color-link);
@@ -32,6 +99,71 @@
 .markdown #game details > summary::before { transform: rotate(0deg); }
 .markdown #game details[open] > summary::before { transform: rotate(90deg); }
 </style>
+
+## Practice roadmap
+
+<section class="bridge-roadmap" aria-label="Four levels of Python and uv practice" style="--roadmap-accent: #2457a7; --roadmap-soft: #edf3fd; --roadmap-track: #c9d9ef;">
+<p class="roadmap-eyebrow">Start where you are · Choose your target</p>
+<p class="roadmap-intro">Start with data handling at 01, solve harder problems at 02, test and refactor at 03, or make your projects reproducible with uv at 04. Every roadmap stop is free; enter where your current skills fit.</p>
+<svg viewBox="0 0 880 216" role="img" aria-labelledby="python-roadmap-title python-roadmap-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="python-roadmap-title">Your Python and uv practice roadmap</title>
+  <desc id="python-roadmap-desc">Four free stops progress from processing data on Genepy, through ranked Codewars problems and tested Exercism programs, to reproducible Python scripts and projects with uv.</desc>
+  <path d="M90 140C185 140 205 66 320 66S430 140 550 140S670 66 780 66S830 66 850 66" fill="none" stroke="#c9d9ef" stroke-width="16" stroke-linecap="round"/>
+  <path d="M90 140C185 140 205 66 320 66S430 140 550 140S670 66 780 66S830 66 850 66" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="7 10"/>
+  <g text-anchor="middle" font-family="sans-serif" font-size="28" font-weight="700">
+    <circle cx="90" cy="140" r="31" fill="#2457a7"/>
+    <text x="90" y="150" fill="#fff">01</text>
+    <circle cx="320" cy="66" r="31" fill="#fff" stroke="#2457a7" stroke-width="3"/>
+    <text x="320" y="76" fill="#2457a7">02</text>
+    <circle cx="550" cy="140" r="31" fill="#fff" stroke="#2457a7" stroke-width="3"/>
+    <text x="550" y="150" fill="#2457a7">03</text>
+    <circle cx="780" cy="66" r="31" fill="#fff0e3" stroke="#934321" stroke-width="3"/>
+    <text x="780" y="76" fill="#934321">04</text>
+  </g>
+  <g class="roadmap-svg-label" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="700" fill="#243746">
+    <text x="90" y="195">Process</text>
+    <text x="320" y="121">Solve</text>
+    <text x="550" y="195">Test</text>
+    <text x="780" y="121" fill="#934321">Reproduce</text>
+  </g>
+  <path d="M850 66V24" stroke="#243746" stroke-width="3"/>
+  <path d="M852 24H876L868 34L876 44H852Z" fill="#934321"/>
+  <circle cx="185" cy="44" r="6" fill="#c9d9ef"/>
+  <circle cx="437" cy="184" r="5" fill="#edbf8d"/>
+  <path d="M639 190L656 163L674 190Z" fill="#edf3fd"/>
+</svg>
+<ol class="roadmap-stops">
+  <li>
+    <div class="roadmap-step"><span class="roadmap-number">01</span><span class="roadmap-level">Foundation · Process</span></div>
+    <h3><a href="https://genepy.org/exercises/" target="_blank" rel="noopener">Genepy · practical Python ↗</a></h3>
+    <p class="roadmap-access">Free · Browser corrector · Account for shared solutions</p>
+    <p>Solve <a href="https://genepy.org/exercises/sort-students" target="_blank" rel="noopener">Sort students ↗</a>, then <a href="https://genepy.org/exercises/csv-and-python" target="_blank" rel="noopener">CSV and Python ↗</a>. Sort records without changing the input; write quoted CSV and parse dates and marks into typed values. New to functions and loops? Use the site's Basics exercises first.</p>
+    <p class="roadmap-checkpoint"><strong>Move on when:</strong> both exercises pass and you can explain sorting keys, CSV quoting and type conversion.</p>
+  </li>
+  <li>
+    <div class="roadmap-step"><span class="roadmap-number">02</span><span class="roadmap-level">Intermediate · Solve</span></div>
+    <h3><a href="https://www.codewars.com/kata/54da5a58ea159efa38000836/python" target="_blank" rel="noopener">Codewars · ranked kata ↗</a></h3>
+    <p class="roadmap-access">Free account · Python browser editor</p>
+    <p>Start with <strong>Find the odd int (6 kyu)</strong> to reason about frequencies. Implement <a href="https://www.codewars.com/kata/515bb423de843ea99400000a/python" target="_blank" rel="noopener">PaginationHelper (5 kyu) ↗</a> with correct page boundaries. When confident, try <a href="https://www.codewars.com/kata/51ba717bb08c1cd60f00002f/python" target="_blank" rel="noopener">Range Extraction (4 kyu) ↗</a> to compress consecutive values. Lower kyu numbers mean harder problems.</p>
+    <p class="roadmap-checkpoint"><strong>Move on when:</strong> full tests pass at 6 and 5 kyu and you can explain your strategy for duplicates, empty collections and invalid indexes.</p>
+  </li>
+  <li>
+    <div class="roadmap-step"><span class="roadmap-number">03</span><span class="roadmap-level">Applied · Test</span></div>
+    <h3><a href="https://exercism.org/tracks/python" target="_blank" rel="noopener">Exercism · test and refactor ↗</a></h3>
+    <p class="roadmap-access">Free account · Browser editor or local Python · Free exercises and mentoring</p>
+    <p>Implement <a href="https://exercism.org/tracks/python/exercises/bank-account" target="_blank" rel="noopener">Bank Account ↗</a> with correct balances, account states and validation errors. Then refactor <a href="https://exercism.org/tracks/python/exercises/ledger" target="_blank" rel="noopener">Ledger ↗</a> in small steps while preserving its locale and currency formatting. Add a regression test and record the changes that improve readability.</p>
+    <p class="roadmap-checkpoint"><strong>Move on when:</strong> both suites pass, invalid account operations raise the expected errors, and your refactoring preserves Ledger's output.</p>
+  </li>
+  <li class="roadmap-stretch">
+    <div class="roadmap-step"><span class="roadmap-number">04</span><span class="roadmap-level">Project workflow · Reproduce</span></div>
+    <h3><a href="https://docs.astral.sh/uv/guides/projects/" target="_blank" rel="noopener">uv · scripts and projects ↗</a></h3>
+    <p class="roadmap-access">Free tool and guides · Terminal with Python and uv</p>
+    <p>Put a tested solution in a new folder using <code>uv init --vcs none</code>. Declare its dependencies and add pytest with <code>uv add --dev pytest</code>. Compare the project with the <a href="https://docs.astral.sh/uv/guides/scripts/" target="_blank" rel="noopener">single-file script workflow ↗</a>, then copy only source, tests, <code>pyproject.toml</code> and <code>uv.lock</code> into a fresh folder.</p>
+    <p class="roadmap-checkpoint"><strong>Target:</strong> <code>uv sync --locked</code> and <code>uv run --locked pytest</code> pass in the fresh folder. Explain declared dependencies, locked versions and the recreated <code>.venv</code>.</p>
+  </li>
+</ol>
+<p class="roadmap-note">Use the lab below to compare the four environment workflows. Keep practice projects in separate folders, store source files outside <code>.venv</code>, and use the free Codewars and Exercism accounts to save your exercise progress.</p>
+</section>
 
 <details class="bridge-game" id="game">
 <summary><strong>Game mission: CodeCombat</strong><span>Write the route. Watch your code move. | 3 challenges</span></summary>

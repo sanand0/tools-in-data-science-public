@@ -13,6 +13,73 @@ By the end, you can:
 - Use this practice lab for the exercises.
 
 <style>
+.markdown .bridge-roadmap {
+  margin: 1.5rem 0;
+  padding: clamp(1rem, 3vw, 2rem);
+  border: 1px solid var(--roadmap-track);
+  border-radius: 1.25rem;
+  background: linear-gradient(145deg, #fff, var(--roadmap-soft));
+  color: #243746;
+}
+.markdown .bridge-roadmap .roadmap-eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--roadmap-accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.markdown .bridge-roadmap .roadmap-intro { margin: 0; line-height: 1.65; }
+.markdown .bridge-roadmap svg { display: block; width: 100%; height: auto; margin: 1rem 0; }
+.markdown .bridge-roadmap .roadmap-stops {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.markdown .bridge-roadmap .roadmap-stops > li {
+  min-width: 0;
+  margin: 0;
+  padding: 1.1rem;
+  border: 1px solid var(--roadmap-track);
+  border-radius: 0.85rem;
+  background: #fff;
+}
+.markdown .bridge-roadmap .roadmap-stops > .roadmap-stretch { border-color: #e7c1a6; background: #fffaf5; }
+.markdown .bridge-roadmap .roadmap-step { display: flex; align-items: center; gap: 0.65rem; }
+.markdown .bridge-roadmap .roadmap-number {
+  display: grid;
+  place-items: center;
+  flex: 0 0 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--roadmap-soft);
+  color: var(--roadmap-accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.markdown .bridge-roadmap .roadmap-level { color: var(--roadmap-accent); font-size: 0.8rem; font-weight: 700; }
+.markdown .bridge-roadmap .roadmap-stretch .roadmap-number { background: #fbe9d9; color: #934321; }
+.markdown .bridge-roadmap .roadmap-stretch .roadmap-level { color: #934321; }
+.markdown .bridge-roadmap h3 { margin: 0.8rem 0 0.35rem; font-size: 1.1rem; line-height: 1.4; }
+.markdown .bridge-roadmap a { color: var(--roadmap-accent); text-decoration: underline; text-underline-offset: 0.2em; }
+.markdown .bridge-roadmap a:hover { color: #934321; }
+.markdown .bridge-roadmap a:focus-visible { outline: 2px solid var(--roadmap-accent); outline-offset: 4px; border-radius: 2px; }
+.markdown .bridge-roadmap code { padding: 0.1em 0.25em; border-radius: 0.2rem; background: var(--roadmap-soft); color: #243746; overflow-wrap: anywhere; }
+.markdown .bridge-roadmap li p { margin: 0.65rem 0 0; font-size: 0.9rem; line-height: 1.6; }
+.markdown .bridge-roadmap li .roadmap-access { margin: 0; color: #526373; font-size: 0.75rem; }
+.markdown .bridge-roadmap li .roadmap-checkpoint { padding-top: 0.65rem; border-top: 1px solid #dce3e8; }
+.markdown .bridge-roadmap .roadmap-note { margin: 1rem 0 0; font-size: 0.85rem; line-height: 1.6; }
+@media (max-width: 600px) {
+  .markdown .bridge-roadmap .roadmap-stops { grid-template-columns: 1fr; }
+  .markdown .bridge-roadmap .roadmap-svg-label { display: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .markdown .bridge-roadmap .roadmap-stops > li { transition: box-shadow 160ms ease; }
+  .markdown .bridge-roadmap .roadmap-stops > li:hover { box-shadow: 0 4px 16px #24374612; }
+}
 .markdown #game {
   margin: 1.5rem 0;
   border-inline-start: 4px solid var(--color-link);
@@ -32,6 +99,71 @@ By the end, you can:
 .markdown #game details > summary::before { transform: rotate(0deg); }
 .markdown #game details[open] > summary::before { transform: rotate(90deg); }
 </style>
+
+## Practice roadmap
+
+<section class="bridge-roadmap" aria-label="Four levels of Git and GitHub practice" style="--roadmap-accent: #9c4328; --roadmap-soft: #fff1e9; --roadmap-track: #e8cbbd;">
+<p class="roadmap-eyebrow">Start where you are · Choose your target</p>
+<p class="roadmap-intro">Start at 01 to see Git history in a game, 02 for branching and remote history, 03 for recovery and debugging, or 04 for team workflows. Use the game mission and local lab below to build your first snapshots.</p>
+<svg viewBox="0 0 880 216" role="img" aria-labelledby="git-roadmap-title git-roadmap-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="git-roadmap-title">From local Git practice to recovery and collaboration</title>
+  <desc id="git-roadmap-desc">Four connected stops: Oh My Git! for visual snapshots and branching practice, Learn Git Branching for commit and remote graph challenges, Git Exercises for recovery and debugging, and optional GitHub Skills for reviews, conflicts and releases.</desc>
+  <path d="M90 140C185 140 205 66 320 66S430 140 550 140S670 66 780 66S830 66 850 66" fill="none" stroke="#e8cbbd" stroke-width="16" stroke-linecap="round"/>
+  <path d="M90 140C185 140 205 66 320 66S430 140 550 140S670 66 780 66S830 66 850 66" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="7 10"/>
+  <g text-anchor="middle" font-family="sans-serif" font-size="28" font-weight="700">
+    <circle cx="90" cy="140" r="31" fill="#9c4328"/>
+    <text x="90" y="150" fill="#fff">01</text>
+    <circle cx="320" cy="66" r="31" fill="#fff" stroke="#9c4328" stroke-width="3"/>
+    <text x="320" y="76" fill="#9c4328">02</text>
+    <circle cx="550" cy="140" r="31" fill="#fff" stroke="#9c4328" stroke-width="3"/>
+    <text x="550" y="150" fill="#9c4328">03</text>
+    <circle cx="780" cy="66" r="31" fill="#fff0e3" stroke="#934321" stroke-width="3"/>
+    <text x="780" y="76" fill="#934321">04</text>
+  </g>
+  <g class="roadmap-svg-label" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="700" fill="#243746">
+    <text x="90" y="195">Play</text>
+    <text x="320" y="121">Branch</text>
+    <text x="550" y="195">Recover</text>
+    <text x="780" y="121" fill="#934321">Collaborate</text>
+  </g>
+  <path d="M850 66V24" stroke="#243746" stroke-width="3"/>
+  <path d="M852 24H876L868 34L876 44H852Z" fill="#934321"/>
+  <circle cx="185" cy="44" r="6" fill="#e8cbbd"/>
+  <circle cx="437" cy="184" r="5" fill="#edbf8d"/>
+  <path d="M639 190L656 163L674 190Z" fill="#fff1e9"/>
+</svg>
+<ol class="roadmap-stops">
+  <li>
+    <div class="roadmap-step"><span class="roadmap-number">01</span><span class="roadmap-level">Foundation · Play with history</span></div>
+    <h3><a href="https://ohmygit.org/" target="_blank" rel="noopener">Oh My Git! ↗</a></h3>
+    <p class="roadmap-access">Download · Windows, macOS or Linux · No GitHub account needed</p>
+    <p>Complete the introductory mission below using the command cards, then repeat the operations in the game's terminal. Watch commits and branch pointers change as you edit, stage and commit. Continue to branching and merging levels when you can explain the two snapshots.</p>
+    <p class="roadmap-checkpoint"><strong>Move on when:</strong> you can create two commits, compare their contents and explain the difference between editing, staging and committing.</p>
+  </li>
+  <li>
+    <div class="roadmap-step"><span class="roadmap-number">02</span><span class="roadmap-level">Intermediate · Reshape history</span></div>
+    <h3><a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">Learn Git Branching ↗</a></h3>
+    <p class="roadmap-access">Free browser simulator · JavaScript enabled · No account</p>
+    <p>Work through <strong>Ramping Up</strong> and <strong>Moving and Staging Work</strong>, then the Remote tab's <strong>To Origin And Beyond</strong> challenges. Practise detached HEAD, cherry-picking, interactive rebase and synchronising divergent remote branches. Match each goal graph rather than copying its solution.</p>
+    <p class="roadmap-checkpoint"><strong>Move on when:</strong> the selected sequences are solved and you can predict which commits and branch pointers each command changes.</p>
+  </li>
+  <li>
+    <div class="roadmap-step"><span class="roadmap-number">03</span><span class="roadmap-level">Advanced · Recover and debug</span></div>
+    <h3><a href="https://gitexercises.fracz.com/" target="_blank" rel="noopener">Git Exercises ↗</a></h3>
+    <p class="roadmap-access">Free · Git + Bash + internet · OpenSSL for the bug exercise</p>
+    <p>Follow the site's clone and setup instructions. Tackle <code>commit-lost</code> with reflog, <code>split-commit</code>, <code>rebase-complex</code> with rebase onto, and <code>find-bug</code> with bisect. The checker inspects real repository state: recover a lost commit, separate changes, transplant selected history and identify the first failing commit.</p>
+    <p class="roadmap-checkpoint"><strong>Move on when:</strong> all four tasks are accepted and you can explain each method. Submit with <code>git verify</code> or the task's explicit push instructions.</p>
+  </li>
+  <li class="roadmap-stretch">
+    <div class="roadmap-step"><span class="roadmap-number">04</span><span class="roadmap-level">Optional stretch · Team workflows</span></div>
+    <h3><a href="https://github.com/skills/review-pull-requests" target="_blank" rel="noopener">GitHub Skills ↗</a></h3>
+    <p class="roadmap-access">GitHub account · Separate exercise repositories · GitHub Actions</p>
+    <p>Complete <strong>Review pull requests</strong>, <a href="https://github.com/skills/resolve-merge-conflicts" target="_blank" rel="noopener">Resolve merge conflicts</a> and <a href="https://github.com/skills/release-based-workflow" target="_blank" rel="noopener">Release-based workflow</a>. Copy each exercise into its own repository and follow its automated feedback. Public exercise repositories avoid private Actions-minute use.</p>
+    <p class="roadmap-checkpoint"><strong>Target:</strong> apply a review suggestion, resolve a pull request conflict, and complete a tagged release with release notes and a hotfix release.</p>
+  </li>
+</ol>
+<p class="roadmap-note">Keep local exercise folders outside <code>bridge-lab</code> and use separate GitHub Skills repositories. Practise resets and history rewriting in disposable exercise repositories; avoid rewriting commits that teammates already depend on.</p>
+</section>
 
 <details class="bridge-game" id="game">
 <summary><strong>Game mission: Oh My Git!</strong><span>Make a snapshot. See what Git remembers. | 3 challenges</span></summary>
