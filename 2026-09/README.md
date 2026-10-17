@@ -127,7 +127,7 @@ These dates are **tentative** and may change. Check this page for updates. All d
 | [Bootcamp][GA0]                                          | [**GA0**][GA0] |      — | Wed 16 Sep          | Sun 11 Oct          |
 | Week-1                                                   | [**GA1**][GA1] |      — | Wed 07 Oct          | Sun 18 Oct          |
 | Week-2                                                   | [**GA2**][GA2] |      — | Wed 07 Oct          | Sun 18 Oct          |
-| Project 1                                                | [**P1**][P1]   |    20% | Fri 09 Oct          | Mon 09 Nov          |
+| Project 1                                                | [**P1**][P1]   |    20% | Sat 17 Oct          | Mon 09 Nov          |
 | Week-3                                                   | **GA3**        |      — | Wed 14 Oct          | Sun 25 Oct          |
 | Week-4                                                   | **GA4**        |      — | Wed 21 Oct          | Sun 08 Nov          |
 | Week-5                                                   | **GA5**        |      — | Wed 04 Nov          | Wed 18 Nov          |
