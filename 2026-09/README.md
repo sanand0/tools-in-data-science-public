@@ -128,7 +128,7 @@ These dates are **tentative** and may change. Check this page for updates. All d
 | Week-1                                                   | [**GA1**][GA1] |      — | Wed 07 Oct          | Sun 18 Oct          |
 | Week-2                                                   | [**GA2**][GA2] |      — | Wed 07 Oct          | Sun 18 Oct          |
 | Project 1                                                | [**P1**][P1]   |    20% | Sat 17 Oct          | Mon 09 Nov          |
-| Week-3                                                   | **GA3**[GA3]        |      — | Wed 14 Oct          | Sun 25 Oct          |
+| Week-3                                                   | [**GA3**][GA3]        |      — | Wed 14 Oct          | Sun 25 Oct          |
 | Week-4                                                   | **GA4**        |      — | Wed 21 Oct          | Sun 08 Nov          |
 | Week-5                                                   | **GA5**        |      — | Wed 04 Nov          | Wed 18 Nov          |
 | Project 2                                                | **P2**         |    20% | Fri 06 Nov          | Sun 13 Dec          |
