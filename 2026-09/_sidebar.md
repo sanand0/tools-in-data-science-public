@@ -50,9 +50,23 @@
 </details>
 
 <details class="tds-week">
-<summary>Week 3</summary>
+<summary>Week 3: LLMs & AI Agents</summary>
 
-- [Overview](week-3/README.md)
+- [WebMCP](week-3/webmcp.md)
+- [LLM & Agent Costs](week-3/llm-agent-costs.md)
+- [Prompting — Foundations](week-3/01-prompt-engineering-1-foundations.md)
+- [Prompting — Reliability](week-3/01-prompt-engineering-2-reliable-reasoning-output-control.md)
+- [Prompting — Applications](week-3/01-prompt-engineering-3-prompted-applications-production-practice.md)
+- [LLM Architecture Survey](week-3/llm-architecture-survey.md)
+- [Context Engineering](week-3/context-engineering.md)
+- [Pydantic & Structured Output](week-3/structured-output.md)
+- [Multimodal Inputs](week-3/multimodal-inputs.md)
+- [Prompt Caching](week-3/prompt-caching.md)
+- [Vector Embeddings](week-3/vector-embeddings.md)
+- [Similarity Search](week-3/similarity-search.md)
+- [LLM CLI Tools](week-3/llm-cli-tools.md)
+- [AI Coding Assistants](week-3/ai-coding-assistants.md)
+- [LangSmith & LiteLLM](week-3/langsmith-litellm.md)
 
 </details>
 
