@@ -25,6 +25,7 @@ It's useful for logging and streaming data.
 Tools you could use with JSON:
 
 - [JSONLint](https://jsonlint.com/): Validate and format JSON
+- [JSONViewerTool JSON Validator](https://jsonviewertool.com/json-validator): Validate and format JSON in the browser
 - [JSON Editor Online](https://jsoneditoronline.org/): Visual JSON editor and formatter
 - [JSON Schema](https://json-schema.org/): Define the structure of your JSON data
 - [jq](https://stedolan.github.io/jq/): Command-line JSON processor
