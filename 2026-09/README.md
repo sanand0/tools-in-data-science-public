@@ -10,6 +10,8 @@
 
 **AI will evaluate you**. Since results vary each run, learn to answer them _robustly_. LLM decisions are **final**.
 
+**[TDS Guidebook for AI](guidebook.md):** Give this compact course context to your AI assistant when asking for help. Current assessment instructions and official announcements take precedence.
+
 <div class="tds-figures">
 <figure>
 <img src="../images/thats-what-ai-said.webp" alt="Teacher: No idea. That's what AI said!">
