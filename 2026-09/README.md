@@ -130,8 +130,8 @@ These dates are **tentative** and may change. Check this page for updates. All d
 | Week-1                                                   | [**GA1**][GA1] |      — | Wed 07 Oct          | Sun 18 Oct          |
 | Week-2                                                   | [**GA2**][GA2] |      — | Wed 07 Oct          | Sun 18 Oct          |
 | Project 1                                                | [**P1**][P1]   |    20% | Sat 17 Oct          | Mon 17 Nov          |
-| Week-3                                                   | [**GA3**][GA3] |      — | Wed 21 Oct          | Sat 31 Oct          |
-| Week-4                                                   | **GA4**        |      — | Wed 21 Oct          | Sun 08 Nov          |
+| Week-3                                                   | [**GA3**][GA3] |      — | Wed 21 Oct          | Sat 31 Oct, 11:59 PM |
+| Week-4                                                   | [**GA4**][GA4] |      — | Wed 04 Nov          | Wed 11 Nov, 11:59 PM |
 | Week-5                                                   | **GA5**        |      — | Wed 04 Nov          | Wed 18 Nov          |
 | Project 2                                                | **P2**         |    20% | Fri 06 Nov          | Sun 13 Dec          |
 | Week-6                                                   | **GA6**        |      — | Wed 11 Nov          | Mon 23 Nov          |
@@ -144,6 +144,7 @@ These dates are **tentative** and may change. Check this page for updates. All d
 [GA1]: https://exam.sanand.workers.dev/tds-2026-09-ga1
 [GA2]: https://exam.sanand.workers.dev/tds-2026-09-ga2
 [GA3]: https://exam.sanand.workers.dev/tds-2026-09-ga3
+[GA4]: https://exam.sanand.workers.dev/tds-2026-09-ga4
 [P1]:https://exam.sanand.workers.dev/tds-2026-09-p1
 [hard]: https://discourse.onlinedegree.iitm.ac.in/t/roe-prep-discussion-thread-tds-may-2025/181581/25
 [roe-2026-01]: https://exam.sanand.workers.dev/tds-2026-01-roe
