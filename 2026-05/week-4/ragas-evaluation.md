@@ -288,17 +288,17 @@ print(comparison_df.to_string())
 
 ### Faithfulness
 
-```math
+$$
 \text{Faithfulness} = \frac{\text{claims in answer supported by context}}{\text{total claims in answer}}
-```
+$$
 
 A score of 1.0 means every statement in the answer is backed by a retrieved chunk. Scores below 0.7 signal hallucination.
 
 ### Context Recall
 
-```math
+$$
 \text{Context Recall} = \frac{\text{ground-truth sentences found in context}}{\text{total ground-truth sentences}}
-```
+$$
 
 Measures whether you **retrieved** all the information needed. Low recall = missing chunks.
 

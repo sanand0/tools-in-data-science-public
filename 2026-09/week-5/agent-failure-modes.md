@@ -237,7 +237,7 @@ if __name__ == "__main__":
 
 | Risk | Naive Agent Behavior | Production Engineered Defense |
 |---|---|---|
-| **Step Multiplication** | Keeps trying forever ($p^N$ reliability crash) | Hard step budget (e.g. 15 max) + graceful escalation |
+| **Step Multiplication** | Keeps trying forever (\(p^N\) reliability crash) | Hard step budget (e.g. 15 max) + graceful escalation |
 | **Oscillation** | Toggles back and forth between two futile actions | N-gram call-stack hash detection |
 | **API Timeouts** | Retries mutating API call, creating duplicate data | Mandatory idempotency keys on all writes |
 | **Context Bloat** | Ingests 50k tokens of logs, forgets core task | Head/tail truncation + file redirection |
