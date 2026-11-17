@@ -77,13 +77,13 @@ for i in top_k_indices:
 
 RRF merges ranked lists from multiple retrieval methods. The key insight: **position matters more than score**.
 
-```math
+$$
 \text{RRF}(d) = \sum_{r \in R} \frac{1}{k + r(d)}
-```
+$$
 
 Where:
-- $r(d)$ = rank of document $d$ in ranked list $r$  
-- $k$ = constant (typically 60) that limits the impact of very high ranks
+- \(r(d)\) = rank of document \(d\) in ranked list \(r\)  
+- \(k\) = constant (typically 60) that limits the impact of very high ranks
 
 ```python
 from typing import List, Dict, Tuple

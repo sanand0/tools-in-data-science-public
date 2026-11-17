@@ -521,9 +521,9 @@ To calculate the raw memory required to load a model:
 $$\text{Memory (GB)} \approx \frac{\text{Parameter Count (Billions)} \times \text{Quantization Bit-Width}}{8} \times 1.25\ \text{(KV Cache Overhead)}$$
 
 Example profiles:
-- **Gemma 2B (FP16):** $2 \times 2 \times 1.25 = 5.0\text{ GB}$ (Needs at least a 6GB GPU).
-- **Gemma 2B (AWQ INT4):** $2 \times 0.5 \times 1.25 = 1.25\text{ GB}$ (Runs smoothly on cheap 2GB GPUs/CPUs).
-- **Llama 3B (Q8_0):** $3 \times 1.0 \times 1.25 = 3.75\text{ GB}$ (Needs at least a 6GB GPU).
+- **Gemma 2B (FP16):** \(2 \times 2 \times 1.25 = 5.0\text{ GB}\) (Needs at least a 6GB GPU).
+- **Gemma 2B (AWQ INT4):** \(2 \times 0.5 \times 1.25 = 1.25\text{ GB}\) (Runs smoothly on cheap 2GB GPUs/CPUs).
+- **Llama 3B (Q8_0):** \(3 \times 1.0 \times 1.25 = 3.75\text{ GB}\) (Needs at least a 6GB GPU).
 
 #### AWQ Quantization Workflow
 If you want to quantize a custom PyTorch model into vLLM-compatible AWQ format:
