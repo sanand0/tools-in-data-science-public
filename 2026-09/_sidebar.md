@@ -71,9 +71,22 @@
 </details>
 
 <details class="tds-week">
-<summary>Week 4</summary>
+<summary>Week 4: RAG & Hybrid RAG</summary>
 
-- [Overview](week-4/README.md)
+- [Vector Databases](week-4/vector-databases.md)
+- [Chunking Strategies](week-4/chunking-strategies.md)
+- [Late Chunking](week-4/late-chunking.md)
+- [Contextual Retrieval](week-4/contextual-retrieval.md)
+- [Hybrid Search](week-4/hybrid-search.md)
+- [Reranking](week-4/reranking.md)
+- [Query Augmentation](week-4/query-augmentation.md)
+- [Semantic Caching](week-4/semantic-caching.md)
+- [Multimodal Embeddings](week-4/multimodal-embeddings.md)
+- [GraphRAG](week-4/graphrag.md)
+- [Corrective & Agentic RAG](week-4/corrective-rag.md)
+- [LLM Grounding & Citations](week-4/llm-grounding.md)
+- [RAGAS Evaluation](week-4/ragas-evaluation.md)
+- [Production RAG: What LLMs Can't Do](week-4/production-rag-failures.md)
 
 </details>
 
@@ -84,9 +97,20 @@
 </div>
 
 <details class="tds-week">
-<summary>Week 5</summary>
+<summary>Week 5: Agentic AI</summary>
 
-- [Overview](week-5/README.md)
+- [Agent Fundamentals](week-5/agent-fundamentals.md)
+- [Tool / Function Calling](week-5/tool-calling.md)
+- [Loop Engineering](week-5/loop-engineering.md)
+- [Model Context Protocol (MCP)](week-5/mcp.md)
+- [Agent Memory Systems](week-5/agent-memory-systems.md)
+- [Multi-Agent Systems](week-5/multi-agent-systems.md)
+- [Specialized Agents](week-5/specialized-agents.md)
+- [Async & Parallelism](week-5/async-parallelism.md)
+- [Sandboxing Agent Code](week-5/sandboxing.md)
+- [Agent Evaluation & Benchmarking](week-5/agent-evaluation-benchmarking.md)
+- [Why Production Agents Fail](week-5/agent-failure-modes.md)
+- [Deterministic State Machines](week-5/state-machines-hybrid-agents.md)
 
 </details>
 
