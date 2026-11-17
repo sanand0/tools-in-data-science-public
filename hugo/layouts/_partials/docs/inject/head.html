@@ -10,3 +10,27 @@
 
 <script>window.goatcounter = {path: p => '/@tools-in-data-science-public' + p}</script>
 <script data-goatcounter="https://sanand0.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+<!-- KaTeX math rendering -->
+<link rel="stylesheet" href="{{ "katex/katex.min.css" | relURL }}" />
+<script defer src="{{ "katex/katex.min.js" | relURL }}"></script>
+<script defer src="{{ "katex/auto-render.min.js" | relURL }}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var renderMath = function () {
+      if (typeof renderMathInElement === "function") {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "\\[", right: "\\]", display: true },
+            { left: "\\(", right: "\\)", display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        setTimeout(renderMath, 50);
+      }
+    };
+    renderMath();
+  });
+</script>
